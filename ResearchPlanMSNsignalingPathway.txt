@@ -1,0 +1,59 @@
+QUESTIONS:
+General:
+1. How do dopamine and acetylcholine contribute to learning and synaptic plasticity in the striatum.
+2. How do Da and ACh contribute to or control activation of memory kinases?
+
+More Specific:
+1. How do Da and ACh via the M4, D1 and M1 receptors influence activation of memory kinases?
+2. Can post-synaptic signaling pathways, activated by calcium, D1, M1 and M4, discriminate temporal patterns?
+3. Which of these signaling molecules/receptor convey spatial specificity?
+4. How can dopamine reinforce only those glutamate inputs that came prior, and not after?
+	Is AC1 the only mechanism to provide temporal specificity?
+5. Does the location of the D1/M4/Golf/Gi/AC complex, i.e. spine versus dendrite, change activation of kinases?
+6. Does 10.5 Hz theta optimize some post-synaptic signaling pathways?
+
+7. Are both mGluR and M1 required for 20 Hz LTD?  Lerner and Kreitzer show mGluR and PLC required.
+
+8. Is CaMKII required for Theta burst LTP, to inhibit ECB production?
+EXPER: add inhibitor peptide (10.5 Theta, DM)
+
+EXPER: Is CB1 required for Theta burst LTP (first check that AM251 blocks 20 Hz LTD)?
+After showing that AM251 blocks 20 Hz LTD DM, then do expers on Theta LTP DM.
+
+Is CB1 required for striatal dependent learning (what about PKA, PKC and CaMKII)?
+EXPER: In vivo infusion of drugs into striatum during behavioral task acquisition
+
+MODEL Procedure:
+DONE: 0. Create git repository on a computer that both GMU and KTH have access to.
+1. Merge BoHung Gq/PKC + Gq/2AG model with Rodrigo Golf model, possibly tweak parameters (adjust calcium buffer quantities, less constrained binding affinities, to make sure basal calcium is correct).
+	possibly with epac, use input from calcium model
+2. Add in Gi pathways, adjust D1/M4/Gi/Gs/AC/PDE10 (tweak parameters or quantity) to obtain correct basal cAMP
+DONE? 3. Adjust the PKA activity rates (Castro), PKA diffusion rate (Shane Tillo &Zhang/myristolation), CaMKII diffusion rate (2Lu HE, MacGillavry HD, Frost NA, Blanpied TA.J Neurosci. 2014 May 28;34(22):7600-10).
+3. Add in CaMKII inhibition of DAGLipase (Shonesy BC, Wang X, Rose KL, Ramikie TS, Cavener VS, Rentz T, Baucum AJ 2nd, Jalan-Sakrikar N, Mackie K, Winder DG, Patel S, Colbran RJ. Nat Neurosci. 2013 Apr;16(4):456-63.) and PKA phosphorylation of RGS4, which accelerates Gq hydrolysis.
+4. Other quantities / locations may need to be updated:
+Differential association of postsynaptic signaling protein complexes in striatum and hippocampus.
+Baucum AJ 2nd, Brown AM, Colbran RJ.J Neurochem. 2013
+mGluR are peri-synaptic
+M1 is at spine neck to dendrite (Uchigashima J Neurosci 2007 - slightly further away from PSD than mGluR)
+==>>> M1 and mGluR5 leads to IPSC suppression, only mGluR5 produces EPSC suppression
+(Also, stronger CB1 expression on GABA synapses)
+M4 must be near D1 both of which must be near AC. D1/M4/Golf/Gi/AC complex is in the spine, might also be in the dendrite.
+5. Finish Tweaking - immobilize DARPP32 (Blom et al. Brismar PLoS One 2013)
+
+6. Do we add ERK to this model, or do we run simulations and publish this and THEN add in ERK 
+RasGRF to RasGTP to Raf to MEK to ERK.
+PKA phos STEP, which dephos ERK
+PP1 dephos STEP, pSTEP is inactive
+What about epac -> RapGTP -> Raf?
+What about PKA phos Raf?
+
+SIMULATION PROTOCOLS:
+20 Hz vs theta calcium / Glutamate input
+Da input similar to what Lovinger has measured
+What is temporal pattern of ACh?
+
+Q1: Does theta have higher memory kinases (PKA+PKC) than 20 Hz?
+Q2: What happens if caMKII or PKA is blocked? - compare to new and old field experiments
+Q3: What happens if Da, m1 or mGluR5 are blocked? - compare to old (LTP) and new (LTD) field experiments
+Q4: What sort of spatial specificity do we get?
+Q5: Does model exhibit similar sensitivity to theta frequency?

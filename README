@@ -1,0 +1,30 @@
+Step 1. Merge reactions from modified version of Rodrigo's model and BoHung's model
+Notes in the RXN file indicate whether the reaction came from the Gs model (Oliveira 2012) or Gq model (Kim 2013)
+DONE.  1A. Merge reactions
+DONE. 1B. Use the smaller, 1 spine morphology
+1C. Create initial IC file - BALANCE ALL SPECIES, concentration and total PKA, etc in dend sm and spine head
+DONE. 1D. Create a no stim file
+DONE. 1E. Create an everything and a simpler/reduced IO file
+Compare rate constants with xpp model and Oliveira model: which rates match references theirin, which ones do not match references, which rates don't have references.
+Search for updated references for rates with none or non-matching refs.  
+
+Step 2. Adjust ... to achieve correct basal cAMP and calcium
+2A. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC
+2B. IC and RXN for Gs production and binding
+2C. possibly include Gi reactions here to help decrease basal cAMP
+
+Step 3. Interaction between Gs and Gq/calcium pathways
+3A. CaMKII inhibition of Dagl
+3B. PKA enhances of Gq GAP activity?  Via RGS or D2 neuron only?
+
+Step 4.
+4A. Re-run bath applied sims, as in Lindskog.  See PP2B dephos of DARPP32
+Update the non-matching refs if better response.
+4B. Re-run Uchigashima
+
+Step 5.  Simulation experiments
+5A. Stim files: Glu: how to account for release refractoriness and receptor desensitization (Ca and mGluR)?
+    constrain by Lovinger imaging
+5B. Stim files: Da and mACh: what pattern of release occurs (Da from Lovinger)
+5C. Which temporal patterns select for LTP vs LTD?
+5D. Sensitivity to order of Ca and Da?  Do we need AC1 for this aspect?

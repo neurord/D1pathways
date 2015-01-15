@@ -1,0 +1,24 @@
+<StimulationSet>
+
+    <!-- the injectionSite must match a regionLabel deefined in the morphology -->
+<!-- 1:L -->
+  <InjectionStim specieID="L" injectionSite="sa1[0].pointA">
+        <onset>                50000         </onset>
+        <duration>            451000         </duration>
+        <rate>                7.5            </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="L" injectionSite="sa3[0].pointA">
+        <onset>                50000         </onset>
+        <duration>            451000         </duration>
+        <rate>                7.5            </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="L" injectionSite="pointB">
+        <onset>                50000         </onset>
+        <duration>            451000         </duration>
+        <rate>                7.5            </rate>
+  </InjectionStim>
+  
+
+</StimulationSet>

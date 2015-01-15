@@ -1,0 +1,155 @@
+<OutputScheme>
+<!--
+     Each file will have a set of concentrations in compartments
+     sampled according to a specific dt
+-->
+
+<!--
+    Every Output block must have in its definition one (and only)
+    instance of:
+     * filename
+    And might have one (and only) instance of:
+     * region or
+     * dt
+    If "region" is ommited then the concs for the whole system will be
+    saved.
+    If "dt" is ommited than the concs will be written at each time step.
+    So the "io file" will be dependent on information stated in the
+    "morph" (regions) and "model" (dt).
+-->
+
+  <OutputSet filename = "all"  dt="100.0">
+
+    <OutputSpecie name="Ca"/>
+    <OutputSpecie name="CaOut"/>
+    <OutputSpecie name="CaOutLeak"/>
+    <OutputSpecie name="Leak"/>
+    <OutputSpecie name="Calbin"/>
+    <OutputSpecie name="CalbinC"/>
+    <OutputSpecie name="pmca"/>
+    <OutputSpecie name="ncx"/>
+    <OutputSpecie name="pmcaCa"/>
+    <OutputSpecie name="ncxCa"/>
+
+    <OutputSpecie name="CaM"/>
+    <OutputSpecie name="CaMCa2C"/>
+    <OutputSpecie name="CaMCa2N"/>
+    <OutputSpecie name="CaMCa4"/>
+
+    <OutputSpecie name="LOut"/>
+    <OutputSpecie name="L"/>
+    <OutputSpecie name="D1R"/>
+    <OutputSpecie name="Gsabg"/>
+    <OutputSpecie name="LD1RGs"/>
+    <OutputSpecie name="LD1R"/>
+    <OutputSpecie name="GsD1R"/>
+    <OutputSpecie name="GasGTP"/>
+    <OutputSpecie name="GasGDP"/>
+    <OutputSpecie name="Gbg"/>
+
+    <OutputSpecie name="Glu"/>
+    <OutputSpecie name="GluOut"/>
+    <OutputSpecie name="MgluR"/>
+    <OutputSpecie name="GluMgluR"/>
+    <OutputSpecie name="GluMgluRdesens"/>
+    <OutputSpecie name="Gqabg"/>
+    <OutputSpecie name="GluMgluRGq"/>
+    <OutputSpecie name="GaqGTP"/>
+    <OutputSpecie name="GaqGDP"/>
+
+    <OutputSpecie name="AC"/>
+    <OutputSpecie name="ACGas"/>
+    <OutputSpecie name="ACCa"/>
+    <OutputSpecie name="ACGasCa"/>
+    <OutputSpecie name="ACGasCaATP"/>
+    <OutputSpecie name="ACGasATP"/>
+
+    <OutputSpecie name="ATP"/>
+    <OutputSpecie name="cAMP"/>
+    <OutputSpecie name="AMP"/>
+
+    <OutputSpecie name="PDE1CamCa4"/>
+    <OutputSpecie name="PDE1CamCa4cAMP"/>
+
+    <OutputSpecie name="PDE10"/>
+    <OutputSpecie name="PDE10cAMP"/>
+    <OutputSpecie name="PKAcPDE10"/>
+    <OutputSpecie name="PKAcPDE10cAMP"/>
+    <OutputSpecie name="pPDE10"/>
+    <OutputSpecie name="pPDE10cAMP"/>
+
+    <OutputSpecie name="Plc"/>
+    <OutputSpecie name="PlcCa"/>
+    <OutputSpecie name="PlcCaGaq"/>
+    <OutputSpecie name="PlcGaq"/>
+    <OutputSpecie name="Pip2"/>
+    <OutputSpecie name="PlcCaPip2"/>
+    <OutputSpecie name="PlcCaGaqPip2"/>
+    <OutputSpecie name="Ip3"/>
+    <OutputSpecie name="Dag"/>
+
+    <OutputSpecie name="DagK"/>
+    <OutputSpecie name="DagKdag"/>
+    <OutputSpecie name="PA"/>
+    <OutputSpecie name="2agDegrad"/>
+    <OutputSpecie name="Ip3degrad"/>
+
+    <OutputSpecie name="Dgl"/>
+    <OutputSpecie name="CaDgl" />
+    <OutputSpecie name="DagCaDgl"/>
+    <OutputSpecie name="2ag"/>
+
+    <OutputSpecie name="PIkinase"/>
+    <OutputSpecie name="Ip3degPIk"/>
+    
+    <OutputSpecie name="Pkc"/>
+    <OutputSpecie name="PkcCa"/>
+    <OutputSpecie name="PkcCaDag"/>
+   
+    <OutputSpecie name="PP2B"/>
+    <OutputSpecie name="PP2BCam"/>
+    <OutputSpecie name="PP2BCamCa2"/>
+    <OutputSpecie name="PP2BCamCa4"/>
+    <OutputSpecie name="PP1"/>
+
+    <OutputSpecie name="PP2A_BPR72"/>
+    <OutputSpecie name="PP2A_B56d"/>
+    <OutputSpecie name="PKAcPP2A_B56d"/>
+    <OutputSpecie name="pPP2A"/>
+    <OutputSpecie name="PP2AC"/>
+
+    <OutputSpecie name="CK"/>
+    <OutputSpecie name="CKCamCa4"/>
+    <OutputSpecie name="CKpCamCa4"/>
+    <OutputSpecie name="CKp"/>
+    <OutputSpecie name="CKpPP1"/>
+    <OutputSpecie name="CKpCamCa4PP1"/>
+
+    <OutputSpecie name="PKA"/>
+    <OutputSpecie name="PKAcAMP2"/>
+    <OutputSpecie name="PKAcAMP4"/>
+    <OutputSpecie name="PKAc"/>
+    <OutputSpecie name="PKAr"/>
+
+    <OutputSpecie name="D32"/>
+    <OutputSpecie name="D32PKA"/>
+    <OutputSpecie name="Dp34"/>
+    <OutputSpecie name="Dp34PP1"/>
+    <OutputSpecie name="Dp34PP2BCamCa4"/>
+    <OutputSpecie name="Dp34PP1PP2BCamCa4"/>
+    <OutputSpecie name="Dp34PP2A_BPR72"/>
+    <OutputSpecie name="Dp34PP2A_B56d"/>
+    <OutputSpecie name="Dp34PP1PP2A_BPR72"/>
+    <OutputSpecie name="Dp34PP1PP2A_B56d"/>
+
+    <OutputSpecie name="Cdk5"/>
+    <OutputSpecie name="CDK5D32"/>
+    <OutputSpecie name="Dp75"/>
+    <OutputSpecie name="Dp75PKA"/>
+    <OutputSpecie name="Dp75PP2A_BPR72"/>
+    <OutputSpecie name="Dp75PP2A_B56d"/>
+    <OutputSpecie name="Dp75PP2AC"/>
+    <OutputSpecie name="Dp75pPP2A"/>
+  </OutputSet>
+
+</OutputScheme>
