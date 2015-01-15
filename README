@@ -7,6 +7,7 @@ DONE. 1D. Create a no stim file
 DONE. 1E. Create an everything and a simpler/reduced IO file
 Compare rate constants with xpp model and Oliveira model: which rates match references theirin, which ones do not match references, which rates don't have references.
 Search for updated references for rates with none or non-matching refs.  
+Check thermodynamic balance of some sets of reactions.
 
 Step 2. Adjust ... to achieve correct basal cAMP and calcium
 2A. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC
