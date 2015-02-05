@@ -135,7 +135,7 @@
 
     <ConcentrationSet region="PSD" >
  <!-- No leak in PSD to avoid too much spontaneous production with high calcium fluctuations -->
-        <NanoMolarity specieID="PKA"                  value="5488" />
+        <NanoMolarity specieID="PKA"                  value="5488" /> 
         <NanoMolarity specieID="PKAcAMP2"             value="644" />
         <NanoMolarity specieID="PKAcAMP4"             value="23" />
         <NanoMolarity specieID="PKAc"                 value="84" />

@@ -1,3 +1,8 @@
+See NeuroRD.bat for information on how to run models
+This is terse but detailed list of steps to develop the model.  See ResearchPlanMSNsignalingPathway.txt for bigger picture, including
+     What are the big research questions
+     What are some little research questions
+     Some experiments that can help test/develop the model
 Step 1. Merge reactions from modified version of Rodrigo's model and BoHung's model
 Notes in the RXN file indicate whether the reaction came from the Gs model (Oliveira 2012) or Gq model (Kim 2013)
 DONE.  1A. Merge reactions
