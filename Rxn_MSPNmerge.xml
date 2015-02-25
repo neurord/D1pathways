@@ -493,7 +493,7 @@
 
 <!-- ***************************************************************************-->
 <!--V. AC5 to cAMP with PDEs, from Gs RXN FILE. May need to add AC1 at some point -->
-    <!--x GasGTP + AC <-> ACGas(GTP) -->
+    <!--1a. GasGTP + AC <-> ACGas(GTP) -->
     <Reaction name = "GasGTP+AC--ACGas reac" id="GasGTP+AC--ACGas_id">
         <Reactant specieID="GasGTP"                  />
         <Reactant specieID="AC"                     />
@@ -503,7 +503,7 @@
         <reverseRate> 50e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--x ACGas(GTP) + ATP    <-> ACGas(GTP)ATP      (in xpp: k7=127600e-9  k_7=0.2612)-->
+    <!--2a. ACGas(GTP) + ATP    <-> ACGas(GTP)ATP      (in xpp: k7=127600e-9  k_7=0.2612)-->
     <Reaction name = "ACGas+ATP--ACGasATP reac" id="ACGas+ATP--ACGasATP_id">
         <Reactant specieID="ACGas"                />
         <Reactant specieID="ATP"                    />
@@ -513,7 +513,7 @@
         <reverseRate> 0.2612e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--x ACGas(GTP)ATP       <-> ACGas(GTP) + cAMP  (in xpp: k8=28.46    k_8=259200e-9) -->
+    <!--3a. ACGas(GTP)ATP       <-> ACGas(GTP) + cAMP  (in xpp: k8=28.46    k_8=259200e-9) -->
     <Reaction name = "ACGasATP--ACGas+cAMP reac" id="ACGasATP--ACGas+cAMP_id">
         <Reactant specieID="ACGasATP"             />
         <Product  specieID="ACGas"                />
@@ -524,7 +524,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 <!-- Now, those involving AC with Ca attached: -->
-    <!--x AC + Ca    <-> ACCa     (in xpp: k9=0.001 k_9=0.9) -->
+    <!--0b. AC + Ca    <-> ACCa     (in xpp: k9=0.001 k_9=0.9) -->
     <Reaction name = "ACCa reac" id="ACCaid">
         <Reactant specieID="AC"                     />
         <Reactant specieID="Ca"                     />
@@ -534,7 +534,7 @@
         <reverseRate> 0.9e-03       </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--x GasGTP + ACCa  <-> ACGas(GTP)Ca     (in xpp: k6_2=0.0192308, k_6_2=25) -->
+    <!--1b. GasGTP + ACCa  <-> ACGas(GTP)Ca     (in xpp: k6_2=0.0192308, k_6_2=25) -->
     <Reaction name = "ACGasCa reac" id="ACGasCaid">
         <Reactant specieID="GasGTP"                  />
         <Reactant specieID="ACCa"                   />
@@ -544,7 +544,7 @@
         <reverseRate> 25e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--x ACGas(GTP)Ca + ATP  <-> ACGas(GTP)CaATP     (in xpp: k7_2=0.0000638, k_7_2=0.1306) -->
+    <!--2b. ACGas(GTP)Ca + ATP  <-> ACGas(GTP)CaATP     (in xpp: k7_2=0.0000638, k_7_2=0.1306) -->
     <Reaction name = "ACGasCaATP reac" id="ACGasCaATPid">
         <Reactant specieID="ACGasCa"              />
         <Reactant specieID="ATP"                    />
@@ -554,7 +554,7 @@
         <reverseRate> 0.1306e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--x ACGas(GTP)CaATP  <-> cAMP + ACGas(GTP)Ca (in xpp: k8_2=14.23, k_8_2=0.0001296) -->
+    <!--3b. ACGas(GTP)CaATP  <-> cAMP + ACGas(GTP)Ca (in xpp: k8_2=14.23, k_8_2=0.0001296) -->
     <Reaction name = "ACGasCa+ATP--cAMP+ACGasCa reac" id="ACGasCa+ATP--cAMP+ACGasCaid">
         <Reactant specieID="ACGasCaATP"           />
        <Product  specieID="cAMP"                   />
@@ -565,8 +565,8 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!-- *****************PDE1 *******************************-->
-    <!-- PDE1 + CamCa4  <-> PDE1CamCa4           (in xpp: KfpdeCam=0.1, KbpdeCam=1) -->
+<!--VI. *****************PDE1 *******************************-->
+    <!--1. PDE1 + CamCa4  <-> PDE1CamCa4           (in xpp: KfpdeCam=0.1, KbpdeCam=1) -->
     <Reaction name = "PDE1+CamCa4--PDE1CamCa4" id="PDE1+CamCa4--PDE1CamCa4_id">
         <Reactant specieID="PDE1"                   />
         <Reactant specieID="CamCa4"                 />
@@ -597,8 +597,8 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!-- *****************PDE10 *******************************-->
-    <!-- PDE10 + cAMP    <-> PDE10cAMP         (in xpp: KfPDE10=    KbPDE10=  ) -->
+<!--VII. *****************PDE10 *******************************-->
+    <!--1. PDE10 + cAMP    <-> PDE10cAMP         (in xpp: KfPDE10=    KbPDE10=  ) -->
     <Reaction name = "PDE10+cAMP--PDE10cAMP" id="PDE10+cAMP--PDE10cAMP_id">
         <Reactant specieID="PDE10"                  />
         <Reactant specieID="cAMP"                   />
@@ -608,7 +608,7 @@
         <reverseRate> 16.8e-3        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!-- PDE10cAMP        -> PDE10 + AMP       (in xpp: V_PDE10=18) -->
+    <!--2. PDE10cAMP        -> PDE10 + AMP       (in xpp: V_PDE10=18) -->
     <Reaction name = "PDE10cAMP--PDE10+AMP" id="PDE10cAMP--PDE10+AMP_id">
         <Reactant specieID="PDE10cAMP"              />
         <Product  specieID="PDE10"                  />
@@ -619,9 +619,9 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!-- *****************PKAc phosphorylation of PDE10 *******************************-->
+<!--VIII. *****************PKAc phosphorylation of PDE10 *******************************-->
 <!-- should this be slower?  E.g. 10x based on A. Chay research.  How much is phos?-->
-    <!-- PKAc + PDE10 -> PKAcPDE10 -->
+    <!--1a. PKAc + PDE10 -> PKAcPDE10 -->
     <Reaction name = "PDE10 phosp1" id="phospPDE101">
         <Reactant specieID="PKAc"                   />
         <Reactant specieID="PDE10"                  />
@@ -632,7 +632,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- PKAcPDE10 -> PKAc + pPDE10 -->
+    <!--2a. PKAcPDE10 -> PKAc + pPDE10 -->
     <Reaction name = "PDE10 phosp2" id="phospPDE102">
         <Reactant specieID="PKAcPDE10"              />
         <Product  specieID="pPDE10"                 />
@@ -643,7 +643,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-   <!-- PKAc + PDE10cAMP -> PKAcPDE10cAMP -->
+   <!--1b. PKAc + PDE10cAMP -> PKAcPDE10cAMP -->
     <Reaction name = "PDE10cAMP phosp1" id="phospPDE10cAMP1">
         <Reactant specieID="PKAc"                  />
         <Reactant specieID="PDE10cAMP"             />
@@ -654,7 +654,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- PKAcPDE10cAMP -> PKAc + pPDE10 -->
+    <!--2b. PKAcPDE10cAMP -> PKAc + pPDE10cAMP -->
     <Reaction name = "PDE10cAMP phosp2" id="phospPDE10cAMP2">
         <Reactant specieID="PKAcPDE10cAMP"         />
         <Product  specieID="pPDE10cAMP"            />
@@ -665,7 +665,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- pPDE10 -> PDE10 -->
+    <!--3. pPDE10 -> PDE10 -->
     <Reaction name = "PDE10 d_phosp" id="dphospPDE10">
         <Reactant specieID="pPDE10"                 />
         <Product  specieID="PDE10"                  />
@@ -675,8 +675,8 @@
         <Q10>          0.2          </Q10>
     </Reaction>
 
-<!-- *****************pPDE10 activity *******************************-->
-    <!-- pPDE10 + cAMP    <-> pPDE10cAMP         (in xpp: KfpPDE10=    KbpPDE10=  ) -->
+<!--IX. *****************pPDE10 activity *******************************-->
+    <!--1. pPDE10 + cAMP    <-> pPDE10cAMP         (in xpp: KfpPDE10=    KbpPDE10=  ) -->
     <Reaction name = "pPDE10+cAMP--pPDE10cAMP" id="pPDE10+cAMP--pPDE10cAMP_id">
         <Reactant specieID="pPDE10"                 />
         <Reactant specieID="cAMP"                   />
@@ -687,7 +687,7 @@
         <Q10>          0.2           </Q10>
     </Reaction>
 
-    <!-- pPDE10cAMP        -> pPDE10 + AMP       (in xpp: V_pPDE10=18) -->
+    <!--2. pPDE10cAMP        -> pPDE10 + AMP       (in xpp: V_pPDE10=18) -->
     <Reaction name = "pPDE10cAMP--pPDE10+AMP" id="pPDE10cAMP--pPDE10+AMP_id">
         <Reactant specieID="pPDE10cAMP"             />
         <Product  specieID="pPDE10"                 />
@@ -698,7 +698,7 @@
         <Q10>          0.2          </Q10>
     </Reaction>
 
-    <!-- AMP             -> ATP              (in xpp: katp=10) -->
+    <!--3. AMP             -> ATP              (in xpp: katp=10) -->
     <Reaction name = "AMP--ATP" id="AMP--ATP_id">
         <Reactant specieID="AMP"                    />
         <Product  specieID="ATP"                    />
@@ -708,7 +708,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!-- ***************************************************************************-->
+<!--X. ***************************************************************************-->
 <!-- PLC, Dag, IP3, 2ag and PKC, from Gq RXN FILE --> 
 <!-- Review these and check all molecule names -->
 
