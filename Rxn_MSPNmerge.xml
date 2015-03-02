@@ -44,12 +44,12 @@
     <Specie name="MgluR"             id="MgluR"             kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluR"          id="GluMgluR"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluRdesens"    id="GluMgluRdesens"    kdiff="0"     kdiffunit="mu2/s"/>
+<!--<Specie name="GqMgluR"           id="GqMgluR"           kdiff="0"     kdiffunit="mu2/s"/> --> <!--ADDED FOR RXN 5 IN Gq RXNs -->
     <Specie name="Gqabg"             id="Gqabg"             kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluRGq"        id="GluMgluRGq"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GaqGTP"            id="GaqGTP"            kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GaqGDP"            id="GaqGDP"            kdiff="0"     kdiffunit="mu2/s"/>
-<!--<Specie name="GluMgluRGbg"       id="GluMgluRGbg"       kdiff="0"    kdiffunit="mu2/s"/> 
-    ABOVE SPECIE ADDED FOR REGENERATION OF Gbg FROM GluMgluRGbg - LABELED AS RXN 5 IN SECTION III. -->
+    <Specie name="GluMgluRGbg"       id="GluMgluRGbg"       kdiff="0"     kdiffunit="mu2/s"/> 
 
 <!-- This is AC5, from Gs model.  May need to add AC1 at some point; if adding AC1, might want to change names of AC to AC5 -->
     <Specie name="AC"                id="AC"                kdiff="0"     kdiffunit="mu2/s"/>
@@ -67,8 +67,6 @@
     <Specie name="PDE1"              id="PDE1"              kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE1CamCa4cAMP"    id="PDE1CamCa4cAMP"    kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE1CamCa4"        id="PDE1CamCa4"        kdiff="0"     kdiffunit="mu2/s"/>
- <!-- repeated line commented out below:
-    <Specie name="PDE1CamCa4cAMP"     id="PDE1CamCa4cAMP"   kdiff="0"     kdiffunit="mu2/s"/> -->
 
     <Specie name="PDE10"             id="PDE10"             kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE10cAMP"         id="PDE10cAMP"         kdiff="0"     kdiffunit="mu2/s"/>
@@ -402,7 +400,7 @@
   	<Q10>0.2</Q10>
   </Reaction>
   
-   <!--1. Glu or Glu agonist Dhpg: Glu + MgluR <==> GluMgluR  -->
+   <!--1a. Glu or Glu agonist Dhpg: Glu + MgluR <==> GluMgluR  -->
       <Reaction name = "Glu+MgluR--GluMgluR" id="Glu+MgluR--GluMgluR">
         <Reactant specieID="Glu"              />
         <Reactant specieID="MgluR"              />
@@ -413,7 +411,7 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-   <!--2. GluMgluR <==> Desensitized, needed for prolonged DHPG application -->
+   <!--x. GluMgluR <==> Desensitized, needed for prolonged DHPG application -->
       <Reaction name = "Glu+MgluR--GluMgluRdesens" id="Glu+MgluR--GluMgluRdesens">
         <Reactant specieID="GluMgluR"              />
         <Product  specieID="GluMgluRdesens"         />
@@ -423,8 +421,8 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-   <!--3. Gqabg + GluMgluR    <-> GluMgluRGq    -->
-    <Reaction name = "Gqabg+GluMgluR--GluMgluRGq" id="Gqabg+GluMgluR--GluMgluRGq_">
+   <!--2a. Gqabg + GluMgluR    <-> GluMgluRGq    -->
+    <Reaction name = "Gqabg+GluMgluR--GluMgluRGq" id="Gqabg+GluMgluR--GluMgluRGq">
         <Reactant specieID="Gqabg"               />
         <Reactant specieID="GluMgluR"             />
         <Product  specieID="GluMgluRGq"            />
@@ -434,36 +432,57 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!--4. This production is much slower than for GasGTP-->
-   <!-- GabgGluMglu    <-> GaqGTP + GluMgluR (+Gbg-commented out)   -->
-    <Reaction name = "GluMgluRGq--GaqGTP+GluMgluR" id="--GaqGTP+GluMgluR"> <!-- why is the ID different from rxn name here?-->
+
+<!-- BELOW: added RXNs to make MgluR able to bind either Glu or Gq first -->
+
+   <!--1b. Gqabg + MgluR <-> GqMgluR -->
+ <!--  <Reaction name = "Gqabg+MgluR- -GqMgluR" id="Gqabg+MgluR- -GqMgluR">
+        <Reactant specieID="Gqabg" />
+        <Reactant specieID="MgluR" />
+        <Product specieID="GqMgluR" />
+
+        <forwardRate> kf_from_Literature </forwardRate>
+        <reverseRate> kb_from_Literature </reverseRate>
+        <Q10> 0.2 </Q10>
+   </Reaction> -->
+
+   <!--2b. Glu + GqMgluR <-> GluMgluRGq -->
+<!--   <Reaction name = "Glu+GqMgluR- -GluMgluRGq" id="Glu+GqMgluR- -GluMgluRGq">
+        <Reactant specieID="Glu" />
+        <Reactant specieID="GqMgluR" />
+        <Product specieID="GluMgluRGq" />
+
+        <forwardRate> kf_from_Literature </forwardRate>
+        <reverseRate> kb_from_Literature </reverseRate>
+        <Q10> 0.2 </Q10>
+   </Reaction> -->
+
+<!-- end new RXNs-->
+
+
+   <!--3. This production is much slower than for GasGTP-->
+   <!-- GabgGluMglu    <-> GaqGTP + GluMgluRGbg -->
+    <Reaction name = "GluMgluRGq--GaqGTP+GluMgluRGbg" id="GluMgluRGq--GaqGTP+GluMgluRGbg">
         <Reactant specieID="GluMgluRGq"               />
         <Product specieID="GaqGTP"             />
-        <Product  specieID="GluMgluR"            />
-   <!-- <Product  specieID="GluMgluRGbg" />  REPLACE ABOVE PRODUCT WITH THIS TO MAKE RXN 5 HAPPEN -->
-    <!--<Product  specieID="Gbg"                    /-->
+        <Product  specieID="GluMgluRGbg" /> 
 
         <forwardRate>  0.5e-03 </forwardRate>
         <reverseRate>   0  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!-- ANOTHER REACTION IS NEEDED TO PRODUCE GBG from GluMgluRGbg -> see the LD1RGs thing; SEE BELOW:-->
-
-   <!--5. reproduce Gbg from GluMgluRGbg -->
+   <!--4. reproduce Gbg from GluMgluRGbg -->
    <!-- GluMgluRGbg <-> GluMgluR + Gbg  -->
- <!--   <Reaction name = "GluMgluRGbg- -GluMgluR+Gbg" id="GluMgluRGbg- -GluMgluR+Gb">
+        <Reaction name = "GluMgluRGbg--GluMgluR+Gbg" id="GluMgluRGbg--GluMgluR+Gb">
         <Reactant specieID="GluMgluRGbg"               />
         <Product  specieID="GluMgluR"            /> 
         <Product specieID="Gbg"             />
         
-
-        <forwardRate> _determine_kf_  </forwardRate>
-        <reverseRate> _determine_kb_  </reverseRate>
-        <Q10>     _determine_Q10_   </Q10>
+        <forwardRate> 2.03-03  </forwardRate>
+        <reverseRate> 0  </reverseRate>
+        <Q10>     0.2   </Q10>
     </Reaction>
-
-REACTION IS COMMENTED OUT ABOVE -->
 
 <!--IV. *************** G protein hydrolysis and regeneration  *******************-->
     <!--1. hydrolysis: GasGTP       <-> GasGDP            (in xpp: k4=10), Kd=? -->
@@ -501,7 +520,7 @@ REACTION IS COMMENTED OUT ABOVE -->
 
 <!-- 2nd order (was 1st order in Gq files) regeneration of Gaqbg -->
     <!--4. GaqGDP + Gbg <-> Gqabg -->
-    <Reaction name = "GaqGDP--Gqabg" id="GaqGDP--Gqabg">
+    <Reaction name = "GaqGDP+Gbg--Gqabg" id="GaqGDP+Gbg--Gqabg">
         <Reactant specieID="GaqGDP"            />
         <Reactant specieID="Gbg"                    />
         <Product  specieID="Gqabg"            />
@@ -732,7 +751,7 @@ REACTION IS COMMENTED OUT ABOVE -->
 <!-- PLC, Dag, IP3, 2ag and PKC, from Gq RXN FILE --> 
 <!-- Review these and check all molecule names -->
 
-    <!-- Plc+Ca <-> PlcCa -->
+    <!--1a. Plc+Ca <-> PlcCa -->
     <Reaction name = "Plc+Ca--PlcCa" id="Plc+Ca--PlcCa">
         <Reactant specieID="Ca"           />
         <Reactant specieID="Plc"              />
@@ -742,10 +761,21 @@ REACTION IS COMMENTED OUT ABOVE -->
         <reverseRate> 120e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
- 
-    <!-- Plc + GaGTP    <->   PlcGaGTP 1200 nM -->
+
+    <!--2a. PlcCa + GaGTP    <->   PlcCaGaq  100 nM-->
+    <Reaction name = "PlcCa+GaqGTP--PlcCaGaq" id="PlcCa+GaqGTP--PlcCaGaq">
+        <Reactant specieID="GaqGTP"           />
+        <Reactant specieID="PlcCa"              />
+        <Product  specieID="PlcCaGaq"               />
+
+        <forwardRate> 0.10e-03   </forwardRate>
+        <reverseRate> 10e-03        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <!--1b. Plc + GaqGTP    <->   PlcGaq 1200 nM -->
 <!--AB: Falkenburger 2010 uses 0.71e-3 for reverse rate --> 
-    <Reaction name = "Plc+GaqGTP--PlcGaqGTP" id="Plc+GaqGTP--PlcGaqGTP">
+    <Reaction name = "Plc+GaqGTP--PlcGaq" id="Plc+GaqGTP--PlcGaq">
         <Reactant specieID="GaqGTP"           />
         <Reactant specieID="Plc"              />
         <Product  specieID="PlcGaq"               />
@@ -755,8 +785,8 @@ REACTION IS COMMENTED OUT ABOVE -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- PlcGaGTP + Ca    <->   PlcCaGaGTP  500 nM-->
-    <Reaction name = "PlcGaGTP+Ca--PlcCaGaGTP" id="PlcGaGTP+Ca--PlcCaGaGTP">
+    <!--2b. PlcGaq + Ca    <->   PlcCaGaq  500 nM-->
+    <Reaction name = "PlcGaGTP+Ca--PlcCaGaq" id="PlcGaGTP+Ca--PlcCaGaq">
         <Reactant specieID="Ca"           />
         <Reactant specieID="PlcGaq"              />
         <Product  specieID="PlcCaGaq"               />
@@ -766,16 +796,7 @@ REACTION IS COMMENTED OUT ABOVE -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- PlcCa + GaGTP    <->   PlcCaGaGTP  100 nM-->
-    <Reaction name = "PlcCa+GaGTP--PlcCaGaGTP" id="PlcCa+GaGTP--PlcCaGaGTP">
-        <Reactant specieID="GaqGTP"           />
-        <Reactant specieID="PlcCa"              />
-        <Product  specieID="PlcCaGaq"               />
 
-        <forwardRate> 0.10e-03   </forwardRate>
-        <reverseRate> 10e-03        </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
    <!-- PlcCa + Pip2    <-> PlcCaPip2    -->
     <Reaction name = "PlcCa+Pip2--PlcCaPip2" id="PlcCa+Pip2--PlcCaPip2">
         <Reactant specieID="PlcCa"               />
@@ -810,7 +831,7 @@ REACTION IS COMMENTED OUT ABOVE -->
         <Q10>         0.2           </Q10>
     </Reaction>    
 
-    <!-- PlcCaGaGTP + Pip2    <-> PlcCaGaGTPPip2    -->
+    <!-- PlcCaGaq + Pip2    <-> PlcCaGaqPip2    -->
     <Reaction name = "PlcCaGaq+Pip2--PlcCaGaqPip2" id="PlcCaGaq+Pip2--PlcCaGaqPip2">
         <Reactant specieID="PlcCaGaq"               />
         <Reactant specieID="Pip2"             />
@@ -822,7 +843,7 @@ REACTION IS COMMENTED OUT ABOVE -->
     </Reaction>
       
 <!--Combine the next two rxn when support for 3d order rxn -->      
-    <!-- PlcCaGaGTPPip2       <-> PlcCaGaGTPDag + Ip3 -->
+    <!-- PlcCaGaqPip2       <-> PlcCaGaqDag + Ip3 -->
     <Reaction name = "PlcCaGaqPip2--PlcCaGaqDag+Ip3" id="PlcCaGaqPip2--PlcCaGaqDag+Ip3">
         <Reactant specieID="PlcCaGaqPip2"            />
         <Product  specieID="PlcCaGaqDag"               />
@@ -833,8 +854,8 @@ REACTION IS COMMENTED OUT ABOVE -->
         <Q10>         0.2           </Q10>
     </Reaction>
       
-    <!-- PlcCaGaGTPDag       <->  PlcCaGaGTPTp + Dag -->
-    <Reaction name = "PlcCaGaGTPDag--PlcCaGaGTPTp+Dag" id="PlcCaGaGTPDag--PlcCaGaGTPTp+Dag">
+    <!-- PlcCaGaqDag       <->  PlcCaGaq + Dag -->
+    <Reaction name = "PlcCaGaqDag--PlcCaGaqp+Dag" id="PlcCaGaqDag--PlcCaGaq+Dag">
         <Reactant specieID="PlcCaGaqDag"            />
         <Product  specieID="PlcCaGaq"               />
         <Product  specieID="Dag"            />
@@ -843,7 +864,9 @@ REACTION IS COMMENTED OUT ABOVE -->
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>    
-   <Reaction name = "Ip3degrad + PIkinase -- Ip3degPIkinase" id="PIkinase1">
+
+   <!-- previously unlabeled rxn -->
+   <Reaction name = "Ip3degrad + PIkinase -- Ip3degPIk" id="PIkinase1">
         <Reactant specieID="Ip3degrad"            />   
         <Reactant  specieID="PIkinase"               />
         <Product  specieID="Ip3degPIk"            />
@@ -966,7 +989,7 @@ lists affinity of 75 uM or 154 uM "within the range found in tissue" -->
     </Reaction>
 
 
-<!-- THese are values from Hellgren Kotaleski PKC paper. 2.5 uM affinity -->
+<!-- These are values from Hellgren Kotaleski PKC paper. 2.5 uM affinity -->
     <!-- Pkc + Ca    <->   PkcCa  -->
     <Reaction name = "Pkc+Ca--PkcCa" id="Pkc+Ca--PkcCa">
         <Reactant specieID="Ca"           />
