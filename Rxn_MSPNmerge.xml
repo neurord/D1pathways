@@ -44,7 +44,7 @@
     <Specie name="MgluR"             id="MgluR"             kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluR"          id="GluMgluR"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluRdesens"    id="GluMgluRdesens"    kdiff="0"     kdiffunit="mu2/s"/>
-<!--<Specie name="GqMgluR"           id="GqMgluR"           kdiff="0"     kdiffunit="mu2/s"/> --> <!--ADDED FOR RXN 5 IN Gq RXNs -->
+    <Specie name="GqMgluR"           id="GqMgluR"           kdiff="0"     kdiffunit="mu2/s"/> 
     <Specie name="Gqabg"             id="Gqabg"             kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluRGq"        id="GluMgluRGq"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GaqGTP"            id="GaqGTP"            kdiff="0"     kdiffunit="mu2/s"/>
@@ -421,7 +421,7 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-   <!--2a. Gqabg + GluMgluR    <-> GluMgluRGq    -->
+    <!--2a. Gqabg + GluMgluR    <-> GluMgluRGq    -->
     <Reaction name = "Gqabg+GluMgluR--GluMgluRGq" id="Gqabg+GluMgluR--GluMgluRGq">
         <Reactant specieID="Gqabg"               />
         <Reactant specieID="GluMgluR"             />
@@ -433,31 +433,27 @@
     </Reaction>
 
 
-<!-- BELOW: added RXNs to make MgluR able to bind either Glu or Gq first -->
-
-   <!--1b. Gqabg + MgluR <-> GqMgluR -->
- <!--  <Reaction name = "Gqabg+MgluR- -GqMgluR" id="Gqabg+MgluR- -GqMgluR">
+  <!--1b. Gqabg + MgluR <-> GqMgluR -->
+  <Reaction name = "Gqabg+MgluR- -GqMgluR" id="Gqabg+MgluR- -GqMgluR">
         <Reactant specieID="Gqabg" />
         <Reactant specieID="MgluR" />
         <Product specieID="GqMgluR" />
 
-        <forwardRate> kf_from_Literature </forwardRate>
-        <reverseRate> kb_from_Literature </reverseRate>
+        <forwardRate> .15e-06 </forwardRate>
+        <reverseRate> .1e-03 </reverseRate>
         <Q10> 0.2 </Q10>
    </Reaction> -->
 
    <!--2b. Glu + GqMgluR <-> GluMgluRGq -->
-<!--   <Reaction name = "Glu+GqMgluR- -GluMgluRGq" id="Glu+GqMgluR- -GluMgluRGq">
+   <Reaction name = "Glu+GqMgluR- -GluMgluRGq" id="Glu+GqMgluR- -GluMgluRGq">
         <Reactant specieID="Glu" />
         <Reactant specieID="GqMgluR" />
         <Product specieID="GluMgluRGq" />
 
-        <forwardRate> kf_from_Literature </forwardRate>
-        <reverseRate> kb_from_Literature </reverseRate>
+        <forwardRate> 1e-06 </forwardRate>
+        <reverseRate> 72e-03 </reverseRate>
         <Q10> 0.2 </Q10>
-   </Reaction> -->
-
-<!-- end new RXNs-->
+   </Reaction>
 
 
    <!--3. This production is much slower than for GasGTP-->
@@ -876,7 +872,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!-- Initial rate from PI5kinase from Falkenburger, increased to compensate for lower reactant quantity -->
+<!-- Initial rate from PI5kinase from Falkenburger (J Gen Phys 2010), increased to compensate for lower reactant quantity -->
    <Reaction name = "Ip3degPIk--PIP2 + PIkinase" id="PIkinase2">
         <Reactant specieID="Ip3degPIk"            />
         <Product  specieID="PIkinase"               />
@@ -886,7 +882,7 @@
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>    
-<!-- GAP activity - only with PLC bound neither to calcium nor PIP2 -->
+<!-- GAP activity - only with PLC bound not to PIP2 -->
     <!-- PlcGaGTP       <-> Plc + Gabg -->
     <Reaction name = "PlcGaq--Plc+GaqGDP" id="PlcGaq--Plc+GaqGDP">
         <Reactant specieID="PlcGaq"            />
@@ -1040,11 +1036,11 @@ MUCH slower binding compared to CaDgl  -->
 	<Q10>0.2</Q10>
     </Reaction>
 
-<!--11a) PKAcAMP4 <-> 2PKAr + (2)PKAc; fix numbers -->
+<!--3) PKAcAMP4 <-> 2PKAr(as dimer) + 2PKAc(monomers) -->
     <Reaction name = "PKAcAMP4_diss" id="PKAcAMP4_diss">
 	<Reactant specieID="PKAcAMP4"/>
 	<Product specieID="PKAr"/>
-	<Product specieID="PKAc" n="2"/> <!--fix numbers?-->
+	<Product specieID="PKAc" n="2"/>  
 
 	<forwardRate>4.8e-05</forwardRate>
 	<reverseRate>5.1e-06</reverseRate>
@@ -1052,7 +1048,7 @@ MUCH slower binding compared to CaDgl  -->
     </Reaction>
 
 <!-- Cam or CamC2N or CamC2C or CamCa4 binding to PP2B.  Check rates for microscopic reversibility -->
-     <!-- Cam    +   PP2B     <->  PP2BCam     (in xpp: k33a=1 k_33a=3)  -->
+     <!--4x) Cam    +   PP2B     <->  PP2BCam     (in xpp: k33a=1 k_33a=3)  -->
     <Reaction name = "Cam+PP2B--PP2BCam reac" id="Cam+PP2B--PP2BCam_id">
         <Reactant specieID="Cam"                    />
         <Reactant specieID="PP2B"                   />
@@ -1063,7 +1059,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- CamCa2C    +   PP2B     <->  PP2BCamCa2C (in xpp: k33c=1 k_33c=0.3) -->
+    <!--4C) CamCa2C    +   PP2B     <->  PP2BCamCa2C (in xpp: k33c=1 k_33c=0.3) -->
     <Reaction name = "CamCa2C+PP2B--PP2BCamCa2C reac" id="CamCa2C+PP2B--PP2BCamCa2C_id">
         <Reactant specieID="CamCa2C"                 />
         <Reactant specieID="PP2B"                   />
@@ -1074,7 +1070,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2            </Q10>
     </Reaction>
 
-    <!-- CamCa2N    +   PP2B     <->  PP2BCamCa2N (in xpp: k33c=1 k_33c=0.3) -->
+    <!--4N) CamCa2N    +   PP2B     <->  PP2BCamCa2N (in xpp: k33c=1 k_33c=0.3) -->
     <Reaction name = "CamCa2N+PP2B--PP2BCamCa2N reac" id="CamCa2N+PP2B--PP2BCamCa2N_id">
         <Reactant specieID="CamCa2N"                 />
         <Reactant specieID="PP2B"                   />
@@ -1085,7 +1081,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2            </Q10>
     </Reaction>
 
-    <!-- PP2BCam    +   Ca2      <->  PP2BCamCa2C -->
+    <!--5xC) PP2BCam    +   Ca2      <->  PP2BCamCa2C -->
     <Reaction name = "PP2BCam+Ca2--PP2BCamCa2C reac" id="PP2BCam+Ca2--PP2BCamCa2C_id">
         <Reactant specieID="PP2BCam"                />
         <Reactant specieID="Ca"        n="2"        />
@@ -1096,7 +1092,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- PP2BCam    +   Ca2      <->  PP2BCamCa2N -->
+    <!--5xN) PP2BCam    +   Ca2      <->  PP2BCamCa2N -->
     <Reaction name = "PP2BCam+Ca2--PP2BCamCa2N reac" id="PP2BCam+Ca2--PP2BCamCa2N_id">
         <Reactant specieID="PP2BCam"                />
         <Reactant specieID="Ca"        n="2"        />
@@ -1107,7 +1103,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- CamCa4    +  PP2B     <->  PP2BCamCa4 -->
+    <!--7x) CamCa4    +  PP2B     <->  PP2BCamCa4 --> <!-- should we have rxn for CaMCa4 Generation?-->
     <Reaction name = "CamCa4+PP2B--PP2BCamCa4 reac" id="CamCa4+PP2B--PP2BCamCa4_id">
         <Reactant specieID="CamCa4"                 />
         <Reactant specieID="PP2B"                   />
@@ -1118,7 +1114,8 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2            </Q10>
     </Reaction>
 
-    <!-- PP2BCamCa2 +  Ca2     <->  PP2BCamCa4, either Nsite or C site -->
+  <!-- PP2BCamCa2 +  Ca2     <->  PP2BCamCa4, either N site or C site -->
+    <!--4C) C site binding -->
     <Reaction name = "PP2BCamCa2C+Ca2--PP2BCamCa4 reac" id="PP2BCamCa2+Ca2--PP2BCamCa4_id">
         <Reactant specieID="PP2BCamCa2C"             />
         <Reactant specieID="Ca"        n="2"        />
@@ -1129,7 +1126,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- previously unlabeled rxn-->
+    <!--4N) N site binding -->
     <Reaction name = "PP2BCamCa2N+Ca2--PP2BCamCa4 reac" id="PP2BCamCa2N+Ca2--PP2BCamCa4_id">
         <Reactant specieID="PP2BCamCa2N"             />
         <Reactant specieID="Ca"        n="2"        />
@@ -1140,7 +1137,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-   <!--PKAc + PP2A    <->  PKAcPP2A_B56d       (in xpp: k27=0.0025 k_27=0.3) -->
+   <!--PKAc + PP2A_B56d    <->  PKAcPP2A_B56d       (in xpp: k27=0.0025 k_27=0.3) -->
     <Reaction name = "PKAc+PP2A--PKAcPP2A_B56d reac" id="PKAc+PP2A--PKAcPP2A_B56d_id">
         <Reactant specieID="PP2A_B56d"          />
         <Reactant specieID="PKAc"               />
@@ -1151,7 +1148,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--PKAcPP2A_B56d        ->  PKAc + PP2AP   (in xpp: v27=0.1) -->
+    <!--PKAcPP2A_B56d        ->  PKAc + pPP2A   (in xpp: v27=0.1) -->
     <Reaction name = "PKAcPP2A_B56d--PKAc+pPP2A reac" id="PKAcPP2A_B56d--PKAc+pPP2A_id">
         <Reactant specieID="PKAcPP2A_B56d"  />
         <Product  specieID="PKAc"           />
@@ -1162,7 +1159,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--pPP2A           ->  PP2A           (in xpp: v28=0.004) -->
+    <!--pPP2A           ->  PP2A_B56d           (in xpp: v28=0.004) -->
     <Reaction name = "pPP2A--PP2A reac" id="pPP2A--PP2A_id">
         <Reactant specieID="pPP2A"          />
         <Product  specieID="PP2A_B56d"      />
@@ -1206,7 +1203,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34 + PP1    <-> Dp34pp1       (in xpp: k21=0.4 k_21=0.58, Kd=) -->
+    <!-- Dp34 + PP1    <-> Dp34PP1       (in xpp: k21=0.4 k_21=0.58, Kd=) -->
     <Reaction name = "Dp34+PP1--Dp34pp1 reac" id="Dp34+PP1--Dp34pp1_id">
         <Reactant specieID="Dp34"                   />
         <Reactant specieID="PP1"                    />
@@ -1240,7 +1237,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34pp1 + PP2BCamCa4    <-> Dp34PP1PP2BCamCa4    (in xpp: k36=0.001 k_36=2, Kd=2.5 uM) -->
+    <!-- Dp34PP1 + PP2BCamCa4    <-> Dp34PP1PP2BCamCa4    (in xpp: k36=0.001 k_36=2, Kd=2.5 uM) -->
     <!-- ##### these are ~4x slower than xpp model #######, faster than Oliveira -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
     <Reaction name = "Dp34pp1+PP2BCamCa4--Dp34PP1PP2BCamCa4 reac" id="Dp34pp1+PP2BCamCa4--Dp34PP1PP2BCamCa4_id">
