@@ -1103,7 +1103,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!--7x) CamCa4    +  PP2B     <->  PP2BCamCa4 --> <!-- should we have rxn for CaMCa4 Generation?-->
+    <!--7x) CamCa4    +  PP2B     <->  PP2BCamCa4 -->
     <Reaction name = "CamCa4+PP2B--PP2BCamCa4 reac" id="CamCa4+PP2B--PP2BCamCa4_id">
         <Reactant specieID="CamCa4"                 />
         <Reactant specieID="PP2B"                   />
@@ -1240,7 +1240,7 @@ MUCH slower binding compared to CaDgl  -->
     <!-- Dp34PP1 + PP2BCamCa4    <-> Dp34PP1PP2BCamCa4    (in xpp: k36=0.001 k_36=2, Kd=2.5 uM) -->
     <!-- ##### these are ~4x slower than xpp model #######, faster than Oliveira -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-    <Reaction name = "Dp34pp1+PP2BCamCa4--Dp34PP1PP2BCamCa4 reac" id="Dp34pp1+PP2BCamCa4--Dp34PP1PP2BCamCa4_id">
+    <Reaction name = "Dp34PP1+PP2BCamCa4--Dp34PP1PP2BCamCa4 reac" id="Dp34pp1+PP2BCamCa4--Dp34PP1PP2BCamCa4_id">
         <Reactant specieID="Dp34PP1"                />
         <Reactant specieID="PP2BCamCa4"             />
         <Product  specieID="Dp34PP1PP2BCamCa4"      />
@@ -1426,7 +1426,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-<!-- dephos of Dp75 of both PP2A, phosphoPP2A, and Ca bound PP2A -->
+<!-- dephos of Dp75 on PP2A(both BPR75 and B56d), phosphoPP2A, and Ca bound PP2A -->
 <!-- must faster than in xpp model,  -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
     <!--Dp75 + pPP2A <-> Dp75pPP2A     (in xpp: k25=0.0004 k_25=12) v25=3-->
@@ -1440,7 +1440,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75PPAP        -> D32  + PP2AP (in xpp: v25=3) -->
+    <!--Dp75pPP2A        -> D32  + pPP2A (in xpp: v25=3) -->
     <Reaction name = "Dp75pPP2A--D32+pPP2A reac" id="Dp75pPP2A--D32+pPP2A_id">
         <Reactant specieID="Dp75pPP2A"       />
         <Product  specieID="D32"            />
@@ -1525,9 +1525,9 @@ MUCH slower binding compared to CaDgl  -->
 
 
 
-<!-- *************** CamKII ************* ReDo/simplify with higher order Rxn-->
+<!--XII. *************** CamKII ************* ReDo/simplify with higher order Rxn-->
 
-  <!--1) CamCa4 + CK <-> CKCam  -->
+  <!--1) CamCa4 + CK <-> CKCamCa4  -->
     <Reaction name = "CK bind" id="CK_bind">
         <Reactant specieID="CamCa4"                 />
         <Reactant specieID="CK"                     />
@@ -1538,7 +1538,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>    0.2            </Q10>
     </Reaction>
 
-<!--2a) CKCam + CKCam <-> Complex -->
+<!--2a) CKCamCa4 + CKCamCa4 <-> Complex -->
     <Reaction name = "CKCam bind" id="CKCam_bind">
         <Reactant specieID="CKCamCa4"               />
         <Reactant specieID="CKCamCa4"               />
@@ -1549,7 +1549,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>     2             </Q10>
     </Reaction>
 
-<!--2b) CKpCam + CKCam <-> pComplex -->
+<!--2b) CKpCamCa4 + CKCamCa4 <-> pComplex -->
     <Reaction name = "pComplex bind" id="pComplex_bind">
         <Reactant specieID="CKpCamCa4"              />
         <Reactant specieID="CKCamCa4"               />
@@ -1560,7 +1560,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>     2             </Q10>
     </Reaction>
 
-<!--3a) CKpCam + Complex <-> CKpCam + pComplex -->
+<!--3a) CKpCamCa4 + Complex <-> CKpCamCa4 + pComplex -->
     <Reaction name = "CKpCamCompl bind" id="CKpCamCompl_bind">
         <Reactant specieID="CKpCamCa4"              />
         <Reactant specieID="Complex"                />
@@ -1572,7 +1572,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>      2            </Q10>
     </Reaction>
 
-<!--3b) CKCam + Complex <-> CKCam + pComplex -->
+<!--3b) CKCamCa4 + Complex <-> CKCamCa4 + pComplex -->
     <Reaction name = "CKCamCompl bind" id="CKCamCompl_bind">
         <Reactant specieID="CKCamCa4"               />
         <Reactant specieID="Complex"                />
@@ -1596,7 +1596,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>    0.2            </Q10>
     </Reaction>
 
- <!--4b) Complex + pComplex <-> Pcomplex + pComplex-->
+ <!--4b) Complex + pComplex <-> pComplex + pComplex-->
     <Reaction name = "ComplpCompl bind" id="ComplpCompl_bind">
         <Reactant specieID="Complex"                />
         <Reactant specieID="pComplex"               />
@@ -1608,7 +1608,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>    0.2            </Q10>
     </Reaction>
 
- <!-- CKpCam + CamCa4 <-> CKp -->
+ <!-- CKpCamCamCa4 <-> CKp + CamCa4 -->
     <Reaction name = "CKp auto" id="CKp_auto">
         <Reactant specieID="CKpCamCa4"              />
         <Product  specieID="CamCa4"                 />
@@ -1651,6 +1651,8 @@ MUCH slower binding compared to CaDgl  -->
         <reverseRate> 0.0         </reverseRate>
         <Q10>    0.2              </Q10>
     </Reaction>
+
+<!--Dephos of CKpCamCa4 by PP1 -->
     <!-- CKpCamCa4PP1 -> PP1 + CKCamCa4 -->
     <Reaction name = "CKpCamCa4PP1_reac" id="CKpCamPP1_reac">
         <Reactant specieID="CKpCamCa4PP1"           />
