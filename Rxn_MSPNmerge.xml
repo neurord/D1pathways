@@ -442,7 +442,7 @@
         <forwardRate> .15e-06 </forwardRate>
         <reverseRate> .1e-03 </reverseRate>
         <Q10> 0.2 </Q10>
-   </Reaction> -->
+   </Reaction>
 
    <!--2b. Glu + GqMgluR <-> GluMgluRGq -->
    <Reaction name = "Glu+GqMgluR- -GluMgluRGq" id="Glu+GqMgluR- -GluMgluRGq">
@@ -472,7 +472,7 @@
    <!-- GluMgluRGbg <-> GluMgluR + Gbg  -->
         <Reaction name = "GluMgluRGbg--GluMgluR+Gbg" id="GluMgluRGbg--GluMgluR+Gb">
         <Reactant specieID="GluMgluRGbg"               />
-        <Product  specieID="GluMgluR"            /> 
+        <Product specieID="GluMgluR"            /> 
         <Product specieID="Gbg"             />
         
         <forwardRate> 2.03-03  </forwardRate>
