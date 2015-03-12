@@ -176,7 +176,7 @@
         <NanoMolarity specieID="Gbg"                 value="0" />
 
         <NanoMolarity specieID="MgluR"           value="5000"     />   
-        <NanoMolarity  specieID="Gqabg"          value="3500"  />
+        <NanoMolarity  specieID="Gqabg"          value="2500"  />
 
         <NanoMolarity specieID="AC"                   value="3714.0" />
 	<NanoMolarity specieID="ACCa"                 value="1188.0" />
