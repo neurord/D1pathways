@@ -400,6 +400,16 @@
   	<Q10>0.2</Q10>
   </Reaction>
   
+   <!--x. GluMgluR <==> Desensitized, needed for prolonged DHPG application -->
+      <Reaction name = "Glu+MgluR--GluMgluRdesens" id="Glu+MgluR--GluMgluRdesens">
+        <Reactant specieID="GluMgluR"              />
+        <Product  specieID="GluMgluRdesens"         />
+
+        <forwardRate> 0.25e-03 </forwardRate>
+        <reverseRate> 1e-06      </reverseRate>
+        <Q10>         0.2          </Q10>
+    </Reaction>
+
    <!--1a. Glu or Glu agonist Dhpg: Glu + MgluR <==> GluMgluR  -->
       <Reaction name = "Glu+MgluR--GluMgluR" id="Glu+MgluR--GluMgluR">
         <Reactant specieID="Glu"              />
@@ -411,15 +421,7 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-   <!--x. GluMgluR <==> Desensitized, needed for prolonged DHPG application -->
-      <Reaction name = "Glu+MgluR--GluMgluRdesens" id="Glu+MgluR--GluMgluRdesens">
-        <Reactant specieID="GluMgluR"              />
-        <Product  specieID="GluMgluRdesens"         />
 
-        <forwardRate> 0.25e-03 </forwardRate>
-        <reverseRate> 1e-06      </reverseRate>
-        <Q10>         0.2          </Q10>
-    </Reaction>
 
     <!--2a. Gqabg + GluMgluR    <-> GluMgluRGq    -->
     <Reaction name = "Gqabg+GluMgluR--GluMgluRGq" id="Gqabg+GluMgluR--GluMgluRGq">
@@ -427,8 +429,8 @@
         <Reactant specieID="GluMgluR"             />
         <Product  specieID="GluMgluRGq"            />
 
-        <forwardRate>  15e-06  </forwardRate>
-        <reverseRate>   7.2e-03  </reverseRate>
+        <forwardRate>  1.5e-06  </forwardRate>
+        <reverseRate>   0.68e-03  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -439,8 +441,8 @@
         <Reactant specieID="MgluR" />
         <Product specieID="GqMgluR" />
 
-        <forwardRate> .15e-06 </forwardRate>
-        <reverseRate> .1e-03 </reverseRate>
+        <forwardRate> 0.15e-06 </forwardRate>
+        <reverseRate> 6.8e-03 </reverseRate>
         <Q10> 0.2 </Q10>
    </Reaction>
 
@@ -451,7 +453,7 @@
         <Product specieID="GluMgluRGq" />
 
         <forwardRate> 1e-06 </forwardRate>
-        <reverseRate> 72e-03 </reverseRate>
+        <reverseRate> 1e-03 </reverseRate>
         <Q10> 0.2 </Q10>
    </Reaction>
 
@@ -475,7 +477,7 @@
         <Product specieID="GluMgluR"            /> 
         <Product specieID="Gbg"             />
         
-        <forwardRate> 2.03-03  </forwardRate>
+        <forwardRate> 2.03e-03  </forwardRate>
         <reverseRate> 0  </reverseRate>
         <Q10>     0.2   </Q10>
     </Reaction>
