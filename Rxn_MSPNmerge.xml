@@ -243,7 +243,7 @@
 	<Q10>0.2</Q10>
     </Reaction>
 
-<!-- vii: Ca Buffer    Ca + Calbindin <-> calbinCa  SAME-->
+<!-- vii: Ca Buffer    Ca + Calbindin <-> calbinC  SAME-->
     <Reaction name = "Ca_buffer" id="Ca_Buffer">
         <Reactant specieID="Ca"/>
         <Reactant specieID="Calbin"/>
@@ -1150,7 +1150,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--PKAcPP2A_B56d        ->  PKAc + pPP2A   (in xpp: v27=0.1) -->
+    <!--PKAcPP2A_B56d        ->  PKAc + pPP2A(_B56d)   (in xpp: v27=0.1) -->
     <Reaction name = "PKAcPP2A_B56d--PKAc+pPP2A reac" id="PKAcPP2A_B56d--PKAc+pPP2A_id">
         <Reactant specieID="PKAcPP2A_B56d"  />
         <Product  specieID="PKAc"           />
@@ -1161,7 +1161,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--pPP2A           ->  PP2A_B56d           (in xpp: v28=0.004) -->
+    <!--pPP2A(_B56d)           ->  PP2A_B56d           (in xpp: v28=0.004) -->
     <Reaction name = "pPP2A--PP2A reac" id="pPP2A--PP2A_id">
         <Reactant specieID="pPP2A"          />
         <Product  specieID="PP2A_B56d"      />
@@ -1171,7 +1171,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--PP2A_BPR72  + Ca         ->  PP2AC      (in xpp: kf4=0.022, kb4=0.11)  -->
+    <!--PP2A_BPR72  + Ca         ->  PP2AC(_BPR72)      (in xpp: kf4=0.022, kb4=0.11)  -->
     <!-- binding updated from paper measuring binding -->
     <Reaction name = "PP2A_BPR72+Ca--PP2AC reac" id="PP2AC3+Ca--PP2AC_id">
         <Reactant specieID="PP2A_BPR72"         />
@@ -1431,7 +1431,7 @@ MUCH slower binding compared to CaDgl  -->
 <!-- dephos of Dp75 on PP2A(both BPR75 and B56d), phosphoPP2A, and Ca bound PP2A -->
 <!-- must faster than in xpp model,  -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-    <!--Dp75 + pPP2A <-> Dp75pPP2A     (in xpp: k25=0.0004 k_25=12) v25=3-->
+    <!--Dp75 + pPP2A(_B56d) <-> Dp75pPP2A(_B56d)     (in xpp: k25=0.0004 k_25=12) v25=3-->
     <Reaction name = "Dp75+pPP2A--Dp75pPP2A reac" id="Dp75+pPP2A--Dp75pPP2A_id">
         <Reactant specieID="Dp75"           />
         <Reactant specieID="pPP2A"          />
@@ -1442,7 +1442,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75pPP2A        -> D32  + pPP2A (in xpp: v25=3) -->
+    <!--Dp75pPP2A(_B56d)        -> D32  + pPP2A(_B56d) (in xpp: v25=3) -->
     <Reaction name = "Dp75pPP2A--D32+pPP2A reac" id="Dp75pPP2A--D32+pPP2A_id">
         <Reactant specieID="Dp75pPP2A"       />
         <Product  specieID="D32"            />
@@ -1501,7 +1501,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75  +  PP2AC -> Dp75PP2AC  (in xpp: k25c=0.0004 k_25c=12 v25c=3) -->
+    <!--Dp75  +  PP2AC(_BPR72) -> Dp75PP2AC(_BPR72)  (in xpp: k25c=0.0004 k_25c=12 v25c=3) -->
    <!-- must faster than in xpp model -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
      <Reaction name = "Dp75+PP2AC--Dp75PP2AC reac" id="Dp75+PP2AC--Dp75PP2A_id">
@@ -1514,7 +1514,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75PP2AC  ->  D32 +  PP2AC -->
+    <!--Dp75PP2AC(_BPR72)  ->  D32 +  PP2AC(_BPR72) -->
     <Reaction name = "Dp75PP2AC-D32+PP2AC reac" id="Dp75PP2AC-D32+PP2AC_id">
         <Reactant specieID="Dp75PP2AC"           />
         <Product  specieID="PP2AC"              />
