@@ -72,7 +72,7 @@
 
         <NanoMolarity specieID="PlcCa"          value="0"     />
         <NanoMolarity specieID="PlcCaGaq"       value="0"   />
-        <NanoMolarity specieID="PlcGaqGTP"      value="0"     />  <!--NOTE: "PlcaGaqGTP" is not a valid specie in Rxn file; instead, it's "PlcGaq" -->
+        <NanoMolarity specieID="PlcGaq"      value="0"     />
         <NanoMolarity specieID="PlcCaPip2"      value="0"     />
         <NanoMolarity specieID="PlcCaGaqPip2"   value="0"     />
   
@@ -185,8 +185,7 @@
         <NanoMolarity specieID="LRGbg"               value="0" />
         <NanoMolarity specieID="Gbg"                 value="0" />
 
-          <NanoMolarity specieID="MgluR"           value="5000"     /> 
-<!--extra <NanoMolarity specieID="MgluR"        value="5000"  /> -->
+        <NanoMolarity specieID="MgluR"           value="5000"     /> 
   
         <NanoMolarity  specieID="Gqabg"          value="2500"  />
 
@@ -218,7 +217,7 @@
         <NanoMolarity specieID="Pkc" value="15000"     />  
         <NanoMolarity specieID="PkcCa" value="0"     /> 
  
-        <NanoMolarity specieID="Pkct" value="0"     />
+        <NanoMolarity specieID="PkcCaDag" value="0"     />
   
         <NanoMolarity specieID="PKA"                  value="5488" />
         <NanoMolarity specieID="PKAcAMP2"             value="644" />
@@ -230,19 +229,19 @@
     <SurfaceDensitySet region="dendrite" >
   	<PicoSD specieID="Leak" value="600"/>
 
-        <PicoSD specieID="pmca" value="65.86"/>
+        <PicoSD specieID="pmca" value="65"/>
   	<PicoSD specieID="ncx" value="2996"/>
- 	<PicoSD specieID="pmcaCa" value="17.79"/>
+ 	<PicoSD specieID="pmcaCa" value="17"/>
   	<PicoSD specieID="ncxCa" value="157"/>
 
 
-        <PicoSD specieID="D1R"         value="    10.12" />
-        <PicoSD specieID="Gsabg"       value="   506.25" />
+        <PicoSD specieID="D1R"         value="    10" />
+        <PicoSD specieID="Gsabg"       value="   506" />
         <PicoSD specieID="LD1RGs"      value="        0" />
         <PicoSD specieID="LD1R"        value="        0" />
-        <PicoSD specieID="GD1R"        value="    80.40" />
+        <PicoSD specieID="GsD1R"        value="    80" />
         <PicoSD specieID="GasGTP"      value="        0" />
-        <PicoSD specieID="GasGDP"      value="     6.00" />
+        <PicoSD specieID="GasGDP"      value="     6" />
         <PicoSD specieID="LRGbg"       value="        0" />
         <PicoSD specieID="Gbg"         value="        0" />
 
@@ -253,9 +252,9 @@
         <PicoSD specieID="ACGasCaATP"  value="0" />
         <PicoSD specieID="ACGasATP"    value="10" />
 
-        <PicoSD specieID="PDE10"         value="292.500" />
-        <PicoSD specieID="PDE10cAMP"     value="49.247" />
-        <PicoSD specieID="PKAcPDE10"     value="0" />
+        <PicoSD specieID="PDE10"         value="292" />
+        <PicoSD specieID="PDE10cAMP"     value="49" />
+       <PicoSD specieID="PKAcPDE10"     value="0" />
         <PicoSD specieID="PKAcPDE10cAMP" value="0" />
         <PicoSD specieID="pPDE10"        value="50" />
         <PicoSD specieID="pPDE10cAMP"    value="11" />
@@ -278,7 +277,7 @@
         <PicoSD specieID="PIkinase"   value="120"  />
         <PicoSD specieID="Ip3degPIk"  value="160"  />
  
-        <PicoSD specieID="PKA"        value="    965.5" />
+        <PicoSD specieID="PKA"        value="    965" />
         <PicoSD specieID="PKAcAMP2"   value="     35" />
         <PicoSD specieID="PKAcAMP4"   value="      0" />
         <PicoSD specieID="PKAc"       value="     16" />
