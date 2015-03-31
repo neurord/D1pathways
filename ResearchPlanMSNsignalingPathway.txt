@@ -24,6 +24,7 @@ Is CB1 required for striatal dependent learning (what about PKA, PKC and CaMKII)
 EXPER: In vivo infusion of drugs into striatum during behavioral task acquisition
 
 MODEL Procedure:
+MOST OF THIS IS NOW WRITTEN IN README. PLEASE UPDATE THERE
 DONE: 0. Create git repository on a computer that both GMU and KTH have access to.
 1. Merge BoHung Gq/PKC + Gq/2AG model with Rodrigo Golf model, possibly tweak parameters (adjust calcium buffer quantities, less constrained binding affinities, to make sure basal calcium is correct).
 	possibly with epac, use input from calcium model
@@ -47,13 +48,18 @@ PP1 dephos STEP, pSTEP is inactive
 What about epac -> RapGTP -> Raf?
 What about PKA phos Raf?
 
-SIMULATION PROTOCOLS:
+STIMULATION PROTOCOLS:
 20 Hz vs theta calcium / Glutamate input
 Da input similar to what Lovinger has measured
 What is temporal pattern of ACh?
 
 Q1: Does theta have higher memory kinases (PKA+PKC) than 20 Hz?
+SIMULATION to answer question:
+1. Stimulate using theta rhythym, stimulate using 20 Hz, quantify PKA and PKC
 Q2: What happens if caMKII or PKA is blocked? - compare to new and old field experiments
-Q3: What happens if Da, m1 or mGluR5 are blocked? - compare to old (LTP) and new (LTD) field experiments
+2. Stimulate with kcat of PKA =0, or kcat of CamKII = 0
+Q3: What happens if DaR, m1R or mGluR5 are blocked? - compare to old (LTP) and new (LTD) field experiments
+3. Stimulate, but with no Da, or no glu, or no ACh.
 Q4: What sort of spatial specificity do we get?
+4. Stimulate 1 spine, look at value at other spine
 Q5: Does model exhibit similar sensitivity to theta frequency?
