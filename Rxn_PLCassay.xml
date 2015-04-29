@@ -1,0 +1,168 @@
+<ReactionScheme>
+<!-- First version of merges Gq Gs coupled pathway reactions
+     when reactions differ between the models, notes indicate which was source.
+     Either StriatumCRCNS/StochasticSP1/MSPNfinalxml/MSPNreactions_4spine_new50.xml for Gs
+     or MURI/BoHung/FinalMarch2012/mglu_2ag_reac12mar20desens025.xml for Gq
+     phosphatase reactions take from revision of Gs to improve Ca dep dphos of Dp32-->
+<!-- calcium stuff first -->
+    <Specie name="Ca"                id="Ca"                kdiff="174.3" kdiffunit="mu2/s"/>
+<!-- Gq, PLC, Dag, IP3, PKC and 2ag are from Gq model --> 
+    <Specie name="GaqGTP"            id="GaqGTP"            kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="GaqGDP"            id="GaqGDP"            kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Plc"               id="Plc"               kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PlcCa"             id="PlcCa"             kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PlcCaGaq"          id="PlcCaGaq"          kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PlcGaq"            id="PlcGaq"            kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Pip2"              id="Pip2"              kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PlcCaPip2"         id="PlcCaPip2"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PlcCaGaqPip2"      id="PlcCaGaqPip2"      kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Ip3"               id="Ip3"               kdiff="10.6"  kdiffunit="mu2/s"/>
+    <Specie name="Dag"               id="Dag"               kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PlcCaDag"          id="PlcCaDag"          kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PlcCaGaqDag"       id="PlcCaGaqDag"       kdiff="0"     kdiffunit="mu2/s"/>
+
+<!--*************************************************************************
+    Now, the reactions themselves 
+    **************************************************************************-->
+
+<!--X. ***************************************************************************-->
+<!-- PLC, Dag, IP3, 2ag and PKC, from Gq RXN FILE --> 
+<!-- Review these and check all molecule names -->
+
+    <!--1a. Plc+Ca <-> PlcCa -->
+    <Reaction name = "Plc+Ca--PlcCa" id="Plc+Ca--PlcCa">
+        <Reactant specieID="Ca"           />
+        <Reactant specieID="Plc"              />
+        <Product  specieID="PlcCa"               />
+
+        <forwardRate> 0.020e-03   </forwardRate>
+        <reverseRate> 120e-03        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <!--2a. PlcCa + GaGTP    <->   PlcCaGaq  100 nM-->
+    <Reaction name = "PlcCa+GaqGTP--PlcCaGaq" id="PlcCa+GaqGTP--PlcCaGaq">
+        <Reactant specieID="GaqGTP"           />
+        <Reactant specieID="PlcCa"              />
+        <Product  specieID="PlcCaGaq"               />
+
+        <forwardRate> 0.10e-03   </forwardRate>
+        <reverseRate> 10e-03        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <!--1b. Plc + GaqGTP    <->   PlcGaq 1200 nM -->
+<!--AB: Falkenburger 2010 uses 0.71e-3 for reverse rate --> 
+    <Reaction name = "Plc+GaqGTP--PlcGaq" id="Plc+GaqGTP--PlcGaq">
+        <Reactant specieID="GaqGTP"           />
+        <Reactant specieID="Plc"              />
+        <Product  specieID="PlcGaq"               />
+
+        <forwardRate> 0.010e-03   </forwardRate>
+        <reverseRate> 12e-03        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <!--2b. PlcGaq + Ca    <->   PlcCaGaq  500 nM-->
+    <Reaction name = "PlcGaGTP+Ca--PlcCaGaq" id="PlcGaGTP+Ca--PlcCaGaq">
+        <Reactant specieID="Ca"           />
+        <Reactant specieID="PlcGaq"              />
+        <Product  specieID="PlcCaGaq"               />
+
+        <forwardRate> 0.08e-03   </forwardRate>
+        <reverseRate> 40e-03        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+   <!--3i. PlcCa + Pip2    <-> PlcCaPip2    -->
+    <Reaction name = "PlcCa+Pip2--PlcCaPip2" id="PlcCa+Pip2--PlcCaPip2">
+        <Reactant specieID="PlcCa"               />
+        <Reactant specieID="Pip2"             />
+        <Product  specieID="PlcCaPip2"            />
+
+        <forwardRate> 0.6e-06   </forwardRate>
+        <reverseRate>  10e-03   </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+<!--Combine the next two rxn when support for 3d order rxn -->      
+    <!--4i. PlcCaPip2      <-> PlcCaDag + Ip3 -->
+    <Reaction name = "PlcCaPip2--PlcCaDag+Ip3" id="PlcCaPip2--PlcCaDag+Ip3">
+        <Reactant specieID="PlcCaPip2"            />
+        <Product  specieID="PlcCaDag"               />
+        <Product  specieID="Ip3"            />
+
+        <forwardRate> 25e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+      
+    <!--5i. PlcCaDag       <->  PlcCa + Dag -->
+    <Reaction name = "PlcCaDag--PlcCa+Dag" id="PlcCaDag--PlcCa+Dag">
+        <Reactant specieID="PlcCaDag"            />
+        <Product  specieID="PlcCa"               />
+        <Product  specieID="Dag"            />
+
+        <forwardRate> 200e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>    
+
+    <!--3j. PlcCaGaq + Pip2    <-> PlcCaGaqPip2    -->
+    <Reaction name = "PlcCaGaq+Pip2--PlcCaGaqPip2" id="PlcCaGaq+Pip2--PlcCaGaqPip2">
+        <Reactant specieID="PlcCaGaq"               />
+        <Reactant specieID="Pip2"             />
+        <Product  specieID="PlcCaGaqPip2"            />
+
+        <forwardRate>  15e-06   </forwardRate>
+        <reverseRate>  75e-03   </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+      
+<!--Combine the next two rxn when support for 3d order rxn -->      
+    <!--4j. PlcCaGaqPip2       <-> PlcCaGaqDag + Ip3 -->
+    <Reaction name = "PlcCaGaqPip2--PlcCaGaqDag+Ip3" id="PlcCaGaqPip2--PlcCaGaqDag+Ip3">
+        <Reactant specieID="PlcCaGaqPip2"            />
+        <Product  specieID="PlcCaGaqDag"               />
+        <Product  specieID="Ip3"            />
+
+        <forwardRate> 250e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+      
+    <!--5j. PlcCaGaqDag       <->  PlcCaGaq + Dag -->
+    <Reaction name = "PlcCaGaqDag--PlcCaGaqp+Dag" id="PlcCaGaqDag--PlcCaGaq+Dag">
+        <Reactant specieID="PlcCaGaqDag"            />
+        <Product  specieID="PlcCaGaq"               />
+        <Product  specieID="Dag"            />
+
+        <forwardRate> 1000e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>    
+
+<!-- GAP activity - only with PLC bound not to PIP2 -->
+    <!-- PlcGaGTP       <-> Plc + Gabg -->
+    <Reaction name = "PlcGaq--Plc+GaqGDP" id="PlcGaq--Plc+GaqGDP">
+        <Reactant specieID="PlcGaq"            />
+        <Product  specieID="Plc"               />
+        <Product  specieID="GaqGDP"            />
+
+        <forwardRate>   30e-03   </forwardRate>
+        <reverseRate>   0  </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+<!-- Gap activity of PlcCa -->
+    <Reaction name = "PlcCaGaq--PlcCa+GaGDP" id="PlcCaGaq--Plc+GaGDP">
+        <Reactant specieID="PlcCaGaq"            />
+        <Product  specieID="PlcCa"               />
+        <Product  specieID="GaqGDP"            />
+
+        <forwardRate>   30e-03   </forwardRate>
+        <reverseRate>   0  </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+ </ReactionScheme>
