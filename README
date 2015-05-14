@@ -4,6 +4,8 @@ This is terse but detailed list of steps to develop the model.  See ResearchPlan
      Some experiments that can help test/develop the model
      See NeuroRD.bat for information on how to run models
 This file is also used to keep track of which steps have been done, and what needs to be done next.
+May 15, 2015
+    Did the first plc assay - looks good, but not great.  There is no saturation of calcium binding, much less decrease with too high a calcium value.  Consider higher affinity for calcium binding.
 
 April 30, 2015
 Currently working on Step 2 below.  Broken down into smaller steps
