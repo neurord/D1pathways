@@ -31,6 +31,7 @@ NEXT: try kcat=0.045, and add in the 2nd DAG dissociation step
       Need to re-check once the program isn't crashing with many parameter combinations.
       SLowed down Gq binding from 1.0=kb to 0.7, similar to Falkenburg - minimal  change to results
       Copied these parameters into the merged file
+      May need to decrease calcium affinity a bit if have problems with calcium equilibrium
 
 April 30, 2015
 Currently working on Step 2 below.  Broken down into smaller steps
