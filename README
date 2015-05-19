@@ -4,8 +4,33 @@ This is terse but detailed list of steps to develop the model.  See ResearchPlan
      Some experiments that can help test/develop the model
      See NeuroRD.bat for information on how to run models
 This file is also used to keep track of which steps have been done, and what needs to be done next.
-May 15, 2015
-    Did the first plc assay - looks good, but not great.  There is no saturation of calcium binding, much less decrease with too high a calcium value.  Consider higher affinity for calcium binding.
+
+NEXT STEPS: Da-R-G subset and fit to FRET
+
+May 15-18, 2015
+    Did the first plc assay - looks good, but not great.  
+    with Gaq = 0 or 261: There is no saturation of calcium binding, much less decrease with too high a calcium value.  Consider higher affinity for calcium binding.
+    with Ca = 300 nM, and Gaq from 5 to 80: linear increase (fine), but IP3 is too high for the lower Gaq values - this suggests Ca affinity is too high.
+    What about lower Ca affinity in absence of Gaq, but higher affinity in presence?  Above simulations used
+    PLC+Ca <-> PLCCa Kd=6000 (should have been 1000-2000 nM), PIP2 bind Kd= 58 
+    PLC-Gq + Ca <-> PLC-GqCa Kd=500 (should have been 200-400 nM), PIP2 bind Kd= 21.7 
+    PLC + Gq <-> PLC-Gq Kd=1200 (should have been ~50)
+    PLCCa + Gq <-> PLCCa-Gq Kd=100 (PMR)
+
+    Assessment of Sims with above Kd:  Gaq binding is way too high affinity - not distinction among different Gq amounts.  Ca affinity is not too bad.  Another problem - some simulations are crashing in the middle, which is not being helped by smaller dt.  May be some other bug.  Need to get next version of neuroRD.
+    It seems that the Ca = 300 nM, and Gaq low values (e.g. 5-15) are quite dependent on the PLC-Ca activity (i.e., activity in absence of Gq).  Perhaps lower Ca affinity will help also.
+    Eliminating the activity of PlcCa helped immensely for this simulation, but then the Ca param variation doesn't work :(.
+    values of kcat=0.225 are too high, kcat=0.0225 are too low (but better); 
+NEXT: try kcat=0.045, and add in the 2nd DAG dissociation step
+      GREAT Gq response.  Good Ca response with Gq.  Gq=0 didn't run.  Double kcat again - still good, though Ca 300 Gq 5 a bit high ,and Ca10 uM Gq = 0 a bit low
+      Add in slow Gq hydrolysis: No beter in terms of things that ran.
+      slightly lower Ca affinity for PLC - 2.5 uM, with 500 nM for PLC-Gq
+      Fine.  Not much better.  Still too low a response for Gq=0 and to high a response for 300 nM Ca with Gq=5
+      Redid the simulations of Ca dependence using 22 instead of 261 nM Gq - 22 is calculated from 55 ng and 60 uL.  Much better - 22 n nM Gq has ~2x the IP3 as 0 Gq, as in the figures.  The Gq dependence with 300 nM Ca looks good.
+      Went back to the 400 nM / 2000 nM Ca affinity - Ca sensitivity looks better, though perhaps the Gq assay a bit high
+      Need to re-check once the program isn't crashing with many parameter combinations.
+      SLowed down Gq binding from 1.0=kb to 0.7, similar to Falkenburg - minimal  change to results
+      Copied these parameters into the merged file
 
 April 30, 2015
 Currently working on Step 2 below.  Broken down into smaller steps

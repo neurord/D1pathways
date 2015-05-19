@@ -755,8 +755,8 @@
         <Reactant specieID="Plc"              />
         <Product  specieID="PlcCa"               />
 
-        <forwardRate> 0.020e-03   </forwardRate>
-        <reverseRate> 120e-03        </reverseRate>
+        <forwardRate> 0.0005e-03   </forwardRate>
+        <reverseRate> 1e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -766,8 +766,8 @@
         <Reactant specieID="PlcCa"              />
         <Product  specieID="PlcCaGaq"               />
 
-        <forwardRate> 0.10e-03   </forwardRate>
-        <reverseRate> 10e-03        </reverseRate>
+        <forwardRate> 0.0035e-03   </forwardRate>
+        <reverseRate> 0.7e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -778,8 +778,8 @@
         <Reactant specieID="Plc"              />
         <Product  specieID="PlcGaq"               />
 
-        <forwardRate> 0.010e-03   </forwardRate>
-        <reverseRate> 12e-03        </reverseRate>
+        <forwardRate> 0.0007e-03   </forwardRate>
+        <reverseRate> 0.7e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -789,8 +789,8 @@
         <Reactant specieID="PlcGaq"              />
         <Product  specieID="PlcCaGaq"               />
 
-        <forwardRate> 0.08e-03   </forwardRate>
-        <reverseRate> 40e-03        </reverseRate>
+        <forwardRate> 0.0025e-03   </forwardRate>
+        <reverseRate> 1.0e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -801,9 +801,9 @@
         <Reactant specieID="Pip2"             />
         <Product  specieID="PlcCaPip2"            />
 
-        <forwardRate> 0.6e-06   </forwardRate>
-        <reverseRate>  10e-03   </reverseRate>
-        <Q10>         0.2           </Q10>
+        <forwardRate> 0.01e-06   </forwardRate>
+        <reverseRate> 0.36e-03   </reverseRate>
+         <Q10>         0.2           </Q10>
     </Reaction>
 
 <!--Combine the next two rxn when support for 3d order rxn -->      
@@ -813,7 +813,7 @@
         <Product  specieID="PlcCaDag"               />
         <Product  specieID="Ip3"            />
 
-        <forwardRate> 25e-03     </forwardRate>
+        <forwardRate> 0.09e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -824,7 +824,7 @@
         <Product  specieID="PlcCa"               />
         <Product  specieID="Dag"            />
 
-        <forwardRate> 200e-03     </forwardRate>
+        <forwardRate> 1e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>    
@@ -835,8 +835,8 @@
         <Reactant specieID="Pip2"             />
         <Product  specieID="PlcCaGaqPip2"            />
 
-        <forwardRate>  15e-06   </forwardRate>
-        <reverseRate>  75e-03   </reverseRate>
+        <forwardRate>  0.333e-06   </forwardRate>
+        <reverseRate>  12e-03   </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
       
@@ -847,7 +847,7 @@
         <Product  specieID="PlcCaGaqDag"               />
         <Product  specieID="Ip3"            />
 
-        <forwardRate> 250e-03     </forwardRate>
+        <forwardRate> 3.0e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -858,7 +858,7 @@
         <Product  specieID="PlcCaGaq"               />
         <Product  specieID="Dag"            />
 
-        <forwardRate> 1000e-03     </forwardRate>
+        <forwardRate> 20e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>    
