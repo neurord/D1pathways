@@ -23,18 +23,18 @@
     <Specie name="CamCa4"            id="CamCa4"            kdiff="11"    kdiffunit="mu2/s"/>
 
 <!-- Gs coupled Dopamine D1 Receptor; Ligand currently called L,
-     LOut is used to eliminate injected L -->
-    <Specie name="LOut"              id="LOut"              kdiff="150"   kdiffunit="mu2/s"/>
-    <Specie name="L"                 id="L"                 kdiff="150"   kdiffunit="mu2/s"/>
+     DaOut is used to eliminate injected L -->
+    <Specie name="Da"          id="Da"               kdiff="0"      kdiffunit = "mu2/s"/>
+    <Specie name="DaOut"              id="DaOut"              kdiff="150"   kdiffunit="mu2/s"/>
     <Specie name="D1R"               id="D1R"               kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="DaD1R"       id="DaD1R"            kdiff="0"        kdiffunit = "mu2/s"/>
     <Specie name="Gsabg"             id="Gsabg"             kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="LD1RGs"            id="LD1RGs"            kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="LD1R"              id="LD1R"              kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="DaD1RGs"     id="DaD1RGs"          kdiff="0"        kdiffunit = "mu2/s"/>
     <Specie name="GsD1R"             id="GsD1R"             kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GasGTP"            id="GasGTP"            kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GasGDP"            id="GasGDP"            kdiff="0"     kdiffunit="mu2/s"/>
 <!-- eliminate LRGbg with new NeuroRD version -->
-    <Specie name="LRGbg"             id="LRGbg"             kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="DaD1RGbg"     id="DaD1RGbg"         kdiff="0"        kdiffunit = "mu2/s"/>
     <Specie name="Gbg"               id="Gbg"               kdiff="0"     kdiffunit="mu2/s"/>
 
 <!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
@@ -300,54 +300,53 @@
 
 
 <!--II. *********** Gs coupled receptor, from GS RXN FILE *************-->
-   <!--0. Da or Da Agonist: L                <->  LOut  -->
-    <Reaction name = "L-LOut reac" id="L-LOut_id">
-        <Reactant specieID="L"                      />
-        <Product  specieID="LOut"                   />
+   <!--0. Da or Da Agonist: L                <->  DaOut  -->
+    <Reaction name = "Da-DaOut reac" id="Da-DaOut_id">
+        <Reactant specieID="Da"                      />
+        <Product  specieID="DaOut"                   />
 
         <forwardRate> 2.00e-3      </forwardRate>
         <reverseRate> 2.00e-8      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
-
-    <!--1a. L + D1R        <-> LD1R      (in xpp: k1=0.0011111, k_1=10),     Kd=9000 -->
-    <Reaction name = "L+D1R--LD1R reac" id="L+D1R--LD1R_id">
-        <Reactant specieID="L"                      />
+    <!--1a. Da + D1R        <-> DaD1R      Kd=3000  source: Sunahara et al. Nature 1991-->
+    <Reaction name = "Da+D1R--DaD1R" id="Da+D1R--DaD1R">
+        <Reactant specieID="Da"                      />
         <Reactant specieID="D1R"                      />
-        <Product  specieID="LD1R"                     />
+        <Product  specieID="DaD1R"                     />
 
-        <forwardRate> 0.0011111e-03 </forwardRate>
-        <reverseRate> 10e-03        </reverseRate>
+        <forwardRate> 0.00166667e-03 </forwardRate>
+        <reverseRate> 5e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--2a. LD1R + Gsabg       <-> LD1RGs      (in xpp: k2=0.0006 k_2=0.001),     Kd=1.666667 -->
-    <Reaction name = "LD1R+Gs--LD1RGs reac" id="LD1R+Gs--LD1RGs_id">
-        <Reactant specieID="LD1R"                     />
+   <!-- 2a. DaD1R + Gsabg     <-> DaD1RGs      Kd=11.666667   source: Zhuang J Neurosci 2000-->
+    <Reaction name = "DaD1R+Gs--DaD1RGs" id="DaD1R+Gs--DaD1RGs">
+        <Reactant specieID="DaD1R"                     />
         <Reactant specieID="Gsabg"                      />
-        <Product  specieID="LD1RGs"                    />
+        <Product  specieID="DaD1RGs"                    />
 
-        <forwardRate> 0.0006e-03 </forwardRate>
-        <reverseRate> 0.001e-03  </reverseRate>
+        <forwardRate> 0.006e-03 </forwardRate>
+        <reverseRate> 0.07e-03  </reverseRate>
         <Q10>         0.2        </Q10>
     </Reaction>
-    <!--1b. Gsabg + D1R       <-> GsD1R      (in xpp: k1a=0.00006 k_1a=0.0003), Kd=5 -->
-    <Reaction name = "Gsabg+D1R--GsD1R reac" id="Gsabg+D1R--GsD1R_id">
+    <!-- 1b. Gsabg + D1R       <-> GsD1R         Kd=35   source: PMR-->
+    <Reaction name = "Gsabg+D1R--GsD1R" id="Gsabg+D1R--GsD1R">
         <Reactant specieID="Gsabg"                      />
         <Reactant specieID="D1R"                      />
         <Product  specieID="GsD1R"                     />
 
-        <forwardRate> 0.00006e-03 </forwardRate>
-        <reverseRate> 0.0003e-03  </reverseRate>
+        <forwardRate> 0.002e-03 </forwardRate>
+        <reverseRate> 0.07e-03  </reverseRate>
         <Q10>         0.2         </Q10>
     </Reaction>
-    <!-- 2b. GsD1R + L       <-> LD1RGs      (in xpp: k2a=0.00333333 k_2a=10), Kd=3000 -->
-    <Reaction name = "GsD1R+L--LD1RGs reac" id="GD1R+L--LD1RGs_id">
+    <!-- 2b. GsD1R + Da       <-> DaD1RGs       Kd=1000   source: Falkenburger J Gen Phys off-rate, Dreyer J Neurosci-->
+    <Reaction name = "GsD1R+Da--DaD1RGs" id="GD1R+Da--DaD1RGs">
         <Reactant specieID="GsD1R"                     />
-        <Reactant specieID="L"                      />
-        <Product  specieID="LD1RGs"                    />
+        <Reactant specieID="Da"                      />
+        <Product  specieID="DaD1RGs"                    />
 
-        <forwardRate> 0.0033333e-03 </forwardRate>
-        <reverseRate> 10e-03        </reverseRate>
+        <forwardRate> 0.005e-03 </forwardRate>
+        <reverseRate> 5e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -356,35 +355,34 @@
         could be labeled as 3.-4. LD1RGs <-> LD1R + GasGTP + Gbg; 
 	this rxn is also described as 3. and 4. (combined) below -->
 
-<!--    <Reaction name = "LD1RGs-LD1R+GasGTP+Gbg reac" id="LD1RGs-LD1R+GasGTP+Gbg_id">
-        <Reactant specieID="LD1RGs"                    />
-        <Product  specieID="LD1R"                  />
+<!--    <Reaction name = "DaD1RGs-DaD1R+GasGTP+Gbg reac" id="DaD1RGs-DaD1R+GasGTP+Gbg_id">
+        <Reactant specieID="DaD1RGs"                    />
+        <Product  specieID="DaD1R"                  />
         <Product  specieID="GasGTP"                  />
         <Product  specieID="Gbg"                    />
 
-        <forwardRate> 20e-03        </forwardRate>
+        <forwardRate> 2e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
 -->
 
-    <!-- 3.  LD1RGs <-> LD1RGbg + GasGTP -->
-    <Reaction name = "LD1RGs--LRGbg+GasGTP reac" id="LD1RGs--LRGbg+GasGTP_id">
-        <Reactant specieID="LD1RGs"                    />
-        <Product  specieID="LRGbg"                  />
+    <!-- 3.  DaD1RGs <-> DaD1RGbg + GasGTP +Gbg-->
+    <Reaction name = "DaD1RGs--Da1RGbg+GasGTP" id="DaD1RGs--Da1RGbg+GasGTP">
+        <Reactant specieID="DaD1RGs"                    />
+        <Product  specieID="DaD1RGbg"                  />
         <Product  specieID="GasGTP"                  />
 
-        <forwardRate> 20e-03        </forwardRate>
+        <forwardRate> 2e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- 4.  LD1RGbg <-> LD1R + Gbg -->
-    <Reaction name = "LRGbg--LD1R+Gbg reac" id="LRGbg--LD1R+Gbg_id">
-        <Reactant specieID="LRGbg"                  />
-        <Product  specieID="LD1R"                     />
+    <Reaction name = "Da1RGbg--DaD1R+Gbg" id="Da1RGbg--DaD1R+Gbg">
+        <Reactant specieID="DaD1RGbg"                  />
+        <Product  specieID="DaD1R"                     />
         <Product  specieID="Gbg"                    />
 
-        <forwardRate> 80e-03        </forwardRate>
+        <forwardRate> 20e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -421,8 +419,6 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-
-
     <!--2a. Gqabg + GluMgluR    <-> GluMgluRGq    -->
     <Reaction name = "Gqabg+GluMgluR--GluMgluRGq" id="Gqabg+GluMgluR--GluMgluRGq">
         <Reactant specieID="Gqabg"               />
@@ -433,7 +429,6 @@
         <reverseRate>   0.68e-03  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-
 
   <!--1b. Gqabg + MgluR <-> GqMgluR -->
   <Reaction name = "Gqabg+MgluR- -GqMgluR" id="Gqabg+MgluR- -GqMgluR">
@@ -456,7 +451,6 @@
         <reverseRate> 1e-03 </reverseRate>
         <Q10> 0.2 </Q10>
    </Reaction>
-
 
    <!--3. This production is much slower than for GasGTP-->
    <!-- GabgGluMglu    <-> GaqGTP + GluMgluRGbg -->

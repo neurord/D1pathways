@@ -1,0 +1,15 @@
+<OutputScheme>
+  <OutputSet filename = "all"  dt="20.0">
+    <OutputSpecie name="Da"/>
+    <OutputSpecie name="Dabuf"/>
+    <OutputSpecie name="D1R"/>
+    <OutputSpecie name="Gsabg"/>
+    <OutputSpecie name="DaD1RGs"/>
+    <OutputSpecie name="DaD1R"/>
+    <OutputSpecie name="GsD1R"/>
+    <OutputSpecie name="GasGTP"/>
+    <OutputSpecie name="GasGDP"/>
+    <OutputSpecie name="Gbg"/>
+  </OutputSet>
+
+</OutputScheme>

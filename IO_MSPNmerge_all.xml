@@ -36,12 +36,12 @@
     <OutputSpecie name="CaMCa2N"/>
     <OutputSpecie name="CaMCa4"/>
 
-    <OutputSpecie name="LOut"/>
-    <OutputSpecie name="L"/>
+    <OutputSpecie name="DaOut"/>
+    <OutputSpecie name="Da"/>
     <OutputSpecie name="D1R"/>
     <OutputSpecie name="Gsabg"/>
-    <OutputSpecie name="LD1RGs"/>
-    <OutputSpecie name="LD1R"/>
+    <OutputSpecie name="DaD1RGs"/>
+    <OutputSpecie name="DaD1R"/>
     <OutputSpecie name="GsD1R"/>
     <OutputSpecie name="GasGTP"/>
     <OutputSpecie name="GasGDP"/>

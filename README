@@ -7,6 +7,16 @@ This file is also used to keep track of which steps have been done, and what nee
 
 NEXT STEPS: Da-R-G subset and fit to FRET
 
+May 28 - ?, 2015
+1. Created set of files for evaluating R-G association rates from FRET study
+
+2.Editing neurord_params_sims.py for
+a) work with stochdiff-3.0.0
+b) change a stim file, to allow for stimulating Da (and buffer to turn off stim)
+   stim allows a non-stim baseline period (not so important), but turn off will be critical  
+
+This worked.  Next, actually run the simulations with different Da conc and compare the results to FRET traces
+
 May 15-18, 2015
     Did the first plc assay - looks good, but not great.  
     with Gaq = 0 or 261: There is no saturation of calcium binding, much less decrease with too high a calcium value.  Consider higher affinity for calcium binding.

@@ -24,18 +24,18 @@
       	<NanoMolarity specieID="CamCa4" value="0"/>
 
 <!-- cytosolic molecules -->
-        <NanoMolarity specieID="LOut"          value="1000000" />
-        <NanoMolarity specieID="L"             value="    50" />
+        <NanoMolarity specieID="DaOut"          value="1000000" />
+        <NanoMolarity specieID="Da"             value="    50" />
 
 <!-- membrane molecules -->
         <NanoMolarity specieID="D1R"           value="0" />
         <NanoMolarity specieID="Gsabg"         value="0" />
-        <NanoMolarity specieID="LD1RGs"        value="0" />
-        <NanoMolarity specieID="LD1R"          value="0" />
+        <NanoMolarity specieID="DaD1RGs"        value="0" />
+        <NanoMolarity specieID="DaD1R"          value="0" />
         <NanoMolarity specieID="GsD1R"         value="0" />
         <NanoMolarity specieID="GasGTP"        value="0" />
         <NanoMolarity specieID="GasGDP"        value="0" />
-        <NanoMolarity specieID="LRGbg"         value="0" />
+        <NanoMolarity specieID="DaRGbg"         value="0" />
         <NanoMolarity specieID="Gbg"           value="0" />
 
 <!-- cytosolic molecules -->
@@ -177,12 +177,12 @@
 
         <NanoMolarity specieID="D1R"                 value="77" />
         <NanoMolarity specieID="Gsabg"               value="4100" />
-        <NanoMolarity specieID="LD1RGs"              value="0" />
-        <NanoMolarity specieID="LD1R"                value="0" />
+        <NanoMolarity specieID="DaD1RGs"              value="0" />
+        <NanoMolarity specieID="DaD1R"                value="0" />
         <NanoMolarity specieID="GD1R"                value="628" />
         <NanoMolarity specieID="GasGTP"              value="0" />
         <NanoMolarity specieID="GasGDP"              value="0" />
-        <NanoMolarity specieID="LRGbg"               value="0" />
+        <NanoMolarity specieID="DaRGbg"               value="0" />
         <NanoMolarity specieID="Gbg"                 value="0" />
 
         <NanoMolarity specieID="MgluR"           value="5000"     /> 
@@ -237,12 +237,12 @@
 
         <PicoSD specieID="D1R"         value="    10" />
         <PicoSD specieID="Gsabg"       value="   506" />
-        <PicoSD specieID="LD1RGs"      value="        0" />
-        <PicoSD specieID="LD1R"        value="        0" />
+        <PicoSD specieID="DaD1RGs"      value="        0" />
+        <PicoSD specieID="DaD1R"        value="        0" />
         <PicoSD specieID="GsD1R"        value="    80" />
         <PicoSD specieID="GasGTP"      value="        0" />
         <PicoSD specieID="GasGDP"      value="     6" />
-        <PicoSD specieID="LRGbg"       value="        0" />
+        <PicoSD specieID="DaRGbg"       value="        0" />
         <PicoSD specieID="Gbg"         value="        0" />
 
         <PicoSD specieID="AC"          value="444" />
