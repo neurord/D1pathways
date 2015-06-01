@@ -7,7 +7,7 @@ This file is also used to keep track of which steps have been done, and what nee
 
 NEXT STEPS: Da-R-G subset and fit to FRET
 
-May 28 - ?, 2015
+May 28 - June 1, 2015
 1. Created set of files for evaluating R-G association rates from FRET study
 
 2.Editing neurord_params_sims.py for
@@ -15,7 +15,28 @@ a) work with stochdiff-3.0.0
 b) change a stim file, to allow for stimulating Da (and buffer to turn off stim)
    stim allows a non-stim baseline period (not so important), but turn off will be critical  
 
-This worked.  Next, actually run the simulations with different Da conc and compare the results to FRET traces
+This worked.  Next, actually run the simulations with different Da conc and compare the results to FRET traces.
+
+The simulations worked, but it appears as if the GasGTP production is too slow.  The low concentration Da gives a GasGTP time course similar to Bunemann, but the high concentration is also slow, whereas in measurements the saturating concentrations of ligand produce very fast FRET change.  Steady state dose-response is fine also.
+G prot associ with DaD1RGs is quite fast ~1 sec, comparable to that in Hein et al. 2005. After initial production of triple complex, the decrease is quite rapid.  The slow depletion of Gsabg may be due to high Gs concentration?
+After initial time point, GsD1R drops to 5%, DaD1R goes up to 80%, DaD1RGs is only ~20% for high Da conc.  Perhaps catalytic rate is too fast compared to association rate?
+
+Need to do transient Da pulse to evaluate dissociaton rate, e.g. 15 on & 30 off.
+Also, the main studies have over-expression, so perhaps do these dissociation sims with higher G expression - how much higher???
+One measure method lists off rate of ~15 sec, but another method lists 2 sec - much faster.
+
+------> increase Gs forward and backward by 10x, gives 0.7e-3 backward (1/2s=0.5)
+
+BETTER: association quite fast - < 1 sec for high conc, but dissociation is too fast ~5 sec instead of 10 sec.  Slow down kb to 0.4, and half the kf.
+Still too fast of G association, but too slow GasGTP production!  Dissociation is too fast, though maybe due to too fast reduction in Da.  Slow down 3x Da-buf rxn and re-assess.
+BETTER - decay is ~10 sec, this is quite good.  Association is still quite fast (formation of DaD1Rgs < 1 sec) whereas production of GasGTP and decrease in GasGTP is too slow!
+Can see Bunemann 2001 J Biol Chem for GIRK measurement using endogenous G proteins.
+15 sec with conc that reaches 75% of max - similar to my sims, but only 5 sec with conc that satures - much faster than mine.  This is a2a and Gi, possibly faster hydrolysis?  Try 3x faster.
+
+Yes, with 3x faster hydrolysis, GaGTP developed within 8 sec for saturating conc,  BUT, the ss DaD1RGs declined during the stimulation, probably because kcat is much faster than kf and kb.  BUT, do not change it like this.  A2A is coupled to Gi, maybe Gs is slower.
+Note that local D1R and Gsabg conc will be higher with submembrane layers, this will speed association rxn.
+
+NEXT - repeat these assays in Neves, but compare the D2 / Gi part.  May need to speed up kcat for GiaGTP production (but leave Gs as is)
 
 May 15-18, 2015
     Did the first plc assay - looks good, but not great.  

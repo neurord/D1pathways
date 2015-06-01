@@ -325,8 +325,8 @@
         <Reactant specieID="Gsabg"                      />
         <Product  specieID="DaD1RGs"                    />
 
-        <forwardRate> 0.006e-03 </forwardRate>
-        <reverseRate> 0.07e-03  </reverseRate>
+        <forwardRate> 0.03e-03 </forwardRate>
+        <reverseRate> 0.4e-03  </reverseRate>
         <Q10>         0.2        </Q10>
     </Reaction>
     <!-- 1b. Gsabg + D1R       <-> GsD1R         Kd=35   source: PMR-->
@@ -335,8 +335,8 @@
         <Reactant specieID="D1R"                      />
         <Product  specieID="GsD1R"                     />
 
-        <forwardRate> 0.002e-03 </forwardRate>
-        <reverseRate> 0.07e-03  </reverseRate>
+        <forwardRate> 0.01e-03 </forwardRate>
+        <reverseRate> 0.4e-03  </reverseRate>
         <Q10>         0.2         </Q10>
     </Reaction>
     <!-- 2b. GsD1R + Da       <-> DaD1RGs       Kd=1000   source: Falkenburger J Gen Phys off-rate, Dreyer J Neurosci-->
