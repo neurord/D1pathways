@@ -5,7 +5,14 @@ This is terse but detailed list of steps to develop the model.  See ResearchPlan
      See NeuroRD.bat for information on how to run models
 This file is also used to keep track of which steps have been done, and what needs to be done next.
 
-NEXT STEPS: Da-R-G subset and fit to FRET
+June 2, 2015 - D-R-G-cAMP-PDE-PKA subset
+created the rxn subset and two morphologies - one 1.5 um diameter dendrite, one 6.5 um dia (small) soma.  Both have 1 um voxels (4 um depth) but with 0.25 submembrane (check that all memb molec are only in the surface layer).  The larger one also has 0.5 um surface layer.  This will be used to adjust quantities of molecules to achieve: ~30 nM basal cAMP and ~2.5 uM stimulated cAMP.  If one is too big and other too small, likely will need to adjust rate of PKA phos of PDE, and pPDE activity.
+Having two morphologies will allow me to evaluate Vince's data -effect of morphology on peak values.
+
+STATUS: ss don't look correct.  Fix this part of python code. 
+2.1.9 is much faster than 3.0, use this till informational output is reduced
+Adjust dopamine injection part to match Castro or somebody.
+THEN, run simulations with different total quantities of D1R,Gs,AC,PDE
 
 May 28 - June 1, 2015
 1. Created set of files for evaluating R-G association rates from FRET study
