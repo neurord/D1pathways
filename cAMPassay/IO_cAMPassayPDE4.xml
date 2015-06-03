@@ -1,0 +1,38 @@
+<OutputScheme>
+  <OutputSet filename = "all"  dt="100.0">
+    <OutputSpecie name="Da"/>
+    <OutputSpecie name="D1R"/>
+    <OutputSpecie name="Gsabg"/>
+    <OutputSpecie name="DaD1RGs"/>
+    <OutputSpecie name="DaD1R"/>
+    <OutputSpecie name="GsD1R"/>
+    <OutputSpecie name="GasGTP"/>
+    <OutputSpecie name="GasGDP"/>
+    <OutputSpecie name="Gbg"/>
+    <OutputSpecie name="AC"/>
+    <OutputSpecie name="ACGas"/>
+    <OutputSpecie name="ACGasATP"/>
+
+    <OutputSpecie name="ATP"/>
+    <OutputSpecie name="cAMP"/>
+    <OutputSpecie name="AMP"/>
+
+    <OutputSpecie name="PDE10"/>
+    <OutputSpecie name="PDE10cAMP"/>
+    <OutputSpecie name="PKAcPDE10"/>
+    <OutputSpecie name="PKAcPDE10cAMP"/>
+    <OutputSpecie name="pPDE10"/>
+    <OutputSpecie name="pPDE10cAMP"/>
+    <OutputSpecie name="PDE4"/>
+    <OutputSpecie name="PKAcPDE10"/>
+    <OutputSpecie name="pPDE4"/>
+    <OutputSpecie name="pPDE4cAMP"/>
+
+    <OutputSpecie name="PKA"/>
+    <OutputSpecie name="PKAcAMP2"/>
+    <OutputSpecie name="PKAcAMP4"/>
+    <OutputSpecie name="PKAc"/>
+    <OutputSpecie name="PKAr"/>
+</OutputSet>
+
+</OutputScheme>

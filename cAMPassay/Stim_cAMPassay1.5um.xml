@@ -1,10 +1,11 @@
 <StimulationSet>
 
-    <!-- the injectionSite must match a regionLabel deefined in the morphology -->
+  <!-- the injectionSite must match a regionLabel deefined in the morphology. 
+       This value should produce 1000 nM in small morphology-->
   <InjectionStim specieID="Da" injectionSite="pointA">
         <onset>           100000        </onset>
         <duration>           10         </duration>
-        <rate>               3.614     </rate>
+        <rate>               361.4     </rate>
   </InjectionStim>
   
 </StimulationSet>

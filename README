@@ -5,11 +5,69 @@ This is terse but detailed list of steps to develop the model.  See ResearchPlan
      See NeuroRD.bat for information on how to run models
 This file is also used to keep track of which steps have been done, and what needs to be done next.
 
+NEXT STEPS:
+Get Backsai and Mironov papers.  Adjust PDEs to achieve 2.5 uM peak cAMP in soma (10 nM Da stim?)
+a. even slower PKA phos of PDE10
+b. add in other PDEs: 250 nM affinity means that PDE10 can saturate easily
+  b1: True PDE4 with correct affinity
+  b2: PDE2: 40 uM affinity for cAMP, 1 uM affinity for 2nd cAMP, 18x activity when 2 cAMP are bound (pretend that 1st cAMP is a cGMP); lower PDE10 concentration to compensate (will this enhance "soma" response? or maybe slower PKA phos of PDE10 will compensate)
+c. add in Gi and receptors
+   In Neves, this is D2 if A2A neuron; In D1 neuron this is m4
+   because these are sm, and soma and dend have same sm, prob won't help.  this will help when spine added
+   
+June 3, 2015: figured out surface layers behavior
+1. If the surfaceLayers sum to less than defaultMaxElementSide
+	     (or the resulting element size if morphology/default is not integer)
+	     then the radius will be reduced by elementsize - sum(surfaceLayer),
+2. When only a single voxel is created, surfaceLayers adds to the morphology diameter
+2. Running simulations with 1000 nM dopamine, instead of 10 nM.  This still might not be a high enough concentration, but should produce nice response.
+3. python code is fixed - correctly calculates totals for multi-voxel morphology
+4. Though DaD1RGs complex is forming, no GasGTP is being formed, and cAMP is dropping to zero, even with 1000 nM dopamine. - bug in rxn spec.  Fixed  Also, increased molecule concentrations - ~1.3 uM AC and PKA, 260 nM D1R, 2600 nM Gas
+####Now, adjust AC, PDE10 for correct basal, then adjust PKA & pPDE10 activity for correct peak.
+	 Possibly will need to adjust D1R and Gs if not enough (or too much) GasGTP
+5. Results (Gs=10xD1R,PKA=AC)
+param				ss	     peak
+1.5um D1R=200,AC=1000,PDE10=400	cAMP=15-20   cAMP:20uM, PKAr=120-70,pPDE4cAMP=500-400
+6.5um D1R=200,AC=1000,PDE10=400	cAMP=60	     cAMP:3.8uM, PKAr=30,pPDE4cAMP=100-80
+1.5:Since ss is too low and peak too high, need more active pPDE10; pPDE10 increase is somewhat slow (cAMP is quite transient, not persistant) so I don't think PKA phos should be slower
+6.5: peak is reasonable, but too transient.  If pPDE10 is stronger, peak will be lower, but no less transient.  If make PKA phos slower, then peak will be higher again, and perhaps less transient.
+Vince's data showed transient responses, but on much slower time scale than my simulations.  Once reasonable values, will re-initialize (allow shorter time before stim), and run longer simulations
+Result of 2x stronger pPDE10 (pPDE10 = 4x PDE10)
+param				ss	     peak
+1.5um D1R=200,AC=1000,PDE10=400	cAMP=15-20   cAMP:8uM, PKAr=100-20,pPDE4cAMP=300-200
+6.5um D1R=200,AC=1000,PDE10=400	cAMP=45	     cAMP:1.2uM, PKAr=25,pPDE4cAMP=50-40
+EVEN MORE TRANSIENT - BAD, lower peak in dend - good, similarly low basal
+
+1.5:Since ss is too low and peak too high, need more active pPDE10; pPDE10 increase is What if have both sm and cyt spec for PDE10 (currently all is sm)?  Put half of PDE10 in sm - scales with AC, and other half as cyt?  Or keep current amount, make PKA phos rate 10x slower (not just a little slower) and move 1/4 of sm PDE10 to cyt:
+change 400 to 300, add in 200 cyt? - same amount in dend, but will be more in soma - lower basal soma, perhaps higher transient in soma
+Result of 10x slower PKAc + sm300 and cyt200 PDE10 (+4x pPDE10):
+1.5um D1R=200,AC=1000:	cAMP=50uM   cAMP:50uM, PKAr=140-120,pPDE4cAMP=0-250
+6.5um D1R=200,AC=1000:	cAMP=30	     cAMP:0.6uM, PKAr=25,pPDE4cAMP=10-12
+If still too transient, go back to 2x pPDE10 (yes, it is)
+If dend is still too low and high, and soma still to high and low:
+need higher basal PDE10 dend and lower PDE10 stim
+need lower basal PDE10 soma (achieved by cyt PDE10) and lower PDE10 stim  - 2x pPDE10
+RESULT of 10x slower PKAc + sm300 and cyt200 PDE10 (+2x pPDE10):
+1.5um D1R=200,AC=1000:	cAMP=10nM   cAMP:100uM, PKAr=140-120,pPDE4cAMP=0-250
+6.5um D1R=200,AC=1000:	cAMP=30nM   cAMP:0.65uM, PKAr=25,pPDE4cAMP reaches 16
+Soma pretty good (could tweak to match Vince or Castro? - even slower PKA phos, no decay within 1 min, perhaps no PKA phos?)
+Dend stim is terrible:
+lower PDE10stim in dend (within minimal decrease in PDE10stim in soma) could be achieved by PKA phos of PDE10 HOWEVER, fast fb loop makes stim too transient, whereas slow fb loop fails to control peak.  Need 1 ultra fast loop and 1 super slow loop (slow PKA phos of PDE10?).  Ultrafast can't be receptor dependent because conc same for both
+Note that DaD1RGs is extremely transient, ACGasATP is extremely persistant
+NEXT SIMS: FB: add additional PDE, only in dend (1.5 um structure)
+a. inactive without phos, extremely fast phos - implemented
+b. requires two cAMP binding (cooperativity) - represents cGMP? - alternative
+RESULTS:
+a. cAMP peak - 80 uM, pPDE4 increase is too slow - gradual from 100 - 200 sec, make faster
+b. cAMP - 25 uM and very transient.  Try making even faster.
+c. cAMP = 4 uM and super transient - gone within 1 minute
+TRY NEW APPROACH
+
 June 2, 2015 - D-R-G-cAMP-PDE-PKA subset
 created the rxn subset and two morphologies - one 1.5 um diameter dendrite, one 6.5 um dia (small) soma.  Both have 1 um voxels (4 um depth) but with 0.25 submembrane (check that all memb molec are only in the surface layer).  The larger one also has 0.5 um surface layer.  This will be used to adjust quantities of molecules to achieve: ~30 nM basal cAMP and ~2.5 uM stimulated cAMP.  If one is too big and other too small, likely will need to adjust rate of PKA phos of PDE, and pPDE activity.
 Having two morphologies will allow me to evaluate Vince's data -effect of morphology on peak values.
 
-STATUS: ss don't look correct.  Fix this part of python code. 
+STATUS: ss doen't look correct.  Fix this part of python code. 
 2.1.9 is much faster than 3.0, use this till informational output is reduced
 Adjust dopamine injection part to match Castro or somebody.
 THEN, run simulations with different total quantities of D1R,Gs,AC,PDE

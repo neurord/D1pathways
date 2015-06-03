@@ -21,6 +21,7 @@
         <NanoMolarity specieID="cAMP"                value="36" />
         <NanoMolarity specieID="AMP"                 value="0" />
         <NanoMolarity specieID="PDE10"             value="200" />
+        <NanoMolarity specieID="PDE4"             value="400" />
 
 </ConcentrationSet> 
  	
