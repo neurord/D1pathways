@@ -20,10 +20,10 @@
         <NanoMolarity specieID="ATP"                 value="2e6" />
         <NanoMolarity specieID="cAMP"                value="36" />
         <NanoMolarity specieID="AMP"                 value="0" />
-        <NanoMolarity specieID="PDE10"             value="200" />
-        <NanoMolarity specieID="PDE4"              value="400" />
-        <NanoMolarity specieID="pPDE4"             value="0" />
-        <NanoMolarity specieID="pPDE4cAMP"           value="0" />
+        <NanoMolarity specieID="PDE10"              value="0" />
+        <NanoMolarity specieID="PDE2"               value="600" />
+        <NanoMolarity specieID="PDE2cAMP"            value="0" />
+        <NanoMolarity specieID="PDE2cAMP2"           value="0" />
 
 </ConcentrationSet> 
  	
@@ -35,7 +35,7 @@
         <PicoSD specieID="ACGas"          value="0" />
         <PicoSD specieID="ACGasATP"       value="0" />
 
-        <PicoSD specieID="PDE10"         value="300" />
+        <PicoSD specieID="PDE10"         value="200" />
         <PicoSD specieID="PDE10cAMP"     value="0" />
         <PicoSD specieID="PKAcPDE10"     value="0" />
         <PicoSD specieID="PKAcPDE10cAMP" value="0" />

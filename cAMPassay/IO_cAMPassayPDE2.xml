@@ -23,10 +23,9 @@
     <OutputSpecie name="PKAcPDE10cAMP"/>
     <OutputSpecie name="pPDE10"/>
     <OutputSpecie name="pPDE10cAMP"/>
-    <OutputSpecie name="PDE4"/>
-    <OutputSpecie name="PKAcPDE4"/>
-    <OutputSpecie name="pPDE4"/>
-    <OutputSpecie name="pPDE4cAMP"/>
+    <OutputSpecie name="PDE2"/>
+    <OutputSpecie name="PDE2cAMP"/>
+    <OutputSpecie name="PDE2cAMP2"/>
 
     <OutputSpecie name="PKA"/>
     <OutputSpecie name="PKAcAMP2"/>

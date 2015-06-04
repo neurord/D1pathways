@@ -6,7 +6,23 @@ This is terse but detailed list of steps to develop the model.  See ResearchPlan
 This file is also used to keep track of which steps have been done, and what needs to be done next.
 
 NEXT STEPS:
-Get Backsai and Mironov papers.  Adjust PDEs to achieve 2.5 uM peak cAMP in soma (10 nM Da stim?)
+1. Go back to Neves simulations, tune PDE2:PDE10, clarify role of Gi inhibition and/or receptor desensitization; consider using it for D1pathways
+2. Clarify exactly what responses to match soma (stim time & conc, response)
+   E.g., mironov reports no higher than 3 uM in soma; 10 uM saturates sensor
+   0.3 uM ~5% (20% of max), 1 uM ~15% (50% of max) (not linear)
+3. Do sets of simulations using various stim and IC and tune response
+   Soma probably needs higher PDE10 to achieve basal <= 100 nM - try small cytosolic PDE10/PDE4: e.g. 30,60,90
+   	(could slightly lower sm PDE10 and add in this low quant ofcyt PDE10 in dend to unify this IC OR, add in PDE4 with its lower affinity in higher amount? Computationally inefficient?).
+   Try to achieve 3-10 uM cAMP peak - try 100, 200, 300 PDE2 and higher Da stim
+       PDE2 will need to be much lower in soma than dendrite (unless sm distr) 
+4. Find dendritic responses - recent cell report pub - clarify what to match
+5. Do additional simulations to tune dendrite, with least differences to soma.
+
+Gi can also limit cAMP. In A2A neurons, Da would enhance Gi.  In D1 neurons, does dopamine increase or decrease Gi (via m4) during Da stimulation?
+
+June 4, 2015
+NEXT STEPS:
+Get Backsai and Mironov papers.  Adjust PDEs to achieve 2.5 uM peak cAMP in soma (10 uM Da stim?)
 a. even slower PKA phos of PDE10
 b. add in other PDEs: 250 nM affinity means that PDE10 can saturate easily
   b1: True PDE4 with correct affinity
@@ -14,6 +30,39 @@ b. add in other PDEs: 250 nM affinity means that PDE10 can saturate easily
 c. add in Gi and receptors
    In Neves, this is D2 if A2A neuron; In D1 neuron this is m4
    because these are sm, and soma and dend have same sm, prob won't help.  this will help when spine added
+
+Backsai 1993 is aplysia paper.  Mironov is mouse brain stem neurons, calibrates cAMP, applies transient (1-2 min) pulses, and even images calcium and cAMP simultaneously.  This would have been great for tuning Chay model.  Will use it for effect of PDE inhibitors.  Will use it in future if add in AC1 into striatal model.  Soma only.
+
+Reran PDE4 simulations because there was bug in xml.
+RESULTS (PDE4, dephos=0.1e-3,PDE4cyt=400, PDE10sm=300,cyt=200):
+cAMP basal: 10 nM, peak=10uM, low pPDE4 basal, peak in 20 sec, decay to 2 uM by 50 sec - no good.
+
+RESULTS (PDE2, kf=6.25e-7): peak cAMP is 20 uM. basal=20 nM (best yet), Slightly too transient (peak at 30 sec (good), decrease to < 5 uM by 100 sec (too fast)).  PDE2cAMP2 is near saturation.
+NEXT: try even slower PKA phos of PDE10 (extend simulation time).  Then, add in lower PDE10
+RESULTS (PDE2, kf=6.25e-8,PDE2=400, PDE10=300).
+cAMP basal: 16nM,   cAMP peak:25 uM,    time: 50 sec, decay to 5uM at ~230 sec
+RESULTS (PDE2, kf=6.25e-8,PDE2=400, PDE10=200)
+cAMP basal: 30nM,   cAMP peak:30 uM,    time: 55 sec, decay to 5uM at ~250 sec
+GREAT BASAL, increase PDE2 because peak too high
+RESULTS (PDE2, kf=6.25e-8,PDE2=600, PDE10=200)
+cAMP basal: 35nM,   cAMP peak: 14uM,    time: 120 sec, decay to 4uM at 300 sec
+PKAc time course similar to AKAR3 in Castro J Physiol
+GREAT!  No point further tuning until dendritic data
+
+For soma, probably need higher PDE10 (decrease basal) - once dend is good, use pyton to create a set of soma files: soma PDE10=100, 200; PDE2=800,400,200
+modify IC_cAMPassayPDE2.xml and Modelneurd2_cAMPassayPDE2-6.5.xml
+PDE10=100 produce far too high of basal (500-800)
+PDE10=200 is much better, though basal still to high ~250 nM
+PDE2=200 gives 7 uM stimulated
+PDE2=400 gives 4 uM stimulated peak
+PDE2=800 gives 2-3 uM stimulated peak
+SUMMARY: PDE10 controls basal, PDE2 controls peak
+Dendrite has PDE10=200 and PDE2=600.  Soma probably needs higher PDE10, e.g. 300 or 400; try these with 200 or 400 PDE2.
+
+For soma: Castro also has some 0.1, 0.3, 1, 10 sec Da applications - can tune soma to those also; use saturating Da conc.
+
+Note that Mironov shows limited cAMP conc even with IBMX.  Clearly there is receptor desensitization.  How to model this?
+What about D1R, AC? Can this ratio be manipulated to change stim to basal ratio?
    
 June 3, 2015: figured out surface layers behavior
 1. If the surfaceLayers sum to less than defaultMaxElementSide

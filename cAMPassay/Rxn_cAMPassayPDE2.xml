@@ -27,10 +27,9 @@
     <Specie name="PKAcPDE10cAMP"     id="PKAcPDE10cAMP"     kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPDE10"            id="pPDE10"            kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPDE10cAMP"        id="pPDE10cAMP"        kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="PDE4"             id="PDE4"            kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="PKAcPDE4"         id="PKAcPDE4"         kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="pPDE4"            id="pPDE4"            kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="pPDE4cAMP"        id="pPDE4cAMP"        kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PDE2"            id="PDE2"            kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PDE2cAMP"        id="PDE2cAMP"        kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PDE2cAMP2"        id="PDE2cAMP2"        kdiff="0"     kdiffunit="mu2/s"/>
 
     <!-- PKA -->
     <Specie name="PKA"               id="PKA"               kdiff="0"     kdiffunit="mu2/s"/>
@@ -177,15 +176,15 @@
     </Reaction>
 
 <!--VIII. *****************PKAc phosphorylation of PDE10 *******************************-->
-<!-- slower than previous,  E.g. 10x based on A. Chay research. -->
+<!-- slower than previous,  E.g. 100x based on A. Chay and cAMP decay -->
     <!--1a. PKAc + PDE10 -> PKAcPDE10 -->
     <Reaction name = "PDE10 phosp1" id="phospPDE101">
         <Reactant specieID="PKAc"                   />
         <Reactant specieID="PDE10"                  />
         <Product  specieID="PKAcPDE10"              />
 
-        <forwardRate> 6.25e-07    </forwardRate>
-        <reverseRate> 0.0602e-03    </reverseRate>
+        <forwardRate> 0.0625e-06    </forwardRate>
+        <reverseRate> 0.00602e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -195,7 +194,7 @@
         <Product  specieID="pPDE10"                 />
         <Product  specieID="PKAc"                   />
 
-        <forwardRate> 0.0150e-03    </forwardRate>
+        <forwardRate> 0.00150e-03    </forwardRate>
         <reverseRate> 0             </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -206,8 +205,8 @@
         <Reactant specieID="PDE10cAMP"             />
         <Product  specieID="PKAcPDE10cAMP"         />
 
-        <forwardRate> 6.25e-07    </forwardRate>
-        <reverseRate> 0.0602e-03    </reverseRate>
+        <forwardRate> 0.0625e-06    </forwardRate>
+        <reverseRate> 0.00602e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -217,7 +216,7 @@
         <Product  specieID="pPDE10cAMP"            />
         <Product  specieID="PKAc"                  />
 
-        <forwardRate> 0.0150e-03    </forwardRate>
+        <forwardRate> 0.00150e-03    </forwardRate>
         <reverseRate> 0             </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -300,59 +299,35 @@
 	<Q10>0.2</Q10>
     </Reaction>
 
-<!-- extra PDE, called PDE4, just for thin dendrite, only phospho form active -->
-    <!--1. PKAc + PDE4 -> PKAcPDE4 -->
-    <Reaction name = "PDE4 phosp1" id="phospPDE4_1">
-        <Reactant specieID="PKAc"                   />
-        <Reactant specieID="PDE4"                  />
-        <Product  specieID="PKAcPDE4"              />
-
-        <forwardRate> 6.25e-03    </forwardRate>
-        <reverseRate> 0.602e-03    </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
-
-    <!--2. PKAcPDE4 -> PKAc + pPDE4 -->
-    <Reaction name = "PDE4 phosp2" id="phospPDE4_2">
-        <Reactant specieID="PKAcPDE4"              />
-        <Product  specieID="pPDE4"                 />
-        <Product  specieID="PKAc"                   />
-
-        <forwardRate> 0.150e-03    </forwardRate>
-        <reverseRate> 0             </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
-
-    <!--3. pPDE4 + cAMP    <-> pPDE4cAMP    Km=2.4 uM     -->
-    <Reaction name = "pPDE4+cAMP--pPDE4cAMP" id="pPDE4+cAMP--pPDE4cAMP_id">
-        <Reactant specieID="pPDE4"                 />
+<!-- extra PDE, called PDE2, just for thin dendrite, requires 2 cAMP binding for activity -->
+<!-- PDE2 + cAMP    <-> PDE2cAMP       Km=40 uM, source: WadaJBiolChem262-5139
+Not allowing this single bound form to be active -->
+    <Reaction name = "PDE2+cAMP--PDE2cAMP" id="PDE2+cAMP--PDE2cAMP">
+        <Reactant specieID="PDE2"                  />
         <Reactant specieID="cAMP"                   />
-        <Product  specieID="pPDE4cAMP"             />
+        <Product  specieID="PDE2cAMP"              />
 
-        <forwardRate>  0.01e-3      </forwardRate>
-        <reverseRate>  16.0e-3        </reverseRate>
-        <Q10>          0.2           </Q10>
+        <forwardRate> 0.00002e-3        </forwardRate>
+        <reverseRate> 0.5e-3        </reverseRate>
+        <Q10>         0.2           </Q10>
     </Reaction>
-
-    <!--4. pPDE4cAMP        -> pPDE4 + AMP        -->
-    <Reaction name = "pPDE4cAMP--pPDE4+AMP" id="pPDE4cAMP--pPDE4+AMP_id">
-        <Reactant specieID="pPDE4cAMP"             />
-        <Product  specieID="pPDE4"                 />
+    <!-- PDE2cGMP+cAMP        <-> PDE2cGMPcAMP -> PDE2cGMP + AMP   kD=1.0 uM, Kcat=18x source: WadaJBiolChem262-5139   -->
+    <Reaction name = "PDE2cAMP+cAMP--PDE2cAMP2" id="PDE2cAMP+cAMP--PDE2cAMP2">
+        <Reactant specieID="PDE2cAMP"              />
+        <Reactant specieID="cAMP"                   />
+	<Product specieID="PDE2cAMP2"              />
+        <forwardRate> 0.0059e-3         </forwardRate>
+        <reverseRate> 0.5e-3           </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+  
+    <Reaction name = "PDE2cAMP2--PDE2cAMP+AMP" id="PDE2cAMP2--PDE2cAMP+AMP">
+	<Reactant specieID="PDE2cAMP2"              />
+        <Product specieID="PDE2cAMP"              />
         <Product  specieID="AMP"                    />
-
-        <forwardRate>  8.0e-3        </forwardRate>
-        <reverseRate>  0.0          </reverseRate>
-        <Q10>          0.2          </Q10>
-    </Reaction>
-
-    <!--3. pPDE4 -> PDE4 -->
-    <Reaction name = "PDE4 d_phosp" id="dphospPDE4">
-        <Reactant specieID="pPDE4"                 />
-        <Product  specieID="PDE4"                  />
-
-        <forwardRate>  0.1e-03    </forwardRate>
-        <reverseRate>  0            </reverseRate>
-        <Q10>          0.2          </Q10>
+        <forwardRate> 5.4e-3         </forwardRate>
+        <reverseRate> 0.0           </reverseRate>
+        <Q10>         0.2           </Q10>
     </Reaction>
 
 </ReactionScheme>
