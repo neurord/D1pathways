@@ -1,0 +1,52 @@
+<InitialConditions>
+
+    <ConcentrationSet>
+<!-- cytosolic molecules -->
+        <NanoMolarity specieID="Da"                    value="10" />
+<!-- membrane molecules -->
+        <NanoMolarity specieID="D1R"            value="0" />
+        <NanoMolarity specieID="Gsabg"          value="0" />
+        <NanoMolarity specieID="DaD1RGs"        value="0" />
+        <NanoMolarity specieID="DaD1R"          value="0" />
+        <NanoMolarity specieID="GsD1R"          value="0" />
+        <NanoMolarity specieID="GasGTP"         value="0" />
+        <NanoMolarity specieID="GasGDP"         value="0" />
+        <NanoMolarity specieID="Gbg"            value="0" />
+        <NanoMolarity specieID="AC"             value="0" />
+        <NanoMolarity specieID="ACGas"          value="0" />
+        <NanoMolarity specieID="ACGasATP"       value="0" />
+
+    <!-- cytosolic molecules -->
+        <NanoMolarity specieID="ATP"                 value="2e6" />
+        <NanoMolarity specieID="cAMP"                value="36" />
+        <NanoMolarity specieID="AMP"                 value="0" />
+        <NanoMolarity specieID="PDE10"              value="120" />
+        <NanoMolarity specieID="PDE2"               value="600" />
+        <NanoMolarity specieID="PDE2cAMP"            value="0" />
+        <NanoMolarity specieID="PDE2cAMP2"           value="0" />
+
+</ConcentrationSet> 
+ 	
+    <SurfaceDensitySet region="dend" >
+<!-- D1 associated membrane molecules -->
+        <PicoSD specieID="D1R"            value="200" />
+        <PicoSD specieID="Gsabg"          value="2000" />
+        <PicoSD specieID="AC"             value="1000" />
+        <PicoSD specieID="ACGas"          value="0" />
+        <PicoSD specieID="ACGasATP"       value="0" />
+
+        <PicoSD specieID="PDE10"         value="100" />
+        <PicoSD specieID="PDE10cAMP"     value="0" />
+        <PicoSD specieID="PKAcPDE10"     value="0" />
+        <PicoSD specieID="PKAcPDE10cAMP" value="0" />
+        <PicoSD specieID="pPDE10"        value="0" />
+        <PicoSD specieID="pPDE10cAMP"    value="0" />
+	
+        <PicoSD specieID="PKA"           value="1000" />
+        <PicoSD specieID="PKAcAMP2"      value="   0" />
+        <PicoSD specieID="PKAcAMP4"      value="   0" />
+        <PicoSD specieID="PKAc"          value="   0" />
+        <PicoSD specieID="PKAr"          value="   0" />
+
+  </SurfaceDensitySet>
+ </InitialConditions>

@@ -4,15 +4,43 @@ This is terse but detailed list of steps to develop the model.  See ResearchPlan
      Some experiments that can help test/develop the model
      See NeuroRD.bat for information on how to run models
 This file is also used to keep track of which steps have been done, and what needs to be done next.
+NEXT STEPS:
+Evaluate full model (or full model without DARPP32&PP1) for calcium steady state.  Use dendrite with sm domain (3.5 compartments).  Once ss OK, re-eval ss in full model, and also DARPP32 ss and response to bath application.
+
+June 8, 2015
+Changed IC of PDE10 to 150 sm (from 200) and added in 200 in cyt.  This will be slightly smaller overall conc for dend (1.5um), but considerably larger for soma.  May need to tweak this - balance sm and cyt to achieve similar basal in soma and dend.  Kept PDE2 600 cyt for dend, and will try PDE2=200 and 400 for soma.
+Model_cAMPassay1.5-PDE2600: basal a bit low, try PDE10 cyt=100
+Model_cAMPassay6.5-PDE2?00: basal extremely low, try PDE10 cyt=100
+Stimulated: not apparent.  Add in the <StimulationSet> phrase into Model file
+
+Model_cAMPassay1.5-PDE2600 (PDE10cyt=100): basal extremely low (lower than before), < 10 nM; stim = 2.5 uM, no decay and no PDE2
+Model_cAMPassay6.5-PDE2?00 (PDE10cyt=100): basal < 1 nM
+Stimulation worked, though response looks strange.  Also, PDE2 is zero, so IC not quite working.
+
+Re-run these simulations using stochdif2.1.9 to compare
+Model_cAMPassay1.5-PDE2600 (PDE10sm=150,cyt=100): basal ~15 nM, stim=14 uM (PDE2=600)
+Model_cAMPassay6.5-PDE2?00 (PDE10sm=150,cyt=100): basal ~75 nM, stim=3.5 uM (PDE2=200) 2.5 uM (=400)
+Basal are good but not great.  Both are reasonable, but soma is a bit high and dend a bit low.  To improve dend, could lower sm to 100 (minimal soma effect), inc cyt to 120
+      	       	       	       	    		    v3/v3dt/v2          v3/v2
+Model_cAMPassay1.5-PDE2600 (PDE10sm=100,cyt=120): basal 5/25/35 nM, stim= 6/14/17 uM v3 is quite transient
+Model_cAMPassay6.5-PDE2200 (PDE10sm=100,cyt=120): basal 0.5/35/60 nM, stim= 0/2.7/3.4uM 
+Model_cAMPassay6.5-PDE2400 (PDE10sm=100,cyt=120): basal 0.5/33/60 nM, stim= 0.25/1.9/2.2uM 
+Strangely (with v3adap) the lower PDE2 conc yields 0 cAMP stimulated!  Also surprising that adaptive would give such a lower basal value - steady states should be somewhat robust to dt.
+Otherwise, the fixed dt (v2 and v3) give great results.  The difference between v2 and v3fixed dt is probably due to different overall PDE10 conc due to treatment of submembrane layers.  Could raise PDE2 to 800 if need to lower dend cAMP still further. OR, lower PDE2 if adaptive is correct. 
+
+Further tuning (after Neves model):
+For soma: Castro also has some 0.1, 0.3, 1, 10 sec Da applications - can tune soma to those also; use saturating Da conc.
 
 NEXT STEPS:
 1. Go back to Neves simulations, tune PDE2:PDE10, clarify role of Gi inhibition and/or receptor desensitization; consider using it for D1pathways
 2. Clarify exactly what responses to match soma (stim time & conc, response)
    E.g., mironov reports no higher than 3 uM in soma; 10 uM saturates sensor
+   but Striatal neurons have higher cAMP than cortical, ec.
    0.3 uM ~5% (20% of max), 1 uM ~15% (50% of max) (not linear)
 3. Do sets of simulations using various stim and IC and tune response
    Soma probably needs higher PDE10 to achieve basal <= 100 nM - try small cytosolic PDE10/PDE4: e.g. 30,60,90
-   	(could slightly lower sm PDE10 and add in this low quant ofcyt PDE10 in dend to unify this IC OR, add in PDE4 with its lower affinity in higher amount? Computationally inefficient?).
+   	(could slightly lower sm PDE10 and add in this low quant of cyt PDE10 in dend to unify this IC OR, add in PDE4 with its lower affinity in higher amount? Computationally inefficient?).
+	what about low PDE2 activity against cAMP alone?
    Try to achieve 3-10 uM cAMP peak - try 100, 200, 300 PDE2 and higher Da stim
        PDE2 will need to be much lower in soma than dendrite (unless sm distr) 
 4. Find dendritic responses - recent cell report pub - clarify what to match

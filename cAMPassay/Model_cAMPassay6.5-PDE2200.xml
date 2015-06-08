@@ -5,13 +5,15 @@
 
     <xi:include href="Rxn_cAMPassayPDE2.xml" />
     <xi:include href="Morph6.5um.xml" />
-    <xi:include href="IC_cAMPassaySoma.xml" />
-    <xi:include href="IO_cAMPassay.xml" />
+    <xi:include href="IC_cAMPassaySoma-PDE2200.xml" />
+    <xi:include href="IO_cAMPassayPDE2.xml" />
+<StimulationSet>
   <InjectionStim specieID="Da" injectionSite="pointA">
         <onset>           100000        </onset>
         <duration>           10         </duration>
         <rate>               1566.0      </rate>
   </InjectionStim>
+</StimulationSet>
   
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for

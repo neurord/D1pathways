@@ -5,13 +5,15 @@
 
     <xi:include href="Rxn_cAMPassayPDE2.xml" />
     <xi:include href="Morph6.5um.xml" />
-    <xi:include href="IC_cAMPassaySoma.xml" />
-    <xi:include href="IO_cAMPassay.xml" />
+    <xi:include href="IC_cAMPassaySoma-PDE2200.xml" />
+    <xi:include href="IO_cAMPassayPDE2.xml" />
+<StimulationSet>
   <InjectionStim specieID="Da" injectionSite="pointA">
         <onset>           100000        </onset>
         <duration>           10         </duration>
         <rate>               1566.0      </rate>
   </InjectionStim>
+</StimulationSet>
   
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
@@ -50,7 +52,7 @@ results (also, 3D may not work yet...)  -->
     </discretization>
 
     <!-- timestep used in fixed step calculations, in milliseconds -->
-    <fixedStepDt>         100       </fixedStepDt>
+    <fixedStepDt>         0.005       </fixedStepDt>
 
     <!-- interval at which stuff should be saved to the .out file -->
     <outputInterval>      200   </outputInterval>
@@ -59,8 +61,8 @@ results (also, 3D may not work yet...)  -->
     <tolerance>           0.01       </tolerance>
     <!-- calculation types include GRID_STEPPED_STOCHASTIC and GRID_STEPPED_CONTINUOUS for 
 	 reaction-diffusion systems. Single mixed pool calculations should be listed here too (TODO) -->
-    <!--calculation>GRID_STEPPED_STOCHASTIC</calculation-->
+    <calculation>GRID_STEPPED_STOCHASTIC</calculation>
     <!--use the following for adaptive: -->
-    <calculation>GRID_ADAPTIVE</calculation>
+    <!--calculation>GRID_ADAPTIVE</calculation-->
 
 </SDRun>
