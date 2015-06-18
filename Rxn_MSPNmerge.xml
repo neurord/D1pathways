@@ -902,7 +902,7 @@
     </Reaction>
 
     <!-- Ca + Dgl <-> CaDgl   Dgl is DAG lipase, which produces 2AG -->
-<!-- no source for rates.  Make slower, and also 400 nM affinity -->
+    <!-- no source for rates.  Make 400 nM affinity -->
     <Reaction name = "Ca+Dlg--CaDgl" id="Ca+Dlg--CaDgl">
         <Reactant specieID="Ca"            />
         <Reactant specieID="Dgl"               />
@@ -1016,8 +1016,8 @@ MUCH slower binding compared to CaDgl  -->
 	<Product specieID="PKAcAMP2"/>
 
 
-        <forwardRate>2.60868e-07</forwardRate>
-	<reverseRate>6.0e-05</reverseRate>
+        <forwardRate>0.260868e-06</forwardRate>
+	<reverseRate>0.060e-03</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
 
@@ -1027,8 +1027,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="cAMP" n="2"/>
 	<Product specieID="PKAcAMP4"/>
 
-    <forwardRate>3.46218e-07</forwardRate>
-	<reverseRate>0.0006</reverseRate>
+	<forwardRate>0.346218e-06</forwardRate>
+	<reverseRate>0.6e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
 
@@ -1038,8 +1038,8 @@ MUCH slower binding compared to CaDgl  -->
 	<Product specieID="PKAr"/>
 	<Product specieID="PKAc" n="2"/>  
 
-	<forwardRate>4.8e-05</forwardRate>
-	<reverseRate>5.1e-06</reverseRate>
+	<forwardRate>0.48e-03</forwardRate>
+	<reverseRate>0.0051e-03</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
 

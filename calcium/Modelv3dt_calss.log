@@ -1,0 +1,694 @@
+2015-06-18 07:17:15,540 DEBUG Found Plugin Map at jar:file:/home/neuroware/stochdif/stochdiff-3.0.0-1.jar!/org/apache/logging/log4j/core/config/plugins/Log4j2Plugins.dat
+2015-06-18 07:17:15,901 DEBUG Generated plugins in 0.361009758 seconds
+2015-06-18 07:17:16,240 DEBUG Generated plugins in 0.338547045 seconds
+2015-06-18 07:17:16,580 DEBUG Generated plugins in 0.338976124 seconds
+2015-06-18 07:17:16,915 DEBUG Generated plugins in 0.334689932 seconds
+2015-06-18 07:17:17,245 DEBUG Generated plugins in 0.328717459 seconds
+2015-06-18 07:17:17,572 DEBUG Generated plugins in 0.327296712 seconds
+2015-06-18 07:17:17,900 DEBUG Generated plugins in 0.326034373 seconds
+2015-06-18 07:17:18,229 DEBUG Generated plugins in 0.328569776 seconds
+2015-06-18 07:17:18,555 DEBUG Generated plugins in 0.324981198 seconds
+2015-06-18 07:17:18,883 DEBUG Generated plugins in 0.328144634 seconds
+2015-06-18 07:17:19,208 DEBUG Generated plugins in 0.323957047 seconds
+2015-06-18 07:17:19,534 DEBUG Generated plugins in 0.325554129 seconds
+2015-06-18 07:17:19,858 DEBUG Generated plugins in 0.323926174 seconds
+2015-06-18 07:17:19,859 ERROR Error processing element CustomFile: CLASS_NOT_FOUND
+2015-06-18 07:17:19,864 DEBUG Calling createLayout on class org.apache.logging.log4j.core.layout.PatternLayout for element PatternLayout with params(pattern="%highlight{%d{HH:mm:ss.SSS} %replace{%level}{(.).*}{$1} %logger{1.} - %msg%n}", Configuration(log4j2.xml), null, charset="null")
+2015-06-18 07:17:20,189 DEBUG Generated plugins in 0.324475823 seconds
+2015-06-18 07:17:20,191 DEBUG Calling createAppender on class org.apache.logging.log4j.core.appender.ConsoleAppender for element Console with params(PatternLayout(%highlight{%d{HH:mm:ss.SSS} %replace{%level}{(.).*}{$1} %logger{1.} - %msg%n}), null, target="SYSTEM_OUT", name="Console", follow="null", suppressExceptions="null")
+2015-06-18 07:17:20,192 DEBUG Calling createAppenders on class org.apache.logging.log4j.core.config.plugins.AppendersPlugin for element appenders with params(appenders={Console})
+2015-06-18 07:17:20,518 DEBUG Generated plugins in 0.324949390 seconds
+2015-06-18 07:17:20,519 DEBUG Calling createAppenderRef on class org.apache.logging.log4j.core.config.AppenderRef for element appender-ref with params(ref="Console", level="null", null)
+2015-06-18 07:17:20,519 DEBUG Calling createAppenderRef on class org.apache.logging.log4j.core.config.AppenderRef for element appender-ref with params(ref="model-logfile", level="null", null)
+2015-06-18 07:17:20,520 DEBUG Calling createLogger on class org.apache.logging.log4j.core.config.LoggerConfig$RootLogger for element root with params(additivity="null", level="debug", includeLocation="null", appender-ref={org.apache.logging.log4j.core.config.AppenderRef@1b40d5f0, org.apache.logging.log4j.core.config.AppenderRef@ea4a92b}, properties={}, Configuration(log4j2.xml), null)
+2015-06-18 07:17:20,521 DEBUG Calling createLogger on class org.apache.logging.log4j.core.config.LoggerConfig for element logger with params(additivity="null", level="info", name="org.textensor.stochdiff.numeric.grid.ResultWriterHDF5", includeLocation="null", appender-ref={}, properties={}, Configuration(log4j2.xml), null)
+2015-06-18 07:17:20,522 DEBUG Calling createLogger on class org.apache.logging.log4j.core.config.LoggerConfig for element logger with params(additivity="null", level="info", name="org.textensor.stochdiff.numeric.grid.ResultWriterText", includeLocation="null", appender-ref={}, properties={}, Configuration(log4j2.xml), null)
+2015-06-18 07:17:20,524 DEBUG Calling createLogger on class org.apache.logging.log4j.core.config.LoggerConfig for element logger with params(additivity="null", level="info", name="org.textensor.stochdiff.numeric.grid.NextEventQueue", includeLocation="null", appender-ref={}, properties={}, Configuration(log4j2.xml), null)
+2015-06-18 07:17:20,525 DEBUG Calling createLoggers on class org.apache.logging.log4j.core.config.plugins.LoggersPlugin for element loggers with params(loggers={root, org.textensor.stochdiff.numeric.grid.ResultWriterHDF5, org.textensor.stochdiff.numeric.grid.ResultWriterText, org.textensor.stochdiff.numeric.grid.NextEventQueue})
+2015-06-18 07:17:20,525 ERROR Unable to locate appender model-logfile for logger 
+2015-06-18 07:17:20,526 DEBUG Reconfiguration completed
+2015-06-18 07:17:20,727 ERROR CustomFileAppender hasn't been initalized, ignoring output Modelv3dt_calss.log
+[32m07:17:20.732 I o.t.x.ModelReader - umarshalling Modelv3dt_calss.xml
+[m[33m07:17:20.795 W o.t.x.ModelReader - /SDRun/ReactionScheme: namespace not specified, assuming http://stochdiff.textensor.org
+[m[32m07:17:20.845 I o.t.s.SDCalc - Using text writer for Modelv3dt_calss.out
+[m[32m07:17:20.848 I o.t.s.m.SDRunWrapper - subvolume grid size is: 1.0 (from 1.0, [1.0, 1.0])
+[m[32m07:17:20.861 I o.t.s.m.ReactionScheme - Running with 65 reactions (forward and reverse)
+[m[36m07:17:20.862 D o.t.s.n.c.ReactionTable - ireact=0/65 [[0, 6], [1, 1], [1, 1]]→[[8], [1], [1]] rate=5.0E-5
+[m[36m07:17:20.862 D o.t.s.n.c.ReactionTable - ireact=1/65 [[8], [1], [1]]→[[0, 6], [1, 1], [1, 1]] rate=0.007
+[m[36m07:17:20.862 D o.t.s.n.c.ReactionTable - ireact=2/65 [[8], [1], [1]]→[[6, 1], [1, 1], [1, 1]] rate=0.0035
+[m[36m07:17:20.862 D o.t.s.n.c.ReactionTable - ireact=3/65 [[0, 7], [1, 1], [1, 1]]→[[9], [1], [1]] rate=1.68E-5
+[m[36m07:17:20.863 D o.t.s.n.c.ReactionTable - ireact=4/65 [[9], [1], [1]]→[[0, 7], [1, 1], [1, 1]] rate=0.0112
+[m[36m07:17:20.863 D o.t.s.n.c.ReactionTable - ireact=5/65 [[9], [1], [1]]→[[7, 1], [1, 1], [1, 1]] rate=0.0056
+[m[36m07:17:20.863 D o.t.s.n.c.ReactionTable - ireact=6/65 [[1, 3], [1, 1], [1, 1]]→[[2], [1], [1]] rate=1.5E-6
+[m[36m07:17:20.863 D o.t.s.n.c.ReactionTable - ireact=7/65 [[2], [1], [1]]→[[1, 3], [1, 1], [1, 1]] rate=0.0011
+[m[36m07:17:20.863 D o.t.s.n.c.ReactionTable - ireact=8/65 [[2], [1], [1]]→[[0, 3], [1, 1], [1, 1]] rate=0.0011
+[m[36m07:17:20.863 D o.t.s.n.c.ReactionTable - ireact=9/65 [[0, 4], [1, 1], [1, 1]]→[[5], [1], [1]] rate=2.8E-5
+[m[36m07:17:20.863 D o.t.s.n.c.ReactionTable - ireact=10/65 [[5], [1], [1]]→[[0, 4], [1, 1], [1, 1]] rate=0.0196
+[m[36m07:17:20.864 D o.t.s.n.c.ReactionTable - ireact=11/65 [[10, 0], [1, 2], [1, 1]]→[[11], [1], [1]] rate=6.0E-6
+[m[36m07:17:20.864 D o.t.s.n.c.ReactionTable - ireact=12/65 [[11], [1], [1]]→[[10, 0], [1, 2], [1, 1]] rate=0.0091
+[m[36m07:17:20.864 D o.t.s.n.c.ReactionTable - ireact=13/65 [[11, 0], [1, 2], [1, 1]]→[[13], [1], [1]] rate=1.0E-4
+[m[36m07:17:20.864 D o.t.s.n.c.ReactionTable - ireact=14/65 [[13], [1], [1]]→[[11, 0], [1, 2], [1, 1]] rate=1.0
+[m[36m07:17:20.864 D o.t.s.n.c.ReactionTable - ireact=15/65 [[10, 0], [1, 2], [1, 1]]→[[12], [1], [1]] rate=1.0E-4
+[m[36m07:17:20.864 D o.t.s.n.c.ReactionTable - ireact=16/65 [[12], [1], [1]]→[[10, 0], [1, 2], [1, 1]] rate=1.0
+[m[36m07:17:20.864 D o.t.s.n.c.ReactionTable - ireact=17/65 [[12, 0], [1, 2], [1, 1]]→[[13], [1], [1]] rate=6.0E-6
+[m[36m07:17:20.865 D o.t.s.n.c.ReactionTable - ireact=18/65 [[13], [1], [1]]→[[12, 0], [1, 2], [1, 1]] rate=0.0091
+[m[36m07:17:20.865 D o.t.s.n.c.ReactionTable - ireact=19/65 [[14, 13], [1, 1], [1, 1]]→[[15], [1], [1]] rate=1.0E-4
+[m[36m07:17:20.865 D o.t.s.n.c.ReactionTable - ireact=20/65 [[15], [1], [1]]→[[14, 13], [1, 1], [1, 1]] rate=0.001
+[m[36m07:17:20.865 D o.t.s.n.c.ReactionTable - ireact=21/65 [[0, 16], [1, 1], [1, 1]]→[[17], [1], [1]] rate=5.0E-7
+[m[36m07:17:20.865 D o.t.s.n.c.ReactionTable - ireact=22/65 [[17], [1], [1]]→[[0, 16], [1, 1], [1, 1]] rate=0.001
+[m[36m07:17:20.865 D o.t.s.n.c.ReactionTable - ireact=23/65 [[17, 18], [1, 1], [1, 1]]→[[19], [1], [1]] rate=1.0E-8
+[m[36m07:17:20.866 D o.t.s.n.c.ReactionTable - ireact=24/65 [[19], [1], [1]]→[[17, 18], [1, 1], [1, 1]] rate=3.6E-4
+[m[36m07:17:20.866 D o.t.s.n.c.ReactionTable - ireact=25/65 [[19], [1], [1]]→[[17, 20, 21], [1, 1, 1], [1, 1, 1]] rate=9.0E-5
+[m[36m07:17:20.866 D o.t.s.n.c.ReactionTable - ireact=26/65 [[0, 22], [1, 1], [1, 1]]→[[23], [1], [1]] rate=1.25E-4
+[m[36m07:17:20.866 D o.t.s.n.c.ReactionTable - ireact=27/65 [[23], [1], [1]]→[[0, 22], [1, 1], [1, 1]] rate=0.05
+[m[36m07:17:20.866 D o.t.s.n.c.ReactionTable - ireact=28/65 [[21, 23], [1, 1], [1, 1]]→[[24], [1], [1]] rate=2.5E-6
+[m[36m07:17:20.866 D o.t.s.n.c.ReactionTable - ireact=29/65 [[24], [1], [1]]→[[21, 23], [1, 1], [1, 1]] rate=0.0015
+[m[36m07:17:20.867 D o.t.s.n.c.ReactionTable - ireact=30/65 [[24], [1], [1]]→[[23, 25], [1, 1], [1, 1]] rate=0.001
+[m[36m07:17:20.867 D o.t.s.n.c.ReactionTable - ireact=31/65 [[0, 26], [1, 1], [1, 1]]→[[27], [1], [1]] rate=2.0E-5
+[m[36m07:17:20.867 D o.t.s.n.c.ReactionTable - ireact=32/65 [[27], [1], [1]]→[[0, 26], [1, 1], [1, 1]] rate=0.05
+[m[36m07:17:20.867 D o.t.s.n.c.ReactionTable - ireact=33/65 [[27, 21], [1, 1], [1, 1]]→[[28], [1], [1]] rate=1.5E-8
+[m[36m07:17:20.867 D o.t.s.n.c.ReactionTable - ireact=34/65 [[28], [1], [1]]→[[27, 21], [1, 1], [1, 1]] rate=1.5E-4
+[m[36m07:17:20.867 D o.t.s.n.c.ReactionTable - ireact=35/65 [[10, 29], [1, 1], [1, 1]]→[[30], [1], [1]] rate=4.6E-6
+[m[36m07:17:20.868 D o.t.s.n.c.ReactionTable - ireact=36/65 [[30], [1], [1]]→[[10, 29], [1, 1], [1, 1]] rate=1.2E-6
+[m[36m07:17:20.868 D o.t.s.n.c.ReactionTable - ireact=37/65 [[11, 29], [1, 1], [1, 1]]→[[31], [1], [1]] rate=4.6E-5
+[m[36m07:17:20.868 D o.t.s.n.c.ReactionTable - ireact=38/65 [[31], [1], [1]]→[[11, 29], [1, 1], [1, 1]] rate=1.2E-6
+[m[36m07:17:20.868 D o.t.s.n.c.ReactionTable - ireact=39/65 [[12, 29], [1, 1], [1, 1]]→[[32], [1], [1]] rate=4.6E-5
+[m[36m07:17:20.868 D o.t.s.n.c.ReactionTable - ireact=40/65 [[32], [1], [1]]→[[12, 29], [1, 1], [1, 1]] rate=1.2E-6
+[m[36m07:17:20.868 D o.t.s.n.c.ReactionTable - ireact=41/65 [[30, 0], [1, 2], [1, 1]]→[[31], [1], [1]] rate=6.0E-6
+[m[36m07:17:20.869 D o.t.s.n.c.ReactionTable - ireact=42/65 [[31], [1], [1]]→[[30, 0], [1, 2], [1, 1]] rate=9.1E-4
+[m[36m07:17:20.869 D o.t.s.n.c.ReactionTable - ireact=43/65 [[30, 0], [1, 2], [1, 1]]→[[32], [1], [1]] rate=1.0E-4
+[m[36m07:17:20.869 D o.t.s.n.c.ReactionTable - ireact=44/65 [[32], [1], [1]]→[[30, 0], [1, 2], [1, 1]] rate=0.1
+[m[36m07:17:20.869 D o.t.s.n.c.ReactionTable - ireact=45/65 [[13, 29], [1, 1], [1, 1]]→[[33], [1], [1]] rate=4.6E-5
+[m[36m07:17:20.869 D o.t.s.n.c.ReactionTable - ireact=46/65 [[33], [1], [1]]→[[13, 29], [1, 1], [1, 1]] rate=1.2E-6
+[m[36m07:17:20.869 D o.t.s.n.c.ReactionTable - ireact=47/65 [[31, 0], [1, 2], [1, 1]]→[[33], [1], [1]] rate=1.0E-4
+[m[36m07:17:20.870 D o.t.s.n.c.ReactionTable - ireact=48/65 [[33], [1], [1]]→[[31, 0], [1, 2], [1, 1]] rate=1.0
+[m[36m07:17:20.870 D o.t.s.n.c.ReactionTable - ireact=49/65 [[32, 0], [1, 2], [1, 1]]→[[33], [1], [1]] rate=6.0E-6
+[m[36m07:17:20.870 D o.t.s.n.c.ReactionTable - ireact=50/65 [[33], [1], [1]]→[[32, 0], [1, 2], [1, 1]] rate=0.0091
+[m[36m07:17:20.870 D o.t.s.n.c.ReactionTable - ireact=51/65 [[34, 0], [1, 1], [1, 1]]→[[35], [1], [1]] rate=3.334E-8
+[m[36m07:17:20.870 D o.t.s.n.c.ReactionTable - ireact=52/65 [[35], [1], [1]]→[[34, 0], [1, 1], [1, 1]] rate=1.0E-4
+[m[36m07:17:20.870 D o.t.s.n.c.ReactionTable - ireact=53/65 [[13, 36], [1, 1], [1, 1]]→[[37], [1], [1]] rate=1.0E-5
+[m[36m07:17:20.870 D o.t.s.n.c.ReactionTable - ireact=54/65 [[37], [1], [1]]→[[13, 36], [1, 1], [1, 1]] rate=0.003
+[m[36m07:17:20.871 D o.t.s.n.c.ReactionTable - ireact=55/65 [[37], [1], [1]]→[[40], [1], [1]] rate=1.0E-7
+[m[36m07:17:20.871 D o.t.s.n.c.ReactionTable - ireact=56/65 [[40], [1], [1]]→[[37], [1], [1]] rate=0.01
+[m[36m07:17:20.871 D o.t.s.n.c.ReactionTable - ireact=57/65 [[38, 37], [1, 1], [1, 1]]→[[41], [1], [1]] rate=1.0E-7
+[m[36m07:17:20.875 D o.t.s.n.c.ReactionTable - ireact=58/65 [[41], [1], [1]]→[[38, 37], [1, 1], [1, 1]] rate=0.01
+[m[36m07:17:20.876 D o.t.s.n.c.ReactionTable - ireact=59/65 [[38, 40], [1, 1], [1, 1]]→[[38, 41], [1, 1], [1, 1]] rate=1.0E-7
+[m[36m07:17:20.876 D o.t.s.n.c.ReactionTable - ireact=60/65 [[37, 40], [1, 1], [1, 1]]→[[37, 41], [1, 1], [1, 1]] rate=1.0E-7
+[m[36m07:17:20.876 D o.t.s.n.c.ReactionTable - ireact=61/65 [[40], [1], [1]]→[[40, 41], [1, 1], [1, 1]] rate=1.0E-5
+[m[36m07:17:20.876 D o.t.s.n.c.ReactionTable - ireact=62/65 [[40, 41], [1, 1], [1, 1]]→[[41], [1], [1]] rate=3.0E-5
+[m[36m07:17:20.877 D o.t.s.n.c.ReactionTable - ireact=63/65 [[38], [1], [1]]→[[13, 39], [1, 1], [1, 1]] rate=8.0E-7
+[m[36m07:17:20.877 D o.t.s.n.c.ReactionTable - ireact=64/65 [[13, 39], [1, 1], [1, 1]]→[[38], [1], [1]] rate=1.0E-5
+[m[32m07:17:20.877 I o.t.s.m.SDRunWrapper - extracting output scheme with 1 files for 42 species
+[m[32m07:17:20.878 I o.t.s.SDCalc - Wrapper is ready, beginning calculations
+[m[32m07:17:20.883 I o.t.s.n.BaseCalc - Writing particle numbers as NUMBERs
+[m[32m07:17:20.883 I o.t.s.n.BaseCalc - Trial 0: running with simulationSeed 123
+[m[36m07:17:20.884 D o.t.s.n.g.SteppedStochasticGridCalc - lnrates: [-9.903487552536127, -4.961845129926823, -5.654992310486769, -10.994131671555062, -4.491841500681089, -5.184988681241033, -13.41004544985611, -6.812445099177812, -6.812445099177812, -10.48330604778907, -3.9322257127456655, -12.02375108873622, -4.699480865459333, -9.210340371976182, 0.0, -9.210340371976182, 0.0, -12.02375108873622, -4.699480865459333, -9.210340371976182, -6.907755278982137, -14.508657738524219, -6.907755278982137, -18.420680743952367, -7.929406526514119, -9.315700887634009, -8.987196820661973, -2.995732273553991, -12.89921982609012, -6.502290170873972, -6.907755278982137, -10.819778284410283, -2.995732273553991, -18.0152156358442, -8.804875263868018, -12.289454254469225, -13.633189001170319, -9.986869161475179, -13.633189001170319, -9.986869161475179, -13.633189001170319, -12.02375108873622, -7.002065958453378, -9.210340371976182, -2.3025850929940455, -9.986869161475179, -13.633189001170319, -9.210340371976182, 0.0, -12.02375108873622, -4.699480865459333, -17.216507959623762, -9.210340371976182, -11.512925464970229, -5.809142990314028, -16.11809565095832, -4.605170185988091, -16.11809565095832, -4.605170185988091, -16.11809565095832, -16.11809565095832, -11.512925464970229, -10.41431317630212, -14.038654109278484, -11.512925464970229]
+[m[36m07:17:20.884 D o.t.s.n.g.SteppedStochasticGridCalc - lnvolumes: [0.0, 1.3862943611198906, 0.0]
+[m[32m07:17:20.886 I o.t.s.n.s.InterpolatingStepGenerator - Using BINOMIAL step generator with 601×121 tables
+[m[32m07:17:21.375 I o.t.s.n.g.SteppedStochasticGridCalc - Using INDEPENDENT destination allocation
+[m[32m07:17:21.375 I o.t.s.n.g.SteppedStochasticGridCalc - max no of neighbors for a single element is 2
+[m[32m07:17:21.380 I o.t.s.n.g.ResultWriterText - Closing output file Modelv3dt_calss-mesh.txt.out
+[m[32m07:17:21.381 I o.t.s.n.g.ResultWriterText:writeGrid - Written elements mesh file
+[m[32m07:17:21.382 I o.t.s.n.g.GridCalc - Trial 0: running from time=0.0 ms to time=200000.0 ms
+[m[32m07:17:21.382 I o.t.s.n.g.GridCalc - dt=0.005 dtsOut=[100.0] saveStateTime=1.0E9
+[m[32m07:17:21.382 I o.t.s.n.g.GridCalc - Trial 0: time 0.0 dt=0.005
+[m[33m07:17:22.113 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:22.368 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:22.448 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:23.122 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:23.721 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:24.589 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:24.797 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 43 ran out of particles - need 1 but have 0
+[m[33m07:17:25.441 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:27.734 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:29.731 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:17:29.951 I o.t.s.n.g.GridCalc - Trial 0: time 2000.0000000204452 dt=0.005 events=97200000 11343/ms
+[m[33m07:17:30.106 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:31.275 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:31.401 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:31.578 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:31.620 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:31.819 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:32.687 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:34.106 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:36.118 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:36.196 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:36.358 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:36.901 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:37.712 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:38.291 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:17:38.527 I o.t.s.n.g.GridCalc - Trial 0: time 4000.0000000641007 dt=0.005 events=97200000 11333/ms
+[m[33m07:17:40.119 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:40.572 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:42.260 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:42.313 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:42.591 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:42.902 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:43.739 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:44.244 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:17:47.058 I o.t.s.n.g.GridCalc - Trial 0: time 6000.000000107756 dt=0.005 events=97200000 11393/ms
+[m[33m07:17:50.908 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:51.363 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:51.525 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:53.127 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:53.177 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:17:54.803 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[32m07:17:55.719 I o.t.s.n.g.GridCalc - Trial 0: time 8000.000000151412 dt=0.005 events=97200000 11222/ms
+[m[33m07:17:57.139 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:17:59.848 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:00.756 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:01.456 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:02.566 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:03.836 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:18:04.279 I o.t.s.n.g.GridCalc - Trial 0: time 10000.004999866193 dt=0.005 events=97200243 11355/ms
+[m[33m07:18:04.354 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:04.457 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:04.471 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:05.360 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:05.767 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:05.945 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:05.969 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:06.063 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:07.212 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:09.059 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:09.093 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:09.689 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:10.449 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:11.528 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:11.684 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:18:12.811 I o.t.s.n.g.GridCalc - Trial 0: time 12000.00499954605 dt=0.005 events=97200000 11392/ms
+[m[33m07:18:12.997 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:15.118 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:15.263 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:15.994 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 43 ran out of particles - need 1 but have 0
+[m[33m07:18:16.834 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:18.536 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:19.283 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:19.738 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:20.093 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:20.454 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:21.173 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:18:21.322 I o.t.s.n.g.GridCalc - Trial 0: time 14000.004999225908 dt=0.005 events=97200000 11420/ms
+[m[33m07:18:21.408 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:21.733 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:26.586 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:26.769 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:28.384 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:28.432 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:28.937 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:29.343 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:18:29.811 I o.t.s.n.g.GridCalc - Trial 0: time 16000.004998905766 dt=0.005 events=97200000 11451/ms
+[m[33m07:18:30.822 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:31.610 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:32.062 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:34.068 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:34.314 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:34.346 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:34.851 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:18:35.452 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:18:37.203 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:37.405 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:18:38.316 I o.t.s.n.g.GridCalc - Trial 0: time 18000.00499917352 dt=0.005 events=97200000 11427/ms
+[m[33m07:18:38.575 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:18:39.893 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:40.225 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:41.014 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:41.748 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:42.321 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:43.477 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:44.501 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:44.968 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:18:46.911 I o.t.s.n.g.GridCalc - Trial 0: time 20000.004999580975 dt=0.005 events=97200000 11308/ms
+[m[33m07:18:47.130 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:47.603 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:48.741 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:49.120 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:49.232 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:50.510 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:52.874 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:53.914 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:54.141 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:18:55.448 I o.t.s.n.g.GridCalc - Trial 0: time 22000.00499998843 dt=0.005 events=97200000 11387/ms
+[m[33m07:18:56.479 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:58.224 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:58.273 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:58.981 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:18:59.408 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:18:59.626 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:18:59.938 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:00.037 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:01.034 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:02.251 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:02.982 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:19:04.139 I o.t.s.n.g.GridCalc - Trial 0: time 24000.00000039588 dt=0.005 events=97199757 11182/ms
+[m[33m07:19:04.250 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:04.341 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:07.650 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:07.811 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:10.591 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:19:12.799 I o.t.s.n.g.GridCalc - Trial 0: time 26000.000000803335 dt=0.005 events=97200000 11224/ms
+[m[33m07:19:12.873 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:13.827 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:14.434 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:15.846 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:16.677 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:17.339 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:17.561 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:18.766 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:18.804 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:20.336 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:19:21.315 I o.t.s.n.g.GridCalc - Trial 0: time 28000.00000121079 dt=0.005 events=97200000 11413/ms
+[m[33m07:19:21.564 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:24.006 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:24.613 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:26.135 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:26.408 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:26.862 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:27.171 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:27.302 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:19:29.912 I o.t.s.n.g.GridCalc - Trial 0: time 30000.000001618242 dt=0.005 events=97200000 11306/ms
+[m[33m07:19:32.120 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:32.451 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:35.312 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:35.868 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:36.120 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:36.715 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:37.987 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:19:38.556 I o.t.s.n.g.GridCalc - Trial 0: time 32000.000002025696 dt=0.005 events=97200000 11244/ms
+[m[33m07:19:39.853 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:41.201 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:44.219 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:19:44.557 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:44.953 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:46.048 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:19:47.175 I o.t.s.n.g.GridCalc - Trial 0: time 34000.00000153675 dt=0.005 events=97200000 11277/ms
+[m[33m07:19:47.483 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:47.530 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:47.670 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:48.426 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:49.610 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:50.625 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:51.951 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:52.565 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:52.891 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:53.017 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:53.498 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:19:54.031 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:54.844 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:19:55.879 I o.t.s.n.g.GridCalc - Trial 0: time 36000.00000048901 dt=0.005 events=97200000 11167/ms
+[m[33m07:19:56.029 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:57.688 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:19:58.338 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:19:59.144 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:00.415 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:01.022 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:01.123 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:20:01.133 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:01.530 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:01.809 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:04.133 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:04.234 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:20:04.607 I o.t.s.n.g.GridCalc - Trial 0: time 38000.00499944127 dt=0.005 events=97200243 11136/ms
+[m[33m07:20:04.803 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:04.985 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:05.232 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:05.483 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:05.874 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:06.305 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:06.530 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:06.670 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:06.780 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:07.514 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:08.074 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:20:09.918 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[32m07:20:13.215 I o.t.s.n.g.GridCalc - Trial 0: time 40000.00499839353 dt=0.005 events=97200000 11291/ms
+[m[33m07:20:15.184 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:15.737 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:17.425 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:18.274 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:18.683 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:18.988 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:21.004 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:20:21.825 I o.t.s.n.g.GridCalc - Trial 0: time 42000.00499734579 dt=0.005 events=97200000 11289/ms
+[m[33m07:20:22.023 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:22.363 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:22.901 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 43 ran out of particles - need 1 but have 0
+[m[33m07:20:23.584 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:24.011 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:24.403 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:24.604 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:24.918 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:26.607 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:26.612 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:27.281 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:27.732 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:20:30.456 I o.t.s.n.g.GridCalc - Trial 0: time 44000.004996298056 dt=0.005 events=97200000 11261/ms
+[m[33m07:20:30.478 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:31.740 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:31.753 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:33.475 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:36.183 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:36.460 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:38.340 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:20:39.096 I o.t.s.n.g.GridCalc - Trial 0: time 46000.00499525032 dt=0.005 events=-4197767296 -485908/ms
+[m[33m07:20:39.720 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:41.216 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:41.575 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:41.889 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:45.726 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:47.602 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:20:47.863 I o.t.s.n.g.GridCalc - Trial 0: time 48000.00499420258 dt=0.005 events=97200000 11087/ms
+[m[33m07:20:48.100 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:51.648 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:52.234 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:52.679 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:53.425 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:54.043 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:54.932 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:20:56.325 I o.t.s.n.g.GridCalc - Trial 0: time 50000.00499315484 dt=0.005 events=97200000 11485/ms
+[m[33m07:20:58.184 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:58.445 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:58.558 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:20:58.959 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:59.216 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:20:59.391 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:00.422 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:21:00.775 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:02.605 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:03.215 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:03.367 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:03.831 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:04.074 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:21:04.586 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:04.762 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:21:05.014 I o.t.s.n.g.GridCalc - Trial 0: time 52000.004992107104 dt=0.005 events=97200000 11186/ms
+[m[33m07:21:05.195 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:05.355 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:05.814 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:06.035 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:07.047 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:07.092 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:08.173 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:08.781 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:11.186 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:12.810 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:13.406 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:13.685 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:21:13.757 I o.t.s.n.g.GridCalc - Trial 0: time 54000.004991059366 dt=0.005 events=97200000 11118/ms
+[m[33m07:21:14.744 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:21:14.957 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:15.801 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:16.734 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:16.944 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:18.555 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:21.555 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:21:22.428 I o.t.s.n.g.GridCalc - Trial 0: time 56000.00499001163 dt=0.005 events=97200000 11209/ms
+[m[33m07:21:22.646 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:21:22.703 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:22.757 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:24.726 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:25.407 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:26.374 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:21:27.824 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:21:28.150 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:21:30.910 I o.t.s.n.g.GridCalc - Trial 0: time 58000.00498896389 dt=0.005 events=97200000 11458/ms
+[m[33m07:21:32.010 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:34.412 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:36.110 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:36.527 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:39.592 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:21:39.632 I o.t.s.n.g.GridCalc - Trial 0: time 60000.00498791615 dt=0.005 events=97200000 11144/ms
+[m[33m07:21:39.870 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:42.360 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:48.259 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:21:48.426 I o.t.s.n.g.GridCalc - Trial 0: time 62000.004986868415 dt=0.005 events=97200000 11052/ms
+[m[33m07:21:49.388 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:49.850 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:49.927 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:50.582 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:51.743 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:51.996 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:52.091 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:52.634 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:53.075 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:55.146 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:21:55.556 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:21:57.041 I o.t.s.n.g.GridCalc - Trial 0: time 64000.00498582068 dt=0.005 events=97200000 11282/ms
+[m[33m07:21:58.523 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 43 ran out of particles - need 1 but have 0
+[m[33m07:21:58.526 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:21:59.542 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:00.628 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:01.973 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:02.797 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:03.301 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:22:05.868 I o.t.s.n.g.GridCalc - Trial 0: time 66000.00498544815 dt=0.005 events=97200000 11011/ms
+[m[33m07:22:06.475 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:07.637 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:09.049 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:09.143 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:09.737 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:22:09.900 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:11.390 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:12.500 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:13.004 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:13.361 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:13.776 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:22:14.532 I o.t.s.n.g.GridCalc - Trial 0: time 68000.0049873108 dt=0.005 events=97200000 11218/ms
+[m[33m07:22:15.486 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:15.519 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:16.613 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:18.540 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:20.029 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:22.139 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:22.728 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:22:23.366 I o.t.s.n.g.GridCalc - Trial 0: time 70000.00498917344 dt=0.005 events=97200000 11002/ms
+[m[33m07:22:24.341 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:24.932 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:25.339 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:29.956 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:30.902 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:31.421 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:22:31.985 I o.t.s.n.g.GridCalc - Trial 0: time 72000.00499103608 dt=0.005 events=97200000 11277/ms
+[m[33m07:22:32.457 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:33.372 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:33.900 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:34.765 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:22:34.954 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:35.292 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:35.340 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:22:36.243 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:37.001 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:37.214 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:37.754 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:38.644 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:40.261 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:22:40.384 I o.t.s.n.g.GridCalc - Trial 0: time 74000.00499289873 dt=0.005 events=97200000 11572/ms
+[m[33m07:22:40.643 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:42.221 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:42.399 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:22:42.628 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:43.342 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:46.914 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:47.692 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:47.776 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:22:48.810 I o.t.s.n.g.GridCalc - Trial 0: time 76000.00499476137 dt=0.005 events=97200000 11535/ms
+[m[33m07:22:48.952 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:49.254 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:50.127 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:52.118 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:52.308 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:53.145 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:54.255 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:54.634 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:54.773 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:56.170 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:56.754 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[32m07:22:57.324 I o.t.s.n.g.GridCalc - Trial 0: time 78000.00499662402 dt=0.005 events=97200000 11416/ms
+[m[33m07:22:57.486 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:22:57.537 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:22:59.964 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:00.252 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:01.106 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:01.184 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:01.203 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:03.647 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:04.532 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:04.558 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:23:05.836 I o.t.s.n.g.GridCalc - Trial 0: time 80000.00499848666 dt=0.005 events=97200000 11419/ms
+[m[33m07:23:06.938 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:09.849 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:10.132 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:11.820 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:13.434 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:14.123 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:14.140 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:23:14.246 I o.t.s.n.g.GridCalc - Trial 0: time 82000.0000003493 dt=0.005 events=97199757 11557/ms
+[m[33m07:23:14.366 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:23:16.332 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:16.979 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:18.002 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:19.431 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:21.068 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:22.720 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:22.936 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:23:23.136 I o.t.s.n.g.GridCalc - Trial 0: time 84000.00000221195 dt=0.005 events=97200000 10933/ms
+[m[33m07:23:23.666 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:24.537 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:24.547 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:25.524 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:26.795 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:29.783 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:30.711 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:23:31.856 I o.t.s.n.g.GridCalc - Trial 0: time 86000.0000040746 dt=0.005 events=97200000 11146/ms
+[m[33m07:23:32.379 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:33.715 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:35.482 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:36.624 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:36.771 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:37.285 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:37.501 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:37.544 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:38.072 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:38.289 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:38.853 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:39.204 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:39.220 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:39.323 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:39.746 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:23:40.618 I o.t.s.n.g.GridCalc - Trial 0: time 88000.00000593724 dt=0.005 events=97200000 11093/ms
+[m[33m07:23:42.499 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:43.759 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:43.870 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:46.503 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:47.033 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:48.610 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:48.837 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:23:49.187 I o.t.s.n.g.GridCalc - Trial 0: time 90000.00000779988 dt=0.005 events=97200000 11343/ms
+[m[33m07:23:49.242 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:50.372 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:50.920 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:51.598 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:52.564 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:54.258 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:54.431 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:54.724 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:56.061 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:56.148 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:56.563 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:56.671 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:57.483 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:23:57.545 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:23:57.635 I o.t.s.n.g.GridCalc - Trial 0: time 92000.00000966253 dt=0.005 events=97200000 11505/ms
+[m[33m07:23:57.986 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:23:59.080 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:00.395 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:01.800 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:02.273 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:04.775 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:05.358 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:05.371 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:24:06.061 I o.t.s.n.g.GridCalc - Trial 0: time 94000.00001152518 dt=0.005 events=97200000 11537/ms
+[m[33m07:24:06.139 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:06.590 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:06.941 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:07.179 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:24:07.845 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:07.960 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:09.207 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:09.831 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:10.240 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:10.317 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:11.503 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:12.227 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:24:14.262 I o.t.s.n.g.GridCalc - Trial 0: time 96000.00001338782 dt=0.005 events=97200000 11852/ms
+[m[33m07:24:14.383 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:14.714 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:15.392 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:16.999 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:17.307 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:24:22.815 I o.t.s.n.g.GridCalc - Trial 0: time 98000.00001525047 dt=0.005 events=97200000 11363/ms
+[m[33m07:24:25.017 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:25.377 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:25.857 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:26.776 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:26.863 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:27.231 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:27.463 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:27.502 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:29.137 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:29.447 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:30.075 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:24:31.743 I o.t.s.n.g.GridCalc - Trial 0: time 100000.00001711311 dt=0.005 events=97200000 10887/ms
+[m[33m07:24:31.767 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:33.075 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:34.315 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 50 ran out of particles - need 1 but have 0
+[m[33m07:24:34.393 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:35.931 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:36.320 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:36.606 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:36.898 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:37.037 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:37.061 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:37.267 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:37.390 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:37.527 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:37.612 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:37.944 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:38.302 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:39.195 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:39.206 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:24:40.474 I o.t.s.n.g.GridCalc - Trial 0: time 102000.00001897576 dt=0.005 events=97200000 11132/ms
+[m[33m07:24:41.374 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:41.671 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:42.059 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:42.960 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 15 ran out of particles - need 1 but have 0
+[m[33m07:24:43.211 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:43.615 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:44.944 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:24:45.666 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 18 ran out of particles - need 1 but have 0
+[m[33m07:24:45.787 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:46.109 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:46.489 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:47.531 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:24:49.189 I o.t.s.n.g.GridCalc - Trial 0: time 104000.0000208384 dt=0.005 events=97200000 11153/ms
+[m[33m07:24:49.410 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:51.333 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:51.751 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:52.801 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:53.323 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:53.550 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:54.002 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:55.922 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:56.295 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[33m07:24:56.454 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 53 ran out of particles - need 1 but have 0
+[m[32m07:24:57.813 I o.t.s.n.g.GridCalc - Trial 0: time 106000.00002270105 dt=0.005 events=97200000 11270/ms
+[m[33m07:24:58.205 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[33m07:24:59.361 W o.t.s.n.g.SteppedStochasticGridCalc - reaction 19 ran out of particles - need 1 but have 0
+[m[32m07:25:06.543 I o.t.s.n.g.GridCalc - Trial 0: time 108000.00002456369 dt=0.005 events=97200000 11134/ms
+[m[32m07:25:15.339 I o.t.s.n.g.GridCalc - Trial 0: time 110000.00002642634 dt=0.005 events=97200000 11050/ms
+[m[32m07:25:23.969 I o.t.s.n.g.GridCalc - Trial 0: time 112000.00002828898 dt=0.005 events=97200000 11263/ms
+[m[32m07:25:32.167 I o.t.s.n.g.GridCalc - Trial 0: time 114000.00003015163 dt=0.005 events=97200000 11856/ms
+[m[32m07:25:40.574 I o.t.s.n.g.GridCalc - Trial 0: time 116000.00003201427 dt=0.005 events=97200000 11561/ms
+[m[32m07:25:49.081 I o.t.s.n.g.GridCalc - Trial 0: time 118000.00003387692 dt=0.005 events=97200000 11427/ms
+[m[32m07:25:57.558 I o.t.s.n.g.GridCalc - Trial 0: time 120000.00003573956 dt=0.005 events=97200000 11464/ms
+[m[32m07:26:06.396 I o.t.s.n.g.GridCalc - Trial 0: time 122000.0000376022 dt=0.005 events=97200000 10997/ms
+[m[32m07:26:15.264 I o.t.s.n.g.GridCalc - Trial 0: time 124000.00003946485 dt=0.005 events=97200000 10961/ms
+[m[32m07:26:23.953 I o.t.s.n.g.GridCalc - Trial 0: time 126000.0000413275 dt=0.005 events=97200000 11185/ms
+[m[32m07:26:32.408 I o.t.s.n.g.GridCalc - Trial 0: time 128000.00004319014 dt=0.005 events=97200000 11496/ms
+[m[32m07:26:40.704 I o.t.s.n.g.GridCalc - Trial 0: time 130000.00004505279 dt=0.005 events=97200000 11716/ms
+[m[32m07:26:49.070 I o.t.s.n.g.GridCalc - Trial 0: time 132000.00004691543 dt=0.005 events=97200000 11618/ms
+[m[32m07:26:57.666 I o.t.s.n.g.GridCalc - Trial 0: time 134000.00004877808 dt=0.005 events=-4197767296 -488339/ms
+[m[32m07:27:06.575 I o.t.s.n.g.GridCalc - Trial 0: time 136000.00005064072 dt=0.005 events=97200000 10910/ms
+[m[32m07:27:15.324 I o.t.s.n.g.GridCalc - Trial 0: time 138000.00005250337 dt=0.005 events=97200000 11109/ms
+[m[32m07:27:23.812 I o.t.s.n.g.GridCalc - Trial 0: time 140000.000054366 dt=0.005 events=97200000 11451/ms
+[m[32m07:27:32.726 I o.t.s.n.g.GridCalc - Trial 0: time 142000.00005622866 dt=0.005 events=97200000 10904/ms
+[m[32m07:27:41.428 I o.t.s.n.g.GridCalc - Trial 0: time 144000.0000580913 dt=0.005 events=97200000 11169/ms
+[m[32m07:27:49.995 I o.t.s.n.g.GridCalc - Trial 0: time 146000.00005995395 dt=0.005 events=97200000 11345/ms
+[m[32m07:27:58.612 I o.t.s.n.g.GridCalc - Trial 0: time 148000.0000618166 dt=0.005 events=97200000 11280/ms
+[m[32m07:28:07.219 I o.t.s.n.g.GridCalc - Trial 0: time 150000.00006367924 dt=0.005 events=97200000 11293/ms
+[m[32m07:28:15.970 I o.t.s.n.g.GridCalc - Trial 0: time 152000.00006554188 dt=0.005 events=97200000 11108/ms
+[m[32m07:28:24.435 I o.t.s.n.g.GridCalc - Trial 0: time 154000.00006740453 dt=0.005 events=97200000 11481/ms
+[m[32m07:28:33.093 I o.t.s.n.g.GridCalc - Trial 0: time 156000.00006926717 dt=0.005 events=97200000 11226/ms
+[m[32m07:28:41.662 I o.t.s.n.g.GridCalc - Trial 0: time 158000.00007112982 dt=0.005 events=97200000 11343/ms
+[m[32m07:28:50.211 I o.t.s.n.g.GridCalc - Trial 0: time 160000.00007299246 dt=0.005 events=97200000 11369/ms
+[m

@@ -1,0 +1,224 @@
+Lab Notebook for Blackwell, April 30, 2015 - Jun 8, 2015
+
+NEXT STEPS:
+Evaluate full model (or full model without DARPP32&PP1) for calcium steady state.  Use dendrite with sm domain (3.5 compartments).  Once ss OK, re-eval ss in full model, and also DARPP32 ss and response to bath application.
+
+June 8, 2015
+Changed IC of PDE10 to 150 sm (from 200) and added in 200 in cyt.  This will be slightly smaller overall conc for dend (1.5um), but considerably larger for soma.  May need to tweak this - balance sm and cyt to achieve similar basal in soma and dend.  Kept PDE2 600 cyt for dend, and will try PDE2=200 and 400 for soma.
+Model_cAMPassay1.5-PDE2600: basal a bit low, try PDE10 cyt=100
+Model_cAMPassay6.5-PDE2?00: basal extremely low, try PDE10 cyt=100
+Stimulated: not apparent.  Add in the <StimulationSet> phrase into Model file
+
+Model_cAMPassay1.5-PDE2600 (PDE10cyt=100): basal extremely low (lower than before), < 10 nM; stim = 2.5 uM, no decay and no PDE2
+Model_cAMPassay6.5-PDE2?00 (PDE10cyt=100): basal < 1 nM
+Stimulation worked, though response looks strange.  Also, PDE2 is zero, so IC not quite working.
+
+Re-run these simulations using stochdif2.1.9 to compare
+Model_cAMPassay1.5-PDE2600 (PDE10sm=150,cyt=100): basal ~15 nM, stim=14 uM (PDE2=600)
+Model_cAMPassay6.5-PDE2?00 (PDE10sm=150,cyt=100): basal ~75 nM, stim=3.5 uM (PDE2=200) 2.5 uM (=400)
+Basal are good but not great.  Both are reasonable, but soma is a bit high and dend a bit low.  To improve dend, could lower sm to 100 (minimal soma effect), inc cyt to 120
+      	       	       	       	    		    v3/v3dt/v2          v3/v2
+Model_cAMPassay1.5-PDE2600 (PDE10sm=100,cyt=120): basal 5/25/35 nM, stim= 6/14/17 uM v3 is quite transient
+Model_cAMPassay6.5-PDE2200 (PDE10sm=100,cyt=120): basal 0.5/35/60 nM, stim= 0/2.7/3.4uM 
+Model_cAMPassay6.5-PDE2400 (PDE10sm=100,cyt=120): basal 0.5/33/60 nM, stim= 0.25/1.9/2.2uM 
+Strangely (with v3adap) the lower PDE2 conc yields 0 cAMP stimulated!  Also surprising that adaptive would give such a lower basal value - steady states should be somewhat robust to dt.
+Otherwise, the fixed dt (v2 and v3) give great results.  The difference between v2 and v3fixed dt is probably due to different overall PDE10 conc due to treatment of submembrane layers.  Could raise PDE2 to 800 if need to lower dend cAMP still further. OR, lower PDE2 if adaptive is correct. 
+
+Further tuning (after Neves model):
+For soma: Castro also has some 0.1, 0.3, 1, 10 sec Da applications - can tune soma to those also; use saturating Da conc.
+
+NEXT STEPS:
+1. Go back to Neves simulations, tune PDE2:PDE10, clarify role of Gi inhibition and/or receptor desensitization; consider using it for D1pathways
+2. Clarify exactly what responses to match soma (stim time & conc, response)
+   E.g., mironov reports no higher than 3 uM in soma; 10 uM saturates sensor
+   but Striatal neurons have higher cAMP than cortical, ec.
+   0.3 uM ~5% (20% of max), 1 uM ~15% (50% of max) (not linear)
+3. Do sets of simulations using various stim and IC and tune response
+   Soma probably needs higher PDE10 to achieve basal <= 100 nM - try small cytosolic PDE10/PDE4: e.g. 30,60,90
+   	(could slightly lower sm PDE10 and add in this low quant of cyt PDE10 in dend to unify this IC OR, add in PDE4 with its lower affinity in higher amount? Computationally inefficient?).
+	what about low PDE2 activity against cAMP alone?
+   Try to achieve 3-10 uM cAMP peak - try 100, 200, 300 PDE2 and higher Da stim
+       PDE2 will need to be much lower in soma than dendrite (unless sm distr) 
+4. Find dendritic responses - recent cell report pub - clarify what to match
+5. Do additional simulations to tune dendrite, with least differences to soma.
+
+Gi can also limit cAMP. In A2A neurons, Da would enhance Gi.  In D1 neurons, does dopamine increase or decrease Gi (via m4) during Da stimulation?
+
+June 4, 2015
+NEXT STEPS:
+Get Backsai and Mironov papers.  Adjust PDEs to achieve 2.5 uM peak cAMP in soma (10 uM Da stim?)
+a. even slower PKA phos of PDE10
+b. add in other PDEs: 250 nM affinity means that PDE10 can saturate easily
+  b1: True PDE4 with correct affinity
+  b2: PDE2: 40 uM affinity for cAMP, 1 uM affinity for 2nd cAMP, 18x activity when 2 cAMP are bound (pretend that 1st cAMP is a cGMP); lower PDE10 concentration to compensate (will this enhance "soma" response? or maybe slower PKA phos of PDE10 will compensate)
+c. add in Gi and receptors
+   In Neves, this is D2 if A2A neuron; In D1 neuron this is m4
+   because these are sm, and soma and dend have same sm, prob won't help.  this will help when spine added
+
+Backsai 1993 is aplysia paper.  Mironov is mouse brain stem neurons, calibrates cAMP, applies transient (1-2 min) pulses, and even images calcium and cAMP simultaneously.  This would have been great for tuning Chay model.  Will use it for effect of PDE inhibitors.  Will use it in future if add in AC1 into striatal model.  Soma only.
+
+Reran PDE4 simulations because there was bug in xml.
+RESULTS (PDE4, dephos=0.1e-3,PDE4cyt=400, PDE10sm=300,cyt=200):
+cAMP basal: 10 nM, peak=10uM, low pPDE4 basal, peak in 20 sec, decay to 2 uM by 50 sec - no good.
+
+RESULTS (PDE2, kf=6.25e-7): peak cAMP is 20 uM. basal=20 nM (best yet), Slightly too transient (peak at 30 sec (good), decrease to < 5 uM by 100 sec (too fast)).  PDE2cAMP2 is near saturation.
+NEXT: try even slower PKA phos of PDE10 (extend simulation time).  Then, add in lower PDE10
+RESULTS (PDE2, kf=6.25e-8,PDE2=400, PDE10=300).
+cAMP basal: 16nM,   cAMP peak:25 uM,    time: 50 sec, decay to 5uM at ~230 sec
+RESULTS (PDE2, kf=6.25e-8,PDE2=400, PDE10=200)
+cAMP basal: 30nM,   cAMP peak:30 uM,    time: 55 sec, decay to 5uM at ~250 sec
+GREAT BASAL, increase PDE2 because peak too high
+RESULTS (PDE2, kf=6.25e-8,PDE2=600, PDE10=200)
+cAMP basal: 35nM,   cAMP peak: 14uM,    time: 120 sec, decay to 4uM at 300 sec
+PKAc time course similar to AKAR3 in Castro J Physiol
+GREAT!  No point further tuning until dendritic data
+
+For soma, probably need higher PDE10 (decrease basal) - once dend is good, use pyton to create a set of soma files: soma PDE10=100, 200; PDE2=800,400,200
+modify IC_cAMPassayPDE2.xml and Modelneurd2_cAMPassayPDE2-6.5.xml
+PDE10=100 produce far too high of basal (500-800)
+PDE10=200 is much better, though basal still to high ~250 nM
+PDE2=200 gives 7 uM stimulated
+PDE2=400 gives 4 uM stimulated peak
+PDE2=800 gives 2-3 uM stimulated peak
+SUMMARY: PDE10 controls basal, PDE2 controls peak
+Dendrite has PDE10=200 and PDE2=600.  Soma probably needs higher PDE10, e.g. 300 or 400; try these with 200 or 400 PDE2.
+
+For soma: Castro also has some 0.1, 0.3, 1, 10 sec Da applications - can tune soma to those also; use saturating Da conc.
+
+Note that Mironov shows limited cAMP conc even with IBMX.  Clearly there is receptor desensitization.  How to model this?
+What about D1R, AC? Can this ratio be manipulated to change stim to basal ratio?
+   
+June 3, 2015: figured out surface layers behavior
+1. If the surfaceLayers sum to less than defaultMaxElementSide
+	     (or the resulting element size if morphology/default is not integer)
+	     then the radius will be reduced by elementsize - sum(surfaceLayer),
+2. When only a single voxel is created, surfaceLayers adds to the morphology diameter
+2. Running simulations with 1000 nM dopamine, instead of 10 nM.  This still might not be a high enough concentration, but should produce nice response.
+3. python code is fixed - correctly calculates totals for multi-voxel morphology
+4. Though DaD1RGs complex is forming, no GasGTP is being formed, and cAMP is dropping to zero, even with 1000 nM dopamine. - bug in rxn spec.  Fixed  Also, increased molecule concentrations - ~1.3 uM AC and PKA, 260 nM D1R, 2600 nM Gas
+####Now, adjust AC, PDE10 for correct basal, then adjust PKA & pPDE10 activity for correct peak.
+	 Possibly will need to adjust D1R and Gs if not enough (or too much) GasGTP
+5. Results (Gs=10xD1R,PKA=AC)
+param				ss	     peak
+1.5um D1R=200,AC=1000,PDE10=400	cAMP=15-20   cAMP:20uM, PKAr=120-70,pPDE4cAMP=500-400
+6.5um D1R=200,AC=1000,PDE10=400	cAMP=60	     cAMP:3.8uM, PKAr=30,pPDE4cAMP=100-80
+1.5:Since ss is too low and peak too high, need more active pPDE10; pPDE10 increase is somewhat slow (cAMP is quite transient, not persistant) so I don't think PKA phos should be slower
+6.5: peak is reasonable, but too transient.  If pPDE10 is stronger, peak will be lower, but no less transient.  If make PKA phos slower, then peak will be higher again, and perhaps less transient.
+Vince's data showed transient responses, but on much slower time scale than my simulations.  Once reasonable values, will re-initialize (allow shorter time before stim), and run longer simulations
+Result of 2x stronger pPDE10 (pPDE10 = 4x PDE10)
+param				ss	     peak
+1.5um D1R=200,AC=1000,PDE10=400	cAMP=15-20   cAMP:8uM, PKAr=100-20,pPDE4cAMP=300-200
+6.5um D1R=200,AC=1000,PDE10=400	cAMP=45	     cAMP:1.2uM, PKAr=25,pPDE4cAMP=50-40
+EVEN MORE TRANSIENT - BAD, lower peak in dend - good, similarly low basal
+
+1.5:Since ss is too low and peak too high, need more active pPDE10; pPDE10 increase is What if have both sm and cyt spec for PDE10 (currently all is sm)?  Put half of PDE10 in sm - scales with AC, and other half as cyt?  Or keep current amount, make PKA phos rate 10x slower (not just a little slower) and move 1/4 of sm PDE10 to cyt:
+change 400 to 300, add in 200 cyt? - same amount in dend, but will be more in soma - lower basal soma, perhaps higher transient in soma
+Result of 10x slower PKAc + sm300 and cyt200 PDE10 (+4x pPDE10):
+1.5um D1R=200,AC=1000:	cAMP=50uM   cAMP:50uM, PKAr=140-120,pPDE4cAMP=0-250
+6.5um D1R=200,AC=1000:	cAMP=30	     cAMP:0.6uM, PKAr=25,pPDE4cAMP=10-12
+If still too transient, go back to 2x pPDE10 (yes, it is)
+If dend is still too low and high, and soma still to high and low:
+need higher basal PDE10 dend and lower PDE10 stim
+need lower basal PDE10 soma (achieved by cyt PDE10) and lower PDE10 stim  - 2x pPDE10
+RESULT of 10x slower PKAc + sm300 and cyt200 PDE10 (+2x pPDE10):
+1.5um D1R=200,AC=1000:	cAMP=10nM   cAMP:100uM, PKAr=140-120,pPDE4cAMP=0-250
+6.5um D1R=200,AC=1000:	cAMP=30nM   cAMP:0.65uM, PKAr=25,pPDE4cAMP reaches 16
+Soma pretty good (could tweak to match Vince or Castro? - even slower PKA phos, no decay within 1 min, perhaps no PKA phos?)
+Dend stim is terrible:
+lower PDE10stim in dend (within minimal decrease in PDE10stim in soma) could be achieved by PKA phos of PDE10 HOWEVER, fast fb loop makes stim too transient, whereas slow fb loop fails to control peak.  Need 1 ultra fast loop and 1 super slow loop (slow PKA phos of PDE10?).  Ultrafast can't be receptor dependent because conc same for both
+Note that DaD1RGs is extremely transient, ACGasATP is extremely persistant
+NEXT SIMS: FB: add additional PDE, only in dend (1.5 um structure)
+a. inactive without phos, extremely fast phos - implemented
+b. requires two cAMP binding (cooperativity) - represents cGMP? - alternative
+RESULTS:
+a. cAMP peak - 80 uM, pPDE4 increase is too slow - gradual from 100 - 200 sec, make faster
+b. cAMP - 25 uM and very transient.  Try making even faster.
+c. cAMP = 4 uM and super transient - gone within 1 minute
+TRY NEW APPROACH
+
+June 2, 2015 - D-R-G-cAMP-PDE-PKA subset
+created the rxn subset and two morphologies - one 1.5 um diameter dendrite, one 6.5 um dia (small) soma.  Both have 1 um voxels (4 um depth) but with 0.25 submembrane (check that all memb molec are only in the surface layer).  The larger one also has 0.5 um surface layer.  This will be used to adjust quantities of molecules to achieve: ~30 nM basal cAMP and ~2.5 uM stimulated cAMP.  If one is too big and other too small, likely will need to adjust rate of PKA phos of PDE, and pPDE activity.
+Having two morphologies will allow me to evaluate Vince's data -effect of morphology on peak values.
+
+STATUS: ss doen't look correct.  Fix this part of python code. 
+2.1.9 is much faster than 3.0, use this till informational output is reduced
+Adjust dopamine injection part to match Castro or somebody.
+THEN, run simulations with different total quantities of D1R,Gs,AC,PDE
+
+May 28 - June 1, 2015
+1. Created set of files for evaluating R-G association rates from FRET study
+
+2.Editing neurord_params_sims.py for
+a) work with stochdiff-3.0.0
+b) change a stim file, to allow for stimulating Da (and buffer to turn off stim)
+   stim allows a non-stim baseline period (not so important), but turn off will be critical  
+
+This worked.  Next, actually run the simulations with different Da conc and compare the results to FRET traces.
+
+The simulations worked, but it appears as if the GasGTP production is too slow.  The low concentration Da gives a GasGTP time course similar to Bunemann, but the high concentration is also slow, whereas in measurements the saturating concentrations of ligand produce very fast FRET change.  Steady state dose-response is fine also.
+G prot associ with DaD1RGs is quite fast ~1 sec, comparable to that in Hein et al. 2005. After initial production of triple complex, the decrease is quite rapid.  The slow depletion of Gsabg may be due to high Gs concentration?
+After initial time point, GsD1R drops to 5%, DaD1R goes up to 80%, DaD1RGs is only ~20% for high Da conc.  Perhaps catalytic rate is too fast compared to association rate?
+
+Need to do transient Da pulse to evaluate dissociaton rate, e.g. 15 on & 30 off.
+Also, the main studies have over-expression, so perhaps do these dissociation sims with higher G expression - how much higher???
+One measure method lists off rate of ~15 sec, but another method lists 2 sec - much faster.
+
+------> increase Gs forward and backward by 10x, gives 0.7e-3 backward (1/2s=0.5)
+
+BETTER: association quite fast - < 1 sec for high conc, but dissociation is too fast ~5 sec instead of 10 sec.  Slow down kb to 0.4, and half the kf.
+Still too fast of G association, but too slow GasGTP production!  Dissociation is too fast, though maybe due to too fast reduction in Da.  Slow down 3x Da-buf rxn and re-assess.
+BETTER - decay is ~10 sec, this is quite good.  Association is still quite fast (formation of DaD1Rgs < 1 sec) whereas production of GasGTP and decrease in GasGTP is too slow!
+Can see Bunemann 2001 J Biol Chem for GIRK measurement using endogenous G proteins.
+15 sec with conc that reaches 75% of max - similar to my sims, but only 5 sec with conc that satures - much faster than mine.  This is a2a and Gi, possibly faster hydrolysis?  Try 3x faster.
+
+Yes, with 3x faster hydrolysis, GaGTP developed within 8 sec for saturating conc,  BUT, the ss DaD1RGs declined during the stimulation, probably because kcat is much faster than kf and kb.  BUT, do not change it like this.  A2A is coupled to Gi, maybe Gs is slower.
+Note that local D1R and Gsabg conc will be higher with submembrane layers, this will speed association rxn.
+
+NEXT - repeat these assays in Neves, but compare the D2 / Gi part.  May need to speed up kcat for GiaGTP production (but leave Gs as is)
+
+May 15-18, 2015
+    Did the first plc assay - looks good, but not great.  
+    with Gaq = 0 or 261: There is no saturation of calcium binding, much less decrease with too high a calcium value.  Consider higher affinity for calcium binding.
+    with Ca = 300 nM, and Gaq from 5 to 80: linear increase (fine), but IP3 is too high for the lower Gaq values - this suggests Ca affinity is too high.
+    What about lower Ca affinity in absence of Gaq, but higher affinity in presence?  Above simulations used
+    PLC+Ca <-> PLCCa Kd=6000 (should have been 1000-2000 nM), PIP2 bind Kd= 58 
+    PLC-Gq + Ca <-> PLC-GqCa Kd=500 (should have been 200-400 nM), PIP2 bind Kd= 21.7 
+    PLC + Gq <-> PLC-Gq Kd=1200 (should have been ~50)
+    PLCCa + Gq <-> PLCCa-Gq Kd=100 (PMR)
+
+    Assessment of Sims with above Kd:  Gaq binding is way too high affinity - not distinction among different Gq amounts.  Ca affinity is not too bad.  Another problem - some simulations are crashing in the middle, which is not being helped by smaller dt.  May be some other bug.  Need to get next version of neuroRD.
+    It seems that the Ca = 300 nM, and Gaq low values (e.g. 5-15) are quite dependent on the PLC-Ca activity (i.e., activity in absence of Gq).  Perhaps lower Ca affinity will help also.
+    Eliminating the activity of PlcCa helped immensely for this simulation, but then the Ca param variation doesn't work :(.
+    values of kcat=0.225 are too high, kcat=0.0225 are too low (but better); 
+NEXT: try kcat=0.045, and add in the 2nd DAG dissociation step
+      GREAT Gq response.  Good Ca response with Gq.  Gq=0 didn't run.  Double kcat again - still good, though Ca 300 Gq 5 a bit high ,and Ca10 uM Gq = 0 a bit low
+      Add in slow Gq hydrolysis: No beter in terms of things that ran.
+      slightly lower Ca affinity for PLC - 2.5 uM, with 500 nM for PLC-Gq
+      Fine.  Not much better.  Still too low a response for Gq=0 and to high a response for 300 nM Ca with Gq=5
+      Redid the simulations of Ca dependence using 22 instead of 261 nM Gq - 22 is calculated from 55 ng and 60 uL.  Much better - 22 n nM Gq has ~2x the IP3 as 0 Gq, as in the figures.  The Gq dependence with 300 nM Ca looks good.
+      Went back to the 400 nM / 2000 nM Ca affinity - Ca sensitivity looks better, though perhaps the Gq assay a bit high
+      Need to re-check once the program isn't crashing with many parameter combinations.
+      SLowed down Gq binding from 1.0=kb to 0.7, similar to Falkenburg - minimal  change to results
+      Copied these parameters into the merged file
+      May need to decrease calcium affinity a bit if have problems with calcium equilibrium
+
+April 30, 2015
+Currently working on Step 2 below.  Broken down into smaller steps
+Next steps:
+1. plc assay: create xml for 
+   par1={'species':'GaqGTP','values':[0,261],'type':'NanoMolarity'}
+   par2={'species':'Ca','values':[10,30,100,300,1e3,3e3,10e3],'type':'NanoMolarity'}
+   simulate analyze, compare to smrcka
+   create xml for 
+   par1={'species':'GaqGTP','values':[10,20,30,40,50,60,70,80],'type':'NanoMolarity'}
+   par2={'species':'Ca','values':[1,300],'type':'NanoMolarity'}
+   simulate, analyze (change xval to pv[0]), compare to smrcka
+2. create cAMP subset for cAMP assay (merged) 
+   dend only with submembrane voxels to achieve
+   correct surface to volume, and also large volume
+   may need to run to steady state first
+3. assess steady state values related to calcium stuff
+4. Darpp assay
+   dend only with submembrane voxels to achieve
+   correct surface to volume, and also large volume
+   may need to update IC files with a reasonable ss starting place

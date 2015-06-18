@@ -1,0 +1,95 @@
+<InitialConditions>
+
+    <ConcentrationSet>
+<!-- cytosolic molecules -->
+        <NanoMolarity specieID="Da"                 value="7" />
+	<NanoMolarity specieID="ACh"                value="80" />
+        <NanoMolarity specieID="Dabuf"              value="0" />
+        <NanoMolarity specieID="buf"                value="0" />
+<!-- D1 associated membrane molecules -->
+        <NanoMolarity specieID="D1R"              value="0" />
+        <NanoMolarity specieID="Gsabg"            value="0" />
+        <NanoMolarity specieID="DaD1RGs"          value="0" />
+        <NanoMolarity specieID="DaD1R"            value="0" />
+        <NanoMolarity specieID="GsD1R"            value="0" />
+        <NanoMolarity specieID="GasGTP"           value="0" />
+        <NanoMolarity specieID="GasGDP"           value="0" />
+        <NanoMolarity specieID="Gbg"              value="0" />
+        <NanoMolarity specieID="AC"               value="0" />
+        <NanoMolarity specieID="ACGas"            value="0" />
+        <NanoMolarity specieID="ACGasATP"         value="0" />
+
+<!-- ACh m4 associated membrane molecules -->
+        <NanoMolarity specieID="m4R"                value="0" />   
+        <NanoMolarity specieID="AChm4R"              value="0" />
+        <NanoMolarity specieID="Giabg"              value="0" />
+        <NanoMolarity specieID="AChm4RGi"            value="0" />
+        <NanoMolarity specieID="Gim4R"              value="0" />
+	<NanoMolarity specieID="GaiGTP"             value="0" />
+	<NanoMolarity specieID="GaiGDP"             value="0" />
+        <NanoMolarity specieID="AChm4RGbg"           value="0" />
+
+   <!--membrane cyclase enzymes -->
+        <NanoMolarity specieID="AC"                  value="0" />
+        <NanoMolarity specieID="ACGas"               value="0" />
+        <NanoMolarity specieID="ACGasATP"            value="0" />
+	<NanoMolarity specieID="ACGai"               value="0" />
+        <NanoMolarity specieID="ACGasGai"            value="0" />
+        <NanoMolarity specieID="ACGasGaiATP"         value="0" />
+
+	<!-- cytosolic molecules -->
+        <NanoMolarity specieID="ATP"                 value="2e6" />
+        <NanoMolarity specieID="cAMP"                value="40" />
+        <NanoMolarity specieID="AMP"                 value="0" />
+	<!--increased to 160 in Neves, perhaps due to addition of cGMP -->
+        <NanoMolarity specieID="PDE10"              value="145" />
+	<NanoMolarity specieID="PDE10cAMP"          value="15" />
+        <NanoMolarity specieID="PDE2"               value="600" />
+        <NanoMolarity specieID="PDE2cAMP"            value="0" />
+        <NanoMolarity specieID="PDE2cAMP2"           value="0" />
+
+</ConcentrationSet> 
+ 	
+    <SurfaceDensitySet region="dend" >
+<!-- D1 associated membrane molecules -->
+        <PicoSD specieID="D1R"                       value="1" />
+        <PicoSD specieID="DaD1R"                     value="1" />
+        <PicoSD specieID="Gsabg"                     value="1747" />
+        <PicoSD specieID="DaD1RGs"                   value="1" />
+        <PicoSD specieID="GsD1R"                     value="197" />
+        <PicoSD specieID="GasGDP"                    value="0" />
+        <PicoSD specieID="GasGTP"                    value="1" />
+        <PicoSD specieID="Gbg"                       value="739" />
+
+<!-- ACh m4 associated membrane molecules -->
+        <PicoSD specieID="m4R"                    value="11" />
+        <PicoSD specieID="AChm4R"                 value="0" />
+        <PicoSD specieID="Giabg"                  value="1169"  />
+        <PicoSD specieID="AChm4RGi"               value="61" />
+        <PicoSD specieID="Gim4R"                  value="128" />
+        <PicoSD specieID="GaiGDP"                 value="0" />
+        <PicoSD specieID="GaiGTP"                 value="212" />
+
+        <PicoSD specieID="AC"                     value="70" />
+        <PicoSD specieID="ACGas"                  value="0" />
+        <PicoSD specieID="ACGasATP"               value="0" />
+	<PicoSD specieID="ACGai"                  value="334" />
+        <PicoSD specieID="ACGasGai"               value="0" />
+        <PicoSD specieID="ACGasGaiATP"            value="96" />
+
+	<!-- replace with 100 sm with next version of stochdif3-->
+        <PicoSD specieID="PDE10"                  value="66" />
+        <PicoSD specieID="PDE10cAMP"              value="9" />
+        <PicoSD specieID="PKAcPDE10"              value="0" />
+        <PicoSD specieID="PKAcPDE10cAMP"          value="0" />
+        <PicoSD specieID="pPDE10"                 value="0" />
+        <PicoSD specieID="pPDE10cAMP"             value="0" />
+	
+        <PicoSD specieID="PKA"                    value="888" />
+        <PicoSD specieID="PKAcAMP2"               value="106" />
+        <PicoSD specieID="PKAcAMP4"               value="6" />
+        <PicoSD specieID="PKAc"                   value="0" />
+        <PicoSD specieID="PKAr"                   value="0" />
+
+  </SurfaceDensitySet>
+ </InitialConditions>

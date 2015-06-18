@@ -1,0 +1,48 @@
+Lab Notebook for Blackwell, June 18, 2015
+
+AAA. Evaluate partial model for calcium steady state.  Use dendrite with sm domain (3-5 compartments).  Once calcium ss OK, re-eval ss in full model, and also DARPP32 ss and response to bath application.
+1. Created Rxn files - all ca interactions except AC, which is quite low affinity
+2. Created IO and IC files - noticed that mGluR >> Gq, so this needs to be reduced
+3. Created Model file and ran initial simulation.
+
+BBB. Evaluate cAMP response to transient stimulation, compare to Castro
+BB1. Obtain steady state to minimize simulation time.
+>>>>>Results - discovered mistake in rxn file - Da disappearing. When fixed, cAMP ss was terrible (20 uM). ### Plan - a. implement the lower Da (7nM) and AC (500nM) as in Neves, b. increase PDE and implement m4 if needed (as in Neves).
+>>>>> Resultls of AC=500, Da=7:
+PDE10=120 cAMP inc to 3.5 uM, dend even higher
+PDE10=160 cAMP inc to 2.5 uM, dend even higher
+Add in m4 to Gi from Neves with ACh=80, higher PDE2(600) in dend
+>>>>>Results (dend should be similar to Neves, but not same since no GC):
+DEND: looks good, PDE10=160 is better than 120, IC_cAMPassayCastroDend-PDE10160 updated with reasonable IC.
+SOMA: cAMP way too low, ~5.  Lower PDE10 (cyt)
+PDE10cyt=0 cAMP=60
+	10 cAMP=60
+	20?
+	40 cAMP=20
+	80 cAMP=10
+Try PDE10cyt=10, after initializing Gi stuff same as dendrite. - similar to 0, try 20
+Unfortunatly, since stochdif3 adds cyt to sm, changing cyt means changing sm, so dend and soma have different sm PDE10.  PDE2 must be doing something at basal since otherwise, soma has considerably less PDE10:AC than dend.  With Gi, might need to reduce PDE2 in both dend and soma during stim.  If so, might need to re-adjust PDE10 (increase to compensate).
+
+Details of simulation of transient stim:
+1. Soma model
+2. 0.1, 0.3, 1, 10 sec Da applications
+3. Evaluate PKA activity - either through PKAc or phosphoPDE10, and cAMP conc
+4. 10 s appl practically saturates the Epac1camps300 sensor -> 3 uM response expected
+   large response  (75% of max) for Epac1-camps (2.4 uM affinity)
+   >>>>>> Use PDE2 = 200
+5. Add in Da buffer for transient stimulation. Possibly will need to add in AKAR, which is rapidly phosphorylated, to compare to AKAR3 results
+
+Goals: 	  PKA PEAK	    	  Decay (might require PP1 to measure):
+1.0 sec: near saturating response 3 min to basal
+0.3 sec: slightly smaller peak	  2 min to basal
+0.1 sec: <50% of 1.0 response	  1.5 min to basal
+THIS NEXT ONE MAY NEED LARGER DA Conc
+10 sec: maximal response in 30 s  t1/2=2min  	    cAMP to 80% in 20 s
+
+NEXT STEPS:
+A.
+Use PDE10=10 with "soma" morphology and provide stimulation.
+If peaks are way off, will need to re-adjust PDEs, possibly receptors and G proteins
+E.g. If peak is too low, reduce PDE2, possibly increase PDE10 to compensate
+     If peak is too high, increase PDE2, or reduce D1R quantity, which will lower basal, requiring re-increased of PDE10
+B. Assess calcium and adjust pumps or affinities to achieve reasonable basal

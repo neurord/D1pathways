@@ -3,3 +3,8 @@
 #run the batch file using: at -f NeuroRD.bat NOW (or you can specify a different time)
 set -ex
 java -jar /home/neuroware/stochdif/v2.1.9/stochdiff2.1.9.jar Model_MSPNmerge.xml output/Model_MSPNmerge.out > output/MSPNmerge.log
+
+#alternative:
+#To run things in parallel (instead of batch file):
+parallel --gnu java -Dstochdiff.writers=text -jar /home/neuroware/stochdif/stochdiff-3.0.0-1.jar ::: Model_cAMPassaySoma*.xml
+

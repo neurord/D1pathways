@@ -79,6 +79,7 @@
     <Reaction name = "DaD1RGs--Da1RGbg+GasGTP" id="DaD1RGs--Da1RGbg+GasGTP">
         <Reactant specieID="DaD1RGs"                    />
         <Product  specieID="GasGTP"                  />
+        <Product specieID="DaD1RGbg"                  />
 
         <forwardRate> 2e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
@@ -279,7 +280,7 @@
         <Reactant specieID="cAMP" n="2"/>
 	<Product specieID="PKAcAMP4"/>
 
-    <forwardRate>0.346218e-06</forwardRate>
+	<forwardRate>0.346218e-06</forwardRate>
 	<reverseRate>0.6e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
