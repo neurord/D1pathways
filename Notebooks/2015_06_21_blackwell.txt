@@ -1,0 +1,95 @@
+Lab Notebook for Blackwell, June 21, 2015
+
+Goals for today
+
+A. Evaluate partial model for calcium steady state.  Use dendrite with sm domain (3-5 compartments).  Once calcium ss OK, re-eval ss in full model, and also DARPP32 ss and response to bath application.
+Assess calcium and adjust pumps or affinities to achieve reasonable basal
+##########Not done today.
+
+B. Evaluate cAMP and PKA activity in response to transient stimulation: 0.1, 0.3, 1, 10 sec Da applications
+B1. Use PDE10=20 with "soma" morphology, 160 in Dend and provide stimulation.
+If peaks are way off, will need to re-adjust PDEs, possibly receptors and G proteins
+E.g. If peak is too low, reduce PDE2, possibly increase PDE10 to compensate
+     If peak is too high, increase PDE2, or reduce D1R quantity, which will lower basal, requiring re-increased of PDE10
+B1.>>>>>>>>>>RESULTS: basal quite good ~40 nM with PDE20=20cyt
+Transience is terrible.
+ACGasATP is nicely transient - duration is 10 sec for Da=10, briefer, ~5s, for Da<=1sec.  Peak is largest for 1sec.
+cAMP shows a small transient, but remains high
+ACGasGaiATP is not transient - it increases sharply at Da onset, and then continues to increase.
+DaD1RGs is nicely transient, but remains elevated above basal
+Da is nicely transient, but remains elevated above basal.
+GaiGTP increases to ~80 (at 2 sec) prior to stim (at 20 sec), and then remains constant
+SOLUTION: need to inject more buf to turn off the D1R
+Note: pPDE10cAMP and PDE2cAMP2 remain extremely low, 1-2 mol and 1-2 nM respectively
+Peak cAMP is too low, and DaD1RGs does not exceed 30 nM, so probably should increase Da conc
+B2.>>>>>>>>>>>Results with (a) Da=10 uM and (b) Dabuf = 99% of Da
+Da still not quite returned to basal, so DaD1RGs still not returned to basal
+ACGasATP transient, but not returned to basal
+for 10sec, PKAcAMP4, and to some extent PKAc, exhibited transient.
+ACGasGaiAP still shows persistant elevation
+cAMP: basal ~40, transient visible.
+10s: 500 nM
+0.1-1s: 200 nM
+SOLUTION: a. inject a small amount more of buf (156.7 vs 156.6) but this will not solve peak problem)
+b. Slow down Da-buf binding rate (probably will only produce small effect (0.1e-6 vs 1e-6)
+c. reduce PDE2 quantity (200 vs 100)
+B3.>>>>>>>>>Results: NO GOOD, no decrease in cAMP seen, Da does not go back to basal, DaD1RGs remains elevated.
+cAMP peak = 450 nM for 10 sec, and 250-300 nM for < 1 sec - still not too high.
+a. GO BACK TO FAST BINDING, increase buf still more (try TOO much, e.g. 160 vs 156.7)
+b. lower PDE2 still more - to zero?  To achieve more PKA phos of PDE10 need higher cAMP and lower PDE
+c. Also try 1s of Da in dendrite with same buf, and variety of PDE2 conc - maybe stimulated Dend sims were equally bad before and don't need PDE2 when no cGMP
+B4.>>>>>>>>>>>RESULTS
+A. DENDRITE
+1. Da is going to below basal (as in Soma) - reduce buf to 158
+2. basal cAMP=~30, minimally affected by PDE2; peak cAMP < 350 - so PDE10 is too big here also
+pPDE10 is quite low.  PKAc is transient, but small, as is PKAcAMP4.
+Try reducing PDE10cyt as done for Soma (with PDE2=0)
+B. SOMA
+1. Da is now going back to BELOW basal.  This is too much, but will optimize any transient
+  GasGTP - initally ~1 nM, goes to ~0 after stim.
+  cAMP - shows transient, but does not return to 0.
+       cAMP peak = 200 for 1 sec and 500 for 10 sec.  Still not high enough, despite the persistant ACGas.
+  ACGasGTP - does NOT return to previous basal quantity!  Thus, GasGTP is protected from hydrolysis when bound to AC.  ACGasGaiGTP also is being elevated and not returning to basal.
+  PKAc reaches 25 and then declines to 15 for 10sec, minimal transient with Da<1s.
+  PDE: no PDE2, pPDE10 starts to increase by 80s after stim. Again, need higher cAMP to achieve more phosphorylation.
+  Note that with 10s of Da, ACGasATP=5, whereas ACGasGaiATP increases to 120.  So, ACGasGai is preventing further increase in cAMP.  If reduce Gi, would allow larger peak, but also increase basal too much.
+  Could reduce PDE10 further, which would slightly increase basal.
+  BETTER SOLUTION?:
+  could allow hydrolysis of GasGTP bound to AC.  This would reduce cAMP still further, unless also reduced Gi (by reducing ACh).  May not need ACh at all if have this "Gap" activity?
+  X Alternative: reduce Gai during bath applied Da? Not good because dopamine facilitates ACh release
+  More on GAP activity.  Cell Signal. 2006 Mar;18(3):336-48. RGS2 interacts with Gs and adenylyl cyclase in living cells. Roy AA1, Baragli A, Bernstein LS, Hepler JR, Hébert TE, Chidiac P. suggests RGS2 interacts with AC.
+  ---> Replace 1st order decay with GAP mediated
+  a. Introduce RGS2, with amount and GasGTP binding rate yielding similar basal decay as presently
+  b. Allow RGS to bind to ACGasGaiATP - no other forms are high enough to be of concern. BUT, if have GAP activity, can also have lower ACh, and then there might be more ACGasATP
+  ---> Alternative allow ACGasGaiATP to spontaneously hydrolyze its Gas, though at slower rate?
+SIMULATION: Add in Gap of ACGasATP, rate = 7.46 (rate of ACGas = 21.46) or ACGasGaiATP, rate - 0.0746 (rate of ACGasGai=0.2146)
+	    AT SAME TIME, reduce ACh to 40 to have less Gi inhibition.
+ B5: a. Decrease buf to 158
+ >>>>>>>>>>RESULTS
+ A. Soma PDE2=0 PDE10cyt=20 ACh=40
+GapGs=7.46  ---------->cAMP basal ~10, peak~75, ACGasATP peak=1.5, ACGasGaiATP basal <5. GAP activity way too strong.  Try again with much weaker GAP (1.0)
+GapGs=1.0----------->Gap activity a bit too strong - basal~20, peak~550; signal a bit too transient and basal cAMP a bit low. reduce again (third)
+GapGs=0.2---------->basal~40, peak=900 nM, decays to ~250 at 200 sec. PKAc returning to basal slightly more slowly.
+##-------------------------------
+GapGi=0.07 ---------->  cAMP basal < 10, peak=1.6 (good), ACGasATPpeak=10, basal ACGasGaiATP < 5, PKAc nice and transient. Gap activity a bit too strong.  Reduce a bit (0.03)
+GapGi=0.03----------> 0.03 still too strong basal=~10, peak=1.6 (good) , Reduce again (third)
+GapGi=0.01----------> basal=40 (fairly flat - good IC), peak=1450, decays to ~200 nM within 70 s of Da end.  PKAc not yet returned to basal.  Need to run for longer time
+
+ B. Dend PDE2=0 ACh=80, no Gap
+ PDE10cyt=120 basal=40, peak=325
+ PDE10cyt=80 cAMP basal=50, peak=448, very transient, perhaps too transient, even for 1s stim.  PKAc is transient also.  Baseline cAMP increases after stim, even though GasGTP and DaD1RGs go below basal.  ACGasGaiATP remains elevated at 260. So, Dendrite also needs the Gap activity.  But this shows that if cAMP increases high enough, the cAMP will then be transient due to phosphorylation of PDE10
+ PDE10cyt=40 cAMP basal=60, peak=~660
+Re-do this dendrite sim (PDE10cyt=40 (soma=20),PDE2=0 (same as soma), PDE10sm=75 (same as soma)) with either ACGs or ACGsGi Gap activity.
+
+For both, Da inject=4000x10ms, buf=39.9x1000sec.  Not enough buf, so slight baseline shift in Da, from 7.5 to 7.9.
+GapGs=0.2---------->basal cAMP=45, peak=580, decay to 200 quickly, then slowly to 180 at 100s
+GapGi=0.01---------->basal cAMP=41, peak=900, decay to <80 by 100 s
+
+NEXT STEPS:
+A. Evaluate best soma model using Da pulse = 0.1, 0.3 and 1.0 sec (200 sec).  Might need to simulate both Gs Gap and Gi Gap because both are giving qualitatively reasonable results
+	 If too transient, consider reducing PKA phos rate even more? Or reduce Gap activity more?  Remember that cAMP decay will be much faster than PKAc decay, and AKAR decay might be slower still because dephos is needed.
+B. Calcium
+
+C. Once working:
+Re-do Neves?  Was there mistake in basal Da requiring lower PDE10 for that model also?
+Can Neves model work with ACGs or ACGsGi Gap activity?  Can Neves model work with only increase PDE2 to account for cGMP?

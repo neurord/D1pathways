@@ -5,18 +5,18 @@
 
     <xi:include href="Rxn_cAMPassayDabuf.xml" />
     <xi:include href="Morph6.5um.xml" />
-    <xi:include href="IC_cAMPassayCastro.xml" />
+    <xi:include href="IC_cAMPassayCastroPDE1020.xml" />
     <xi:include href="IO_cAMPassayDabuf.xml" />
     <StimulationSet>
       <InjectionStim specieID="Da" injectionSite="pointA">
         <onset>           20000        </onset>
         <duration>           10         </duration>
-        <rate>               1566.0      </rate>
+        <rate>               15666.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
         <onset>           30000        </onset>
-        <duration>           10         </duration>
-        <rate>               1500.0      </rate>
+        <duration>           1000       </duration>
+        <rate>               158.0      </rate>
       </InjectionStim>
     </StimulationSet>
   

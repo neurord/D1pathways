@@ -3,7 +3,7 @@
     <ConcentrationSet>
 <!-- cytosolic molecules -->
         <NanoMolarity specieID="Da"                 value="7" />
-	<NanoMolarity specieID="ACh"                value="80" />
+	<NanoMolarity specieID="ACh"                value="40" />
         <NanoMolarity specieID="Dabuf"              value="0" />
         <NanoMolarity specieID="buf"                value="0" />
 <!-- D1 associated membrane molecules -->

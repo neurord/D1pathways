@@ -39,12 +39,12 @@
 
 	<!-- cytosolic molecules -->
         <NanoMolarity specieID="ATP"                 value="2e6" />
-        <NanoMolarity specieID="cAMP"                value="50" />
+        <NanoMolarity specieID="cAMP"                value="40" />
         <NanoMolarity specieID="AMP"                 value="0" />
-
-        <NanoMolarity specieID="PDE10"              value="20" />
-	<NanoMolarity specieID="PDE10cAMP"          value="0" />
-        <NanoMolarity specieID="PDE2"               value="0" />
+	<!--increased to 160 in Neves, perhaps due to addition of cGMP -->
+        <NanoMolarity specieID="PDE10"              value="145" />
+	<NanoMolarity specieID="PDE10cAMP"          value="15" />
+        <NanoMolarity specieID="PDE2"               value="00" />
         <NanoMolarity specieID="PDE2cAMP"            value="0" />
         <NanoMolarity specieID="PDE2cAMP2"           value="0" />
 

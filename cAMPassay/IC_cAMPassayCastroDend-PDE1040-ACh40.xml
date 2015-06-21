@@ -3,7 +3,7 @@
     <ConcentrationSet>
 <!-- cytosolic molecules -->
         <NanoMolarity specieID="Da"                 value="7" />
-	<NanoMolarity specieID="ACh"                value="80" />
+	<NanoMolarity specieID="ACh"                value="40" />
         <NanoMolarity specieID="Dabuf"              value="0" />
         <NanoMolarity specieID="buf"                value="0" />
 <!-- D1 associated membrane molecules -->
@@ -41,9 +41,8 @@
         <NanoMolarity specieID="ATP"                 value="2e6" />
         <NanoMolarity specieID="cAMP"                value="50" />
         <NanoMolarity specieID="AMP"                 value="0" />
-
-        <NanoMolarity specieID="PDE10"              value="20" />
-	<NanoMolarity specieID="PDE10cAMP"          value="0" />
+        <NanoMolarity specieID="PDE10"              value="40" />
+	<NanoMolarity specieID="PDE10cAMP"          value="5" />
         <NanoMolarity specieID="PDE2"               value="0" />
         <NanoMolarity specieID="PDE2cAMP"            value="0" />
         <NanoMolarity specieID="PDE2cAMP2"           value="0" />

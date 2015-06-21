@@ -4,8 +4,8 @@
 	 reaction data brought in from other files --> 
 
     <xi:include href="Rxn_cAMPassayDabuf.xml" />
-    <xi:include href="Morph6.5um.xml" />
-    <xi:include href="IC_cAMPassayCastroPDE1020.xml" />
+    <xi:include href="Morph1.5um.xml" />
+    <xi:include href="IC_cAMPassayCastroDend-PDE10120-PDE2000.xml" />
     <xi:include href="IO_cAMPassayDabuf.xml" />
     <StimulationSet>
       <InjectionStim specieID="Da" injectionSite="pointA">
@@ -16,13 +16,13 @@
       <InjectionStim specieID="buf" injectionSite="pointA">
         <onset>           21000        </onset>
         <duration>           1000       </duration>
-        <rate>               158.0      </rate>
+        <rate>               160.0      </rate>
       </InjectionStim>
     </StimulationSet>
   
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
-	roundworms. The 2D case is good for testing as it is easy to visualize the
+	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the
 results (also, 3D may not work yet...)  -->
     <geometry>          2D           </geometry>
     <depth2D>           4.0          </depth2D>
