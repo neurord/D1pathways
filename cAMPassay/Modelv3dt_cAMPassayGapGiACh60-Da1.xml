@@ -3,9 +3,9 @@
     <!-- this file defines a single run of the calculation, using morphology and 
 	 reaction data brought in from other files --> 
 
-    <xi:include href="Rxn_cAMPassayDabufGapGi.xml" />
+    <xi:include href="Rxn_cAMPassayDabufGapGiAbuf.xml" />
     <xi:include href="Morph6.5um.xml" />
-    <xi:include href="IC_cAMPassayCastroPDE1020-ACh40.xml" />
+    <xi:include href="IC_cAMPassayPDE1020_Abuf-ACh40.xml" />
     <xi:include href="IO_cAMPassayDabuf.xml" />
     <StimulationSet>
       <InjectionStim specieID="Da" injectionSite="pointA">
@@ -14,9 +14,20 @@
         <rate>               15666.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
-        <onset>           30000        </onset>
+        <onset>           21000        </onset>
         <duration>           1000       </duration>
-        <rate>               156.6      </rate>
+        <rate>               156.5      </rate>
+      </InjectionStim>
+
+      <InjectionStim specieID="Abuf" injectionSite="pointA">
+        <onset>           20000        </onset>
+        <duration>           10        </duration>
+        <rate>               60.0      </rate>
+      </InjectionStim>
+      <InjectionStim specieID="ACh" injectionSite="pointA">
+        <onset>           21000        </onset>
+        <duration>           1000        </duration>
+        <rate>               0.6      </rate>
       </InjectionStim>
     </StimulationSet>
   

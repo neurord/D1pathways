@@ -64,7 +64,7 @@
 
     </ConcentrationSet> 
 
-    <SurfaceDensitySet region="dendrite" >
+    <SurfaceDensitySet region="dend" >
   	<PicoSD specieID="Leak"    value="600"/>
         <PicoSD specieID="pmca"    value="100"/>
  	<PicoSD specieID="pmcaCa"  value="0"/>

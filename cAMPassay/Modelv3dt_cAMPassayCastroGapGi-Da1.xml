@@ -14,7 +14,7 @@
         <rate>               15666.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
-        <onset>           30000        </onset>
+        <onset>           21000        </onset>
         <duration>           1000       </duration>
         <rate>               156.6      </rate>
       </InjectionStim>
