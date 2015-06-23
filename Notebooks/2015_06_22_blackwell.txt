@@ -1,0 +1,68 @@
+Lab Notebook for Blackwell, June 22, 2015
+NEXT STEP (6/23):
+A. cAMP in Merged model
+GOOD: Does not appear that Gap for GaiGTP is needed
+FIX: 3x reaction rate for ACh + Abuf to drop ACh faster.
+If faster reaction, might not need the excess (at end of Abuf injection, Abuf is in excess), so try some lower values:
+-->Abuf=180, 240, 300, maybe even 120
+During injection of ACh, overshooting the basal level of 40, esp for higher injections - the lower Abuf of 180, maybe even 120, might prevent or minimize this, though rebound may not be so bad.
+-->Try some of the best values with GapGi.
+-->Try some of the best values with even slower ACh injection?
+-->Select best values for simulating different Da durations (scale the value for briefer Da).
+B. Calcium - incorporate cAMP reactions and rates into full model, and run new calcium steady state (with higher Leak)
+C. Once cAMP/PKA working:
+Re-do Neves?  Was there mistake in basal Da requiring lower PDE10 for that model also?
+Can Neves model work with ACGs or ACGsGi Gap activity?  Can Neves model work with only increase PDE2 to account for cGMP?
+
+Goals for today
+NEXT STEPS:
+A. Evaluate best soma model using Da pulse = 0.1, 0.3 and 1.0 sec (200 sec).  Might need to simulate both Gs Gap and Gi Gap because both are giving qualitatively reasonable results
+	 If too transient, consider reducing PKA phos rate even more? Or reduce Gap activity more?  Remember that cAMP decay will be much faster than PKAc decay, and AKAR decay might be slower still because dephos is needed.
+>>>>>>>>>>Results
+GapGi: Good:
+Nice transient cAMP signal. Reaches 1.5 uM for Da=10s, but only 400 nM for the shorter stimuli
+Transient PKA signal. PKAr returns to basal by ~ 200 sec (~150 s after peak), but minimal difference between 0.1, 0.3 and 1s Da
+Bad: Da goes below basal for transient stimuli - forgot to lower Dabuf to 156, but stays elevated for Da=10s - need to be more precise
+-------> Try a transient reduction in ACh. Threlfell & Cragg showed that ACh triggers Da release, but Wang Surmeier show that D2R inhibition of ACh is needed for LTD.
+Exp Gerontol. 2003 Sep;38(9):1009-13.The age-associated changes of dopamine-acetylcholine interaction in the striatum. Kurotani S1, Umegaki H, Ishiwata K, Suzuki Y, Iguchi A.
+GapGs: Good;
+Transient cAMP signal, not as large as with GapGi, but bigger diff bt 1s and 0.3s Da signal
+Basal remains more elevated for 10s Da than for others.  cAMP decay is definitely slower.
+Both ACGasATP and ACGasGaiATP remain elevated for 10s Da, because the Da signal remains elevated, BUT Da goes below basal for 1s - slightly lower buf inject, inc inject sl for 10s Da.
+----------->Add transient ACh reduction to either GapGs or GapGi - whichever is best
+1. Injection of 600 mol Abuf is not sufficient.  ACh stays at 40 nM, AChm4RGi dips from 17 to 14 transiently. Abuf and AChbuf show as zero.
+Problem: Though ACh = 40, AChm4RGi was initialized at 61 (sm), for overall conc of 17-18.   Try injecting even more.
+Abuf=120:180 - not enough, though dip in Gi is visible.
+Abuf=240 - maybe, but perhaps didn't wait long enough.  Wait 20 s before re-injecting ACh using(using Gs):
+	 ACh	  AChm4RGi    GaiGTP cAMP      excess Abuf
+Abuf=240  3	  1.6	      10	654    100
+Abuf=300  1.6	0.8	      7.8	1325   130
+Abuf=360  0.5	0.4	      6.5	1400   176
+20s is barely sufficient, so need to speed up ACh-Abuf reaction (3x?) to decrease ACh faster. Can be simultaneous with Da since it takes longer.
+Also, the additional ACGasATP and cAMP is appearing around 30sec, toward end of ACh with dip around 15-20s, so definitely need faster reduction in ACh and GaiGTP
+
+
+B. Calcium
+A. Evaluate partial model for calcium steady state.  Use dendrite with sm domain (3-5 compartments).  Once calcium ss OK, re-eval ss in full model, and also DARPP32 ss and response to bath application.
+Assess calcium and adjust pumps or affinities to achieve reasonable basal
+>>>>>>>>>>>>Results - overall good, though Ca a little low
+Ca=38
+CalbinCa=8.1uM
+CamCa2C=118,CamCa2N=17,CamCa4<1
+CaOutLeak=2398sm, Leak=2sm
+ncx=11570, ncxCa=427 (140 cyt)
+pmca=340,pmcaCa=53sm (20 cyt)
+Pde1=3827,pde1camca4=172
+Pip2=37972sm
+plcCa=18sm, plcCaPip2=16 sm
+PKC = 0, all forms!!!
+CKCamCa4=17, Ck=11981
+Dag=~4sm
+Dgl=3060 sm,DagCaDgl<1,CaDgl=95 (300 sm)
+IP3=135
+pp2Bcam=2330, Pp2BCamCa4=2
+PP2AC~11
+--------------->Ready to Re-evaluate in full model (once cAMP part is ready), don't forget to make sm Spec = Dend, make Leak slightly higher
+
+
+ 

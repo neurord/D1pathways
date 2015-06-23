@@ -9,25 +9,25 @@
     <xi:include href="IO_cAMPassayAChbuf.xml" />
     <StimulationSet>
       <InjectionStim specieID="Da" injectionSite="pointA">
-        <onset>           10000        </onset>
+        <onset>           20000        </onset>
         <duration>           10         </duration>
         <rate>               15666.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
-        <onset>           11000        </onset>
+        <onset>           20100        </onset>
         <duration>           1000       </duration>
-        <rate>               156.5      </rate>
+        <rate>               156.55      </rate>
       </InjectionStim>
 
       <InjectionStim specieID="Abuf" injectionSite="pointA">
-        <onset>           10000        </onset>
+        <onset>           20000        </onset>
         <duration>           10        </duration>
-        <rate>               360.0      </rate>
+        <rate>               240.0      </rate>
       </InjectionStim>
       <InjectionStim specieID="ACh" injectionSite="pointA">
-        <onset>           30000        </onset>
+        <onset>           20100        </onset>
         <duration>           10000      </duration>
-        <rate>               0.36      </rate>
+        <rate>               0.24      </rate>
       </InjectionStim>
     </StimulationSet>
   
@@ -44,7 +44,7 @@ results (also, 3D may not work yet...)  -->
 
 
     <!-- run time for the calculation, milliseconds -->
-    <runtime>          50000         </runtime>
+    <runtime>          200000         </runtime>
 <!-- 100001 -->
     <!-- set the seed to get the same spines each time testing -->
     <spineSeed>          123          </spineSeed>

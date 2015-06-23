@@ -1,0 +1,52 @@
+Lab Notebook for Blackwell, June 23, 2015
+Next steps:
+How to better distinguish the shorter durations? 
+1. Using the GapGs model, try Da decay slower for 1s faster for 0.1s?  ACh returns faster for 0.1s?  Perhaps ACh returns sooner with long Da stim to limit cAMP?
+Compare 10s cAMP with Castro Fig 2,6
+2.  repeat (original and altered Da/ACh kinetics) with the GapGi model
+3. Continue preparing Calcium ss full model
+
+Goals for today :
+A. cAMP in Merged model
+FIX: 3x reaction rate for ACh + Abuf to drop ACh faster.
+If faster reaction, might not need the excess (at end of Abuf injection, Abuf is in excess), so try some lower values:
+-->Abuf=180, 240, 300, maybe even 120
+>>>>>>>>>RESULTS (0.003e-3 Abuf rxn, GapGs)
+Abuf	ACh	       GaiGTP	 cAMP	PKAr
+180	0, 53p, 38     6	 2131	28, 18s
+240	0, 53p, 42     4	 2270	28, 18s  
+300	0, 65p, 48     4	 2601	27, 182
+Problem with all is that cAMP inc is slower than cAMP dec - the double peak is not apparent, but cAMP production stil spread out.
+Try 3x faster still, only use the two lower values, do Gi also.
+>>>>>>>>>RESULTS (0.01e-3 Abuf rxn, GapGs)
+Abuf/Gap  cAMP	   PKAr
+180/Gs	  3.3uM	   30 
+180/Gi	  15.8uM   36
+240/Gs	  6uM	   32
+240/Gi	  18uM	   37
+Shape of cAMP is better for GapGs than for GapGi
+      inc and dec similar speed for GapGs
+      inc very slow, and dec barely started for GapGi
+Note that Da and DaD1RGs not quite returning to basal.  Tweak buf injection a tiny bit.
+ACh dropping to zero within 5 sec for both, returning to basal within 10 sec with minimal overshoot for both Abuf and both Gaps
+-->Select best values for simulating different Da durations (scale the value for briefer Da). USE GapGs for different Da durations, use the higher (240) Abuf. Speed up ACh - Abuf binding even more (0.05e-3), because peak cAMP needs to come within 15 sec of Da onset. Restore ACh slower for brief Da pulses.
+Da dur	  cAMP 	      PKAc
+0.1	1.0  	      34  all except 10s decays within 60s
+0.3	1.3	      40
+1	1.5	      43 decay slightly longer
+10	20 uM	      65 nM, prolonged
+Note that Da and DaD1RGs remains elevated for all but briefest Da pulse - increase the other 3 next time
+ACh returns to slightly higher than basal for one duration, though GaiGTP returns to basal.
+GasGTP can distinguish 10s from 1s from (0.1/0.3s) of Da
+How to better distinguish the shorter durations?
+1. Da decay slower for 1s?  ACh returns faster for 0.1s?
+
+B. Calcium - incorporate cAMP reactions and rates into full model, and run new calcium steady state (with higher Leak)
+1. make sure Rxn and IC same is for calcium ss subset DONE
+2. make sure cAMP rxn and IC same as for best cAMP assay
+3. Assess DARPP32 ss; update rates, PP2A quant and rate constant source notes
+
+C. Once cAMP/PKA working:
+Re-do Neves?  Was there mistake in basal Da requiring lower PDE10 for that model also?
+Can Neves model work with ACGs or ACGsGi Gap activity?  Can Neves model work with only increase PDE2 to account for cGMP?
+
