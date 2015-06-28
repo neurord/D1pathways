@@ -24,18 +24,31 @@
 
 <!-- Gs coupled Dopamine D1 Receptor; Ligand currently called L,
      DaOut is used to eliminate injected L -->
-    <Specie name="Da"          id="Da"                  kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="DaOut"              id="DaOut"        kdiff="150"   kdiffunit="mu2/s"/>
+    <Specie name="Da"              id="Da"             kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Dabuf"            id="Dabuf"         kdiff="10"    kdiffunit = "mu2/s"/>
+    <Specie name="buf"              id="buf"           kdiff="10"    kdiffunit = "mu2/s"/>
     <Specie name="D1R"               id="D1R"           kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="DaD1R"       id="DaD1R"               kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="DaD1R"           id="DaD1R"           kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Gsabg"             id="Gsabg"         kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="DaD1RGs"     id="DaD1RGs"          kdiff="0"        kdiffunit="mu2/s"/>
+    <Specie name="DaD1RGs"         id="DaD1RGs"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GsD1R"             id="GsD1R"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GasGTP"            id="GasGTP"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GasGDP"            id="GasGDP"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Gbg"               id="Gbg"           kdiff="0"     kdiffunit="mu2/s"/>
 
-<!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
+<!-- Gi coupled m4R -->
+    <Specie name="ACh"          id="ACh"            kdiff="10"      kdiffunit = "mu2/s"/>
+    <Specie name="AChbuf"       id="AChbuf"         kdiff="10"      kdiffunit = "mu2/s"/>
+    <Specie name="Abuf"         id="Abuf"           kdiff="10"      kdiffunit = "mu2/s"/>
+    <Specie name="m4R"         id="m4R"             kdiff="0"       kdiffunit = "mu2/s"/>
+    <Specie name="AChm4R"       id="AChm4R"          kdiff="0"      kdiffunit = "mu2/s"/>
+    <Specie name="Giabg"       id="Giabg"           kdiff="0"       kdiffunit = "mu2/s"/>
+    <Specie name="AChm4RGi"     id="AChm4RGi"        kdiff="0"      kdiffunit = "mu2/s"/>
+    <Specie name="Gim4R"       id="Gim4R"           kdiff="0"       kdiffunit = "mu2/s"/>
+    <Specie name="GaiGTP"      id="GaiGTP"          kdiff="0"       kdiffunit = "mu2/s"/>
+    <Specie name="GaiGDP"      id="GaiGDP"          kdiff="0"       kdiffunit = "mu2/s"/>
+
+    <!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
      GluOut is used to eliminate injected Glu -->
     <Specie name="Glu"               id="Glu"           kdiff="100"   kdiffunit="mu2/s"/>
     <Specie name="GluOut"            id="GluOut"        kdiff="100"   kdiffunit="mu2/s"/>
@@ -51,10 +64,13 @@
 <!-- This is AC5, from Gs model.  May need to add AC1 at some point; if adding AC1, might want to change names of AC to AC5 -->
     <Specie name="AC"                id="AC"            kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="ACGas"             id="ACGas"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="ACGasATP"          id="ACGasATP"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="ACCa"              id="ACCa"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="ACGasCa"           id="ACGasCa"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="ACGasCaATP"        id="ACGasCaATP"    kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="ACGasATP"          id="ACGasATP"      kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="ACGai"          id="ACGai"         kdiff="0"      kdiffunit = "mu2/s"/>
+    <Specie name="ACGasGai"       id="ACGasGai"      kdiff="0"      kdiffunit = "mu2/s"/>
+    <Specie name="ACGasGaiATP"    id="ACGasGaiATP"   kdiff="0"      kdiffunit = "mu2/s"/>
 
 <!-- cAMP, and degradation by PDEs, from Gs model -->
     <Specie name="ATP"               id="ATP"           kdiff="74.8"  kdiffunit="mu2/s"/>
@@ -285,15 +301,20 @@
 	<Q10>0.2</Q10>
     </Reaction>
 
-
 <!--II. *********** Gs coupled receptor, from GS RXN FILE *************-->
-   <!--0. Da or Da Agonist: L                <->  DaOut  -->
-    <Reaction name = "Da-DaOut reac" id="Da-DaOut_id">
+   <!--0. Da or Da Agonist: L                <->  DaOut  OR-->
+   <!--0. Da + buf        <-> Dabuf     irreversible binding
+   Da + buf requires precise buf injection, DaOut requires large DaOut pool-->
+    <Reaction name = "Da+buf--Dabuf" id="Da_buf--Dabuf">
         <Reactant specieID="Da"                      />
-        <Product  specieID="DaOut"                   />
-
+        <Reactant specieID="buf"                      />
+        <Product  specieID="Dabuf"                     />
+        <forwardRate> 0.001e-03 </forwardRate>
+        <reverseRate> 0      </reverseRate>
+        <!--Product  specieID="DaOut"                   />
         <forwardRate> 2.00e-3      </forwardRate>
-        <reverseRate> 2.00e-8      </reverseRate>
+        <reverseRate> 2.00e-8      </reverseRate-->
+	
         <Q10>         0.2          </Q10>
     </Reaction>
     <!--1a. Da + D1R        <-> DaD1R      Kd=3000  source: Sunahara et al. Nature 1991-->
@@ -337,39 +358,14 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!--    The following reaction will be used when the
-        software can deal with more than 2 products or reactants:  
-        could be labeled as 3.-4. LD1RGs <-> LD1R + GasGTP + Gbg; 
-	this rxn is also described as 3. and 4. (combined) below -->
-
-<!--    <Reaction name = "DaD1RGs-DaD1R+GasGTP+Gbg reac" id="DaD1RGs-DaD1R+GasGTP+Gbg_id">
+    <!-- 3.  DaD1RGs <-> DaD1R + GasGTP +Gbg-->
+        <Reaction name = "DaD1RGs-DaD1R+GasGTP+Gbg reac" id="DaD1RGs-DaD1R+GasGTP+Gbg_id">
         <Reactant specieID="DaD1RGs"                    />
         <Product  specieID="DaD1R"                  />
         <Product  specieID="GasGTP"                  />
         <Product  specieID="Gbg"                    />
 
         <forwardRate> 2e-03        </forwardRate>
-        <reverseRate> 0.0           </reverseRate>
-        <Q10>         0.2           </Q10>
--->
-
-    <!-- 3.  DaD1RGs <-> DaD1RGbg + GasGTP +Gbg-->
-    <Reaction name = "DaD1RGs--Da1RGbg+GasGTP" id="DaD1RGs--Da1RGbg+GasGTP">
-        <Reactant specieID="DaD1RGs"                    />
-        <Product  specieID="DaD1RGbg"                  />
-        <Product  specieID="GasGTP"                  />
-
-        <forwardRate> 2e-03        </forwardRate>
-        <reverseRate> 0.0           </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
-
-    <Reaction name = "Da1RGbg--DaD1R+Gbg" id="Da1RGbg--DaD1R+Gbg">
-        <Reactant specieID="DaD1RGbg"                  />
-        <Product  specieID="DaD1R"                     />
-        <Product  specieID="Gbg"                    />
-
-        <forwardRate> 20e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -444,32 +440,88 @@
     <Reaction name = "GluMgluRGq--GaqGTP+GluMgluRGbg" id="GluMgluRGq--GaqGTP+GluMgluRGbg">
         <Reactant specieID="GluMgluRGq"               />
         <Product specieID="GaqGTP"             />
-        <Product  specieID="GluMgluRGbg" /> 
-
+        <Product specieID="GluMgluR"            /> 
+        <Product specieID="Gbg"             />
+ 
         <forwardRate>  0.5e-03 </forwardRate>
         <reverseRate>   0  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
-   <!--4. reproduce Gbg from GluMgluRGbg -->
-   <!-- GluMgluRGbg <-> GluMgluR + Gbg  -->
-        <Reaction name = "GluMgluRGbg--GluMgluR+Gbg" id="GluMgluRGbg--GluMgluR+Gb">
-        <Reactant specieID="GluMgluRGbg"               />
-        <Product specieID="GluMgluR"            /> 
-        <Product specieID="Gbg"             />
-        
-        <forwardRate> 2.03e-03  </forwardRate>
-        <reverseRate> 0  </reverseRate>
-        <Q10>     0.2   </Q10>
+    <!-- *********** Gi coupled m4 receptor *************
+    Should the Gi binding be increased similarly to Gs binding?-->
+    <!--0. ACh + Abuf        <-> AChbuf     irreversible binding -->
+    <Reaction name = "ACh+Abuf--AChbuf" id="ACh+Abuf--AChbuf">
+        <Reactant specieID="ACh"                      />
+        <Reactant specieID="Abuf"                      />
+        <Product  specieID="AChbuf"                     />
+
+        <forwardRate> 0.05e-03 </forwardRate>
+        <reverseRate> 0        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+   <!-- ACh or ACh agonist: ACh + m4R <==> AChm4R       Kd = 2000  , ADJUST WITH ACH affinity-->
+      <Reaction name = "ACh+m4R--AChm4R" id="ACh+m4R--AChm4R">
+        <Reactant specieID="ACh"              />
+        <Reactant specieID="m4R"              />
+        <Product  specieID="AChm4R"         />
+
+        <forwardRate> 0.0025e-03 </forwardRate>
+        <reverseRate> 5e-03      </reverseRate>
+        <Q10>         0.2          </Q10>
+    </Reaction>
+
+   <!-- Giabg + AChm4R    <-> GiabgAChm4R    Kd = 12.21  source:  sengeles JBiolChem 265 -->
+    <Reaction name = "Giabg+AChm4R--AChm4RGi" id="Giabg+AChm4R--AChm4RGi">
+        <Reactant specieID="AChm4R"             />
+        <Reactant specieID="Giabg"               />
+        <Product  specieID="AChm4RGi"            />
+
+        <forwardRate>  0.024e-03  </forwardRate>
+        <reverseRate>  0.42e-03  </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <!-- Gi + m4R       <-> Gim4R       Kd = 350  source:  PMR, Hein et al. JBC 2006: Gi dissoc tau=14s  -->
+    <Reaction name = "Giabg+m4R--Gim4R" id="Giabg+m4R--Gim4R">
+        <Reactant specieID="Giabg"                      />
+        <Reactant specieID="m4R"                      />
+        <Product  specieID="Gim4R"                     />
+
+        <forwardRate> 0.0012e-03 </forwardRate>
+        <reverseRate> 0.42e-03  </reverseRate>
+        <Q10>         0.2         </Q10>
+    </Reaction>
+    <!-- Gim4R + ACh       <-> AChm4RGi      Kd = 76-100 nM, ADJUST WITH ACH affinity-->
+    <Reaction name = "Gim4R+ACh--AChm4RGi" id="Gm4R+ACh--AChm4RGi">
+        <Reactant specieID="Gim4R"                     />
+        <Reactant specieID="ACh"                      />
+        <Product  specieID="AChm4RGi"                    />
+
+        <forwardRate> 0.05e-03 </forwardRate>
+        <reverseRate> 5e-03        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+   <!--    AChm4RGiabg   <-> GaiGTP + AChm4R +Gbg   -->
+    <Reaction name = "AChm4RGi--GaiGTP+AChm4R+Gbg" id="AChm4RGi--GaiGTP+AChm4R+Gbg">
+        <Reactant specieID="AChm4RGi"               />
+        <Product specieID="GaiGTP"             />
+        <Product  specieID="AChm4R"                     />
+        <Product  specieID="Gbg"                    />
+
+        <forwardRate>  1.0e-03 </forwardRate>
+        <reverseRate>   0  </reverseRate>
+        <Q10>         0.2           </Q10>
     </Reaction>
 
 <!--IV. *************** G protein hydrolysis and regeneration  *******************-->
-    <!--1. hydrolysis: GasGTP       <-> GasGDP            (in xpp: k4=10), Kd=? -->
+    <!--1. hydrolysis: GasGTP       <-> GasGDP            (1.0 based on Chay model) -->
     <Reaction name = "GasGTP--GasGDP reac" id="GasGTP--GasGDP_id">
         <Reactant specieID="GasGTP"                  />
         <Product  specieID="GasGDP"                  />
 
-        <forwardRate> 10e-03        </forwardRate>
+        <forwardRate> 1e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -481,7 +533,7 @@
         <Reactant specieID="Gbg"                    />
         <Product  specieID="Gsabg"                      />
 
-        <forwardRate> 10e-03       </forwardRate>
+        <forwardRate> 2e-03       </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -504,7 +556,28 @@
         <Reactant specieID="Gbg"                    />
         <Product  specieID="Gqabg"            />
 
-        <forwardRate>   10e-03   </forwardRate>
+        <forwardRate>   2e-03   </forwardRate>
+        <reverseRate>   0  </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+<!-- Hydrolysis of GaiGTP - slower than with GAP activity  source: sengeles JBiolChem 265 -->
+    <Reaction name = "GaiGTP--GaiGDP" id="GaiGTP--GaiGDP">
+        <Reactant specieID="GaiGTP"            />
+        <Product  specieID="GaiGDP"            />
+
+        <forwardRate>   0.3e-03   </forwardRate>
+        <reverseRate>   0  </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+<!-- 2nd order  regeneration of Gaibg source: -->
+    <Reaction name = "GaiGDP--Giabg" id="GaiGDP--Giabg">
+        <Reactant specieID="GaiGDP"            />
+        <Reactant specieID="Gbg"                    />
+        <Product  specieID="Giabg"            />
+
+        <forwardRate>   2e-03   </forwardRate>
         <reverseRate>   0  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -517,30 +590,86 @@
         <Reactant specieID="AC"                     />
         <Product  specieID="ACGas"                />
 
-        <forwardRate> 38.4615e-06   </forwardRate>
-        <reverseRate> 50e-03        </reverseRate>
+        <forwardRate> 0.00037e-03   </forwardRate>
+        <reverseRate> 0.1e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--2a. ACGas(GTP) + ATP    <-> ACGas(GTP)ATP      (in xpp: k7=127600e-9  k_7=0.2612)-->
+    <!--2a. ACGas(GTP) + ATP    <-> ACGas(GTP)ATP     -->
     <Reaction name = "ACGas+ATP--ACGasATP reac" id="ACGas+ATP--ACGasATP_id">
         <Reactant specieID="ACGas"                />
         <Reactant specieID="ATP"                    />
         <Product  specieID="ACGasATP"             />
 
-        <forwardRate> 127.600e-9    </forwardRate>
+        <forwardRate> 0.1276e-6    </forwardRate>
         <reverseRate> 0.2612e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--3a. ACGas(GTP)ATP       <-> ACGas(GTP) + cAMP  (in xpp: k8=28.46    k_8=259200e-9) -->
+    <!--3a. ACGas(GTP)ATP       <-> ACGas(GTP) + cAMP   -->
     <Reaction name = "ACGasATP--ACGas+cAMP reac" id="ACGasATP--ACGas+cAMP_id">
         <Reactant specieID="ACGasATP"             />
         <Product  specieID="ACGas"                />
         <Product  specieID="cAMP"                   />
 
         <forwardRate> 28.46e-03     </forwardRate>
-        <reverseRate> 259.200e-9    </reverseRate>
+        <reverseRate> 0.2592e-6    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
+    
+<!-- 2a) GaiGTP + AC <-> ACGaiGTP)  Kd=96 for AC6 (160 for this rxn) source: Chen-Goodspeed JBC 280-1808, Nielson JBC 271-33308 1996 -->
+    <Reaction name = "GaiGTP_AC_reac" id="GaiGTP_AC_reac">
+	<Reactant specieID="GaiGTP"/>
+	<Reactant specieID="AC"/>
+	<Product specieID="ACGai"/>
+
+	<forwardRate>0.0125e-3</forwardRate>
+	<reverseRate>2e-3</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!-- 2a) GaiGTP + ACGas <-> ACGasGTP-GaiGTP)  Kd=96 for AC6 (160 for this rxn) source: Chen-Goodspeed JBC 280-18
+08, Nielson JBC 271-33308 1996 -->
+    <Reaction name = "GaiGTP_ACGasGTP_reac" id="GaiGTP_ACGasGTP_reac">
+	<Reactant specieID="GaiGTP"/>
+	<Reactant specieID="ACGas"/>
+	<Product specieID="ACGasGai"/>
+
+	<forwardRate>0.0125e-3</forwardRate>
+	<reverseRate>2e-3</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+    <!-- ACGasGai + ATP    <-> ACGasGaiATP       source: Dessauer CW, Gilman AG JBC 1997-->
+    <Reaction name = "ACGasGai+ATP--ACGasGaiATP" id="ACGasGai+ATP--ACGasGaiATP">
+        <Reactant specieID="ACGasGai"                />
+        <Reactant specieID="ATP"                    />
+        <Product  specieID="ACGasGaiATP"             />
+
+        <forwardRate> 0.01276e-6    </forwardRate>
+        <reverseRate> 0.02612e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+    
+    <!-- ACGasGTPGaiGTP_ATP       <-> ACGasGTPGaiGTP + CAMP   source:  Dessauer CW, Gilman AG JBC 1997-->
+    <Reaction name = "ACGasGaiATP--ACGasGai+cAMP" id="ACGasGaiATP--ACGasGai+cAMP">
+        <Reactant specieID="ACGasGaiATP"             />
+        <Product  specieID="ACGasGai"                />
+        <Product  specieID="cAMP"                   />
+
+        <forwardRate> 0.2746e-03     </forwardRate>
+        <reverseRate> 0.2592e-6    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+    <!-- Gap activity for part of ACGasGaiATP-->
+    <Reaction name = "ACGasGaiATP--ACGai+Gs+cAMP" id="ACGasGaiATP--ACGai+Gs+cAMP">
+        <Reactant specieID="ACGasGaiATP"             />
+        <Product  specieID="ACGai"                />
+        <Product  specieID="cAMP"                   />
+        <Product  specieID="GasGDP"                   />
+
+        <forwardRate> 0.01e-03     </forwardRate>
+        <reverseRate> 0.0    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
 <!-- Now, those involving AC with Ca attached: -->
     <!--0b. AC + Ca    <-> ACCa     (in xpp: k9=0.001 k_9=0.9) -->
     <Reaction name = "ACCa reac" id="ACCaid">
@@ -552,17 +681,17 @@
         <reverseRate> 0.9e-03       </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--1b. GasGTP + ACCa  <-> ACGas(GTP)Ca     (in xpp: k6_2=0.0192308, k_6_2=25) -->
+    <!--1b. GasGTP + ACCa  <-> ACGas(GTP)Ca  (slowed down from xpp: k6_2=0.0192, k_6_2=25; same as AC) -->
     <Reaction name = "ACGasCa reac" id="ACGasCaid">
         <Reactant specieID="GasGTP"                  />
         <Reactant specieID="ACCa"                   />
         <Product  specieID="ACGasCa"              />
 
-        <forwardRate> 0.0192308e-03 </forwardRate>
-        <reverseRate> 25e-03        </reverseRate>
+        <forwardRate> 0.00037e-03 </forwardRate>
+        <reverseRate> 0.1e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--2b. ACGas(GTP)Ca + ATP  <-> ACGas(GTP)CaATP     (in xpp: k7_2=0.0000638, k_7_2=0.1306) -->
+    <!--2b. ACGas(GTP)Ca + ATP  <-> ACGas(GTP)CaATP      -->
     <Reaction name = "ACGasCaATP reac" id="ACGasCaATPid">
         <Reactant specieID="ACGasCa"              />
         <Reactant specieID="ATP"                    />
@@ -572,7 +701,7 @@
         <reverseRate> 0.1306e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--3b. ACGas(GTP)CaATP  <-> cAMP + ACGas(GTP)Ca (in xpp: k8_2=14.23, k_8_2=0.0001296) -->
+    <!--3b. ACGas(GTP)CaATP  <-> cAMP + ACGas(GTP)Ca  -->
     <Reaction name = "ACGasCa+ATP--cAMP+ACGasCa reac" id="ACGasCa+ATP--cAMP+ACGasCaid">
         <Reactant specieID="ACGasCaATP"           />
        <Product  specieID="cAMP"                   />
@@ -638,15 +767,15 @@
     </Reaction>
 
 <!--VIII. *****************PKAc phosphorylation of PDE10 *******************************-->
-<!-- should this be slower?  E.g. 10x based on A. Chay research.  How much is phos?-->
+<!-- slower than previous,  E.g. 100x based on A. Chay and cAMP decay -->
     <!--1a. PKAc + PDE10 -> PKAcPDE10 -->
     <Reaction name = "PDE10 phosp1" id="phospPDE101">
         <Reactant specieID="PKAc"                   />
         <Reactant specieID="PDE10"                  />
         <Product  specieID="PKAcPDE10"              />
 
-        <forwardRate> 06.25e-06    </forwardRate>
-        <reverseRate> 602.24e-06    </reverseRate>
+        <forwardRate> 0.0625e-06    </forwardRate>
+        <reverseRate> 0.00602e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -656,7 +785,7 @@
         <Product  specieID="pPDE10"                 />
         <Product  specieID="PKAc"                   />
 
-        <forwardRate> 150.56e-06    </forwardRate>
+        <forwardRate> 0.00150e-03    </forwardRate>
         <reverseRate> 0             </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -667,8 +796,8 @@
         <Reactant specieID="PDE10cAMP"             />
         <Product  specieID="PKAcPDE10cAMP"         />
 
-        <forwardRate> 0.0625e-05    </forwardRate>
-        <reverseRate> 602.24e-06    </reverseRate>
+        <forwardRate> 0.0625e-06    </forwardRate>
+        <reverseRate> 0.00602e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -678,7 +807,7 @@
         <Product  specieID="pPDE10cAMP"            />
         <Product  specieID="PKAc"                  />
 
-        <forwardRate> 150.56e-06    </forwardRate>
+        <forwardRate> 0.00150e-03    </forwardRate>
         <reverseRate> 0             </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -688,13 +817,13 @@
         <Reactant specieID="pPDE10"                 />
         <Product  specieID="PDE10"                  />
 
-        <forwardRate>  10.36e-06    </forwardRate>
+        <forwardRate>  0.01036e-03    </forwardRate>
         <reverseRate>  0            </reverseRate>
         <Q10>          0.2          </Q10>
     </Reaction>
 
 <!--IX. *****************pPDE10 activity *******************************-->
-    <!--1. pPDE10 + cAMP    <-> pPDE10cAMP         (in xpp: KfpPDE10=    KbpPDE10=  ) -->
+    <!--1. pPDE10 + cAMP    <-> pPDE10cAMP          -->
     <Reaction name = "pPDE10+cAMP--pPDE10cAMP" id="pPDE10+cAMP--pPDE10cAMP_id">
         <Reactant specieID="pPDE10"                 />
         <Reactant specieID="cAMP"                   />
@@ -800,15 +929,6 @@
         <Q10>         0.2           </Q10>
     </Reaction>
       
-    <!--5i. PlcCaDag       <->  PlcCa + Dag -->
-    <Reaction name = "PlcCaDag--PlcCa+Dag" id="PlcCaDag--PlcCa+Dag">
-        <Reactant specieID="PlcCaDag"            />
-
-        <forwardRate> 1e-03     </forwardRate>
-        <reverseRate> 0e-03    </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>    
-
     <!--3j. PlcCaGaq + Pip2    <-> PlcCaGaqPip2    -->
     <Reaction name = "PlcCaGaq+Pip2--PlcCaGaqPip2" id="PlcCaGaq+Pip2--PlcCaGaqPip2">
         <Reactant specieID="PlcCaGaq"               />
@@ -1605,6 +1725,4 @@ MUCH slower binding compared to CaDgl  -->
 <!-- ***************************************************************************-->
 <!-- CaMKII phos of Dag Lipase to suppress 2ag during LTP: NOVEL REACTION -->
 
-
-<!-- Gi coupled receptor -->
 </ReactionScheme>

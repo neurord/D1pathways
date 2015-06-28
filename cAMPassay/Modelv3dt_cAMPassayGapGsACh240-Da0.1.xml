@@ -15,8 +15,8 @@
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
         <onset>           20100        </onset>
-        <duration>           1000       </duration>
-        <rate>               156.55      </rate>
+        <duration>           2000       </duration>
+        <rate>               78.3      </rate>
       </InjectionStim>
 
       <InjectionStim specieID="Abuf" injectionSite="pointA">
@@ -26,8 +26,8 @@
       </InjectionStim>
       <InjectionStim specieID="ACh" injectionSite="pointA">
         <onset>           20100        </onset>
-        <duration>           10000      </duration>
-        <rate>               0.24      </rate>
+        <duration>           2000       </duration>
+        <rate>               1.20      </rate>
       </InjectionStim>
     </StimulationSet>
   

@@ -127,7 +127,7 @@
         <Reactant specieID="Abuf"                      />
         <Product  specieID="AChbuf"                     />
 
-        <forwardRate> 0.01e-03 </forwardRate>
+        <forwardRate> 0.05e-03 </forwardRate>
         <reverseRate> 0        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>

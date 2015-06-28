@@ -1,0 +1,84 @@
+Lab Notebook for Blackwell, June 28, 2015
+
+A. Try to improve Castro just a bit more using (a) slighlty slower ACh and Dabuf injection or
+(b) slower GapGi activity?  Would either prolong cAMP and PKA decay, or just increase peak?
+B. Continue with calcium ss in full model (what size dendrite?  Does it matter?)
+   Tune quantities to obtain good basal DARPP
+C. Bath apply calcium/Da/reduce ACh, with and without PP2B blocked (see nebish sims or stim files for exact set of sims to constrain phosphatases)
+D. Redo Neves to verify PDE quantities
+
+Next steps:
+A. How to better distinguish the shorter durations? 
+------->Compare 10s cAMP with Castro Fig 2,6; 10s PKA with Castro Fig 5 FINE, though cAMP reaches 20 uM
+Fig 2: saturate Epac1camps within 30sec, slow decay observed after 2-3 min
+Fig 6: 90% of FSK response within 20s, no decay observed during next 60 s
+Fig 5: peak AKAR within 20-30 s (PKAc indeed reaches peak within 20s)
+    minimal AKAR decay over next 80s (PKAc indeed does not decay over this time frame)
+    Note that pPDE10 increases slowly over this time, but likely AKAR3 is faster PKA target
+    Indeed Fig 6 shows that dynamics of cAMP and AKAR are similar
+----> Goal of shorter stimuli: Reproduce Fig 8 (PKA activity):
+1s yields similar peak as 10s, but returns to basal within 4 min
+0.3s yields 80% of 1s peak (currently too high) but returns to basal within 2.2 min)
+0.1s yields 50% of 1s peak and returns to basal within 1.8 min
+----> Using the GapGs model, try Da decay slower for 1s faster for 0.1s?  ACh returns faster for 0.1s?  Perhaps ACh returns sooner with long Da stim to limit cAMP?  Also, tweak buf inject for better return to basal
+10s: inj=156.58 (vs 156.55 for 1s); ACh: 0.24 for 10s (no need for that slow of decay)
+1s: inj=15.653 for 10s (vs 156.55 for 1s); ACh: 0.24 for 10s
+0.3s: inj=156.56 for 1s (vs 156.55 for 1s); ACh: 0.24 for 10s
+0.1s: inj=1565.6 for 0.1s (vs 156.55 for 1s); ACh: 24.0 for 0.1s
+
+################Results:      	     cAMP     	   PKA
+10s: DaD1RGs 2.0 (inc buf to 156.6)  16 uM at 20s  70 nM in 10-20s, minimal decay
+1s: DaD1RGs 2.0 (inc buf to 15.655)  6 uM at 14s   60 nM in 10-20s, decay to 16 by 2min (much better)
+0.3s: DaD1RGs 1.0 (inc buf to 156.58) 1 uM at 10s  35 nM, decay to 10 in 55s
+0.1s: DaD1RGs 0.5 (good)      	      200 nM at 3s 10nM, slow decay to 6
+Conclusion: Both 1s and 10s reach cAMP to saturate sensor, though perhaps 1s a bit low
+	    	 keep the slow buf inject
+	    0.3s: below sensor Kd, decays too fast - slow down to 31.65 for 5s 
+	    0.1s: cAMP and PKA way too low - go back to 156.56 for 1s, should achieve 1 uM, 60s decay
+
+----> Use the GapGs model, re-adjust the buffer
+      	      	    	      DaD1RGs	 cAMP		PKAc
+10s: 156.58*1s, Abuf=0.24*10s 		 30uM  		70nM
+1s: 15.653*10s, Abuf=0.24*10s		 10uM  		65nM, 90s plateau, decay by 2 min
+0.3s: 156.56*1s, Abuf=0.24*10s 0.7	3uM, 2min	55nM, decay by 1 min (too fast)
+0.1: 1565.6*0.1s, Abuf:24*0.1s 0.7	264nM, 80s	13nM (way too low)
+
+---------> GapGs using buf inj of:
+	      	       	        DaD1RGs		cAMP	PKAc
+10s: 15.660*10s, Abuf=0.24*10s	0.6		12uM	66nM, minimal decay
+1s: 15.655*10s, Abuf=0.24*10s	0.8		6-7uM	61nM, slow then faster decay, 20% by 2min
+0.3s: 31.316*5s, Abuf=0.48*5s	1.5		1.8uM	46nM, decay to 20% in 1 min
+0.1: 156.56*1s, Abuf:2.4*1s	1.5		300nM	15nM, slow decay
+Mostly this is good, but 0.1s is too low to detect decay
+slow down decay a bit.
+0.1: 78.3*2s, Abuf:1.2*2s	1.5		518 nM	20nM, decay too fast
+
+------->Redo GapGi (similar to GapGs) to increase 0.1s response, slow 0.3s decay, slightly speed 1s response
+	     	   	    DaD1RGs cAMP	PKAc
+10s: 15.658*10s, Abuf=0.48*5s 0.6   24 uM	 70nM, no Decay
+1s: 15.656*10s, Abuf=0.48*5s  0.6   4.6 uM	 58nM, decay to 20% in 1 min (too fast)
+0.3s: 31.316*5s, Abuf=0.48*5s 0.6   2.8 uM	 53 nM, decay within 40s
+0.1:  78.3*2s, Abuf:1.2*2s    0.6   0.7 uM	 27 nM, decay similar to 0.3s
+
+Make then a bit slower
+10s: 7.83*20s, Abuf=0.24*10s 	     
+1s: 7.83*20s, Abuf=0.24*10s	     
+0.3s: 15.66*10s, Abuf=0.24*10s	     
+
+
+CONCLUSION:
+Baseline shift is worse for GapGs
+What about slower GapGi activity?  Would that prolong cAMP and PKA decay?
+
+B. Calcium - incorporate cAMP reactions and rates into full model, and run new calcium steady state (with higher Leak)
+1. make sure Rxn and IC same as for calcium ss subset DONE
+2. make sure Rxn same as for plc ss - DONE, but updated the PLCassay files which were the old ones
+2. make sure cAMP rxn and IC same as for best cAMP assay DONE
+RESULTS:
+
+3. Assess DARPP32 ss; update rates, PP2A quant and rate constant source notes
+
+C. Once cAMP/PKA working:
+Re-do Neves?  Was there mistake in basal Da requiring lower PDE10 for that model also?
+Can Neves model work with ACGs or ACGsGi Gap activity?  Can Neves model work with only increase PDE2 to account for cGMP?
+

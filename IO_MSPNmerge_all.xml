@@ -27,8 +27,8 @@
     <OutputSpecie name="Calbin"/>
     <OutputSpecie name="CalbinC"/>
     <OutputSpecie name="pmca"/>
-    <OutputSpecie name="ncx"/>
     <OutputSpecie name="pmcaCa"/>
+    <OutputSpecie name="ncx"/>
     <OutputSpecie name="ncxCa"/>
 
     <OutputSpecie name="CaM"/>
@@ -36,12 +36,12 @@
     <OutputSpecie name="CaMCa2N"/>
     <OutputSpecie name="CaMCa4"/>
 
-    <OutputSpecie name="DaOut"/>
+    <OutputSpecie name="Dabuf"/>
     <OutputSpecie name="Da"/>
     <OutputSpecie name="D1R"/>
+    <OutputSpecie name="DaD1R"/>
     <OutputSpecie name="Gsabg"/>
     <OutputSpecie name="DaD1RGs"/>
-    <OutputSpecie name="DaD1R"/>
     <OutputSpecie name="GsD1R"/>
     <OutputSpecie name="GasGTP"/>
     <OutputSpecie name="GasGDP"/>
@@ -57,17 +57,30 @@
     <OutputSpecie name="GaqGTP"/>
     <OutputSpecie name="GaqGDP"/>
 
+<!-- mACh m4 associated membrane molecules -->
+    <OutputSpecie name="m4R"/>
+    <OutputSpecie name="AChm4R"/>
+    <OutputSpecie name="Giabg"/>
+    <OutputSpecie name="AChm4RGi"/>
+    <OutputSpecie name="Gim4R"/>
+    <OutputSpecie name="GaiGTP"/>
+    <OutputSpecie name="GaiGDP"/>
+
     <OutputSpecie name="AC"/>
     <OutputSpecie name="ACGas"/>
+    <OutputSpecie name="ACGasATP"/>
     <OutputSpecie name="ACCa"/>
     <OutputSpecie name="ACGasCa"/>
     <OutputSpecie name="ACGasCaATP"/>
-    <OutputSpecie name="ACGasATP"/>
+    <OutputSpecie name="ACGai"/>
+    <OutputSpecie name="ACGasGai"/>
+    <OutputSpecie name="ACGasGaiATP"/>
 
     <OutputSpecie name="ATP"/>
     <OutputSpecie name="cAMP"/>
     <OutputSpecie name="AMP"/>
 
+    <OutputSpecie name="PDE1"/>
     <OutputSpecie name="PDE1CamCa4"/>
     <OutputSpecie name="PDE1CamCa4cAMP"/>
 
@@ -80,8 +93,8 @@
 
     <OutputSpecie name="Plc"/>
     <OutputSpecie name="PlcCa"/>
-    <OutputSpecie name="PlcCaGaq"/>
     <OutputSpecie name="PlcGaq"/>
+    <OutputSpecie name="PlcCaGaq"/>
     <OutputSpecie name="Pip2"/>
     <OutputSpecie name="PlcCaPip2"/>
     <OutputSpecie name="PlcCaGaqPip2"/>
@@ -91,14 +104,14 @@
     <OutputSpecie name="DagK"/>
     <OutputSpecie name="DagKdag"/>
     <OutputSpecie name="PA"/>
-    <OutputSpecie name="2agDegrad"/>
-    <OutputSpecie name="Ip3degrad"/>
 
     <OutputSpecie name="Dgl"/>
     <OutputSpecie name="CaDgl" />
     <OutputSpecie name="DagCaDgl"/>
     <OutputSpecie name="2ag"/>
+    <OutputSpecie name="2agDegrad"/>
 
+    <OutputSpecie name="Ip3degrad"/>
     <OutputSpecie name="PIkinase"/>
     <OutputSpecie name="Ip3degPIk"/>
     
