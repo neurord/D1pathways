@@ -121,13 +121,14 @@
    
     <OutputSpecie name="PP2B"/>
     <OutputSpecie name="PP2BCam"/>
-    <OutputSpecie name="PP2BCamCa2"/>
+    <OutputSpecie name="PP2BCamCa2C"/>
+    <OutputSpecie name="PP2BCamCa2N"/>
     <OutputSpecie name="PP2BCamCa4"/>
     <OutputSpecie name="PP1"/>
 
-    <OutputSpecie name="PP2A_BPR72"/>
-    <OutputSpecie name="PP2A_B56d"/>
-    <OutputSpecie name="PKAcPP2A_B56d"/>
+    <OutputSpecie name="PP2ABPR72"/>
+    <OutputSpecie name="PP2AB56d"/>
+    <OutputSpecie name="PKAcPP2AB56d"/>
     <OutputSpecie name="pPP2A"/>
     <OutputSpecie name="PP2AC"/>
 
@@ -150,17 +151,17 @@
     <OutputSpecie name="Dp34PP1"/>
     <OutputSpecie name="Dp34PP2BCamCa4"/>
     <OutputSpecie name="Dp34PP1PP2BCamCa4"/>
-    <OutputSpecie name="Dp34PP2A_BPR72"/>
-    <OutputSpecie name="Dp34PP2A_B56d"/>
-    <OutputSpecie name="Dp34PP1PP2A_BPR72"/>
-    <OutputSpecie name="Dp34PP1PP2A_B56d"/>
+    <OutputSpecie name="Dp34PP2ABPR72"/>
+    <OutputSpecie name="Dp34PP2AB56d"/>
+    <OutputSpecie name="Dp34PP1PP2ABPR72"/>
+    <OutputSpecie name="Dp34PP1PP2AB56d"/>
 
     <OutputSpecie name="Cdk5"/>
     <OutputSpecie name="CDK5D32"/>
     <OutputSpecie name="Dp75"/>
     <OutputSpecie name="Dp75PKA"/>
-    <OutputSpecie name="Dp75PP2A_BPR72"/>
-    <OutputSpecie name="Dp75PP2A_B56d"/>
+    <OutputSpecie name="Dp75PP2ABPR72"/>
+    <OutputSpecie name="Dp75PP2AB56d"/>
     <OutputSpecie name="Dp75PP2AC"/>
     <OutputSpecie name="Dp75pPP2A"/>
   </OutputSet>

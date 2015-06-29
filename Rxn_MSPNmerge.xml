@@ -128,9 +128,9 @@
     <Specie name="PP1"               id="PP1"           kdiff="0"     kdiffunit="mu2/s"/>
 
 <!-- PP2A -->
-    <Specie name="PP2A_BPR72"        id="PP2A_BPR72"    kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="PP2A_B56d"         id="PP2A_B56d"     kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="PKAcPP2A_B56d"     id="PKAcPP2A_B56d" kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PP2ABPR72"        id="PP2ABPR72"    kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PP2AB56d"         id="PP2AB56d"     kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PKAcPP2AB56d"     id="PKAcPP2AB56d" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPP2A"             id="pPP2A"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PP2AC"             id="PP2AC"         kdiff="0"     kdiffunit="mu2/s"/>
 
@@ -159,18 +159,18 @@
     <Specie name="Dp34PP1"           id="Dp34PP1"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Dp34PP2BCamCa4"    id="Dp34PP2BCamCa4" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Dp34PP1PP2BCamCa4" id="Dp34PP1PP2BCamCa4" kdiff="0"  kdiffunit="mu2/s"/>
-    <Specie name="Dp34PP2A_BPR72"    id="Dp34PP2A_BPR72" kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="Dp34PP2A_B56d"     id="Dp34PP2A_B56d"  kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="Dp34PP1PP2A_BPR72" id="Dp34PP1PP2A_BPR72" kdiff="0"  kdiffunit="mu2/s"/>
-    <Specie name="Dp34PP1PP2A_B56d"  id="Dp34PP1PP2A_B56d"  kdiff="0"  kdiffunit="mu2/s"/>
+    <Specie name="Dp34PP2ABPR72"    id="Dp34PP2ABPR72" kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Dp34PP2AB56d"     id="Dp34PP2AB56d"  kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Dp34PP1PP2ABPR72" id="Dp34PP1PP2ABPR72" kdiff="0"  kdiffunit="mu2/s"/>
+    <Specie name="Dp34PP1PP2AB56d"  id="Dp34PP1PP2AB56d"  kdiff="0"  kdiffunit="mu2/s"/>
 
 <!-- Dp75 -->
     <Specie name="Cdk5"              id="Cdk5"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="CDK5D32"           id="CDK5D32"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Dp75"              id="Dp75"          kdiff="8.8"   kdiffunit="mu2/s"/>
     <Specie name="Dp75PKA"           id="Dp75PKA"       kdiff="6.8"   kdiffunit="mu2/s"/>
-    <Specie name="Dp75PP2A_BPR72"    id="Dp75PP2A_BPR72"  kdiff="0"   kdiffunit="mu2/s"/>
-    <Specie name="Dp75PP2A_B56d"     id="Dp75PP2A_B56d"   kdiff="0"   kdiffunit="mu2/s"/>
+    <Specie name="Dp75PP2ABPR72"    id="Dp75PP2ABPR72"  kdiff="0"   kdiffunit="mu2/s"/>
+    <Specie name="Dp75PP2AB56d"     id="Dp75PP2AB56d"   kdiff="0"   kdiffunit="mu2/s"/>
     <Specie name="Dp75PP2AC"         id="Dp75PP2AC"     kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Dp75pPP2A"         id="Dp75pPP2A"     kdiff="0"     kdiffunit="mu2/s"/>
 
@@ -187,8 +187,8 @@
 	<Reactant specieID="pmca"/>
 	<Product specieID="pmcaCa"/>
 
-	<forwardRate>0.5e-4</forwardRate>
-	<reverseRate>0.007</reverseRate>
+	<forwardRate>0.05e-3</forwardRate>
+	<reverseRate>9e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
 
@@ -198,7 +198,7 @@
 	<Product specieID="pmca"/>
 	<Product specieID="CaOut"/>
 
-	<forwardRate>0.0035</forwardRate>
+	<forwardRate>3.0e-3</forwardRate>
 	<reverseRate>0</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -209,8 +209,8 @@
 	<Reactant specieID="ncx"/>
 	<Product specieID="ncxCa"/>
 
-	<forwardRate>1.68e-5</forwardRate>
-	<reverseRate>0.0112</reverseRate>
+	<forwardRate>0.011e-3</forwardRate>
+	<reverseRate>11.2e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
 
@@ -220,7 +220,7 @@
 	<Product specieID="ncx"/>
 	<Product specieID="CaOut"/>
 
-	<forwardRate>0.0056</forwardRate>
+	<forwardRate>5.6e-3</forwardRate>
 	<reverseRate>0</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -230,7 +230,7 @@
 	<Reactant specieID="Leak"/>
 	<Product specieID="CaOutLeak"/>
 
-        <forwardRate>1.5e-6</forwardRate>
+        <forwardRate>2.0e-6</forwardRate>
 	<reverseRate>1.1e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -252,8 +252,8 @@
         <Reactant specieID="Calbin"/>
         <Product specieID="CalbinC"/>
 
-        <forwardRate>2.8e-5</forwardRate>
-        <reverseRate>0.0196</reverseRate>
+        <forwardRate>0.028e-3</forwardRate>
+        <reverseRate>19.6</reverseRate>
         <Q10>0.2</Q10>
     </Reaction>
 
@@ -387,7 +387,7 @@
         <Product  specieID="GluMgluRdesens"         />
 
         <forwardRate> 0.25e-03 </forwardRate>
-        <reverseRate> 1e-06      </reverseRate>
+        <reverseRate> 0.001e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -1009,14 +1009,14 @@
     </Reaction>
  
     <!-- Dag + CaDgl <-> DagCaDgl -->
-    <!--affinity = 1010 nM;  Bisogno J Cell Biol 2003
+    <!--affinity = 1000 nM;  Bisogno J Cell Biol 2003
 	lists affinity of 75 uM or 154 uM "within the range found in tissue" -->
     <Reaction name = "Dag+CaDlg--DagCaDgl" id="Dag+CaDlg--DagCaDgl">
         <Reactant specieID="Dag"            />
         <Reactant specieID="CaDgl"               />
         <Product  specieID="DagCaDgl"            />
 
-        <forwardRate> 2.5e-06     </forwardRate>
+        <forwardRate> 0.0025e-06     </forwardRate>
         <reverseRate> 1.5e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1083,7 +1083,7 @@
         <Reactant specieID="Pkc"              />
         <Product  specieID="PkcCa"               />
 
-        <forwardRate> 20e-06   </forwardRate>
+        <forwardRate> 0.020e-03   </forwardRate>
         <reverseRate> 50e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1133,7 +1133,7 @@ MUCH slower binding compared to CaDgl  -->
 	<Product specieID="PKAr"/>
 	<Product specieID="PKAc" n="2"/>  
 
-	<forwardRate>0.48e-03</forwardRate>
+	<forwardRate>0.048e-03</forwardRate>
 	<reverseRate>0.0051e-03</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -1228,42 +1228,42 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-   <!--PKAc + PP2A_B56d    <->  PKAcPP2A_B56d       (in xpp: k27=0.0025 k_27=0.3) -->
-    <Reaction name = "PKAc+PP2A--PKAcPP2A_B56d reac" id="PKAc+PP2A--PKAcPP2A_B56d_id">
-        <Reactant specieID="PP2A_B56d"          />
+   <!--PKAc + PP2AB56d    <->  PKAcPP2AB56d       (in xpp: k27=0.0025 k_27=0.3) -->
+    <Reaction name = "PKAc+PP2A--PKAcPP2AB56d reac" id="PKAc+PP2A--PKAcPP2AB56d_id">
+        <Reactant specieID="PP2AB56d"          />
         <Reactant specieID="PKAc"               />
-        <Product  specieID="PKAcPP2A_B56d"      />
+        <Product  specieID="PKAcPP2AB56d"      />
 
         <forwardRate> 0.0025e-03      </forwardRate>
-        <reverseRate> 0.3e-03         </reverseRate>
+        <reverseRate> 0.37e-03         </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--PKAcPP2A_B56d        ->  PKAc + pPP2A(_B56d)   (in xpp: v27=0.1) -->
-    <Reaction name = "PKAcPP2A_B56d--PKAc+pPP2A reac" id="PKAcPP2A_B56d--PKAc+pPP2A_id">
-        <Reactant specieID="PKAcPP2A_B56d"  />
+    <!--PKAcPP2AB56d        ->  PKAc + pPP2A(_B56d)   (in xpp: v27=0.1) -->
+    <Reaction name = "PKAcPP2AB56d--PKAc+pPP2A reac" id="PKAcPP2AB56d--PKAc+pPP2A_id">
+        <Reactant specieID="PKAcPP2AB56d"  />
         <Product  specieID="PKAc"           />
         <Product  specieID="pPP2A"          />
 
-        <forwardRate> 0.1e-03         </forwardRate>
+        <forwardRate> 0.06e-03         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--pPP2A(_B56d)           ->  PP2A_B56d           (in xpp: v28=0.004) -->
-    <Reaction name = "pPP2A--PP2A reac" id="pPP2A--PP2A_id">
+    <!--pPP2A(_B56d)           ->  PP2AB56d           (in xpp: v28=0.004) -->
+    <Reaction name = "pPP2A--PP2A reac" id="pPP2A--PP2Aid">
         <Reactant specieID="pPP2A"          />
-        <Product  specieID="PP2A_B56d"      />
+        <Product  specieID="PP2AB56d"      />
 
-        <forwardRate> 0.004e-03       </forwardRate>
+        <forwardRate> 0.008e-03       </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--PP2A_BPR72  + Ca         ->  PP2AC(_BPR72)      (in xpp: kf4=0.022, kb4=0.11)  -->
+    <!--PP2ABPR72  + Ca         ->  PP2AC(_BPR72)      (in xpp: kf4=0.022, kb4=0.11)  -->
     <!-- binding updated from paper measuring binding -->
-    <Reaction name = "PP2A_BPR72+Ca--PP2AC reac" id="PP2AC3+Ca--PP2AC_id">
-        <Reactant specieID="PP2A_BPR72"         />
+    <Reaction name = "PP2ABPR72+Ca--PP2AC reac" id="PP2AC3+Ca--PP2AC_id">
+        <Reactant specieID="PP2ABPR72"         />
         <Reactant specieID="Ca"                 />
         <Product  specieID="PP2AC"              />
 
@@ -1354,23 +1354,23 @@ MUCH slower binding compared to CaDgl  -->
     </Reaction>
 
     <!-- ******* PP2A dephos of DARPP32 *********** -->
-    <!-- Dp34 + PP2A_BPR72    <-> Dp34PP2A_BPR72       (in xpp: k22b=0.0001 k_22b=2, Kd=) -->
+    <!-- Dp34 + PP2ABPR72    <-> Dp34PP2ABPR72       (in xpp: k22b=0.0001 k_22b=2, Kd=) -->
     <!-- these are ~15x faster than xpp model, slower than Oliveira -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-     <Reaction name = "Dp34+PP2A_BPR72--Dp34PP2A_BPR72 reac" id="Dp34+PP2A_BPR72--Dp34PP2A_BPR72_id">
+     <Reaction name = "Dp34+PP2ABPR72--Dp34PP2ABPR72 reac" id="Dp34+PP2ABPR72--Dp34PP2ABPR72_id">
         <Reactant specieID="Dp34"                   />
-        <Reactant specieID="PP2A_BPR72"             />
-        <Product  specieID="Dp34PP2A_BPR72"         />
+        <Reactant specieID="PP2ABPR72"             />
+        <Product  specieID="Dp34PP2ABPR72"         />
 
         <forwardRate> 1.52e-06        </forwardRate>
         <reverseRate> 0.056           </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34PP2A_BPR72            -> D32 + PP2A_BPR72  (in xpp: v22b=0.5) -->
-    <Reaction name = "Dp34PP2A_BPR72--PP2A_BPR72+D32 reac" id="Dp34PP2A_BPR72--PP2A_BPR72+D32_id">
-        <Reactant specieID="Dp34PP2A_BPR72"         />
-        <Product  specieID="PP2A_BPR72"             />
+    <!-- Dp34PP2ABPR72            -> D32 + PP2ABPR72  (in xpp: v22b=0.5) -->
+    <Reaction name = "Dp34PP2ABPR72--PP2ABPR72+D32 reac" id="Dp34PP2ABPR72--PP2ABPR72+D32_id">
+        <Reactant specieID="Dp34PP2ABPR72"         />
+        <Product  specieID="PP2ABPR72"             />
         <Product  specieID="D32"                    />
 
         <forwardRate> 0.014           </forwardRate>
@@ -1378,23 +1378,23 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34 + PP2A_B56d    <-> Dp34PP2A_B56d       (in xpp: k22b=0.0001 k_22b=2, Kd=) -->
+    <!-- Dp34 + PP2AB56d    <-> Dp34PP2AB56d       (in xpp: k22b=0.0001 k_22b=2, Kd=) -->
     <!-- these are ~15x faster than xpp model #######, slower than Oliveira -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-    <Reaction name = "Dp34+PP2A_B56d--Dp34PP2A_B56d reac" id="Dp34+PP2A_B56d--Dp34PP2A_B56d_id">
+    <Reaction name = "Dp34+PP2AB56d--Dp34PP2AB56d reac" id="Dp34+PP2AB56d--Dp34PP2AB56d_id">
         <Reactant specieID="Dp34"                   />
-        <Reactant specieID="PP2A_B56d"              />
-        <Product  specieID="Dp34PP2A_B56d"          />
+        <Reactant specieID="PP2AB56d"              />
+        <Product  specieID="Dp34PP2AB56d"          />
 
         <forwardRate> 1.52e-06        </forwardRate>
         <reverseRate> 0.056           </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34PP2A_B56d            -> D32 + PP2A_B56d  (in xpp: v22b=0.5) -->
-    <Reaction name = "Dp34PP2A_B56d--PP2A_B56d+D32 reac" id="Dp34PP2A_B56d--PP2A_B56d+D32_id">
-        <Reactant specieID="Dp34PP2A_B56d"          />
-        <Product  specieID="PP2A_B56d"              />
+    <!-- Dp34PP2AB56d            -> D32 + PP2AB56d  (in xpp: v22b=0.5) -->
+    <Reaction name = "Dp34PP2AB56d--PP2AB56d+D32 reac" id="Dp34PP2AB56d--PP2AB56d+D32_id">
+        <Reactant specieID="Dp34PP2AB56d"          />
+        <Product  specieID="PP2AB56d"              />
         <Product  specieID="D32"                    />
 
         <forwardRate> 0.014           </forwardRate>
@@ -1402,23 +1402,23 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34pp1 + PP2A_BPR72  <-> Dp34PP1PP2A_BPR72 -> D32 + PP1 + PP2A_BPR72  (in xpp: k36b=0.0001 k_36b=2, Kd=) -->
+    <!-- Dp34pp1 + PP2ABPR72  <-> Dp34PP1PP2ABPR72 -> D32 + PP1 + PP2ABPR72  (in xpp: k36b=0.0001 k_36b=2, Kd=) -->
     <!-- kb 2x of xpp model ####### -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-    <Reaction name = "Dp34pp1+PP2A_BPR72--Dp34PP1PP2A_BPR72 reac" id="Dp34pp1+PP2A_BPR72--Dp34PP1PP2A_BPR72_id">
+    <Reaction name = "Dp34pp1+PP2ABPR72--Dp34PP1PP2ABPR72 reac" id="Dp34pp1+PP2ABPR72--Dp34PP1PP2ABPR72_id">
         <Reactant specieID="Dp34PP1"                 />
-        <Reactant specieID="PP2A_BPR72"              />
-        <Product  specieID="Dp34PP1PP2A_BPR72"       />
+        <Reactant specieID="PP2ABPR72"              />
+        <Product  specieID="Dp34PP1PP2ABPR72"       />
 
         <forwardRate> 0.125e-06        </forwardRate>
         <reverseRate> 0.0046          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
-    <!-- Dp34PP1PP2A_BPR72          -> PP1PP2A_BPR72 + D32 (in xpp: v36b=0.5) -->
-    <Reaction name = "Dp34PP1PP2A_BPR72--PP1+PP2A_BPR72+D32 reac" id="Dp34PP1PP2A_BPR72--PP1+PP2A_BPR72+D32_id">
-        <Reactant specieID="Dp34PP1PP2A_BPR72"      />
-        <Product  specieID="PP2A_BPR72"             />
+    <!-- Dp34PP1PP2ABPR72          -> PP1PP2ABPR72 + D32 (in xpp: v36b=0.5) -->
+    <Reaction name = "Dp34PP1PP2ABPR72--PP1+PP2ABPR72+D32 reac" id="Dp34PP1PP2ABPR72--PP1+PP2ABPR72+D32_id">
+        <Reactant specieID="Dp34PP1PP2ABPR72"      />
+        <Product  specieID="PP2ABPR72"             />
 	<Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
@@ -1427,23 +1427,23 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34pp1 + PP2A_B56d  <-> Dp34PP1PP2A_B56d -> D32 + PP1 + PP2A_B56d  (in xpp: k36b=0.0001 k_36b=2, Kd=) -->
+    <!-- Dp34pp1 + PP2AB56d  <-> Dp34PP1PP2AB56d -> D32 + PP1 + PP2AB56d  (in xpp: k36b=0.0001 k_36b=2, Kd=) -->
     <!-- kb 2x of xpp model ####### -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-    <Reaction name = "Dp34pp1+PP2A_B56d--Dp34PP1PP2A_B56d reac" id="Dp34pp1+PP2A_B56d--Dp34PP1PP2A_B56d_id">
+    <Reaction name = "Dp34pp1+PP2AB56d--Dp34PP1PP2AB56d reac" id="Dp34pp1+PP2AB56d--Dp34PP1PP2AB56d_id">
         <Reactant specieID="Dp34PP1"                />
-        <Reactant specieID="PP2A_B56d"              />
-        <Product  specieID="Dp34PP1PP2A_B56d"       />
+        <Reactant specieID="PP2AB56d"              />
+        <Product  specieID="Dp34PP1PP2AB56d"       />
 
         <forwardRate> 0.125e-06        </forwardRate>
         <reverseRate> 0.0046          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
-    <!-- Dp34PP1PP2A_B56d          -> PP1PP2A_B56d + D32 (in xpp: v36b=0.5) -->
-    <Reaction name = "Dp34PP1PP2A_B56d--PP1+PP2A_B56d+D32 reac" id="Dp34PP1PP2A_B56d--PP1+PP2A_B56d+D32_id">
-        <Reactant specieID="Dp34PP1PP2A_B56d"       />
-        <Product  specieID="PP2A_B56d"              />
+    <!-- Dp34PP1PP2AB56d          -> PP1PP2AB56d + D32 (in xpp: v36b=0.5) -->
+    <Reaction name = "Dp34PP1PP2AB56d--PP1+PP2AB56d+D32 reac" id="Dp34PP1PP2AB56d--PP1+PP2AB56d+D32_id">
+        <Reactant specieID="Dp34PP1PP2AB56d"       />
+        <Product  specieID="PP2AB56d"              />
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
@@ -1459,8 +1459,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="D32"                />
         <Product  specieID="CDK5D32"            />
 
-        <forwardRate> 0.00045e-02     </forwardRate>
-        <reverseRate> 04.0e-02        </reverseRate>
+        <forwardRate> 0.0045e-03     </forwardRate>
+        <reverseRate> 40e-3        </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
@@ -1471,7 +1471,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="Dp75"               />
         <Product  specieID="Cdk5"               />
 
-        <forwardRate> 1.0e-02         </forwardRate>
+        <forwardRate> 10e-3         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1491,71 +1491,71 @@ MUCH slower binding compared to CaDgl  -->
 <!-- must faster than in xpp model,  -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
     <!--Dp75 + pPP2A(_B56d) <-> Dp75pPP2A(_B56d)     (in xpp: k25=0.0004 k_25=12) v25=3-->
-    <Reaction name = "Dp75+pPP2A--Dp75pPP2A reac" id="Dp75+pPP2A--Dp75pPP2A_id">
+    <Reaction name = "Dp75+pPP2A--Dp75pPP2A reac" id="Dp75+pPP2A--Dp75pPP2Aid">
         <Reactant specieID="Dp75"           />
         <Reactant specieID="pPP2A"          />
         <Product  specieID="Dp75pPP2A"       />
 
-        <forwardRate> 15.0e-06        </forwardRate>
-        <reverseRate> 0.17           </reverseRate>
+        <forwardRate> 0.015e-03        </forwardRate>
+        <reverseRate> 168e-3          </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
     <!--Dp75pPP2A(_B56d)        -> D32  + pPP2A(_B56d) (in xpp: v25=3) -->
-    <Reaction name = "Dp75pPP2A--D32+pPP2A reac" id="Dp75pPP2A--D32+pPP2A_id">
+    <Reaction name = "Dp75pPP2A--D32+pPP2A reac" id="Dp75pPP2A--D32+pPP2Aid">
         <Reactant specieID="Dp75pPP2A"       />
         <Product  specieID="D32"            />
         <Product  specieID="pPP2A"          />
 
-        <forwardRate> 0.042           </forwardRate>
+        <forwardRate> 42e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75 + PP2A_BPR72 <-> Dp75PP2A_BPR72     (in xpp: k26=0.0001 k_26=6.4) -->
+    <!--Dp75 + PP2ABPR72 <-> Dp75PP2ABPR72     (in xpp: k26=0.0001 k_26=6.4) -->
     <!-- must faster than in xpp model -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-     <Reaction name = "Dp75+PP2A_BPR72--Dp75PP2A_BPR72 reac" id="Dp75+PP2A_BPR72--Dp75PP2A_BPR72_id">
+     <Reaction name = "Dp75+PP2ABPR72--Dp75PP2ABPR72 reac" id="Dp75+PP2ABPR72--Dp75PP2ABPR72_id">
         <Reactant specieID="Dp75"                   />
-        <Reactant specieID="PP2A_BPR72"             />
-        <Product  specieID="Dp75PP2A_BPR72"         />
+        <Reactant specieID="PP2ABPR72"             />
+        <Product  specieID="Dp75PP2ABPR72"         />
 
-        <forwardRate> 2.3e-6          </forwardRate>
-        <reverseRate> 0.084           </reverseRate>
+        <forwardRate> 0.0023e-3          </forwardRate>
+        <reverseRate> 84e-3           </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75PP2A_BPR72        -> D32  + PP2A_BPR72       (in xpp: v26=1.6) -->
-    <Reaction name = "Dp75PP2A_BPR72--D32+PP2A_BPR72 reac" id="Dp75PP2A_BPR72--D32+PP2A_BPR72_id">
-        <Reactant specieID="Dp75PP2A_BPR72"         />
+    <!--Dp75PP2ABPR72        -> D32  + PP2ABPR72       (in xpp: v26=1.6) -->
+    <Reaction name = "Dp75PP2ABPR72--D32+PP2ABPR72 reac" id="Dp75PP2ABPR72--D32+PP2ABPR72_id">
+        <Reactant specieID="Dp75PP2ABPR72"         />
         <Product  specieID="D32"                    />
-        <Product  specieID="PP2A_BPR72"             />
+        <Product  specieID="PP2ABPR72"             />
 
-        <forwardRate> 0.021           </forwardRate>
+        <forwardRate> 21e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75 + PP2A_B56d <-> Dp75PP2A_B56d     (in xpp: k26=0.0001 k_26=6.4) -->
+    <!--Dp75 + PP2AB56d <-> Dp75PP2AB56d     (in xpp: k26=0.0001 k_26=6.4) -->
    <!-- must faster than in xpp model -->
     <!-- rates taken from StriatumCRCNS/StochasticSP1/PKAspace/MSPNreactionsPP2AslowPKAdiff.xml  -->
-     <Reaction name = "Dp75+PP2A_B56d--Dp75PP2A_B56d reac" id="Dp75+PP2A_B56d--Dp75PP2A_B56d_id">
+     <Reaction name = "Dp75+PP2AB56d--Dp75PP2AB56d reac" id="Dp75+PP2AB56d--Dp75PP2AB56d_id">
         <Reactant specieID="Dp75"                   />
-        <Reactant specieID="PP2A_B56d"              />
-        <Product  specieID="Dp75PP2A_B56d"          />
+        <Reactant specieID="PP2AB56d"              />
+        <Product  specieID="Dp75PP2AB56d"          />
 
-        <forwardRate> 2.3e-6          </forwardRate>
-        <reverseRate> 0.084           </reverseRate>
+        <forwardRate> 0.0023e-3          </forwardRate>
+        <reverseRate> 84e-3           </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75PP2A_B56d        -> D32  + PP2A_B56d       (in xpp: v26=1.6) -->
-    <Reaction name = "Dp75PP2A_B56d--D32+PP2A_B56d reac" id="Dp75PP2A_B56d--D32+PP2A_B56d_id">
-        <Reactant specieID="Dp75PP2A_B56d"          />
+    <!--Dp75PP2AB56d        -> D32  + PP2AB56d       (in xpp: v26=1.6) -->
+    <Reaction name = "Dp75PP2AB56d--D32+PP2AB56d reac" id="Dp75PP2AB56d--D32+PP2AB56d_id">
+        <Reactant specieID="Dp75PP2AB56d"          />
         <Product  specieID="D32"                    />
-        <Product  specieID="PP2A_B56d"              />
+        <Product  specieID="PP2AB56d"              />
 
-        <forwardRate> 0.021           </forwardRate>
+        <forwardRate> 21e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1568,8 +1568,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2AC"              />
         <Product  specieID="Dp75PP2AC"           />
 
-        <forwardRate> 15.0e-06        </forwardRate>
-        <reverseRate> 0.17           </reverseRate>
+        <forwardRate> 0.015e-03        </forwardRate>
+        <reverseRate> 168e-3           </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
@@ -1579,7 +1579,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP2AC"              />
         <Product  specieID="D32"                />
 
-        <forwardRate> 0.042           </forwardRate>
+        <forwardRate> 42e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1682,7 +1682,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP1"                    />
         <Product  specieID="CKpPP1"                 />
 
-        <forwardRate> 1.0e-08     </forwardRate>
+        <forwardRate> 0.01e-06     </forwardRate>
         <reverseRate> 0.085e-03   </reverseRate>
         <Q10>     0.2             </Q10>
     </Reaction>

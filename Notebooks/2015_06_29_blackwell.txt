@@ -1,0 +1,100 @@
+Lab Notebook for Blackwell, June 29, 2015
+
+NEXT STEPS:
+A. Steady State
+1. Check the PP2B-Cam binding
+2. re-run the ss sim for 100s - adjust  calcium (get the avg.txt file)
+   From previous tries, I had 1.2 PKAc, 3uM CDK5 - so can inc PKA if now too low, and further inc CDK5
+3. run the ss sim using a smaller dendrite - compare
+4. run the ss sim using the PDE2 needed from the cAMP assay - both dend diam - compare
+
+B. Better PKA activity decay:
+Increase PDE2 to 100 nM? add an AKAR sensor, with good PKAc affinity/speed and some rate of PP1 dephos, then measure the duration of that signal
+While running the calcium steady states, find some AKAR references
+
+C. Re-do Neves to re-assess PDE2 needed for dend and soma
+
+D. Bath application:
+Select from (A) and bath apply NMDA (Ca) and Da (reduce ACh), effect of PP2A or PP2B blocked? Find data traces to compare to
+Ca bath (ctrl, PP2B inact or PP2A inact); 500 sec
+Da bath
+CaDa bath
+
+A. Try to improve Castro just a bit more using (a) slighlty slower ACh and Dabuf injection or
+(b) slower GapGi activity?  Would either prolong cAMP and PKA decay, or just increase peak?
+Make ACh and Dabuf inject slower:
+				DaD1RGs		cAMP		PKAc
+10s: 7.83*20s, Abuf=0.24*10s 	0     		33uM		67, no decay
+1s: 7.83*20s, Abuf=0.24*10s	1.0     	12.4uM		66, >2 min decay
+0.3s: 15.66*10s, Abuf=0.24*10s	0.7     	10uM too high	66, 2 min decay
+0.1s				0		0.7uM good	1 min decay
+Conclusion: decay occurs when cAMP drops below threshold, so this is not a good way to control PKAc. Prefer to have lower cAMP with slower decay
+
+Slow down GapGi activity (using which injection speeds?)
+ACGasGaiATP--ACGai+Gs+cAMP forward rate = 0.005e-3 (from 0.01e-3)
+Use the following injections:
+				DaD1RGs	cAMP	PKAc
+10s: 15.66*10s, Abuf=0.48*5s 	0.0   	25 uM	 70nM, no Decay
+1s: 15.66*10s, Abuf=0.48*5s  	0.0   	5.0 uM	 58nM, decay to 20% in 1 min (too fast)
+0.3s: 31.32*5s, Abuf=0.48*5s 	1.3   	2.6 uM	 50 nM, decay within 40s
+0.1:  78.3*2s, Abuf:1.2*2s   	0.0   	0.7 uM	 26 nM, decay similar to 0.3s
+cAMP quite similar to previous - Gap activity had very little effect
+
+Second alternative -> Add in small amount of PDE2 to remove the extremely high peaks
+Try 20 to 100 nM cytosol.  This will blunt the very high peak, but will not necessarily decay the PKAc drop.  In fact it will probably accelerate it.
+ACGasATP exhibits very sharp peak, ACGasGaiATP has broad peak.  ACGasATP is dropping faster than DaD1RGs; correlates with the return of AC -> delay the ACh recovery.
+
+>>>>>>>>>>>>>RESULTS
+ACGasGaiATP--ACGai+Gs+cAMP forward rate = 0.01e-3 (original); PDE2=50nM cyt
+Use the following injections:
+					DaD1RGs	cAMP	PKAc
+10s: 15.66*10s, Abuf=0.48*5s,12s 	0.0   	22.8 uM	 70nM, begins steep decay after 60s
+1s: 15.66*10s, Abuf=0.48*5s,2s  	1.2   	5.5 uM	 58nM, decay to 20% in 1 min (too fast)
+0.3s: 31.32*5s, Abuf=0.48*5s,0.6ms 	0.0   	2.8 uM	 51 nM, decay within 40s
+0.1:  78.3*2s, Abuf:1.2*2s,0.2ms   	2.1   	0.7 uM	 26 nM, decay similar to 0.3s
+cAMP quite similar to previous except for the 10s stimuli, which indeed is better.  Could probably raise PDE2 even more to reduce the peak cAMP
+GOOD NEWS: results are robust to PDE2 quantity, timing of ACh injection
+
+HOW TO PROLONG PKA?  One possibility is that the duration is fine, and that AKAR measures PKAc vs PP1.  Could add an AKAR sensor, with good PKAc affinity/speed and some rate of PP1 dephos, then measure the duration of that signal
+
+################################################
+B. Continue with calcium ss in full model (what size dendrite?  Does it matter?), Tune quantities to obtain good basal DARPP.  First, double check rate constants from xl spreadsheet
+Ca=37 (a bit low) - >>>increase leak rate a bit
+CalbinC=8000, pmcaCa=20, ncxCa=151
+PlcCa=5, ACCa=4, CaDgl=95, CamCa2C=160, CamCa2N=24, Cam=6580, PP2BCam
+cAMP=28 (maybe slighty higher) PKAc=6, Dp34PP1=3500 (way too high), Dp75 dec to 4000 (way too low)
+PP2BCamCa4 =2, binding to Dp34PP1 ~3, unable to see PP2A activity due to variable names
+Dp75pPP2A > 100, Dp75PP2AC=4.  Why is pPP2A activity so high?
+D32PKA=61 (good), PKAcPDE10=6 (fine) PkcCa=0 (not good) CKCamCa4=25 (fine)
+Overall:
+CDK5 needs to be higher, or pPP2A needs to be lower (faster dephos rate, lower quantity)
+PP2B needs to dephos more of Dp34PP1 - increase quantity (increase PP2A rate)
+1. increaes PP2B from 3uM to 4 uM (decrease Dp34PP1)
+2. Increase Ca leak rate from 1.5e-6 to 2e-6 (increase Ca and Pp2B activity)
+3. lowered PKAc phos of PP2A kcat from 0.1 to 0.06, raised kb from 0.3 to 0.37 (inc Dp75)
+4. increase dephos rate of Pp2A to 0.008 from 0.004 (inc Dp75)
+
+Continue checking rate constants against xl spreadsheet
+
+>>>>>>>> RESULTS (Once Ca is well tuned, can further tweak phosphatases for DARPP)
+Ca=55 nM (great) pmca~110, pmca~23, ncx~3.8u, ncxCa~127  NEED to check avg.txt file for sm conc; CalbinC=13 (quite low!), Calbin>160000!  How can that be?
+Cam=4.4uM, CamCa2C~160,CamCa2N~30, CamCa4~1, Pp2BCam=2800, pp2bcamca2N=158,p2bcamca2C=1050
+Pp2bcamca4=6,PDE1camca4=361 (how can that be?  affinity is lower than Pp2B)
+CaDgl~140, PkcCa=40, low Ip3, pPP2A is increasing to 100, CDK5D32=800, very low PKAcPDE10
+>>>Check PDE1camca4 and Pp2bCamca4 binding reactions
+These look fine, but may need to write out to double check
+CkCamCa4~40, no CKpCam (probably wrong - should be higher, is PDE1CamCa4 stealing all the active Cam?)
+cAMP fluctuates about 30-50, PKAr=60, PKAc=7 free, 67 bound to D32, Dp34PP1 inc to 3.5 uM still
+PP2AB56d is bound to 50 nM Dp34PP1, but PP2ABpr72 is not bound at all!  Strange.  Very little Pp2B (10) bound to Dp34PP1.
+Dp75 dec to 75uM, Dp75PKA=20, BPR72 and B56d each bound to 150 nM Dp75, Dp75-Pp2AC=10, Dp75pPP2A=60.  PKAcPP2AB56d is 30 - half of Darpp bound (which has 30x quantity)
+
+DONE >>>>To lower PKAc activity - lower the affinity back to 9.4 nM - much less PKAc, and thus less PKA phos of D32 and pp2A, this will lower Dp75pP2A also.
+DONE >>>>Raise CDk5 anyway, because lowering PP2A might not be enough. (from 1000 to 1500)
+
+Ca ss only requires 50 sec!!  Darpp32 ss requires closer to 100 s.  Only do 100s while adjusting rates initially.
+
+C. Bath apply calcium/Da/reduce ACh, with and without PP2B blocked (see nebish sims or stim files for exact set of sims to constrain phosphatases)
+
+D. Redo Neves to verify PDE quantities
+
+
