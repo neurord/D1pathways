@@ -77,9 +77,8 @@
         <PicoSD specieID="ACGasGai"               value="0" />
         <PicoSD specieID="ACGasGaiATP"            value="96" />
 
-	<!-- replace with 100 sm with next version of stochdif3-->
-        <PicoSD specieID="PDE10"                  value="66" />
-        <PicoSD specieID="PDE10cAMP"              value="9" />
+        <PicoSD specieID="PDE10"                  value="90" />
+        <PicoSD specieID="PDE10cAMP"              value="10" />
         <PicoSD specieID="PKAcPDE10"              value="0" />
         <PicoSD specieID="PKAcPDE10cAMP"          value="0" />
         <PicoSD specieID="pPDE10"                 value="0" />

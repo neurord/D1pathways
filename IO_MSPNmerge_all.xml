@@ -31,10 +31,10 @@
     <OutputSpecie name="ncx"/>
     <OutputSpecie name="ncxCa"/>
 
-    <OutputSpecie name="CaM"/>
-    <OutputSpecie name="CaMCa2C"/>
-    <OutputSpecie name="CaMCa2N"/>
-    <OutputSpecie name="CaMCa4"/>
+    <OutputSpecie name="Cam"/>
+    <OutputSpecie name="CamCa2C"/>
+    <OutputSpecie name="CamCa2N"/>
+    <OutputSpecie name="CamCa4"/>
 
     <OutputSpecie name="Dabuf"/>
     <OutputSpecie name="Da"/>
@@ -58,6 +58,8 @@
     <OutputSpecie name="GaqGDP"/>
 
 <!-- mACh m4 associated membrane molecules -->
+    <OutputSpecie name="Abuf"/>
+    <OutputSpecie name="ACh"/>
     <OutputSpecie name="m4R"/>
     <OutputSpecie name="AChm4R"/>
     <OutputSpecie name="Giabg"/>

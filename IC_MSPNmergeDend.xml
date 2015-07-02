@@ -9,7 +9,7 @@
         <NanoMolarity specieID="CaOutLeak"    value="0"/>
 	<!-- total calbindin = 160 uM -->
         <NanoMolarity specieID="Calbin"       value="153000"/>
-        <NanoMolarity specieID="CalbinC"      value="8000"/>
+        <NanoMolarity specieID="CalbinC"      value="7000"/>
 
 <!-- membrane molecules -->
         <NanoMolarity specieID="Leak"         value="0"/>
@@ -20,9 +20,9 @@
 
 <!-- cytosolic molecules -->
 	<!-- total calmodulin = 9000 nM -->
-      	<NanoMolarity specieID="Cam"          value="6716"/>
+      	<NanoMolarity specieID="Cam"          value="3405"/>
       	<NanoMolarity specieID="CamCa2C"      value="160"/>
-      	<NanoMolarity specieID="CamCa2N"      value="24"/>
+      	<NanoMolarity specieID="CamCa2N"      value="25"/>
       	<NanoMolarity specieID="CamCa4"       value="0"/>
 
 <!-- Dopamine, ACh, Glu and their buffers: cytosolic molecules -->
@@ -73,9 +73,9 @@
         <NanoMolarity specieID="cAMP"                 value="40" />
         <NanoMolarity specieID="AMP"                  value="0" />
 
-        <NanoMolarity specieID="PDE1"                 value="4000" />
+        <NanoMolarity specieID="PDE1"                 value="3650" />
         <NanoMolarity specieID="PDE1CamCa4cAMP"       value="0" />
-        <NanoMolarity specieID="PDE1CamCa4"           value="0" />
+        <NanoMolarity specieID="PDE1CamCa4"           value="350" />
 
 <!-- membrane molecules -->
 
@@ -106,21 +106,20 @@
         <NanoMolarity specieID="Pkct"         value="0"     />  
 
 <!-- cytosolic molecules -->
-<!-- total PP2B = 4000 nM, PP2ABPR72=1000, PP2AB56d=1000
-If PP2A activity is too high, lower quantity, e.g. to 500 each, can raise PP2B to 5000-->
-        <NanoMolarity specieID="PP2B"                 value="2000" />
-        <NanoMolarity specieID="PP2BCam"              value="2000" />
-        <NanoMolarity specieID="PP2BCamCa2C"          value="0" />
-        <NanoMolarity specieID="PP2BCamCa2N"          value="0" />
-        <NanoMolarity specieID="PP2BCamCa4"           value="0" />
+<!-- total PP2B = 5000 nM, PP2ABPR72=700, PP2AB56d=700-->
+        <NanoMolarity specieID="PP2B"                 value="0" />
+        <NanoMolarity specieID="PP2BCam"              value="3680" />
+        <NanoMolarity specieID="PP2BCamCa2C"          value="1150" />
+        <NanoMolarity specieID="PP2BCamCa2N"          value="160" />
+        <NanoMolarity specieID="PP2BCamCa4"           value="10" />
         <NanoMolarity specieID="PP1"                  value="3500" />
-	<NanoMolarity specieID="PP2AB56d"            value="1000" />
+	<NanoMolarity specieID="PP2AB56d"            value="520" />
 	<NanoMolarity specieID="PKAcPP2AB56d"        value="0" />
         <NanoMolarity specieID="pPP2A"                value="0" />
-        <NanoMolarity specieID="PP2ABPR72"           value="1000" />
+        <NanoMolarity specieID="PP2ABPR72"           value="520" />
         <NanoMolarity specieID="PP2AC"                value="0" />
-	<NanoMolarity specieID="CK"                   value="11900" />
-        <NanoMolarity specieID="CKCamCa4"             value="100" />
+	<NanoMolarity specieID="CK"                   value="11940" />
+        <NanoMolarity specieID="CKCamCa4"             value="60" />
         <NanoMolarity specieID="CKpCamCa4"            value="0" />
         <NanoMolarity specieID="CKp"                  value="0" />
         <NanoMolarity specieID="Complex"              value="0" />
@@ -129,7 +128,7 @@ If PP2A activity is too high, lower quantity, e.g. to 500 each, can raise PP2B t
         <NanoMolarity specieID="CKpCamCa4PP1"         value="0" />
 
 <!-- total DARPP32 = 50 uM, 12 uM Dp75 and 1% Dp32 at basal -->
-        <NanoMolarity specieID="D32"                  value="36500" />
+        <NanoMolarity specieID="D32"                  value="35000" />
         <NanoMolarity specieID="D32PKA"               value="0" />
         <NanoMolarity specieID="Dp34"                 value="0" />
         <NanoMolarity specieID="Dp34PP1"              value="500" />
@@ -139,19 +138,19 @@ If PP2A activity is too high, lower quantity, e.g. to 500 each, can raise PP2B t
         <NanoMolarity specieID="Dp34PP2AB56d"        value="0" />
         <NanoMolarity specieID="Dp34PP1PP2ABPR72"    value="0" />
         <NanoMolarity specieID="Dp34PP1PP2AB56d"     value="0" />
-        <NanoMolarity specieID="Cdk5"                 value="1500" />
-        <NanoMolarity specieID="CDK5D32"              value="0" />
-        <NanoMolarity specieID="Dp75"                 value="12000" />
+        <NanoMolarity specieID="Cdk5"                 value="500" />
+        <NanoMolarity specieID="CDK5D32"              value="500" />
+        <NanoMolarity specieID="Dp75"                 value="11600" />
         <NanoMolarity specieID="Dp75PKA"              value="0" />
-        <NanoMolarity specieID="Dp75PP2ABPR72"       value="0" />
-        <NanoMolarity specieID="Dp75PP2AB56d"        value="0" />
+        <NanoMolarity specieID="Dp75PP2ABPR72"       value="180" />
+        <NanoMolarity specieID="Dp75PP2AB56d"        value="180" />
         <NanoMolarity specieID="Dp75PP2AC"            value="0" />
         <NanoMolarity specieID="Dp75pPP2A"            value="0" />
 
     </ConcentrationSet> 
 
     <SurfaceDensitySet region="dend" >
-  	<PicoSD specieID="Leak" value="600"/>
+  	<PicoSD specieID="Leak" value="900"/>
 
         <PicoSD specieID="pmca" value="90"/>
  	<PicoSD specieID="pmcaCa" value="10"/>
@@ -184,8 +183,8 @@ If PP2A activity is too high, lower quantity, e.g. to 500 each, can raise PP2B t
 	<PicoSD specieID="ACGai"                  value="334" />
         <PicoSD specieID="ACGasGai"               value="0" />
         <PicoSD specieID="ACGasGaiATP"            value="96" />
-        <PicoSD specieID="PDE10"                 value="66" />
-        <PicoSD specieID="PDE10cAMP"             value="9" />
+        <PicoSD specieID="PDE10"                 value="90" />
+        <PicoSD specieID="PDE10cAMP"             value="10" />
         <PicoSD specieID="PKAcPDE10"             value="0" />
         <PicoSD specieID="PKAcPDE10cAMP"         value="0" />
         <PicoSD specieID="pPDE10"                value="0" />
