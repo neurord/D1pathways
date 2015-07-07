@@ -93,6 +93,10 @@
     <OutputSpecie name="pPDE10"/>
     <OutputSpecie name="pPDE10cAMP"/>
 
+    <OutputSpecie name="PDE2"/>
+    <OutputSpecie name="PDE2cAMP"/>
+    <OutputSpecie name="PDE2cAMP2"/>
+
     <OutputSpecie name="Plc"/>
     <OutputSpecie name="PlcCa"/>
     <OutputSpecie name="PlcGaq"/>

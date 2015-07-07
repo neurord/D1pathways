@@ -86,6 +86,9 @@
     <Specie name="PKAcPDE10cAMP"     id="PKAcPDE10cAMP"  kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPDE10"            id="pPDE10"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPDE10cAMP"        id="pPDE10cAMP"    kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PDE2"             id="PDE2"           kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PDE2cAMP"         id="PDE2cAMP"       kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PDE2cAMP2"        id="PDE2cAMP2"      kdiff="0"     kdiffunit="mu2/s"/>
 
     <!-- Gq, PLC, Dag, IP3, PKC and 2ag are from Gq model --> 
     <Specie name="Plc"               id="Plc"           kdiff="0"     kdiffunit="mu2/s"/>
@@ -766,7 +769,40 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!--VIII. *****************PKAc phosphorylation of PDE10 *******************************-->
+<!-- extra PDE, called PDE2, just for thin dendrite, requires 2 cAMP binding for
+ activity -->
+<!-- PDE2 + cAMP    <-> PDE2cAMP       Km=40 uM, source: WadaJBiolChem262-5139
+Not allowing this single bound form to be active -->
+    <Reaction name = "PDE2+cAMP--PDE2cAMP" id="PDE2+cAMP--PDE2cAMP">
+        <Reactant specieID="PDE2"                  />
+        <Reactant specieID="cAMP"                   />
+        <Product  specieID="PDE2cAMP"              />
+
+        <forwardRate> 0.00002e-3        </forwardRate>
+        <reverseRate> 0.5e-3        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+    <!-- PDE2cGMP+cAMP        <-> PDE2cGMPcAMP -> PDE2cGMP + AMP   kD=1.0 uM, Kc
+at=18x source: WadaJBiolChem262-5139   -->
+    <Reaction name = "PDE2cAMP+cAMP--PDE2cAMP2" id="PDE2cAMP+cAMP--PDE2cAMP2">
+        <Reactant specieID="PDE2cAMP"              />
+        <Reactant specieID="cAMP"                   />
+	<Product specieID="PDE2cAMP2"              />
+        <forwardRate> 0.0059e-3         </forwardRate>
+        <reverseRate> 0.5e-3           </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+  
+    <Reaction name = "PDE2cAMP2--PDE2cAMP+AMP" id="PDE2cAMP2--PDE2cAMP+AMP">
+	<Reactant specieID="PDE2cAMP2"              />
+        <Product specieID="PDE2cAMP"              />
+        <Product  specieID="AMP"                    />
+        <forwardRate> 5.4e-3         </forwardRate>
+        <reverseRate> 0.0           </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <!--VIII. *****************PKAc phosphorylation of PDE10 *******************************-->
 <!-- slower than previous,  E.g. 100x based on A. Chay and cAMP decay -->
     <!--1a. PKAc + PDE10 -> PKAcPDE10 -->
     <Reaction name = "PDE10 phosp1" id="phospPDE101">
@@ -1336,8 +1372,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2BCamCa4"             />
         <Product  specieID="Dp34PP1PP2BCamCa4"      />
 
-        <forwardRate> 0.25e-06      </forwardRate>
-        <reverseRate> 0.5e-03       </reverseRate>
+        <forwardRate> 1.0e-06      </forwardRate>
+        <reverseRate> 2.0e-03       </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
@@ -1348,7 +1384,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.125e-03      </forwardRate>
+        <forwardRate> 0.5e-03      </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1410,8 +1446,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2ABPR72"              />
         <Product  specieID="Dp34PP1PP2ABPR72"       />
 
-        <forwardRate> 0.125e-06        </forwardRate>
-        <reverseRate> 0.0046          </reverseRate>
+        <forwardRate> 0.152e-06        </forwardRate>
+        <reverseRate> 0.0056          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
@@ -1422,7 +1458,7 @@ MUCH slower binding compared to CaDgl  -->
 	<Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0012          </forwardRate>
+        <forwardRate> 0.0014          </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1435,8 +1471,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2AB56d"              />
         <Product  specieID="Dp34PP1PP2AB56d"       />
 
-        <forwardRate> 0.125e-06        </forwardRate>
-        <reverseRate> 0.0046          </reverseRate>
+        <forwardRate> 0.152e-06        </forwardRate>
+        <reverseRate> 0.0056          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
@@ -1447,7 +1483,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0012         </forwardRate>
+        <forwardRate> 0.0014         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>

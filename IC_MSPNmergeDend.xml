@@ -68,12 +68,16 @@
         <NanoMolarity specieID="PDE10"          value="40" />
         <NanoMolarity specieID="PDE10cAMP"      value="5" />
 
+        <NanoMolarity specieID="PDE2"               value="50" />
+        <NanoMolarity specieID="PDE2cAMP"            value="0" />
+        <NanoMolarity specieID="PDE2cAMP2"           value="0" />
+
 <!-- cytosolic molecules -->
         <NanoMolarity specieID="ATP"                  value="2e6" />
         <NanoMolarity specieID="cAMP"                 value="40" />
         <NanoMolarity specieID="AMP"                  value="0" />
 
-        <NanoMolarity specieID="PDE1"                 value="3650" />
+        <NanoMolarity specieID="PDE1"                 value="1650" />
         <NanoMolarity specieID="PDE1CamCa4cAMP"       value="0" />
         <NanoMolarity specieID="PDE1CamCa4"           value="350" />
 
@@ -101,8 +105,8 @@
         <NanoMolarity specieID="2ag"            value="0"     /> 
 
 	<!-- where did PKC quantity of 15 uM come from ???-->
-        <NanoMolarity specieID="Pkc"         value="1500"     />  
-        <NanoMolarity specieID="PkcCa"         value="0"     />  
+        <NanoMolarity specieID="Pkc"         value="1450"     />  
+        <NanoMolarity specieID="PkcCa"         value="50"     />  
         <NanoMolarity specieID="Pkct"         value="0"     />  
 
 <!-- cytosolic molecules -->
@@ -177,12 +181,15 @@
         <PicoSD specieID="GaiGTP"                 value="212" />
 
 <!-- membrane associated cyclases and PDE10 -->
-        <PicoSD specieID="AC"                     value="70" />
+        <PicoSD specieID="AC"                     value="40" />
         <PicoSD specieID="ACGas"                  value="0" />
         <PicoSD specieID="ACGasATP"               value="0" />
-	<PicoSD specieID="ACGai"                  value="334" />
+        <PicoSD specieID="ACCa"                   value="5" />
+        <PicoSD specieID="ACGas"                  value="0" />
+        <PicoSD specieID="ACGasATP"               value="5" />
+	<PicoSD specieID="ACGai"                  value="374" />
         <PicoSD specieID="ACGasGai"               value="0" />
-        <PicoSD specieID="ACGasGaiATP"            value="96" />
+        <PicoSD specieID="ACGasGaiATP"            value="76" />
         <PicoSD specieID="PDE10"                 value="90" />
         <PicoSD specieID="PDE10cAMP"             value="10" />
         <PicoSD specieID="PKAcPDE10"             value="0" />
@@ -193,8 +200,10 @@
 <!-- all are within 1 order of magnitude to Falkenburger except Pip2 of 2000.  Increase by 10x to fix, since Falkenburger lists other references with density estimates near his-->
         <PicoSD specieID="MgluR"              value="100"  />
         <PicoSD specieID="Gqabg"              value="500"     />
-        <PicoSD specieID="Plc"                value="200"    />
-        <PicoSD specieID="Pip2"               value="9600"  />
+        <PicoSD specieID="Plc"                value="180"    />
+        <PicoSD specieID="PlcCa"              value="6"    />
+        <PicoSD specieID="Pip2"               value="9586"  />
+        <PicoSD specieID="PlcCaPip2"          value="14"    />
 
         <PicoSD specieID="DagK"               value="280"  />
         <PicoSD specieID="Dgl"                value="720"  />
@@ -203,9 +212,9 @@
         <PicoSD specieID="PIkinase"           value="280"  />
         <PicoSD specieID="Ip3degPIk"          value="0"  />
  
-        <PicoSD specieID="PKA"                    value="888" />
-        <PicoSD specieID="PKAcAMP2"               value="106" />
-        <PicoSD specieID="PKAcAMP4"               value="6" />
+        <PicoSD specieID="PKA"                    value="800" />
+        <PicoSD specieID="PKAcAMP2"               value="190" />
+        <PicoSD specieID="PKAcAMP4"               value="10" />
         <PicoSD specieID="PKAc"                   value="0" />
         <PicoSD specieID="PKAr"                   value="0" />
    </SurfaceDensitySet>

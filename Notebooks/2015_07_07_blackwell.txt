@@ -1,0 +1,119 @@
+Lab Notebook for Blackwell, July 7, 2015
+
+NEXT STEPS (Thursday, July, 9 2015)
+1. Neves:
+java -jar /home/neuroware/stochdif/stochdif-3.0.0-2.jar Modelv3D1msn6.5umNO-GCcyt.xml
+(or create 3 more - PDE300, ACh 40 (PDE200&300)
+Create figure, compare to Neves and Castro (cAMP D1 vs D2) results, send update
+2. Bath application and Darpp32 ss
+For calcium, increase Calcium inject, Model_MSPNmerge0.9umCaB.xml 
+1. 10% increase in PP2A rates to level out Dp34
+2. prevent crazy high cAMP, Model_MSPNmerge0.9umDaB.xml
+   replace ACh?  desensitize receptor?  What did Lindskog do?
+
+------------------------------------------------------------------
+
+1. D1pathways, Model_MSPNmerge*umAdapt
+   Good Dp75, adjust IC and look at basal Gq pathways.  Why oscillations?  Evaluated fixeddt
+>>>>>>>>>> RESULTS, best Merged from 2015_07_02
+	Ca     CamCa2C CamCa2N CKCamCa4 PP2BCamCa4 PP2BCamCa2N/C PP2BCam
+0.9u	50     150     24      50	6	   170/1180	 3600
+1.5u	45     160     24      60	6	   160/1080	 3800
+	cAMP PKAc Dp34PP1 Dp34PP1PP2B Dp75 Dp75BPR72	Dp75B56d CDK5D32
+0.9um	20     3    1050    <3        12.5u  130	130	 620 (slower osc)
+1.5um	23     3-4  1200    3-6	      12.5u  130	130	 620 (osc)
+########CONCLUSIONS - good CDK5 to PP2A quantity, but why oscillating? - Adaptive issuesv
+How to get better Dp34 quantity? increase PP2A activity against Dp34PP1? but ensure that PP2B activity is 2/3 of stimulated response.
+
+----->run the ss sim using the PDE2=50 needed for the cAMP assay  - compare both dend diam
+	  Note that the cAMP assay used PDE10cyt=20 for soma, but PDE10cyt=45 for dend.
+	  PDE10sm=100, PDE10cyt=50, PDE2=50, CDK5=1um, PP2A=700nM each, PDE1=2000 (not sure why so large before)
+>>>>>>>>>> RESULTS (used fixed dt)
+	Ca     CamCa2C CamCa2N CKCamCa4 PP2BCamCa4 PP2BCamCa2N/C PP2BCam
+0.9u	86     190     30      60	13	   250/1700	 3000
+1.5u	81     190     28      65	12	   250/1700	 3000
+SIMILAR, Ca is higher than with adaptive.
+	cAMP PKAc Dp34PP1 Dp34PP1PP2B Dp75 Dp75BPR72	Dp75B56d CDK5D32
+0.9um	40   3	  2500	  5 and inc   12u  138		130	 750
+1.5um	40   3	  1400	  5-8	      13u  148		148
+SIMILAR
+	Dp34PP1BPR72/B56A  PP2Ac pPP2A Dp75PP2AC / pPP2A
+0.9um	20 / 5-20	   13	 5-30  15	 / 5-30		   
+1.5um	5-20/5-20	   15	 0-20  14	 / 0-20
+Slightly higher with 0.9u diameter, because higher PKA density (since PKA is sm)
+
+----->***increase PP2B rates 4x - back to rates in XPP model + Stim with Ca or Da at 60s
+	       Will need to continue to adjust calcium to get good intracellular value
+GOAL: Try to achieve good basal Dp34PP1 and also see decrease with Ca and inc with Da.
+If basal not good, try inc PP2A activity, but add in sims with PP2B blocked
+Find the papers with DARPP32 data to be matched.
+>>>>>>>>>> RESULTS (used fixed dt) - at 50-60s and 170-180s
+	Ca     CamCa2C CamCa2N CKCamCa4 PP2BCamCa4 PP2BCamCa2N/C PP2BCam
+Ca	WAY TOO HIGH, reduce drastically after 1st 100 ms
+Da	3000 uM - too high.  reduce by third
+
+	cAMP PKAc Dp34PP1 Dp34PP1PP2B Dp75 Dp75BPR72	Dp75B56d CDK5D32
+Ca	Both Dp34 and Dp75 decrease dramatically	
+Da	22   <5	  800 	   <10	    13u			
+
+In addition to changing stimulation,
+1. Increase PP2A activity against Dp34PP1 to lower basal a bit more - tenth of Dp31 rates
+2. Reduce ACh (slow Abuf injection) to allow for larger cAMP elevation with Da stim
+>>>>>>>>>> RESULTS (used fixed dt) - at 50-60s and 170-180s
+using 120/10/1:
+Ca	1.4p, 800, then < 200 - increase calcium a bit more, to 120/20/3
+
+	Da cAMP    	Dp34PP1		    Dp75
+Da	1uM 24n/60u	700n, inc to 4uM    dec slowly to 6 um 
+1. 10% increase in PP2A rates to level out Dp34
+
+----------------------------------------------------------------------------
+Summary of results and filenames from cAMPassay of 2015_07_02.
+Could not add an AKAR sensor, because no measures of affinity, much less kinetics of PKAc binding to AKAR.
+>>>>>>>>>>> Best Results (consider rerunning fixed dt to verify PDEs)
+10s: 15.66*10s, Abuf=0.48*5s,12s 	0.0   	14.6 uM	 38nM, begins steep decay after 60s
+1s: 15.66*10s, Abuf=0.48*5s,2s  	0.0   	2.0 uM	 36nM, decay to 20% in 1 min (too fast)
+0.3s: 31.32*5s, Abuf=0.48*5s,0.6ms 	0.0   	0.9 uM	 30 nM, decay within 40s
+0.1:  78.3*2s, Abuf:1.2*2s,0.2ms   	1.6   	0.18 uM	 9 nM, decay similar to 0.3s
+Files:
+Modelv3*_cAMPassayGapGiACh240-Da0.1.xml
+Modelv3*_cAMPassayGapGiACh240-Da0.3.xml
+Modelv3*_cAMPassayGapGiACh240-Da1.xml
+Modelv3*_cAMPassayGapGiACh240-Da10.xml
+IC_cAMPassayPDE1020_Abuf-ACh40.xml
+Morph6.5um.xml
+Rxn_cAMPassayDabufGapGiAbuf.xml
+---------------------------------------------------------------
+2. Neves - Modelv3D1msn6.5umNO-PDE2*-PDE10cyt45
+Re-do Neves to re-assess PDE2 needed for dend and soma
+>>>>>>>>>>>RESULTS - Previous
+						cAMPbas/stim cGMPbas/stim cAMPduringcGMP
+PDE10sm=100, PDE10cyt=50, PDE2=600dend, GCNO15  ~30/2u	    150/22u	 150C
+PDE10sm=100, PDE10cyt=50  PDE2=200soma, GCNO15 	~10/110n    84/7u	 70
+PDE10sm=100, PDE10cyt=50, PDE2=600soma, GCNO15	~10/110n    24/1.8u	 70
+Conclusion: PDE10cyt=50 is not too low BUT, cAMP still did not decrease below basal!!! higher cAMP basal? Try PDE10cyt=0 for both 1.5 and 6.5u radius.
+
+>>>>>>>>>>>RESULTS
+Modelv3D1msn*.5umNO-PDE2200-PDE10cyt0.xml	cAMPbas/stim cGMPbas/stim cAMPduringcGMP GCtot
+PDE10sm=100, PDE10cyt=0, PDE2=600dend, GCNO15  ~40/4u	    122/25u	 188n OK	335
+PDE10sm=100, PDE10cyt=0  PDE2=200soma, GCNO15 	~30/1.2u    90/8u	 135n Fine	68
+PDE10sm=100, PDE10cyt=0, PDE2=600soma, GCNO15	~20/1.2u    30/1.8u	 130n 		68
+
+Reduce PDE10sm to inc basal
+inc PDE2 more for dend, but not for soma
+Modelv3D1msn*.6umNO-PDE10sm80.xml		cAMPbas/stim cGMPbas/stim cAMPduringcGMP GCtot
+PDE10sm=80, PDE10cyt=0, PDE2=1000dend, GCNO15   SKIP THESE
+PDE10sm=80, PDE10cyt=0  PDE2=200soma, GCNO15 
+
+Alternatively,
+place GC in cytoplasm, will it work to have same PDE2s and PDE10s?
+IC_D1msnSS_GCcyt.xml - 100 GC tot, 200 PDE2 cyt, 80 PDE10 sm
+				cAMPbas/stim cGMPbas/stim cAMPduringcGMP GCtot
+1.5u Modelv3D1msn1.5umNO-GCcyt	45n/13u	     90n/25u	  600 (terrible)
+6.5u Modelv3D1msn6.5umNO-GCcyt	40n/1.8u     135n/14u	  120 (good)
+Conclusion: still need 600 PDE2sm for dend:
+IC_D1msnSS_GCcyt-PDE2600.xml
+1.5u Modelv3D1msn1.5umNO-GCcyt	42n/13u	     21n/3.7u	400 (not great)
+
+Work with 6.5u model a bit more - reduce reduce ACh to 60 or 40 for larger cAMP basal and stimulated? To saturate sensor as observed by Castro. Possibly with increased PDE2 to obtain better reduction (e.g. 300 or 400)
+IC_D1msnSS_GCcytACh60:

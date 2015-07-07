@@ -1,0 +1,16 @@
+<StimulationSet>
+
+    <!-- the injectionSite must match a regionLabel defined in the morphology -->
+  <InjectionStim specieID="Da" injectionSite="pointB">
+        <onset>               60000         </onset>
+        <duration>            100           </duration>
+        <rate>                7.0           </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Abuf" injectionSite="pointB">
+        <onset>               60000         </onset>
+        <duration>            1000           </duration>
+        <rate>                0.14           </rate>
+  </InjectionStim>
+
+</StimulationSet>
