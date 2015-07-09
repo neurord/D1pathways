@@ -1,0 +1,96 @@
+Lab Notebook for Blackwell, July 9, 2015
+
+NEXT STEPS
+1. Adjust parameters to tune cAMP assay to Polito using PKA phos of AC
+-->Params Ready.  If necc add phos of ACGasGaiATP
+
+2. Another Ca Bath:
+Conclusion: Adjust calcium stim more, reduce CDK5 (Dp75 20% too high), put back in AC with lower ACCa ATP binding rate
+-->Change params: CaStim 150/20/10, ACCaATP binding half, CDK50 20% lower
+Check affinity of PKA for PP2A (lower?) and Dp75 for PKA (higher?)
+Check PKA binding to D32 in the OA block - doesn't appear to be working.
+
+2. Incorporate this PKA phos of AC into Neves - will this reduce cAMP sufficiently
+3. Incorporate this PKA phos of AC into merged model - will this help the crazy high cAMP with bath applied DA?  If not, may need to desensitize receptor or reduce ACh less.
+
+---------------------------------------------------------------------------
+1.Neves - Modelv3D1msn6.5umNO-GCcyt, Modelv3D1msn1.5umNO-GCcyt
+Previous results:
+      ACh GC   PDE2   cAMPbas/stim  cGMPbas/stim  cAMPduringcGMP GCtot
+1.5u  80  100  600    42n/13u	    21n/3.7u	  400 (not great)
+6.5u  80  100  200    40n/1.8u      135n/14u	  120 (good)
+
+Lower ACh, and higher PDE2.  Maybe higher basal cAMP will be better:
+1.5u  40/31  100  800    79n/18u     67n/2u	550 (terrible)
+6.5u  60/52  100  200	 40n/2.2u    131n/16u	150
+6.5u  40/36  100  300    52n/3.4u    86n/8u	150
+
+Could reduce ACh still more, but would not help the 1.5u dend
+WHAT ABOUT PKAc phos of AC??? This might help reduce the cAMP.
+Create figure, compare to Neves and Castro (cAMP D1 vs D2) results, send update
+
+------------------------------------------------------------------
+2. Bath application and Darpp32 ss
+   prevent crazy high cAMP, Model_MSPNmerge0.9umDaB.xml:
+	replace ACh?  desensitize receptor?  PKA phos of AC?
+
+>>>>>>>>>> Ca Stim RESULTS (used fixed dt) - at 50-60s and 170-180s
+GOAL: 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+stim 	  PP2Akb/kcat PP2Bkcat peak  plateau, later	 Dp34PP1ss Dp75
+120/10/1   4.6/1.2    1.0      1.4p, 800, then < 200  	 700n
+120/20/3   5.6/1.4    1.0      1.4,1.2, 400->200	 >666n	
+120/20/3   5.6/1.4    1.0      1.4,1.2, 400->200	 >666n	   dec ~2 uM
+150/25/5   5.6/1.4  1.5,noACCa 2.0,2.5, 300		 dropping  dec ~3 uM
+Conclusion: Adjust calcium stim more, reduce CDK5 10% (Dp75 too high), put back in AC with lower ACCa ATP binding rate
+Dp75PKA is quite low ~6 - check affinity.  Why is pPP2A increasing.  PKA bound to PP2A ~8, which is high considering free PKAc.  Check affinity
+150/20/10 or 15
+>>>>>>>>Da Stim Results
+PP2Akb/kcat PP2Bkcat	Da    cAMP    	Dp34PP1		    Dp75
+5.6/1.4	    1.0		1uM   24n/60u	700n, inc to 4uM    dec slowly to 6 um 
+
+Phosphatase sims:
+Blocking PP2A increases Dp34 by 5x: Nishi J Neurochem 1999
+Blocking PP2B increases Dp34 by 17x: Nishi J Neurochem 1999
+Both occur VERY slowly, more than 30 minutes.  Also Dp34 increases in 0 calcium
+Nishi J Neurochem 2002 shows OA inc Dp34 (5x) more than CyA (3x)!!!
+Might be difference in basal calcium?  3x in for Dp75 with OA, not CyA (60 min)
+Create Rxn files with PP2A or PP2B blocked. Use with non-stim Model files
+       	   	      	      	   	   Dp34PP1  	      Dp75
+Model_MSPNmerge0.9um-Block1.xml (OA)	   4000 (too much)   slow dec  
+Model_MSPNmerge0.9um-Block2.xml (CyA)	   1500 (OK)	     slow dec
+Block1.xml (OA), noACCa, PP2Bkcat=1.5  	   dec (too little!) inc to 45uM, but too fast
+Block2.xml (CyA), noACCa,PP2Bkcat=1.5 	   1000	      	     NoChange
+Back off PP2B kcat - to ~1.2 to prevent slow decrease. Replace ACCa for same reason?
+PP2B dephos rate is same for Dp34 and Dp34PP1.  How can this be increased?  Must increase the rates, but how to justify?  Calcium already is ~80, so cannot increase further.
+Slow dec of Dp75 not necessarily bad since only simulation 100s.
+Why does Dp75pPP2A increase with Ca?  Look at PKAc PKAcPP2A and pPP2A.  All are increasing, including cAMP. Ca is driving the increased ACGasCaATP, which has 50% activity.  No change in ACGasATP activity!  Why did Rodrigo not see this (maybe he did?)  For now, eliminate this reaction.
+
+Repeat all 3 sims with
+   A. higher PP2B dephos rate (kf=1.5e-3/sec)
+   B. no ACCa forms (later, can try to lower AC-Ca or ACCA-Gas binding.
+----------------------------------------------------------------------------
+3. cAMp assay
+Polito et al. 2013 shows that 10s FSK produces transient cAMP response:
+peak within 50 sec, and significant decay (<50% of peak) by 200 s.  This cannot be due to receptor desensitization, etc.  Mostly due to PDEs, because IBMX mostly eliminates this decline.  The existence of some decline implies another mechanisms, e.g. PKA phos of AC.
+
+NEXT cAMP ASSAY: add in PKA phos of AC5, first try zero activity.  Then, severely reduce ACh replacement.  Use Da10 simulation
+What if GaiGTP hydrolysis were faster?  There would be less ACGai and less ACGasGaiATP, this would allow more ACGas.  Then, the Gap for ACGas might be more appropriate.
+PKA phos of AC must be faster than PDE10, else it won't limit the peak.
+1. 3x faster GaiGTP hydrolysis - same rate as Gas
+2. Gap for ACGas - esp since it may now be higher than previously
+3. Reduced ACh replacement.  Begin with 0.24
+
+Modelv3dt_cAMPassayPKAphosAC: 10s Da: 15.66*10s, Abuf=0.2*5s,12s 
+IO_cAMPassayPKAcAC
+IC_cAMPassay6.5uPKAcAC
+Rxn_cAMPassayPKAphosAC
+Morph6.5um.xml
+
+Results:   AC  ACGasATP pAC pACGasATP ACGasGaiATP ACGasGai cAMPb/p   
+phos=	   50  2	16  0	      24	  0	   80 / 45 uM, transient
+
+ACh stays at 0, pPDE10 increases minimally.
+1. Inject less Abuf and more ACh
+2. Faster AC phos
+	   
+---------------------------------------------------------------

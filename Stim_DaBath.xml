@@ -13,4 +13,10 @@
         <rate>                0.14           </rate>
   </InjectionStim>
 
+  <InjectionStim specieID="ACh" injectionSite="pointB">
+        <onset>               60000         </onset>
+        <duration>            1000           </duration>
+        <rate>                0.14           </rate>
+  </InjectionStim>
+
 </StimulationSet>

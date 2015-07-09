@@ -673,48 +673,6 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-<!-- Now, those involving AC with Ca attached: -->
-    <!--0b. AC + Ca    <-> ACCa     (in xpp: k9=0.001 k_9=0.9), 900 nM -->
-<!--    <Reaction name = "ACCa reac" id="ACCaid">
-        <Reactant specieID="AC"                     />
-        <Reactant specieID="Ca"                     />
-        <Product  specieID="ACCa"                   />
-
-        <forwardRate> 0.001e-03     </forwardRate>
-        <reverseRate> 0.9e-03       </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
--->   <!--1b. GasGTP + ACCa  <-> ACGas(GTP)Ca  (slowed down from xpp: k6_2=0.0192, k_6_2=25; same as AC) -->
-<!--    <Reaction name = "ACGasCa reac" id="ACGasCaid">
-        <Reactant specieID="GasGTP"                  />
-        <Reactant specieID="ACCa"                   />
-        <Product  specieID="ACGasCa"              />
-
-        <forwardRate> 0.00037e-03 </forwardRate>
-        <reverseRate> 0.1e-03        </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
--->    <!--2b. ACGas(GTP)Ca + ATP  <-> ACGas(GTP)CaATP      -->
-<!--    <Reaction name = "ACGasCaATP reac" id="ACGasCaATPid">
-        <Reactant specieID="ACGasCa"              />
-        <Reactant specieID="ATP"                    />
-        <Product  specieID="ACGasCaATP"           />
-
-        <forwardRate> 0.0638e-06 </forwardRate>
-        <reverseRate> 0.1306e-03    </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
--->    <!--3b. ACGas(GTP)CaATP  <-> cAMP + ACGas(GTP)Ca  -->
-<!--    <Reaction name = "ACGasCa+ATP<->cAMP+ACGasCa reac" id="ACGasCa+ATP<->cAMP+ACGasCaid">
-        <Reactant specieID="ACGasCaATP"           />
-       <Product  specieID="cAMP"                   />
-        <Product  specieID="ACGasCa"              />
-
-        <forwardRate> 14.23e-03     </forwardRate>
-        <reverseRate> 0.1296e-06 </reverseRate>
-        <Q10>         0.2           </Q10>
-    </Reaction>
--->
 <!--VI. *****************PDE1 *******************************-->
     <!--1. PDE1 + CamCa4  <-> PDE1CamCa4           (in xpp: KfpdeCam=0.1, KbpdeCam=1) -->
     <Reaction name = "PDE1+CamCa4--PDE1CamCa4" id="PDE1+CamCa4--PDE1CamCa4_id">
@@ -1342,7 +1300,7 @@ MUCH slower binding compared to CaDgl  -->
     </Reaction>
 
     <!-- ******* PP2B dephos of DARPP32 *********** -->
-    <!-- Dp34 + PP2BCamCa4  <-> Dp34PP2BCamCa4   King et al. 1984 Km=1.6uM -->
+    <!-- Dp34 + PP2BCamCa4  <-> Dp34PP2BCamCa4    King et al. 1984 Km=1.6uM -->
     <Reaction name = "Dp34+PP2BCamCa4--Dp34PP2BCamCa4 reac" id="Dp34+PP2BCamCa4--Dp34PP2BCamCa4_id">
         <Reactant specieID="Dp34"                   />
         <Reactant specieID="PP2BCamCa4"             />
@@ -1353,7 +1311,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- Dp34PP2BCamCa4     -> D32 + PP2BCamCa4   King, Hemmings: Vmax =0.2-1/sec-->
+    <!-- Dp34PP2BCamCa4     -> D32 + PP2BCamCa4   King, Hemmings: Vmax =0.2-1/sec -->
     <Reaction name = "Dp34PP2BCamCa4--PP2BCamCa4+D32 reac" id="Dp34PP2BCamCa4--PP2BCamCa4+D32_id">
         <Reactant specieID="Dp34PP2BCamCa4"         />
         <Product  specieID="PP2BCamCa4"             />
@@ -1407,7 +1365,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP2ABPR72"             />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.014           </forwardRate>
+        <forwardRate> 0.0           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1431,7 +1389,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP2AB56d"              />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.014           </forwardRate>
+        <forwardRate> 0.0           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1456,7 +1414,7 @@ MUCH slower binding compared to CaDgl  -->
 	<Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0014          </forwardRate>
+        <forwardRate> 0.00          </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1481,7 +1439,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0014         </forwardRate>
+        <forwardRate> 0.00         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1541,7 +1499,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="D32"            />
         <Product  specieID="pPP2A"          />
 
-        <forwardRate> 42e-3           </forwardRate>
+        <forwardRate> 0e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1565,7 +1523,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="D32"                    />
         <Product  specieID="PP2ABPR72"             />
 
-        <forwardRate> 21e-3           </forwardRate>
+        <forwardRate> 0e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1589,7 +1547,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="D32"                    />
         <Product  specieID="PP2AB56d"              />
 
-        <forwardRate> 21e-3           </forwardRate>
+        <forwardRate> 0e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1613,7 +1571,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP2AC"              />
         <Product  specieID="D32"                />
 
-        <forwardRate> 42e-3           </forwardRate>
+        <forwardRate> 0e-3           </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
