@@ -26,10 +26,10 @@
       	<NanoMolarity specieID="CamCa4"       value="0"/>
 
 <!-- Dopamine, ACh, Glu and their buffers: cytosolic molecules -->
-        <NanoMolarity specieID="Da"              value="7" />
+        <NanoMolarity specieID="Da"              value="10" />
         <NanoMolarity specieID="Dabuf"           value="0" />
         <NanoMolarity specieID="buf"             value="0" />
-	<NanoMolarity specieID="ACh"             value="40" />
+	<NanoMolarity specieID="ACh"             value="60" />
         <NanoMolarity specieID="AChbuf"          value="0" />
         <NanoMolarity specieID="Abuf"            value="0" />
 	<NanoMolarity specieID="Glu"             value="0"     />   
@@ -142,8 +142,8 @@
         <NanoMolarity specieID="Dp34PP2AB56d"        value="0" />
         <NanoMolarity specieID="Dp34PP1PP2ABPR72"    value="0" />
         <NanoMolarity specieID="Dp34PP1PP2AB56d"     value="0" />
-        <NanoMolarity specieID="Cdk5"                 value="400" />
-        <NanoMolarity specieID="Cdk5D32"              value="400" />
+        <NanoMolarity specieID="Cdk5"                 value="420" />
+        <NanoMolarity specieID="Cdk5D32"              value="420" />
         <NanoMolarity specieID="Dp75"                 value="11600" />
         <NanoMolarity specieID="Dp75PKA"              value="0" />
         <NanoMolarity specieID="Dp75PP2ABPR72"       value="180" />
@@ -187,6 +187,10 @@
         <PicoSD specieID="ACCa"                   value="0" />
         <PicoSD specieID="ACCaGas"                value="0" />
         <PicoSD specieID="ACCaGasATP"             value="0" />
+        <PicoSD specieID="pAC"                     value="0" />
+        <PicoSD specieID="pACGas"                  value="0" />
+        <PicoSD specieID="pACGasATP"               value="0" />
+        <PicoSD specieID="PKAcACGasATP"            value="0" />
 	<PicoSD specieID="ACGai"                  value="374" />
         <PicoSD specieID="ACGasGai"               value="0" />
         <PicoSD specieID="ACGasGaiATP"            value="76" />

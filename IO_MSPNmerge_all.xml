@@ -60,6 +60,7 @@
 <!-- mACh m4 associated membrane molecules -->
     <OutputSpecie name="Abuf"/>
     <OutputSpecie name="ACh"/>
+    <OutputSpecie name="AChbuf"/>
     <OutputSpecie name="m4R"/>
     <OutputSpecie name="AChm4R"/>
     <OutputSpecie name="Giabg"/>
@@ -71,6 +72,10 @@
     <OutputSpecie name="AC"/>
     <OutputSpecie name="ACGas"/>
     <OutputSpecie name="ACGasATP"/>
+    <OutputSpecie name="pAC"/>
+    <OutputSpecie name="pACGas"/>
+    <OutputSpecie name="pACGasATP"/>
+    <OutputSpecie name="PKAcACGasATP"/>
     <OutputSpecie name="ACCa"/>
     <OutputSpecie name="ACGasCa"/>
     <OutputSpecie name="ACGasCaATP"/>
@@ -163,7 +168,7 @@
     <OutputSpecie name="Dp34PP1PP2AB56d"/>
 
     <OutputSpecie name="Cdk5"/>
-    <OutputSpecie name="CDK5D32"/>
+    <OutputSpecie name="Cdk5D32"/>
     <OutputSpecie name="Dp75"/>
     <OutputSpecie name="Dp75PKA"/>
     <OutputSpecie name="Dp75PP2ABPR72"/>

@@ -70,16 +70,16 @@
         <PicoSD specieID="GaiGTP"                 value="50" />
 
 <!-- membrane associated cyclases ACtot=500-->
-        <PicoSD specieID="AC"                     value="100" />
+        <PicoSD specieID="AC"                     value="130" />
         <PicoSD specieID="ACGas"                  value="0" />
         <PicoSD specieID="ACGasATP"               value="0" />
-        <PicoSD specieID="pAC"                     value="40" />
+        <PicoSD specieID="pAC"                     value="20" />
         <PicoSD specieID="pACGas"                  value="0" />
         <PicoSD specieID="pACGasATP"               value="0" />
         <PicoSD specieID="PKAcACGasATP"            value="0" />
 	<PicoSD specieID="ACGai"                  value="270" />
         <PicoSD specieID="ACGasGai"               value="0" />
-        <PicoSD specieID="ACGasGaiATP"            value="90" />
+        <PicoSD specieID="ACGasGaiATP"            value="80" />
 
         <PicoSD specieID="PDE10"                  value="90" />
         <PicoSD specieID="PDE10cAMP"              value="10" />

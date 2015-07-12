@@ -3,9 +3,9 @@
     <!-- this file defines a single run of the calculation, using morphology and 
 	 reaction data brought in from other files --> 
 
-          <xi:include href="Rxn_MSPNmerge.xml" />
+          <xi:include href="Rxn_MSPNmergePKAcAC.xml" />
           <xi:include href="Morph0.9um.xml" />
-	  <xi:include href="IC_MSPNmergeDend.xml" />       
+	  <xi:include href="IC_MSPNmergeDendPKAcAC.xml" />       
           <xi:include href="IO_MSPNmerge_all.xml" />
           <xi:include href="Stim_CaBath.xml" />
 

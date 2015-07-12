@@ -169,7 +169,7 @@
 
 <!-- Dp75 -->
     <Specie name="Cdk5"              id="Cdk5"          kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="CDK5D32"           id="CDK5D32"       kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Cdk5D32"           id="Cdk5D32"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Dp75"              id="Dp75"          kdiff="8.8"   kdiffunit="mu2/s"/>
     <Specie name="Dp75PKA"           id="Dp75PKA"       kdiff="6.8"   kdiffunit="mu2/s"/>
     <Specie name="Dp75PP2ABPR72"    id="Dp75PP2ABPR72"  kdiff="0"   kdiffunit="mu2/s"/>
@@ -684,7 +684,7 @@
         <reverseRate> 0.9e-03       </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
--->   <!--1b. GasGTP + ACCa  <-> ACGas(GTP)Ca  (slowed down from xpp: k6_2=0.0192, k_6_2=25; same as AC) -->
+-->   <!--1b. GasGTP + ACCa  <-> ACGas(GTP)Ca  (slowed down from xpp: k6_2=0.0192, k_6_2=25) -->
 <!--    <Reaction name = "ACGasCa reac" id="ACGasCaid">
         <Reactant specieID="GasGTP"                  />
         <Reactant specieID="ACCa"                   />
@@ -695,7 +695,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 -->    <!--2b. ACGas(GTP)Ca + ATP  <-> ACGas(GTP)CaATP      -->
-<!--    <Reaction name = "ACGasCaATP reac" id="ACGasCaATPid">
+<!--        <Reaction name = "ACGasCaATP reac" id="ACGasCaATP1id">
         <Reactant specieID="ACGasCa"              />
         <Reactant specieID="ATP"                    />
         <Product  specieID="ACGasCaATP"           />
@@ -704,8 +704,8 @@
         <reverseRate> 0.1306e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
--->    <!--3b. ACGas(GTP)CaATP  <-> cAMP + ACGas(GTP)Ca  -->
-<!--    <Reaction name = "ACGasCa+ATP<->cAMP+ACGasCa reac" id="ACGasCa+ATP<->cAMP+ACGasCaid">
+-->   <!--3b. ACGas(GTP)CaATP  <-> cAMP + ACGas(GTP)Ca  -->
+<!--    <Reaction name = "ACGasCaATP<->cAMP+ACGasCa reac" id="ACGasCaATP2id">
         <Reactant specieID="ACGasCaATP"           />
        <Product  specieID="cAMP"                   />
         <Product  specieID="ACGasCa"              />
@@ -803,7 +803,7 @@ at=18x source: WadaJBiolChem262-5139   -->
     </Reaction>
 
     <!--VIII. *****************PKAc phosphorylation of PDE10 *******************************-->
-<!-- slower than previous,  E.g. 100x based on A. Chay and cAMP decay -->
+<!-- slower than previous,  E.g. 100x based on A. Chay and cAMP decay. Km=120nM-->
     <!--1a. PKAc + PDE10 -> PKAcPDE10 -->
     <Reaction name = "PDE10 phosp1" id="phospPDE101">
         <Reactant specieID="PKAc"                   />
@@ -1264,7 +1264,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2           </Q10>
     </Reaction>
 
-   <!--PKAc + PP2AB56d    <->  PKAcPP2AB56d       (in xpp: k27=0.0025 k_27=0.3) -->
+   <!--PKAc + PP2AB56d    <->  PKAcPP2AB56d    Km=172nM  (in xpp: k27=0.0025 k_27=0.3) -->
     <Reaction name = "PKAc+PP2A--PKAcPP2AB56d reac" id="PKAc+PP2A--PKAcPP2AB56d_id">
         <Reactant specieID="PP2AB56d"          />
         <Reactant specieID="PKAc"               />
@@ -1308,7 +1308,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2              </Q10>
     </Reaction>
 
-    <!-- D32 + PKAc    <-> D32PKA           (in xpp: k20=0.0027 k_20=8 v20=2, Kd=) -->
+    <!-- D32 + PKAc    <-> D32PKA      Km=3.7uM    (in xpp: k20=0.0027 k_20=8 v20=2, Kd=) -->
     <Reaction name = "D32+PKAc--D32PKA reac" id="D32+PKAc--D32PKA_id">
         <Reactant specieID="D32"                    />
         <Reactant specieID="PKAc"                   />
@@ -1487,21 +1487,21 @@ MUCH slower binding compared to CaDgl  -->
     </Reaction>
 
 <!-- phos D32 on T75, which then inhibits PKAc -->
-    <!-- Cdk5   +   D32  <->    CDK5D32     (in xpp: k23=0.00045 k_23=2) -->
-    <Reaction name = "Cdk5+D32--CDK5D32 reac" id="Cdk5+D32--CDK5D32_id">
+    <!-- Cdk5   +   D32  <->    Cdk5D32     (in xpp: k23=0.00045 k_23=2) -->
+    <Reaction name = "Cdk5+D32--Cdk5D32 reac" id="Cdk5+D32--Cdk5D32_id">
         <Reactant specieID="Cdk5"               />
         <Reactant specieID="D32"                />
-        <Product  specieID="CDK5D32"            />
+        <Product  specieID="Cdk5D32"            />
 
         <forwardRate> 0.0045e-03     </forwardRate>
         <reverseRate> 40e-3        </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!-- CDK5D32        -> Dp75 + Cdk5 (in xpp: v23=0.5) -->
+    <!-- Cdk5D32        -> Dp75 + Cdk5 (in xpp: v23=0.5) -->
     <!-- rates adjusted to achieve x uM Dp75 at basal -->
-    <Reaction name = "CDK5D32--Dp75+Cdk5 reac" id="CDK5D32--Dp75+Cdk5_id">
-        <Reactant specieID="CDK5D32"            />
+    <Reaction name = "Cdk5D32--Dp75+Cdk5 reac" id="Cdk5D32--Dp75+Cdk5_id">
+        <Reactant specieID="Cdk5D32"            />
         <Product  specieID="Dp75"               />
         <Product  specieID="Cdk5"               />
 
@@ -1510,7 +1510,7 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>         0.2             </Q10>
     </Reaction>
 
-    <!--Dp75  +  PKAc  <->  DP75PKA   (in xpp: k24=0.00037 k_24=1) -->
+    <!--Dp75  +  PKAc  <->  DP75PKA   (in xpp: k24=0.00037 k_24=1) Kd=2.7uM -->
     <Reaction name = "Dp75+PKAc--Dp75PKA reac" id="Dp75+PKAc--Dp75PKA_id">
         <Reactant specieID="Dp75"               />
         <Reactant specieID="PKAc"               />

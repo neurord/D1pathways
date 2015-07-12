@@ -1,0 +1,87 @@
+Lab Notebook for Blackwell, July 12, 2015
+NEXT STEPS
+1. In Merged, increase ACh to 60 to have better basal cAMP, eliminate basal pAC
+   Keep Ca stim -very nice response
+   Da Stim: replace ACh much later and slower
+   Dp75 a bit too low, increase Cdk5 from 800 to 840
+--> Sims ready to go.  Repeat all.
+2. Do not do any more cAMP assays, unless to calculate Epac1 binding
+3. Incorporate this PKA phos of AC into Neves - will this reduce cAMP sufficiently?
+--------------------------------------------------------------------------
+
+1. Adjust parameters to tune cAMP assay to Polito using PKA phos of AC
+Polito et al. 2013 shows that 10s FSK produces transient cAMP response
+Sensor has affinity of 4.4 uM, so 25 uM will barely saturate it.
+peak within 50 sec, and significant decay (<50% of peak) by 200 s.
+>>>>>>>>RESULTS
+Modelv3dt_cAMPassayPKAphosAC-Da10: 15666*10ms, Abuf=10ms*200, ACh=0.36*5000
+Modelv3dt_cAMPassayPKAphosAC-Da0.1: 15666*10ms, Abuf=10ms*200, ACh=0.9*2000
+phos rate: kf=1.25e-6,kb=0.12e-3,kcat=0.03e-03 (Doubled); GaiGTP hydrolysis =1.0e-3
+Results:   AC  pACb/p pACGasATP ACGasGaiATP cAMPb/p   
+DA10	   50  	8/18  0/2.5      22/80	    80 / 25 uM, transient
+
+---->ACh returns to level slightly lower than before.  Still increases and returns quite quickly.  But pAC seems good. Transient was half compared to previous.
+Slow down Abuf injection by half and ACh replacement by half:
+     	  AC  pACb/p pACGasATP ACGasGaiATP cAMPb/p  delta peak time   PKAc/begin dec
+DA0.1	  50  4/6     0.7     	    22     50/5.7u   10s       	      59n/20s
+Da0.3	  50  4/9.4   2 	    22     50/7.7u   11s	      59n/30s
+Da1.0	  50  4/14   2.6	    22     50/16.4u  16.5s	      60n/44s
+Da10.0	  50  4/17   3.0	    22     50/29u    24s	      63n/57s
+
+Basal ACh and AChm4RGi return to slightly higher values.
+Basal cAMP is good: between 46 and 76.  Basal pAC still too high - make zero if re-reun.
+Could also slow down Da provision or ACh-Abuf binding to slow down and lower the increase?  But that would decrease the cAMP peak.  Adding epac1 might slow things down.
+------------------------------------------------------------------
+2. Merged Model
+?????Should GaiGTP hydrolysis be increased to 1.0e-3????? same as cAMP assay
+###2A. Ca Bath: Model_MSPNmerge0.9umCaB.xml:
+GOAL: 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+Cdk5 20% lower (800, instead of 1000):
+>>>>>>>>>> Ca Stim RESULTS (used fixed dt) - at 50-60s and 170-180s
+stim 	  PP2Akb/kcat PP2Bkcat 	    Ca          ACGasGaiATP cAMP Dp34PP1ss Dp75
+150/25/5   5.6/1.4  1.5,noACCa 	    2.0,2.5,300   x 	     x     dec 	~3 uM
+150/20/10  5.6/1.4  1.5,noACCa 	    2.2,1.5,700   dec 80     20	 300->180  11uM->7uM
+150/25/15  11.2/2.8  1.5,noACCa,Da10 2.0,2.4,1.0  dec 80     20	 
+
+Dp75 is pretty good.  Try even more calcium: 150/25/15
+Dp34: need to fix cAMP.  Why is ACGasGaiATP lower?  Need higher ACh? or higher Da?
+
+###2B. Da Bath: Model_MSPNmerge0.9umDaB.xml:
+GOAL: increase in Dp34, Dp75:
+>>>>>>>>Da Stim Results (fixed dt, PKA phos AC)
+PP2Akb/kcat PP2Bkcat	     Da    cAMP    	Dp34PP1		  Dp75
+5.6/1.4	    1.5,noACCa	     1uM   24n/60u	700n, inc to 4uM  dec slowly to 6 um 
+11.2/2.8    1.5,noACCa,Da10  1uM   20/120nM	180n, inc to 800  dec slightly
+SOMETHING WRONG!!! Transient cAMP increase with Da. No GasGTP, DaD1RGs, or DaD1R increase apparent despite 1 uM dopamine.  Not due to AC phosphorylation.
+Basal cAMP too low, increase ACh to 60 for all sims
+Maybe Gbg is too high? NOPE.
+Gbg:1600 GasGTP:6, GaiGTP=430, ACGai=850, ACGasGaiATP=160 (320), total Ga=1600
+GsD1R: 437, DaD1RGs=3 Gsabg=3880 = 4320
+AChm4RGi=130,Gim4R=300, Giabg=2600 = 4030
+PROBLEM: replacing ACh too fast.  Replace it 40s later, over 20 s.
+
+NEXT: Replace ACh later, ACh=60 for better basal Dp34PP1
+
+###2C. CyA and OA with Cdk5 20% lower  (800, instead of 1000):
+GOALS:
+Okadaic Acid increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+Cyclosporin A increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur VERY slowly, more than 30 minutes.  Also Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+>>>>>>RESULTS(noACCa, PP2Bkcat=1.5)
+       	   	      ACGasGaiATP cAMP 	   Dp34PP1  	      Dp75	
+Block1.xml (OA)	      dec 80	  dec 20   dec to 100       inc 12uM->45uM
+Block2.xml (CyA)      dec 80	  dec 20   inc 400->800     sl dec 12->10uM
+
+** Inc in Dp34PP1 with CyA is nice.  Could be bigger, and possibly slower.
+** Inc in Dp75 with OA is good magnitude but too fast - possibly due to drug permeation and binding?
+ ** Dp34PP1 decreases with OA because cAMP and PKA are too low.  No dec with CyA because have no PP2B
+---> Fix cAMP basal by increasing Da basal to 10? Possibly ACh to 60 with faster GaiGTP hydrolysis (faster GaiGTP consistent with cAMP assay)
+Slight increase in PP2A rates against Dp34PP1 (2x, so that 20% of rates against Dp34) This may compensate for higher basal PKAc phos of D32
+>>>>>>RESULTS(noACCa, PP2Bkcat=1.5, PP2AKb/Kcat=11.2/2.8, Da=10):
+cAMP still way too low, so PKAc and Dp34PP1 are way too low.  
+       	   	      ACGasGaiATP cAMP 	   Dp34PP1  	      Dp75	
+Block1.xml (OA)	      		  
+Block2.xml (CyA)
+------------------------------------------------------------------
+

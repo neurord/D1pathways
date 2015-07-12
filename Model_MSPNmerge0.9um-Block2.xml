@@ -5,7 +5,7 @@
 
           <xi:include href="Rxn_MSPNmergeCyA.xml" />
           <xi:include href="Morph0.9um.xml" />
-	  <xi:include href="IC_MSPNmergeDend.xml" />       
+	  <xi:include href="IC_MSPNmergeDendPKAcAC.xml" />       
           <xi:include href="IO_MSPNmerge_all.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
