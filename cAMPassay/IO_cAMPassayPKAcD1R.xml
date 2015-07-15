@@ -1,0 +1,60 @@
+<OutputScheme>
+  <OutputSet filename = "all"  dt="100.0">
+    <OutputSpecie name="Da"/>
+    <OutputSpecie name="ACh"/>
+    <OutputSpecie name="buf"/>
+    <OutputSpecie name="Dabuf"/>
+    <OutputSpecie name="Abuf"/>
+    <OutputSpecie name="AChbuf"/>
+
+ <!-- D1 associated membrane molecules -->
+    <OutputSpecie name="D1R"/>
+    <OutputSpecie name="Gsabg"/>
+    <OutputSpecie name="DaD1R"/>
+    <OutputSpecie name="GsD1R"/>
+    <OutputSpecie name="DaD1RGs"/>
+    <OutputSpecie name="pDaD1RGs"/>
+    <OutputSpecie name="PKAcDaD1RGs"/>
+    <OutputSpecie name="GasGTP"/>
+    <OutputSpecie name="GasGDP"/>
+    <OutputSpecie name="Gbg"/>
+
+<!-- mACh m4 associated membrane molecules -->
+    <OutputSpecie name="m4R"/>
+    <OutputSpecie name="AChm4R"/>
+    <OutputSpecie name="Giabg"/>
+    <OutputSpecie name="AChm4RGi"/>
+    <OutputSpecie name="Gim4R"/>
+    <OutputSpecie name="GaiGTP"/>
+    <OutputSpecie name="GaiGDP"/>
+
+<!--membrane cyclase enzymes -->
+    <OutputSpecie name="AC"/>
+    <OutputSpecie name="ACGas"/>
+    <OutputSpecie name="ACGasATP"/>
+    <OutputSpecie name="ACGai"/>
+    <OutputSpecie name="ACGasGai"/>
+    <OutputSpecie name="ACGasGaiATP"/>
+
+    <OutputSpecie name="ATP"/>
+    <OutputSpecie name="cAMP"/>
+    <OutputSpecie name="AMP"/>
+
+    <OutputSpecie name="PDE10"/>
+    <OutputSpecie name="PDE10cAMP"/>
+    <OutputSpecie name="PKAcPDE10"/>
+    <OutputSpecie name="PKAcPDE10cAMP"/>
+    <OutputSpecie name="pPDE10"/>
+    <OutputSpecie name="pPDE10cAMP"/>
+    <OutputSpecie name="PDE2"/>
+    <OutputSpecie name="PDE2cAMP"/>
+    <OutputSpecie name="PDE2cAMP2"/>
+
+    <OutputSpecie name="PKA"/>
+    <OutputSpecie name="PKAcAMP2"/>
+    <OutputSpecie name="PKAcAMP4"/>
+    <OutputSpecie name="PKAc"/>
+    <OutputSpecie name="PKAr"/>
+</OutputSet>
+
+</OutputScheme>

@@ -4,19 +4,19 @@
   <InjectionStim specieID="Da" injectionSite="pointB">
         <onset>               60000         </onset>
         <duration>            100           </duration>
-        <rate>                7.0           </rate>
+        <rate>                6.5           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Abuf" injectionSite="pointB">
         <onset>               60000         </onset>
         <duration>            1000           </duration>
-        <rate>                0.14           </rate>
+        <rate>                0.05           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="ACh" injectionSite="pointB">
         <onset>               100000         </onset>
         <duration>            20000         </duration>
-        <rate>                0.007         </rate>
+        <rate>                0.0025         </rate>
   </InjectionStim>
 
 </StimulationSet>

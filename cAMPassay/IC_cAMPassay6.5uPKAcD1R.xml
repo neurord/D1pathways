@@ -56,6 +56,8 @@
         <PicoSD specieID="Gsabg"                     value="1747" />
         <PicoSD specieID="DaD1RGs"                   value="1" />
         <PicoSD specieID="GsD1R"                     value="197" />
+        <PicoSD specieID="pDaD1RGs"                  value="0" />
+        <PicoSD specieID="PKAcDaD1RGs"               value="0" />
         <PicoSD specieID="GasGDP"                    value="0" />
         <PicoSD specieID="GasGTP"                    value="1" />
         <PicoSD specieID="Gbg"                       value="411" />
@@ -70,13 +72,9 @@
         <PicoSD specieID="GaiGTP"                 value="50" />
 
 <!-- membrane associated cyclases ACtot=500-->
-        <PicoSD specieID="AC"                     value="130" />
+        <PicoSD specieID="AC"                     value="150" />
         <PicoSD specieID="ACGas"                  value="0" />
         <PicoSD specieID="ACGasATP"               value="0" />
-        <PicoSD specieID="pACGasATP"              value="0" />
-        <PicoSD specieID="PKAcACGasATP"           value="0" />
-        <PicoSD specieID="pAC"                    value="20" />
-        <PicoSD specieID="pACGas"                 value="0" />
 	<PicoSD specieID="ACGai"                  value="270" />
         <PicoSD specieID="ACGasGai"               value="0" />
         <PicoSD specieID="ACGasGaiATP"            value="80" />
