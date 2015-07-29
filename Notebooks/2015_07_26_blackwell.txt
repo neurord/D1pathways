@@ -1,0 +1,80 @@
+Lab Notebook for Blackwell, July 26, 2015
+
+Next steps
+!!!!No more Hippo or cAMP assay!!!!
+1. Run Neves/D2msn, with PP2A and PKAc phos of PP2A to Neves (2 sims READY)
+Possibly repeat Neves/D1msn with lower PDE10 dephos (depending on cAMP in D2)
+Prepare Figures: cAMP, cGMP, PDE2 forms, phosphoD1 form, possibly pPDE10 and pPP2A
+
+2. Run the PP2 inhibitor sims for merged model  (2 sims READY)
+Use results to guide adjustment of phosphatase activity of Dp34 to achieve better basal, and possibly slower dephosphorylation rate
+
+1. cAMP assay
+>>>>>>>>>>a. with 20% less Abuf: Abuf=60x20ms, ACh=0.12*10s
+     	  pDaD1RGs DaD1RGs ACGasATP    cAMPb/p  tpeak   PKAc/begin dec
+DA0.1	  0/5.6    35	    1.3/30     63n/5.4 	 30.3    57	   40s (20)
+Da0.3	  0/8      46	    1.3/42     63/8.9    30.7	 63	   58s (38)
+Da1.0	  0/17     54	    1.3/49     63/13.8	 33.3	 63.5	   66s (42)
+Da10.0	  0/29     55 	    1.3/57     63/28.9   41.9	 65.4	   85s (60)
+GOOD: ACh drops to zero only for Da=10, Abuf returns to zero for all stimuli, ACh returns to near 40 for all stimuli.
+Slightly smaller cAMP peaks. Only Da10 should saturate sensor, though Da1.0 will be close to saturation. PKAc slightly smaller for Da0.1, but all the others have same peak.  Longer Da produces later PKAc decay. pPDE10 still building up at 100 s - perhaps better measure of AKAR signal.
+Keep this set of stimuli, and compare to alternative GAP:
+>>>>>>>>>>b. Gap activity of ACGasGaiATP (with 20% less Abuf), instead of ACGasATP
+     	  pDaD1RGs DaD1RGs ACGasATP    cAMPb/p  tpeak   PKAc/begin dec
+DA0.1	  0/5.6    35	    1.3/30     97n/14 	 	~61
+Da0.3	  0/8      46	    1.3/42     97/20     	~61
+Da1.0	  0/17     54	    1.3/49     97/27	 	~61
+Da10.0	  0/29     55 	    1.3/57     97/60	 	~61
+THESE ARE TERRIBLE!
+
+2. Continue adjusting merged model 
+>>>>>> b. Stimulated Dp34: replace phospho AC with phospho DaD1RGs- 2 sims ready
+      cAMP too high from stimulation: decrease Abuf injection to avoid 3x excess
+      Not enough decrease in Dp34 and Dp75 with calcium: increase calcium injection during 3d period from 15 to 20
+      cAMP too high from stimulation: decrease Abuf injection to avoid 3x excess
+      Not enough decrease in Dp34 and Dp75 with calcium: increase calcium injection during 3d period from 15 to 20
+>>>>>>>>2A. Ca Bath: Model_MSPNmerge0.9umCaB.xml:
+GOAL: 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+stim 	  Ca    PP2Akb/kcat PP2Bkcat Cdk5  cAMP  Dp34PP1   Dp75
+150/25/20 2.8uM 11.2/2.8   1.5      840    66   1.2/500   10.6u/5.0u
+Ca is fantastic!!! Dp75 decreases to 5 uM (~50%) Dp34 decreases clearly, though Dp34 basal not so good - perhaps adjust phosphatases - depending on PP2 blocker sims
+Reduction in Dp34 and Dp75 occurs extremely quickly. Would be slower if less PP2A?  Or Pp2A less active? But would need less Cdk5 to compensate.
+
+>>>>>2B. Da Bath: Model_MSPNmerge0.9umDaB.xml:
+GOAL: Dp34 inc 5x (5 min), Dp75 dec 50% (1 min), Nishi J Neurosci 17-8147
+AChstim/basal DaDstim 	PP2Akb/kcat PP2Bkcat Cdk5  cAMP     Dp34PP1   Dp75
+0.0025x20s/20 6.5x100	11.2/2.8    1.5     840   66/6.8u  1.2u/3.8u 10.6u/5.9u
+EXCELLENT DECREASE IN Dp75, takes ~1 min
+Dp34PP1 increases to 4 uM and then stays there, why?  Because ony 4 uM PP1.  There is likely a greater increase in Dp34.  So, this is too high.
+
+-->   c. Response to PP2 inhibitors (2 sims - best of pAC or pD1R)
+      Do OA and CyA sims, to know how to adjust PP2 if results not correct.
+      
+#####2C. CyA and OA with Cdk5 20% lower  (800, instead of 1000):
+GOALS:
+OA increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+CyA increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur slowly, >30 minutes.  Also, Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+ >>>>>>RESULTS(noACCa,PP2Bkcat=1.5,PP2AKb/Kcat=11.2/2.8,Da=10,ACh=20,Cdk5=840):
+       	   	      ACGasGaiATP cAMP 	   Dp34PP1  	      Dp75	
+Block1.xml (OA)	      		  
+Block2.xml (CyA)
+     
+3. Neves
+>>>>> Repeat sims for 300-400s with even higher ACtot to see if cAMP goes way down, and to boost basal
+      PDE2tot   ACtot	cAMPbas/stim cGMPbas/stim cAMPduringcGMP GCtot
+1.5u   800	 400	35n/6.6u     	31/2.2u	   30 YES! Not sure why inc AC lowered basal cAMP though.  Possibly higher basal Da would have sufficed?  Try with the D2msn
+6.5    300	 800	73n/5.9u	86/8.2u	   63 YES! but barely
+
+pPDE10 is quite small, so probably phosphorylation rate is way to slow. Could improve this with faster phosphorylation, though total PDE10 is also rather small.  Possibly dephosphorlation is too fast, because pPDE10 goes down too quickly after cAMP goes down.
+LOWER DEPHOS RATE FOR D2 MSN - try PDE10 dphos = 0.005e-3
+
+   
+-->   b. Effect of PP2A (do not change to D2 from m4 and A2A from D1 for now)
+      Analyze ratio of PKAc to pPP2A.  Why would this be different in D1 vs D2?
+      What else would be different?
+      A2A replaces D1 - still phosphorylate and inactivate
+      D2 replaces m4: still low basal, but perhaps do not reduce during stimulation
+      
+      

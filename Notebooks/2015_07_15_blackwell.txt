@@ -1,0 +1,108 @@
+Lab Notebook for Blackwell, July 15, 2015
+
+NEXT STEPS
+1. cAMP assay
+   a. with 20% less Abuf (2 sims ready to go)
+   b. Gap activity of ACGasGaiATP (with or without 20% less Abuf)
+2. Continue adjusting merged model 
+   a. Basal Dp34PP1 - GOOD
+   b. replace phospho AC with phospho DaD1RGs (2 sims ready to go)
+   b. Stimulated Dp34PP1 and response to PP2 inhibitors (4 sims - pAC or pD1R)
+      cAMP too high from stimulation: decrease Abuf injection to avoid 3x excess
+      Not enough decrease in Dp34 and Dp75 with calcium: increase calcium injection during 3d period from 15 to 20
+      Do OA and CyA sims, to know how to adjust PP2 if results not correct.
+3. Neves
+   CONFERENCE: do 300-400 s simulation to see if cAMP goes way down
+   a. Prepare figures and explanation to send to Neves
+   b. Effect of PP2A (do not change to D2 from m4 and A2A from D1 for now)
+      PKAc phos of PP2A
+--------------------------------------------------------------------------
+
+1. Adjust parameters to tune cAMP assay to Polito using PKA phos of Receptor
+DaD1R is extremely small, just phosphorylate DaD1RGs.  No need to dissociate and dephosphorylate since not repeated applications.  These use basal ACh=40
+Polito et al. 2013 uses sensor with affinity of 4.4 uM, so 25 uM will barely saturate it.
+     	  pDaD1RGs DaD1RGs ACGasATP    cAMPb/p  tpeak   PKAc/begin dec
+DA0.1	  0/6.2    50	    1.4/33     67n/6.5u 30      62	   40s (20)
+Da0.3	  0/11     54	    1.4/48.5    67/11u   31.5	 64	   58s (38)
+Da1.0	  0/16     51	    1.4/52     	67/16.8u 35.7	 63	   62s (42)
+Da10.0	  0/29     51 	    1.4/58    	67/31u   42.1	 66	   80s (60)
+
+Similar to AC phos, with PKAc decay appearing slightly later, probably due to slightly larger cAMP conc. 1.0 was incorrect - Da provided for 10 s.
+What if less Abuf? - that would limit peak.  Also reduce ACh afterwards - ACh is returning to too high a level.
+Abuf=80x20ms, ACh=0.16*10s
+     	  pDaD1RGs DaD1RGs ACGasATP    cAMPb/p  tpeak   PKAc/begin dec
+DA0.1	  0/6.2    45	    1.3/33     63n/6.0 	 30      59	   40s (20)
+Da0.3	  0/11     45	    1.3/47     63/10.8   31.5	 62	   58s (38)
+Da1.0	  0/16     45	    1.3/53     63/17.0	 34.1	 64	   66s (42)
+Da10.0	  0/29     55 	    1.3/57     63/30.9   42.1	 65	   85s (60)
+
+Quite similar.  AChm4RGi still decreases to <2
+Try another 20% less, and/or Gap activity of ACGasGaiATP, instead of ACGasATP
+------------------------------------------------------------------
+2. Merged Model
+noACCa, Da=10, ACh=60, PKA phos AC, Fixeddt in all sims
+Cdk5=840, basal pAC=0 (consider replacing pAC with pDaD1RGs)
+
+#####2A. Ca Bath: Model_MSPNmerge0.9umCaB.xml:
+GOAL: 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+>>>>>>>>>> Ca Stim RESULTS
+stim 	  PP2Akb/kcat PP2Bkcat Cdk5  Ca          Dp75
+150/25/15  11.2/2.8   1.5      840  2.0,2.4,1.0  12uM, fairly stable
+cAMP: drops to 7!  So, increase ACh was bad.
+>>>>decreasing ACh to 20.
+stim 	  PP2Akb/kcat PP2Bkcat Cdk5  cAMP  Dp34PP1   Dp75
+150/25/15  11.2/2.8   1.5      840    66   642/400   11.4u/5.5u
+GOOD, but need more reduction in Dp34PP1.  Not clear whether to raise calcium or adjust phosphatases.
+
+#####2B. Da Bath: Model_MSPNmerge0.9umDaB.xml:
+GOAL: Dp34 inc 5x (5 min), Dp75 dec 50% (1 min), Nishi J Neurosci 17-8147
+>>>>>>>>Da Stim Results, Cdk5=840
+PP2Akb/kcat PP2Bkcat  Da   AChrate  AChb  cAMP ss/p   Dp34PP1 ss/p  Dp75 ss/p
+11.2/2.8    1.5	     1.1uM  0.007   60	  12/2uM      18n, 4u       11.4u/7u
+cAMP still way too low, transient cAMP is too transient. 
+Also, cAMP decreases when ACh replaced.  
+Dp75 response is quite nice
+ >>>>Lower ACh. Don't replace all ACh after Abuf injection
+11.2/2.8    1.5	     1.0uM  0.0035  20	 66/19.5	642/4u	11.4u/5u
+GREAT, except that cAMP is way too high.  READY for CyA and OA sims
+
+----------------Once good cAMP, then run the CyA and OA, esp if need to tune PP2
+#####2C. CyA and OA with Cdk5 20% lower  (800, instead of 1000):
+GOALS:
+OA increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+CyA increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur slowly, >30 minutes.  Also, Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+>>>>>>RESULTS(noACCa,PP2Bkcat=1.5,PP2AKb/Kcat=11.2/2.8,Da=10,ACh=20,Cdk5=840):
+       	   	      ACGasGaiATP cAMP 	   Dp34PP1  	      Dp75	
+Block1.xml (OA)	      		  
+Block2.xml (CyA)
+------------------------------------------------------------------
+Neves
+1. Basal cAMP slightly higher in 6.5 than in 1.5, despite PDE2=800 in 1.5 and only 300 in 6.5
+2. Stimulated cAMP much higher in 1.5 than in 6.5
+Based on results with Vince and Hippo model, try the following
+1. Increase basal cAMP in 6.5 by increasing Da back up to 7 (in both)
+2. Decrease basal cAMP (and also stimulated) by decreasing AC in the 1.5 to 300
+At best, this will provide lower cAMP --> approaching that of soma, but still no drop below pre-stim basal.
+3. Add PKA phos of DaD1RGs - this may help drop cAMP below basal.
+
+       PDE2tot   ACtot	cAMPbas/stim cGMPbas/stim cAMPduringcGMP GCtot
+1.5u   800	 300	66n/3.5u     	35/2.4u	   130 (good, but not enough)
+6.5    300	 500	66n/3.2u	84/8.2u	   140 (good, but not enough)
+GREAT: change in ACtot indeed fixed the cAMP basal.  That plus the pDaD1RGS fixed the cAMP peak. DaD1RGS indeed decreases to 4 and pDaD1RGs increases to 46
+6.5: GasGTP dec from peak of 40 to 6. GaiGTP is constant, as is ACGasGaiATP  
+1.5: GasGTP dec from peak of 225 to 5. GaiGTP is constant, as is ACGasGaiATP
+
+Now, both are much better, though still not sufficient.  Problem may be that ACGasGaiATP is still quite high, and this may be protecting the GasGTP from hydrolysis.  There is no GAP activity in this model.
+
+Repeat these sims with added GAP activity of ACGasGaiATP, and all else the same
+If good, then use this ACGasGaiATP Gap activity with the cAMP assay.
+RESULTS:
+ACGasGaiATP no longer constanta, it decreases along with ACGasATP, though more slowly.
+       PDE2tot   ACtot	cAMPbas/stim cGMPbas/stim cAMPduringcGMP GCtot
+1.5u   800	 300	47n/2.7u     	35/7.8u	   90 (better, but not enough)
+6.5    300	 500	27n/2.7u	89/2.3u	   71 (better, but not enough)
+
+THESE MIGHT ACTUALLY BE FINE.  Simulation was probably not long enough, and ACGasGaiATP is still decreasing at 300 sec.
+

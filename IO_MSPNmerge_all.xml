@@ -42,6 +42,8 @@
     <OutputSpecie name="DaD1R"/>
     <OutputSpecie name="Gsabg"/>
     <OutputSpecie name="DaD1RGs"/>
+    <OutputSpecie name="PKAcDaD1RGs"/>
+    <OutputSpecie name="pDaD1RGs"/>
     <OutputSpecie name="GsD1R"/>
     <OutputSpecie name="GasGTP"/>
     <OutputSpecie name="GasGDP"/>
@@ -72,10 +74,6 @@
     <OutputSpecie name="AC"/>
     <OutputSpecie name="ACGas"/>
     <OutputSpecie name="ACGasATP"/>
-    <OutputSpecie name="pAC"/>
-    <OutputSpecie name="pACGas"/>
-    <OutputSpecie name="pACGasATP"/>
-    <OutputSpecie name="PKAcACGasATP"/>
     <OutputSpecie name="ACCa"/>
     <OutputSpecie name="ACGasCa"/>
     <OutputSpecie name="ACGasCaATP"/>

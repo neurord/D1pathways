@@ -2,21 +2,21 @@
 
     <!-- the injectionSite must match a regionLabel defined in the morphology -->
   <InjectionStim specieID="Da" injectionSite="pointB">
-        <onset>               60000         </onset>
+        <onset>               80000         </onset>
         <duration>            100           </duration>
         <rate>                6.5           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Abuf" injectionSite="pointB">
-        <onset>               60000         </onset>
+        <onset>               80000         </onset>
         <duration>            1000           </duration>
-        <rate>                0.05           </rate>
+        <rate>                0.04           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="ACh" injectionSite="pointB">
         <onset>               100000         </onset>
-        <duration>            20000         </duration>
-        <rate>                0.0025         </rate>
+        <duration>            160000         </duration>
+        <rate>                0.0002         </rate>
   </InjectionStim>
 
 </StimulationSet>

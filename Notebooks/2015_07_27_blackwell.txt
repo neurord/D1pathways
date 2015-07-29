@@ -1,0 +1,109 @@
+Lab Notebook for Blackwell, July 27, 2015
+
+Next steps (Wed, July 29)
+1. Neves/D2msn: run with higher pPDE10 activity (2 sims ready)
+   Update parameter.xls
+Prepare Figures: cAMP, cGMP, PDE2 forms, phosphoD1 form, possibly pPDE10 and pPP2A
+
+2. Continue adjusting merged model (4 sims ready)
+   Need to get better basal Dp34PP1, and limit the increase with Da.  Sims are ready.
+   Update parameter.xls
+   Need to make PKAc more available with OA block which elevates Dp75 ????
+   
+3. Possibly re-run the cAMP assay with the pPDE10 phos and activity from Neves/merged, also faster GAP for ACGasGai
+-------------------------------------------------------------------------
+2. Continue adjusting merged model 
+>>>>>>>>2A. Ca Bath: Model_MSPNmerge0.9umCaB.xml:
+GOAL: 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+stim 	  Ca    PP2Akb/kcat PP2Bkcat Cdk5  cAMP  Dp34PP1   Dp75
+150/25/20 2.8uM 11.2/2.8   1.5      840    66   1.2/500   10.6u/5.0u
+Ca is fantastic!!! Dp75 decreases to 5 uM (~50%) Dp34 decreases clearly, though Dp34 basal not so good - perhaps adjust phosphatases - depending on PP2 blocker sims
+Reduction in Dp34 and Dp75 occurs extremely quickly. Would be slower if less PP2A?  Or, slow down Ca binding to PP2A - this occurs very quickly.
+
+>>>>>2B. Da Bath: Model_MSPNmerge0.9umDaB.xml:
+GOAL: Dp34 inc 5x (5 min), Dp75 dec 50% (1 min), Nishi J Neurosci 17-8147
+AChstim/basal DaDstim 	PP2Akb/kcat PP2Bkcat Cdk5  cAMP     Dp34PP1   Dp75
+0.0025x20s/20 6.5x100	11.2/2.8    1.5     840   66/6.8u  1.2u/3.8u 10.6u/5.9u
+EXCELLENT DECREASE IN Dp75, takes ~1 min
+Dp34PP1 increases to 4 uM and then stays there, why?  Because ony 4 uM PP1.  There is likely a greater increase in Dp34.  So, this is too high.
+
+#####2C. CyA and OA with Cdk5 20% lower  (800, instead of 1000):
+GOALS:
+OA increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+CyA increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur slowly, >30 minutes.  Also, Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+ >>>>>>RESULTS(noACCa,PP2Bkcat=1.5,PP2AKb/Kcat=11.2/2.8,Da=10,ACh=20,Cdk5=840):
+      (30-40s) 	      ACGasGaiATP cAMP 	   Dp34PP1/p  Dp75	
+Block1.xml (OA)	      192	  65	   375/	      10.4	      
+Block2.xml (CyA)      201	  60	   985/2.6u   46.6
+CyA: inc in Dp34PP1 is a bit small, slow 
+OA: no inc in Dp34PP1, instead slow decrease!! 3x incr Dp75 (GOOD)
+---->>>>>So, OA needs more activity against Dp34PP1
+Why does OA block cause DECREASE in Dp34PP1?  Dp75 is taking away the PKAc
+
+Evaluation of PP2 bound forms of DARPP32:
+a. PP2Ac goes up extremely quickly with ca stim - make Ca binding 4x slower
+b. Keep PKA phos rate of PP2A because decrease in Dp75 with Da is good
+With Ca Stim: Dp34PP1PP2B increases, but since Dp75 decreases, PKA bound to D32 increases, which limits the decrease in Dp34.
+With Da stim: Dp34PP1 increases, D32PKA increases, Dp75 decreases because of enhanced pPP2A activity. Need to limit PKA activity?  Lower cAMP elevation with increased rate of PDE10 phos
+c. try 2x PKA phos rate of PDE10 (0.125e-6, 0.012e03, 0.003e03) and lower dephos rate (0.005e-3), possibly even 4x enhancement of PDE10, or replace ACh sooner
+With OA block, Dp75 inc, so Dp75PKA inc, PKA dec which causes Dp34 to dec.  Solution: PP2A must have more activity against Dp34 .
+d. increase PP2A activity against Dp34PP1 (0.608e-6, 0.0224, 0.0056)
+e. Delay stim even more to assess basal
+
+Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10
+>>>>>Da Bath: Dp34 inc 5x (5 min), Dp75 dec 50% (1 min)
+>>>>>Ca Bath: 50% reduction in Dp34, 75% reduction in Dp75 
+>>>> OA increases Dp34 by 5x, CyA increases Dp34 by 17x or 3x
+AChstim 	DaDstim     cAMP     Dp34PP1   Dp75
+0.0025x20s@120s 6.5x100	    90/5.1u  930u/3.9u 10.9u/5.5u
+CaStim		150,25,20   90/40n   930/270   10.9/7.0u
+Block1.xml (OA)	none 	    83/na    500->200  10.5/45u           
+Block2.xml (CyA) none  	    86/na    500/1.4u  10.4->8u
+Dp34PP1 basal 2x too high, Dp75 decrease with Ca is nicely slower
+Dp34PP1 saturates with Da (bad), Dp75 reduction is 50% in 10 min (good)
+OA still produces Dp34 decrease. CyA is good if Da basal were 500
+DaD1RGs slowly decreases over time
+X--> implement very slow dephos of pDaD1RGs so that no accumulation with out Da stim, e.g. 1 molecule per 40 sec = 0.025e-3, but pPDE10 dephos is 0.0025e-3.  Use this slow rate.  May not make a difference.
+Very little pPDE10
+X--> decrease dephos rate again, use 4x activity (higher rate not so bad numerically with low quantity)
+Ca inhibition of AC will not reduce cAMP unless Ca inhibits the ACGasGai form
+This would help to reduce Dp34 with Ca Bath, but not really needed.
+How to limit the Dp34PP1 inc with Da?  limit PKAc -> limit cAMP with pPDE10 AND
+X-->Replace ACh at 100 sec, not 120 sec, at rate of 0.00125x40s
+-->if necessary, inject less Abuf
+How to fix: OA block produces decrease Dp34PP1, and Dp34PP1 basal too high
+X-->Increase pp2a activity against Dp34PP1 -> reduce Dp34, this may help limit the Dp34PP1 peak with Da, as may enhanced pPDE10
+All these may fix everything but the OA block, which problem is unavailable PKAc
+
+
+3. Neves
+>>>>>D2 Model (Da=7, pPDE10 dephos=0.005e-3)
+     PDE2tot ACtot cAMPbas/stim cGMPbas/stim cAMPend  PP2A  pPP2A  pPDE10
+1.5u   800   400   36n/6.5u     31/2.4u      34n      100   360    ~10 (~120tot)
+6.5    300   800   68n/6.6u     90/8.2u      120n     184   280    ~1 (~20tot)
+
+Better basal for 6.5, but cAMP did not sufficiently decrease
+PDE10 still has very low phosphorylation, PP2A has larger phosphorylation.
+--->accelerate PDE10 phosphorylation (2x), Basal Da=10 (or lower ACh basal)
+>>>>>D2 Model (pPDE10 dephos=0.0025e-3, basal Da=10, PDE10 phos = 0.125e-6, 0.012e-3, 0.003e-3), stim at 40s
+     PDE2tot ACtot cAMPbas/stim cGMPbas/stim cAMPend  PP2A  pPP2A  pPDE10
+1.5u   800   400   38.7/7.6u	34.8/2.5     36	      100   360	   ~20 
+6.5u   300   800   66.5/6.5u	85/8.6	     110      189   271    ~3
+this is very close, but doesn't work for 6.5u, even though it has better basal
+Try 4x pPDE10 activity, which may help now that more of it is phosphorylated
+DaD1RGs, ACGasATP and ACGasAGaiATP are still slightly higher after than prior to stim, but this should be more than compensated by elevated pPDE10 and PDE2cGMP
+
+Neves data: removal of GluA1 is only for prolonged cAMP elevation, as obtained when PDE2 blocked?  This might require a slower PP2A phosphorylation, or lower PKA affinity for Pp2A?  What else?
+1. Slow GRK recruitment to D2R (or A2AR?), either PKA mediated or not
+pD2R (or A2AR) recruits arrestin & Pp2a - no PKA phos of PP2A unless recruitment
+Because it is slow, need prolonged cAMP, thus PDE2 inhibition
+2. PP2A dephosphorylation of AKT is needed for its activity
+
+###For true D2 model, what would be different in D1 vs D2?
+   A2A replaces D1 - still phosphorylate and inactivate
+   D2 replaces m4: still low basal, but perhaps do not reduce during stimulation
+   Why would PP2A be different?
+      
+      

@@ -288,7 +288,7 @@
     </Reaction>
     
     <!-- Gap activity for part of ACGasATP, unclear whether backward rate needs compensation? -->
-    <Reaction name = "ACGasATP--AC+Gas+cAMP reac" id="ACGasATP--AC+Gas+cAMP_id">
+    <!--Reaction name = "ACGasATP-AC+Gas+cAMP reac" id="ACGasATP-AC+Gas+cAMP_id">
         <Reactant specieID="ACGasATP"             />
         <Product  specieID="AC"                />
         <Product  specieID="cAMP"                   />
@@ -297,7 +297,7 @@
         <forwardRate> 0.2e-03     </forwardRate>
         <reverseRate> 0.0e-6    </reverseRate>
         <Q10>         0.2           </Q10>
-    </Reaction>
+    </Reaction-->
     
     <!-- 2a) GaiGTP + AC <-> ACGaiGTP)  Kd=96 for AC6 (160 for this rxn) source: Chen-Goodspeed JBC 280-1808, Nielson JBC 271-33308 1996 -->
     <Reaction name = "GaiGTP_AC_reac" id="GaiGTP_AC_reac">
@@ -343,7 +343,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
     <!-- Gap activity for part of ACGasGaiATP-->
-    <!--Reaction name = "ACGasGaiATP-ACGai+Gs+cAMP" id="ACGasGaiATP-ACGai+Gs+cAMP">
+    <Reaction name = "ACGasGaiATP-ACGai+Gs+cAMP" id="ACGasGaiATP-ACGai+Gs+cAMP">
         <Reactant specieID="ACGasGaiATP"             />
         <Product  specieID="ACGai"                />
         <Product  specieID="cAMP"                   />
@@ -352,7 +352,7 @@
         <forwardRate> 0.01e-03     </forwardRate>
         <reverseRate> 0.0    </reverseRate>
         <Q10>         0.2           </Q10>
-    </Reaction--> 
+    </Reaction> 
 
     <!--VII. *****************PDE10 *******************************-->
     <!--1. PDE10 + cAMP    <-> PDE10cAMP         (in xpp: KfPDE10=    KbPDE10=  ) -->
