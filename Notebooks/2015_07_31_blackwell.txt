@@ -1,0 +1,81 @@
+Lab Notebook for Blackwell, July 31, 2015
+
+NEXT STEPS:
+1. Sims with DaD1RGs dephos (higher ACGasGTP before cGMP), and even slower Da provision (avoid to high peak?), use Adaptive, which has been fixed
+  
+Prepare Figures: cAMP, cGMP, PDE2 forms, phosphoD1 form, possibly pPDE10 and pPP2A
+
+2. Merged Model:Update MSPNmergedRateConst.xls
+   1. Discovered that pPDE10 activity was 2x, except that kf was 2.4x.  This was fixed, but will not "take effect" until next set of sims.
+   2. Discovered that PP2A affinity for Ca was ~30 uM in sims, 2.7 uM in table.  Try 5 uM - consistent with 50 uM Ca "saturates" the 2x conc increase.  This may increase the PP2AC activity at basal, and so lower Dp75.  If not, it might help reduce Dp75 when Ca is applied.
+   3 SIMS READY - run while editing Asia's paper on Aug 3
+     Need to prepare the alternative CyA block
+     Use new stoch diff and Adaptive
+   3. Research PIkinase from Falkenbrug
+   
+3. Possibly re-run the cAMP assay with the pPDE10 phos and activity from Neves/merged, also faster GAP for ACGasGai
+-------------------------------------------------------------------------
+2. Continue adjusting merged model 
+Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10, 
+>>>>>Da Bath: Dp34 inc 5x (5 min), Dp75 dec 50% (1 min)
+>>>>>Ca Bath: 50% reduction in Dp34, 75% reduction in Dp75 
+>>>> OA increases Dp34 by 5x, CyA increases Dp34 by 17x or 3x, what about Dp75?
+>>>>But, Ahn PNAS states that expression of PP2A-BPR72 does not affect Dp34, with or without Ca.  This argues against the OA increase!
+AChstim 	Abuf      cAMP     Dp34PP1   fold time   Dp75		fold	time
+0.00125x40s@100s 0.05x1000  102/5.3u 498u/3.7u 7.6  50s	   10.3u/5.9u	0.57	1min
+CaStim		150,25,20   102/70n  498/300   0.6  	   10.3/7.7u	0.75	1.1 min
+Block1.xml (OA)	none 	    78/na    500->200  0.4	   10.1/46.6u 	5x	10s         
+Block2.xml (CyA) none  	    66/na    544/720   1.3    	   10.4->7.8u and decreasing
+CaStim: not quite enough reduction in Dp75 and Dp34PP1, but otherwise good
+	Could add in Ca inhib of cAMP, would reduce Dp34PP1, but not Dp75, which is most needed
+	X-->Could increase Ca still more? Yes, 4000 PP2B has only 2 Ca bound
+	What fraction of PP2A is bound to Ca?  Less than pPP2A, which increases with Ca Stim
+	X--> increase dphos rate of pPP2A 0.02e-3
+	 This will decrease Dp75 dphos with Da and Ca, but can compensate with the prolonged cAMP and higher Ca
+DaStim:	Increase is good amount, but too fast and too transient
+	X-->decrease Abuf, slow down re-provision of ACh, and decrease amount slightly, sim for longer time, e.g. 240 s
+OA/CyA	Small increase in Dp34PP1 with CyA, but may still increase overtime - run longer
+	X--> Only reduce OA by 90%, this may less the Dp75 increase and allow more PKAc
+	
+>>>>>>>>Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10, Da stim= 6.5x100ms, pPP2A dphos=0.02e-3
+AChstim 	  Abuf     cAMP     Dp34PP1   fold time   Dp75		fold	time
+0.0005x80s@100s  0.04x1000 68/2.7u  446/3.1   6x   60s	  11.0u/7.3	0.66x	70s	
+CaStim		 160/27/23 68/37.5   445/195  0.5	11.0u/8.1u	0.73x	20s	
+Block1.xml (OA)	none 	   78	     500      		11.0/45u	  
+Block2.xml (CyA) none	   78	     500		11.0/9u
+Dp75 does not increase enough, but new Pp2A affinity for Ca may fix that. Ca=~2.5 uM
+cAMP peak is better, but still decays too fast.  ACh does not drop all the way to 0 (good, but AChm4RGi still returns too quickly - slow down replacement even more. cAMP increase fairly rapidly at 100s, so do not delay.  But ACGasATP drops pretty rapidly once half of ACh replaced, so do not replace all.
+ACh stim: 0.0002x160s at 100s
+No increase in Dp34 with CyA - bad, no decrease in Dp34 with OA - good
+This means that PP2B is not dephosphorylating Dp34 normally?  Neither is OA???
+Possibly allowing binding by PP2A or PP2B without catalysis is a problem.  Re-do CyA by eliminating most of PP2B - does that give better result (this will be difficult due to all the CamCa4).
+
+
+3. Neves (2 hour simulations)
+>>>>>D2 Model (pPDE10 dephos=0.0025e-3, basal Da=10, PDE10 phos = 0.125e-6, 0.012e-3, 0.003e-3, pPDE10act=0.336e-3,67.2e-3,16.8e-3), stim at 40s, rate=0.3614, for 10s or 40s, NO stim at 160s, rate=0.18 (1.5u) 0.72 (6.5u) for 10 sec
+     PDE2tot ACtot cAMPbas/stim cGMPbas/stim cAMPend  PP2A  pPP2A  pPDE10
+1.5u   800   400   35.7/7-9u	28.5/2.4     16(adapt) 90    360	   ~25 
+6.5u   300   800   38.1/3.5u	80/8.4	     10(both)  189   271    ~3
+
+This is great - cAMP is lower than beginning, but cAMP is too transient - it goes down before the cGMP!
+DaD1RGs is inactivating too much.  Possible program or 1.5u, if inactivation too slow, the cAMP would be too high, but could probably be slower for 6.5u.
+add de-inactivation - this might allow slightly higher basal, by preventing the small pDaD1RGs prior to stim, but further slow down the Da influx.
+Might backfire: the elevated ACGasATP might overcome the PDE2 activity?
+>>>>>D2 Model (pPDE10 dephos=0.0025e-3, basal Da=10, PDE10 phos = 0.125e-6, 0.012e-3, 0.003e-3, pPDE10act=0.336e-3,67.2e-3,16.8e-3), stim at 40s, rate=0.03614, for 100s or 0.1807 for 80s, NO stim at 160s, rate=0.18 (1.5u) 0.72 (6.5u) for 10 sec
+pDaD1RGs dephos = 0.0025e-3, only run adaptive
+     PDE2tot ACtot cAMPbas/stim cGMPbas/stim cAMPend  PP2A  pPP2A  pPDE10
+1.5u  
+6.5u  
+
+Neves data: removal of GluA1 is only for prolonged cAMP elevation, as obtained when PDE2 blocked?  This might require a slower PP2A phosphorylation, or lower PKA affinity for Pp2A?  What else?
+1. Slow GRK recruitment to D2R (or A2AR?), either PKA mediated or not
+pD2R (or A2AR) recruits arrestin & Pp2a - no PKA phos of PP2A unless recruitment
+Because it is slow, need prolonged cAMP, thus PDE2 inhibition
+2. PP2A dephosphorylation of AKT is needed for its activity?
+
+###For true D2 model, what would be different in D1 vs D2?
+   A2A replaces D1 - still phosphorylate and inactivate
+   D2 replaces m4: still low basal, but perhaps do not reduce during stimulation
+   Why would PP2A be different?
+      
+      

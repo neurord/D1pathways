@@ -1,0 +1,56 @@
+Lab Notebook for Blackwell, Aug 9, 2015
+
+NEXT STEPS:
+1.Neves: Repeate with dephos rate = 0.005e-3
+Prepare Figures: cAMP, cGMP, PDE2 forms, phosphoD1 form, possibly pPDE10 and pPP2A
+
+2. Merged Model:Finish updating MSPNmergedRateConst.xls,
+repeat with dephos rate = 0.005e-3, less ACh replacement
+Research PIkinase from Falkenbrug
+   
+3. Possibly re-run the cAMP assay with the pPDE10 phos and activity from Neves/merged, also faster GAP for ACGasGai
+-------------------------------------------------------------------------
+2. Continue adjusting merged model 
+>>>>>Da Bath: Dp34 inc 5x (5 min), Dp75 dec 50% (1 min)
+>>>>>Ca Bath: 50% redu ction in Dp34, 75% reduction in Dp75 
+>>>> OA increases Dp34 by 5x, CyA increases Dp34 by 17x or 3x, what about Dp75?
+>>>>>>>>Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10, Da stim= 6.5x100ms, pPP2A dphos=0.02e-3, PP2A affinity = 5 uM, pPD10activity kf=2x
+AChstim 	  Abuf     cAMP     Dp34PP1   fold time   Dp75		fold	time
+0.0002x160s@100s  0.04x1000 43/0.7u  446/2.7  6x   60s	  9.2u/6.9	0.66x	70s	
+CaStim	1.5uM	 160/27/23 43/~20   460/270   0.4	  9.2u/4.7u	0.5x	~20s	
+Block1.xml (OA)	none 	   60	     450/495  1x 	  9.2u/45u	4x	10s	  
+Block2.xml (CyA) none	   60	     450/824  ~2x	  9.2u/8.6u	1x
+Block ss measured at 35-40 sec - may not be correct.
+
+Ca stim: Good Dp75 reduction, though a bit fast, and could be more; good Dp34 reduction
+Da stim: cAMP and Dp34PP1 still too transient, DaD1RGs never increases, ACGasGaiATP does not decrease
+----> Double dephos rate - should not increase to 4 mol prior to 80 sec
+      Halve ACh replacement
+Block: new CyA implementation through PP2B reduction was FANTASTIC.  Dp34pp1 increased ~2x.  Could be more, but this is first observation of increase.  Minimal dec Dp75 (correct)
+       OA: No increase in Dp34, but huge increase in Dp75 - which is correct, though too fast, and possibly too much.  Is 5x inc in Dp34 written above correct?
+NEW SIMS: double dephos rate, halve ACh replacement.  See dephos rate has any effect on other 3 sims.
+
+3. Neves
+>>>>>D2 Model (pPDE10 dephos=0.0025e-3, basal Da=10, PDE10 phos = 0.125e-6, 0.012e-3, 0.003e-3, pPDE10act=0.336e-3,67.2e-3,16.8e-3), stim at 40s, rate=0.3614, for 10s or 40s, NO stim at 160s, rate=0.18 (1.5u) 0.72 (6.5u) for 10 sec
+     PDE2tot ACtot cAMPbas/stim cGMPbas/stim cAMPend  PP2A  pPP2A  pPDE10
+1.5u   800   400   35.7/7-9u	28.5/2.4     16(adapt) 90    360   ~25 
+6.5u   300   800   38.1/3.5u	80/8.4	     10(both)  189   271    ~3
+
+>>>>>D2 Model (pPDE10 dephos=0.0025e-3, basal Da=10, PDE10 phos = 0.125e-6, 0.012e-3, 0.003e-3, pPDE10act=0.336e-3,67.2e-3,16.8e-3), stim at 40s, rate=0.03614, for 100s or 0.1807 for 80s, NO stim at 160s, rate=0.18 (1.5u) 0.72 (6.5u) for 10 sec
+pDaD1RGs dephos = 0.0025e-3, only run adaptive
+     PDE2tot ACtot cAMPbas/stim cGMPbas/stim cAMPend  PP2A  pPP2A  pPDE10
+1.5u  
+6.5u  
+
+Neves data: removal of GluA1 is only for prolonged cAMP elevation, as obtained when PDE2 blocked?  This might require a slower PP2A phosphorylation, or lower PKA affinity for Pp2A?  What else?
+1. Slow GRK recruitment to D2R (or A2AR?), either PKA mediated or not
+pD2R (or A2AR) recruits arrestin & Pp2a - no PKA phos of PP2A unless recruitment
+Because it is slow, need prolonged cAMP, thus PDE2 inhibition
+2. PP2A dephosphorylation of AKT is needed for its activity?
+
+###For true D2 model, what would be different in D1 vs D2?
+   A2A replaces D1 - still phosphorylate and inactivate
+   D2 replaces m4: still low basal, but perhaps do not reduce during stimulation
+   Why would PP2A be different?
+      
+      
