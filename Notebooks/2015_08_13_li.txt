@@ -1,0 +1,16 @@
+Lab Notebook for Blackwell, Aug 9, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Merged Model:Finish updating MSPNmergedRateConst.xls
+2. Research PIkinase from Falkenberg
+------------------------------------------------------------------------
+3. Continue adjusting merged model 
+>>>>>Da Bath: prolonged (not transient) Dp34PP1 increased 5x (5 min), Dp75 decreased 50% (1 min)
+#######Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10, Da stim= 6.5x100ms, pPP2A dphos=0.02e-3, PP2A affinity = 5 uM, pPD10activity kf=2x, dephos=0.005e-3
+AChstim 	  Abuf     cAMP     Dp34PP1   fold time   Dp75		fold	time
+0.0001x160s@100s  0.04x1000 43/0.7u  446/2.7  6x   60s	  9.2u/6.9	0.66x	70s	
+
+

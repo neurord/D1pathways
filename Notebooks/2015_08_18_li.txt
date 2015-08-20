@@ -1,0 +1,33 @@
+Lab Notebook for Blackwell and Li, Aug 18, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Merged Model:Finish updating MSPNmergedRateConst.xls
+2. Research PIkinase from Falkenberg
+3. repeat Da Bath to get more prolonged response (less ACh)
+4. Try cAMP assay with later ACh replacement
+------------------------------------------------------------------------
+1. adjusted parameters for cAMP assay
+>>>>>>>> PKAc has higher peak for 1 and 10s stim than for 0.3 stim, and 0.3 > 0.1
+	 Decay is later for longer stimuli
+######### Abuf=30.0 for 20ms, ACh=0.06 for 10s, begining 
+	  PKAcphosD1R	      	       GapGiPKAcphosD1R		begin ACh
+Da	  cAMP	PKAc  AChm4RGi	       cAMP	PKAc  AChm4RGi	
+0.1	  4.6u	38n   min=10	       10u	38n   min=10	20.2s (delta=0.1)
+0.3	  6.0u	38n   min=10	       12u	38n   min=10	20.6 (0.3)
+1.0	  10u	38n   min=10	       16u	38n   min=10	22.0 (1.0)
+10.0	  14u	38n   min=10	       27u	38n   min=10	31.0 (1.0)
+For all sims, PKAc begins to decrease once cAMP drops below 2 uM, and PKAc saturates, as long as cAMP is above 2 uM.
+------> to obtain higher peak for 1 and 10s stim, I need cAMP below 2 uM for 0.1 and 0.3 Da
+
+###########Abuf=15.0 for 20ms, ACh=0.03 for 10s (this is lower Abuf, which will allow higher ACh and more inhibition of Gi
+		     To allow more prolonged cAMP, begin stimulation later
+	Da=0.1, begin ACh at 0.4 sec after Da stopped (20.5)
+	Da=0.3, begin ACh at 1sec after Da stopped (21.3)
+	Da=1.0, begin ACh at 2s after Da stopped (23.0)
+	Da=10.0, begin ACh at 4s after Da stopped (34.0)
+
+
+

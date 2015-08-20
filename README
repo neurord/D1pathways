@@ -4,7 +4,8 @@ This is terse but detailed list of steps to develop the model.  See ResearchPlan
      Some experiments that can help test/develop the model
      See NeuroRD.bat for information on how to run models
 This file is also used to keep track of which steps have been done, and what needs to be done next.
-Details of what was done with a summary of results (with xml filenames) are reported in Notebook subdirectory:
+Details of what was done with a summary of results (with xml filenames) are reported in Notebook subdirectory:&
+
 Notebook files should have following name format: year_MM_DD_lastname
 Information: goal/plan of the days work, e.g. data trying to simulation
 	     names of xml files and directorys created (e.g. if subset of rxn file used, or different stim file)
@@ -25,10 +26,10 @@ DONE Check thermodynamic balance of some sets of reactions.
 Step 2. Assays and adjustment to achieve correct basal cAMP and calcium
 DONE. 2A. assays for PLC, Da binding to DR1 (very small subset of reactions) - PLCassay/, DRGassay/
 DONE. 2B. IC and RXN for Gs production and binding (very small subset of reactions) - cAMPassay/
-2C. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC - whole model but 3-5 comps (dend with sm)
-2D. assays of DARPP32 phos in response to bath applied Da and Ca, as in Lindskog. -  whole model but 3-5 comps (dend with sm)
+DONE 2C. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC - whole model but 3-5 comps (dend with sm)
+DONE 2D. assays of DARPP32 phos in response to bath applied Da and Ca, as in Lindskog. -  whole model but 3-5 comps (dend with sm)
     May need to adjust PP2B vs PP2A activity (though both are from references)
-2E. possibly include Gi reactions here to help decrease basal cAMP - simulate ss in whole, multi-comp model (witih spine)
+DONE 2E. possibly include Gi reactions here to help decrease basal cAMP - simulate ss in whole, multi-comp model (witih spine)
     if Gi needed, first tune in 3-5 comp dend model and spine alone model
 
 Step 3. Interaction between Gs and Gq/calcium pathways

@@ -144,6 +144,16 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
+    <!--3. pDaD1RGs -> DaD1RGs -->
+    <Reaction name = "dephosD1R" id="dphospD1R">
+        <Reactant specieID="pDaD1RGs"              />
+        <Product  specieID="DaD1RGs"               />
+
+        <forwardRate>  0.005e-03    </forwardRate>
+        <reverseRate>  0            </reverseRate>
+        <Q10>          0.2          </Q10>
+    </Reaction>
+
     <!-- *********** Gi coupled m4 receptor *************
     Should the Gi binding be increased similarly to Gs binding?-->
     <!--0. ACh + Abuf        <-> AChbuf     irreversible binding -->

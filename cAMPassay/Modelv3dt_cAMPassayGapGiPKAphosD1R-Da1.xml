@@ -22,12 +22,12 @@
       <InjectionStim specieID="Abuf" injectionSite="pointA">
         <onset>           20000        </onset>
         <duration>           20        </duration>
-        <rate>               60.0      </rate>
+        <rate>               15.0      </rate>
       </InjectionStim>
       <InjectionStim specieID="ACh" injectionSite="pointA">
-        <onset>           22000        </onset>
+        <onset>           23000        </onset>
         <duration>           10000      </duration>
-        <rate>               0.12      </rate>
+        <rate>               0.03      </rate>
       </InjectionStim>
     </StimulationSet>
   
@@ -44,7 +44,7 @@ results (also, 3D may not work yet...)  -->
 
 
     <!-- run time for the calculation, milliseconds -->
-    <runtime>          100000         </runtime>
+    <runtime>          200000         </runtime>
 <!-- 100001 -->
     <!-- set the seed to get the same spines each time testing -->
     <spineSeed>          123          </spineSeed>
@@ -77,8 +77,8 @@ results (also, 3D may not work yet...)  -->
     <tolerance>           0.0025       </tolerance>
     <!-- calculation types include GRID_STEPPED_STOCHASTIC and GRID_STEPPED_CONTINUOUS for 
 	 reaction-diffusion systems. Single mixed pool calculations should be listed here too (TODO) -->
-    <calculation>GRID_STEPPED_STOCHASTIC</calculation>
+    <!--calculation>GRID_STEPPED_STOCHASTIC</calculation-->
     <!--use the following for adaptive: -->
-    <!--calculation>GRID_ADAPTIVE</calculation-->
+    <calculation>GRID_ADAPTIVE</calculation>
 
 </SDRun>

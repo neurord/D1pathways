@@ -402,7 +402,7 @@
         <Reactant specieID="pDaD1RGs"              />
         <Product  specieID="DaD1RGs"               />
 
-        <forwardRate>  0.0025e-03    </forwardRate>
+        <forwardRate>  0.005e-03    </forwardRate>
         <reverseRate>  0            </reverseRate>
         <Q10>          0.2          </Q10>
     </Reaction>

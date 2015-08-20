@@ -1,20 +1,22 @@
 Lab Notebook for Blackwell, Aug 9, 2015
-
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+########## indicates the set of parameters used for the set of simulations
 NEXT STEPS:
 1.Neves: Repeate with dephos rate = 0.005e-3
 Prepare Figures: cAMP, cGMP, PDE2 forms, phosphoD1 form, possibly pPDE10 and pPP2A
 
 2. Merged Model:Finish updating MSPNmergedRateConst.xls,
-repeat with dephos rate = 0.005e-3, less ACh replacement
+repeat with dephos rate of pDaD1RGs = 0.005e-3, less ACh replacement
 Research PIkinase from Falkenbrug
    
 3. Possibly re-run the cAMP assay with the pPDE10 phos and activity from Neves/merged, also faster GAP for ACGasGai
 -------------------------------------------------------------------------
 2. Continue adjusting merged model 
->>>>>Da Bath: Dp34 inc 5x (5 min), Dp75 dec 50% (1 min)
+>>>>>Da Bath: Dp34 increased 5x (5 min), Dp75 decreased 50% (1 min)
 >>>>>Ca Bath: 50% redu ction in Dp34, 75% reduction in Dp75 
 >>>> OA increases Dp34 by 5x, CyA increases Dp34 by 17x or 3x, what about Dp75?
->>>>>>>>Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10, Da stim= 6.5x100ms, pPP2A dphos=0.02e-3, PP2A affinity = 5 uM, pPD10activity kf=2x
+#######Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10, Da stim= 6.5x100ms, pPP2A dphos=0.02e-3, PP2A affinity = 5 uM, pPD10activity kf=2x, dephos rate of pDaD1RGs = 0.0025e-3,
 AChstim 	  Abuf     cAMP     Dp34PP1   fold time   Dp75		fold	time
 0.0002x160s@100s  0.04x1000 43/0.7u  446/2.7  6x   60s	  9.2u/6.9	0.66x	70s	
 CaStim	1.5uM	 160/27/23 43/~20   460/270   0.4	  9.2u/4.7u	0.5x	~20s	

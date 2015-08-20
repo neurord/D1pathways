@@ -1,0 +1,34 @@
+Lab Notebook for Blackwell and Li, Aug 20, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Merged Model:Finish updating MSPNmergedRateConst.xls
+2. Research PIkinase from Falkenberg
+3. repeat Da Bath to get more prolonged response (less ACh)
+4. Try cAMP assay, Neves and full model with PDE4
+------------------------------------------------------------------------
+1. adjusted parameters for cAMP assay
+>>>>>>>> PKAc has higher peak for 1 and 10s stim than for 0.3 stim, and 0.3 > 0.1
+	 Decay is later for longer stimuli
+###########Abuf=15.0 for 20ms, ACh=0.03 for 10s (this is lower Abuf, which will allow higher ACh and more inhibition of Gi. To allow more prolonged cAMP, begin ACh replacement later later:
+	Da=0.1, begin ACh at 0.4 sec after Da stopped (20.5)
+	Da=0.3, begin ACh at 1sec after Da stopped (21.3)
+	Da=1.0, begin ACh at 2s after Da stopped (23.0)
+	Da=10.0, begin ACh at 4s after Da stopped (34.0)
+	  PKAcphosD1R	      	       GapGiPKAcphosD1R		
+Da	  cAMP	PKAc/decay  AChm4RGi	       cAMP	PKAc peak/200s  AChm4RGi	
+0.1	  3.2u	37.3n / 79s   min=22           7.3u	37.3n /5  	min=22
+0.3	  5.1u	37.9n /~100s  min=20	       10.5u	36.9n /30  	min=20	
+1.0	  6.9u	37.5n /150s  min=20	       13.1u	38.2n /22  	min=20	
+10.0	  8.2u	37.1n /150s  min=20	       16.7u	37.3n /22  	min=20	
+
+Decay looking much better, but still no difference in peak values.  For some reason Da=0.3 didn't seem to work as expected for GapGi, and has prolonged cAMP and PKAc activity.
+
+>>>>>Da Bath: prolonged (not transient) Dp34PP1 increased 5x (5 min), Dp75 decreased 50% (1 min)
+#######Params:PP2A=(0.608e-6, 0.0224, 0.0056) PP2Bkcat=1.5, Cdk5=840, PKA phos of PDE10: (0.125e-6, 0.012e03, 0.003e03), pPDE10 dephos:0.005e-3, PP2A - Ca binding: 0.005e-3, 0.25e-3, basal ACh=20, basal Da=10, Da stim= 6.5x100ms, pPP2A dphos=0.02e-3, PP2A affinity = 5 uM, pPD10activity kf=2x, dephos=0.005e-3
+AChstim 	  Abuf     cAMP     Dp34PP1   fold time   Dp75		fold	time
+0.0001x160s@100s  0.04x1000 43/0.7u  446/2.7  6x   60s	  9.2u/6.9	0.66x	70s	
+
+
