@@ -1,0 +1,43 @@
+Lab Notebook for Blackwell and Li, Aug 27, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Merged Model:Finish updating MSPNmergedRateConst.xls
+2. Research PIkinase from Falkenberg
+3. repeat Da Bath to get more prolonged response (less ACh)
+   Do this after adding the optimal PDE paramters to the full model
+4. Consider continuing to adjust cAMP assay
+   in cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
+   rate of PKAc phosphorylation / dephosphorylation of PDE4:
+   	<!-- 09)  PKAc + PDE4 -> PKAcPDE4 -->, also rxn 10, 21, 22
+	<!-- 11)  pPDE4 -> PDE4 -->
+   rate of PKAc phosphorylation / dephosphorylation of PDE10:
+   e.g. <!--1b. PKAc + PDE10cAMP -> PKAcPDE10cAMP --> and 4 others
+   Change duration of ACh inhibition in Modelv3dt_cAMPassayGapGiPKAphosD1R_PDE4-Da*.xml
+   inject ACh earlier at faster rate (more inhibition), or later at slower rate (less inhibition)
+   if slower rate, make the rate (currently 0.03) lower, and the same value in all 4 Model files, i.e.g all 4 Da injections, 0.1, 0.3, 1, 10
+   if later, change duration of ACh injection, but, make sure that the longer the Da pulse, the later the ACh injection and the larger the difference between buf onset and ACh onset
+   
+5. Neves and full model with PDE4
+Neves sims ready to go
+
+------------------------------------------------------------------------
+>>>>>>>>> Castro J Physiol 591.13 (2013) pp 3197–3214
+(A) peak time of either PKAc or phospho targets (pPDE10, pDaD1RGs, pPDE4) around 30-40 sec. (B) Peak values of 1 s and 10 s are the same, peak value of 0.3 s is 80% of 1s, peak value of 0.1 s is 50% of 1s. (C) What is target cAMP value?
+
+########## PDE4 phosphorylation rates: Kf=0.125e-3, Kb=0.12, Kcat=0.03 (~1/3 - 1/4 of previous), pPDE4 dephos = 0.025, pPDE10 dephos = 0.005 
+Result
+1. basal cAMP ~66 nM, which is good
+2. cAMP still quite transient for all Da durations, which may be is bad.
+3. pPDE10 stops increasing  60 s after cAMP returns to basal.  This is better than prerviously.  So, these parameters will be kept.  Increase is slower than for PDE4, should phos and dephos rate be increased a bit?
+4. pPDE4: increases until 60 sec, and then slowly decreases.
+5. Peak of pPDE4 occurs ~40 s after stimulation onset, slightly later for 10s stimulation, peak of pDaD1RGs occurs ~30 sec after stimulation onset, slightly earlier for briefer Da stimuli.  THIS TIMING agrees with Castro AKAR3 response
+6. peak value of pPDE4 for 0.1 s is ~50% of the 10s case, but the 1s case is similar to 0.3 s case.
+7. cAMP peak is 6 uM (6000 nM) for 10s and 3 uM for 0.1 s
+8. total pPDE4 remains below 4 nM, which might be too low
+
+---------> Conclusion: To lower peak cAMP, could increse rate of phosphorylation of PDE4, but this would also speed to decay, and make it more transient.
+Alternatively, change rate of ACh replacement?
