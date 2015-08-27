@@ -7,22 +7,26 @@
 NORMAL GIT STUFF
 
 Now, you can edit stuff.  Then
-git diff - use to verify or review your changes
+MAIN GIT COMMANDS
 git status - tells you whether there are changes either staged for commit, or modified but not staged
-git commit -a - use to stage and then commit changes (ready to upload)
-    you will need to add a one line description of your change, and optionally a longer description
-    git commit specific file names - to avoid committing all files
+git diff - use to verify or review your changes
 git add - if a new file is created (instead of just editing existing files)
     can also be used to move an edited file to the staging area
-git rm filename - to stage removing file from repository, needs to be followed by git commit
+git commit -a - use to stage and then commit changes (ready to upload)
+    you will need to add a one line description of your change, and optionally a longer description
 git push - upload your  changes and merge them with the existing version
 
 git pull - to see changes to repository made by others
+
+ADDITIONAL GIT COMMANDS 
+git commit specific_file_names - to avoid committing all files
+git rm filename - to stage removing file from repository, needs to be followed by git commit
+
 git log - to see the history of changes made to my local copy
 git checkout filename - to pull just a single file from the repository
 git reset --hard  - roll back to previous version of everything not committed.
 ggit reset filename - just unstage one file
-itk& - a nice visual tool, sort of like eclipse, to show you the  various changes
+gitk& - a nice visual tool, sort of like eclipse, to show you the  various changes
 
 ###############
 Branching
