@@ -1,6 +1,7 @@
-Lab Notebook for Blackwell and Li, Aug 20, 2015
+Lab Notebook for Blackwell and Li, Aug 21, 2015
 >>>>>>>>> indicates what we are trying to reproduce (goals)
 ---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
 ########## indicates the set of parameters used for the set of simulations
 
 NEXT STEPS:
@@ -8,7 +9,8 @@ NEXT STEPS:
 2. Research PIkinase from Falkenberg
 3. repeat Da Bath to get more prolonged response (less ACh)
 4. Continue to adjust cAMP assay, Neves and full model with PDE4
-cAMP assay sims ready to go
+cAMP assay sims ready to go:
+********* Modelv3dt_cAMPassayGapGiPKAphosD1R_PDE4-Da*.xml
 Neves sims ready to go
 ------------------------------------------------------------------------
 ########## Added in PDE4 and PKAc phos of PDE4.  Added in 100 nM.  Eliminated cytosolic PDE10
