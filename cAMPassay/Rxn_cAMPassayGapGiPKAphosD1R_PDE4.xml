@@ -472,7 +472,7 @@
     </Reaction>
 
 <!-- *****************PDE4 and pPDE4 activity *******************************-->
-    <!-- 07)  cAMP + PDE4  <-> PDE4cAMP -->
+    <!-- 15)  cAMP + PDE4  <-> PDE4cAMP -->
     <Reaction name = "PDE4 enzyme1" id="PDE4bind">
         <Reactant specieID="PDE4"           />
         <Reactant specieID="cAMP"            />
@@ -482,7 +482,7 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-    <!-- 08)  PDE4cAMP -> AMP + PDE4 -->
+    <!-- 16)  PDE4cAMP -> AMP + PDE4 -->
     <Reaction name = "PDE4 actvcomp" id="PDE4cat">
         <Reactant specieID="PDE4cAMP"       />
         <Product  specieID="PDE4"           />
@@ -492,7 +492,27 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-   <!-- 09)  PKAc + PDE4 -> PKAcPDE4 -->
+    <!-- 17)  cAMP + pPDE4  <-> pPDE4cAMP -->
+    <Reaction name = "pPDE4 enzyme1" id="pPDE4bind">
+        <Reactant specieID="pPDE4"           />
+        <Reactant specieID="cAMP"             />
+        <Product  specieID="pPDE4cAMP"       />
+        <forwardRate> 0.0864e-03   </forwardRate>
+        <reverseRate> 275.8e-3  </reverseRate>
+        <Q10>         0.2          </Q10>
+    </Reaction>
+
+    <!-- 18)  pPDE4cAMP -> AMP + pPDE4 -->
+    <Reaction name = "pPDE4 actvcomp" id="pPDE4cat">
+        <Reactant specieID="pPDE4cAMP"       />
+        <Product  specieID="pPDE4"           />
+        <Product  specieID="AMP"              />
+        <forwardRate> 68.932e-3   </forwardRate>
+        <reverseRate> 0            </reverseRate>
+        <Q10>         0.2          </Q10>
+    </Reaction>
+
+   <!-- 19)  PKAc + PDE4 -> PKAcPDE4 -->
     <Reaction name = "PDE4 phosp1" id="phospPDE41">
         <Reactant specieID="PKAc"            />
         <Reactant specieID="PDE4"           />
@@ -502,7 +522,7 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-    <!-- 10)  PKAcPDE4 -> PKAc + pPDE4 -->
+    <!-- 20)  PKAcPDE4 -> PKAc + pPDE4 -->
     <Reaction name = "PDE4 phosp2" id="phospPDE42">
         <Reactant specieID="PKAcPDE4"       />
         <Product  specieID="pPDE4"          />
@@ -532,31 +552,11 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-    <!-- 11)  pPDE4 -> PDE4 -->
+    <!-- 23)  pPDE4 -> PDE4 -->
     <Reaction name = "PDE4 d_phosp" id="dphospPDE4">
         <Reactant specieID="pPDE4"          />
         <Product  specieID="PDE4"           />
-        <forwardRate> 0.025e-03     </forwardRate>
-        <reverseRate> 0            </reverseRate>
-        <Q10>         0.2          </Q10>
-    </Reaction>
-
-    <!-- 12)  cAMP + pPDE4  <-> pPDE4cAMP -->
-    <Reaction name = "pPDE4 enzyme1" id="pPDE4bind">
-        <Reactant specieID="pPDE4"           />
-        <Reactant specieID="cAMP"             />
-        <Product  specieID="pPDE4cAMP"       />
-        <forwardRate> 0.0864e-03   </forwardRate>
-        <reverseRate> 275.8e-3  </reverseRate>
-        <Q10>         0.2          </Q10>
-    </Reaction>
-
-    <!-- 13)  pPDE4cAMP -> AMP + pPDE4 -->
-    <Reaction name = "pPDE4 actvcomp" id="pPDE4cat">
-        <Reactant specieID="pPDE4cAMP"       />
-        <Product  specieID="pPDE4"           />
-        <Product  specieID="AMP"              />
-        <forwardRate> 68.932e-3   </forwardRate>
+        <forwardRate> 0.005e-03     </forwardRate>
         <reverseRate> 0            </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
