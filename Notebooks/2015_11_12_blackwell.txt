@@ -22,10 +22,11 @@ Try two different PDE4 conc:
 	     uses IC_cAMPassay6.5uPKAcD1R_PD4E50.xml
 Depending on results, consider slowing GasGTP hydrolysis to prolong ACGasATP, and keep higher ACh around to limit peak, coupled with no replacement since it doesn't seem to be controlling decay.  Or, possibly much later replacement for the 10s Da only.
 --------->
-1. Basal cAMP similar for PDE4=50 and PDE4=100
+1. Basal cAMP similar for PDE4=50 and PDE4=100, = 60 nM
 2. cAMP still quite transient; AChm4RGi is only minimally replaced, so this is not cause of transience.
 3. Peak of cAMP is ~2x larger for PDE4=50 than PDE4=100.
-3. ACGasATP is quite transient - this is cause of transience.  Need to slow GasGTP hydrolysis, but keep the PDE4=100, else the peak will be even larger OR less decrease in ACh.
+3. ACGasATP is quite transient - this is cause of transience.  Need to slow GasGTP hydrolysis, but keep the PDE4=100, else the peak will be even larger AND need less decrease in ACh, because the peak is still to high:
+4. No difference in peaks of PKAc.
 ########## GasGTP hydrolysis changed from 1.0 to 0.5 in 
 	   cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
 	   Abuf stim changed from 15 to 10 in
@@ -34,6 +35,16 @@ Depending on results, consider slowing GasGTP hydrolysis to prolong ACGasATP, an
 	   if necessary to reduce Abuf still more, halve the duration
 	   use same IC_cAMPassay6.5uPKAcD1R_PD4E100.xml as above sims
 GOAL: Need to keep cAMP conc lower but durations different to see PKAc difference (hence increase PDE10 and lower Abuf still more)
+1. lower GasGTP hydrolysis produced larger GasGTP, but not slower/more prolonged GasGTP.  ALso, ACGasATP had similar time course as before.  Probably go back to hydrolysis of 1.0
+2. the lower Abuf produced higher ACGasGaiATP, but did not prolong the cAMP.
+3. PKAc looks very similar.
+----------> Keep the lowered Abuf injection
+	    slightly increase PDE10 to lower basal, and possibly peak cAMP
+	    Lower peak cAMP may allow PKAc to distinguish different cAMP levels
+########## GasGTP hydrolysis changed back to 1.0 in 
+	   cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
+	   Increase PDE10 10%, from 100 to 110 in
+	   cAMPassay/IC_cAMPassay6.5uPKAcD1R_PD4E100.xml
 ------------------------------------------------------------------------
 >>>>>>>>> Castro J Physiol 591.13 (2013) pp 3197–3214
 (A) peak time of either PKAc or phospho targets (pPDE10, pDaD1RGs, pPDE4) around 30-40 sec. (B) Peak values of 1 s and 10 s are the same, peak value of 0.3 s is 80% of 1s, peak value of 0.1 s is 50% of 1s. (C) What is target cAMP value?

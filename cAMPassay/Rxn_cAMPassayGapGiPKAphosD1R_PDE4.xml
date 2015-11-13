@@ -128,7 +128,7 @@
     </Reaction>
 
 <!--*****************PKAc phosphorylation of DaD1R *******************************-->
-    <!--1a. PKAc + DaD1RGs -> PKAcDaD1RGs Km= 125nM-->
+    <!--1. PKAc + DaD1RGs -> PKAcDaD1RGs Km= 125nM-->
     <Reaction name = "DaD1RGs phosp1" id="phospDaD1RGs1">
         <Reactant specieID="PKAc"                   />
         <Reactant specieID="DaD1RGs"                  />
@@ -139,7 +139,7 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!--2a. PKAcDaD1RGs -> PKAc + pDaD1RGs -->
+    <!--2. PKAcDaD1RGs -> PKAc + phosphoDaD1RGs -->
     <Reaction name = "DaD1RGs phosp2" id="phospDaD1RGs2">
         <Reactant specieID="PKAcDaD1RGs"              />
         <Product  specieID="pDaD1RGs"                 />
@@ -233,7 +233,7 @@
         <Reactant specieID="GasGTP"                  />
         <Product  specieID="GasGDP"                  />
 
-        <forwardRate> 0.5e-03        </forwardRate>
+        <forwardRate> 1.0e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -272,7 +272,7 @@
     </Reaction>
 
 <!--V. AC5 to cAMP with PDEs, from Gs RXN FILE. May need to add AC1 at some point -->
-    <!--1a. GasGTP + AC <-> ACGas(GTP) -->
+    <!--1. GasGTP + AC <-> ACGas(GTP) -->
     <Reaction name = "GasGTP+AC--ACGas reac" id="GasGTP+AC--ACGas_id">
         <Reactant specieID="GasGTP"                  />
         <Reactant specieID="AC"                     />
@@ -282,7 +282,7 @@
         <reverseRate> 0.1e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--2a. ACGas(GTP) + ATP    <-> ACGas(GTP)ATP     -->
+    <!--2. ACGas(GTP) + ATP    <-> ACGas(GTP)ATP     -->
     <Reaction name = "ACGas+ATP--ACGasATP reac" id="ACGas+ATP--ACGasATP_id">
         <Reactant specieID="ACGas"                />
         <Reactant specieID="ATP"                    />
@@ -292,7 +292,7 @@
         <reverseRate> 0.2612e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-    <!--3a. ACGas(GTP)ATP       <-> ACGas(GTP) + cAMP   -->
+    <!--3. ACGas(GTP)ATP       <-> ACGas(GTP) + cAMP   -->
     <Reaction name = "ACGasATP--ACGas+cAMP reac" id="ACGasATP--ACGas+cAMP_id">
         <Reactant specieID="ACGasATP"             />
         <Product  specieID="ACGas"                />

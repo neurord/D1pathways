@@ -86,7 +86,7 @@
         <PicoSD specieID="ACGasGai"               value="0" />
         <PicoSD specieID="ACGasGaiATP"            value="80" />
 
-        <PicoSD specieID="PDE10"                  value="90" />
+        <PicoSD specieID="PDE10"                  value="100" />
         <PicoSD specieID="PDE10cAMP"              value="10" />
         <PicoSD specieID="PKAcPDE10"              value="0" />
         <PicoSD specieID="PKAcPDE10cAMP"          value="0" />
