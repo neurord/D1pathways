@@ -128,14 +128,14 @@
     </Reaction>
 
 <!--*****************PKAc phosphorylation of DaD1R *******************************-->
-    <!--1a. PKAc + DaD1RGs -> PKAcDaD1RGs -->
+    <!--1a. PKAc + DaD1RGs -> PKAcDaD1RGs Km= 125nM-->
     <Reaction name = "DaD1RGs phosp1" id="phospDaD1RGs1">
         <Reactant specieID="PKAc"                   />
         <Reactant specieID="DaD1RGs"                  />
         <Product  specieID="PKAcDaD1RGs"              />
 
-        <forwardRate> 0.0025e-03    </forwardRate>
-        <reverseRate> 0.24e-03    </reverseRate>
+        <forwardRate> 0.0008e-03    </forwardRate>
+        <reverseRate> 0.08e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
@@ -145,7 +145,7 @@
         <Product  specieID="pDaD1RGs"                 />
         <Product  specieID="PKAc"                   />
 
-        <forwardRate> 0.06e-03    </forwardRate>
+        <forwardRate> 0.02e-03    </forwardRate>
         <reverseRate> 0             </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -233,7 +233,7 @@
         <Reactant specieID="GasGTP"                  />
         <Product  specieID="GasGDP"                  />
 
-        <forwardRate> 1e-03        </forwardRate>
+        <forwardRate> 0.5e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -518,7 +518,7 @@
         <Reactant specieID="PDE4"           />
         <Product  specieID="PKAcPDE4"       />
         <forwardRate> 0.125e-6  </forwardRate>
-        <reverseRate> 0.12e-3    </reverseRate>
+        <reverseRate> 0.04e-3    </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -527,7 +527,7 @@
         <Reactant specieID="PKAcPDE4"       />
         <Product  specieID="pPDE4"          />
         <Product  specieID="PKAc"            />
-        <forwardRate> 0.03e-3    </forwardRate>
+        <forwardRate> 0.01e-3    </forwardRate>
         <reverseRate> 0            </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
@@ -538,7 +538,7 @@
         <Reactant specieID="PKAc"             />
         <Product  specieID="PKAcPDE4cAMP"  />
         <forwardRate> 0.125e-6  </forwardRate>
-        <reverseRate> 0.12e-3    </reverseRate>
+        <reverseRate> 0.04e-3    </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -547,7 +547,7 @@
         <Reactant specieID="PKAcPDE4cAMP"  />
         <Product  specieID="pPDE4cAMP"       />
         <Product  specieID="PKAc"             />
-        <forwardRate> 0.03e-3    </forwardRate>
+        <forwardRate> 0.01e-3    </forwardRate>
         <reverseRate> 0            </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>

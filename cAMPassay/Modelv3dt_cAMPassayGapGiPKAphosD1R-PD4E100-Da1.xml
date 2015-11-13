@@ -5,7 +5,7 @@
 
     <xi:include href="Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml" />
     <xi:include href="Morph6.5um.xml" />
-    <xi:include href="IC_cAMPassay6.5uPKAcD1R_PDE4.xml" />
+    <xi:include href="IC_cAMPassay6.5uPKAcD1R_PD4E100.xml" />
     <xi:include href="IO_cAMPassayPKAcD1R_PDE4.xml" />
     <StimulationSet>
       <InjectionStim specieID="Da" injectionSite="pointA">
@@ -14,7 +14,7 @@
         <rate>               15666.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
-        <onset>           30000        </onset>
+        <onset>           21000        </onset>
         <duration>           10000       </duration>
         <rate>               15.66      </rate>
       </InjectionStim>
@@ -22,10 +22,10 @@
       <InjectionStim specieID="Abuf" injectionSite="pointA">
         <onset>           20000        </onset>
         <duration>           20        </duration>
-        <rate>               15.0      </rate>
+        <rate>               10.0      </rate>
       </InjectionStim>
       <InjectionStim specieID="ACh" injectionSite="pointA">
-        <onset>           34000        </onset>
+        <onset>           23000        </onset>
         <duration>           10000      </duration>
         <rate>               0.01      </rate>
       </InjectionStim>

@@ -1,0 +1,39 @@
+Lab Notebook for Blackwell Nov 12, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Merged Model:Finish updating MSPNmergedRateConst.xls
+2. Research PIkinase from Falkenberg
+3. repeat Da Bath to get more prolonged response (less ACh) using rates from cAMP assay
+------------------------------------------------------------------------
+Running cAMP assay simulations with the following new rates:
+PDEcAMP assay: rate of PKAc phosphorylation / dephosphorylation of PDE4 = 
+	Kf=0.125e-3, Kb=0.04, Kcat=0.01 in 
+Lower phos rate of DaD1R receptor: kf=0.0008e-3, kb=0.08e-3, kcat=0.02e-3
+	both are in cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
+Try two different PDE4 conc:
+    PDE4=100 - Modelv3dt_cAMPassayGapGiPKAphosD1R_PD4E100-Da*.xml
+    	     uses cAMPassay/IC_cAMPassay6.5uPKAcD1R_PD4E100.xml 
+    PDE4=50, PDE10=110 (total 120, 20% higher) PDE2=60 (20%higher)
+    	     Modelv3dt_cAMPassayGapGiPKAphosD1R_PD4E100-Da*.xml
+	     uses IC_cAMPassay6.5uPKAcD1R_PD4E50.xml
+Depending on results, consider slowing GasGTP hydrolysis to prolong ACGasATP, and keep higher ACh around to limit peak, coupled with no replacement since it doesn't seem to be controlling decay.  Or, possibly much later replacement for the 10s Da only.
+--------->
+1. Basal cAMP similar for PDE4=50 and PDE4=100
+2. cAMP still quite transient; AChm4RGi is only minimally replaced, so this is not cause of transience.
+3. Peak of cAMP is ~2x larger for PDE4=50 than PDE4=100.
+3. ACGasATP is quite transient - this is cause of transience.  Need to slow GasGTP hydrolysis, but keep the PDE4=100, else the peak will be even larger OR less decrease in ACh.
+########## GasGTP hydrolysis changed from 1.0 to 0.5 in 
+	   cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
+	   Abuf stim changed from 15 to 10 in
+	   cAMPassay/Modelv3dt_cAMPassayGapGiPKAphosD1R_PD4E100-Da*.xml
+	   Keep the ACh replacement the same, because currently the cAMP never returns to basal. But, consider increasing PDE10 by 10
+	   if necessary to reduce Abuf still more, halve the duration
+	   use same IC_cAMPassay6.5uPKAcD1R_PD4E100.xml as above sims
+GOAL: Need to keep cAMP conc lower but durations different to see PKAc difference (hence increase PDE10 and lower Abuf still more)
+------------------------------------------------------------------------
+>>>>>>>>> Castro J Physiol 591.13 (2013) pp 3197–3214
+(A) peak time of either PKAc or phospho targets (pPDE10, pDaD1RGs, pPDE4) around 30-40 sec. (B) Peak values of 1 s and 10 s are the same, peak value of 0.3 s is 80% of 1s, peak value of 0.1 s is 50% of 1s. (C) What is target cAMP value?
