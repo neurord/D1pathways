@@ -1,0 +1,35 @@
+Lab Notebook for Blackwell Nov 20, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Merged Model:Finish updating MSPNmergedRateConst.xls
+2. Research PIkinase from Falkenberg
+3. repeat Da Bath to get more prolonged response (less ACh) using rates from cAMP assay
+########## GasGTP hydrolysis changed back to 1.0 in 
+	   cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
+	   Increase PDE10 10%, from 100 to 110 in
+	   cAMPassay/IC_cAMPassay6.5uPKAcD1R_PD4E100.xml
+---------> peak cAMP=3.5uM for Da=10s, 1.5 uM for Da=0.1 sec
+	   PKAc looks slightly higher for longer stimuli
+	   PDE phos doesn't match castro, BUT, pDaD1RGs looks similar: larger phos for longer Da.
+Evaluate PKAc bound to its targets: very little variation with Da, except for DaD1RGs, and this is probably due to the time course of the DaD1RGs form
+	 
+NEED TO FIGURE OUT HOW TO LOWER cAMP PEAK, WHILE PROLONGING cAMP DURATION!!! because PKAc is more sensitive to cAMP duration if cAMP peak is so high
+Tried slower GasGTP hydrolysis, but this only made cAMP higher.  WOuld need to couple  slower GasGTP hydrolysis with slower production
+######### kcat of DaD1RGs could be slowed from 2.0 to 0.5 (4x slower) and then hydrolysis also slowed 4x from 1.0 to 0.25.
+---------_> peak cAMP=3.5 uM (as before)
+	    lowest value of cAMP = ~1000
+	    PKA ranges from 32.55 (0.1s Da) to 42.56 (10s Da)
+	    Still not prolonged enough, PKA still increases quite quickly
+	    pPDE4 now shows a difference
+
+######### Try additional slowdown? Gap = 0.125/sec, Kcat = 0.25
+    Also, simulate for 300 sec (beginning at 30 sec) for better pre stim baseline, and to see of pPDE4 begins to decay
+    If good, then copy new rates into whole model, update .xls, and continue adjusting merged model
+    These slower rates may help with more prolonged response to Da Bath
+------------------------------------------------------------------------
+>>>>>>>>> Castro J Physiol 591.13 (2013) pp 3197–3214
+(A) peak time of either PKAc or phospho targets (pPDE10, pDaD1RGs, pPDE4) around 30-40 sec. (B) Peak values of 1 s and 10 s are the same, peak value of 0.3 s is 80% of 1s, peak value of 0.1 s is 50% of 1s. (C) What is target cAMP value?

@@ -9,23 +9,23 @@
     <xi:include href="IO_cAMPassayPKAcD1R_PDE4.xml" />
     <StimulationSet>
       <InjectionStim specieID="Da" injectionSite="pointA">
-        <onset>           20000        </onset>
+        <onset>           30000        </onset>
         <duration>           10         </duration>
         <rate>               15666.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
-        <onset>           21000        </onset>
+        <onset>           31000        </onset>
         <duration>           10000       </duration>
         <rate>               15.66      </rate>
       </InjectionStim>
 
       <InjectionStim specieID="Abuf" injectionSite="pointA">
-        <onset>           20000        </onset>
+        <onset>           30000        </onset>
         <duration>           20        </duration>
         <rate>               10.0      </rate>
       </InjectionStim>
       <InjectionStim specieID="ACh" injectionSite="pointA">
-        <onset>           23000        </onset>
+        <onset>           33000        </onset>
         <duration>           10000      </duration>
         <rate>               0.01      </rate>
       </InjectionStim>
@@ -44,7 +44,7 @@ results (also, 3D may not work yet...)  -->
 
 
     <!-- run time for the calculation, milliseconds -->
-    <runtime>          200000         </runtime>
+    <runtime>          300000         </runtime>
 <!-- 100001 -->
     <!-- set the seed to get the same spines each time testing -->
     <spineSeed>          123          </spineSeed>

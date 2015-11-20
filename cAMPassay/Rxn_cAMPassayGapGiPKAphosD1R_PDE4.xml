@@ -122,7 +122,7 @@
         <Product  specieID="GasGTP"                  />
         <Product  specieID="Gbg"                  />
 
-        <forwardRate> 2e-03        </forwardRate>
+        <forwardRate> 0.25e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -233,7 +233,7 @@
         <Reactant specieID="GasGTP"                  />
         <Product  specieID="GasGDP"                  />
 
-        <forwardRate> 1.0e-03        </forwardRate>
+        <forwardRate> 0.125e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>

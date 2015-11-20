@@ -11,7 +11,7 @@ NEXT STEPS:
 ------------------------------------------------------------------------
 Running cAMP assay simulations with the following new rates:
 PDEcAMP assay: rate of PKAc phosphorylation / dephosphorylation of PDE4 = 
-	Kf=0.125e-3, Kb=0.04, Kcat=0.01 in 
+	Kf=0.125e-3, Kb=0.04, Kcat=0.01  
 Lower phos rate of DaD1R receptor: kf=0.0008e-3, kb=0.08e-3, kcat=0.02e-3
 	both are in cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
 Try two different PDE4 conc:
@@ -45,6 +45,7 @@ GOAL: Need to keep cAMP conc lower but durations different to see PKAc differenc
 	   cAMPassay/Rxn_cAMPassayGapGiPKAphosD1R_PDE4.xml
 	   Increase PDE10 10%, from 100 to 110 in
 	   cAMPassay/IC_cAMPassay6.5uPKAcD1R_PD4E100.xml
+NEED TO FIGURE OUT HOW TO LOWER cAMP PEAK, WHILE PROLONGING cAMP DURATION!!!
 ------------------------------------------------------------------------
 >>>>>>>>> Castro J Physiol 591.13 (2013) pp 3197–3214
 (A) peak time of either PKAc or phospho targets (pPDE10, pDaD1RGs, pPDE4) around 30-40 sec. (B) Peak values of 1 s and 10 s are the same, peak value of 0.3 s is 80% of 1s, peak value of 0.1 s is 50% of 1s. (C) What is target cAMP value?
