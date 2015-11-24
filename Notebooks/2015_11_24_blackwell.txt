@@ -1,0 +1,42 @@
+Lab Notebook for Blackwell Nov 24, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+***1. Merged Model:Updat MSPNmergedRateConst.xls and Rxn.xml file
+2. Research PIkinase from Falkenberg
+***3. repeat Da Bath to get more prolonged response (less ACh) using rates from cAMP assay
+***4. Repeat BoHung stim sims using new PLC rates
+5. Add in CamKII inhib of DagL
+######### Results of additional slowdown: GasGTP hydrolysis rate = 0.125/sec, Kcat of GasGTP production = 0.25
+    Also, simulate for 300 sec (beginning at 30 sec) for better pre stim baseline, and to see of pPDE4 begins to decay
+----->Results
+	basal cAMP = 56.  Peak GasGTP is lower, esp for lower stimuli
+	peak cAMP ranges from 0.8uM to 2.3 uM
+	peak PKAc ranges from 27 to 41 nM - wider range than before.  
+     	     1s and 10s have similar peaks
+	     300 ms slightly lower peak
+     	     100 ms much lower peak
+	Peak times: cAMP ranges from 36 to 44 msec (6- 14 msec after stim)
+     	     	    PKAc ranges from 52 to 49 msec (22 - 19 msec after stim)
+	pPDE4, other than 0.1s stim, has good response also, with more prolonged response.
+Definitely more prolonged than with previous rate constants 
+---------> keep these parameters
+One problem remains: cAMP and PKAc remains elevated only for the 0.1 sec Da stim. Da remains relevated for 0.1 sec stim.  Though injecting on average same amount, there is no excess buffer
+Rerun with slightly more buf injection (78.33)- may help reduce PKAc response to cAMP
+----------> better: cAMP=662, PKAc=26.5; but still not good enough
+	    try 78.35  buffer, and less inject: 15660 (vs 15666) - good, though now returns to below basal.
+OVERALL: PKAc transient is faster than Castro, but pPDE4 transient is slower.
+Then, onto merged model!!!
+Gq pathways:
+Based on discussions with Jeanette - and very small 2AG response with current Gq pathway parameters -  can lower GaqGDP hydrolysis from 30 to 15, for the PLCCa form, which will allow Gq to stay longer, and perhaps increase the Kcat for DAG production.
+      	 Old  New    try 3x larger?   or 6x larger with Gap=30
+PLCCa 	 25   0.09   0.27   	      0.54
+PLCGqCa	 250  3	     9		      18
+WILL NEED TO INCREASE Kf and Kb also, to avoid Kcat being larger than kb
+Blank used GTPgammaS and obtained much higher rates.  perhaps Smrcka's lower overall rates come from GTP hydrolysis?
+------------------------------------------------------------------------
+>>>>>>>>> Castro J Physiol 591.13 (2013) pp 3197–3214
+(A) peak time of either PKAc or phospho targets (pPDE10, pDaD1RGs, pPDE4) around 30-40 sec. (B) Peak values of 1 s and 10 s are the same, peak value of 0.3 s is 80% of 1s, peak value of 0.1 s is 50% of 1s. (C) What is target cAMP value?

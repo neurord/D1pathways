@@ -160,7 +160,7 @@
         <Q10>          0.2          </Q10>
     </Reaction>
 
-    <!-- *********** Gi coupled m4 receptor *************
+    <!-- *********** Gi coupled m4 receptor (VALUES ACTUALLY D2R) *************
     Should the Gi binding be increased similarly to Gs binding?-->
     <!--0. ACh + Abuf        <-> AChbuf     irreversible binding -->
     <Reaction name = "ACh+Abuf--AChbuf" id="ACh+Abuf--AChbuf">
@@ -228,7 +228,7 @@
     </Reaction>
 
 <!--IV. *************** G protein hydrolysis and regeneration  *******************-->
-    <!--1. hydrolysis: GasGTP       <-> GasGDP            (1.0 based on Chay model) -->
+    <!--1. hydrolysis: GasGTP       <-> GasGDP             -->
     <Reaction name = "GasGTP--GasGDP reac" id="GasGTP--GasGDP_id">
         <Reactant specieID="GasGTP"                  />
         <Product  specieID="GasGDP"                  />

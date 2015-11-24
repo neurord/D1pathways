@@ -11,12 +11,12 @@
       <InjectionStim specieID="Da" injectionSite="pointA">
         <onset>           30000        </onset>
         <duration>           10         </duration>
-        <rate>               15666.0    </rate>
+        <rate>               15660.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="buf" injectionSite="pointA">
         <onset>           30100        </onset>
         <duration>           2000      </duration>
-        <rate>               78.3    </rate>
+        <rate>               78.35    </rate>
       </InjectionStim>
 
       <InjectionStim specieID="Abuf" injectionSite="pointA">
