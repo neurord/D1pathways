@@ -1,0 +1,89 @@
+Lab Notebook for Blackwell Nov 20, 2015 - Dec 2, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Repeat Uchigashima and Bohung sims while adjusting Gq pathways and spine densities
+2. Research PIkinase from Falkenberg
+3. Add in CamKII inhib of DagL
+4. Repeat theta and 20Hz simulations
+
+Updated MSPNmergedRateConst.xls and Rxn*.xml file for whole model simulation
+Repeated the Da bath, Ca bath, CyA and OA block cases
+######### Results
+1. Da now produces increase in Dp34PP1: from 867 nM to 3.4 uM, in 1 min
+      	  	   decrease in Dp75: from 9.8 uM to 6.6 uM in 2 min
+		   cAMP has more prolonged increase, decrease is similar to time course of PDE10 phosphorylation 
+	-------> Good, but basal cAMP is a bit high, and phos of DaD1RGs is too low
+	reduce DaD1RGs dephos, from 5 to 2
+	increase PDE10total from 100 to 120
+2. Block:
+   block1=OA (PP1/PP2A) - PP1 was not being reduced!!!
+   No increase in Dp34PP1, large increase in Dp75 - saturates at 45 uM
+   block2=CyA (PP2B) - no effect on Dp75, slight increase in Dp34PP1, but simulation didn't run past 100s 
+   re-run block1 with 10% of free PP1
+   re-run both blocks with the increased PDE10
+
+######### Results
+1. Da: cAMP basal: 133.6, peak: 6 uM - follows ACGasATP time course
+       PKAc basal: 12, peak 45 nM - delayed increase and more prolonged than cAMP
+       Dp34PP1 basal: 804, peak 3.8 uM, minimal decay by 240 sec
+       Dp75 basal: 9.8 uM but not really steady; decreasing to 6 uM
+       phospho PDE: pde10 begins to increase at 110 sec, PDE4 increases a bit later
+       pDaD1RGS increases around 130sec.  These may be causing the cAMP decay.
+--------> STILL NEED LOWER BASAL cAMP.  Another increase in PDE4/10
+	  PDE4 inc from 100 to 120, PDE10 inc from 120 to 150
+2. Ca: cAMP, AC, PKAc exhibit trivial decrease.
+   Dp34PP1 - decrease from 800 to 300 - EXCELLENT
+   Dp75: decrease from 9.8 uM to 5 uM - very good.  Only problem is that basal is too low.  
+----> Increase CDK5 by 20%, from 420 to 520 in IC file
+3. Block
+   block1=OA (PP1/PP2A) - Large increase in Dp75 - saturates at 45 uM (4x increase)
+   block2=CyA (PP2B) - no effect on Dp75 (Good). No increase in Dp34PP1
+   -------> Effect on Dp75 is consistent with experiments
+   	    Effect on Dp34 is not sufficient.  No increase seen with either block!
+	    Definitely need to see increase with CyA - block more PP2B (down to 50 from 500)
+######### Results of stronger PDEs and less PP2B during block:
+1. Da: basal cAMP=79 - GREAT
+       basal Dp34PP1 is now 462 - fine
+       basal Dp75 is now  13 uM - too large, reduce CDk5 a bit.
+3. Block
+   block1=OA (PP1/PP2A) - Large increase in Dp75 - saturates at 45 uM (4x increase)
+   	     		no effect on Dp34
+   block2=CyA (PP2B) - no effect on Dp75 (Good).
+   	      	     Small increase in Dp34PP1 to 600?  Vs 400 with OA. 
+   -------> Effect on Dp75 is consistent with experiments
+   	    Effect on Dp34 is small, needs to be larger.
+NEW SIMS with reduced CDK5, only 10 PP2B for CyA
+1. Da basal cAMP = 76 (stoch var)
+   basal Dp34PP1 = 542 (stoch var?), peak=1358.91 - 3X INCREASE
+   Dp75 basal is now 12420, dec to 9146.04 during PKA - reasonable (or stochastic? reduction)
+2. Ca: Dp34 decreases to 230 - 50% - consistent with expers
+       Dp75 decreases to 6 uM - 50% - slightly less than expers, but still pretty good.  Might get larger reduction with PP2B interaction with CDK5?
+3. Block
+   block1=OA (PP1/PP2A) - Large increase in Dp75 - saturates at 45 uM (4x increase)
+   	     		Dp34 peak = 535 (same as basal)
+   block2=CyA (PP2B) - no effect on Dp75 (Good)
+   	      	     Dp34 peak = 655 - and increase, but not enough
+
+Begin to Repeat BoHung stim sims using new PLC rates
+   1st, run simulation with no stim and with spine
+****** Model_MSPNmergeSpine.xml uses:
+       IC_MSPNmergePKAcD1R.xml (IC_MSPNmergeDendPKAcD1R.xml with Spine values)
+       Rxn_MSPNmergePKAcD1R.xml (same as used for bath sims)
+       Morph_1spine2umDend.xml
+    These sims will be used to adjust IC for ss and total quantities
+   2nd, try the Uchigashima, theta and 20 Hz
+      May need to increase catalytic rate of PLC or reduce GAP activity to achieve sufficientDAG and 2AG 
+
+>>>>>>>>> Goal Measurements of Dp34 and Dp75:
+Okadaic Acid (OA) increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+Cyclosporin A increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur VERY slowly, more than 30 minutes.  Also Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+Blocking PP2A (OA) increases Dp75 by 3x (60 min expers)
+Blocking PP2B (CyA) has no effect on Dp75 (60 min exprs)
+Ca Bath : 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+Da Bath: increase in Dp34 inc 5x (5 min), Dp75 dec 50% (1 min)

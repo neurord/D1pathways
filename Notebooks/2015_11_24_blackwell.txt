@@ -5,7 +5,7 @@ Lab Notebook for Blackwell Nov 24, 2015
 ########## indicates the set of parameters used for the set of simulations
 
 NEXT STEPS:
-***1. Merged Model:Updat MSPNmergedRateConst.xls and Rxn.xml file
+***1. Merged Model:Updat MSPNmergedRateConst.xls (Done) and Rxn*.xml file
 2. Research PIkinase from Falkenberg
 ***3. repeat Da Bath to get more prolonged response (less ACh) using rates from cAMP assay
 ***4. Repeat BoHung stim sims using new PLC rates

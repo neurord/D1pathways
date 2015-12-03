@@ -21,11 +21,11 @@
 
 
     <!-- lengthDensity means you set the number per micron along the segment -->
-    <SpineAllocation id="sa1" spineType="spineA" region="dendrite" lengthDensity="0.8"/>
+    <SpineAllocation id="sa1" spineType="spineA" region="dend" lengthDensity="0.1"/>
     <!--SpineAllocation id="sa2" spineType="spineC" region="dendrite" lengthDensity="6.0"/-->
-    <SpineAllocation id="sa2" spineType="spineC" region="dendrite" lengthDensity="3.0"/>
+    <SpineAllocation id="sa2" spineType="spineC" region="dend" lengthDensity="0.5"/>
     
-    <Segment   id="seg1"    region="dendrite">
+    <Segment   id="seg1"    region="dend">
         <start x="1.0"    y="1.5"   z="0.0"  r="0.45" label="pointB"/>
         <end   x="3.0"    y="1.5"   z="0.0"  r="0.45" label="pointC"/>
     </Segment>
