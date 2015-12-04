@@ -6,6 +6,7 @@ java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar M
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-Block2.xml output/Model_MSPNmerge0.9um-Block2 &
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_CaB.xml output/Model_MSPNmerge0.9umPKAcD1R_CaB &
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_DaB.xml output/Model_MSPNmerge0.9umPKAcD1R_DaB &
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_DaCaB.xml output/Model_MSPNmerge0.9umPKAcD1R_DaCaB &
 #java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmergeSpine.xml output/Model_MSPNmergeSpine &
 
 #alternative:

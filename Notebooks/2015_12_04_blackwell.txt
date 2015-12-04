@@ -1,0 +1,51 @@
+Lab Notebook for Blackwell Dec 4, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Repeat Uchigashima and Bohung sims while adjusting Gq pathways and spine densities
+2. Research PIkinase from Falkenberg
+3. Add in CamKII inhib of DagL
+4. Repeat theta and 20Hz simulations
+
+1. Began creating Model files for Uchi sims. They are ready, but need the correct IC files from the ss simulations with 1 spine.
+2. Repeat the DaBath sim with later restoration of ACh - prolong cAMP more
+3. Try the DaCaBath simulation
+
+************Discovered major mistake: Dopamine was not diffusing.  All Da bath sims are invalid!
+Ca bath is fine, block are probably fine because no Da was being injected.
+Rerun Da Bath sims.  Prediction: cAMP may be WAY too high, may need to not inject as much Abuf.
+
+Block cases: blocking neither PP2A nor PP2B produce an increase in Dp34PP1.  This is quite strange, since these are the only two molecules that dephos Dp34.
+There is much more PKAc bound to DARPP32 with CyA than with OA.  This should increase the amount of Dp34
+
+With OA block, and large increase in Dp75, PKA is more inhibited, which is why Dp34 does not increase.
+With CyA block, pPP2A is similar to DaBath, PP2A bound to Dp34 is similar to the not stimulated values observed with DaBath:  PP2A bound ~10 each type, PP2B bound ~6.  Activity of PP2B is much lower than that of PP2A - this may be causing the lack of PP2A effect.
+SOLUTION: decrease PP2A dephos of the PP1 bound Dp34.  If this produces too great an increase in basal Dp34, may need to increase PP2A quantity (and then increase cdk5 to compensate for Dp75).
+-------> Halve the rates of PP2A dephos of PP1 bound Dp34 from
+0.0012, 44.8, 11.2 to 0.0006, 22.4, 5.6
+Re-run all sims: Da bath, Ca bath, Block1 and Block 2
+Da Bath will also change due to changing Da diffusion from 0 to 10.0
+Added in Model_MSPNmerge0.9umPKAcD1R_DaCaB.xml - both Da and Ca bath
+
+Begin to Repeat BoHung stim sims using new PLC rates - HOWEVER, will need to re-do once above Da problem and Pp2A issue fixed.
+    1st, run simulation with no stim and with spine
+****** Model_MSPNmergeSpine.xml uses:
+       IC_MSPNmergePKAcD1R.xml (IC_MSPNmergeDendPKAcD1R.xml with Spine values)
+       Rxn_MSPNmergePKAcD1R.xml (same as used for bath sims)
+       Morph_1spine2umDend.xml
+    These sims will be used to adjust IC for ss and total quantities
+   2nd, try the Uchigashima, theta and 20 Hz
+      May need to increase catalytic rate of PLC or reduce GAP activity to achieve sufficientDAG and 2AG 
+
+>>>>>>>>> Goal Measurements of Dp34 and Dp75:
+Okadaic Acid (OA) increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+Cyclosporin A increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur VERY slowly, more than 30 minutes.  Also Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+Blocking PP2A (OA) increases Dp75 by 3x (60 min expers)
+Blocking PP2B (CyA) has no effect on Dp75 (60 min exprs)
+Ca Bath : 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+Da Bath: increase in Dp34 inc 5x (5 min), Dp75 dec 50% (1 min)

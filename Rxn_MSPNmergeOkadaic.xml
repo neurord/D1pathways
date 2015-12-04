@@ -24,7 +24,7 @@
 
 <!-- Gs coupled Dopamine D1 Receptor; Ligand currently called L,
      DaOut is used to eliminate injected L -->
-    <Specie name="Da"              id="Da"             kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Da"              id="Da"             kdiff="10"     kdiffunit="mu2/s"/>
     <Specie name="Dabuf"            id="Dabuf"         kdiff="10"    kdiffunit = "mu2/s"/>
     <Specie name="buf"              id="buf"           kdiff="10"    kdiffunit = "mu2/s"/>
     <Specie name="D1R"               id="D1R"           kdiff="0"     kdiffunit="mu2/s"/>
@@ -1436,8 +1436,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2ABPR72"              />
         <Product  specieID="Dp34PP1PP2ABPR72"       />
 
-        <forwardRate> 1.216e-06        </forwardRate>
-        <reverseRate> 0.0448          </reverseRate>
+        <forwardRate> 0.6e-06        </forwardRate>
+        <reverseRate> 0.0224          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
@@ -1461,8 +1461,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2AB56d"              />
         <Product  specieID="Dp34PP1PP2AB56d"       />
 
-        <forwardRate> 1.216e-06        </forwardRate>
-        <reverseRate> 0.0448          </reverseRate>
+        <forwardRate> 0.6e-06        </forwardRate>
+        <reverseRate> 0.0224          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
