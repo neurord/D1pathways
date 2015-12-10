@@ -91,11 +91,11 @@
     <Specie name="PDE2"           id="PDE2"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE2cAMP"       id="PDE2cAMP"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE2cAMP2"      id="PDE2cAMP2"     kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="PDE4"      id="PDE4"      kdiff="0" kdiffunit="mu2/s"/>
-    <Specie name="PDE4cAMP"  id="PDE4cAMP"  kdiff="0" kdiffunit="mu2/s"/>
-    <Specie name="PKAcPDE4"  id="PKAcPDE4"  kdiff="0" kdiffunit="mu2/s"/>
-    <Specie name="pPDE4"     id="pPDE4"     kdiff="0" kdiffunit="mu2/s"/>
-    <Specie name="pPDE4cAMP" id="pPDE4cAMP" kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="PDE4"      id="PDE4"      kdiff="6" kdiffunit="mu2/s"/>
+    <Specie name="PDE4cAMP"  id="PDE4cAMP"  kdiff="6" kdiffunit="mu2/s"/>
+    <Specie name="PKAcPDE4"  id="PKAcPDE4"  kdiff="6" kdiffunit="mu2/s"/>
+    <Specie name="pPDE4"     id="pPDE4"     kdiff="6" kdiffunit="mu2/s"/>
+    <Specie name="pPDE4cAMP" id="pPDE4cAMP" kdiff="6" kdiffunit="mu2/s"/>
 
     <!-- Gq, PLC, Dag, IP3, PKC and 2ag are from Gq model --> 
     <Specie name="Plc"            id="Plc"           kdiff="0"     kdiffunit="mu2/s"/>
@@ -1550,8 +1550,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2ABPR72"              />
         <Product  specieID="Dp34PP1PP2ABPR72"       />
 
-        <forwardRate> 0.6e-06        </forwardRate>
-        <reverseRate> 0.0224          </reverseRate>
+        <forwardRate> 0.3e-06        </forwardRate>
+        <reverseRate> 0.0122          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
@@ -1562,7 +1562,7 @@ MUCH slower binding compared to CaDgl  -->
 	<Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0056          </forwardRate>
+        <forwardRate> 0.0028          </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>
@@ -1575,8 +1575,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2AB56d"              />
         <Product  specieID="Dp34PP1PP2AB56d"       />
 
-        <forwardRate> 0.6e-06        </forwardRate>
-        <reverseRate> 0.0224          </reverseRate>
+        <forwardRate> 0.3e-06        </forwardRate>
+        <reverseRate> 0.0122          </reverseRate>
         <Q10>         0.2              </Q10>
     </Reaction>
 
@@ -1587,7 +1587,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0056         </forwardRate>
+        <forwardRate> 0.0028         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
         <Q10>         0.2             </Q10>
     </Reaction>

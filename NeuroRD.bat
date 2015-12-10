@@ -2,12 +2,12 @@
 #To start multiple NeuroRD simulations at once, add & at end of each line.
 #run the batch file using: at -f NeuroRD.bat NOW (or you can specify a different time)
 set -ex
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-Block1.xml output/Model_MSPNmerge0.9um-Block1 &
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-Block2.xml output/Model_MSPNmerge0.9um-Block2 &
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_CaB.xml output/Model_MSPNmerge0.9umPKAcD1R_CaB &
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_DaB.xml output/Model_MSPNmerge0.9umPKAcD1R_DaB &
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_DaCaB.xml output/Model_MSPNmerge0.9umPKAcD1R_DaCaB &
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmergeSpine.xml output/Model_MSPNmergeSpine &
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-Block1.xml output/Model_MSPNmerge0.9um-Block1 > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-Block2.xml output/Model_MSPNmerge0.9um-Block2 > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_CaB.xml output/Model_MSPNmerge0.9umPKAcD1R_CaB > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_DaB.xml output/Model_MSPNmerge0.9umPKAcD1R_DaB > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R_DaCaB.xml output/Model_MSPNmerge0.9umPKAcD1R_DaCaB > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmergeSpine.xml output/Model_MSPNmergeSpine > /dev/null&
 
 #alternative:
 #To run things in parallel (instead of batch file):
