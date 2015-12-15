@@ -5,7 +5,7 @@
 
           <xi:include href="Rxn_MSPNmergePKAcD1R.xml" />
           <xi:include href="Morph0.9um.xml" />
-	  <xi:include href="IC_MSPNmergeDendPKAcD1R.xml" />       
+	  <xi:include href="IC_MSPNmergeDendPKAcD1R_PDElow_CyA.xml" />       
           <xi:include href="IO_MSPNmerge_all.xml" />
           <xi:include href="Stim_DaBath.xml" />
 

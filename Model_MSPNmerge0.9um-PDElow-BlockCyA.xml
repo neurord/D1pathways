@@ -5,9 +5,8 @@
 
           <xi:include href="Rxn_MSPNmergePKAcD1R.xml" />
           <xi:include href="Morph0.9um.xml" />
-	  <xi:include href="IC_MSPNmergeDendPKAcD1R.xml" />       
+	  <xi:include href="IC_MSPNmergeDendPKAcD1R_PDElow_CyA.xml" />       
           <xi:include href="IO_MSPNmerge_all.xml" />
-          <xi:include href="Stim_CaBath.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the

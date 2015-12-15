@@ -55,6 +55,7 @@
     <OutputSpecie name="GluMgluR"/>
     <OutputSpecie name="GluMgluRdesens"/>
     <OutputSpecie name="Gqabg"/>
+    <OutputSpecie name="MgluRGq"/>
     <OutputSpecie name="GluMgluRGq"/>
     <OutputSpecie name="GaqGTP"/>
     <OutputSpecie name="GaqGDP"/>
