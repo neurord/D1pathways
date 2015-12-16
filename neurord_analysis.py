@@ -36,7 +36,7 @@ prninfo=0
 showss=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=0
+showplot=1
 ##change these endings depending on whether using neurord3.x:
 meshend="*mesh.txt.out"
 concend='conc.txt.out'
@@ -148,7 +148,10 @@ for fnum,ftuple in enumerate(ftuples):
         if maxvols>1:
                 region_list,region_vox,region_col,region_struct_list,region_struct_vox,region_struct_col=hparse.subvol_list(structType,regionID,volnums,fake)
                 dsm_vox=region_struct_list.index(dend+submembname)
-                head_vox=region_list.index(spinehead)
+                try:
+                    head_vox=region_list.index(spinehead)
+                except ValueError:
+                    head_vox=-1
                 RegVol=hparse.region_volume(region_list,region_vox,vox_volume,prnvox)
                 RegStructVol=hparse.region_volume(region_struct_list,region_struct_vox,vox_volume,prnvox)
                 submembVol=0
@@ -222,8 +225,10 @@ for fnum,ftuple in enumerate(ftuples):
                         np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                         f.close()
                 else:
-                    print molecules[imol].rjust(14), "head:%8.4f" %RegionMeans[sstart:ssend,head_vox].mean(),
-                    print "dsm %8.4f" %(RegionStructMeans[sstart:ssend,dsm_vox].mean()*deltaY[0])
+                    print molecules[imol].rjust(14),
+                    if head_vox>-1:
+                        print "head:%8.4f" %RegionMeans[sstart:ssend,head_vox].mean(),
+                    print "dend sm %8.4f" %(RegionStructMeans[sstart:ssend,dsm_vox].mean()*deltaY[0])
                #
                 #write space
                 if spatialaverage:

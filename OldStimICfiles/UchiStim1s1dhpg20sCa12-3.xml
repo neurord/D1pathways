@@ -2,19 +2,19 @@
 
     <!-- Uchigashima - DSI sims 1 s  -->
 
-<InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               12000          </onset>
         <duration>            20             </duration>
         <rate>                30           </rate>
 </InjectionStim>
 
-<InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               12050          </onset>
         <duration>            450             </duration>
         <rate>                1.2           </rate>
 </InjectionStim>
 
-<InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               12500          </onset>
         <duration>            19500             </duration>
         <rate>                1.1           </rate>

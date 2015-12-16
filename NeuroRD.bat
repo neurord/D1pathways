@@ -22,5 +22,5 @@ java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar M
 
 #alternative:
 #To run things in parallel (instead of batch file):
-#parallel --gnu java -Dstochdiff.writers=text -jar /home/neuroware/stochdif/stochdiff-3.0.0-8.jar ::: Model_cAMPassaySoma*.xml
+#parallel --gnu java -Dstochdiff.writers=text -Dstochdiff.log=false -jar /home/neuroware/stochdif/stochdiff-3.0.0-9.jar ::: Model*.xml
 

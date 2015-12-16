@@ -66,9 +66,9 @@
         <NanoMolarity specieID="ACGasCa"        value="0" />
         <NanoMolarity specieID="ACGasCaATP"     value="0" />
         <NanoMolarity specieID="PDE4"           value="195" />
-        <NanoMolarity specieID="PDE4cAMP"       value="5" />
+        <NanoMolarity specieID="PDE4cAMP"       value="0" />
         <NanoMolarity specieID="PKAcPDE4"       value="0" />
-        <NanoMolarity specieID="pPDE4"          value="0" />
+        <NanoMolarity specieID="pPDE4"          value="5" />
 	<NanoMolarity specieID="pPDE4cAMP"      value="0" />
 
         <NanoMolarity specieID="PDE2"               value="200" />

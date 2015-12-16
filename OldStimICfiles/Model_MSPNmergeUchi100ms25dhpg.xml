@@ -3,10 +3,10 @@
     <!-- this file defines a single run of the calculation, using morphology and 
 	 reaction data brought in from other files --> 
 
-          <xi:include href="Rxn_MSPNmergePKAcD1R.xml" />
-          <xi:include href="Morph_1spine2umDend.xml" />
-	  <xi:include href="IC_MSPNmergePKAcD1R.xml" />       
-          <xi:include href="IO_MSPNmerge_all.xml" />
+          <xi:include href="../Rxn_MSPNmergePKAcD1R.xml" />
+          <xi:include href="../Morph_1spine2umDend.xml" />
+	  <xi:include href="../IC_MSPNmergeSpinePKAcD1R_PDEhigh.xml" />       
+          <xi:include href="../IO_MSPNmerge_all.xml" />
 	  <xi:include href="UchiStim100ms25dhpg20sCa12.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
