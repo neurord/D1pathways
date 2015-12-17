@@ -1,0 +1,121 @@
+Lab Notebook for Blackwell Dec 7-10, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+
+NEXT STEPS:
+1. Repeat Uchigashima and Bohung sims while adjusting Gq pathways and spine densities
+   Model files for Uchi sims are ready, but need the correct IC files from the ss simulations with 1 spine.
+2. Research PIkinase from Falkenberg
+3. Add in CamKII inhib of DagL.  Consider role in PP2B in localizing PKA, anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation
+4. Repeat theta and 20Hz simulations
+
+########## PP2A dephos of PP1 bound Dp34 = 0.0006, 22.4, 5.6, diffusion of Dopamine
+DaBath: cAMP reaches 10 uM, Dp34PP1 saturates at 4 uM
+------------>Inject much less Abuf
+CaBath: Basal Dp34PP1 a bit high (900 nM), Dp75 dec from 12 uM to 6 uM
+------------> reduce basal Da from 10 to 7
+DaCaBath: Dp34PP1 increases to 2.7 uM (~half compared to Da alone).  Qualitatively good, need to review experimental result
+	  Dp75 decrease to 4.7 uM.
+Block cases: 
+      Dp34PP1 is higher with CyA block than with OA block, but not tremendously so. 
+-----> Halve PP2A activity again. if Dp34PP1 still too high, may need to increase basal ACh, or increase PP2A quantity (which will not just reverse the halved PP2A activity, because PP2A is active against Dp75, and also the enhanced PP2A is not active against Dp34)
+########## PP2A dephos of PP1 bound Dp34 = 0.0003, 11.2, 2.8
+A. For some reason, sims are taking much longer than 3 hours. Block required 3.5 hours, Ca, Da bath requiring 6.5 hours.  They used to be the same.  DaB longer possibly due to Da diffusion
+10:22 Model_MSPNmerge0.9um-Block2-mesh.txt.out
+13:54 Model_MSPNmerge0.9um-Block2-all-conc.txt.out
+10:22 Model_MSPNmerge0.9umPKAcD1R_DaB-mesh.txt.out
+17:10 Model_MSPNmerge0.9umPKAcD1R_DaB-all-conc.txt.out
+B. Results:
+	   CyA block: Dp34PP1 increases to 2-2.5 uM
+	   OA block: Dp34PP1 is 773 - need to evaluate Da or Ca Bath to know basal.
+	      This is actually reduction!  Higher Dp75 is depleting the PKA thus reducing Dp34PP1.
+
+	   DaB: cAMP transient increases to 30 uM, then decreases.  Basal Dp34PP1 > 1.5 uM
+	   	ACh decreases from 11 to 5.  Reduce (eliminate?) Abuf injection?
+		transience caused by increase in pDaD1RGS and pPDE10.  Very little increase in pPDE4
+		pPP2A increases, as does Dp75 bound form (hence Dp75 dec).  PP2ABP572 bound to Dp75 decreases because diverted to Dp45PP1.
+
+	   CaB: Basal Dp34PP1 > 1.5 uM, calcium causes nice decrease, to below 500 nM.  Dp75 basal is 12 uM, decreases 50% with calcium GOOD
+	   DaCaB: reduced increase in Dp34PP1, 50% reduction in Dp75.  cAMP increases only to 4 uM.  Unclear why that is?  Perhaps with Ca there is less Dp75, less PKA inhibition and more pDaD1RGs
+-------------> eliminate ACh reduction.  But this will not fix basal Dp34PP1
+	       from rate=0.02 to 0, from ACh rate = 0.0001 to 0
+	       increase PP2A quantity to fix Dp34PP1 basal, from 700 each to 1400 each total
+	       Possibly this will reverse the halving of rate constants in the basal.  Hopefully not mess up the block case.
+########## PP2A quant=1400 each, no Abuf inject
+A. Block taking 3.5 hours again, DaB 5 hours (1.5 hours faster)
+09:31 output/Model_MSPNmerge0.9um-Block1-mesh.txt.out
+13:00 output/Model_MSPNmerge0.9um-Block1-all-conc.txt.out
+09:31 Model_MSPNmerge0.9umPKAcD1R_DaB-mesh.txt.out
+14:28 Model_MSPNmerge0.9umPKAcD1R_DaB-all-conc.txt.out
+B. Results:
+   DaB: cAMP basal=41 nM, Dp34 basal=651, Dp75 basal = 5804 
+   	----> inc CDk5 by 300
+	cAMP peak=7 uM for ~30 sec, then decreases to 5 uM for remainder
+	----> raise basal ACh?  But this will lower cAMP, which should go no lower.
+	----> increase PDE2, which will minimally affect the basal.  from 50 to 100 nM
+	Dp34PP1 peak: saturates.  Fixed by lowering peak cAMP
+	Dp75: decreases ~40%
+   CyA block: Dp34PP1 inc to 2.6 uM  - great!  But Da basal was too high.  Repeat with Da=7
+   OA block: Minimal change to Dp34PP1, Dp75=45uM. But Da basal was too high.  Repeat with Da=7
+	----> reduce Da to 7 in these IC files, also increase PP2A and Cdk5 in these files
+########## Cdk5D32=720, PDE2=100, Da=7 in all files
+basal/stim CaB	  	DaB  	  OA	CyA   DaCaB
+Dp75	   7.6uM/4.0	7.4/4.4	  45u	7.7u  7.5/3.1u
+Dp75PKA	   11/16	12/96	  112n	27n   51n		 
+Dp34PP1	   675/615	 796/3.8u 374	1.4u  823/383n
+cAMP	   64/54	34/7.8u	  54	52    60n/2.8u
+PKA	   5/5		5/38	  5/7	5/7   5/30n
+cAMP stim still too high with Da stim, much lower with both Da and Ca
+--->1. inc PDE2 more (200), though inc to 100 didn't really do anything!.  
+--->2. If inc PDE4, will need to inc basal Da back to 10.
+How is calcium limiting cAMP peak? Da, DaD1R, DaD1RGS is similar with and without Ca
+    ACGasATP and GasGTP slightly greater (20-40 nM) with Ca - stochastic?
+    more PP2B -> less Dp34PP1 -> more PP1; more Pp2Ac -> less Dp75 and Dp75PKA -> morePKA, more inhibition of DaD1RGs, or more phospho enhancement of PDE?  Nope.  More pPDE4 and pPDE10 with Da alone (higher cAMP) 
+    PDE1 is enhanced by calcium - causing lower cAMP!!!
+Dp75 still too low basal
+--->1. inc Cdk5 to 1540 (from 1240: prior 300 inc produced 2 uM Dp75 inc) 
+OA: Dp75PKA is high, which is preventing inc in Dp34PP1 - try less PP2A inhib
+CyA: 2.5x inc in Dp34PP1 - good, but not great - cannot inc PP2A anymore
+########## Cdk5D32=1020, PDE2=200 in all files, PP2A=140 in OA IC file.  If cAMP still too high, inc PDE4 and basal Da
+basal/stim CaB	  	DaB  	  OA	CyA   DaCaB
+Dp34PP1	   856/211 	521/3.8u 388	856   785/2.4u
+cAMP	   69/		47/7.9u	 51/105 81    51/2.4u
+PKA	   6/		3/40	  6/5	6     5/33
+Dp75	   10.1uM/4.9	10.1/5.9 44u	9.9   9.8u
+Dp75PKA	   20n/21	12/128	  108	26    19/69
+Excellent basal!!! CyA block is now less effective. Possibly due to higher basal Cdk5, which inhibits more of the Dp75.
+-----> Possibly suppression of CDK5 by CyA block?  There may be interaction involving Pp2B, e.g. dephos is needed for Cdk5 activity.
+       Fernandez: PP2B dephos (to activate) CK1, which phosphorylates Darpp32 on Ser 137, and the Dp34p137 is dephos much slower than Dp34.  BLocking PP2B -> reduced CK1 -> reduced Dp137 -> does not reduce CDK5 activity.
+To fix the DaB result of too high cAMP, go back to PDE2=100, try PDE4 approach
+from 50-80 Dp34PP1 appears to increase a bit - why? D32PKA is higher with CaB, but why?
+DaCaB: severe reduction in response to Da alone, but unknow magnitude since Dp34PP1 is saturated, and didn't look at Dp34.
+
+#########PDE10tot=180, PDE4tot=160, Da=10, PDE2=100, CDk5D32=1020 in all files, PP2A=140 in OA IC file
+Use these same parameters, added in diffusion of 6.0 for PDE4, and re-start the spine ss sim
+
+Begin to Repeat BoHung stim sims using new PLC rates - HOWEVER, will need to re-do once above Da problem and Pp2A issue fixed.
+    1st, run simulation with no stim and with spine
+****** Model_MSPNmergeSpine.xml uses:
+       IC_MSPNmergeSpinePKAcD1R.xml (IC_MSPNmergeDendPKAcD1R.xml with Spine values)
+       Rxn_MSPNmergePKAcD1R.xml (same as used for bath sims)
+       Morph_1spine2umDend.xml
+    These sims will be used to adjust IC for ss and total quantities
+####### Discovered no Dp34PP1 in spine.  Discovered that pp2B does not diffuse, nor does PDE4 nor PP2A nor Dp34PP1 forms (though D32 and Dp34 do diffuse, as does Dp75 - which is in spines).
+	Should PP2B diffuse?  See Dell'Aqua stuff
+	Add in diffusion of PP2B, PP2A when repeat spine sims with new IC
+
+   2nd, try the Uchigashima, theta and 20 Hz
+      May need to increase catalytic rate of PLC or reduce GAP activity to achieve sufficient DAG and 2AG 
+
+>>>>>>>>> Goal Measurements of Dp34 and Dp75:
+Okadaic Acid (OA) increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+Cyclosporin A increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur VERY slowly, more than 30 minutes.  Also Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+Blocking PP2A (OA) increases Dp75 by 3x (60 min expers)
+Blocking PP2B (CyA) has no effect on Dp75 (60 min exprs)
+Ca Bath : 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+Da Bath: increase in Dp34 inc 5-6x (5 min), Dp75 dec 50% (1 min)
+Da+Ca Bath: only 1.5x increase in Dp34 compared to control, 5x reduction in Dp34 compared to Da alone

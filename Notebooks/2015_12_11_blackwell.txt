@@ -1,0 +1,151 @@
+Lab Notebook for Blackwell Dec 7-10, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+NEXT STEPS:
+1. Repeat Uchigashima and Bohung sims while adjusting Gq pathways and spine densities,
+   May need to increase catalytic rate of PLC or reduce GAP activity to achieve sufficient DAG and 2AG 
+   Model files for Uchi sims are ready, but need the correct IC files from the ss simulations with 1 spine.
+2. Research PIkinase from Falkenberg
+3. Add in CamKII inhib of DagL.  Consider role in PP2B in localizing PKA, anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation
+4. Repeat theta and 20Hz simulations
+
+Though previous sims had good basal, peak cAMP still too high.  Increase PDEs (10 and 4) to blunt peak, and then re-inc Da to 10 to compensate for basal.
+#########PDE10tot=200, PDE4tot=160, Da=10, PDE2=100, CDk5D32=1020 in all files, PP2A=140 in OA IC file
+Use these same parameters, added in diffusion of 6.0 for PDE4, and re-start the spine ss sim
+basal/stim CaB	  	DaB  	 DaCaB        OA	CyA
+cAMP	   57/47	52/7u	 54/3u	      57/105	59/63
+Dp34PP1	   584/200 	699/4.4u 685/2.4u     580	562/886
+PKA	   4/5		3/44	 4/38	      5/6	4/5
+Dp75	   10.2/5.1uM	9.9/5.9  10.0/4.1     44u	10.0/9.0
+Dp75PKA	   15n		16/131	 17/90	      82/104	14/28
+-----> Good cAMP basal, good Dp34 basal, though could be a bit smaller
+-----> Transient cAMP with DaB still too large - try increasing PDE4tot
+-------> Dp34 response to CyA still too small
+
+Run simulation with no stim and with spine to adjust IC for ss and total quantities
+****** Model_MSPNmergeSpine.xml uses:
+       IC_MSPNmergeSpinePKAcD1R.xml (IC_MSPNmergeDendPKAcD1R.xml with Spine values)
+       Rxn_MSPNmergePKAcD1R.xml (same as used for bath sims)
+       Morph_1spine2umDend.xml
+
+cAMP   41	Ca		87	PlcCa		18	PA inc to 600
+PKAc   5	CamCa2C		188	PlcGaq		0	2ag    0
+Dp34PP1	700	CamCa2N		28	PlcCaPip2	38	CaDgl  330
+Dp75	9um	CamCa4		2	PlcCaGaqPip2	0	DagCaDgl 1
+		PP2BCamCa4	14	Ip3		0.5
+		CKCamCa4	62	Dag constant inc to 600
+		CKpCamCa4	0	DagK dec from 600 to 0
+calcium is a bit high - compare spine to dendrite, possibly adjust pumps
+Calcium has similar values: 86-87 for DaB and CaB.  Dangerous to reduce Ca because this will reduce Pp2B activity, and already it is marginal (hence CyA block is only moderately effective.  But, can reduce it in spines with higher pumps.
+Is DagK being regenerated?  Appears to deplete, after with Dag increases
+------_> NOPE mistake.  Fixed
+IP3 and Dag basal are too low.  Increase Plc activity and dec Gap activity
+
+#########PDE4tot=180, new Plc rate constants
+0.00003, 1.08, 0.27 for PlcCa and
+0.000999, 36, 9 for PlcCaGq
+dec Gap activity of Plc for Gaq to 15
+ncxCa/neck=120 (inc of 100)
+pmcaCa/neck&head=220 (inc of 80/10%)
+
+basal/stim CaB	  	DaB  	 DaCaB        OA	CyA
+cAMP	   62/86	69/6.4u	 59/2u	      47/88	51/72 
+Dp34PP1	   810/270 	884/4.4u 688/2.0u     332/510	500/854
+PKA	   5/6		3/44	 5/32	      5/6	3/5
+Dp75	   9.6/4.9uM	10.0/6.0 9.9/4.2      45	10u
+Dp75PKA	   16n		23/137	 20/72	     
+len
+cAMP peak seems lower with DaB, but Dp34 not lower.  Increased basal likely reflects stochastic variation.  Blocks similar to before, but with higher basal Dp34PP1, increase with CyA is reduced.  Perhaps increase will be better if start from better steady state.  Possibly better control of basal cAMP prevents increase in Dp34PP1 with CyA?
+
+Try PDE4tot=200, after assessing Dag and calcium
+Spine sims, select molecules:
+      molecule  baseline  peakval  ptime   slope     min     ratio
+            Ca    86.42    84.15   244.20 -9999.000    86.41     0.97
+           Da    10.02    10.24   245.20 -9999.000    10.33     1.02
+         Gsabg  3850.59  3856.80   248.20    4.437  3852.81     1.00
+         GsD1R   432.17   432.25   246.50 -9999.000   432.32     1.00
+          Gqabg  1074.33  1073.96   244.00 -9999.000  1073.57     1.00
+           Glu     9.59    11.48   245.10    1.891     8.00     1.20
+    GluMgluRGq     0.22     0.48   248.70 -9999.000     0.18     2.18
+         Giabg  3223.19  3258.27   240.30 -9999.000  3221.57     1.01
+      AChm4RGi    50.69    50.76   245.20 -9999.000    49.79     1.00
+         Gim4R   377.72   377.93   244.10 -9999.000   376.78     1.00
+           AC   407.54   435.83   240.30 -9999.000   411.50     1.07
+         ACGai   589.13   593.39   249.60 -9999.000   561.97     1.01
+   ACGasGaiATP    88.35    86.03   240.20 -9999.000    83.40     0.97
+         cAMP    37.11    39.78   241.80 -9999.000    32.62     1.07
+           Plc   385.16   388.10   241.50    5.880   385.86     1.01
+         PlcCa    17.04    17.24   247.80 -9999.000    16.38     1.01
+          Pip2 20997.52 20998.46   242.10 -9999.000 20996.81     1.00
+     PlcCaPip2    36.77    36.41   249.10 -9999.000    34.25     0.99
+           Ip3     0.94     1.00   240.50 -9999.000     0.97     1.06
+           Dag     4.93     6.58   249.50    2.751     4.94     1.33
+          DagK   612.88   612.76   240.50 -9999.000   612.62     1.00
+       DagKdag     0.97     1.22   240.70 -9999.000     1.09     1.26
+            PA  3509.71  4002.94   249.90  140.924  3844.80     1.14
+           Dgl  1516.76  1514.68   247.80 -9999.000  1514.13     1.00
+         CaDgl   326.58   329.17   242.30 -9999.000   328.62     1.01
+      DagCaDgl     0.00     0.05   241.40 -9999.000     0.00    13.33
+      CKCamCa4    62.67    66.84   241.90 -9999.000    62.74     1.07
+     CKpCamCa4     0.00     0.00   240.00 -9999.000     0.00      nan
+          D32 36216.71 36233.67   242.40   33.918 36035.11     1.00
+       Dp34PP1   773.97   732.90   242.80 -9999.000   669.91     0.95
+          Dp75  8877.52  9163.44   249.40   68.077  8906.25     1.03
+   
+---->Much less Gq, preformed GqMgluR complex, but no in output file - fixed.
+	  Higher Gq may increase basal Dag 
+---->cAMP nicely low.  Ca a bit high, but this is to have reasonable PP2B basal
+------> IP3 and Dag still too low.  Why is PA so high?
+----> Dp75 slightly low, Dp34PP1 slightly high
+---------------------> Slow down Gq Gap a bit more (12 instead of 15), increase IP3 production a bit more (5x instead of 3x), slowdown DagK activity or quantity and IP3 degerad rate
+############New simulation params.  Gq part changed a lot:
+		IP3degrad = 2 (instead of 10)
+		2agdegrad = 2 (instead of 5)
+		DagKDag rates: kf= 0.0007, kb=4, kcat = 1 (vs kb=0.04 and kcat=10)
+			Perhaps this will produce basal 2ag way to high? Then would need to increase rates a bit, esp if Gaq were increased
+		Reduced the "other" gap to 15e-3.  Probably won't make too much difference since no Gaq around
+		
+Repeate sims with two sets of PDE totals: low and high
+	low: PDE10=150, PDE4=120, PDE2=100
+	high: PDE10=200, PDE4=200, PDE2=200
+	High PDE4, PDE10, PDE2		   Low PDE10, PDE4, PDE2
+	Da        Ca   	   DaCa 	   Da      Ca	    DaCa
+cAMP	39/6.0	  78/59	   67.6/1.4	   79/9.7  74/73   87/2u 
+PKAc	3/40	  5/7	   4/27		   5/40	   6/7	   6/32
+Dp34tot	434/4.3	  682/780  600/1.9	   695/4.4 823/825 932/2.2u
+Dp75	10.2/10.2 9.7/9.3  10.0/9.8	   10/10   9.8/9.5 9.5/9.3
+PKAinhib 138	  20	   63		   143	   21	   60
+
+higher PDEs definitely make basal Ca and peak Ca lower for the Da case.  Does not seem to affect basal for the Ca case - this may be stochastic variation.
+Despite the higher PDEs, Dp34 (both PP1 bound and free) still exceeds 4 uM.
+In both  cases, adding in Ca inhibits the Dp34 ~50%
+PDEs have no effect on Dp75, slight effect on Dp34 level
+
+Block cases: low PDEs have higher Dp34PP1 for CyA block, and both higher Dp34 and higher Dp75PKA for OA block.
+The lower PDEs don't necessarily reflect and increased Dp34PP1 because they value is compared to the non blocked case, which is also higher.
+
+The bath/block cases didn't run - need to re-run.
+Conclusion: use the higher PDE values for the Uchigashima simulations
+Continue thinking about how to reduce Dp34 in response to Da bath, and increase Dp34 when CyA is blocked
+
+----------> updated IC file for spine.  Note that with 0.1 nM surface layer, the surface density produces a concentration of 10x higher, so molecules have higher conc in submembrane of dendrite than spine head
+Increased membrane bound head molecules by 2x compared to dend sm, since in fact the dend sm conc is 10x that listed.  Net result is that head molecules are still lower conc, but not as much.
+
+&&&&&&& Discovered that pp2B does not diffuse, nor does PP2A nor Dp34PP1 forms (though D32 and Dp34 do diffuse, as does Dp75).
+	Should PP2B diffuse?  See Dell'Aqua stuff.  What about PP1 (and thus Dp34PP1)
+	Add in diffusion of PP2B, PP2A when repeat spine sims with new IC?
+
+>>>>>>>>> Goal Measurements of Dp34 and Dp75:
+Okadaic Acid (OA) increases Dp34 by 5x: Nishi J Neurchem 1999, 5x:Nishi J Neurchem 2002
+Cyclosporin A increases Dp34 by 17x: Nishi J Neurochem 1999, 3x:Nishi J Neurchem 2002
+Both occur VERY slowly, more than 30 minutes.  Also Dp34 increases in 0 calcium
+Dp75: 3x inc with OA, not CyA (60 min)
+Blocking PP2A (OA) increases Dp75 by 3x (60 min expers)
+Blocking PP2B (CyA) has no effect on Dp75 (60 min exprs)
+Ca Bath : 50% reduction in Dp34, 75% reduction in Dp75 (Nishi JNeurochem 2002)
+Da Bath: increase in Dp34 inc 5-6x (5 min), Dp75 dec 50% (1 min)
+Da+Ca Bath: only 1.5x increase in Dp34 compared to control, 5x reduction in Dp34 compared to Da alone

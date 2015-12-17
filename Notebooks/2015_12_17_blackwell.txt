@@ -1,0 +1,76 @@
+Lab Notebook for Blackwell Dec 7-10, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+Uchigashima sims:
+1. Renamed the Model files to use dashes and have value come after the name of the molecule, in order to work well with neurord_analysis.
+2. Changed the stim files to begin at 20s instead of 12, to get better bseline
+3. Made some minor tweaks to neurord_analysis.
+########## 
+4. Results: Almost no 2ag with 100 ms stim.
+a. Glu (representing Dhpg)	GaqGTP	PlcGaqCaPip2   GluMgluRGq 
+   1 -> 250n	     		1n		<1     4
+   5 -> 1u			4n		<1     20n
+   25 -> 5u			14n		<1     70n
+   This is to way low.  Somehow not enough GaqGTP is being produced.
+GluMgluR: from 0 to 7
+MgluRGq: initally 36, decreases to 20 with highest Glu
+GluMgluRdesens: increases to 35 with highest Glu
+Also, almost no 2ag with 1s stim, but Dag is increasing.  No Ip3 increase is observed (i.e., it is much lower than Dag).
+basal Dag: 40, basal Ip3: 7
+------> (1) not enough Glu being injected (or GluOut too high)
+   	(2) desens is too strong
+	(3) injected Glu not effective
+------> Glu - mGluR part: basal glu is 10 nM, but Need Glu to be higher during stim
+basal Glu=Gluout*kb/kf
+If lower Gluout, then Glu basal will be half, unless also halve kf or double kb
+if half Gluout and kf, basal will be the same, but Glu will be pumped out at half the rate, so when stimulated Glu should accumulate.  Could also increased stim amount.  Could also increase affinity of Glu for mGluR, but need to use dhpg affinity to mGluR for Uchi sims, since glu actually represents dhpg
+
+If keep basal glu the same, but increase affinity for mgluR, could have too high a basal Dag
+IP3degrad is higher than Ip3, 2agDegrad is higher than 2ag.  Lower these rates by half
+---------> increase calcium for 100ms and 1s stimulations
+######### use 20 uM affinity for the Uchi sims: which is 5x higher than previous
+      	  Need to also increase 5x Gqabg +Mglu binding PMR)
+######### Gluout=, kf=
+########## calcium increased from 3/15 to 6/30 for 100ms-1s after ca onset for 1s and 5s stim
+	   calcium increased from 3/15 to 5/25 during 1s-2s after ca onset for 5s stim
+######### decrease rate if IP3 and 2ag degradation from 2/sec to 1/sec
+	  lower Dag binding to DagK from 0.0007 to 0.00035.  This will increase Dag and thus 2ag
+a. Glu (representing Dhpg)  GaqGTP	PlcGaqCaPip2   GluMgluRGq 
+   1 -> 350n	     	    5n		<1     4       2n
+   5 -> 1.4u		    15n		<1     20n     6n
+   25 -> didn't work	    
+
+GluMglurGqdesens is ~1/2 of GluMglurGq, so decrease desens rate 50%
+
+b. basal Ip3	Dag	    2ag		stim Ca
+   	 20	86	    0.5		100ms -> 250nM; 1s-> 400 nM, 5s->500 nM
+IP3 on the low side, as is 2ag.  Stimulated 2ag still quite low. Dag is fine.
+Since Dag and Ip3 produced at same rate, the difference implies that IP3 degradation is too fast, and 2ag production too slow.  Ip3degrad ~30 at basal, Ip3degPIk is 10-15.  This will go down with lower Ip3degrad (and Ip3 will increase)
+
+Calcium for 5s stim decreases too quickly afer 1st two sec - increase the later rates of injection195
+
+Dag Stimulated reaches 300 nM for 5s stim, but still only 1 nM 2ag.
+CaDgl approaches 1 uM for 1s calcium stim, but DagCaDgl is extremely low - need higher affinity or higher rates (or both), possibly even higher quantity
+HOWEVER, Dag either binds Dagk or CaDgl.  DagK has 14 uM affinity, but CaDgl had 1 uM affinity.  Why does most Dag bind DagK?  Possibly because CaDgl is lower than DagK?  But at basal CaDgl > 300, vs 610 DagK.  TYPO MISTAKE.  Dag binding to CaDgl was 1000x too small!!!
+
+###### Ip3->Ip3degrad has kf =0.5 (instead of 1.0)
+       PIkinase kf = 0.001 (instead of 0.002) and kcat=0.25 (isntead of 1)
+       GluMgluR -> GluMgluRdesens has kf=0.125 (instead of 0.25)
+       Dag binds to CaDgl with kf=0.00125 (instead of 0.0025e-3)
+       5s stim, increase 3d of Ca to 5/25 from 3/15
+       Re-adjust IC: IC_MSPNmergeSpinePKAcD1R_PDEhigh for the mGluR-Gq pathway.  Was missing some IC terms, and some totals not quite correct
+       Note that in the spine head, 1 molecule = 40 nM, so don't try to be more precise than rounding to the 10s, and best set to 0 molecule with less than 40 nM.
+       
+NEXT STEPS:
+2. Research PIkinase from Falkenberg, and search for Dag kinase rates.  Find more sources for quantities.  Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
+
+3a. Add in CamKII inhib of DagL.
+3b. Consider role in PP2B in localizing PKA, anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation
+4. Repeat theta and 20Hz simulations, but with Da also
+
+&&&&Affinity of mGluR = 500 nM Mol Pharmacol. 1994 Apr;45(4):626-36. Catania MV1, De Socarraz H, Penney JB, Young AB.; affinity of dhpg is 2uM (mGluR5) 6.6 uM (mGluR1), 30 uM CNS Drug Reviews Volume 8, p101, Wisniewski & Car
+Peak calcium is 250 nM for both 100ms and 1s - this is fine, but peak calcium is 350 nM for 5s, which is probably too low

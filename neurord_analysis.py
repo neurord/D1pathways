@@ -103,7 +103,7 @@ if len(fnames)>0:
         meshfile=glob.glob(meshname)[0]
 else:
         print "********** no meshfile **************"
-maxvols,vox_volume,xloc,yloc,TotVol,deltaY=hparse.read_mesh(meshfile)
+maxvols,vox_volume,xloc,yloc,TotVol,deltaY=hparse.read_mesh(meshfile,prninfo)
 
 parval=[]
 for fnum,ftuple in enumerate(ftuples):
@@ -120,10 +120,11 @@ for fnum,ftuple in enumerate(ftuples):
             print "header not printed"
         #UPDATE maxvols, or number of voxels in this function
         regionID,structType,molecules,volnums,maxvols=hparse.header_parse(data,maxvols,prninfo)
-        print "in neurord_analysis: vox#", volnums
-        print "      regions",regionID
-        print "      structures",structType
-        print "      mols",molecules
+        if prninfo:
+            print "in neurord_analysis: vox#", volnums
+            print "      regions",regionID
+            print "      structures",structType
+        print "      molecules",molecules
         f.close()
         #prepare to plot stuff (instead of calculating averages)
         #plot_molecules determines what is plotted

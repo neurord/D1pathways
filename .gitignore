@@ -1,4 +1,4 @@
-*.txt
 *.xml~
 *.out
+*.log
 discretized-tree.swc

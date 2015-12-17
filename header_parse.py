@@ -54,7 +54,7 @@ def header_parse(header,maxvols,prninfo):
             print j, volnames[j],molecules[i]
     return regionID,structType,molecules,volnums,maxvols
 
-def read_mesh(meshname):
+def read_mesh(meshname,prninfo):
     volcol=13
     #the x and y data can be used to create spatial averages over the dendrite
     #sum of volumes within a region will be used for calculating mean concentration
@@ -69,7 +69,8 @@ def read_mesh(meshname):
         maxvols=1
         TotVol=volume
     else:
-        print '1st mesh file row:', meshdata[0,:]
+        if prninfo:
+            print '1st mesh file row:', meshdata[0,:]
         volume=meshdata[:,volcol]
         depth=meshdata[:,volcol+1]
         maxvols=len(volume)
@@ -79,7 +80,8 @@ def read_mesh(meshname):
         TotVol=0
         for k in range(maxvols):
             TotVol+=volume[k]
-    print "TotVol:", TotVol, "\ndepth", depth, "\ndeltaY", SurfaceLayer
+    if prninfo:
+        print "TotVol:", TotVol, "\ndepth", depth, "\ndeltaY", SurfaceLayer
     return maxvols,volume,xloc,yloc,TotVol,SurfaceLayer
 
 def region_volume(List,Vox,volume,prnvox):
@@ -90,7 +92,7 @@ def region_volume(List,Vox,volume,prnvox):
         for k in Vox[j]:
             region_volume[j]+=volume[k] 
         if prnvox:
-            print "\n ", j, List[j],Vox[j],region_volume[j]
+            print j, List[j],Vox[j],region_volume[j]
         else:
             print "not printed"
     return region_volume

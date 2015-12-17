@@ -20,7 +20,7 @@
 
 <!-- cytosolic molecules -->
 	<!-- total calmodulin = 9000 nM -->
-      	<NanoMolarity specieID="Cam"          value="3400"/>
+      	<NanoMolarity specieID="Cam"          value="3495"/>
       	<NanoMolarity specieID="CamCa2C"      value="185"/>
       	<NanoMolarity specieID="CamCa2N"      value="35"/>
       	<NanoMolarity specieID="CamCa4"       value="0"/>
@@ -32,8 +32,8 @@
 	<NanoMolarity specieID="ACh"             value="20" />
         <NanoMolarity specieID="AChbuf"          value="0" />
         <NanoMolarity specieID="Abuf"            value="0" />
-	<NanoMolarity specieID="Glu"             value="0"     />   
-        <NanoMolarity specieID="GluOut"          value="1000000" />
+	<NanoMolarity specieID="Glu"             value="10"     />   
+        <NanoMolarity specieID="GluOut"          value="500000" />
 
 	<!-- D1 associated membrane molecules -->
         <NanoMolarity specieID="D1R"            value="0" />
@@ -76,13 +76,13 @@
         <NanoMolarity specieID="PDE2cAMP2"           value="0" />
 
 <!-- cytosolic molecules -->
-        <NanoMolarity specieID="ATP"                  value="1999000" />
+        <NanoMolarity specieID="ATP"                  value="1998900" />
         <NanoMolarity specieID="cAMP"                 value="50" />
         <NanoMolarity specieID="AMP"                  value="0" />
 
         <NanoMolarity specieID="PDE1"                 value="1700" />
-        <NanoMolarity specieID="PDE1CamCa4cAMP"       value="300" />
-        <NanoMolarity specieID="PDE1CamCa4"           value="0" />
+        <NanoMolarity specieID="PDE1CamCa4"           value="300" />
+        <NanoMolarity specieID="PDE1CamCa4cAMP"       value="0" />
 
 <!-- membrane molecules -->
 
@@ -118,7 +118,7 @@
         <NanoMolarity specieID="PP2BCam"              value="3000" />
         <NanoMolarity specieID="PP2BCamCa2C"          value="1710" />
         <NanoMolarity specieID="PP2BCamCa2N"          value="260" />
-        <NanoMolarity specieID="PP2BCamCa4"           value="15" />
+        <NanoMolarity specieID="PP2BCamCa4"           value="5" />
         <NanoMolarity specieID="PP1"                  value="3500" />
 	<NanoMolarity specieID="PP2AB56d"            value="1100" />
 	<NanoMolarity specieID="PKAcPP2AB56d"        value="0" />
@@ -138,9 +138,9 @@
         <NanoMolarity specieID="D32"                  value="37160" />
         <NanoMolarity specieID="D32PKA"               value="0" />
         <NanoMolarity specieID="Dp34"                 value="0" />
-        <NanoMolarity specieID="Dp34PP1"              value="470" />
+        <NanoMolarity specieID="Dp34PP1"              value="480" />
         <NanoMolarity specieID="Dp34PP2BCamCa4"       value="0" />
-        <NanoMolarity specieID="Dp34PP1PP2BCamCa4"    value="10" />
+        <NanoMolarity specieID="Dp34PP1PP2BCamCa4"    value="0" />
         <NanoMolarity specieID="Dp34PP2ABPR72"       value="0" />
         <NanoMolarity specieID="Dp34PP2AB56d"        value="0" />
         <NanoMolarity specieID="Dp34PP1PP2ABPR72"    value="10" />
@@ -192,7 +192,7 @@
 
         <NanoMolarity specieID="D1R"                 value="0" />
         <NanoMolarity specieID="DaD1R"                value="0" />
-        <NanoMolarity specieID="Gsabg"               value="1660" />
+        <NanoMolarity specieID="Gsabg"               value="1640" />
         <NanoMolarity specieID="GsD1R"                value="200" />
         <NanoMolarity specieID="DaD1RGs"              value="0" />
         <NanoMolarity specieID="pDaD1RGs"              value="0" />
@@ -209,13 +209,15 @@
         <NanoMolarity specieID="GaiGDP"                 value="0"  />
         <NanoMolarity specieID="GaiGTP"                 value="80" />
 
-        <NanoMolarity specieID="MgluR"              value="200"     /> 
-        <NanoMolarity specieID="Gqabg"              value="2000"  />
+        <NanoMolarity specieID="MgluR"              value="150"     /> 
+        <NanoMolarity specieID="MgluRGq"              value="50"     /> 
+        <NanoMolarity specieID="Gqabg"              value="1950"  />
         <NanoMolarity specieID="Plc"                value="360"   />
         <NanoMolarity specieID="PlcCa"              value="0"    />
-        <NanoMolarity specieID="Pip2"               value="19160"  />
+        <NanoMolarity specieID="Pip2"               value="19140"  />
         <NanoMolarity specieID="PlcCaPip2"          value="40"   />
 
+        <NanoMolarity specieID="Dag"        value="40"  />
         <NanoMolarity specieID="DagK"        value="560"  />
         <NanoMolarity specieID="Dgl"         value="1440"  />
         <NanoMolarity specieID="CaDgl"       value="240"   />
@@ -263,7 +265,7 @@
         <PicoSD specieID="PKAcDaD1RGs"               value="0" />
         <PicoSD specieID="GasGDP"                    value="0" />
         <PicoSD specieID="GasGTP"                    value="0" />
-        <PicoSD specieID="Gbg"                       value="384" />
+        <PicoSD specieID="Gbg"                       value="382" />
 
 <!-- ACh m4 associated membrane molecules, m4R=200, Gi=2000 -->
         <PicoSD specieID="m4R"                    value="5" />
@@ -293,23 +295,24 @@
         <PicoSD specieID="pPDE10cAMP"            value="0" />
 
 <!-- all are within 1 order of magnitude to Falkenburger, who lists other references with density estimates near his-->
-        <PicoSD specieID="MgluR"              value="90"  />
-        <PicoSD specieID="Gqabg"              value="980"  />
+        <PicoSD specieID="MgluR"              value="50"  />
+        <PicoSD specieID="MgluRGq"            value="50"  />
+        <PicoSD specieID="Gqabg"              value="985"  />
         <PicoSD specieID="Plc"                value="177"  />
         <PicoSD specieID="PlcCa"              value="8"    />
         <PicoSD specieID="Pip2"               value="9565" />
         <PicoSD specieID="PlcCaPip2"          value="15"   />
 
-        <PicoSD specieID="Dag"                value="12"  />
+        <PicoSD specieID="Dag"                value="36"  />
         <PicoSD specieID="DagKdag"            value="8"  />
         <PicoSD specieID="DagK"               value="272"  />
         <PicoSD specieID="Dgl"                value="695"  />
         <PicoSD specieID="CaDgl"              value="145"  />
 
-        <PicoSD specieID="PIkinase"           value="273"  />
-        <PicoSD specieID="Ip3degPIk"          value="7"  />
-        <PicoSD specieID="Ip3"                value="10"  />
-        <PicoSD specieID="Ip3degrad"          value="3"  />
+        <PicoSD specieID="PIkinase"           value="280"  />
+        <PicoSD specieID="Ip3degPIk"          value="0"  />
+        <PicoSD specieID="Ip3"                value="20"  />
+        <PicoSD specieID="Ip3degrad"          value="0"  />
 	<!--sm Ip3 initialization is to more easily balance Pip2 and PIkinase -->
  
         <PicoSD specieID="PKA"                    value="812" />

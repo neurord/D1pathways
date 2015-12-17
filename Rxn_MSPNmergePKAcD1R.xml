@@ -417,7 +417,7 @@
   	<Reactant specieID="Glu"/>
 	<Product specieID="GluOut"/>
 
-  	<forwardRate>2e-3</forwardRate>
+  	<forwardRate>1e-3</forwardRate>
   	<reverseRate>0.02e-6</reverseRate>
   	<Q10>0.2</Q10>
   </Reaction>
@@ -427,7 +427,7 @@
         <Reactant specieID="GluMgluR"              />
         <Product  specieID="GluMgluRdesens"         />
 
-        <forwardRate> 0.25e-03 </forwardRate>
+        <forwardRate> 0.125e-03 </forwardRate>
         <reverseRate> 0.001e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
@@ -438,7 +438,7 @@
         <Reactant specieID="MgluR"              />
         <Product  specieID="GluMgluR"         />
 
-        <forwardRate> 0.1e-06 </forwardRate>
+        <forwardRate> 0.5e-06 </forwardRate>
         <reverseRate> 10e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
@@ -460,7 +460,7 @@
         <Reactant specieID="MgluR" />
         <Product specieID="MgluRGq" />
 
-        <forwardRate> 0.15e-06 </forwardRate>
+        <forwardRate> 0.75e-06 </forwardRate>
         <reverseRate> 6.8e-03 </reverseRate>
         <Q10> 0.2 </Q10>
    </Reaction>
@@ -1136,7 +1136,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Reactant specieID="CaDgl"               />
         <Product  specieID="DagCaDgl"            />
 
-        <forwardRate> 0.0025e-06     </forwardRate>
+        <forwardRate> 0.00125e-03     </forwardRate>
         <reverseRate> 1.5e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1158,7 +1158,7 @@ at=18x source: WadaJBiolChem262-5139   -->
          <Reactant specieID="Ip3"            />
         <Product  specieID="Ip3degrad"        />
 
-        <forwardRate> 2e-03      </forwardRate>
+        <forwardRate> 0.5e-03      </forwardRate>
         <reverseRate> 0.0e-03      </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1169,7 +1169,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Reactant  specieID="PIkinase"               />
         <Product  specieID="Ip3degPIk"            />
 
-        <forwardRate> 0.002e-3    </forwardRate>
+        <forwardRate> 0.001e-3    </forwardRate>
         <reverseRate> 1e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1180,7 +1180,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Product  specieID="PIkinase"               />
         <Product  specieID="Pip2"            />
 
-        <forwardRate> 1e-3  </forwardRate>
+        <forwardRate> 0.25e-3  </forwardRate>
         <reverseRate> 0e-3    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>    
@@ -1190,7 +1190,7 @@ at=18x source: WadaJBiolChem262-5139   -->
          <Reactant specieID="2ag"            />
         <Product  specieID="2agDegrad"        />
 
-        <forwardRate> 2e-03      </forwardRate>
+        <forwardRate> 1.0e-03      </forwardRate>
         <reverseRate> 0.0e-03      </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1202,7 +1202,7 @@ at=18x source: WadaJBiolChem262-5139   -->
          <Reactant specieID="DagK"            />
         <Product  specieID="DagKdag"        />
 
-        <forwardRate> 0.0007e-03      </forwardRate>
+        <forwardRate> 0.00035e-03      </forwardRate>
         <reverseRate> 4e-3         </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>

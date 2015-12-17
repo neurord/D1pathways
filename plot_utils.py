@@ -20,9 +20,11 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
           p0=p1=0
      else:
           if np.shape(parlist[1])[0]==0:
-               p0=p1=parlist[0].index(parval)
+               p0=parlist[0].index(parval)
+               p1=0
           elif np.shape(parlist[0])[0]==0:
-               p0=p1=parlist[1].index(parval)
+               p1=parlist[1].index(parval)
+               p0=0
           else:
                p0=parlist[0].index(parval[0])
                p1=parlist[1].index(parval[1])
