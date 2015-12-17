@@ -1,6 +1,7 @@
 #Python version, i.e. alternative of NRDpostAB
 #in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurord_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
+#if mol ommitted, then all molecules processed
 #e.g. ARGS="Ca GaqGTP,Ca GaqGTP Ip3,../Repo/plc/Model_PLCassay,15 20" time units are sec
 #from outside python, type python neurord_analysis [par1 par2] [mol1 mol2]
 #Assumes that molecule outputs are integers, and the hypens used ONLY for parameters
@@ -284,7 +285,7 @@ for fnum,ftuple in enumerate(ftuples):
                 slope[fnum,imol]=(peakval[fnum,imol]-baseline[fnum,imol])/((end_slopept-begin_slopept)*dt)
         else:
                 slope[fnum,imol]=-9999
-        print mol.rjust(14),"%8.2f" % baseline[fnum,imol],"%8.2f" %peakval[fnum,imol],
+        print mol.rjust(16),"%8.2f" % baseline[fnum,imol],"%8.2f" %peakval[fnum,imol],
         print "%8.2f" % peaktime[fnum,imol], "%8.3f" %slope[fnum,imol],  
         print "%8.2f" %lowval[fnum,imol], "%8.2f" %(peakval[fnum,imol]/baseline[fnum,imol])
     #

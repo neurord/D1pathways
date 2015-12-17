@@ -66,11 +66,14 @@ HOWEVER, Dag either binds Dagk or CaDgl.  DagK has 14 uM affinity, but CaDgl had
        Note that in the spine head, 1 molecule = 40 nM, so don't try to be more precise than rounding to the 10s, and best set to 0 molecule with less than 40 nM.
        
 NEXT STEPS:
-2. Research PIkinase from Falkenberg, and search for Dag kinase rates.  Find more sources for quantities.  Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
+1. Analyze new Uchigashima sims: is 2ag way too high now?
+2. Research PIkinase from Falkenberg, and search for Dag kinase and DagLipase rates.  Find more sources for quantities.  Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
 
-3a. Add in CamKII inhib of DagL.
-3b. Consider role in PP2B in localizing PKA, anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation
+3a. Add in CamKII inhib of DagL from Colbran publications
+3b. Consider role in PP2B in localizing PKA (Dell'Acqua), anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation of NMDA to enhance calcium influx
 4. Repeat theta and 20Hz simulations, but with Da also
 
 &&&&Affinity of mGluR = 500 nM Mol Pharmacol. 1994 Apr;45(4):626-36. Catania MV1, De Socarraz H, Penney JB, Young AB.; affinity of dhpg is 2uM (mGluR5) 6.6 uM (mGluR1), 30 uM CNS Drug Reviews Volume 8, p101, Wisniewski & Car
 Peak calcium is 250 nM for both 100ms and 1s - this is fine, but peak calcium is 350 nM for 5s, which is probably too low
+
+&&&&&&&&&&& Due to stochastic nature of molecule initialization, should not use computer program to create IC files from output of steady state sims.  Need to ensure that molecule totals don't change, and don't initialize values in spines that are less than 1 molecule
