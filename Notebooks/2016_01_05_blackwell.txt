@@ -1,0 +1,67 @@
+Lab Notebook for Blackwell Dec 7-10, 2015
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations of what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+###### Ip3->Ip3degrad has kf =0.5 (instead of 1.0)
+       PIkinase kf = 0.001 (instead of 0.002) and kcat=0.25 (isntead of 1)
+       GluMgluR -> GluMgluRdesens has kf=0.125 (instead of 0.25)
+       Dag binds to CaDgl with kf=0.00125 (instead of 0.0025e-3)
+       5s stim, increase 3d of Ca to 5/25 from 3/15
+       Re-adjust IC: IC_MSPNmergeSpinePKAcD1R_PDEhigh for the mGluR-Gq pathway.  Was missing some IC terms, and some totals not quite correct
+       Note that in the spine head, 1 molecule = 40 nM, so don't try to be more precise than rounding to the 10s, and best set to 0 molecule with less than 40 nM.
+
+RESULTS (1sec)
+a. Glu (representing Dhpg)  GaqGTP	PlcGaqCaPip2    GluMgluRGq	Ip3	Dag	2ag 5s	1s
+   1 -> 300n	     	    5n		0.5n		29		65	29	x   	25.28 (same as 0)
+   5 -> 1.4u		    18n		0.6n		84		75	32	x	33.57	
+   25 -> 7u		    31n		2n		153		118	46	80	47.36
+
+b. Ca 	 		    basal/25glu IP3degPIk	IP3degrad	PA
+0.1s	275n, brief	    		
+1s	400n, moderate dur  63/140			130/365		130
+5s	500n, 5s dur	    63/200			130/600		130
+
+------------> IP3degrad still too fast, Dag decay still too fast
+------------> Glu still not high enough, possibly also Ca too low
+------------> Not all sims are working - bug in code.  Rerun with new code before increasing Glu or Ca inject
+
+Research PIkinase from Falkenberg, and search for Dag kinase and DagLipase rates.  Find more sources for quantities.  
+falkenburger: PI4 kinase: 2.6e-4 / sec
+falkenburger: PI5kinase: 0.02/sec - ~10x slower than catalytic rate of PIkinase
+Xu Watras Loew 2003 - PIP2synth basal = 0.048/sec - faster than falkenburger.  Perhaps 0.1/sec at 37 deg
+falkenburger: IPase: 0.08/sec; Xu Watras Loew 2003 - 0.16/sec at 37 deg
+Falkenburger J Gen Phys 2013 Dag degradation = 0.05/sec  (is this 20 C?)
+Shulga et al. FEBS letters, 	  DagKepsilon: Vmax=1.7 nmol PA/min (enzyme quant unknown), Km = 2 mol%
+Shulga et al. J Mol Biol 2011	  DagKepsilon: Vmax=10.2/sec (WT, against SAG)
+D'Souza and Epand 2012:	 	  DagKEpsilon: 0.0115 nmol PA/min/ng enz	  MW=63.9273 kD 
+	    	  		  	       0.0115*64e3 ng/nmol*1min/60sec ~10 (assuming puring enzyme)
+Rosenburger Lipids 2007:	DagL Vmax=100-616 nmol/min/mg, MW=27kDa (depends on species)
+	    	   		     550*1e-3umol/nmol*1min/60sec*27mg/um = 0.2475;  Km = 63 uM
+>>>>>>>>> GOALS:
+	  0.16 uM IP3 basal
+	  lower PA and IP3degrad
+	  maybe as high as 100 nM Dag basal
+	  
+##########PIkinase lower: kcat=0.1, kb=0.4, halve kf=0.0005 - Km=1 uM, kcat from Xu Watras Loew
+	  Ip3->Ip3degrad kf = 0.1 (instead of 0.5), kf from Xu Watras Loew
+	  DagK lower: kcat=0.2/sec Falkenburger J Gen Phys 2013 (lower than expt - alternatively lower quantity)
+	  Dag Lipase: Vmax=550 nmol/min/mg, MW=27kDa,use Km=2.5 uM (justify from not true membrane)
+	      	       Kcat=0.25/sec, kb=1/sec, kf adjusted for km-2.5 uM
+	  2ag deg = 0.25 (lower similar to Dag Lipase)
+	  
+NEXT STEPS:
+1. Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
+2. Add in CamKII inhib of DagL from Colbran publications
+   File created.  kcat of 120 sec from Fig 2 in Shonesy - ~2 min to reach 1/e of peak DagL phos
+   Kb = 4xkcat, kf selected for uM affinity (~same as Dgl quantity)
+   pDagL activity 50% that of DagL activity.  dephos needs to be adjusted.  Sims not yet begun
+3. Consider role in PP2B in localizing PKA (Dell'Acqua), anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation of NMDA to enhance calcium influx, other Darpp32 phos site
+4. Repeat theta and 20Hz simulations, but with Da also
+
+&&&&Affinity of mGluR = 500 nM Mol Pharmacol. 1994 Apr;45(4):626-36. Catania MV1, De Socarraz H, Penney JB, Young AB.; affinity of dhpg is 2uM (mGluR5) 6.6 uM (mGluR1), 30 uM CNS Drug Reviews Volume 8, p101, Wisniewski & Car
+Peak calcium is 250 nM for both 100ms and 1s - this is fine, but peak calcium is 350 nM for 5s, which is probably too low
+
+&&&&&&&&&&& Due to stochastic nature of molecule initialization, should not use computer program to create IC files from output of steady state sims.  Need to ensure that molecule totals don't change, and don't initialize values in spines that are less than 1 molecule
