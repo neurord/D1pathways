@@ -52,16 +52,35 @@ Rosenburger Lipids 2007:	DagL Vmax=100-616 nmol/min/mg, MW=27kDa (depends on spe
 	      	       Kcat=0.25/sec, kb=1/sec, kf adjusted for km-2.5 uM
 	  2ag deg = 0.25 (lower similar to Dag Lipase)
 	  
-NEXT STEPS:
-1. Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
+RESULTS - basal 2ag=40-60, Dag=70-95, Ip3=135-165, PA=78
+Bug in code has been fixed - is not responsible for low Glu.  Rerun sims with higher Glu:
+##########    kf for Glu -> GluOut=0.5 (instead of 1.0)
+    	      stochdiff-3.0.0-10.jar
+RESULTS
+	Glu reaches 14 uM, and close to saturates the receptor.  Affinity of glu for mGlur is too low at 20 uM.  Change to 6.6 uM, increase Stim slightly.  Also increase calcium
+##########
+
+
+IMMEDIATE NEXT STEPS:
+1. Analyze AUC of 2ag vs PKC 
 2. Add in CamKII inhib of DagL from Colbran publications
    File created.  kcat of 120 sec from Fig 2 in Shonesy - ~2 min to reach 1/e of peak DagL phos
    Kb = 4xkcat, kf selected for uM affinity (~same as Dgl quantity)
    pDagL activity 50% that of DagL activity.  dephos needs to be adjusted.  Sims not yet begun
+   Evaluate how CamKII inhib affects 2ag and PKC in DSI:
+   	    Evaluate quantity of CamKII and pCamKII produced during DSI - 1 s may be insufficient, hence no inhibition, but 5s should be sufficient - as long as stim during LTP.  On the other hand, depol may produce less calcium elevation than synaptic stimulation
+   	    Compare to previous Rxn file sims, and compare by blocking pCamKII phos of DagL. 
+3. Replace Ad Hoc stim files with calcium from Asia's SP neuron in response to depol
+ADDITIONAL NEXT STEPS
+1. Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
+2. Repeat theta and 20Hz simulations, but with Da also - compare effect of CamKII inhib of DagL
 3. Consider role in PP2B in localizing PKA (Dell'Acqua), anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation of NMDA to enhance calcium influx, other Darpp32 phos site
-4. Repeat theta and 20Hz simulations, but with Da also
+4. What questions are we answering with model?
+   Role of CaMKII inhib of DagL - really just confirming experiment
+   Which molecules discriminate temporal pattern?
+   What is role of Da and PKA in producing LTP vs LTD?
 
 &&&&Affinity of mGluR = 500 nM Mol Pharmacol. 1994 Apr;45(4):626-36. Catania MV1, De Socarraz H, Penney JB, Young AB.; affinity of dhpg is 2uM (mGluR5) 6.6 uM (mGluR1), 30 uM CNS Drug Reviews Volume 8, p101, Wisniewski & Car
-Peak calcium is 250 nM for both 100ms and 1s - this is fine, but peak calcium is 350 nM for 5s, which is probably too low
+WILL NEED TO INCREASE AFFINITY of mGLuR when glu represents glu (during theta) instead of in the Uchi sims, where it represents DHPG
 
 &&&&&&&&&&& Due to stochastic nature of molecule initialization, should not use computer program to create IC files from output of steady state sims.  Need to ensure that molecule totals don't change, and don't initialize values in spines that are less than 1 molecule

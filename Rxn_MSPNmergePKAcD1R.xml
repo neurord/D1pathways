@@ -417,7 +417,7 @@
   	<Reactant specieID="Glu"/>
 	<Product specieID="GluOut"/>
 
-  	<forwardRate>1e-3</forwardRate>
+  	<forwardRate>0.5e-3</forwardRate>
   	<reverseRate>0.02e-6</reverseRate>
   	<Q10>0.2</Q10>
   </Reaction>
@@ -432,14 +432,18 @@
         <Q10>         0.2          </Q10>
     </Reaction>
 
-   <!--1a. Glu or Glu agonist Dhpg: Glu + MgluR <==> GluMgluR  -->
+    <!--1a. Glu or Glu agonist Dhpg: Glu + MgluR <==> GluMgluR
+    1st set of rates is for Dhpg, 2nd set of rates for Glu -->
       <Reaction name = "Glu+MgluR--GluMgluR" id="Glu+MgluR--GluMgluR">
         <Reactant specieID="Glu"              />
         <Reactant specieID="MgluR"              />
         <Product  specieID="GluMgluR"         />
 
         <forwardRate> 0.5e-06 </forwardRate>
-        <reverseRate> 10e-03      </reverseRate>
+        <reverseRate>6.6e-03      </reverseRate>
+	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
+        <!--forwardRate> 0.002e-03 </forwardRate>
+        <reverseRate> 1e-03      </reverseRate-->
         <Q10>         0.2          </Q10>
     </Reaction>
 
