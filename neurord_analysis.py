@@ -36,7 +36,7 @@ prnheader=0
 prninfo=0
 showss=0
 #outputavg determines whether output files are written
-outputavg=0
+outputavg=1
 showplot=1
 ##change these endings depending on whether using neurord3.x:
 meshend="*mesh.txt.out"

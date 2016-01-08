@@ -1,0 +1,97 @@
+Lab Notebook for Blackwell Jan 7-8, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes 
+
+#########    kf for Glu -> GluOut=0.5 (instead of 1.0)
+    	      stochdiff-3.0.0-10.jar
+RESULTS
+	Glu reaches 14 uM, and close to saturates the receptor.  Affinity of glu for mGlur is too low at 20 uM.  Change to 6.6 uM, increase Stim slightly.  Also increase calcium
+##########  Adjusted Stim files
+RESULTS, Ratio of 2ag :
+A. Dhpg   100ms  1s	5s
+1      0.9080 2.2631 1.6146
+5      2.0364 3.2112 2.4199
+25     3.2707 3.7631 2.7555
+------> This is pretty good
+B. Pkct: 
+0.2443 0.4727 0.1961
+-0.0437 0.7365 1.6361
+-0.0388 1.5697 1.7202
+0.2265 0.7786 0.8158
+------> Strange that the 25 Dhpg gives smaller AUC.  These are all quite low, and could be Stochastic variation
+
+C. Glu = 1.1 uM, 5 uM, 25 uM 
+---------> good, but lower the 1 uM stim by 10%
+
+D. Ca - 100 ms reaches 500 nM transiently, 1s then increases to 750 nM, 5s plateaus at 750 nM; spine head reaches 2.5 uM for 1s, 2 uM for 5s.  Sampling rate too low for Calcium
+ -------> increase calcium for 5s
+ 
+E. Stimulated Dag is ~10x lower than from BoHung paper.  Slightly decrease GaqGTP hydrolysis rate - this should enhance stimulated relative to basal, because almost no GaqGTP produced at basal, all of Ip3 from PlcCa.  What about further increase in activity of PlcCaGaq?  Currently ~30x faster than PlcCa.  Assay data doesn't justify further enhancement, but DSI results do.
+ -------->Try kcat = 60 (vs 30)
+########### lower Glu for 1 uM, higher Ca for 5s, kcat=60 for PlcCaGaq2, gap=12
+	    (if these params are give worse AUC, go back to previous)
+******Stim files: UchiStim*s*dhpgCa*.xml, in OldStimICfiles dir
+******Rxn file: Rxn_MSPNmergePKAcD1R.xml
+****** Model files: Model_MSPNmergeUchi*s-dhpg*.xml
+*******Morph_1spine2umDend.xml, IC_MSPNmergeSpinePKAcD1R_PDEhigh.xml
+RESULTS:
+Calcium and Glu look great - don't change anymore
+PkcCaDag still very small.  How to increase:
+a. slow down DagK (or decrease quantity) - this will increase Dag, and also 2ag 
+b. slow down Dgl (or decrease quantity) - this will decrease 2ag, so may balance with above, and provide more Dag for PkcCa, which is large 
+c. Increase Pkc total compared to Dgl - increase from 1.5 to 2 uM is 30% absolute, but ~3x relative to Dgl
+d. 25 dhpg not too much bigger than 5 dhpg - GluMgluRGq is not much bigger, perhaps too much desens - slow down by 50%?
+########### Halve the DagK quantity in ****IC_MSPNmergeSpinePKAcD1R_PDEhigh.xml
+	    Halve the Dgl quantity
+	    Increase Pkc quantity
+	    Halve the desensitization to kf= 0.0625 in *****Rxn_MSPNmergePKAcD1R.xml
+RESULTS:
+1. GlumGluRGq: in response to 25uM dhpg remains different than 5 uM for entire stim, less desensitization occurs.
+2. PkcCa is slightly higher, CaDgl is about half, but DagCaDgl is only 20% lower
+3. Dag higher, 2ag slightly (~20%) lower, PkcCaDag 4x higher - high enough to quantify for 5s Ca!
+----------------> Use these parameters for 20hz and TBS!!!
+However, the kcat = 60 for production of Ip3 and Dag from PlcCaGaq is "uncomfortable"
+Figure: UchigashimaSims2016jan8.png
+AUC for PkcCaDag, calculated using MoleculesAUC.py
+dhpg    100ms		1s		5s
+0    [[ -0.40384221  -0.1100295    2.22758857]
+1uM   [  0.98857214   2.01792821   5.00558471]
+5uM   [  2.60649857   1.73317357   7.02800543]
+25uM  [  2.49163964   4.83474571  11.06960364]]
+AUC for 2ag 
+0    [[   9.328042     20.68788479   50.01327564]
+1uM   [  36.38410893   52.0991155   106.16337507]
+5uM   [  67.87397464   88.031828    157.32570543]
+25uM  [  72.92517179  110.99355371  184.37919007]]
+Ratio for 2ag:
+dhpg  100ms   1s	5s
+1uM    3.9005 2.5183 2.1227
+5uM    7.2763 4.2552 3.1457
+25uM   7.8178 5.3651 3.6866
+Qualitatively similar to published results showing minimal enhancement of 5s data, greatest enhancement for 100 ms data
+
+IMMEDIATE NEXT STEPS:
+2. Add in CamKII inhib of DagL from Colbran publications
+   File created.  kcat of 120 sec from Fig 2 in Shonesy - ~2 min to reach 1/e of peak DagL phos
+   Kb = 4xkcat, kf selected for uM affinity (~same as Dgl quantity)
+   pDagL activity 50% that of DagL activity.  dephos needs to be adjusted.  Sims not yet begun
+   Evaluate how CamKII inhib affects 2ag and PKC in DSI:
+   	    Evaluate quantity of CamKII and pCamKII produced during DSI - 1 s may be insufficient, hence no inhibition, but 5s should be sufficient - as long as stim during LTP.  On the other hand, depol may produce less calcium elevation than synaptic stimulation
+   	    Compare to previous Rxn file sims, and compare by blocking pCamKII phos of DagL. 	   	 This may be mechanism than prevents Dhpg from facilitating DSI with 5sec stim
+3. Replace Ad Hoc stim files with calcium from Asia's SP neuron in response to depol
+ADDITIONAL NEXT STEPS
+1. Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
+2. Repeat theta and 20Hz simulations, but with Da also - compare effect of CamKII inhib of DagL
+3. Consider role in PP2B in localizing PKA (Dell'Acqua), anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation of NMDA to enhance calcium influx, other Darpp32 phos site
+4. What questions are we answering with model?
+   Role of CaMKII inhib of DagL - really just confirming experiment
+   Which molecules discriminate temporal pattern?
+   What is role of Da and PKA in producing LTP vs LTD?
+
+&&&&Affinity of mGluR = 500 nM Mol Pharmacol. 1994 Apr;45(4):626-36. Catania MV1, De Socarraz H, Penney JB, Young AB.; affinity of dhpg is 2uM (mGluR5) 6.6 uM (mGluR1), 30 uM CNS Drug Reviews Volume 8, p101, Wisniewski & Car
+WILL NEED TO INCREASE AFFINITY of mGLuR when glu represents glu (during theta) instead of in the Uchi sims, where it represents DHPG
+
+&&&&&&&&&&& Due to stochastic nature of molecule initialization, should not use computer program to create IC files from output of steady state sims.  Need to ensure that molecule totals don't change, and don't initialize values in spines that are less than 1 molecule
