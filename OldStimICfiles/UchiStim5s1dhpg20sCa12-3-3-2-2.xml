@@ -4,7 +4,7 @@
 
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
-        <duration>            20             </duration>
+        <duration>            25             </duration>
         <rate>                54           </rate>
 </InjectionStim>
 
@@ -17,7 +17,7 @@
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               20500          </onset>
         <duration>            19500             </duration>
-        <rate>                2.0           </rate>
+        <rate>                1.8           </rate>
 </InjectionStim>
 
 <!-- 1st sec - must have same rate as 1 s -->
@@ -49,52 +49,52 @@
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               23000           </onset>
         <duration>            1000           </duration>
-        <rate>                   6           </rate>
+        <rate>                   8           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
         <onset>               23000           </onset>
         <duration>            1000           </duration>
-        <rate>                  30           </rate>
+        <rate>                  40           </rate>
 </InjectionStim>
 
 <!-- 3rd sec - half the rate -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               24000           </onset>
         <duration>            1000           </duration>
-        <rate>                   6           </rate>
+        <rate>                   8           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
         <onset>               24000           </onset>
         <duration>            1000           </duration>
-        <rate>                  30           </rate>
+        <rate>                  40           </rate>
 </InjectionStim>
 
 <!-- 4th sec - half the rate -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               25000           </onset>
         <duration>            1000           </duration>
-        <rate>                   4           </rate>
+        <rate>                   6           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
         <onset>               25000           </onset>
         <duration>            1000           </duration>
-        <rate>                  20           </rate>
+        <rate>                  30           </rate>
 </InjectionStim>
 
 <!-- 5th sec - yet half again -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               26000           </onset>
         <duration>            1000           </duration>
-        <rate>                   4           </rate>
+        <rate>                   6           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
         <onset>               26000           </onset>
         <duration>            1000           </duration>
-        <rate>                  20           </rate>
+        <rate>                  30           </rate>
 </InjectionStim>
 
 

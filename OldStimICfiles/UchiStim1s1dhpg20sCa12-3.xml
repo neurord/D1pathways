@@ -4,7 +4,7 @@
 
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
-        <duration>            20             </duration>
+        <duration>            25             </duration>
         <rate>                54           </rate>
 </InjectionStim>
 
@@ -17,7 +17,7 @@
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               20500          </onset>
         <duration>            19500             </duration>
-        <rate>                2.0           </rate>
+        <rate>                1.8           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">

@@ -427,7 +427,7 @@
         <Reactant specieID="GluMgluR"              />
         <Product  specieID="GluMgluRdesens"         />
 
-        <forwardRate> 0.125e-03 </forwardRate>
+        <forwardRate> 0.0625e-03 </forwardRate>
         <reverseRate> 0.001e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
@@ -1092,7 +1092,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Product  specieID="Dag"            />
         <Product  specieID="Ip3"            />
 
-        <forwardRate> 15e-03     </forwardRate>
+        <forwardRate> 30e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1104,7 +1104,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Product  specieID="Plc"               />
         <Product  specieID="GaqGDP"            />
 
-        <forwardRate>   15e-03   </forwardRate>
+        <forwardRate>   12e-03   </forwardRate>
         <reverseRate>   0  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1115,7 +1115,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Product  specieID="PlcCa"               />
         <Product  specieID="GaqGDP"            />
 
-        <forwardRate>   15e-03   </forwardRate>
+        <forwardRate>   12e-03   </forwardRate>
         <reverseRate>   0  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>

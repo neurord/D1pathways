@@ -108,7 +108,7 @@
         <NanoMolarity specieID="2ag"            value="0"     /> 
 
 	<!-- where did PKC quantity of 15 uM come from ???-->
-        <NanoMolarity specieID="Pkc"         value="1450"     />  
+        <NanoMolarity specieID="Pkc"         value="1950"     />  
         <NanoMolarity specieID="PkcCa"         value="50"     />  
         <NanoMolarity specieID="Pkct"         value="0"     />  
 
@@ -218,9 +218,9 @@
         <NanoMolarity specieID="PlcCaPip2"          value="40"   />
 
         <NanoMolarity specieID="Dag"        value="40"  />
-        <NanoMolarity specieID="DagK"        value="560"  />
-        <NanoMolarity specieID="Dgl"         value="1440"  />
-        <NanoMolarity specieID="CaDgl"       value="240"   />
+        <NanoMolarity specieID="DagK"        value="280"  />
+        <NanoMolarity specieID="Dgl"         value="640"  />
+        <NanoMolarity specieID="CaDgl"       value="200"   />
         <NanoMolarity specieID="PIkinase"    value="560"    />
         <NanoMolarity specieID="Ip3degPIk"   value="0"    />
         <NanoMolarity specieID="Ip3"         value="40"  />
@@ -303,11 +303,10 @@
         <PicoSD specieID="Pip2"               value="9565" />
         <PicoSD specieID="PlcCaPip2"          value="15"   />
 
-        <PicoSD specieID="Dag"                value="36"  />
-        <PicoSD specieID="DagKdag"            value="8"  />
-        <PicoSD specieID="DagK"               value="272"  />
-        <PicoSD specieID="Dgl"                value="695"  />
-        <PicoSD specieID="CaDgl"              value="145"  />
+        <PicoSD specieID="Dag"                value="40"  />
+        <PicoSD specieID="DagK"               value="140"  />
+        <PicoSD specieID="Dgl"                value="308"  />
+        <PicoSD specieID="CaDgl"              value="112"  />
 
         <PicoSD specieID="PIkinase"           value="280"  />
         <PicoSD specieID="Ip3degPIk"          value="0"  />
