@@ -118,9 +118,9 @@
     <Specie name="Dgl"            id="Dgl"           kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pDgl"           id="pDgl"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="CaDgl"          id="CaDgl"         kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="CapDgl"          id="CaDgl"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="CapDgl"          id="CapDgl"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="DagCaDgl"       id="DagCaDgl"      kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="DagCapDgl"       id="DagCaDgl"      kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="DagCapDgl"       id="DagCapDgl"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="2ag"            id="2ag"           kdiff="88.6"  kdiffunit="mu2/s"/>
     <Specie name="Dgl_CKCamCa4"   id="Dgl_CKCamCa4"   kdiff="0"   kdiffunit="mu2/s"/>
     <Specie name="Dgl_CKpCamCa4"  id="Dgl_CKpCamCa4"  kdiff="0"   kdiffunit="mu2/s"/>
@@ -423,7 +423,7 @@
   	<Reactant specieID="Glu"/>
 	<Product specieID="GluOut"/>
 
-  	<forwardRate>1e-3</forwardRate>
+  	<forwardRate>0.5e-3</forwardRate>
   	<reverseRate>0.02e-6</reverseRate>
   	<Q10>0.2</Q10>
   </Reaction>
@@ -433,19 +433,23 @@
         <Reactant specieID="GluMgluR"              />
         <Product  specieID="GluMgluRdesens"         />
 
-        <forwardRate> 0.125e-03 </forwardRate>
+        <forwardRate> 0.0625e-03 </forwardRate>
         <reverseRate> 0.001e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
 
-   <!--1a. Glu or Glu agonist Dhpg: Glu + MgluR <==> GluMgluR  -->
+   <!--1a. Glu or Glu agonist Dhpg: Glu + MgluR <==> GluMgluR
+    1st set of rates is for Dhpg, 2nd set of rates for Glu  -->
       <Reaction name = "Glu+MgluR--GluMgluR" id="Glu+MgluR--GluMgluR">
         <Reactant specieID="Glu"              />
         <Reactant specieID="MgluR"              />
         <Product  specieID="GluMgluR"         />
 
         <forwardRate> 0.5e-06 </forwardRate>
-        <reverseRate> 10e-03      </reverseRate>
+        <reverseRate> 6.6e-03      </reverseRate>
+	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
+        <!--forwardRate> 0.002e-03 </forwardRate>
+        <reverseRate> 1e-03      </reverseRate-->
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -1094,7 +1098,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Product  specieID="Dag"            />
         <Product  specieID="Ip3"            />
 
-        <forwardRate> 15e-03     </forwardRate>
+        <forwardRate> 30e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1106,7 +1110,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Product  specieID="Plc"               />
         <Product  specieID="GaqGDP"            />
 
-        <forwardRate>   15e-03   </forwardRate>
+        <forwardRate>   12e-03   </forwardRate>
         <reverseRate>   0  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1117,7 +1121,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Product  specieID="PlcCa"               />
         <Product  specieID="GaqGDP"            />
 
-        <forwardRate>   15e-03   </forwardRate>
+        <forwardRate>   12e-03   </forwardRate>
         <reverseRate>   0  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -1735,7 +1739,7 @@ MUCH slower binding compared to CaDgl  -->
 
 <!--2a) CKCamCa4 + CKCamCa4 <-> Complex -->
     <Reaction name = "CKCam bind" id="CKCam_bind">
-        <Reactant specieID="CKCamCa4"  p="2"        />
+        <Reactant specieID="CKCamCa4"  power="2"        />
         <Product  specieID="Complex"                />
 
         <forwardRate> 0.0001e-3 </forwardRate>
@@ -1780,7 +1784,7 @@ MUCH slower binding compared to CaDgl  -->
 
  <!--4a) Complex + Complex <-> Complex + Pcomplex -->
     <Reaction name = "2Complex bind" id="2Complex_bind">
-        <Reactant specieID="Complex"    p="2"       />
+        <Reactant specieID="Complex"    power="2"       />
         <Product  specieID="Complex"                />
         <Product  specieID="pComplex"               />
 
@@ -1793,7 +1797,7 @@ MUCH slower binding compared to CaDgl  -->
     <Reaction name = "ComplpCompl bind" id="ComplpCompl_bind">
         <Reactant specieID="Complex"                />
         <Reactant specieID="pComplex"               />
-        <Product  specieID="pComplex"   p="2"        />
+        <Product  specieID="pComplex"   power="2"        />
 
         <forwardRate> 0.03e-3   </forwardRate>
         <reverseRate> 0         </reverseRate>
@@ -1865,7 +1869,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKCamCa4"           />
         <Product  specieID="Dgl_CKCamCa4"     />
 
-        <forwardRate> 0.02e-6          </forwardRate>
+        <forwardRate> 0.04e-6          </forwardRate>
         <reverseRate> 0.0333e-3            </reverseRate>
         <Q10>     0.2                   </Q10>
     </Reaction>
@@ -1887,7 +1891,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKpCamCa4"          />
         <Product  specieID="Dgl_CKpCamCa4"    />
 
-        <forwardRate> 0.0025e-6          </forwardRate>
+        <forwardRate> 0.05e-6          </forwardRate>
         <reverseRate> 0.04167e-3          </reverseRate>
         <Q10>       0.2                 </Q10>
     </Reaction>
@@ -1909,7 +1913,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKp"                />
         <Product  specieID="Dgl_CKp"          />
 
-        <forwardRate> 0.02e-6          </forwardRate>
+        <forwardRate> 0.04e-6          </forwardRate>
         <reverseRate> 0.0333e-3            </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>

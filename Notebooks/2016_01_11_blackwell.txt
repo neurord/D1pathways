@@ -1,0 +1,35 @@
+Lab Notebook for Blackwell Jan 7-8, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes 
+
+IMMEDIATE NEXT STEPS:
+1. Add in CamKII inhib of DagL from Colbran publications
+   File created.  kcat of 120 sec from Fig 2 in Shonesy - ~2 min to reach 1/e of peak DagL phos
+   Kb = 4xkcat, kf selected for uM affinity (~same as Dgl quantity)
+   pDagL activity 50% that of DagL activity.  dephos needs to be adjusted.  Sims not yet begun
+   Evaluate how CamKII inhib affects 2ag and PKC in DSI:
+   	    Evaluate quantity of CamKII and pCamKII produced during DSI - 1 s may be insufficient, hence no inhibition, but 5s should be sufficient - as long as stim during LTP.  On the other hand, depol may produce less calcium elevation than synaptic stimulation
+   	    Compare to previous Rxn file sims, and compare by blocking pCamKII phos of DagL. 	   	 This may be mechanism than prevents Dhpg from facilitating DSI with 5sec stim
+	    
+2. Replace Ad Hoc stim files with calcium from Asia's SP neuron in response to depol
+
+ADDITIONAL NEXT STEPS
+1. Resolve whether (which) molecule conc in spine head need to be higher than dend surface density.  Currently, PKA, AC, PDE10, mGluR, Gq, PLC, Pip2, DagK and PIK are higher
+
+2. Repeat theta and 20Hz simulations, but with Da - based on Armando's results of difference between 100hz, 20hz and theta pulses on Da release; and ACh activation of m4. What questions are we answering with model?
+   a. Role of CaMKII inhib of DagL - really just confirming experiment
+      Evaluate effect of CamKII inhib of DagL on both Uchi and theta/20Hz sims
+   b. Which molecules discriminate temporal pattern?
+      	    What is role of Da and PKA in producing LTP vs LTD?
+   c. Evaluate variation in theta frequency - use calcium from SPN neuron model
+   d. Evaluate effect of Gi activation or release from activation
+   e. Consider Gq recetors on spines as mGluR, and Gq receptors on dendrites (maybe spines) as m1 - how does temporal or spatial patter of activation influence LTP vs LTD?
+   
+3. Consider role in PP2B in localizing PKA (Dell'Acqua), anchoring of CamKII at PSD, STEP-Fyn role in PKA control of calcium influx, Ser 137 phosphorylation of NMDA to enhance calcium influx, other Darpp32 phos site
+
+&&&&WILL NEED TO INCREASE AFFINITY of mGLuR when glu represents glu (during theta) instead of in the Uchi sims, where it represents DHPG
+
+&&&&&&&&&&& Due to stochastic nature of molecule initialization, should not use computer program to create IC files from output of steady state sims.  Need to ensure that molecule totals don't change, and don't initialize values in spines that are less than 1 molecule

@@ -36,11 +36,11 @@ prnheader=0
 prninfo=0
 showss=0
 #outputavg determines whether output files are written
-outputavg=1
+outputavg=0
 showplot=1
 ##change these endings depending on whether using neurord3.x:
 meshend="*mesh.txt.out"
-concend='conc.txt.out'
+concend='all-conc.txt.out'
 ## or neurord2.x (uncomment these)
 #meshend="*mesh.txt"
 #concend='conc.txt'

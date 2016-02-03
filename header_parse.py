@@ -262,7 +262,7 @@ def readdata(fname,maxvols,molecules,finalrow=0):
     if maxvols*arrays == np.shape(data)[1]:
             molecule_array=np.reshape(data, (rows,arrays,maxvols))
     else:
-            print "UH OH! voxels:", maxvols, "molecules:", len(molecules), "columns:", np.shape(data)[1]
+            print "UH OH! voxels:", maxvols, "molecules:", len(molecules), "columns:", np.shape(data)[1],"arrays",arrays
     return time,molecule_array,rows
 
  
