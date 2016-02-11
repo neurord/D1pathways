@@ -1,0 +1,22 @@
+<StimulationSet>
+
+<!--  -->
+<InjectionStim specieID="Ca" injectionSite="pointB">
+        <onset>               20000           </onset>
+        <duration>            10           </duration>
+        <rate>                  1000           </rate>
+        <period>           1000               </period>
+        <end>              120000          </end> 
+</InjectionStim>
+
+
+<InjectionStim specieID="CaBuf" injectionSite="pointB">
+        <onset>               20200           </onset>
+        <duration>            50           </duration>
+        <rate>                   200           </rate>
+        <period>           1000               </period>
+        <end>              122000          </end> 
+</InjectionStim>
+
+
+</StimulationSet>

@@ -1,0 +1,45 @@
+<InitialConditions>
+
+    <ConcentrationSet>
+    <!-- these apply to everything unless overridden -->
+    <!-- many of these are membrane molecules and should be zero except in spines and submembrane -->
+<!-- cytosolic molecules -->
+      	<NanoMolarity specieID="CamCa4"       value="0"/>
+      	<NanoMolarity specieID="CamCa2C"       value="0"/>
+      	<NanoMolarity specieID="CamCa2N"       value="0"/>
+       	<NanoMolarity specieID="Cam"       value="5000"/>
+       	<NanoMolarity specieID="CamOut"       value="500000"/>
+     	<NanoMolarity specieID="Ca"       value="0"/>
+     	<NanoMolarity specieID="CaBuf"       value="0"/>
+      	<NanoMolarity specieID="CaInact"       value="0"/>
+
+        <NanoMolarity specieID="Dgl"            value="0"     /> 
+        <NanoMolarity specieID="pDgl"            value="0"     /> 
+
+<!-- cytosolic molecules -->
+<!-- total PP2B = 5000 nM, PP2ABPR72=1400, PP2AB56d=1400-->
+        <NanoMolarity specieID="PP1"                  value="3500" />
+
+	<NanoMolarity specieID="CK"                   value="20000" />
+        <NanoMolarity specieID="CKCamCa4"             value="0" />
+        <NanoMolarity specieID="CKpCamCa4"            value="0" />
+        <NanoMolarity specieID="CKp"                  value="0" />
+        <NanoMolarity specieID="Complex"              value="0" />
+        <NanoMolarity specieID="pComplex"             value="0" />
+        <NanoMolarity specieID="CKpPP1"               value="0" />
+        <NanoMolarity specieID="CKpCamCa4PP1"         value="0" />
+
+    </ConcentrationSet> 
+
+    <SurfaceDensitySet region="dend" >
+       <PicoSD specieID="Dgl"                value="720"  />
+   </SurfaceDensitySet>
+    <!-- number densities are in particles per cubic micron. You
+         get about one particles per cubic micron in a 1.6 nM solution -->
+
+    <!-- surface concentrations for membrane-bound species. The value attribute for
+         a PicoSD element is the number of picomoles per square metre. For comparison
+         with the volume concentrations, a surface density of 1 picomole/m^2, if spread
+         over a layer 1 micron deep, gives a 1 nanoMolar solution, so to average one
+         particle per square micron you need a PicoSD value of about 1.6. -->
+</InitialConditions>

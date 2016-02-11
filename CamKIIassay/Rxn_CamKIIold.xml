@@ -1,0 +1,318 @@
+<ReactionScheme>
+  <!-- Merged, tuned model, with CamKII phos of DagL.
+       Uses higher order reactions for CamKII phosphorylation
+  Compare to DeKoninck & Shulman using single compartment and reading in Ca Stim from file?-->
+<!-- calcium stuff first -->
+    <Specie name="CamOut"            id="CamOut"           kdiff="11"    kdiffunit="mu2/s"/>
+    <Specie name="Cam"            id="Cam"           kdiff="11"    kdiffunit="mu2/s"/>
+    <Specie name="CamCa2C"        id="CamCa2C"       kdiff="11"    kdiffunit="mu2/s"/>
+    <Specie name="CamCa2N"        id="CamCa2N"       kdiff="11"    kdiffunit="mu2/s"/>
+    <Specie name="CamCa4"         id="CamCa4"        kdiff="11"    kdiffunit="mu2/s"/>
+    <Specie name="Ca"            id="Ca"           kdiff="175"    kdiffunit="mu2/s"/>
+    <Specie name="CaBuf"         id="CaBuf"        kdiff="11"    kdiffunit="mu2/s"/>
+    <Specie name="CaInact"         id="CaInact"        kdiff="11"    kdiffunit="mu2/s"/>
+
+<!-- Production of endocannabinoid -->
+    <Specie name="Dgl"            id="Dgl"           kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="pDgl"           id="pDgl"          kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Dgl_CKCamCa4"   id="Dgl_CKCamCa4"   kdiff="0"   kdiffunit="mu2/s"/>
+    <Specie name="Dgl_CKpCamCa4"  id="Dgl_CKpCamCa4"  kdiff="0"   kdiffunit="mu2/s"/>
+    <Specie name="Dgl_CKp"        id="Dgl_CKp"        kdiff="0"   kdiffunit="mu2/s"/>
+
+<!-- CaMKII: delete Complex and pComplex and re-do rate  constants when using new NeuroRD version -->
+    <Specie name="CK"             id="CK"            kdiff="3.6"   kdiffunit="mu2/s"/>
+    <Specie name="CKCamCa4"       id="CKCamCa4"      kdiff="3.6"   kdiffunit="mu2/s"/>
+    <Specie name="CKpCamCa4"      id="CKpCamCa4"     kdiff="3.6"   kdiffunit="mu2/s"/>
+    <Specie name="CKp"            id="CKp"           kdiff="3.6"   kdiffunit="mu2/s"/>
+    <Specie name="Complex"        id="Complex"       kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="pComplex"       id="pComplex"      kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="CKpPP1"         id="CKpPP1"        kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="CKpCamCa4PP1"   id="CKpCamCa4PP1"  kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PP1"            id="PP1"           kdiff="0"     kdiffunit="mu2/s"/>
+
+<!--*************************************************************************
+    Now, the reactions themselves   SAME means params are same in both files
+    **************************************************************************-->
+
+<!-- Constant Cam    -->
+    <Reaction name = "Cam_buffer" id="Cam_Buffer">
+        <Reactant specieID="Cam"/>
+        <Product specieID="CamOut"/>
+
+        <forwardRate>0.1e-3</forwardRate>
+        <reverseRate>0.001e-3</reverseRate>
+        <Q10>0.2</Q10>
+    </Reaction>
+
+	<!-- vii: Ca Buffer   -->
+    <Reaction name = "Ca_buffer" id="Ca_Buffer">
+        <Reactant specieID="Ca"/>
+        <Reactant specieID="CaBuf"/>
+        <Product specieID="CaInact"/>
+
+        <forwardRate>0.01e-3</forwardRate>
+        <reverseRate>0.01e-3</reverseRate>
+        <Q10>0.2</Q10>
+    </Reaction>
+
+<!--1A) Cam  + 2Ca <-> CamCa2C GQ RXN FILE, C or N can bind first-->
+    <Reaction name = "CamC_bind" id="CamC_bind">
+	<Reactant specieID="Cam"/>
+	<Reactant specieID="Ca" n="2"/>
+	<Product specieID="CamCa2C"/>
+
+	<forwardRate>0.006e-3</forwardRate>
+	<reverseRate>9.1e-3</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!--2A) CamCa2C  + 2Ca <-> CamCa4 GQ RXN FILE, C or N can bind first-->
+    <Reaction name = "CamCa2C_bind" id="CamCa2C_bind">
+	<Reactant specieID="CamCa2C"/>
+	<Reactant specieID="Ca" n="2"/>
+	<Product specieID="CamCa4"/>
+
+	<forwardRate>0.1e-3</forwardRate>
+	<reverseRate>1000e-3</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!--1B) Cam  + 2Ca <-> CamCa2N GQ RXN FILE, C or N can bind first-->
+    <Reaction name = "CamN_bind" id="CamN_bind">
+	<Reactant specieID="Cam"/>
+	<Reactant specieID="Ca" n="2"/>
+	<Product specieID="CamCa2N"/>
+
+	<forwardRate>0.1e-3</forwardRate>
+	<reverseRate>1000e-3</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!--2B) CamCa2N  + 2Ca <-> CamCa4 GQ RXN FILE, C or N can bind first-->
+    <Reaction name = "CamCa2N_bind" id="CamCa2N_bind">
+	<Reactant specieID="CamCa2N"/>
+	<Reactant specieID="Ca" n="2"/>
+	<Product specieID="CamCa4"/>
+
+	<forwardRate>0.006e-3</forwardRate>
+	<reverseRate>9.1e-3</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+    <!--XII. *************** CamKII ************* -->
+
+  <!--1) CamCa4 + CK <-> CKCamCa4  -->
+    <Reaction name = "CK bind" id="CK_bind">
+        <Reactant specieID="CamCa4"                 />
+        <Reactant specieID="CK"                     />
+        <Product  specieID="CKCamCa4"               />
+
+        <forwardRate> 0.01e-3   </forwardRate>
+        <reverseRate> 3e-3      </reverseRate>
+        <!--0.8 from ode file
+	    reverseRate> 0.8e-3      </reverseRate-->
+        <Q10>    0.2            </Q10>
+    </Reaction>
+
+<!--2a) CKCamCa4 + CKCamCa4 <-> Complex -->
+    <Reaction name = "CKCam bind" id="CKCam_bind">
+        <Reactant specieID="CKCamCa4"  power="2"        />
+        <Product  specieID="Complex"                />
+
+        <forwardRate> 0.0001e-3 </forwardRate>
+        <reverseRate> 10e-3     </reverseRate>
+        <Q10>     2             </Q10>
+    </Reaction>
+
+<!--2b) CKpCamCa4 + CKCamCa4 <-> pComplex -->
+    <Reaction name = "pComplex bind" id="pComplex_bind">
+        <Reactant specieID="CKpCamCa4"              />
+        <Reactant specieID="CKCamCa4"               />
+        <Product  specieID="pComplex"               />
+
+        <forwardRate> 0.0001e-3 </forwardRate>
+        <reverseRate> 10e-3     </reverseRate>
+        <Q10>     2             </Q10>
+    </Reaction>
+<!--3a) CKpCamCa4 + Complex <-> CKpCamCa4 + pComplex -->
+    <Reaction name = "CKpCamCompl bind" id="CKpCamCompl_bind">
+        <Reactant specieID="CKpCamCa4"              />
+        <Reactant specieID="Complex"                />
+        <Product  specieID="CKpCamCa4"              />
+        <Product  specieID="pComplex"               />
+
+        <forwardRate> 0.0001e-3 </forwardRate>
+        <reverseRate> 0         </reverseRate>
+        <Q10>      2            </Q10>
+    </Reaction>
+
+<!--3b) CKCamCa4 + Complex <-> CKCamCa4 + pComplex -->
+    <Reaction name = "CKCamCompl bind" id="CKCamCompl_bind">
+        <Reactant specieID="CKCamCa4"               />
+        <Reactant specieID="Complex"                />
+        <Product  specieID="CKCamCa4"               />
+        <Product  specieID="pComplex"               />
+
+        <forwardRate> 0.0001e-3 </forwardRate>
+        <reverseRate> 0         </reverseRate>
+        <Q10>      2            </Q10>
+    </Reaction>
+    
+ <!--4a) Complex + Complex <-> Complex + Pcomplex -->
+    <Reaction name = "2Complex bind" id="2Complex_bind">
+        <Reactant specieID="Complex"    power="2"       />
+        <Product  specieID="Complex"                />
+        <Product  specieID="pComplex"               />
+
+        <forwardRate> 0.01e-3   </forwardRate>
+        <reverseRate> 0         </reverseRate>
+        <Q10>    0.2            </Q10>
+    </Reaction>
+
+ <!--4b) Complex + pComplex <-> pComplex + pComplex-->
+    <Reaction name = "ComplpCompl bind" id="ComplpCompl_bind">
+        <Reactant specieID="Complex"                />
+        <Reactant specieID="pComplex"               />
+        <Product  specieID="pComplex"   power="2"        />
+
+        <forwardRate> 0.03e-3   </forwardRate>
+        <reverseRate> 0         </reverseRate>
+        <Q10>    0.2            </Q10>
+    </Reaction>
+
+    <!-- CKpCamCamCa4 <-> CKp + CamCa4 -->
+    <Reaction name = "CKp auto" id="CKp_auto">
+        <Reactant specieID="CKpCamCa4"              />
+        <Product  specieID="CamCa4"                 />
+        <Product  specieID="CKp"                    />
+
+        <forwardRate> 0.0008e-3 </forwardRate>
+        <reverseRate> 0.01e-3   </reverseRate>
+        <Q10>    0.2            </Q10>
+    </Reaction>
+
+    <!-- CKp + PP1 <-> CKpPP1 -->
+    <Reaction name = "CKp bind" id="CKp_bind">
+        <Reactant specieID="CKp"                    />
+        <Reactant specieID="PP1"                    />
+        <Product  specieID="CKpPP1"                 />
+
+        <forwardRate> 0.01e-06     </forwardRate>
+        <reverseRate> 0.085e-03   </reverseRate>
+        <Q10>     0.2             </Q10>
+    </Reaction>
+ 
+    <!-- CKpPP1 -> PP1 + CK -->
+    <Reaction name = "CKpPP1 reac" id="CKpPP1_reac">
+        <Reactant specieID="CKpPP1"                 />
+        <Product specieID="PP1"                     />
+        <Product specieID="CK"                      />
+
+        <forwardRate> 0.025e-03   </forwardRate>
+        <reverseRate> 0.0         </reverseRate>
+        <Q10>    0.2              </Q10>
+    </Reaction>
+
+    <!-- CKpCamCa4 + PP1 <-> CKpCamCa4PP1 -->
+    <Reaction name = "CKpCamCa4PP1_bind" id="CKpCamPP1_bind">
+        <Reactant specieID="CKpCamCa4"              />
+        <Reactant specieID="PP1"                    />
+        <Product  specieID="CKpCamCa4PP1"           />
+
+        <forwardRate> 0.0         </forwardRate>
+        <reverseRate> 0.0         </reverseRate>
+        <Q10>    0.2              </Q10>
+    </Reaction>
+
+<!--Dephos of CKpCamCa4 by PP1 -->
+    <!-- CKpCamCa4PP1 -> PP1 + CKCamCa4 -->
+    <Reaction name = "CKpCamCa4PP1_reac" id="CKpCamPP1_reac">
+        <Reactant specieID="CKpCamCa4PP1"           />
+        <Product  specieID="PP1"                    />
+        <Product  specieID="CKCamCa4"               />
+
+        <forwardRate> 0.0         </forwardRate>
+        <reverseRate> 0.0         </reverseRate>
+        <Q10>    0.2              </Q10>
+    </Reaction>
+
+
+<!-- ***************************************************************************-->
+<!-- CaMKII phos of Dag Lipase to suppress 2ag during LTP: NOVEL REACTION -->
+    <!--1) Dgl + CKCam <-> Dgl_CKCam -->
+    <Reaction name = "Dgl_CKCamCa4_bind" id="Dgl_CKCamCa4_bind">
+        <Reactant specieID="Dgl"              />
+        <Reactant specieID="CKCamCa4"           />
+        <Product  specieID="Dgl_CKCamCa4"     />
+
+        <forwardRate> 0.04e-6          </forwardRate>
+        <reverseRate> 0.0333e-3            </reverseRate>
+        <Q10>     0.2                   </Q10>
+    </Reaction>
+
+    <!-- Dgl_CKCam -> pDgl + CKCam -->
+    <Reaction name = "Dgl_CKCam_diss" id="Dgl_CKCam_diss">
+        <Reactant specieID="Dgl_CKCamCa4"     />
+        <Product  specieID="pDgl"         />
+        <Product  specieID="CKCamCa4"           />
+
+        <forwardRate> 0.00833e-3            </forwardRate>
+        <reverseRate> 0.0               </reverseRate>
+        <Q10>   0.2                     </Q10>
+    </Reaction>
+
+    <!--2 Dgl + CKpCam <-> Dgl_CKpCam -->
+    <Reaction name = "Dgl_CKpCamCa4_bind" id="Dgl_CKpCamCa4_bind">
+        <Reactant specieID="Dgl"              />
+        <Reactant specieID="CKpCamCa4"          />
+        <Product  specieID="Dgl_CKpCamCa4"    />
+
+        <forwardRate> 0.05e-6          </forwardRate>
+        <reverseRate> 0.04167e-3          </reverseRate>
+        <Q10>       0.2                 </Q10>
+    </Reaction>
+
+    <!-- Dgl_CKpCam -> pDgl + CKpCam -->
+    <Reaction name = "Dgl_CKpCamCa4_diss" id="Dgl_CKpCamCa4_diss">
+        <Reactant specieID="Dgl_CKpCamCa4"    />
+        <Product  specieID="pDgl"         />
+        <Product  specieID="CKpCamCa4"          />
+
+        <forwardRate> 0.01042e-3        </forwardRate>
+        <reverseRate> 0.0               </reverseRate>
+        <Q10>   0.2                     </Q10>
+    </Reaction>
+
+    <!-- 3)Dgl + CKp <-> Dgl_CKp -->
+    <Reaction name = "Dgl_CKp_bind" id="Dgl_CKp_bind">
+        <Reactant specieID="Dgl"              />
+        <Reactant specieID="CKp"                />
+        <Product  specieID="Dgl_CKp"          />
+
+        <forwardRate> 0.04e-6          </forwardRate>
+        <reverseRate> 0.0333e-3            </reverseRate>
+        <Q10>   0.2                     </Q10>
+    </Reaction>
+
+    <!-- Dgl_CKp -> pDgl + CKp -->
+    <Reaction name = "Dgl_CKp_diss" id="Dgl_CKp_diss">
+        <Reactant specieID="Dgl_CKp"          />
+        <Product  specieID="pDgl"         />
+        <Product  specieID="CKp"                />
+
+        <forwardRate> 0.00833e-3            </forwardRate>
+        <reverseRate> 0.0               </reverseRate>
+        <Q10>   0.2                     </Q10>
+    </Reaction>
+
+    <!-- pDgl dephosphorylation -->
+    <Reaction name = "pDgl_dephos" id="pDgl_dephos">
+        <Reactant specieID="pDgl"         />
+        <Product  specieID="Dgl"           />
+
+        <forwardRate> 0.1e-3            </forwardRate>
+        <reverseRate> 0.0               </reverseRate>
+        <Q10>   0.2                     </Q10>
+    </Reaction>
+
+</ReactionScheme>

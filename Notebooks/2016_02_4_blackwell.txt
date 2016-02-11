@@ -1,0 +1,72 @@
+Lab Notebook for Blackwell Feb 3-11, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes 
+
+########## Replacing the CamKII phosphorylation, which uses Complex and pComplex due to 2nd order limit in NeuroRDv2
+	   xppaut file (CamKIIneuroRDnew2.ode in HippoAkap dir) lists higher order reactions that worked:
+	   
+  param qb=0.75, qp=1.0, qa=0.8
+  newqb=0.45*qb^2/CK_ini^4
+  newqp=0.45*qp*qp/CK_ini^4
+  Va5=newqb*CKCam^4 + newqb*CK_ini*CKCam^3 + newqp*CKpCam^3*CKCam
+  dCKpCam/dt = Va5*CKCam
+
+  This used CK_ini=20uM (20000 nM), 500 uM calcium, which produced 100 nM CamCa4 from this eqn:
+  CaMCa4 = CaMtot*(Ca^4/(Ca^4+Kd^4)), with Kd=1.0 and CaMtot=100
+
+  Implementing these 3 higher order terms in Repo/CamKIIassay, in 0.3x0.9 um dendrite (3 voxels) only molecules that interact with calcium and calmodulin
+---------> did not work - produced ~20x to loow CKpCamCa4.
+########## Tried 20x increase in all 3 rates
+---------> better response to 1 Hz, but 2.5 Hz and 4 Hz were not sufficiently higher.
+########## Will try an alternative, lower order formulation (something like this)
+	   Va7=newqb*CKCam^4 + newqb*CK_ini*CK_ini*CKCam^2 + newqp*CKCam^2*CKpCam + newqp*CKpCam^2*CKCam
+
+<!--2a) 4 CKCamCa4 + CKCamCa4 <-> 4 CKCamCa4 + CKpCamCa4-->
+        <forwardRate> 3.16e-20 </forwardRate>
+
+<!--2b)  2 CKCamCa4 + CKCamCa4 <-> 2 CKCamCa4 + CKpCamCa4-->
+        <forwardRate> 12.65e-12 </forwardRate>
+
+<!--2c)  2 CKpCamCa4 + 2 CKCamCa4 <-> 3 CKpCamCa4 + CKCamCa4-->
+       <forwardRate> 1.125e-15 </forwardRate>
+
+Depending on results: increase rate of higher order terms or Ckp term to increase response to high frequency relative to low frequency.
+
+Feb 11, 2016
+Noticed problem with Calcium and CamCa4.  Fixed this with "buffered" cam, calcium injection followed by irreversible binding.  No additional Cam targets.  Now, the calcium traces look proper.
+
+Evaluate different combinations of autophos.  Start with
+<!--2a) 3 CKCamCa4 + 1 CKCamCa4 <-> 3  CKCamCa4 + 1 CKpCamCa4-->
+<!--2b)  2 CKCamCa4 + 1 CKCamCa4 <-> 2 CKCamCa4 + 1 CKpCamCa4-->
+<!--2c)  2 CKpCamCa4 + 2 CKCamCa4 <-> 3 CKpCamCa4 + 1 CKCamCa4-->
+
+>>>>>>>>> DeKoninck & Shulman: 0.08 (1Hz) 0.32 (2.5Hz) 0.63(4Hz)
+	  >>>xppaut "new" model:0.07, 0.35, 0.48
+	  >>>xppaut "new2" model: 0.012, 0.29, 0.67
+	  >>>Dupont model: 0.06, 0.34, 0.48
+&&&&&&& Note that these simulations using "complex" model  produce VERY little Ckp
+CKp indicates CKpcamCa4
+###########
+2a (4CK) 2b (3 CK)   2c (2CKp,2CK) Ckp 1hz   Ckp 2.5 Hz	  Ckp 4hz	6s 100cam	6s 1000cam
+31.6e-18 12.65e-12   1.125e-15	   3   	     35	    	  60  		
+---------> Good for 2.5 and 4 hz, too low for 1hz, increase 3d order
+31.6e-18 12.65e-12   2.25e-15 	   3         35	    	  60  		0 (too low) 	120
+--------->no difference, but made mistake
+31.6e-18 25.3e-12    2.25e-15	   3	     83		 160		0		180
+-------> more CKpCam, but not for lowest
+0	  50.0e-12   2.25e-15 	  11	     100	  234		0		290
+-------> Good, consider 2nd order instead of 4th order? Ratio should be 4x, then 2x
+<!--2a) 1 CKCamCa4 + 1 CKCamCa4 <-> 1  CKCamCa4 + 1 CKpCamCa4-->
+50.0e-9  50.0e-12   2.25e-15 	  106	     274	  274		3		468
+------->Good response of 1hz, and 2.5 hz, but 4 hz not good.  Try lowering the 2nd order rate
+25.0e-9  50.0e-12   2.25e-15 	  46	     251	  357		3		468
+------->MUCH BETTER.  Now, increase 3d or 4th order a bit.  Note that some effect may be stochastic.
+MISTAKE in stim - need to give same number of pulses for everything.
+25.0e-9  50.0e-12   2.25e-15	  40 	   40  	     20		3		468
+CKCamCa4 is much lower now, so rates need to be increased.
+Old model doesn't produce ANY CKpCamCa4. - increase Ca injection amount.
+May need to go back to 4th order if higher rates doesn't work
+50.0e-9  200.0e-12   10e-15 
