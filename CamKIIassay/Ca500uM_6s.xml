@@ -3,15 +3,15 @@
 <!--  -->
 <InjectionStim specieID="Ca" injectionSite="pointB">
         <onset>               2000           </onset>
-        <duration>            10           </duration>
-        <rate>                  500           </rate>
+        <duration>            100           </duration>
+        <rate>                  1500           </rate>
 </InjectionStim>
 
 
 <InjectionStim specieID="CaBuf" injectionSite="pointB">
-        <onset>               6000           </onset>
+        <onset>               8000           </onset>
         <duration>            1000           </duration>
-        <rate>                   5           </rate>
+        <rate>                   150           </rate>
 </InjectionStim>
 
 

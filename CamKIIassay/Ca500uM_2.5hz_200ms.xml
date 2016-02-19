@@ -4,7 +4,7 @@
 <InjectionStim specieID="Ca" injectionSite="pointB">
         <onset>               20000           </onset>
         <duration>            10           </duration>
-        <rate>                 1000           </rate>
+        <rate>                 15000           </rate>
         <period>           400               </period>
         <end>              60000          </end> 
 </InjectionStim>
@@ -12,7 +12,7 @@
 <InjectionStim specieID="CaBuf" injectionSite="pointB">
         <onset>               20200           </onset>
         <duration>            50           </duration>
-        <rate>                   200           </rate>
+        <rate>                   3000           </rate>
         <period>           400               </period>
         <end>              60200          </end> 
 </InjectionStim>
