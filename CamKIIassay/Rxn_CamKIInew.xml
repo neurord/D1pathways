@@ -116,24 +116,24 @@
         <Q10>    0.2            </Q10>
     </Reaction>
 
-<!--2a) 1 CKCamCa4 + 1 CKCamCa4 <-> 1  CKCamCa4 + 1 CKpCamCa4-->
+<!--2a) 3 CKCamCa4 + 1 CKCamCa4 <-> 3  CKCamCa4 + 1 CKpCamCa4-->
     <Reaction name = "CKCam bind" id="CKCam_bind">
         <Reactant specieID="CKCamCa4"  power="4"        />
         <Product  specieID="CKCamCa4"   power="3"         />
         <Product  specieID="CKpCamCa4"           />
 
-        <forwardRate> 10.8e-18 </forwardRate>
+        <forwardRate> 13.0e-18 </forwardRate>
         <reverseRate> 0e-3     </reverseRate>
         <Q10>     2             </Q10>
     </Reaction>
 
-<!--2b)  1 CKCamCa4 + 1 CKCamCa4 <-> 2 CKCamCa4 + 1 CKpCamCa4-->
+<!--2b)  2 CKCamCa4 + 1 CKCamCa4 <-> 2 CKCamCa4 + 1 CKpCamCa4-->
     <Reaction name = "CKCam bind" id="CKCam_bind">
         <Reactant specieID="CKCamCa4"  power="3"        />
         <Product  specieID="CKCamCa4"  power="2"         />
         <Product  specieID="CKpCamCa4"           />
 
-        <forwardRate> 1.68e-12 </forwardRate>
+        <forwardRate> 2.0e-12 </forwardRate>
         <reverseRate> 0e-3     </reverseRate>
         <Q10>     2             </Q10>
     </Reaction>
@@ -145,7 +145,7 @@
         <Product  specieID="CKCamCa4"           />
         <Product  specieID="CKpCamCa4" power="3"         />
 
-        <forwardRate> 18.8e-18 </forwardRate>
+        <forwardRate> 27.1e-18 </forwardRate>
         <reverseRate> 0e-3     </reverseRate>
         <Q10>     2             </Q10>
     </Reaction>

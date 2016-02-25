@@ -1734,13 +1734,13 @@ MUCH slower binding compared to CaDgl  -->
         <Q10>    0.2            </Q10>
     </Reaction>
 
-<!--2a) 1 CKCamCa4 + 1 CKCamCa4 <-> 1  CKCamCa4 + 1 CKpCamCa4-->
+<!--2a) 3 CKCamCa4 + 1 CKCamCa4 <-> 3  CKCamCa4 + 1 CKpCamCa4-->
     <Reaction name = "CKCam bind" id="CKCam_bind">
         <Reactant specieID="CKCamCa4"  power="4"        />
         <Product  specieID="CKCamCa4"   power="3"         />
         <Product  specieID="CKpCamCa4"           />
 
-        <forwardRate> 10.8e-18 </forwardRate>
+        <forwardRate> 13.0e-18 </forwardRate>
         <reverseRate> 0e-3     </reverseRate>
         <Q10>     2             </Q10>
     </Reaction>
@@ -1751,7 +1751,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="CKCamCa4"  power="2"         />
         <Product  specieID="CKpCamCa4"           />
 
-        <forwardRate> 1.68e-12 </forwardRate>
+        <forwardRate> 2.0e-12 </forwardRate>
         <reverseRate> 0e-3     </reverseRate>
         <Q10>     2             </Q10>
     </Reaction>
@@ -1763,7 +1763,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="CKCamCa4"           />
         <Product  specieID="CKpCamCa4" power="3"         />
 
-        <forwardRate> 18.8e-18 </forwardRate>
+        <forwardRate> 27.1e-18 </forwardRate>
         <reverseRate> 0e-3     </reverseRate>
         <Q10>     2             </Q10>
     </Reaction>
@@ -1833,7 +1833,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKCamCa4"           />
         <Product  specieID="Dgl_CKCamCa4"     />
 
-        <forwardRate> 0.04e-6          </forwardRate>
+        <forwardRate> 0.12e-6          </forwardRate>
         <reverseRate> 0.0333e-3            </reverseRate>
         <Q10>     0.2                   </Q10>
     </Reaction>
@@ -1855,7 +1855,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKpCamCa4"          />
         <Product  specieID="Dgl_CKpCamCa4"    />
 
-        <forwardRate> 0.05e-6          </forwardRate>
+        <forwardRate> 0.15e-6          </forwardRate>
         <reverseRate> 0.04167e-3          </reverseRate>
         <Q10>       0.2                 </Q10>
     </Reaction>

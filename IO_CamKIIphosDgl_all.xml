@@ -184,8 +184,4 @@
     <OutputSpecie name="Dp75pPP2A"/>
   </OutputSet>
 
-  <OutputSet filename = "complex"  dt="10.0">
-    <OutputSpecie name="Complex"/>
-    <OutputSpecie name="pComplex"/>
-  </OutputSet>
 </OutputScheme>

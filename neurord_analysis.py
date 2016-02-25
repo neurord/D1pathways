@@ -229,8 +229,8 @@ for fnum,ftuple in enumerate(ftuples):
                 else:
                     print molecules[imol].rjust(14),
                     if head_vox>-1:
-                        print "head:%8.4f" %RegionMeans[sstart:ssend,head_vox].mean(),
-                    print "dend sm %8.4f" %(RegionStructMeans[sstart:ssend,dsm_vox].mean()*deltaY[0])
+                        print "head ss:%8.4f pk %8.4f" % (RegionMeans[sstart:ssend,head_vox].mean(), RegionMeans[ssend:,head_vox].max())
+                    print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart:ssend,dsm_vox].mean()*deltaY[0]), (RegionStructMeans[ssend:,dsm_vox].max()*deltaY[0]))
                #
                 #write space
                 if spatialaverage:
