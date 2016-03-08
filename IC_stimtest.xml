@@ -1,0 +1,16 @@
+<InitialConditions>
+
+    <ConcentrationSet>
+<!-- cytosolic molecules -->
+        <NanoMolarity specieID="Da"                    value="0" />
+        <NanoMolarity specieID="Dbuf"                    value="0" />
+        <NanoMolarity specieID="Dabuf"                    value="0" />
+        <NanoMolarity specieID="Ca"                    value="0" />
+        <NanoMolarity specieID="Cbuf"                    value="0" />
+        <NanoMolarity specieID="Cabuf"                    value="0" />
+         <NanoMolarity specieID="Glu"                    value="0" />
+        <NanoMolarity specieID="gbuf"                    value="0" />
+        <NanoMolarity specieID="Glubuf"                    value="0" />
+    </ConcentrationSet> 
+ 	
+</InitialConditions>

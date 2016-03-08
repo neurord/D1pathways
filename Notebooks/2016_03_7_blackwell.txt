@@ -1,0 +1,88 @@
+Lab Notebook for Blackwell Mar 7-11, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+#######Used new CamKII model in Uchi simulations.
+<!--2a) 3 CKCamCa4 + 1 CKCamCa4 <-> 3  CKCamCa4 + 1 CKpCamCa4-->10.8e-18 
+<!--2b)  2 CKCamCa4 + 1 CKCamCa4 <-> 2 CKCamCa4 + 1 CKpCamCa4-->1.68e-12 
+<!--2c)  2 CKpCamCa4 + 2 CKCamCa4 <-> 3 CKpCamCa4 + 1 CKCamCa4-->18.8e-18 
+
+Results: Slightly less pDgl than with old model.
+Repeat Assay and Uchi with 20% higher values
+
+#######2a: 13e-18, 2b: 2e-12, 2c: 27.1e-18
+1hz: 729n (0.08), 2.5Hz:3.4uM (0.39), 4Hz: 5.7uM (0.65) 
+CamKII is similar to old model, but no higher - same values as with 2c:22.6e-18
+
+#######3x increase:
+0.12e-6 for CKCam , 0.15e-6 for CKpCam for kf of Dgl phosphorylation
+molecule    1s peak	  5s
+CKpCamCa4   4.0n	  23 nm
+pDgl	    14nm	  20nm
+CapDgl	    6nm		  12nm
+This is better than before, but still quite low.
+---------> Should kf be even higher?  Or should there be no change?  The pDgl persists for duration of simulation.  Possibly the spacing of trains for LTP would yield a cumulative increase in pDgl that would have an effect.
+---------> Try 10x kf, and also set up stimuli for LTP and LTD
+	   i.e., Da, Ca, Glu, ACh.  Start with Da, and maybe get Ca and Glu from Asia's model.
+	   
+#######10x increase:
+0.4e-6 for CKCam and CKp, 0.5e-6 for CKCam , 0.15e-6 for CKpCam for kf of Dgl phosphorylation
+molecule    1s peak/ss	  5s
+CKpCamCa4   2nM	  	  12 nM
+pDgl	    35nM/31	  35nM/35
+CapDgl	    12nM/6.5	  17nM/8
+Much higher pDgl, either Ca bound or not.  Lower CKpCamCa4, likely due to binding to Dgl. Rate of increase: reaches peak within 10s-20s, possibly because CKpCam and CKcam go back down.
+First try 3x value as default for LTP/LTD sims, then consider the 10x value if needed.
+
+Ca stim: for Uchi 100 ms, needed to double the calcium.  Do this for initial theta and 20 Hz stim. For 20Hz: from 256 to 512 for spine, from 260 to 520 for dend.
+Glu stim: for Uchi needed to double the Glu.  Do this for theta and 20 Hz.
+
+>>>>>>>>>Da: Zhang and Sulzer, Nat Neuro
+p2:p1=0.5, from 4p expers, it seems that p2:p4 together contribute less than p1, e.g. p3:p2=0.5, p4:p3=0.5
+Threlfell &Cragg: subsequent Da pulses contribute very little: specify 1st pulse much higher for each train
+peak=0.5 uM +/- 0.2 uM Salinas; Cragg: 0.4-1.0 uM peak Da; 20 pulses at 5 Hz has minimally higher peak, but decays to ~30% of peak for duration of train
+decay: tau=0.376sec: salinas
+
+>>>>>>>>>Summary:
+20 Hz:
+   adjust p1 to produce ~0.5 uM
+   Adjust subsequent pulses to produce ~1.0 uM for 4 pulses, but first try p2,p3,p4 each half of previous, p5-x same as p4
+theta:
+   p1 must be same as for 20 Hz
+   subsequent pulses should be larger than for 20 Hz (assuming that 100 Hz more similar to 50 Hz).
+   Armando has data showing that theta yields less Da than 100 Hz, is it possible that the 35 ms pause (28 hz) reduces Da?
+   Alternative: first burst produces Da of ~2x amplitude of 1st four pulses of 20 Hz, or 2x amplitude of single pulse
+   	Subsequent bursts: lower - Zhang and Sulzer show that 10 pulses at 100 hz provides ~70% greater peak than 4 pulses.
+	I.e. 6 additional pulses provide 70%,
+	extrapolate to 8 additional pulses would double the 4 pulse peak, or provide an increment the same as 4 pulses -> half the amplitude.
+
+#######Stim files (StimTheta10hz-10sITI.xml, Stim20hz-10sITI.xml):
+   20 Hz: p1 =15ms*80 p2=15ms*40,p3=5ms*50, p4-100=5ms*30
+     	Will re-adjust as needed in full model, which has Da decay
+	may need to make subsequent pulses even smaller
+   Theta:
+	Each burst of 4p=single Da pulse.  burst 1 = 60ms*60. Bursts 2-10 produce half amplitude bursts. 60ms*30. Each train starts at full amplitude.
+   Theta should produce Da a bit lower than 20 Hz, significantly lower than 100 Hz - adjust with Armando's data
+-------->20Hz: 1st pulse: 0.4 uM, Da is double after 4p: 50% is too high
+------>theta: 1st burst: 1.5 uM (too high)
+#######A. for subsequent pulse use 40%, 15ms*80,15ms*32,15ms*12.8,5ms*15.4
+B. b1=60ms*40, b2-10=60ms*20
+-------->
+
+
+ACh: What sort of burst/pause response should there be?
+	 
+&&&&&&& What mechanisms for Da decay (and glu decay)?
+     a. inject Da buffer
+     b. DaOut
+     c. DaOut plus DaOut buffer (to prevent baseline shift)
+     	Inject Dbuf after each 20Hz train or each theta train
+Re-adjust inject
+
+-------> Change Dabuf to DaOut - add DaOut (and GluOut) to IC
+-------> Add in DaOut+Dbuf and GluOut+Gbuf to Rxn file
+------->Stimulate with Dbuf and Gbuf after each train
+Test stim files, and then do full sims

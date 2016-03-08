@@ -1,0 +1,84 @@
+<StimulationSet>
+
+    <!-- the injectionSite must match a regionLabel deefined in the morphology -->
+   <!-- 20 Glu and Ca pulses / sec for 1 sec * 20 trains = 400 pulses -->
+
+<!-- Train 1 -->
+<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            5              </duration>
+        <rate>                60.0           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 1 to produce 0.5 uM alone -->
+<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            15              </duration>
+        <rate>                80           </rate>
+        <period>              50             </period>
+        <end>                 20010          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9990          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 2 = half of pulse 1 -->
+<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               20050          </onset>
+        <duration>            15              </duration>
+        <rate>                32.0           </rate>
+        <period>              50             </period>
+        <end>                 20060          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9990          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 3 = half of pulse 2  -->
+<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               20100          </onset>
+        <duration>            15              </duration>
+        <rate>                12.8           </rate>
+        <period>              50             </period>
+        <end>                 20110          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9990          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulses 4-100 = half of pulse 3, faster injection to decrease stochasticity-->
+<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               20150          </onset>
+        <duration>            5              </duration>
+        <rate>                15.4           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9151          </interTrainInterval>   
+</InjectionStim>
+
+
+<!--  Ca pulses  Only 40 pulses per train to achieve reasonable Ca -->
+
+<InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            3              </duration>
+        <rate>                512            </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>  
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+        <onset>               20000          </onset>
+        <duration>            3              </duration>
+        <rate>                520            </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>  
+</InjectionStim>
+
+</StimulationSet>

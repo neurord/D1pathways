@@ -1,0 +1,28 @@
+Lab Notebook for Blackwell Feb 25, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+#######Used new CamKII model in Uchi simulations.
+<!--2a) 3 CKCamCa4 + 1 CKCamCa4 <-> 3  CKCamCa4 + 1 CKpCamCa4-->10.8e-18 
+<!--2b)  2 CKCamCa4 + 1 CKCamCa4 <-> 2 CKCamCa4 + 1 CKpCamCa4-->1.68e-12 
+<!--2c)  2 CKpCamCa4 + 2 CKCamCa4 <-> 3 CKpCamCa4 + 1 CKCamCa4-->18.8e-18 
+
+Results: Slightly less pDgl than with old model.
+Repeat Assay and Uchi with 20% higher values
+
+##########2a: 13e-18, 2b: 2e-12, 2c: 22.6e-18
+
+--------->Results: Better.  Good match to DK&S, though 2.5 hz a bit high
+1hz: 729n (0.08), 2.5Hz:3.4uM (0.39), 4Hz: 5.7uM (0.65) - quite similar to
+>>>>>>DeKoninck & Shulman: 0.08 (1Hz) 0.32 (2.5Hz) 0.63(4Hz)
+Try one more time to increase 4Hz response by increasing the CKp^2*CK^2
+#######2a: 13e-18, 2b: 2e-12, 2c: 27.1e-18
+
+CamKII is similar to old model, but no higher
+Calcium in spine is 2.5 - 3 uM in spine, 2-3x higher than overall average.
+Need higher affinity of CamKII for Dgl, or faster action: increase kf by 2-10x
+#######3x increase:
+0.12e-6 for CKCam and CKp, 0.15e-6 for CKpCam

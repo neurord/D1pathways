@@ -440,11 +440,11 @@
         <Reactant specieID="MgluR"              />
         <Product  specieID="GluMgluR"         />
 
-        <forwardRate> 0.5e-06 </forwardRate>
-        <reverseRate> 6.6e-03      </reverseRate>
+        <!--forwardRate> 0.5e-06 </forwardRate>
+        <reverseRate> 6.6e-03      </reverseRate-->
 	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
-        <!--forwardRate> 0.002e-03 </forwardRate>
-        <reverseRate> 1e-03      </reverseRate-->
+        <forwardRate> 0.002e-03 </forwardRate>
+        <reverseRate> 1e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -1877,7 +1877,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKp"                />
         <Product  specieID="Dgl_CKp"          />
 
-        <forwardRate> 0.04e-6          </forwardRate>
+        <forwardRate> 0.12e-6          </forwardRate>
         <reverseRate> 0.0333e-3            </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>

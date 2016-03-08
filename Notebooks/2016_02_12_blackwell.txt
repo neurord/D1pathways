@@ -1,0 +1,104 @@
+Lab Notebook for Blackwell Feb 12-17, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+
+>>>>>>>>> DeKoninck & Shulman: 0.08 (1Hz) 0.32 (2.5Hz) 0.63(4Hz)
+	  >>>xppaut "new" model:0.07, 0.35, 0.48
+	  >>>xppaut "new2" model: 0.012, 0.29, 0.67
+	  >>>Dupont model: 0.06, 0.34, 0.48
+>>>>>>>>> Old CamKII model in NeuroRD: 56n (0.002), 1402n (0.07), 6462n
+	  Old CamKII model in XPPAUT: 0.095, 0.32 (3x), 0.44 (1.4)
+Evaluate different combinations of autophos.  Start with
+<!--2a) 1 CKCamCa4 + 1 CKCamCa4 <-> 1  CKCamCa4 + 1 CKpCamCa4--> or
+<!--2a) 3 CKCamCa4 + 1 CKCamCa4 <-> 3  CKCamCa4 + 1 CKpCamCa4-->
+<!--2b)  2 CKCamCa4 + 1 CKCamCa4 <-> 2 CKCamCa4 + 1 CKpCamCa4-->
+<!--2c)  2 CKpCamCa4 + 2 CKCamCa4 <-> 3 CKpCamCa4 + 1 CKCamCa4-->
+
+&&&&&&& Note that these simulations using "complex" model  produce VERY little Ckp
+CKp indicates CKpcamCa4
+###########
+2a (2CK) 2b (3 CK)   2c (2CKp,2CK) Cambuf    Ckp 1hz   Ckp 2.5 Hz	  Ckp 4hz	Ca peak	CamCa4
+25.0e-9  50.0e-12   2.25e-15 	   0.01 kf     29  	     42	     	  15  		30 uM	~8 nM
+Old model doesn't produce ANY CKpCamCa4
+Problem is CamCa4 is too low.  Try even higher calcium (xpp used 500 uM) and faster Cam buffer.
+CKCam is highest for 4 Hz, so may need to go back to 4th order 
+2a (2CK) 2b (3 CK)   2c (2CKp,2CK) Cambuf   Ckp 1hz   Ckp 2.5 Hz  Ckp 4hz   Ca peak	CamCa4 peak
+25.0e-9  50.0e-12   2.25e-15 	   0.1 kf    347      2.8u    	  5.7u	    30u     	    8/22/36
+This is much better!  Need to buffer Cam quickly, to achieve 100 nM CamCa4.  May also need even higher calcium, to speed calcium binding.  increase 15x the calcium injection.
+25.0e-9  50.0e-12   2.25e-15 	   0.1 kf    6.3u       7.6u	   7.8u     300 uM	58/50/117
+Much better Cam, but now there is minimal distinction among frequencies.
+Old model: 1Hz -> 56, 2.5 Hz -> 1400, 4  Hz -> 6.4 MUCH BETTER.  Issue is clearly with control of CamCa4.
+0.0e-9  50.0e-12   2.25e-15 	   0.1 kf     6.4	      8.0     	  8.5
+---------> Go back to 4th power and old rate  constants, now that Ca and Cam is somewhat better
+2a (4CK)  2b (3 CK)   2c (2CKp,2CK) Cambuf   Ckp 1hz   Ckp 2.5 Hz  Ckp 4hz   Ca peak	CamCa4 peak
+32.0e-18  12.5e-12   1.125e-15 	   0.1 kf   	3.5u    6.9u   	  8.1u
+Much better, but still too high.  Perhaps need to lower all the rates
+3.20e-18  63.3e-15   5.6e-18 	   0.1 kf   	44n     264n   	  1000n
+Ratios are better, but now quantity is too low.  Increase by 2x
+6.40e-18   127e-15   11.2e-18 	   0.1 kf   	87n     571n   	  1876n
+Ratios are similar, and quantity still is too low.  Increase lower order rxn 4x
+6.40e-18   0.51e-12   11.2e-18 	   0.1 kf      238n     1409n  	  3580n
+Better ratio of 4hz to 2.5 hz, slightly better ratio of 2.5hz to 1 hz.  Increase 3d order again.
+6s stimuli with various Cam amounts: old model looks OK - 80% max with 300 nM Cam, whereas new model shows ~95% max with 300 nM Cam.  Problem still resides witih controlling Cam amount or CamCa4 amount.
+6.40e-18   1.0e-12   11.2e-18 	   0.1 kf      474n     2263n  	  4980n
+Better ratio of 4hz to 2.5 hz (2.2), slightly better ratio of 2.5hz to 1 hz (4.8).  This is very close to ratios observed by deKonink and Shulman, and better than ratios obtained by Dupont.
+Total quantity is still a bit lower than the "complex" model. Before accepting this model, try increasing rates a bit more.
+6.40e-18   1.5e-12   11.2e-18 	   0.1 kf     833      2701   	    5434
+Ratio for low end not quite as good
+7.0e-18   1.2e-12   12.3e-18 	   0.1 kf     702      2525   	    4886
+Better.
+7.7e-18   1.2e-12   13.4e-18 	   0.1 kf     718	2465	 4995
+Better: 0.036, 0.123, 0.250, ratios=3.43, 2.02
+What about keeping ratio and increasing all rates 40%?
+BEST: 10.8e-18   1.68e-12   18.8e-18 	   0.1 kf     583	 2753		5459
+Ratios=4.7, 1.98 - GREAT
+10.8e-18   2.0e-12   18.8e-18 	   0.1 kf     960 (.048) 3320 (0.16)   5692 (0.28)
+Ratios: 3.5, 1.7 - not so good.  Too much low CK3 increase relative to CK4, etc.
+13.0e-18   2.0e-12   22.6e-18 	   0.1 kf     730 (0.036) 3376 (0.15)    5706 (0.28)  
+Ratios=4.6, 1.7
+13.0e-18   2.0e-12   27.1e-18 	   0.1 kf	729	3393		5658
+Not really changing.  May be at upper limit of what  can be phosphorylated
+BEST: 10.8e-18   1.68e-12  27.1e-18 	   0.1 kf   583	 (.029)    2740 (.14)  5424 (.027)
+Ratios=4.6,1.9 Note that these values are quite similar to those using only 18.8e-18 for Ckp^2*CK^2.
+
+NOTE: these may not be best parameters.  The CamCa4 is higher for 4 hz than for 1 or 2.5 Hz, so if CamCa4 were better, the 4hz might be too low, which would necessitate increase the higher order rxn rates and lowering the 3 CK rate.  AND poor performance of old model may also be due to poor CamCa4 control
+
+Final Model (3 fewer reactions than the "complex" model):
+<!--2a) 3 CKCamCa4 + 1 CKCamCa4 <-> 3  CKCamCa4 + 1 CKpCamCa4-->10.8e-18 
+<!--2b)  2 CKCamCa4 + 1 CKCamCa4 <-> 2 CKCamCa4 + 1 CKpCamCa4-->1.68e-12 
+<!--2c)  2 CKpCamCa4 + 2 CKCamCa4 <-> 3 CKpCamCa4 + 1 CKCamCa4-->18.8e-18 or 27.1e-18
+
+Review Le Novere PLoS One ppr and Pepke & Kennedy paper on new CamKII models
+Le Novere: probability of two adjacent is almost linear with fraction of CamCa4-CamKII subunits when such fraction is > 0.2.  This implies a second order increase.  Try replacing 3d order with 2nd order:
+
+2a (4CK)  2b (2 CK)   2c (2CKp,2CK)    Ckp 1hz   Ckp 2.5 Hz	Ckp 4hz
+10.8e-18   1.68e-12  27.1e-18 	       17  	 232 	 	966
+---> Low, need higher kf for 2b
+10.8e-18   16.8e-12  27.1e-18		11	 205		1089
+--> no difference! -> 2b rate still trivially low
+10.8e-18   168e-12  27.1e-18	    	69	 395		1298
+---> too low
+10.8e-18   1.68e-9  27.1e-18		433 (.02)	1405 (.07)		3056 (.15)
+---> ratio: 3.2, 2.2	    Good, but too low
+10.8e-18   3.36e-9  27.1e-18	      679 (.033)	2618 (.13)		4255 (.21)
+---> Good ratio at low end *3.85), but too small high end. 
+16.2e-18   3.36e-9  27.1e-18	   814 	   	      2340			4286
+---> Better low end, but not high end.  Add in 3d power term	   
+2a (4CK)  2b (2 CK)   2d (3 CK)  2c (2CKp,2CK)    Ckp 1hz   Ckp 2.5 Hz	Ckp 4hz
+16.2e-18   1.68e-12   3.36e-9    27.1e-18 	  8200	    8600    	8700
+>>>>>>>>>>>High values indicate that ~8700 is saturation.  Using this as denominator, the best params yield: 0.067, 0.31, 0.62
+
+Mistake in rate constants: using 3.36e-9 for 3CK, instead of 2CK.  Fix rates, and also use 1/4 of full.
+16.2e-18   0.84e-9   0.42e-12  27.1e-18     	  520  (.048) 	  1874 (0.21)       4140 (.48)
+ratio=3.6,2.2, 2,5 and 4Hz need to be higher	  
+16.2e-18   0.84e-9   0.84e-12  27.1e-18		553		2506 (0.288)		5034 (0.57)
+Not bad, but not as good as best.
+16.2e-18   0.42e-9   0.84e-12  27.1e-18	`	546		2084			4597
+Still not as good as best.
+
+USE THESE VALUES FOR Uchi sims.
+10.8e-18   1.68e-12  18.8e-18 
