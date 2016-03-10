@@ -22,7 +22,6 @@
 
     <OutputSpecie name="Ca"/>
     <OutputSpecie name="CaOut"/>
-    <OutputSpecie name="CaOutLeak"/>
     <OutputSpecie name="Leak"/>
     <OutputSpecie name="Calbin"/>
     <OutputSpecie name="CalbinC"/>
@@ -36,8 +35,8 @@
     <OutputSpecie name="CamCa2N"/>
     <OutputSpecie name="CamCa4"/>
 
-    <OutputSpecie name="DaOut"/>
     <OutputSpecie name="Da"/>
+    <OutputSpecie name="DaOut"/>
     <OutputSpecie name="D1R"/>
     <OutputSpecie name="DaD1R"/>
     <OutputSpecie name="Gsabg"/>
@@ -73,11 +72,6 @@
     <OutputSpecie name="GaiGDP"/>
 
     <OutputSpecie name="AC"/>
-    <OutputSpecie name="ACGas"/>
-    <OutputSpecie name="ACGasATP"/>
-    <OutputSpecie name="ACCa"/>
-    <OutputSpecie name="ACGasCa"/>
-    <OutputSpecie name="ACGasCaATP"/>
     <OutputSpecie name="ACGai"/>
     <OutputSpecie name="ACGasGai"/>
     <OutputSpecie name="ACGasGaiATP"/>

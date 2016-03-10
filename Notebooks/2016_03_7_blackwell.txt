@@ -82,7 +82,68 @@ ACh: What sort of burst/pause response should there be?
      	Inject Dbuf after each 20Hz train or each theta train
 Re-adjust inject
 
--------> Change Dabuf to DaOut - add DaOut (and GluOut) to IC
+#######Change Dabuf to DaOut - add DaOut (and GluOut) to IC
+--------> Simulations using kf=2.00e-3,kb=.02e-6 for Da, and
+	  kf=0.5e-3, kb=0.02e-6 for Glu had no baseline buildup with Ext=0
+	  Da decay ~1 sec - slightly larger than tau = 0.38 s. Make slower
+	  Glu decay much slower, ~1 sec. Peak = 3.8uM Theta, 2uM 20Hz; Make faster?
+	  20hz stim: Da is too low.  Go back to larger increments
+#######	  kf=1.50e-3,kb=.02e-6 for Da
+	  Stim: p1 =15ms*80 p2=15ms*40,p3=15ms*20, p4-100=5ms*30=150
+------>  20Hz is better - 4 pulses is ~60% greater than 1, but 10 pulses is not100% greater than 1 p: increase the 4-10th pulse amplitude
+	  Theta: Decay is better. 1burst produces 1 uM, which is more than 2s response to 1 pulse: increase 1p for 20Hz
+	  PROBLEM: basal Da = 0.  Need to change basal to 10 nM, which might be difficult with DaOut=0.
+######	 20Hz: p1:15ms*100, p2: 15ms*50, p3: 15ms*25, p4-100=15ms*15
+	 Dabasal=10 (with DaOut=0), Glubasal=10 (with Gluout=0)
+	  Theta: same params
+------>subsequent pulses not  contributing enough for 20Hz - do not decrement by 50% the 3d and 4-100 pulses. 
+------> basal is decreasing to 0, add DaOut
+###### Try 60%: p3=30*15ms, p4-100=20*15ms20Hz, DaOut=200 uM
+------>20Hz Da at 10p = 940, vs 1 p = 450.  Need slightly more, 10p > 2*1p
+	    Basal Da is ~5, needs to be 10. Basal Glu = 0 (mistake in GluOut)
+	    DaOut increases by ~20% during stim - need to elminate that excess Da. 
+###### Try 70%:p3=35*15ms, p4-100=25*15ms for 20Hz
+To limit buildup of DaOut and GluOut:
 -------> Add in DaOut+Dbuf and GluOut+Gbuf to Rxn file
 ------->Stimulate with Dbuf and Gbuf after each train
-Test stim files, and then do full sims
+######   Inject Dbuf: 2.0*2000, period=15s for theta, 1.25*2000, period=10s for 20Hz
+       Inject Gbuf: same duration, rate, period, end, trains as Glu, but offset by 1 sec.
+------->Da basal ~6, Glu basal ~7
+	   GluOut - oscillates about 200 uM, but too rapidly: slow down binding or inject
+	   DaOut - continues to increase - less than half is buffered
+######  Gbuf: 20 ms * 15 (instead of 5 ms*60), 100 ms period for 20 Hz
+	      2000 ms * 6, repeated 10x for Theta
+	      Both injected during 2 sec after train ends
+	Dbuf: double the rate of inject for both, to 2.5 (for 2000ms)
+	kb for DaOut=0.06e-6, Kb for GluOut=0.024e-6 50% inc for both
+--------> GluOut - ~1% shift at max, even less change in min after all the stimuli
+	  DaOut - 5% increase during train, still need more Dbuf inject
+	  Basal:  Glu 5-9 (sl. low) and Da 7-10 (good) no shift 
+###### inc kb for GluOut = 0.03e-6
+       Dbuf - calculate that 4.0 is required rate for 20 Hz (inc from 2.5)
+       Da for theta: each burst > 2 uM, greater than 20 Hz, Armando says it is lower (certainly no higher).  Peak is 1.2 uM for 20 Hz.  Either raise 20 Hz or lower theta (or both).
+       	  1. Raise 20 Hz Da (and Dbuf) 20% to 5.0 Dbuf and 120,60,42,30
+	  2. Lower Da for subsequent trains for Theta, from 20 to 15, Dbuf=5.0
+---------> Da Peak: 1.7 uM for 1st burst, 2.1 for last burst of Theta
+	      1.6 uM for all 20 Hz trains, 
+	   DaOut: <1% inc in basal for theta, <.1% dec in basal for 20Hz
+----------> Reduce slightly the 20Hz Dbuf, since in full model some of Da will be bound, and simulate full model 	   
+
+>>>>>>>>> Measured effect of CaMKII phos of Dg on 2ag production by setting to 0 kf for CamKII binding to Dgl:
+-------->Result was 1. greater CkpCamCa4 (free - not bound to Dgl, peak of 20-25 vs 10-12, and no decrement) and
+		2. peak 2ag of 320 vs 230.
+	This suggests that should not use the highest CKpCam affinity for Dgl, else CKpCam will not be available for other targets, e.g. autophos
+
+######## Full model simulations using 20Hz and Theta stim:
+************Files:
+Model_SPNspineCaMKII_DagL-stim20hz.xml
+Model_SPNspineCaMKII_DagL-stimtheta.xml
+Rxn_MSPNmergeCaMKIInew_DagL.xml
+Stim20hz-10sITI.xml
+StimTheta10hz-15sITI.xml
+IO_CamKIIphosDgl_all.xml
+IC_MSPNmergeSpinePKAcD1R_PDEhigh.xml
+&&&&&&& Still need to add reactions: PKA phos RGS4, RGS4 degrade Gi
+	      	   Stim: ACh (basal with pauses (AChbuf, then ACh) after Da?)
+	May need to re-adjust stim with receptors present
+&&&&&&& May need to repeat the DaBath, CaBath, DaCaBath, CyA and OA sims in full model to ensure those responses have not changed to much

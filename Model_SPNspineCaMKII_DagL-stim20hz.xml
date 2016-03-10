@@ -3,23 +3,11 @@
     <!-- this file defines a single run of the calculation, using morphology and 
 	 reaction data brought in from other files --> 
 
-          <xi:include href="Rxn_stimtest.xml" />
+          <xi:include href="Rxn_SPNspineCaMKII_DagLstim.xml" />
           <xi:include href="Morph_1spine2umDend.xml" />
-	  <xi:include href="IC_stimtest.xml" />       
-	  <xi:include href="StimTheta10hz-15sITI.xml" />       
-<OutputScheme>
-  <OutputSet filename = "all"  dt="2.0">
-    <OutputSpecie name="Da"/>
-    <OutputSpecie name="DaOut"/>
-    <OutputSpecie name="DaOutbuf"/>
-    <OutputSpecie name="Dbuf"/>
-    <OutputSpecie name="Ca"/>
-    <OutputSpecie name="Glu"/>
-    <OutputSpecie name="GluOut"/>
-    <OutputSpecie name="GluOutbuf"/>
-    <OutputSpecie name="Gbuf"/>
-  </OutputSet>
-</OutputScheme>
+	  <xi:include href="IC_SPNspineCaMKII_DagLstim.xml" />       
+          <xi:include href="IO_SPNspineCaMKII_DagLstim.xml" />
+          <xi:include href="Stim20hz-10sITI.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the
@@ -33,7 +21,7 @@ results (also, 3D may not work yet...)  -->
 
 
     <!-- run time for the calculation, milliseconds -->
-    <runtime>          100000         </runtime>
+    <runtime>          250000         </runtime>
 <!-- 100001 -->
     <!-- set the seed to get the same spines each time testing -->
     <spineSeed>          123          </spineSeed>

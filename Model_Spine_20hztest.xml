@@ -10,8 +10,14 @@
 <OutputScheme>
   <OutputSet filename = "all"  dt="2.0">
     <OutputSpecie name="Da"/>
+    <OutputSpecie name="DaOut"/>
+    <OutputSpecie name="DaOutbuf"/>
+    <OutputSpecie name="Dbuf"/>
     <OutputSpecie name="Ca"/>
     <OutputSpecie name="Glu"/>
+    <OutputSpecie name="GluOut"/>
+    <OutputSpecie name="GluOutbuf"/>
+    <OutputSpecie name="Gbuf"/>
   </OutputSet>
 </OutputScheme>
 

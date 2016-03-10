@@ -2,17 +2,17 @@
 #To start multiple NeuroRD simulations at once, add & at end of each line.
 #run the batch file using: at -f NeuroRD.bat NOW (or you can specify a different time)
 set -ex
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg0.xml > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg0.xml > /dev/null &
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg0.xml > /dev/null&
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg0.xml > /dev/null &
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi5s-dhpg0.xml > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg1.xml > /dev/null &
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg1.xml > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi5s-dhpg1.xml > /dev/null  
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg25.xml > /dev/null &
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg25.xml > /dev/null &
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg1.xml > /dev/null &
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg1.xml > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi5s-dhpg1.xml > /dev/null  &
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg25.xml > /dev/null &
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg25.xml > /dev/null &
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi5s-dhpg25.xml > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg5.xml > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg5.xml > /dev/null&
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi100ms-dhpg5.xml > /dev/null&
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi1s-dhpg5.xml > /dev/null&
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi5s-dhpg5.xml > /dev/null &
 #java -jar -Dstochdiff.log=false -Dstochdiff.writers=h5 /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_CamKIInew_pDglUchi5s-dhpg5.xml > /dev/null
 

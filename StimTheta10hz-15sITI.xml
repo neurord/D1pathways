@@ -25,11 +25,27 @@
   <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>               20095          </onset>
         <duration>            60              </duration>
-        <rate>                20.0           </rate>
+        <rate>                15.0           </rate>
         <period>              95             </period>
         <end>                 20949          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14051             </interTrainInterval>    
+  </InjectionStim>
+
+  <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
+        <onset>               21000          </onset>
+        <duration>            2000            </duration>
+        <rate>                5.0           </rate>
+        <period>              15000            </period>
+        <end>                 160000          </end>
+  </InjectionStim>
+
+  <InjectionStim specieID="Gbuf" injectionSite="sa1[0].pointA">
+        <onset>               21000          </onset>
+        <duration>            2000            </duration>
+        <rate>                6.0           </rate>
+        <period>              15000            </period>
+        <end>                 160000          </end>
   </InjectionStim>
 
    <!-- *****************TRAIN 1 *** Glu inject **********-->   
