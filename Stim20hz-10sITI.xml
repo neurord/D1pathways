@@ -73,7 +73,7 @@
         <duration>            2000            </duration>
         <rate>                4.8            </rate>
         <period>              10000            </period>
-        <end>                 200000          </end>
+        <end>                 220000          </end>
   </InjectionStim>
 
 <!--  Ca pulses  Only 40 pulses per train to achieve reasonable Ca -->

@@ -122,7 +122,7 @@
     <Specie name="DagCaDgl"       id="DagCaDgl"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="DagCapDgl"       id="DagCapDgl"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="2ag"            id="2ag"           kdiff="88.6"  kdiffunit="mu2/s"/>
-    <Specie name="Dgl_CKCamCa4"   id="Dgl_CKCamCa4"   kdiff="0"   kdiffunit="mu2/s"/>
+    <Specie name="Dgl_CKCamCa4"   id="Dgl_CKCamCa4"   kdiff="0"   kdiffunit="mu2s"/>
     <Specie name="Dgl_CKpCamCa4"  id="Dgl_CKpCamCa4"  kdiff="0"   kdiffunit="mu2/s"/>
     <Specie name="Dgl_CKp"        id="Dgl_CKp"        kdiff="0"   kdiffunit="mu2/s"/>
 
@@ -243,7 +243,7 @@
 	<Reactant specieID="Leak"/>
 	<Product specieID="CaOutLeak"/>
 
-        <forwardRate>2.0e-6</forwardRate>
+        <forwardRate>1.5e-6</forwardRate>
 	<reverseRate>1.1e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -319,7 +319,7 @@
    <Reaction name = "Da--DaOut" id="Da--DaOut">
   	<Reactant specieID="Da"/>
         <Product  specieID="DaOut"                   />
-        <forwardRate> 1.50e-3      </forwardRate>
+        <forwardRate> 1.20e-3      </forwardRate>
         <reverseRate> 0.06e-6      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
@@ -1852,8 +1852,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKCamCa4"           />
         <Product  specieID="Dgl_CKCamCa4"     />
 
-        <forwardRate> 0.12e-6          </forwardRate>
-        <reverseRate> 0.0333e-3            </reverseRate>
+        <forwardRate> 0.36e-6          </forwardRate>
+        <reverseRate> 0.1e-3            </reverseRate>
         <Q10>     0.2                   </Q10>
     </Reaction>
 
@@ -1863,7 +1863,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="pDgl"         />
         <Product  specieID="CKCamCa4"           />
 
-        <forwardRate> 0.00833e-3            </forwardRate>
+        <forwardRate> 0.025e-3            </forwardRate>
         <reverseRate> 0.0               </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>
@@ -1874,8 +1874,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKpCamCa4"          />
         <Product  specieID="Dgl_CKpCamCa4"    />
 
-        <forwardRate> 0.15e-6          </forwardRate>
-        <reverseRate> 0.04167e-3          </reverseRate>
+        <forwardRate> 0.45e-6          </forwardRate>
+        <reverseRate> 0.125e-3          </reverseRate>
         <Q10>       0.2                 </Q10>
     </Reaction>
 
@@ -1885,7 +1885,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="pDgl"         />
         <Product  specieID="CKpCamCa4"          />
 
-        <forwardRate> 0.01042e-3        </forwardRate>
+        <forwardRate> 0.03126e-3        </forwardRate>
         <reverseRate> 0.0               </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>
@@ -1896,8 +1896,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKp"                />
         <Product  specieID="Dgl_CKp"          />
 
-        <forwardRate> 0.12e-6          </forwardRate>
-        <reverseRate> 0.0333e-3            </reverseRate>
+        <forwardRate> 0.36e-6          </forwardRate>
+        <reverseRate> 0.1e-3            </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>
 
@@ -1907,7 +1907,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="pDgl"         />
         <Product  specieID="CKp"                />
 
-        <forwardRate> 0.00833e-3            </forwardRate>
+        <forwardRate> 0.025e-3            </forwardRate>
         <reverseRate> 0.0               </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>

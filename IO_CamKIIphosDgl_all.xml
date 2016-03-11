@@ -36,7 +36,6 @@
     <OutputSpecie name="CamCa2N"/>
     <OutputSpecie name="CamCa4"/>
 
-    <OutputSpecie name="DaOut"/>
     <OutputSpecie name="Da"/>
     <OutputSpecie name="D1R"/>
     <OutputSpecie name="DaD1R"/>
@@ -154,6 +153,9 @@
     <OutputSpecie name="CKCamCa4"/>
     <OutputSpecie name="CKpCamCa4"/>
     <OutputSpecie name="CKp"/>
+    <OutputSpecie name="Dgl_CKCamCa4"/>
+    <OutputSpecie name="Dgl_CKpCamCa4"/>
+    <OutputSpecie name="Dgl_CKp"/>
     <OutputSpecie name="CKpPP1"/>
     <OutputSpecie name="CKpCamCa4PP1"/>
 

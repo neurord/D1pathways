@@ -133,6 +133,10 @@ To limit buildup of DaOut and GluOut:
 -------->Result was 1. greater CkpCamCa4 (free - not bound to Dgl, peak of 20-25 vs 10-12, and no decrement) and
 		2. peak 2ag of 320 vs 230.
 	This suggests that should not use the highest CKpCam affinity for Dgl, else CKpCam will not be available for other targets, e.g. autophos
+	
+########Alternative params for CaMKII phos of Dgl: 1 uM affinity with 10x faster rates
+ CKpCamCa4 still low (10-12) but not transient.  pDgl now reaches ~100 at peak for 5s and 70 for 1s, and CapDgl reaches ~60 (both 5s and 1s stim).  2ag peak = 300 for 5s and 180 for 1s - slightly lower than no CaMII, but higher than with higher affinity.
+--------> Perhaps combination of slightly higher CaMKII affinity and moderately faster rates will be needed, e.g. 350 uM affinity and 3x faster than initial rates
 
 ######## Full model simulations using 20Hz and Theta stim:
 ************Files:
@@ -147,3 +151,47 @@ IC_MSPNmergeSpinePKAcD1R_PDEhigh.xml
 	      	   Stim: ACh (basal with pauses (AChbuf, then ACh) after Da?)
 	May need to re-adjust stim with receptors present
 &&&&&&& May need to repeat the DaBath, CaBath, DaCaBath, CyA and OA sims in full model to ensure those responses have not changed to much
+------> Stim results:
+	Da Basal: 10 nM, minimal baseline shift
+	Ca: 80, minimal shift
+	Glu 8, minimal shift
+	GluOut and Da Out exhibit straget behavior during last 50-100 sec of 20 Hz sim: Da increases to 208000 (Stim of Dbuf stops at 200 - fix)
+	    basal    20Hz   theta
+cAMP	       39    700    526
+CamCa4	       1.6   16	    35
+PKAc	       1     34	    20
+Dp34PP1	       ~150   3705   3420
+CKCamCa4       59    572    1176
+CKpCamCa4      0     33	    101
+
+Conclusion: PKA is activated more with 20Hz than theta (similar as previus result), but CamKII is more active with theta
+
+ISSUE: Dp34PP1 has too low a basal - how to fix?
+a. higher basal Da - to increase basal cAMP, e.g. 12 vs 10, via kb of DaOut
+b. Lower basal Gi - This will increase basal cAMP, e.g. lower basal ACh
+But ACh is only 20, so this would prevent ACh decrement with pause
+c. Lower basal calcium - to lower basal PP2BCamCa4 - via Kb of extrusion
+
+	    basal    20Hz   theta
+AChm4RGi    56	     56	    56
+ACGasGaiATP 100	     639    500
+GaiGTP	    55	     55	    55
+PP2BCamCa4  14	     110    420
+pp2bdp34    2	     225    523
+
+pDgl	    4-7	     24	    25
+CapDgl	    1	     112    17
+CaDgl	    139	     325    458
+2ag	    41	     160    204
+Dag	    161	     580    860
+PlcCaPip2   33	     91	    163
+PkcCaDag    1	     10	    14
+PP2AC	    16	     49	    88
+
+Issue: 2ag has higher peak with theta.  Slightly more prolonged 2ag with 20hz does not  really compensate.  Higher CKpCam with theta is not sufficiently phosphorylating the Dgl and suppressing the 2ag. Active Pkc is indeed higher with theta, but not quite as high as previous model.  Is this due to peak calcium?  Or because I'm not reporting head Pkc, which is 2x higher for theta than 20Hz.
+Perhaps all above values should instead report spine values, not average.
+
+##########
+kf of CaOut+Leak dec from 2e-6 to 1.5e-6
+Rates of CaMKII phos of Dgl increased 3x
+Da -> DaOut rate decreased from 1.5e-3 to 1.2e-3

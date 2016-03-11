@@ -22,8 +22,8 @@
 <!-- Gs coupled Dopamine D1 Receptor; Ligand currently called L,
      DaOut is used to eliminate injected L -->
     <Specie name="Da"            id="Da"            kdiff="10"     kdiffunit="mu2/s"/>
-    <Specie name="Dabuf"         id="Dabuf"         kdiff="10"    kdiffunit = "mu2/s"/>
-    <Specie name="buf"           id="buf"           kdiff="10"    kdiffunit = "mu2/s"/>
+    <Specie name="Dabuf"         id="Dabuf"         kdiff="1"    kdiffunit = "mu2/s"/>
+    <Specie name="buf"           id="buf"           kdiff="1"    kdiffunit = "mu2/s"/>
     <Specie name="D1R"           id="D1R"           kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="DaD1R"         id="DaD1R"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Gsabg"         id="Gsabg"         kdiff="0"     kdiffunit="mu2/s"/>
@@ -50,7 +50,7 @@
     <!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
      GluOut is used to eliminate injected Glu -->
     <Specie name="Glu"            id="Glu"           kdiff="100"   kdiffunit="mu2/s"/>
-    <Specie name="GluOut"         id="GluOut"        kdiff="100"   kdiffunit="mu2/s"/>
+    <Specie name="GluOut"         id="GluOut"        kdiff="1"   kdiffunit="mu2/s"/>
     <Specie name="MgluR"          id="MgluR"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluR"       id="GluMgluR"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluRdesens" id="GluMgluRdesens" kdiff="0"     kdiffunit="mu2/s"/>
@@ -440,11 +440,11 @@
         <Reactant specieID="MgluR"              />
         <Product  specieID="GluMgluR"         />
 
-        <!--forwardRate> 0.5e-06 </forwardRate>
-        <reverseRate> 6.6e-03      </reverseRate-->
+        <forwardRate> 0.5e-06 </forwardRate>
+        <reverseRate> 6.6e-03      </reverseRate>
 	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
-        <forwardRate> 0.002e-03 </forwardRate>
-        <reverseRate> 1e-03      </reverseRate>
+        <!--forwardRate> 0.002e-03 </forwardRate>
+        <reverseRate> 1e-03      </reverseRate-->
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -1833,8 +1833,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKCamCa4"           />
         <Product  specieID="Dgl_CKCamCa4"     />
 
-        <forwardRate> 0.12e-6          </forwardRate>
-        <reverseRate> 0.0333e-3            </reverseRate>
+        <forwardRate> 0.4e-6          </forwardRate>
+        <reverseRate> 0.333e-3            </reverseRate>
         <Q10>     0.2                   </Q10>
     </Reaction>
 
@@ -1844,7 +1844,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="pDgl"         />
         <Product  specieID="CKCamCa4"           />
 
-        <forwardRate> 0.00833e-3            </forwardRate>
+        <forwardRate> 0.0833e-3            </forwardRate>
         <reverseRate> 0.0               </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>
@@ -1855,8 +1855,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKpCamCa4"          />
         <Product  specieID="Dgl_CKpCamCa4"    />
 
-        <forwardRate> 0.15e-6          </forwardRate>
-        <reverseRate> 0.04167e-3          </reverseRate>
+        <forwardRate> 0.5e-6          </forwardRate>
+        <reverseRate> 0.4167e-3          </reverseRate>
         <Q10>       0.2                 </Q10>
     </Reaction>
 
@@ -1866,7 +1866,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="pDgl"         />
         <Product  specieID="CKpCamCa4"          />
 
-        <forwardRate> 0.01042e-3        </forwardRate>
+        <forwardRate> 0.1042e-3        </forwardRate>
         <reverseRate> 0.0               </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>
@@ -1877,8 +1877,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKp"                />
         <Product  specieID="Dgl_CKp"          />
 
-        <forwardRate> 0.12e-6          </forwardRate>
-        <reverseRate> 0.0333e-3            </reverseRate>
+        <forwardRate> 0.4e-6          </forwardRate>
+        <reverseRate> 0.333e-3            </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>
 
@@ -1888,7 +1888,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="pDgl"         />
         <Product  specieID="CKp"                />
 
-        <forwardRate> 0.00833e-3            </forwardRate>
+        <forwardRate> 0.0833e-3            </forwardRate>
         <reverseRate> 0.0               </reverseRate>
         <Q10>   0.2                     </Q10>
     </Reaction>
