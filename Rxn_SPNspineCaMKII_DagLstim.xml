@@ -122,7 +122,7 @@
     <Specie name="DagCaDgl"       id="DagCaDgl"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="DagCapDgl"       id="DagCapDgl"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="2ag"            id="2ag"           kdiff="88.6"  kdiffunit="mu2/s"/>
-    <Specie name="Dgl_CKCamCa4"   id="Dgl_CKCamCa4"   kdiff="0"   kdiffunit="mu2s"/>
+    <Specie name="Dgl_CKCamCa4"   id="Dgl_CKCamCa4"   kdiff="0"   kdiffunit="mu2/s"/>
     <Specie name="Dgl_CKpCamCa4"  id="Dgl_CKpCamCa4"  kdiff="0"   kdiffunit="mu2/s"/>
     <Specie name="Dgl_CKp"        id="Dgl_CKp"        kdiff="0"   kdiffunit="mu2/s"/>
 
