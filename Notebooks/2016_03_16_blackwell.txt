@@ -1,0 +1,106 @@
+Lab Notebook for Blackwell Mar 7-11, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    Do sims with and without ACh modulation
+      		 2. How do D1 and D2 neurons differ in their response
+		    Simulate both D1 and D2 neurons
+		 3. Can extra high calcium substitute for dopamine in LTP?  If so, how does extra high calcium produce LTD without Gq?
+		    Simulate with decrease Da and increase Ca
+		 4. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    Block CaMKII phos of Dgl and repeat sims
+
+To finish model:
+A. Look for biochemical rates  (see Hellgren Publication) for
+1. PKA phos of RGS (enzyme assay)
+2. ACh + m4R   (affinity measures) -> replace current values which are for D2R
+3. Aden + A2A4  (affinity measures)
+B. Create Stim files for ACh and Aden
+C. Create reactions:
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+D. To create D2 model
+   a. Replace D1 wit Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+   
+######## Full model simulations using 20Hz and Theta stim:
+************Files:
+Model_SPNspineCaMKII_DagL-stim20hz.xml
+Model_SPNspineCaMKII_DagL-stimtheta.xml
+Rxn_MSPNmergeCaMKIInew_DagL.xml
+Stim20hz-10sITI.xml
+StimTheta10hz-15sITI.xml
+IO_CamKIIphosDgl_all.xml
+IC_MSPNmergeSpinePKAcD1R_PDEhigh.xml
+&&&&&&& Still need to add reactions: PKA phos RGS4, RGS4 degrade Gi
+	      	   Stim: ACh (basal with pauses (AChbuf, then ACh) after Da?)
+		   ACh: What sort of burst/pause response should there be?
+	May need to re-adjust stim with receptors present
+&&&&&&& May need to repeat the DaBath, CaBath, DaCaBath, CyA and OA sims in full model to ensure those responses have not changed to much
+
+##########
+kf of CaOut+Leak dec from 2e-6 to 1.5e-6  Rationale: Lower basal calcium to lower basal PP2BCamCa4 to increase Dp34PP1
+Da -> DaOut rate decreased from 1.5e-3 to 1.2e-3 Rationale: higher basal Da to increase basal cAMP to increase Dp34PP1
+Rates of CaMKII phos of Dgl increased 3x Rationale: more CamKII inhib of Dgl with Theta
+
+	    basal    20Hz   theta
+Da	    9
+cAMP	    40-46   911    611
+PKAc	    1       28	    23
+D32PKA	    8	    266	    242	      
+Dp34PP1	    105-193  3720   3665
+Ca	    85-87    361    1320
+PP2BCamCa4  14	     108    413
+PP2BDp34PP1 1-2	     224    551	-Though bigger, similar AUC
+CKCamCa4    60-64    559    1104
+CKpCamCa4   0        33	    102	Much bigger for theta
+
+pDgl	    20-23    67	    65	SAME - why?
+CapDgl	    4-5	     35	    59	Bigger peaks with theta
+CaDgl	    133	     292    401	Bigger peaks with theta
+2ag	    41	     155    204	Similar AUC for theta and 20 Hz
+Dag	    174	     635    868
+PlcCaPip2   35	     94	    156	Greater with theta
+
+PkcCaDag    1	     10	    14
+PP2AC	    15	     50	    88	Greater AUC with theta
+pPP2A	    13	     305    272	Greater AUC with 20Hz
+Dp75PKA	    3-5	     72	    61
+Dp75	    10371    6095   6002	Good basal, reduction less with theta
+
+DagCaDgl    41	     174    231
+DagCapDgl   102	     20	    29
+
+---------> Better, but still higher Da and lower Ca needed
+Why is greater CKpCam not producing greater pDgl for theta?  Does greater Dag and Ca prevent CKpCam from acting on Dgl?
+
+########## NEW SIMS (updated file names):
+href="Rxn_SPNspineCaMKII_DagLstim.xml"
+href="Morph_1spine2umDend.xml"
+href="IC_SPNspineCaMKII_DagLstim.xml"
+href="IO_SPNspineCaMKII_DagLstim.xml"
+
+kf of CaOut+Leak dec from 1.5e-6 to 1.0e-6  Rationale: Lower basal calcium to lower basal PP2BCamCa4 to increase Dp34PP1
+Da -> DaOut rate decreased from 1.2e-3 to 1.0e-3 Rationale: higher basal Da to increase basal cAMP to increase Dp34PP1
+
+	    basal    20Hz   theta
+cAMP	    41-49   1002    721		slightly higher basal and stimulated
+PKAc	    1-2      29	    23
+D32PKA	    11-14    278    244	      
+Dp34PP1	    141-211  3727   3704      Same
+Ca	    86-87    361    1320	SAME!
+PP2BCamCa4  14	     109    415		SAME
+
+Conclusion: cAMP, PKAc and Dp34PP1 slightly better.  Ca is still the same, and needs to be reduced further. 
+
+Also, may need to decrease basal ACh and Gi to produce greater cAMP response.
+Will ACh pause be greater for theta?  If so, that would enhance cAMP (and PKA) more for theta.  Otherwise, adding in RGS would not help, as it would be more active with 20 Hz.
+

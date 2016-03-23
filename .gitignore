@@ -1,4 +1,8 @@
 *.xml~
 *.out
 *.log
+*.pyc
+*.bat~
+*.txt~
+*.h5
 discretized-tree.swc

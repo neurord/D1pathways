@@ -71,6 +71,11 @@
     <OutputSpecie name="GaiGTP"/>
     <OutputSpecie name="GaiGDP"/>
 
+    <OutputSpecie name="Mm1R"/>
+    <OutputSpecie name="AChMm1R"/>
+    <OutputSpecie name="Mm1RGq"/>
+    <OutputSpecie name="AChMm1RGq"/>
+
     <OutputSpecie name="AC"/>
     <OutputSpecie name="ACGai"/>
     <OutputSpecie name="ACGasGai"/>

@@ -1,0 +1,266 @@
+Lab Notebook for Blackwell Mar 7-11, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    Do sims with and without ACh modulation
+      		 2. How do D1 and D2 neurons differ in their response
+		    Simulate both D1 and D2 neurons
+		 3. Can extra high calcium substitute for dopamine in LTP?  If so, how does extra high calcium produce LTD without Gq?
+		    Simulate with decrease Da and increase Ca
+		 4. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    Block CaMKII phos of Dgl and repeat sims
+
+To finish model:
+1. PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+2. ACh + m4R   (affinity measures) -> replace current values which are for D2R, and create ACh stim files
+&&&&&&& Notes and REFERENCES
+nanomolar affinity (25–50 nM) of striatal M4R receptors for ACh :
+Quirion R, Araujo D, Regenold W, Boksa P (1989) Characterization and quantitative autoradiographic distribution of [ 3H]acetylcholine muscarinic receptors in mammalian brain: apparent labelling of an M2-like receptor subtype. Neuroscience 29:271–289.
+
+High-affinity binding of [3H]acetylcholine to muscarinic cholinergic receptors. Kellar KJ, Martino AM, Hall DP Jr, Schwartz RD, Taylor RL. J Neurosci. 1985 Jun;5(6):1577-82.
+
+The basal level of extracellular ACh in striatum is estimated to be 20–30 nM by microdialysis (Rada et al., 2010; Farrar et al., 2011), and it may even be higher as suggested by the large underestimation recently disclosed through electrochemical measurements in prefrontal cortex (Mattinson et al., 2011).
+
+Mattinson CE, Burmeister JJ, Quintero JE, Pomerleau F, Huettl P, Gerhardt GA (2011) Tonic and phasic release of glutamate and acetylcholine neurotransmission in sub-regions of the rat prefrontal cortex using enzymebased microelectrode arrays. J Neurosci Methods 202:199 –208.
+
+Nair J Neurosci 2015: The values for the basal level of ACh and DA used in the model are 100 and 10 nM, respectively (Heien et al., 2005).
+
+A. Nair et al. reaction rates (based on Mattinson et al., 2011, Quirion et al., 1989)
+	Possible Problem: Will have an even lower basal cAMP concentration?
+				kf	    kb (/sec)	kD (nM)		current or proposed
+M4R + Gi <-> M4RGi		2.50E-05	1.25	50,000		350		
+M4RACh + Gi <-> M4RAChGi	0.0025		1.25	500		17.5	
+ACh + M4RGi <-> M4RAChGi	2.5		1.25	0.5		50: kf=.05, kb=2.5 (2x Kd, 0.5x kb)
+ACh + M4R <-> M4RACh		0.025		1.25	50		1000: kf=.0025, kb=2.5 /s		
+
+Plan:
+DONE: 0. Half the CaOut leak into inside to reduce Ca In further.
+DONE: 1. Adjust M4R: change from Kd=100 for m4RGi and 2000 for m4R to Kd=50 for m4RGi, and 1000 for m4R.
+DONE: 2. Increase basal ACh, e.g. 2x according to Nair et al. above (to 60 nM)
+--->Gi will be greater and AC more inhibited.  This will reduce basal cAMP.
+
+DONE: 3. Add in m1AChR - Replace mGluR5 with m1R in dendrite - add rxn as above, keep rates, replace IC in dend
+M1 is at spine neck to dendrite (Uchigashima J Neurosci 2007 - slightly further away from PSD than mGluR)
+m1AChR: Add Gq coupled m1R to dendrite?
+To implement: Add m1R, binding to ACh.  5 rxn:
+ACh+m1R<-> AChm1R
+m1R+Gq <-> m1RGq
+ACh+m1RGq<->AChm1RGq
+AChm1R+Gq<->AChm1RGq
+catalysis rxn: AChm1RGq <-> GaqGTP+Gbg+AChm1R
+Replace mGluR with m1R in dendrite, only mGluR in spine head
+
+m1R affinity: 30 nM (similar to m2 (m4?) from
+High-affinity binding of [3H]acetylcholine to muscarinic cholinergic receptors.
+Kellar KJ, Martino AM, Hall DP Jr, Schwartz RD, Taylor RL.
+J Neurosci. 1985 Jun;5(6):1577-82.
+
+Lower rates of m1R binding to Gq, else basal GqGTP will be too high (since increased affinity AND conc).
+Initial rates still may be too high!!!
+
+NOT YET: 3. may need another method to INCREASE basal cAMP since above changes may decrease basal AC5 activity
+	a. add low AC5 activity without Gs?
+	b. add small amount of AC1 - Cam sensitive - consistent with Kasai results
+	copy rates from Hippo model, titrate quantity for basal cAMP/Dp34
+   	c. decrease GsGTP degrad rate? - this will raise Gs and cAMP.
+Target: Dp34 basal = 400 nM
+
+DONE: 4. ACh stim patterns
+Possibly measure TAN activity during 20 Hz or Theta.  Meanwhile:
+
+A. in vivo
+Goldberg & Reynolds Tan pause = 0.2 sec, followed by 0.2 -0.5 sec burst
+Morris Neuron: Tan pause in response to reward prediction, Reward itself produces burst, pause burst.  No effect of probability on pause amplitude, but burst is correlated with reward prediction?
+DAN fire increase with prediction, and then response to reward decreases when prediction was better.
+pause of 0.2-0.3 sec - rebound of 0.3-0.5 sec. 
+
+B. in vitro
+Straub J Neurosci: Nigral control of TANs
+inhibitory effect most pronounced 0.1-0.2 s after DAN activation.  Reduced TAN firing ~84% (50-100%).
+2x (1.5-3x) increase in firing occurred 0.4-0.6 sec later, returned to baseline with 1-1.5s.
+In response to DA: -1.3 mV hyper (brief) followed by 5.3mV slow depol (2sec dur).
+Figure 4I: 1 pulse causes brief decrease in spike rate.  5 pulses causes longer decrease in spike rate, which persists DURING the subsequent pulses.
+Bennett & Wilson: 500 msec depol/firing of ACh neurons causes ~1sec AHP with no firing.
+2 spikes during 500 ms causes no AHP.
+Ding Neuron 2010: Stimulates Th or Ctx and measures firing and pause.
+Firing rate: ~2-5/sec.  Th stim (10 pulses, 50 Hz): increased firing to 15Hz during stim, followed by pause.  Ctx stim: much less firing increase, and no pause.
+Fig 2: during the train of stim, sometimes a progressive dec in firing is seen.
+Fig 6: measure MSN response to 5 stimuli at 50 hz.  2nd > 1st, but then next 3 are smaller (5th < 1st).  Perhaps pause restores PSP amplitude?  Though possibly less decrease occurs with 20 Hz?
+
+Conclusion:
+1 sec of 20Hz: 1 sec of low ACh (AChbuf) due to either Da or AHP, followed by 2 sec increased ACh - either rebound firing or other cause, then return ACh to basal.  Begin the decrease in ACh just after the Da, and continue for 0.2 sec past the Da stim?  This might be different with concommitant Glu stim.
+What about Theta? 1 burst per 95 msec.  10 bursts = 1 sec of stim, another 1 sec of AHP followed by 2 sec increased ACh.
+Is there an AHP after each burst?  Does that reduce ACh for subsequent bursts?
+
+What about during stim: Ding suggests an increase in firing, and the AHP depends on number of spikes.
+If ACh neurons cannot follow 50 Hz, can they follow 20 Hz?  Should there be ACh release after each 20 hz pulse, and then a 0.5 sec pause and 1 -2 sec rebound for 20 Hz.
+Should there be ACh release with only 1 in 3 theta pulses.  And then the same 0.5 sec pause and 1-2 sec rebound?
+
+B. Aden + A2A4  (affinity measures); Create Stim files for Aden
+C. Create reactions:
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+D. To create D2 model
+   a. Replace D1 wit Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+   
+5. eventually repeat all stim patterns used to constrain params in full model
+	e.g. Castro sims - quant and time course of PKA activity, cAMP
+             Add AKAR from Nair - PKA phos and PP1 dephos - to compare PKA activity
+         Assays on Da binding to Receptor
+        Control of Dp34 (basal=400 nM, 11x with Da) and Dp75 (basal 11-12 uM, dec with Da)
+	Assays of Da stim  may require concommitant reduction in ACh
+	Effect of calcium on Dp34 and Dp75, etc (not done by nair).
+	Effect of PP inhibitors (not done by nair)
+	
+Review: Chuhma et al., 2014; Marcott et al., 2014 for DaR affinity?
+
+Potential problem with high ACh tone, else PKC would be too high basal, unless m1 has low affinity.
+Nair quotes Morris 2004 regarding Tan burst pause, and also Chuhma 2014
+
+########################### Test ACh stimulation using simple model (similar to development of Da stim
+******StimTheta10hzACh-15sITI.xml and StimTheta10hzACh-15sITI.xml
+IC_AChstimtest.xml
+Model_Spine_AChtest-20hz.xml
+Model_Spine_AChtest-theta.xml
+Rxn_AChstimtest.xml
+
+-----> initial ACh stim values way too high.  Peak of 30 uM.  Reduce 10x.  ACh decreased to 15 uM - Abuf not enough.  Reduce Abuf by 5x.  Max ACh in range of 1-3 uM
+###############
+ACh sp 20Hz
+        <duration>            15              </duration>
+        <rate>                12           </rate>
+        <period>              50             </period>
+Abuf sp 20Hz (pause)
+        <duration>            200            </duration>
+        <rate>                40            </rate>
+        <period>              1000           </period>
+These next two should match, or extra ACh to replace basal?	
+ACh sp 20 Hz (rebound)
+        <duration>            400            </duration>
+        <rate>                5            </rate>
+        <period>              1000           </period>
+ACh sp 20 Hz (decrement of rebound)
+        <duration>            800            </duration>
+        <rate>                2.5            </rate>
+        <period>              1000           </period>
+------------>
+for 20Hz:
+1. initial peak is 3 uM - reduce by half
+2. Abuf remains very high during pause: Abuf ~4000 while AChbuf=4000: reduce Abuf by 4x
+3. rebound stim is quite low - possibly due to excess Abuf - keep as is for now.
+For theta:
+1. Initial peak is 3 uM - same as 20 Hz - reduce by half
+2. Insufficient Abuf injected - keep as is
+3. rebound - keep same as 20 Hz
+###############
+ACh sp 20Hz
+        <duration>            15              </duration>
+        <rate>                6           </rate>
+        <period>              50             </period>
+Abuf sp 20Hz (pause)
+        <duration>            200            </duration>
+        <rate>                10            </rate>
+        <period>              1000           </period>
+ACh sp theta - 10 of these
+        <duration>            15              </duration>
+        <rate>                6           </rate>
+        <period>              40             </period>
+Abuf sp theta (pause)
+        <duration>            200            </duration>
+        <rate>                20            </rate>
+        <period>              1000           </period>
+------------>
+1st ACh peak is good.
+Abuf inject not sufficient for 20Hz: increase 1.8x
+Abuf is fine for theta
+rebound: ~700 nM OK, but rebound does not go away!  Mistake - was injecting more ACh, not Abuf
+############## Mistake fixed plus:
+Abuf sp 20Hz (pause)
+        <duration>            200            </duration>
+        <rate>                18            </rate>
+        <period>              1000           </period>
+------------>
+excess Abuf: AChbuf=1.7uM.  Reduce to 15
+Abuf sp 20Hz (pause)
+        <duration>            200            </duration>
+        <rate>                15            </rate>
+        <period>              1000           </period>
+Better, but still too much Abuf.  Reduce to 10.
+Once excess Abuf is gone, ACh rebound will be too big - reduce by half (by injecting spine only)
+##############
+        <duration>            200            </duration>
+        <rate>                10            </rate>
+        <period>              1000           </period>
+delete for rebound and decrement of burst:
+<InjectionStim specieID="Abuf" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
+------------>Still excess Abuf with 20Hz, which does go below basal, BUT, excess Abuf with theta with DOES NOT go below basal.  How can there be both too much Abuf (excess) and not enough (ACh above 0).
+To much Abuf after rebound - ACh basal = 0, and excess Abuf (1000) : inject much less Abuf
+If too much difficulty getting Abuf precise, may need to add ACh out and change the Abuf to bind to AChout
+May be slightly easier since basal ACh is desired.  However, AChOut may make depletion difficult
+ ############## Abuf for 20Hz:
+       <duration>            200            </duration>
+        <rate>                7            </rate>
+        <period>              1000           </period>
+increase binding rate 10x to reach equilibrium faster (needed more for when Abuf precise amount injected
+    <Reaction name = "ACh+Abuf--AChbuf" id="ACh+Abuf--AChbuf">
+        <Reactant specieID="ACh"                      />
+        <Reactant specieID="Abuf"                      />
+        <Product  specieID="AChbuf"                     />
+        <forwardRate> 0.5e-03 </forwardRate>
+        <reverseRate> 0        </reverseRate>
+Abuf for Theta: reduce duration by 3.5% - according to excess Abuf
+        <duration>            193            </duration>
+        <rate>                10            </rate>
+        <period>              1000           </period>
+------------>
+Theta: very  close: pause is not long enough, so inject Abuf faster.
+ACh baseline shift - so inject slightly more Abuf, or slighlty less ACh.  Make it delayed some for longer pause.
+##############
+Theta: 1st Abuf (pause) - same quant but shorter duration/higher rate
+       <duration>            19.3            </duration>
+        <rate>                100            </rate>
+        <period>              1000           </period>
+    rebound burst - 200 (vs 400)ms, but higher rate (7.5 vs 4.5), 200 ms later
+        <onset>               22200          </onset>
+	<duration>            200            </duration>
+        <rate>                7.5            </rate>
+        <period>              1000           </period>
+------------>
+Theta: Very close.  Baseline sometimes lower, sometimes greater - slightly reduce ACh rebound to 7.4.  Pause becomes less visible with time--fixed mistake in ITI for rebound ACh.
+20Hz: sims not being run, thus decreased ABuf not happening.  Use shorter duration, and increase Abuf until sufficient:
+##############
+InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
+        <onset>               21000          </onset>
+        <duration>            100            </duration>
+        <rate>                20            </rate>
+        <period>              1000           </period>
+------------>slightly too little of a pause, and then too much Abuf during intertrial interval
+for both theta and 20 hz, the pause is not sufficient. speed binding reaction,
+##############
+ACh + Abuf        <-> AChbuf has rate 5e-3
+
+Need to update m4 and add m1 params to spreadsheet (but keep D2 params)
+&&&&&&& Once stim is adjusted, do full model simulation, evaluate
+Gq -> 2ag and Pkc - too high?
+cAMP -> PKA -> Dp34PP1 - 400 nM?  If not:
+For cAMP: decrease Gs degradation, add in Cam activated AC1 (from Hippo model)
+for Gq: not sure.  Further decrease AChR affinity for Gqabg?
+
+Once Dp34PP1 and Gq adjusted, repeat various assays (Ca bath, Da bath, CaDa bath, PP inhibitors; Castro {add in AKAR? or PP1 dephos of pPDE}; CamKII assays?)
+
+Sims to address questions:
+Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+Can some molecules substitute for others (increase Ca and decrease Gq via mGlu block)
+What is role of ACh burst vs pause (eliminate one or the other)
+What happens in D2 neurons (create Aden stim, replace D1 with D2 (values in xl) and m4 with aden (need values)
+Repeat sims with ca (and glu) from Asia Ca model sims

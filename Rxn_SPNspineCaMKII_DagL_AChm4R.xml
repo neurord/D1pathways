@@ -47,6 +47,11 @@
     <Specie name="Gim4R"       id="Gim4R"        kdiff="0"       kdiffunit = "mu2/s"/>
     <Specie name="GaiGTP"      id="GaiGTP"       kdiff="0"       kdiffunit = "mu2/s"/>
     <Specie name="GaiGDP"      id="GaiGDP"       kdiff="0"       kdiffunit = "mu2/s"/>
+<!-- Gi coupled m4R -->
+    <Specie name="m1R"          id="m1R"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="AChm1R"       id="AChm1R"      kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="m1RGq"        id="m1RGq"       kdiff="0"     kdiffunit="mu2/s"/> 
+    <Specie name="AChm1RGq"     id="AChm1RGq"    kdiff="0"     kdiffunit="mu2/s"/>
 
     <!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
      GluOut is used to eliminate injected Glu -->
@@ -243,7 +248,7 @@
 	<Reactant specieID="Leak"/>
 	<Product specieID="CaOutLeak"/>
 
-        <forwardRate>1.0e-6</forwardRate>
+        <forwardRate>0.5e-6</forwardRate>
 	<reverseRate>1.1e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -512,8 +517,64 @@
         <Q10>         0.2           </Q10>
     </Reaction>
 
-    <!-- *********** Gi coupled m4 receptor (VALUES ACTUALLY D2R) ***************
-    Should the Gi binding be increased similarly to Gs binding?-->
+    <!-- *********** Gq coupled m1 ACh receptor  ***************-->
+   <!--1a. ACh binding to m1R: ACh + m1R <=> AChm1R  -->
+      <Reaction name = "ACh+m1R--AChm1R" id="ACh+m1R--AChm1R">
+        <Reactant specieID="ACh"              />
+        <Reactant specieID="m1R"              />
+        <Product  specieID="AChm1R"         />
+
+        <forwardRate> 0.0025e-03 </forwardRate>
+        <reverseRate> 2.5e-03      </reverseRate>
+        <Q10>         0.2          </Q10>
+    </Reaction>
+
+    <!--2a. Gqabg + AChm1R    <-> AChm1RGq  - make lower than for mGluR, to decrease basal Gq  -->
+    <Reaction name = "Gqabg+AChm1R--AChm1RGq" id="Gqabg+AChm1R--AChm1RGq">
+        <Reactant specieID="Gqabg"               />
+        <Reactant specieID="AChm1R"             />
+        <Product  specieID="AChm1RGq"            />
+
+        <forwardRate>  0.006e-03  </forwardRate>
+        <reverseRate>  0.42e-03  </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+  <!--1b. Gqabg + m1R <-> m1RGq -->
+  <Reaction name = "Gqabg+m1R- -m1RGq" id="Gqabg+m1R- -m1RGq">
+        <Reactant specieID="Gqabg" />
+        <Reactant specieID="m1R" />
+        <Product specieID="m1RGq" />
+
+        <forwardRate> 0.0003e-03 </forwardRate>
+        <reverseRate> 0.42e-03  </reverseRate>
+        <Q10> 0.2 </Q10>
+   </Reaction>
+
+   <!--2b. ACh + m1RGq <-> AChm1RGq: 20x higher affinity than Glu binding mGluR-->
+   <Reaction name = "ACh+m1RGq- -AChm1RGq" id="ACh+m1RGq- -AChm1RGq">
+        <Reactant specieID="ACh" />
+        <Reactant specieID="m1RGq" />
+        <Product specieID="AChm1RGq" />
+
+        <forwardRate> 0.05e-03 </forwardRate>
+        <reverseRate> 2.5e-03        </reverseRate>
+        <Q10> 0.2 </Q10>
+   </Reaction>
+
+   <!--3. GabgAChMglu    <-> GaqGTP + AChm1RGbg -->
+    <Reaction name = "AChm1RGq--GaqGTP+AChm1RGbg" id="AChm1RGq--GaqGTP+AChm1RGbg">
+        <Reactant specieID="AChm1RGq"               />
+        <Product specieID="GaqGTP"             />
+        <Product specieID="AChm1R"            /> 
+        <Product specieID="Gbg"             />
+ 
+        <forwardRate>  0.5e-03 </forwardRate>
+        <reverseRate>   0  </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <!-- *********** Gi coupled m4 receptor  ***************-->
     <!--0. ACh + Abuf        <-> AChbuf     irreversible binding -->
     <Reaction name = "ACh+Abuf--AChbuf" id="ACh+Abuf--AChbuf">
         <Reactant specieID="ACh"                      />
@@ -524,14 +585,14 @@
         <reverseRate> 0        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
-   <!-- ACh or ACh agonist: ACh + m4R <==> AChm4R       Kd = 2000  , ADJUST WITH ACH affinity-->
+   <!-- ACh or ACh agonist: ACh + m4R <==> AChm4R       Kd = 1000: low affinity-->
       <Reaction name = "ACh+m4R--AChm4R" id="ACh+m4R--AChm4R">
         <Reactant specieID="ACh"              />
         <Reactant specieID="m4R"              />
         <Product  specieID="AChm4R"         />
 
         <forwardRate> 0.0025e-03 </forwardRate>
-        <reverseRate> 5e-03      </reverseRate>
+        <reverseRate> 2.5e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -556,14 +617,14 @@
         <reverseRate> 0.42e-03  </reverseRate>
         <Q10>         0.2         </Q10>
     </Reaction>
-    <!-- Gim4R + ACh       <-> AChm4RGi      Kd = 76-100 nM, ADJUST WITH ACH affinity-->
+    <!-- Gim4R + ACh       <-> AChm4RGi      Kd = 100 nM: high affinity-->
     <Reaction name = "Gim4R+ACh--AChm4RGi" id="Gm4R+ACh--AChm4RGi">
         <Reactant specieID="Gim4R"                     />
         <Reactant specieID="ACh"                      />
         <Product  specieID="AChm4RGi"                    />
 
         <forwardRate> 0.05e-03 </forwardRate>
-        <reverseRate> 5e-03        </reverseRate>
+        <reverseRate> 2.5e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
 
