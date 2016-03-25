@@ -15,7 +15,7 @@
 
     <Specie name="ACh"          id="ACh"         kdiff="10"      kdiffunit = "mu2/s"/>
     <Specie name="AChbuf"       id="AChbuf"      kdiff="1"      kdiffunit = "mu2/s"/>
-    <Specie name="Abuf"         id="Abuf"        kdiff="1"      kdiffunit = "mu2/s"/>
+    <Specie name="Abuf"         id="Abuf"        kdiff="2"      kdiffunit = "mu2/s"/>
 
     <!--0a. Da or Da Agonist is extruded, if necessary, add in: excess binds to buffer: DaOut + Dbuf  <->  DaOutbuf  -->
    <Reaction name = "Da--DaOut" id="Da--DaOut">
@@ -61,7 +61,7 @@
         <Reactant specieID="Abuf"                      />
         <Product  specieID="AChbuf"                     />
 
-        <forwardRate> 5e-03 </forwardRate>
+        <forwardRate> 0.5e-03 </forwardRate>
         <reverseRate> 0        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>

@@ -51,21 +51,21 @@
  <!-- inject Abuf to deplete stimulated and basal ACh 
  depletion develops during 200 msec, and remains for 1 sec  = pause -->
 <InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
-        <onset>               21000          </onset>
-        <duration>            19.3            </duration>
-        <rate>                100            </rate>
+        <onset>               20700          </onset>
+        <duration>            20            </duration>
+        <rate>                96            </rate>
         <period>              1000           </period>
-        <end>                 21999          </end>
+        <end>                 21699          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14001          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="Abuf" injectionSite="sa2[0:3].pointD">
-        <onset>               21000          </onset>
-        <duration>            19.3            </duration>
-        <rate>                100            </rate>
+        <onset>               20700          </onset>
+        <duration>            20            </duration>
+        <rate>                96            </rate>
         <period>              1000           </period>
-        <end>                 21999          </end>
+        <end>                 21699          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14001          </interTrainInterval>  
  </InjectionStim>
@@ -83,11 +83,11 @@
 
  <!-- decrement of burst: inject less than for rebound burst  -->
 <InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
-        <onset>               23000          </onset>
+        <onset>               22500          </onset>
         <duration>            800            </duration>
-        <rate>                1.5            </rate>
+        <rate>                1.6            </rate>
         <period>              1000           </period>
-        <end>                 23999          </end>
+        <end>                 23499          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14001          </interTrainInterval>  
 </InjectionStim>

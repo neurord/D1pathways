@@ -245,9 +245,65 @@ InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
         <rate>                20            </rate>
         <period>              1000           </period>
 ------------>slightly too little of a pause, and then too much Abuf during intertrial interval
-for both theta and 20 hz, the pause is not sufficient. speed binding reaction,
+for both theta and 20 hz, the pause is not sufficient. Speed binding reaction,
 ##############
 ACh + Abuf        <-> AChbuf has rate 5e-3
+--> Didn't seem to do much.  
+--> slightly too much baseline buildup for theta
+-->decrease ACh rebound still more for 20 Hz
+##############
+ increase last Abuf from 1.5 to 1.6
+Try speeding diffusion (from 1 to 2) return rxn rate to 0.5e-3
+-----> 20  Hz looks a bit better, but still too high final value of 938 vs 1330.  Not quite enough Abuf for pause
+------->Abuf almost completely depleting for 20Hz pause, reaching equilibrium for theta during 1st pause - suggests that diffusion constant was important. Keep this value.  Now it appears that too much ABuf being injected during the pause for theta
+###############
+Abuf=19 (not 19.3) for theta pause.  This may solve problem of too much Abuf total.  Otherwise, may need to change Abuf=1.55 (vs 1.6 or 1.55) for last injection.  
+20Hz: increase Abuf for pause by 1% from 90 to 91 duration
+Start 1st Abuf injection earlier - this will prolong pause, and represents the decrease in firing that likely starts before the end of the trains.  Start 300 ms earlier - 300 ms before end of last train.  Because it takes some time for ACh to drop below basal - currently only 500 ms is below basal during pause.  Need closer to 1 sec.
+------>20Hz: MUCH better. First dip is to zero, returns to basal of ~60 after rebound.
+	     However, second dip is not sufficient.
+	   Both 20Hz and theta - better duration of dip, but could be better.
+	   Theta: Perfect return to baseline each time - keep same total injection
+###########
+Start Abuf 0.5 sec after ACh pulse (0.5 sec before end of train) to lengthen duration of pause
+Increase 1st Abuf a bit more for 20 Hz- from 91 to 92 duration, but then, have the same short duration of injection
+Theta Abuf pause:
+        <duration>            20            </duration>
+        <rate>                95            </rate>
+20Hz Abuf pause:
+        <duration>            20            </duration>
+        <rate>                92            </rate>
+Also, decrease rebound burst amplitude?  By beginning Abuf injection sooner, and decreasing duration of both ACh and Abuf injection by 50%; inject 2nd Abuf sooner - ~1sec after beginning ACh inject.
+<InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
+        <onset>               22500          </onset>
+        <duration>            400            </duration>
+        <rate>                1.6            </rate>
+----------------->
+Pause is now too long, in part because the ACh is injected over 20 ms, not 100 ms.
+Keep same amounts, but go back to 700 ms onset.  Rebound seems a bit short and small - go back to previous durations of injection, but keep the earlier onset of Abuf#2
+##########
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               22400          </onset>
+        <duration>            400            </duration>
+        <rate>                3.7            </rate>
+<InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
+        <onset>               22500          </onset>
+        <duration>            800            </duration>
+        <rate>                1.6            </rate>
+-------------> BEST YET - just needs a little tweaking (maybe)
+Theta: dips don't go to zero, but due reach ~20 most times (while Abuf=5)
+       Baseline - slightly shift upward - probably causing the dips not to reach baseline.
+20Hz: dips don't go to zero, but due reach ~27 1st time (while Abuf=4)
+Abuf decreases to ~5 at end of pause, not steady state. Perhaps binding too slow, or just due to low molecule count.
+##########
+increase 20hz inject from 92 to 93
+Keep theta - to evaluate variability
+---------> Theta still a bit too high - increase Abuf
+	   20Hz actually higher!!!
+##############
+increase 20 Hz Abuf inject from 93 to 94.2
+increse theta Abuf inject from 95 to 96
+---------> GREAT!  Use these params in full model.
 
 Need to update m4 and add m1 params to spreadsheet (but keep D2 params)
 &&&&&&& Once stim is adjusted, do full model simulation, evaluate
