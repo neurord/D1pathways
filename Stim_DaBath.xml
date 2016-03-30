@@ -1,19 +1,37 @@
 <StimulationSet>
 
-    <!-- the injectionSite must match a regionLabel defined in the morphology -->
-  <InjectionStim specieID="Da" injectionSite="pointB">
+    <!-- keep the ACh bath in these - compare to Da100 results-->
+  <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
         <onset>               80000         </onset>
         <duration>            100           </duration>
         <rate>                6.5           </rate>
   </InjectionStim>
 
-  <InjectionStim specieID="Abuf" injectionSite="pointB">
+  <InjectionStim specieID="Abuf" injectionSite="sa2[0:3].pointD">
         <onset>               80000         </onset>
         <duration>            1000           </duration>
         <rate>                0.0           </rate>
   </InjectionStim>
 
-  <InjectionStim specieID="ACh" injectionSite="pointB">
+  <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
+        <onset>               100000         </onset>
+        <duration>            160000         </duration>
+        <rate>                0.000         </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               80000         </onset>
+        <duration>            100           </duration>
+        <rate>                6.5           </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
+        <onset>               80000         </onset>
+        <duration>            1000           </duration>
+        <rate>                0.0           </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               100000         </onset>
         <duration>            160000         </duration>
         <rate>                0.000         </rate>

@@ -1,0 +1,24 @@
+    <StimulationSet>
+      <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>           30000        </onset>
+        <duration>           10         </duration>
+        <rate>               15660.0    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
+        <onset>           30000        </onset>
+        <duration>           10         </duration>
+        <rate>               15660.0    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
+        <onset>           31000        </onset>
+        <duration>           10000      </duration>
+        <rate>               15.66    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Dbuf" injectionSite="sa2[0:3].pointD">
+        <onset>           31000        </onset>
+        <duration>           10000      </duration>
+        <rate>               15.66    </rate>
+      </InjectionStim>
+<!--First try with no depletion of ACh -->
+    </StimulationSet>
+

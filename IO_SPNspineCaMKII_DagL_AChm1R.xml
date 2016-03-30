@@ -78,6 +78,7 @@
 
     <OutputSpecie name="AC"/>
     <OutputSpecie name="ACGai"/>
+    <OutputSpecie name="ACGasATP"/>
     <OutputSpecie name="ACGasGai"/>
     <OutputSpecie name="ACGasGaiATP"/>
 
@@ -184,6 +185,11 @@
     <OutputSpecie name="Dp75PP2AB56d"/>
     <OutputSpecie name="Dp75PP2AC"/>
     <OutputSpecie name="Dp75pPP2A"/>
+    
+    <OutputSpecie name="AKAR3"/>
+    <OutputSpecie name="pAKAR3"/>
+    <OutputSpecie name="PKAcAKAR3"/>
+    <OutputSpecie name="PP1pAKAR3"/>
   </OutputSet>
 
 </OutputScheme>

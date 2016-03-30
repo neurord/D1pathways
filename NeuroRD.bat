@@ -20,14 +20,23 @@ set -ex
 #java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDa.xml output/Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDa > /dev/null&
 #java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDaCa.xml output/Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDaCa > /dev/null&
 
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_SPNspineCaMKII_DagL-stim20hz.xml > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_SPNspineCaMKII_DagL-stimtheta.xml > /dev/null&
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL-stim20hz.xml > /dev/null&
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL-stimtheta.xml > /dev/null&
 
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_Spine_AChtest-stim20hz.xml > /dev/null &
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_Spine_AChtest-stimtheta.xml > /dev/null &
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_Spine_AChtest-stim20hz.xml > /dev/null &
+#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_Spine_AChtest-stimtheta.xml > /dev/null &
 
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_SPNspineCaMKII_DagL_AChm4R-stim20hz.xml > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-10.jar Model_SPNspineCaMKII_DagL_AChm4R-stimtheta.xml > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-stim20hz.xml > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-stimtheta.xml > /dev/null&
+
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da0.1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da0.1 > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da0.3.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da0.3 > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da1 > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da100.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da100 > /dev/null&
+
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-bathDa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathDa > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-bathCa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathCa > /dev/null&
+java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-bathDaCa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathDaCa > /dev/null&
 
 #alternative:
 #To run things in parallel (instead of batch file):

@@ -162,7 +162,7 @@
         <NanoMolarity specieID="Dp75PP2AC"            value="10" />
         <NanoMolarity specieID="Dp75pPP2A"            value="10" />
 
-        <NanoMolarity specieID="AKAR3"                 value="0" />
+        <NanoMolarity specieID="AKAR3"                 value="3000" />
     </ConcentrationSet> 
 
     <ConcentrationSet region="PSD" >

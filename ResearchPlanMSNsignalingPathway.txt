@@ -24,38 +24,8 @@ After showing that AM251 blocks 20 Hz LTD DM, then do expers on Theta LTP DM.
 Is CB1 required for striatal dependent learning (what about PKA, PKC and CaMKII)?
 EXPER: In vivo infusion of drugs into striatum during behavioral task acquisition
 
-MODEL Procedure:
-MOST OF THIS IS NOW WRITTEN IN README. PLEASE UPDATE THERE
-DONE: 0. Create git repository on a computer that both GMU and KTH have access to.
-1. Merge BoHung Gq/PKC + Gq/2AG model with Rodrigo Golf model, possibly tweak parameters (adjust calcium buffer quantities, less constrained binding affinities, to make sure basal calcium is correct).
-	possibly with epac, use input from calcium model
-2. Add in Gi pathways, adjust D1/M4/Gi/Gs/AC/PDE10 (tweak parameters or quantity) to obtain correct basal cAMP
-DONE? 3. Adjust the PKA activity rates (Castro), PKA diffusion rate (Shane Tillo &Zhang/myristolation), CaMKII diffusion rate (2Lu HE, MacGillavry HD, Frost NA, Blanpied TA.J Neurosci. 2014 May 28;34(22):7600-10).
-3. Add in CaMKII inhibition of DAGLipase (Shonesy BC, Wang X, Rose KL, Ramikie TS, Cavener VS, Rentz T, Baucum AJ 2nd, Jalan-Sakrikar N, Mackie K, Winder DG, Patel S, Colbran RJ. Nat Neurosci. 2013 Apr;16(4):456-63.) and PKA phosphorylation of RGS4, which accelerates Gq hydrolysis.
-4. Other quantities / locations may need to be updated:
-Differential association of postsynaptic signaling protein complexes in striatum and hippocampus.
-Baucum AJ 2nd, Brown AM, Colbran RJ.J Neurochem. 2013
-mGluR are peri-synaptic
-M1 is at spine neck to dendrite (Uchigashima J Neurosci 2007 - slightly further away from PSD than mGluR)
-==>>> M1 and mGluR5 leads to IPSC suppression, only mGluR5 produces EPSC suppression
-(Also, stronger CB1 expression on GABA synapses)
-M4 must be near D1 both of which must be near AC. D1/M4/Golf/Gi/AC complex is in the spine, might also be in the dendrite.
-5. Finish Tweaking - immobilize DARPP32 (Blom et al. Brismar PLoS One 2013)
-
-6. Do we add ERK to this model, or do we run simulations and publish this and THEN add in ERK 
-RasGRF to RasGTP to Raf to MEK to ERK.
-PKA phos STEP, which dephos ERK
-PP1 dephos STEP, pSTEP is inactive
-What about epac -> RapGTP -> Raf?
-What about PKA phos Raf?
-
-STIMULATION PROTOCOLS:
-20 Hz vs theta calcium / Glutamate input
-Da input similar to what Lovinger has measured
-What is temporal pattern of ACh?
-
+SIMULATIONS to answer question:
 Q1: Does theta have higher memory kinases (PKA+PKC) than 20 Hz?
-SIMULATION to answer question:
 1. Stimulate using theta rhythym, stimulate using 20 Hz, quantify PKA and PKC
 Q2: What happens if caMKII or PKA is blocked? - compare to new and old field experiments
 2. Stimulate with kcat of PKA =0, or kcat of CamKII = 0

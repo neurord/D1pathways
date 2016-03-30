@@ -14,32 +14,31 @@ Information: goal/plan of the days work, e.g. data trying to simulation
 
 Step 1. Merge reactions from modified version of Rodrigo's model and BoHung's model
 Notes in the RXN file indicate whether the reaction came from the Gs model (Oliveira 2012) or Gq model (Kim 2013)
-DONE.  1A. Merge reactions
+DONE. 1A. Merge reactions
 DONE. 1B. Use the smaller, 1 spine morphology
-IN PROGRESS. 1C. Create initial IC file - BALANCE ALL SPECIES, concentration and total PKA, etc in dend sm and spine head
-DONE. 1D. Create a no stim file
-DONE. 1E. Create an everything and a simpler/reduced IO file
+DONE. 1C. Create initial IC file - BALANCE ALL SPECIES, concentration and total PKA, etc in dend sm and spine head
 Compare rate constants with xpp model and Oliveira model: which rates match references theirin, which ones do not match references, which rates don't have references.
-DONE Search for updated references for rates with none or non-matching refs.  
-DONE Check thermodynamic balance of some sets of reactions.
+DONE. Search for updated references for rates with none or non-matching refs.  
+DONE. Check thermodynamic balance of some sets of reactions.
+DONE. Create spreadsheet with rates and references to rates
 
 Step 2. Assays and adjustment to achieve correct basal cAMP and calcium
 DONE. 2A. assays for PLC, Da binding to DR1 (very small subset of reactions) - PLCassay/, DRGassay/
 DONE. 2B. IC and RXN for Gs production and binding (very small subset of reactions) - cAMPassay/
-DONE 2C. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC - whole model but 3-5 comps (dend with sm)
-DONE 2D. assays of DARPP32 phos in response to bath applied Da and Ca, as in Lindskog. -  whole model but 3-5 comps (dend with sm)
-    May need to adjust PP2B vs PP2A activity (though both are from references)
-DONE 2E. possibly include Gi reactions here to help decrease basal cAMP - simulate ss in whole, multi-comp model (witih spine)
-    if Gi needed, first tune in 3-5 comp dend model and spine alone model
+DONE. 2C. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC - whole model but 3-5 comps (dend with sm)
+DONE. 2D. assays of DARPP32 phos in response to bath applied Da and Ca, as in Lindskog. -  whole model but 3-5 comps (dend with sm)
+DONE. 2E. Include Gi reactions here to help decrease basal cAMP - simulate ss in whole, multi-comp model (witih spine)
 
 Step 3. Interaction between Gs and Gq/calcium pathways
-3A. CaMKII inhibition of Dagl
-3B. PKA enhances of Gq GAP activity?  Via RGS or D2 neuron only?
-3C. Re-run Uchigashima bath application simulations - still valid?
+DONE. 3A. CaMKII inhibition of Dagl
+3B. Replace the D2R parameters with m4R parameters in the D1R model. Higher affinity of m4R and higher ACh will decrease basal cAMP, may need to add AC1 or otherwise tweak params to fix basal cAMP and Dp34PP1.
+3C. PKA enhances of Gq or Gi GAP activity?  Via RGS?  Speed GaGTP production according to Chuhma et al.?
+3D. Add in Epac (from Chay et al.) or AKAR (from Nair ... Kotaleski) to quantify assays
+3E. Re-run all assays to verify, including Uchigashima bath application simulations - still valid?
 
-Step 4.  Simulation experiments
+Step 4.  Simulation experiments: 20 Hz vs theta 
 4A. Stim files: Glu: how to account for release refractoriness and receptor desensitization (Ca and mGluR)?
-    constrain by Lovinger imaging
-4B. Stim files: Da and mACh: what pattern of release occurs (Da from Lovinger)
+    constrain by Lovinger imaging or Asia calcium dynamics model
+DONE. 4B. Stim files: Da and ACh: what pattern of release occurs (Da from Lovinger)
 4C. Which temporal patterns select for LTP vs LTD? - repetition of BoHung sims
 4D. Sensitivity to order of Ca and Da?  Do we need AC1 for this aspect?

@@ -191,6 +191,11 @@
     <Specie name="Dp75PP2AB56d"   id="Dp75PP2AB56d"   kdiff="0"   kdiffunit="mu2/s"/>
     <Specie name="Dp75PP2AC"      id="Dp75PP2AC"     kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Dp75pPP2A"      id="Dp75pPP2A"     kdiff="0"     kdiffunit="mu2/s"/>
+<!-- AKAR -->
+    <Specie name="AKAR3"        id="AKAR3"       kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="pAKAR3"       id="pAKAR3"      kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PKAcAKAR3"    id="PKAcAKAR3"     kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PP1pAKAR3"    id="PP1pAKAR3"     kdiff="0"     kdiffunit="mu2/s"/>
 
 <!-- For now, no GluA1 receptors -->
 
@@ -524,7 +529,7 @@
         <Reactant specieID="m1R"              />
         <Product  specieID="AChm1R"         />
 
-        <forwardRate> 0.0025e-03 </forwardRate>
+        <forwardRate> 0.095e-06 </forwardRate>
         <reverseRate> 2.5e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
@@ -535,7 +540,7 @@
         <Reactant specieID="AChm1R"             />
         <Product  specieID="AChm1RGq"            />
 
-        <forwardRate>  0.006e-03  </forwardRate>
+        <forwardRate>  0.024e-03  </forwardRate>
         <reverseRate>  0.42e-03  </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -546,7 +551,7 @@
         <Reactant specieID="m1R" />
         <Product specieID="m1RGq" />
 
-        <forwardRate> 0.0003e-03 </forwardRate>
+        <forwardRate> 0.000576e-03 </forwardRate>
         <reverseRate> 0.42e-03  </reverseRate>
         <Q10> 0.2 </Q10>
    </Reaction>
@@ -557,7 +562,7 @@
         <Reactant specieID="m1RGq" />
         <Product specieID="AChm1RGq" />
 
-        <forwardRate> 0.05e-03 </forwardRate>
+        <forwardRate> 0.000666e-03 </forwardRate>
         <reverseRate> 2.5e-03        </reverseRate>
         <Q10> 0.2 </Q10>
    </Reaction>
@@ -591,7 +596,7 @@
         <Reactant specieID="m4R"              />
         <Product  specieID="AChm4R"         />
 
-        <forwardRate> 0.0025e-03 </forwardRate>
+        <forwardRate> 0.000169e-03 </forwardRate>
         <reverseRate> 2.5e-03      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
@@ -613,7 +618,7 @@
         <Reactant specieID="m4R"                      />
         <Product  specieID="Gim4R"                     />
 
-        <forwardRate> 0.0012e-03 </forwardRate>
+        <forwardRate> 0.00178e-03 </forwardRate>
         <reverseRate> 0.42e-03  </reverseRate>
         <Q10>         0.2         </Q10>
     </Reaction>
@@ -623,7 +628,7 @@
         <Reactant specieID="ACh"                      />
         <Product  specieID="AChm4RGi"                    />
 
-        <forwardRate> 0.05e-03 </forwardRate>
+        <forwardRate> 0.00228e-03 </forwardRate>
         <reverseRate> 2.5e-03        </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
@@ -2012,6 +2017,46 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="2ag"            />
 
         <forwardRate> 0.125e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+    <!-- AKAR3 rates to allow comparison to Castro, etc. -->
+     <Reaction name = "AKAR3+PKAc bind" >
+        <Reactant specieID="AKAR3"            />
+        <Product  specieID="PKAc"               />
+        <Product  specieID="PKAcAKAR3"            />
+
+        <forwardRate> 0.05e-03     </forwardRate>
+        <reverseRate> 1.0e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <Reaction name = "PKAcAKAR3 phos" >
+       <Reactant specieID="PKAcAKAR3"            />
+        <Product  specieID="PKAc"               />
+        <Product  specieID="pAKAR3"            />
+
+        <forwardRate> 1.5e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+     <Reaction name = "pAKAR3+PP1 bind" >
+        <Reactant specieID="pAKAR3"            />
+        <Product  specieID="PP1"               />
+        <Product  specieID="PP1pAKAR3"            />
+
+        <forwardRate> 0.001e-03     </forwardRate>
+        <reverseRate> 3.5e-03    </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    <Reaction name = "PP1pAKAR3 dephos" >
+       <Reactant specieID="PP1pAKAR3"            />
+        <Product  specieID="PP1"               />
+        <Product  specieID="AKAR3"            />
+
+        <forwardRate> 2.5e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
         <Q10>         0.2           </Q10>
     </Reaction>
