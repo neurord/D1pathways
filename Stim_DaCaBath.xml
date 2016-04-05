@@ -1,11 +1,28 @@
 <StimulationSet>
 
     <!-- the injectionSite must match a regionLabel defined in the morphology -->
+  <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               80000         </onset>
+        <duration>            100           </duration>
+        <rate>                130           </rate>
+  </InjectionStim>
+
   <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
         <onset>               80000         </onset>
         <duration>            100           </duration>
-        <rate>                6.5           </rate>
+        <rate>                130           </rate>
   </InjectionStim>
+
+      <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>           80100        </onset>
+        <duration>       99900.0       </duration>
+        <rate>               6.5    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
+        <onset>           80100        </onset>
+        <duration>       99900.0       </duration>
+        <rate>               6.5    </rate>
+      </InjectionStim>
 
   <InjectionStim specieID="Abuf" injectionSite="sa2[0:3].pointD">
         <onset>               80000         </onset>
@@ -17,12 +34,6 @@
         <onset>               100000         </onset>
         <duration>            160000         </duration>
         <rate>                0.000         </rate>
-  </InjectionStim>
-
-  <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
-        <onset>               80000         </onset>
-        <duration>            100           </duration>
-        <rate>                6.5           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">

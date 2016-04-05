@@ -1,0 +1,76 @@
+Lab Notebook for Blackwell Mar 30-31, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    Do sims with and without ACh modulation
+		    What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    Simulate both D1 and D2 neurons
+		 3. Can extra high calcium substitute for dopamine in LTP?  If so, how does extra high calcium produce LTD without Gq?
+		    Simulate with decrease Da and increase Ca
+		 4. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    Block CaMKII phos of Dgl and repeat sims
+		 5. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    Create signature
+		    Can some molecules substitute for others (increase Ca and decrease Gq via mGlu block)
+
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2 model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 wit Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+   
+
+######### Repeating: Castro sims - quant and time course of PKA activity (using AKAR), cAMP
+        Control of Dp34 (basal=400 nM, 11x with Da) and Dp75 (basal 11-12 uM, dec with Da)
+		by Da Is concommitant reduction in ACh needed?
+		by Ca
+	  	with PP inhibitors     
+--------->Castro results
+		 Da = 12, 16, 20, 28 uM.  Da is pretty good for 0.1 sec, but still too high for longer durations.  Basal Da is 10-11 nM - Good
+		 AKAR: 1000 (0.1s), 1700 (0.3s), 2850 (1s) and 3000 (100s).  Pretty good. May be slightly lower when Da is reduced a bit.  Should be 1 min, 1.5 min and >2 min for full decay - need to run all sims longer.
+		  Change 100s DaD1 stim to 10 s - that is what Castro did.
+--------->cAMP: basal = 60-65 a bit high; Dp34PP1 is 800-1000 at 70-80s (bath), but only 200-300 at 40-50 sec.  cAMP basal seems a bit high, and equilibrium of Dp34 takes a long time to reach.
+		cAMP peak = 16 uM with 100sec stim (way too high - will be fixed with 10s stim)
+		cAMP peak = 4 uM with 1 s stim, 2.6 (0.3s), 1.7 (0.1s).  These are OK.  Will be reduced with lower Da peak
+------------> Bath stim: cAMP increases to 15 uM. Probably too large.
+	      Dp34PP1 saturates with Da bath, Dp34 = 700.  Total=4.4uM 6-10x inc depending on true basal - correct
+	      Dp34PP1=3.2 uM with Da+Ca - reduction, though possibly should be larger reduction?
+	      Dp75: ~10 uM basal (should be larger, increase CDK5 by 5-10%)
+	      	    dec to 6.5 uM with Ca,
+		    dec to 5.7 uM with Da
+		    dec to 4.8 uM with Da+Ca
+	Da is 14 uM with Da bath - too large.  Reduce to 10 uM
+-----> 20 Hz vs Theta
+       PKAc: similar peak, but 20Hz decreases sooner.  Theta has delayed cAMP increase because ACh drops below basal - must be injecting too much Abuf!  Need more Abuf for dip because not sufficient.
+Theta has much higher CKpCamCa4, slightly hgher pDgl peaks, but similar 2ag.
+
+This suggests that CamKII is required, but need to know what ACh is doing, or what TANs are doing during 20 Hz and theta - if pause is more for theta, then cAMP & PKA would be greater.
+
+######### New stim files:
+1. change initial stim for all Da 0.1-100s
+	<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>           50000        </onset>
+        <duration>           10         </duration>
+        <rate>               1300    </rate>
+     </InjectionStim>
+2. lower follow-up stim - 1/4 of current value (rate =13) for Da Dur sims. rate=6.5 for DaBath
+3. Change Dbuf inject to match (Castro sims)
+4. Try to speed the Da decrease by injecting buffer much faster (10 ms), to lower DaOut
+5. For 20hz vs theta, inc 1st Abuf inject and reduce 2nd (96,1.69 for 20Hz; 98,1.69 for theta)
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation)
+2. What happens if decrease ACh alone??

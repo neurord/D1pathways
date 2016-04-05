@@ -53,9 +53,29 @@ Small questions: 1. How does ACh contribute to LTP or LTD
 	B. Kellar says high affin=37, doesn't give low affin; also m1 has lower fraction of receptors in high affinity state
 	
 #########Try Leach et al. values for m4R, with 100 nM (higher) basal ACh.
-	     Try Waelbroec Molec Pharm vol59 for m1R binding
+	    Try Waelbroec Molec Pharm vol59 for m1R binding
 	    Add in AKAR phos and dephos from Nair et al. 2015
 	    Run Da, Ca, DaCa bath (with Abuf, no AKAR); Da for 0.1-100 sec (AKAR, no Abuf)
 	    	assess Darpp forms, PKA (AKAR), cAMP
 Leach may be too low an affinity for m4R, and too low for the low affin receptor, but definitely allows modulation by burst.
 If too low affinity, try 10x affinity (e.g. 109.6 nM for high - closer to Kellar), and use 14x difference for the low affin m1, and also add in AC1 - to improve basal cAMP/PKA/Dp34PP1.
+------->1st assess Da and Ca conc - may not be correct.  Then, assess cAMP&PKA.
+	    Da is identical for all durations, and reaches 120 uM
+	    Problem is the new method for eliminating Da - having DaOut and then buffering that.
+	    	    Need to create different stim files with initial inject and then a maintenance injection value.
+	    Bath stim:
+		 Da is too transient, peak=500 nM - need to fix similar to fix of Da stimuli.  Ca is fine. Increase Da inject by 20x.  Use similar number of molecules for the Da 100s (Castro) sims
+######### Updated stim files		 
+-------> 80 sec delay prior to stim - the Dp34PP1 goes down and then recovers during that time.  In fact, it goes too high, and Dp75 declines a bit.
+	 Keep large delay prior to stim.  Change delay to 50 sec for LTP/LTD and Da Dur sims.
+######### Further updated stim files		 
+	 Da is ~11 nM - slightly too high.  Lower kb for DaOut to Da by 10%
+-------> cAMP basal = 65 (too high) for all sims.
+	 PKAc has basal of 41 in Castro sims, but only 5 in bath sims.  The former is high enough to saturate Dp34PP1 even without detecting the Da transient.  The latter doesn't have any AKAR. 
+	 Lower Da may lower basal cAMP or PKAc.  Or, need to investigate how AKAR raise PKAc.
+-------> GOOD NEWS: Da is definitely different for all four Da stim durations
+	 BAD NEWS: Dp34PP1 saturates in basal state.
+	 More refinement of Da needed.
+	 Da=0.1s: peak is 10 uM - fine no change.
+	 Da=0.3s: 25 uM at 100 msec, peak=40 uM: too high.  Inject one third during 2nd epoch
+	 AKAR issue: reactions specified wrong.  Fix and re-run all sims.

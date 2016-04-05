@@ -11,11 +11,11 @@
     longer duration of inject provides for the >100ms rise time-->
   <!-- the 15 s repetition of train provides the first burst for each of 10 trains -->
   <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
-        <onset>               20000          </onset>
+        <onset>               50000          </onset>
         <duration>            60              </duration>
         <rate>                40.0           </rate>
         <period>              105             </period>
-        <end>                 20100          </end>
+        <end>                 50100          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14900             </interTrainInterval>    
   </InjectionStim>
@@ -23,82 +23,82 @@
   <!-- These next Da are single pulse, represent 4 pulse burst; burst 2-10 amp = 1/2 amp of 1st burst -->
   <!-- the 15 s repetition of train provides bursts 2-10 for each of 10 trains -->
   <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
-        <onset>               20095          </onset>
+        <onset>               50095          </onset>
         <duration>            60              </duration>
         <rate>                15.0           </rate>
         <period>              95             </period>
-        <end>                 20949          </end>
+        <end>                 50949          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14051             </interTrainInterval>    
   </InjectionStim>
 
   <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
-        <onset>               21000          </onset>
+        <onset>               51000          </onset>
         <duration>            2000            </duration>
         <rate>                5.0           </rate>
         <period>              15000            </period>
-        <end>                 160000          </end>
+        <end>                 190000          </end>
   </InjectionStim>
 
   <InjectionStim specieID="Gbuf" injectionSite="sa1[0].pointA">
-        <onset>               21000          </onset>
+        <onset>               51000          </onset>
         <duration>            2000            </duration>
         <rate>                6.0           </rate>
         <period>              15000            </period>
-        <end>                 160000          </end>
+        <end>                 190000          </end>
   </InjectionStim>
 
  <!-- inject Abuf to deplete stimulated and basal ACh 
  depletion develops during 200 msec, and remains for 1 sec  = pause -->
 <InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
-        <onset>               20700          </onset>
+        <onset>               50700          </onset>
         <duration>            20            </duration>
-        <rate>                96            </rate>
+        <rate>                98            </rate>
         <period>              1000           </period>
-        <end>                 21699          </end>
+        <end>                 51699          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14001          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="Abuf" injectionSite="sa2[0:3].pointD">
-        <onset>               20700          </onset>
+        <onset>               50700          </onset>
         <duration>            20            </duration>
-        <rate>                96            </rate>
+        <rate>                98            </rate>
         <period>              1000           </period>
-        <end>                 21699          </end>
+        <end>                 51699          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14001          </interTrainInterval>  
  </InjectionStim>
 
  <!-- rebound burst: develops more slowly -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               22400          </onset>
+        <onset>               52400          </onset>
         <duration>            400            </duration>
         <rate>                3.7            </rate>
         <period>              600           </period>
-        <end>                 22999          </end>
+        <end>                 52999          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14401          </interTrainInterval>  
 </InjectionStim>
 
  <!-- decrement of burst: inject less than for rebound burst  -->
 <InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
-        <onset>               22500          </onset>
+        <onset>               52500          </onset>
         <duration>            800            </duration>
-        <rate>                1.6            </rate>
+        <rate>                1.69            </rate>
         <period>              1000           </period>
-        <end>                 23499          </end>
+        <end>                 53499          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14001          </interTrainInterval>  
 </InjectionStim>
 
    <!-- *****************TRAIN 1 *** Glu inject **********-->   
   <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>               20000          </onset>
+        <onset>               50000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 20066          </end>
+        <end>                 50066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
   </InjectionStim>
@@ -106,53 +106,53 @@
 <!--  Ca pulses TRAIN 1:  40 Ca pulses -->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               20000          </onset>
+        <onset>               50000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 20066          </end>
+        <end>                 50066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>               20000          </onset>
+        <onset>               50000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 20066          </end>
+        <end>                 50066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               20000          </onset>
+        <onset>               50000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 20066          </end>
+        <end>                 50066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               20000          </onset>
+        <onset>               50000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 20066          </end>
+        <end>                 50066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
 
 <!--**********Glu *******TRAIN 2************-->
   <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>               35000          </onset>
+        <onset>               65000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 35066          </end>
+        <end>                 65066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>  
   </InjectionStim>
@@ -160,53 +160,53 @@
 <!--**********Calcium******TRAIN 2******* 80 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               35000          </onset>
+        <onset>               65000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 35066          </end>
+        <end>                 65066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>       
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>               35000          </onset>
+        <onset>               65000          </onset>
         <duration>            3              </duration>
         <rate>               520            </rate>
         <period>              20             </period>
-        <end>                 35066          </end>
+        <end>                 65066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               35000          </onset>
+        <onset>               65000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 35066          </end>
+        <end>                 65066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               35000          </onset>
+        <onset>               65000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 35066          </end>
+        <end>                 65066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
 
 <!--*********Glu******TRAIN 3***************-->
   <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               80000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 50066          </end>
+        <end>                 80066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
   </InjectionStim>
@@ -214,42 +214,42 @@
 <!--**********Calcium******TRAIN 3******* 120 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               80000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 50066          </end>
+        <end>                 80066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>      
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>               50000          </onset>
+        <onset>               80000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 50066          </end>
+        <end>                 80066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>   
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               80000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 50066          </end>
+        <end>                 80066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               50000          </onset>
+        <onset>               80000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 50066          </end>
+        <end>                 80066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
@@ -257,11 +257,11 @@
 
 <!--**********Glu******TRAIN 4******************-->
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>               65000          </onset>
+        <onset>               95000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 65066          </end>
+        <end>                 95066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
@@ -269,42 +269,42 @@
 <!--**********Calcium******TRAIN 4******* 160 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               65000          </onset>
+        <onset>               95000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 65066          </end>
+        <end>                 95066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval> 
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>               65000          </onset>
+        <onset>               95000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 65066          </end>
+        <end>                 95066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval> 
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               65000          </onset>
+        <onset>               95000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 65066          </end>
+        <end>                 95066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               65000          </onset>
+        <onset>               95000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 65066          </end>
+        <end>                 95066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
@@ -312,11 +312,11 @@
 
 <!--*********Glu******TRAIN 5***************-->
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>               80000          </onset>
+        <onset>               110000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 80066          </end>
+        <end>                 110066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>  
 </InjectionStim>
@@ -324,42 +324,42 @@
 <!--**********Calcium******TRAIN 5******* 200 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               80000          </onset>
+        <onset>               110000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 80066          </end>
+        <end>                 110066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>               80000          </onset>
+        <onset>               110000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 80066          </end>
+        <end>                 110066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               80000          </onset>
+        <onset>               110000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 80066          </end>
+        <end>                 110066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               80000          </onset>
+        <onset>               110000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 80066          </end>
+        <end>                 110066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
@@ -367,11 +367,11 @@
 
 <!--**********Glu******TRAIN 6******************-->
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>               95000          </onset>
+        <onset>               125000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 95066          </end>
+        <end>                 125066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
@@ -379,53 +379,53 @@
 <!--**********Calcium******TRAIN 6******* 240 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               95000          </onset>
+        <onset>               125000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 95066          </end>
+        <end>                 125066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>               95000          </onset>
+        <onset>               125000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 95066          </end>
+        <end>                 125066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>   
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               95000          </onset>
+        <onset>               125000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 95066          </end>
+        <end>                 125066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               95000          </onset>
+        <onset>               125000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 95066          </end>
+        <end>                 125066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
 
 <!--*********Glu******TRAIN 7***************-->
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>              110000          </onset>
+        <onset>              140000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 110066          </end>
+        <end>                 140066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
@@ -433,53 +433,53 @@
 <!--**********Calcium******TRAIN 7******* 280 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>              110000          </onset>
+        <onset>              140000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 110066          </end>
+        <end>                 140066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>              110000          </onset>
+        <onset>              140000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 110066          </end>
+        <end>                 140066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               110000          </onset>
+        <onset>               140000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 110066          </end>
+        <end>                 140066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               110000          </onset>
+        <onset>               140000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 110066          </end>
+        <end>                 140066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
 
 <!--*********Glu******TRAIN 8***************-->
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>              125000          </onset>
+        <onset>              155000          </onset>
         <duration>            5              </duration>
         <rate>                60.0           </rate>
         <period>              20             </period>
-        <end>                 125066          </end>
+        <end>                 155066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
@@ -487,42 +487,42 @@
 <!--**********Calcium******TRAIN 8******* 320 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>              125000          </onset>
+        <onset>              155000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 125066          </end>
+        <end>                 155066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>      
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>              125000          </onset>
+        <onset>              155000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 125066          </end>
+        <end>                 155066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               125000          </onset>
+        <onset>               155000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 125066          </end>
+        <end>                 155066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               125000          </onset>
+        <onset>               155000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 125066          </end>
+        <end>                 155066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
@@ -542,42 +542,42 @@
 <!--**********Calcium******TRAIN 9******* 360 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>              140000          </onset>
+        <onset>              170000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 140066          </end>
+        <end>                 170066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>       
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>              140000          </onset>
+        <onset>              170000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 140066          </end>
+        <end>                 170066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>       
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               140000          </onset>
+        <onset>               170000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 140066          </end>
+        <end>                 170066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               140000          </onset>
+        <onset>               170000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 140066          </end>
+        <end>                 170066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>
@@ -596,42 +596,42 @@
 <!--**********Calcium******TRAIN 10******* 320 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>              155000          </onset>
+        <onset>              185000          </onset>
         <duration>            3              </duration>
         <rate>                512            </rate>
         <period>              20             </period>
-        <end>                 155066          </end>
+        <end>                 185066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
-        <onset>              155000          </onset>
+        <onset>              185000          </onset>
         <duration>            3              </duration>
         <rate>                520            </rate>
         <period>              20             </period>
-        <end>                 155066          </end>
+        <end>                 185066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
 
 <!-- ACh neurons fire only 1 of every two 50 Hz stim -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               155000          </onset>
+        <onset>               185000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 155066          </end>
+        <end>                 185066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               155000          </onset>
+        <onset>               185000          </onset>
         <duration>            15              </duration>
         <rate>                6           </rate>
         <period>              40             </period>
-        <end>                 155066          </end>
+        <end>                 185066          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29          </interTrainInterval>  
  </InjectionStim>

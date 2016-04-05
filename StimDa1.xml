@@ -1,23 +1,33 @@
     <StimulationSet>
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
-        <onset>           30000        </onset>
-        <duration>           10         </duration>
-        <rate>               15660.0    </rate>
+        <onset>           50000        </onset>
+        <duration>           10.0         </duration>
+        <rate>               1300    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
-        <onset>           30000        </onset>
-        <duration>           10         </duration>
-        <rate>               15660.0    </rate>
+        <onset>           50000        </onset>
+        <duration>           10.0         </duration>
+        <rate>               1300    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>           50010        </onset>
+        <duration>         990.0       </duration>
+        <rate>               13.0    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
+        <onset>           50010        </onset>
+        <duration>         990.0       </duration>
+        <rate>               13.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
-        <onset>           31000        </onset>
-        <duration>           10000      </duration>
-        <rate>               15.66    </rate>
+        <onset>           51000        </onset>
+        <duration>           10      </duration>
+        <rate>               2580    </rate>
       </InjectionStim>
       <InjectionStim specieID="Dbuf" injectionSite="sa2[0:3].pointD">
-        <onset>           31000        </onset>
-        <duration>           10000      </duration>
-        <rate>               15.66    </rate>
+        <onset>           51000        </onset>
+        <duration>           10      </duration>
+        <rate>               2580    </rate>
       </InjectionStim>
 <!--First try with no depletion of ACh -->
     </StimulationSet>

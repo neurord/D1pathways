@@ -330,7 +330,7 @@
   	<Reactant specieID="Da"/>
         <Product  specieID="DaOut"                   />
         <forwardRate> 1.0e-3      </forwardRate>
-        <reverseRate> 0.06e-6      </reverseRate>
+        <reverseRate> 0.055e-6      </reverseRate>
         <Q10>         0.2          </Q10>
     </Reaction>
 
@@ -2023,7 +2023,7 @@ MUCH slower binding compared to CaDgl  -->
     <!-- AKAR3 rates to allow comparison to Castro, etc. -->
      <Reaction name = "AKAR3+PKAc bind" >
         <Reactant specieID="AKAR3"            />
-        <Product  specieID="PKAc"               />
+        <Reactant  specieID="PKAc"               />
         <Product  specieID="PKAcAKAR3"            />
 
         <forwardRate> 0.05e-03     </forwardRate>
@@ -2043,7 +2043,7 @@ MUCH slower binding compared to CaDgl  -->
 
      <Reaction name = "pAKAR3+PP1 bind" >
         <Reactant specieID="pAKAR3"            />
-        <Product  specieID="PP1"               />
+        <Reactant  specieID="PP1"               />
         <Product  specieID="PP1pAKAR3"            />
 
         <forwardRate> 0.001e-03     </forwardRate>

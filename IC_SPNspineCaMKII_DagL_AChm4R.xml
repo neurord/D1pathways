@@ -30,7 +30,7 @@
         <NanoMolarity specieID="Dbuf"            value="0" />
         <NanoMolarity specieID="DaOutbuf"        value="0" />
         <NanoMolarity specieID="DaOut"           value="200000" />
-	<NanoMolarity specieID="ACh"             value="100" />
+	<NanoMolarity specieID="ACh"             value="95" />
         <NanoMolarity specieID="AChbuf"          value="0" />
         <NanoMolarity specieID="Abuf"            value="0" />
 	<NanoMolarity specieID="Glu"             value="10"     />   
@@ -153,8 +153,8 @@
         <NanoMolarity specieID="Dp34PP2AB56d"        value="0" />
         <NanoMolarity specieID="Dp34PP1PP2ABPR72"    value="10" />
         <NanoMolarity specieID="Dp34PP1PP2AB56d"     value="10" />
-        <NanoMolarity specieID="Cdk5"                 value="350" />
-        <NanoMolarity specieID="Cdk5D32"              value="1150" />
+        <NanoMolarity specieID="Cdk5"                 value="370" />
+        <NanoMolarity specieID="Cdk5D32"              value="1215" />
         <NanoMolarity specieID="Dp75"                 value="10650" />
         <NanoMolarity specieID="Dp75PKA"              value="0" />
         <NanoMolarity specieID="Dp75PP2ABPR72"       value="260" />
