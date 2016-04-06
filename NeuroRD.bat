@@ -27,6 +27,7 @@ set -ex
 #java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_Spine_AChtest-stimtheta.xml > /dev/null &
 
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-stim20hz.xml > /dev/null&
+
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-stimtheta.xml > /dev/null&
 
 java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da0.1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da0.1 > /dev/null&
@@ -42,3 +43,4 @@ java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar 
 #To run things in parallel (instead of batch file):
 #parallel --gnu java -Dstochdiff.writers=text -Dstochdiff.log=false -jar /home/neuroware/stochdif/stochdiff-3.0.0-9.jar ::: Model*.xml
 
+#ptdump to look at h5 file.

@@ -2,32 +2,32 @@
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>           50000        </onset>
         <duration>           10.0      </duration>
-        <rate>               1300    </rate>
+        <rate>               390    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
         <onset>           50000        </onset>
         <duration>           10.0      </duration>
-        <rate>               1300    </rate>
+        <rate>               390    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>           50010        </onset>
         <duration>         290.0       </duration>
-        <rate>               13.0    </rate>
+        <rate>               3.9    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
         <onset>           50010        </onset>
         <duration>         290.0       </duration>
-        <rate>               13.0    </rate>
+        <rate>               3.9    </rate>
       </InjectionStim>
       <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
         <onset>           50300        </onset>
         <duration>           10      </duration>
-        <rate>               1670    </rate>
+        <rate>               501    </rate>
       </InjectionStim>
       <InjectionStim specieID="Dbuf" injectionSite="sa2[0:3].pointD">
         <onset>           50300        </onset>
         <duration>           10      </duration>
-        <rate>               1670    </rate>
+        <rate>               501    </rate>
       </InjectionStim>
 <!--First try with no depletion of ACh -->
     </StimulationSet>

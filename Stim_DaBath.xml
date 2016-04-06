@@ -4,13 +4,13 @@
   <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>               80000         </onset>
         <duration>            100           </duration>
-        <rate>                150           </rate>
+        <rate>                45           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
         <onset>               80000         </onset>
         <duration>            100           </duration>
-        <rate>                150           </rate>
+        <rate>                45           </rate>
   </InjectionStim>
 
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
@@ -24,22 +24,17 @@
         <rate>               6.5    </rate>
       </InjectionStim>
 
-  <InjectionStim specieID="Abuf" injectionSite="sa2[0:3].pointD">
-        <onset>               80000         </onset>
-        <duration>            1000           </duration>
-        <rate>                0.0           </rate>
-  </InjectionStim>
+<!-- basal ACh stim value for entire sim = desired conc * decay rate -->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               0          </onset>
+        <duration>            300000      </duration>
+        <rate>                0.6         </rate>
+</InjectionStim>
 
   <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               100000         </onset>
         <duration>            160000         </duration>
         <rate>                0.000         </rate>
-  </InjectionStim>
-
-  <InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
-        <onset>               80000         </onset>
-        <duration>            1000           </duration>
-        <rate>                0.0           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">

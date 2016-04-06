@@ -60,9 +60,7 @@
     <OutputSpecie name="GaqGDP"/>
 
 <!-- mACh m4 associated membrane molecules -->
-    <OutputSpecie name="Abuf"/>
     <OutputSpecie name="ACh"/>
-    <OutputSpecie name="AChbuf"/>
     <OutputSpecie name="m4R"/>
     <OutputSpecie name="AChm4R"/>
     <OutputSpecie name="Giabg"/>

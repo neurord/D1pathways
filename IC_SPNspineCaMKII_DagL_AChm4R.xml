@@ -31,8 +31,6 @@
         <NanoMolarity specieID="DaOutbuf"        value="0" />
         <NanoMolarity specieID="DaOut"           value="200000" />
 	<NanoMolarity specieID="ACh"             value="95" />
-        <NanoMolarity specieID="AChbuf"          value="0" />
-        <NanoMolarity specieID="Abuf"            value="0" />
 	<NanoMolarity specieID="Glu"             value="10"     />   
         <NanoMolarity specieID="GluOut"          value="200000" />
         <NanoMolarity specieID="Gbuf"            value="0" />

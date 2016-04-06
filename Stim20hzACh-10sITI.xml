@@ -7,7 +7,7 @@
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            5              </duration>
-        <rate>                60.0           </rate>
+        <rate>                18.0           </rate>
         <period>              50             </period>
         <end>                 50999          </end>
         <numTrains>           20             </numTrains>
@@ -17,7 +17,7 @@
 <InjectionStim specieID="Gbuf" injectionSite="sa1[0].pointA">
         <onset>               51000          </onset>
         <duration>            20              </duration>
-        <rate>                15.0           </rate>
+        <rate>                4.5           </rate>
         <period>              100             </period>
         <end>                 52999          </end>
         <numTrains>           20             </numTrains>
@@ -28,7 +28,7 @@
 <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>                120           </rate>
+        <rate>                36            </rate>
         <period>              50             </period>
         <end>                 50010          </end>
         <numTrains>           20             </numTrains>
@@ -39,7 +39,7 @@
 <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>               50050          </onset>
         <duration>            15              </duration>
-        <rate>                60.0           </rate>
+        <rate>                18.0           </rate>
         <period>              50             </period>
         <end>                 50060          </end>
         <numTrains>           20             </numTrains>
@@ -50,7 +50,7 @@
 <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>               50100          </onset>
         <duration>            15              </duration>
-        <rate>                42           </rate>
+        <rate>                12.6           </rate>
         <period>              50             </period>
         <end>                 50110          </end>
         <numTrains>           20             </numTrains>
@@ -61,7 +61,7 @@
 <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>               50150          </onset>
         <duration>            15              </duration>
-        <rate>                30          </rate>
+        <rate>                9           </rate>
         <period>              50             </period>
         <end>                 50999          </end>
         <numTrains>           20             </numTrains>
@@ -71,7 +71,7 @@
   <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
         <onset>               51000          </onset>
         <duration>            2000            </duration>
-        <rate>                4.8            </rate>
+        <rate>                1.44            </rate>
         <period>              10000            </period>
         <end>                 250000          </end>
   </InjectionStim>
@@ -81,7 +81,7 @@
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            3              </duration>
-        <rate>                512            </rate>
+        <rate>                156            </rate>
         <period>              50             </period>
         <end>                 50999          </end>
         <numTrains>           20             </numTrains>
@@ -91,18 +91,24 @@
 <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
         <onset>               50000          </onset>
         <duration>            3              </duration>
-        <rate>                520            </rate>
+        <rate>                156            </rate>
         <period>              50             </period>
         <end>                 50999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
-<!-- Assume that ACh neurons can follow 20 Hz -->
+<!-- basal ACh stim value for entire sim = desired conc * decay rate -->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               0          </onset>
+        <duration>            300000      </duration>
+        <rate>                0.6         </rate>
+</InjectionStim>
+<!-- burst during stim : Assume that ACh neurons can follow 20 Hz -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>                6           </rate>
+        <rate>                1.8           </rate>
         <period>              50             </period>
         <end>                 50999          </end>
         <numTrains>           20             </numTrains>
@@ -112,31 +118,9 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>                6           </rate>
+        <rate>                1.8           </rate>
         <period>              50             </period>
         <end>                 50999          </end>
-        <numTrains>           20             </numTrains>
-        <interTrainInterval>  9001          </interTrainInterval>  
- </InjectionStim>
-
- <!-- inject Abuf to deplete stimulated and basal ACh 
- depletion develops during 100 msec, and remains for 1 sec  = pause -->
-<InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
-        <onset>               50700          </onset>
-        <duration>            20            </duration>
-        <rate>                96            </rate>
-        <period>              1000           </period>
-        <end>                 51699          </end>
-        <numTrains>           20             </numTrains>
-        <interTrainInterval>  9001          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="Abuf" injectionSite="sa2[0:3].pointD">
-        <onset>               50700          </onset>
-        <duration>            20            </duration>
-        <rate>                96           </rate>
-        <period>              1000           </period>
-        <end>                 51699          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
  </InjectionStim>
@@ -145,22 +129,11 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               52400          </onset>
         <duration>            400            </duration>
-        <rate>                3.7            </rate>
+        <rate>                1.11            </rate>
         <period>              600           </period>
         <end>                 52999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9401          </interTrainInterval>  
-</InjectionStim>
-
- <!-- decrement of burst: inject less than for rebound burst -->
-<InjectionStim specieID="Abuf" injectionSite="sa1[0].pointA">
-        <onset>               52500          </onset>
-        <duration>            800            </duration>
-        <rate>                1.69            </rate>
-        <period>              1000           </period>
-        <end>                 53499          </end>
-        <numTrains>           20             </numTrains>
-        <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
 </StimulationSet>

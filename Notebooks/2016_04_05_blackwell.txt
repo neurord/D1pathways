@@ -74,3 +74,10 @@ This suggests that CamKII is required, but need to know what ACh is doing, or wh
 Still need to evaluate the following:
 1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation)
 2. What happens if decrease ACh alone??
+----------> Terrible results because I simultaneously reduced the volume.  Depth2D changed from 2.0 to 0.6, with reducing injected values.  Multiply all rates by 0.3
+-------->Da duration: though too high, the ratio of prolonged to initial stim is good.
+	    Bath: Ca and initial Da are too high (multiply by 0.3), but prolonged Da is good.
+	    Stim: reduced Glu, Ca, Gbuf, ACh (multiply by 0.3)
+##########Completely new Stim files:
+a. eliminate Abuf.  Replace with constant basal ACh inject, coupled with  constant ACh degrad.
+b. all remaining rates multiply by 0.3 since using 0.3 2D depth - smaller volume
