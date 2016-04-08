@@ -16,19 +16,19 @@
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>           80100        </onset>
         <duration>       99900.0       </duration>
-        <rate>               6.5    </rate>
+        <rate>               6.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
         <onset>           80100        </onset>
         <duration>       99900.0       </duration>
-        <rate>               6.5    </rate>
+        <rate>               6.0    </rate>
       </InjectionStim>
 
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               0          </onset>
         <duration>            300000      </duration>
-        <rate>                0.6         </rate>
+        <rate>                0.5         </rate>
 </InjectionStim>
 
   <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">

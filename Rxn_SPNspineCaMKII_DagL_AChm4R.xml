@@ -247,7 +247,7 @@
 	<Reactant specieID="Leak"/>
 	<Product specieID="CaOutLeak"/>
 
-        <forwardRate>0.5e-6</forwardRate>
+        <forwardRate>0.25e-6</forwardRate>
 	<reverseRate>1.1e-3</reverseRate>
     </Reaction>
 
@@ -528,7 +528,7 @@
         <Reactant specieID="m1RGq" />
         <Product specieID="AChm1RGq" />
 
-        <forwardRate> 0.000666e-03 </forwardRate>
+        <forwardRate> 0.00396e-03 </forwardRate>
         <reverseRate> 2.5e-03        </reverseRate>
    </Reaction>
 
@@ -550,13 +550,13 @@
  
         <forwardRate> 6e-03 </forwardRate>
     </Reaction>
-   <!-- ACh or ACh agonist: ACh + m4R <==> AChm4R       Kd = 1000: low affinity-->
+   <!-- ACh or ACh agonist: ACh + m4R <==> AChm4R       Kd = 3.7uM: low affinity-->
       <Reaction name = "ACh+m4R--AChm4R" id="ACh+m4R--AChm4R">
         <Reactant specieID="ACh"              />
         <Reactant specieID="m4R"              />
         <Product  specieID="AChm4R"         />
 
-        <forwardRate> 0.000169e-03 </forwardRate>
+        <forwardRate> 0.000676e-03 </forwardRate>
         <reverseRate> 2.5e-03      </reverseRate>
     </Reaction>
 
@@ -570,7 +570,7 @@
         <reverseRate>  0.42e-03  </reverseRate>
     </Reaction>
 
-    <!-- Gi + m4R       <-> Gim4R       Kd = 350  source:  PMR, Hein et al. JBC 2006: Gi dissoc tau=14s  -->
+    <!-- Gi + m4R       <-> Gim4R     Kd = 350  source:  PMR, Hein et al. JBC 2006: Gi dissoc tau=14s  -->
     <Reaction name = "Giabg+m4R--Gim4R" id="Giabg+m4R--Gim4R">
         <Reactant specieID="Giabg"                      />
         <Reactant specieID="m4R"                      />
@@ -579,13 +579,13 @@
         <forwardRate> 0.00178e-03 </forwardRate>
         <reverseRate> 0.42e-03  </reverseRate>
     </Reaction>
-    <!-- Gim4R + ACh       <-> AChm4RGi      Kd = 100 nM: high affinity-->
+    <!-- Gim4R + ACh    <-> AChm4RGi     Kd = 274 nM: high affinity (4x greater than measured)-->
     <Reaction name = "Gim4R+ACh--AChm4RGi" id="Gm4R+ACh--AChm4RGi">
         <Reactant specieID="Gim4R"                     />
         <Reactant specieID="ACh"                      />
         <Product  specieID="AChm4RGi"                    />
 
-        <forwardRate> 0.00228e-03 </forwardRate>
+        <forwardRate> 0.00912e-03 </forwardRate>
         <reverseRate> 2.5e-03        </reverseRate>
     </Reaction>
 

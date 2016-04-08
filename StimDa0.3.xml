@@ -12,23 +12,29 @@
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>           50010        </onset>
         <duration>         290.0       </duration>
-        <rate>               3.9    </rate>
+        <rate>               5.7    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
         <onset>           50010        </onset>
         <duration>         290.0       </duration>
-        <rate>               3.9    </rate>
+        <rate>               5.7    </rate>
       </InjectionStim>
       <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
         <onset>           50300        </onset>
         <duration>           10      </duration>
-        <rate>               501    </rate>
+        <rate>               555    </rate>
       </InjectionStim>
       <InjectionStim specieID="Dbuf" injectionSite="sa2[0:3].pointD">
         <onset>           50300        </onset>
         <duration>           10      </duration>
-        <rate>               501    </rate>
+        <rate>               555    </rate>
       </InjectionStim>
 <!--First try with no depletion of ACh -->
+<!-- basal ACh stim value for entire sim = desired conc * decay rate -->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               0          </onset>
+        <duration>            300000      </duration>
+        <rate>                0.5         </rate>
+</InjectionStim>
     </StimulationSet>
 

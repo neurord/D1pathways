@@ -35,7 +35,7 @@
   <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
         <onset>               51000          </onset>
         <duration>            2000            </duration>
-        <rate>                1.5           </rate>
+        <rate>                1.52           </rate>
         <period>              15000            </period>
         <end>                 190000          </end>
   </InjectionStim>
@@ -48,18 +48,26 @@
         <end>                 190000          </end>
   </InjectionStim>
 
-<!-- basal ACh stim value for entire sim = desired conc * decay rate -->
+<!-- basal ACh value prior to stim = desired conc * decay rate -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               0          </onset>
-        <duration>            300000      </duration>
-        <rate>                0.6         </rate>
+        <duration>            50000      </duration>
+        <rate>                0.5         </rate>
+</InjectionStim>
+<!-- basal ACh stim paused during Da stim-->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               52200          </onset>
+        <duration>            12800      </duration>
+        <rate>                0.5         </rate>
+        <period>              15000             </period>
+        <end>                 300000          </end>
 </InjectionStim>
 
  <!-- burst during stim specified for each Glu/Da train (below)-->
  <!-- rebound burst: develops more slowly -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               52400          </onset>
-        <duration>            400            </duration>
+        <duration>            800            </duration>
         <rate>                1.11            </rate>
         <period>              600           </period>
         <end>                 52999          </end>
@@ -105,7 +113,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 50066          </end>
         <numTrains>           10             </numTrains>
@@ -115,7 +123,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 50066          </end>
         <numTrains>           10             </numTrains>
@@ -159,7 +167,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               65000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 65066          </end>
         <numTrains>           10             </numTrains>
@@ -169,7 +177,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               65000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 65066          </end>
         <numTrains>           10             </numTrains>
@@ -213,7 +221,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               80000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 80066          </end>
         <numTrains>           10             </numTrains>
@@ -223,7 +231,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               80000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 80066          </end>
         <numTrains>           10             </numTrains>
@@ -268,7 +276,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               95000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 95066          </end>
         <numTrains>           10             </numTrains>
@@ -278,7 +286,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               95000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 95066          </end>
         <numTrains>           10             </numTrains>
@@ -323,7 +331,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               110000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 110066          </end>
         <numTrains>           10             </numTrains>
@@ -333,7 +341,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               110000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 110066          </end>
         <numTrains>           10             </numTrains>
@@ -378,7 +386,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               125000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 125066          </end>
         <numTrains>           10             </numTrains>
@@ -388,7 +396,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               125000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 125066          </end>
         <numTrains>           10             </numTrains>
@@ -432,7 +440,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               140000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 140066          </end>
         <numTrains>           10             </numTrains>
@@ -442,7 +450,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               140000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 140066          </end>
         <numTrains>           10             </numTrains>
@@ -486,7 +494,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               155000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 155066          </end>
         <numTrains>           10             </numTrains>
@@ -496,7 +504,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               155000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 155066          </end>
         <numTrains>           10             </numTrains>
@@ -506,7 +514,7 @@
 
 <!--*********Glu******TRAIN 9***************-->
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>              140000          </onset>
+        <onset>              170000          </onset>
         <duration>            5              </duration>
         <rate>                18.0           </rate>
         <period>              20             </period>
@@ -541,7 +549,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               170000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 170066          </end>
         <numTrains>           10             </numTrains>
@@ -551,7 +559,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               170000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 170066          </end>
         <numTrains>           10             </numTrains>
@@ -560,7 +568,7 @@
 
 <!--*********Glu******TRAIN 10***************-->
 <InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
-        <onset>              155000          </onset>
+        <onset>              185000          </onset>
         <duration>            5              </duration>
         <rate>                18.0           </rate>
         <period>              20             </period>
@@ -595,7 +603,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               185000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 185066          </end>
         <numTrains>           10             </numTrains>
@@ -605,7 +613,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
         <onset>               185000          </onset>
         <duration>            15              </duration>
-        <rate>               1.8          </rate>
+        <rate>               8.0          </rate>
         <period>              40             </period>
         <end>                 185066          </end>
         <numTrains>           10             </numTrains>

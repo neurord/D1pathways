@@ -21,5 +21,11 @@
       </InjectionStim>
 <!--First try with no depletion of ACh -->
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               0          </onset>
+        <duration>            300000      </duration>
+        <rate>                0.5         </rate>
+</InjectionStim>
+
     </StimulationSet>
 
