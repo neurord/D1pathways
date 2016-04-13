@@ -9,29 +9,32 @@ mol_per_nM_u3=Avogadro*1e-15
 def get_mol_info(simData,plot_molecules,gridpoints):
     outputsets=simData['model']['output'].keys()
     dt=np.zeros((len(plot_molecules)))
-    samples=np.zeros((len(plot_molecules)))
+    samples=np.zeros((len(plot_molecules)),dtype=int)
     out_location={}
     for imol,molecule in enumerate(plot_molecules):
         temp_dict={}
-        for outset in outputsets[1:]:
+        tot_voxels=0
+        for outset in outputsets[1:]:           #better to go backward from last set, and then go to 0 set if mol not found
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
                 dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000. #convert msec to sec
-                temp_dict[outset]={'mol_index':mol_index,'num_voxels':len(simData['model']['output'][outset]['elements'])}
-                print "temp_loc",molecule, temp_dict
+                tot_voxels=tot_voxels+len(simData['model']['output'][outset]['elements'])
+                temp_dict[outset]={'mol_index':mol_index,'elements':simData['model']['output'][outset]['elements'][:]}
         if len(temp_dict)>0:
-            out_location[molecule]=(samples[imol],dt[imol],temp_dict)
+            out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': tot_voxels,'location': temp_dict}
         else:
             outset=outputsets[0]
+            print "************* MOLECULE NOT IN REGULAR OUTPUT SETS !!!!!!!!!!!!"
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
                 dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000. #convert msec to sec
-                out_location[molecule]=(samples[imol],dt[imol],'__main__',{'mol_index':mol_index,'num_voxels':gridpoints})
+                temp_dict[outset]={'mol_index':mol_index,'elements':simData['model']['output'][outset]['elements'][:]}
+                out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': grid_points,'location': temp_dict}
             else:
                 out_location[molecule]=-1
-                print "************* MOLECULE NOT FOUND !!!!!!!!!!!!"
+                print "************* MOLECULE DOES NOT EXIST !!!!!!!!!!!!"
     return out_location,dt,samples
          
 def get_mol_index(simData,outputset,molecule):
@@ -41,22 +44,14 @@ def get_mol_index(simData,outputset,molecule):
     else:
         return -1
 
-def get_mol_pop(simData, out_location):
-    print "get_mol_pop",out_location
-    samples=out_location[0]
-    voxels=0
-    for each in out_location[2].keys():
-        voxels=voxels+out_location[2][each]['num_voxels']
-    conc=np.zeros((samples,voxels))
-    startvoxels=0
-    for outset in out_location[2].keys():
-        tempConc=simData['trial0']['output'][outset]['population'][:,:,out_location[2][outset]['mol_index']]
+def get_mol_pop(simData, out_location,gridpoints):
+    samples=out_location['samples']
+    conc=np.zeros((samples,gridpoints))
+    for outset in out_location['location'].keys():
+        elements=out_location['location'][outset]['elements']
+        tempConc=simData['trial0']['output'][outset]['population'][:,:,out_location['location'][outset]['mol_index']]
         time=simData['trial0']['output'][outset]['times'][:]/1000.     #Convert msec to sec
-        endvoxels=startvoxels+np.shape(tempConc)[1]
-        conc[:,startvoxels:endvoxels]=tempConc
-        startvoxels=endvoxels
-        if endvoxels==voxels:
-            return conc,time
+        conc[:,elements]=tempConc
     return conc,time
 
 def argparse(args):
@@ -97,7 +92,7 @@ def argparse(args):
 
 def region_volume(List,Vox,volume,prnvox):
     #This volume is in units of cubic microns, multiply by 1e-15 to convert to Liters
-    print "\nFOR region avg: j,regionvox,vol:",
+    print "\nFOR region avg: j,regionvox,vol:"
     region_volume=np.zeros(len(List))
     for j in range(len(List)):
         for k in Vox[j]:

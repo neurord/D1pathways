@@ -1,14 +1,16 @@
-#Python version, i.e. alternative of NRDpostAB
-#in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurord_analysis.py')
+#neurordh5_analysis.py
+#in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurordh5_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
 #if mol ommitted, then all molecules processed
 #e.g. ARGS="Ca GaqGTP,Ca GaqGTP Ip3,../Repo/plc/Model_PLCassay,15 20" time units are sec
-#from outside python, type python neurord_analysis [par1 par2] [mol1 mol2]
+#from outside python, type python neurordh5_analysis [par1 par2] [mol1 mol2]
 #Assumes that molecule outputs are integers, and the hypens used ONLY for parameters
 #Can process multiple parameter variations, but all files must use same morphology, and meshfile.  
-#It will provide region averages (each spine, dendrite submembrane, cytosol) and if spatialaverage=1,
-#will calculate an average of n segments along the dendrite, 
-#or whatever structure name is specified in dend variable
+#It will provide region averages (each spine, dendrite submembrane, cytosol)
+#Future improvements:
+#   1. spatial average along dendrite
+#   2. deal with output sets that store a subset of voxels
+#   3. identify which molecules are same species to calculate total
 
 import os
 import numpy as np
@@ -46,6 +48,9 @@ showplot=1
 #        "pde10tot":["PDE10","pPDE10", "PDE10cAMP","pPDE10cAMP","PKAcPDE10", "PKAcPDE10cAMP"],
 #        "Gitot":["Giabg","AChm4RGi","Gim4R", "GaiGTP", "GaiGDP", "ACGai", "ACGasGai", "ACGasGaiATP"],
 #        "m4Rtot":["AChm4RGi","Gim4R", "m4R", "AChm4R"]}
+#if use proper naming convention, can find most species with PKA or D1R instead of specifying by hand
+#allow the list of tot_species to be greater than the dictionary above
+#will need to do PKA and Pip2/Ip3 separately
 tot_species={}
 ###################################################
 
@@ -143,7 +148,7 @@ for fnum,ftuple in enumerate(ftuples):
     if maxvols>1:
         for imol,molecule in enumerate(plot_molecules):
           if out_location[molecule]!=-1:
-            molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule])
+            molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols)
             time_array.append(time)
             #calculate region means
             header,RegionMeans=h5utils.region_means(molecule_pop,region_list,region_vox,RegVol,time,molecule)
@@ -154,7 +159,7 @@ for fnum,ftuple in enumerate(ftuples):
             for itime in range(len(time)):
                 for k in range(maxvols):
                     OverallMean[itime]+=molecule_pop[itime,k]
-                OverallMean[:]/=(TotVol*mol_per_nM_u3)
+            OverallMean[:]/=(TotVol*mol_per_nM_u3)
             header='#time ' +header+header2+molecules[imol]+'AvgTot\n'
             #
             plot_array.append(OverallMean)
@@ -163,7 +168,7 @@ for fnum,ftuple in enumerate(ftuples):
             if outputavg:
                 outfname=fname[0:-8]+molecule+'_avg.txt'
                 if molecule in plot_molecules:
-                    print 'output file: ', outfname, np.mean(RegionMeans[sstart[imol]:ssend[imol]],0)
+                    print 'output file: ', outfname
                     outdata=np.column_stack((time,RegionMeans,RegionStructMeans,OverallMean))
                     f=open(outfname, 'w')
                     f.write(header)
@@ -200,7 +205,7 @@ for fnum,ftuple in enumerate(ftuples):
     #after main processing, extract a few characteristics of molecule trajectory
     #####################################################################
     print params, parval[fnum]
-    print "      molecule  baseline  peakval  ptime   slope     min     ratio"
+    print "        molecule  baseline  peakval   ptime    slope      min     ratio"
     for imol,mol in enumerate(plot_molecules):
       if out_location[molecule]!=-1:
         ss[fnum,imol]=plot_array[imol][sstart[imol]:ssend[imol]].mean()
@@ -229,8 +234,11 @@ for fnum,ftuple in enumerate(ftuples):
         else:
                 slope[fnum,imol]=-9999
         print mol.rjust(16),"%8.2f" % baseline[fnum,imol],"%8.2f" %peakval[fnum,imol],
-        print "%8.2f" % peaktime[fnum,imol], "%8.3f" %slope[fnum,imol],  
-        print "%8.2f" %lowval[fnum,imol], "%8.2f" %(peakval[fnum,imol]/baseline[fnum,imol])
+        print "%8.2f" % peaktime[fnum,imol], "%8.3f" %slope[fnum,imol], "%8.2f" %lowval[fnum,imol],
+        if baseline[fnum,imol]>1e-5:
+            print  "%8.2f" %(peakval[fnum,imol]/baseline[fnum,imol])
+        else:
+            print "   inf"
     #
     #Now plot some of these molcules, either single voxel or overall average if multi-voxel
     #
