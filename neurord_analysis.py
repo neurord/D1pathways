@@ -187,7 +187,7 @@ for fnum,ftuple in enumerate(ftuples):
     #use the above lists and volume of each region, and each region-structure
     ######################################
     if maxvols>1:
-        data=np.zeros((rows,maxvols))
+        data=np.zeros((rows,maxvols),dtype=int)
         for imol in range(len(molecules)):
            if molecules[imol] in plot_molecules:
                 data=molecule_array[:,imol,:]

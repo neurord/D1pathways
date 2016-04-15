@@ -9,8 +9,7 @@
 #It will provide region averages (each spine, dendrite submembrane, cytosol)
 #Future improvements:
 #   1. spatial average along dendrite
-#   2. deal with output sets that store a subset of voxels
-#   3. identify which molecules are same species to calculate total
+#   2. identify which molecules are same species to calculate total
 
 import os
 import numpy as np
@@ -19,7 +18,7 @@ from string import *
 import sys  
 import glob
 import h5utils
-import plot_h5 as pu
+import plot_h5 as pu5
 import h5py as h5
 
 #######################################################
@@ -117,7 +116,7 @@ for fnum,ftuple in enumerate(ftuples):
             plot_molecules=molecules
         out_location,dt,rows=h5utils.get_mol_info(data,plot_molecules,maxvols)
         if showplot:
-            fig,axes,col_inc,scale,numpar=pu.plot_setup(plot_molecules,parlist,params)
+            fig,axes,col_inc,scale,numpar=pu5.plot_setup(plot_molecules,parlist,params)
             #need fnames
             fig.suptitle(figtitle)
         #
@@ -243,7 +242,7 @@ for fnum,ftuple in enumerate(ftuples):
     #Now plot some of these molcules, either single voxel or overall average if multi-voxel
     #
     if showplot:
-        pu.plottrace(plot_molecules,time_array,plot_array,parval[fnum],axes,fig,col_inc,scale,parlist)
+        pu5.plottrace(plot_molecules,time_array,plot_array,parval[fnum],axes,fig,col_inc,scale,parlist)
     #
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
@@ -257,12 +256,12 @@ if len(params)>1:
                         xval.append(pv[1])
         print xval
         if showss:
-                pu.plotss(plot_molecules,xval,ss)
+                pu5.plotss(plot_molecules,xval,ss)
 else:
     if showss:
         #also plot the totaled molecule forms
         if len(tot_species.keys()):
-                pu.plotss(plot_molecules+tot_species.keys(),parval,np.hstack((ss,ss_tot)))
+                pu5.plotss(plot_molecules+tot_species.keys(),parval,np.hstack((ss,ss_tot)))
         else:
-                pu.plotss(plot_molecules,parval,ss)
+                pu5.plotss(plot_molecules,parval,ss)
 

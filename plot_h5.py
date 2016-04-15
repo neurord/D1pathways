@@ -34,8 +34,12 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
           else:
                p0=parlist[0].index(parval[0])
                p1=parlist[1].index(parval[1])
-     rows=np.shape(axes)[0]
-     if np.size(axes)==rows:
+     if not np.shape(axes):
+          imol=0
+          axes.plot(time[imol][:],plotarray[imol][:],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
+     else:
+       rows=np.shape(axes)[0]
+       if np.size(axes)==rows:
           for imol in range(len(plotmol)):
                if plotarray[imol][0]>-1:
                     axes[imol].plot(time[imol][:],plotarray[imol][:],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
@@ -43,7 +47,7 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
                     axes[imol].legend(fontsize=8, loc='best')
                axes[imol].set_ylabel(plotmol[imol])#+' (nM)')
           axes[imol].set_xlabel('Time (sec)')
-     else:
+       else:
           cols=np.shape(axes)[1]
           for col in range(cols):
                for row in range(rows):
@@ -74,24 +78,24 @@ def file_tuple(fnames,params):
      par0list=[]
      par1list=[]
      for fname in fnames:
-            parts=fname.split('-')
-            parval0=parts[1].split(params[0])[1]
-            dotloc= parval0.find('.')
-            if dotloc>0:
-                 parval0=parval0[0:dotloc]
-            if (parval0 not in par0list):
-                 par0list.append(parval0)
-            print 'pu: fname, par0:',fname,par0list
-            if len(params)>1:
-                    parval1=parts[2].split(params[1])[1]
-                    dotloc= parval1.find('.')
-                    if dotloc>0:
-                         parval1=parval1[0:dotloc]
-                    ftuple.append((fname,(parval0,parval1)))
-                    if (parval1 not in par1list):
-                         par1list.append(parval1)
-                    print 'pu: par1:',par1list
-            else:
-                    ftuple.append((fname,parval0))
+          parts=fname.split('-')
+          parval0=parts[1].split(params[0])[1]
+          dotloc= parval0.rfind('.')
+          if dotloc>0:
+               parval0=parval0[0:dotloc]
+          if (parval0 not in par0list):
+               par0list.append(parval0)
+          print 'pu: fname, par0:',fname,par0list
+          if len(params)>1:
+               parval1=parts[2].split(params[1])[1]
+               dotloc= parval1.find('.')
+               if dotloc>0:
+                    parval1=parval1[0:dotloc]
+               ftuple.append((fname,(parval0,parval1)))
+               if (parval1 not in par1list):
+                    par1list.append(parval1)
+               print 'pu: par1:',par1list
+          else:
+               ftuple.append((fname,parval0))
      return ftuple,[par0list,par1list]
 

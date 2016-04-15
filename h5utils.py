@@ -2,7 +2,7 @@ import numpy as np
 from string import *
 import glob
 import os
-import plot_h5 as pu
+import plot_h5 as pu5
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
 
@@ -83,7 +83,7 @@ def argparse(args):
 
     parlist=[]
     if len(args[0]):
-        ftuples,parlist=pu.file_tuple(fnames,params)
+        ftuples,parlist=pu5.file_tuple(fnames,params)
         ftuples = sorted(ftuples, key=lambda x:x[1])
     else:
         ftuples=[(fnames[0],1)]

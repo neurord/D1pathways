@@ -34,8 +34,12 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
           else:
                p0=parlist[0].index(parval[0])
                p1=parlist[1].index(parval[1])
-     rows=np.shape(axes)[0]
-     if np.size(axes)==rows:
+     if not np.shape(axes):
+          imol=0
+          axes.plot(time,plotarray[:,imol],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
+     else:
+       rows=np.shape(axes)[0]
+       if np.size(axes)==rows:
           for imol in range(len(plotmol)):
                if imol==0:
                     axes[imol].plot(time,plotarray[:,imol],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
@@ -44,7 +48,7 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
                     axes[imol].plot(time,plotarray[:,imol],color=(p0*colinc[0],0,p1*colinc[1]))
                axes[imol].set_ylabel(plotmol[imol])#+' (nM)')
           axes[imol].set_xlabel('Time (sec)')
-     else:
+       else:
           cols=np.shape(axes)[1]
           for col in range(cols):
                for row in range(rows):
