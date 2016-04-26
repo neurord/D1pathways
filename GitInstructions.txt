@@ -73,3 +73,4 @@ git pull
 git stash apply or git pop
 git stash drop - clears the last stash
 
+wget url to download just a single file

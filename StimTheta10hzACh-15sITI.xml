@@ -56,7 +56,7 @@
 </InjectionStim>
 <!-- basal ACh stim paused during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               52200          </onset>
+        <onset>               52400          </onset>
         <duration>            12800      </duration>
         <rate>                0.5         </rate>
         <period>              15000             </period>

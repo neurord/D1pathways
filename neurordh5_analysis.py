@@ -9,7 +9,6 @@
 #It will provide region averages (each spine, dendrite submembrane, cytosol)
 #Future improvements:
 #   1. spatial average along dendrite
-#   2. identify which molecules are same species to calculate total
 
 import os
 import numpy as np
@@ -22,15 +21,13 @@ import plot_h5 as pu5
 import h5py as h5
 
 #######################################################
-#indicate the name of the injection spines if you want to exclude them
-fake = 'FAKE'
 #indicate the name of submembrane region for totaling molecules that are exclusively submembrane
 #only relevant for tot_species calculation. this should be name of structure concatenated with sub
 submembname='sub'
-#Spatial average (=1 to process) only includes the structure "dend", and subdivides into bins:
-spatialaverage=0
 dend="dend"
 spinehead="head"
+#Spatial average (=1 to process) only includes the structure dend, and subdivides into bins:
+spatialaverage=0
 bins=10
 #how much info to print
 prnvox=1
@@ -41,16 +38,10 @@ outputavg=0
 showplot=1
 
 #Example of how to total some molecule forms; turn off with tot_species={}
-#tot_species={
-#        "PKAtot":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"],
-#        "D1Rtot":["D1R","DaD1R", "GsD1R","DaD1RGs", "pDaD1RGs", "PKAcDaD1RGs"],
-#        "pde10tot":["PDE10","pPDE10", "PDE10cAMP","pPDE10cAMP","PKAcPDE10", "PKAcPDE10cAMP"],
-#        "Gitot":["Giabg","AChm4RGi","Gim4R", "GaiGTP", "GaiGDP", "ACGai", "ACGasGai", "ACGasGaiATP"],
-#        "m4Rtot":["AChm4RGi","Gim4R", "m4R", "AChm4R"]}
-#if use proper naming convention, can find most species with PKA or D1R instead of specifying by hand
-#allow the list of tot_species to be greater than the dictionary above
-#will need to do PKA and Pip2/Ip3 separately
-tot_species={}
+#No need to specify subspecies if uniquely determined by string
+sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
+        "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
+tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl"]
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -68,7 +59,9 @@ except NameError: #NameError refers to an undefined variable (in this case ARGS)
 ftuples,parlist,params=h5utils.argparse(args)
 figtitle=args[2].split('/')[-1]
 numfiles=len(ftuples)
-ss_tot=np.zeros((numfiles,len(tot_species.keys())))
+ss_tot=np.zeros((numfiles,len(tot_species)))
+dsm_tot=np.zeros((numfiles,len(tot_species)))
+head_tot=np.zeros((numfiles,len(tot_species)))
 
 ###################################################
 
@@ -86,8 +79,8 @@ for fnum,ftuple in enumerate(ftuples):
         outputsets=data['trial0']['output'].keys()
     #else - will need to average over multiple trials eventually.
 
-    ##### Initialization done only for first file in the list
     #Extract region and structure voxels and volumes
+    #
     if maxvols>1 and fnum==0:
         molecules=data['model']['species'][:]
         structType=data['model']['grid'][:]['type']
@@ -100,13 +93,8 @@ for fnum,ftuple in enumerate(ftuples):
             head_vox=list(region_list[:]).index(spinehead)
         except ValueError:
             head_vox=-1
-
-        submembVol=0
-        for region in region_list:
-            smname=region+submembname
-            if smname in region_struct_list:
-                submembVol+=RegStructVol[region_struct_list.index(smname)]
-    #Finished extracting region and structure voxels and volumes
+    #
+    ##### Initialization done only for first file in the list
     #
     if fnum==0:
         #initialize plot stuff, arrays for static measurements, and find molecules among the output sets
@@ -145,12 +133,15 @@ for fnum,ftuple in enumerate(ftuples):
     #use the above lists and volume of each region, and each region-structure
     ######################################
     if maxvols>1:
+        molecule_name_issue=0
         for imol,molecule in enumerate(plot_molecules):
           if out_location[molecule]!=-1:
             molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols)
             time_array.append(time)
             #calculate region means
             header,RegionMeans=h5utils.region_means(molecule_pop,region_list,region_vox,RegVol,time,molecule)
+            if all(item==True for item in np.isnan(RegionMeans[:,0])):
+                header=header.replace(molecule+'default ','')
             #calculate region-structure menas
             header2,RegionStructMeans=h5utils.region_means(molecule_pop,region_struct_list,region_struct_vox,RegStructVol,time,molecule)
             #calculate overall mean
@@ -159,7 +150,7 @@ for fnum,ftuple in enumerate(ftuples):
                 for k in range(maxvols):
                     OverallMean[itime]+=molecule_pop[itime,k]
             OverallMean[:]/=(TotVol*mol_per_nM_u3)
-            header='#time ' +header+header2+molecules[imol]+'AvgTot\n'
+            header='#time ' +header+header2+molecule+'AvgTot\n'
             #
             plot_array.append(OverallMean)
             #
@@ -168,7 +159,11 @@ for fnum,ftuple in enumerate(ftuples):
                 outfname=fname[0:-8]+molecule+'_avg.txt'
                 if molecule in plot_molecules:
                     print 'output file: ', outfname
-                    outdata=np.column_stack((time,RegionMeans,RegionStructMeans,OverallMean))
+                    if all(item==True for item in np.isnan(RegionMeans[:,0])):
+                        start_col=1
+                    else:
+                        start_col=0
+                    outdata=np.column_stack((time,RegionMeans[:,start_col:],RegionStructMeans,OverallMean))
                     f=open(outfname, 'w')
                     f.write(header)
                     np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
@@ -180,7 +175,9 @@ for fnum,ftuple in enumerate(ftuples):
                 print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_deltaY[dsm_vox]),
                                                      (RegionStructMeans[ssend[imol]:,dsm_vox].max()*region_struct_deltaY[dsm_vox]))
           else:
-              print "molecule", molecule, "not found in output data!!!!!!!!!!!"
+              if fnum==0 and molecule_name_issue==0:
+                  print "Choose molecules from:", molecules
+                  molecule_name_issue=1
               plot_array.append([-1])
               #
     else:
@@ -193,12 +190,35 @@ for fnum,ftuple in enumerate(ftuples):
                 plot_array.append(tempConc)
           else:
               print "molecule", molecule, "not found in output data!!!!!!!!!!!"
+              if fnum==0:
+                  print "choose from:", molecules
               plot_array.append([-1])
     #
     #in both cases (single voxel and multi-voxel):
-    #########total some molecule forms - specified by hand above for now
+    ######### total some molecule forms, to verify initial conditions
     #
-    #edit from neurord_analysis.py
+    outset="__main__"
+    for imol,mol in enumerate(tot_species):
+        mol_set=[]
+        if mol in sub_species.keys():
+            mol_set=sub_species[mol]
+        else:
+            for subspecie in data['model']['output']['__main__']['species'][:]:
+                if mol in subspecie:
+                    mol_set.append(subspecie)
+        for subspecie in mol_set:
+            mol_index=h5utils.get_mol_index(data,outset,subspecie)
+            mol_pop=data['trial0']['output'][outset]['population'][0,:,mol_index]
+            ss_tot[fnum,imol]+=mol_pop.sum()/TotVol/mol_per_nM_u3
+            dsm_tot[fnum,imol]+=mol_pop[region_struct_vox[dsm_vox]].sum()/RegStructVol[dsm_vox]*region_struct_deltaY[dsm_vox]/mol_per_nM_u3
+            if head_vox>-1:
+                head_tot[fnum,imol]+=mol_pop[region_vox[head_vox]].sum()/RegVol[head_vox]/mol_per_nM_u3
+            else:
+                head_tot[fnum,imol]+=-1
+        print "Total",mol,
+        if fnum==0:
+            print mol_set,
+        print ss_tot[fnum,imol],"nM, or head:",head_tot[fnum,imol],"nM, or dsm:", dsm_tot[fnum,imol], "picoSD" 
     #
     #####################################################################
     #after main processing, extract a few characteristics of molecule trajectory
@@ -206,7 +226,7 @@ for fnum,ftuple in enumerate(ftuples):
     print params, parval[fnum]
     print "        molecule  baseline  peakval   ptime    slope      min     ratio"
     for imol,mol in enumerate(plot_molecules):
-      if out_location[molecule]!=-1:
+      if out_location[mol]!=-1:
         ss[fnum,imol]=plot_array[imol][sstart[imol]:ssend[imol]].mean()
         baseline[fnum,imol]=plot_array[imol][sstart[imol]:ssend[imol]].mean()
         peakpt=plot_array[imol][ssend[imol]:].argmax()+ssend[imol]

@@ -26,18 +26,22 @@ set -ex
 #java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_Spine_AChtest-stim20hz.xml > /dev/null &
 #java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_Spine_AChtest-stimtheta.xml > /dev/null &
 
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-stim20hz.xml > /dev/null&
+#java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-stim20hz.xml &
+#java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-stimtheta.xml &
 
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-stimtheta.xml > /dev/null&
+#java -jar -Dneurord.writers=h5,text /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-Da0.1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da0.1 &
+#java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-Da0.3.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da0.3  &
+#java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-Da1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da1 &
+#java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-Da100.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da100 &
 
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da0.1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da0.1 > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da0.3.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da0.3 > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da1 > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-Da100.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-Da100 > /dev/null&
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-bathDa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathDa &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-bathCa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathCa &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-bathDaCa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathDaCa &
 
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-bathDa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathDa > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-bathCa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathCa > /dev/null&
-java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL_AChm4R-bathDaCa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-bathDaCa > /dev/null&
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-blockCyA-bathDa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-blockCyA-bathDa &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-blockCyA-bathCa.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-blockCyA-bathCa &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-blockCyA.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-blockCyA &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.0.5.jar --log=no Model_SPNspineCaMKII_DagL_AChm4R-blockOA.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R-blockOA &
 
 #alternative:
 #To run things in parallel (instead of batch file):

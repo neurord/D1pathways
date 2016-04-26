@@ -44,8 +44,8 @@
     <OutputSpecie name="PKAcDaD1RGs"/>
     <OutputSpecie name="pDaD1RGs"/>
     <OutputSpecie name="GsD1R"/>
-    <OutputSpecie name="GasGTP"/>
-    <OutputSpecie name="GasGDP"/>
+    <OutputSpecie name="GsaGTP"/>
+    <OutputSpecie name="GsaGDP"/>
     <OutputSpecie name="Gbg"/>
 
     <OutputSpecie name="Glu"/>
@@ -56,8 +56,8 @@
     <OutputSpecie name="Gqabg"/>
     <OutputSpecie name="MgluRGq"/>
     <OutputSpecie name="GluMgluRGq"/>
-    <OutputSpecie name="GaqGTP"/>
-    <OutputSpecie name="GaqGDP"/>
+    <OutputSpecie name="GqaGTP"/>
+    <OutputSpecie name="GqaGDP"/>
 
 <!-- mACh m4 associated membrane molecules -->
     <OutputSpecie name="ACh"/>
@@ -66,19 +66,19 @@
     <OutputSpecie name="Giabg"/>
     <OutputSpecie name="AChm4RGi"/>
     <OutputSpecie name="Gim4R"/>
-    <OutputSpecie name="GaiGTP"/>
-    <OutputSpecie name="GaiGDP"/>
+    <OutputSpecie name="GiaGTP"/>
+    <OutputSpecie name="GiaGDP"/>
 
     <OutputSpecie name="m1R"/>
     <OutputSpecie name="AChm1R"/>
     <OutputSpecie name="m1RGq"/>
     <OutputSpecie name="AChm1RGq"/>
 
-    <OutputSpecie name="AC"/>
-    <OutputSpecie name="ACGai"/>
-    <OutputSpecie name="ACGasATP"/>
-    <OutputSpecie name="ACGasGai"/>
-    <OutputSpecie name="ACGasGaiATP"/>
+    <OutputSpecie name="AC5"/>
+    <OutputSpecie name="AC5Gia"/>
+    <OutputSpecie name="AC5GsaATP"/>
+    <OutputSpecie name="AC5GsaGia"/>
+    <OutputSpecie name="AC5GsaGiaATP"/>
 
     <OutputSpecie name="ATP"/>
     <OutputSpecie name="cAMP"/>
@@ -106,11 +106,11 @@
 
     <OutputSpecie name="Plc"/>
     <OutputSpecie name="PlcCa"/>
-    <OutputSpecie name="PlcGaq"/>
-    <OutputSpecie name="PlcCaGaq"/>
+    <OutputSpecie name="PlcGqa"/>
+    <OutputSpecie name="PlcCaGqa"/>
     <OutputSpecie name="Pip2"/>
     <OutputSpecie name="PlcCaPip2"/>
-    <OutputSpecie name="PlcCaGaqPip2"/>
+    <OutputSpecie name="PlcCaGqaPip2"/>
     <OutputSpecie name="Ip3"/>
     <OutputSpecie name="Dag"/>
 
@@ -146,7 +146,7 @@
     <OutputSpecie name="PP2AB56d"/>
     <OutputSpecie name="PKAcPP2AB56d"/>
     <OutputSpecie name="pPP2A"/>
-    <OutputSpecie name="PP2AC"/>
+    <OutputSpecie name="PP2Acal"/>
 
     <OutputSpecie name="CK"/>
     <OutputSpecie name="CKCamCa4"/>
@@ -154,6 +154,8 @@
     <OutputSpecie name="CKp"/>
     <OutputSpecie name="Dgl_CKCamCa4"/>
     <OutputSpecie name="Dgl_CKpCamCa4"/>
+    <OutputSpecie name="CaDgl_CKCamCa4"/>
+    <OutputSpecie name="CaDgl_CKpCamCa4"/>
     <OutputSpecie name="Dgl_CKp"/>
     <OutputSpecie name="CKpPP1"/>
     <OutputSpecie name="CKpCamCa4PP1"/>
@@ -165,24 +167,24 @@
     <OutputSpecie name="PKAr"/>
 
     <OutputSpecie name="D32"/>
-    <OutputSpecie name="D32PKA"/>
-    <OutputSpecie name="Dp34"/>
-    <OutputSpecie name="Dp34PP1"/>
-    <OutputSpecie name="Dp34PP2BCamCa4"/>
-    <OutputSpecie name="Dp34PP1PP2BCamCa4"/>
-    <OutputSpecie name="Dp34PP2ABPR72"/>
-    <OutputSpecie name="Dp34PP2AB56d"/>
-    <OutputSpecie name="Dp34PP1PP2ABPR72"/>
-    <OutputSpecie name="Dp34PP1PP2AB56d"/>
+    <OutputSpecie name="D32PKAc"/>
+    <OutputSpecie name="D32p34"/>
+    <OutputSpecie name="D32p34PP1"/>
+    <OutputSpecie name="D32p34PP2BCamCa4"/>
+    <OutputSpecie name="D32p34PP1PP2BCamCa4"/>
+    <OutputSpecie name="D32p34PP2ABPR72"/>
+    <OutputSpecie name="D32p34PP2AB56d"/>
+    <OutputSpecie name="D32p34PP1PP2ABPR72"/>
+    <OutputSpecie name="D32p34PP1PP2AB56d"/>
 
     <OutputSpecie name="Cdk5"/>
     <OutputSpecie name="Cdk5D32"/>
-    <OutputSpecie name="Dp75"/>
-    <OutputSpecie name="Dp75PKA"/>
-    <OutputSpecie name="Dp75PP2ABPR72"/>
-    <OutputSpecie name="Dp75PP2AB56d"/>
-    <OutputSpecie name="Dp75PP2AC"/>
-    <OutputSpecie name="Dp75pPP2A"/>
+    <OutputSpecie name="D32p75"/>
+    <OutputSpecie name="D32p75PKAc"/>
+    <OutputSpecie name="D32p75PP2ABPR72"/>
+    <OutputSpecie name="D32p75PP2AB56d"/>
+    <OutputSpecie name="D32p75PP2Acal"/>
+    <OutputSpecie name="D32p75pPP2A"/>
     
     <OutputSpecie name="AKAR3"/>
     <OutputSpecie name="pAKAR3"/>

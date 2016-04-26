@@ -25,7 +25,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
             out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': tot_voxels,'location': temp_dict}
         else:
             outset=outputsets[0]
-            print "************* MOLECULE NOT IN REGULAR OUTPUT SETS !!!!!!!!!!!!"
+            print "************* MOLECULE",molecule, " NOT IN REGULAR OUTPUT SETS !!!!!!!!!!!!"
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
@@ -34,7 +34,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
                 out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': grid_points,'location': temp_dict}
             else:
                 out_location[molecule]=-1
-                print "************* MOLECULE DOES NOT EXIST !!!!!!!!!!!!"
+                print "** MOLECULE",molecule, " DOES NOT EXIST !!"
     return out_location,dt,samples
          
 def get_mol_index(simData,outputset,molecule):

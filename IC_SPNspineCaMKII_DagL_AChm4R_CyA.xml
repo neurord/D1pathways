@@ -20,10 +20,10 @@
 
 <!-- cytosolic molecules -->
 	<!-- total calmodulin = 9000 nM -->
-      	<NanoMolarity specieID="Cam"          value="3495"/>
-      	<NanoMolarity specieID="CamCa2C"      value="185"/>
-      	<NanoMolarity specieID="CamCa2N"      value="35"/>
-      	<NanoMolarity specieID="CamCa4"       value="0"/>
+      	<NanoMolarity specieID="Cam"          value="6495"/>
+      	<NanoMolarity specieID="CamCa2C"      value="1885"/>
+      	<NanoMolarity specieID="CamCa2N"      value="285"/>
+      	<NanoMolarity specieID="CamCa4"       value="15"/>
 
 <!-- Dopamine, ACh, Glu and their buffers: cytosolic molecules -->
         <NanoMolarity specieID="Da"              value="10" />
@@ -120,11 +120,11 @@
 
 <!-- cytosolic molecules -->
 <!-- total PP2B = 5000 nM, PP2ABPR72=1400, PP2AB56d=1400-->
-        <NanoMolarity specieID="PP2B"                 value="15" />
-        <NanoMolarity specieID="PP2BCam"              value="3000" />
-        <NanoMolarity specieID="PP2BCamCa2C"          value="1710" />
-        <NanoMolarity specieID="PP2BCamCa2N"          value="260" />
-        <NanoMolarity specieID="PP2BCamCa4"           value="15" />
+        <NanoMolarity specieID="PP2B"                 value="5" />
+        <NanoMolarity specieID="PP2BCam"              value="0" />
+        <NanoMolarity specieID="PP2BCamCa2C"          value="10" />
+        <NanoMolarity specieID="PP2BCamCa2N"          value="10" />
+        <NanoMolarity specieID="PP2BCamCa4"           value="0" />
         <NanoMolarity specieID="PP1"                  value="3500" />
 	<NanoMolarity specieID="PP2AB56d"            value="1100" />
 	<NanoMolarity specieID="PKAcPP2AB56d"        value="0" />
@@ -160,7 +160,7 @@
         <NanoMolarity specieID="D32p75PP2Acal"          value="10" />
         <NanoMolarity specieID="D32p75pPP2A"            value="10" />
 
-        <NanoMolarity specieID="AKAR3"                 value="3000" />
+        <NanoMolarity specieID="AKAR3"                 value="0" />
         <NanoMolarity specieID="pAKAR3"                 value="0" />
     </ConcentrationSet> 
 

@@ -119,17 +119,17 @@
         <NanoMolarity specieID="Pkct"         value="0"     />  
 
 <!-- cytosolic molecules -->
-<!-- total PP2B = 5000 nM, PP2ABPR72=1400, PP2AB56d=1400-->
+<!-- total PP2B = 5000 nM, PP2ABPR72=1400, PP2AB56d=1400, PP1=4000-->
         <NanoMolarity specieID="PP2B"                 value="15" />
         <NanoMolarity specieID="PP2BCam"              value="3000" />
         <NanoMolarity specieID="PP2BCamCa2C"          value="1710" />
         <NanoMolarity specieID="PP2BCamCa2N"          value="260" />
         <NanoMolarity specieID="PP2BCamCa4"           value="15" />
-        <NanoMolarity specieID="PP1"                  value="3500" />
-	<NanoMolarity specieID="PP2AB56d"            value="1100" />
+        <NanoMolarity specieID="PP1"                  value="0" />
+	<NanoMolarity specieID="PP2AB56d"            value="110" />
 	<NanoMolarity specieID="PKAcPP2AB56d"        value="0" />
         <NanoMolarity specieID="pPP2A"                value="20" />
-        <NanoMolarity specieID="PP2ABPR72"           value="1100" />
+        <NanoMolarity specieID="PP2ABPR72"           value="110" />
         <NanoMolarity specieID="PP2Acal"                value="20" />
 	<NanoMolarity specieID="CK"                   value="11930" />
         <NanoMolarity specieID="CKCamCa4"             value="70" />
@@ -143,24 +143,24 @@
 <!-- total DARPP32 = 50 uM, 12 uM D32p75 and 1% D32p32 at basal -->
         <NanoMolarity specieID="D32"                  value="37160" />
         <NanoMolarity specieID="D32PKAc"               value="0" />
-        <NanoMolarity specieID="D32p34"                 value="0" />
-        <NanoMolarity specieID="D32p34PP1"              value="480" />
+        <NanoMolarity specieID="D32p34"                 value="80" />
+        <NanoMolarity specieID="D32p34PP1"              value="400" />
         <NanoMolarity specieID="D32p34PP2BCamCa4"       value="0" />
         <NanoMolarity specieID="D32p34PP1PP2BCamCa4"    value="0" />
         <NanoMolarity specieID="D32p34PP2ABPR72"       value="0" />
         <NanoMolarity specieID="D32p34PP2AB56d"        value="0" />
-        <NanoMolarity specieID="D32p34PP1PP2ABPR72"    value="10" />
-        <NanoMolarity specieID="D32p34PP1PP2AB56d"     value="10" />
+        <NanoMolarity specieID="D32p34PP1PP2ABPR72"    value="0" />
+        <NanoMolarity specieID="D32p34PP1PP2AB56d"     value="0" />
         <NanoMolarity specieID="Cdk5"                  value="370" />
         <NanoMolarity specieID="Cdk5D32"               value="1215" />
-        <NanoMolarity specieID="D32p75"                 value="10650" />
+        <NanoMolarity specieID="D32p75"                 value="11050" />
         <NanoMolarity specieID="D32p75PKAc"             value="0" />
-        <NanoMolarity specieID="D32p75PP2ABPR72"       value="260" />
-        <NanoMolarity specieID="D32p75PP2AB56d"        value="260" />
-        <NanoMolarity specieID="D32p75PP2Acal"          value="10" />
-        <NanoMolarity specieID="D32p75pPP2A"            value="10" />
+        <NanoMolarity specieID="D32p75PP2ABPR72"       value="30" />
+        <NanoMolarity specieID="D32p75PP2AB56d"        value="30" />
+        <NanoMolarity specieID="D32p75PP2Acal"          value="0" />
+        <NanoMolarity specieID="D32p75pPP2A"            value="0" />
 
-        <NanoMolarity specieID="AKAR3"                 value="3000" />
+        <NanoMolarity specieID="AKAR3"                 value="0" />
         <NanoMolarity specieID="pAKAR3"                 value="0" />
     </ConcentrationSet> 
 

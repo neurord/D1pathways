@@ -1,0 +1,113 @@
+Lab Notebook for Blackwell Mar 30-31, 2016
+>>>>>>>>> indicates what we are trying to reproduce (goals)
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    Do sims with and without ACh modulation
+		    What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    Simulate both D1 and D2 neurons
+		 3. Can extra high calcium substitute for dopamine in LTP?  If so, how does extra high calcium produce LTD without Gq?
+		    Simulate with decrease Da and increase Ca
+		 4. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    Block CaMKII phos of Dgl and repeat sims
+		 5. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    Create signature
+		    Can some molecules substitute for others (increase Ca and decrease Gq via mGlu block)
+
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2 model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 wit Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+   
+######### new Stim:
+ 	   8.0 Ach stim during Da &Ca stim
+	   Begin basal stim at 52.2 sec (instead of 52.0 s)
+	   new Rxn file: correct m1RGq affin for ACh
+	   halve Ca leak from Out to in - 0.25
+
+Da Dur	   Da	 cAMP	 Dp34PP1  pAKAR3
+0.1	   9.5u	 1.1u	 2.0u	  873
+0.3	   9.9u	 1.1u	 1.6u	  624
+1.0	   8.9u	 1.6u	 3.2u	  2.1u
+10.0	   8.2u	 10u	 3.6u	  2.8u
+Basal cAMP=50-60, pAKAK3 decay ~20sec, basal Dp34 < 100, ACh=74
+Basal Ca=80 - why is leak not affecting Ca???  Try 0 (extreme case)
+
+Bath  cAMP  Dp34tot  Dp75
+Da    9.5u  4.7u     5.6u
+Ca    -	    300n     7.0u
+DaCa  3.3u  3.3u     4.9u
+Basal cAMP: 30-50, Dp34: 200-300 - higher than Da Dur suggests that
+AKAR is taking PKA away from Dp34!!!  Try lowering phos rates (also dephos) which will also prolong pAKAR3 decay which is too high
+Basal Dp75: 10.5u
+
+cAMP: slightly higher for 20Hz than theta, probably due to slightly higher ACh bursts
+Dp34PP1: slightly higher for 20hz than for theta
+2ag: similar for 20 Hz and theta
+ACh: nice dips, but appears to terminate at 2s, not 2.4 s - check stim file.
+GaiGTP: no dip is observed.  Possibly because degradation of Gi is too slow.  A faster degradation would make the dip more visible.  
+Pkct: greater for theta than for 20 hz, but both are too low (when averaged over entire morphology) -  Consider increased Pkc?
+Dag - reaches 300-500 nM (greater for theta), so not clear why Pkc is so low.
+CKpCamCa4: much higher for theta than for 20 Hz.
+However, it is not phosphorylating sufficient Dgl.  CaDgl and DagCaDgl are bigger for theta than for 20 Hz.
+Why? Calcium is higher, so CaDgl is higher for theta.  What if allow CKCam to phosphorylate the calcium bound form
+
+######### new Stim:
+Da dur:	  5% increase in initial Da stim for Da Dur
+	  10% increase in prolonged Da stim for 1.0 and 10.0 for Da Dur
+	  25-50% rates of AKAR3 phos and dephos
+	  How to increase basal Dp34PP1 without cAMP increase:
+	  0 rate of Ca leak from out to in (0.01e-6)
+	  re-start basal ACh at 2.4 sec after burst, instead of 2.2 sec after burst - to increase stimulated cAMP for theta vs 20 Hz
+	  allow CKpCam and CKCam phos of Dgl
+	   
+######### Use new NeuroRD v3.0.1 and get h5 output
+---------> Da too high - go back to previous
+*****      Ca no different - initialize CaOutLeak at 0 and Leak to 900
+	   Legend using h5 analysis is not showing decimals - fix
+	   Dp75 basal is way too low and cAMP,Dp34PP1 and basal AKAR way too high - figure out whether analysis is at fault, or whether new code is different than old code, or whether issue with h5 output (get both outputs)
+	   
+######### Use old Da Stim, Fix AKAR phos rates, use NeuroRD3.0.2 - get both text and h5 output.  If basal Dp75, cAMP are still problematic, try neurord3.0.3 before changing parameters again.  But also change molecule names for automatic totals in the h5 file.
+--------> Results identical between h5 and text output - GREAT.
+	  Basal Dp34PP1 still a problem, because basal cAMP > 100 (164)
+	  Basal calcium now slightly lower - ~73
+	  Dp75 still declining.
+	  Possibly these results are due to new version.  Repeat using version 3.0.3, which has some bug fixes, before searching for cause of elevated cAMP.
+	  Stim: good ACh dip, though still limits cAMP elevation.
+	  increase Pkc total?  Was 15 uM in BoHung paper.  Find publication!!!
+############# New Neurord version 3.0.3
+	      Change molecule names for better automatic naming
+  	      Changed Gaq to Gqa and Gai to Gia everywhere to make easier to total
+      	      Change Dp to D32p everywhere; Dp75PKA to Dp75PKAc;D32PKA to D32PKAc, AC to AC5
+	      Try Pkc=10,000 - 5x greater - need source!
+Other potential changes: If Ca dependent AC1 - greater Ca with theta would give greater cAMP and PKAc!  First must fix problem of elevated basal.
+---------> Still problem of too much basal cAMP.  This is caused by version change with incorrect initialization of molecule quantitites.  Zbyszek has fixed this.  Now re-run all simulations.  
+
+----------> cAMP ~74
+	    Dp34PP1 ~42 (too low)
+	    Dp75 ~11 uM
+Possible solutions:
+	 1.decrease rate of PP2A dephos of Dp34 - but rates have good sources
+	 	    decrease rate for dephos of Dp34PP1
+	 2. decrease amount of PP2A - this will decrease dephos of Dp75 - no good
+	 3. decrease rate or amount of Pp2B dephos of PP1 bound form - but this may affect effect of PP2B inhibitors
+	 4. lower calcium concentration still further by increasing pump density
+	 ******* Re-run with new NeuroRD, Review phosphatase rate sources, cal pump densities from Bartol, try bath inhibitor sims, make decisions
+----------> D32p34PP1 still too low in Da sims.  Ca ~75 nM
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation)
+2. What happens if decrease ACh alone??
