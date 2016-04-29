@@ -125,7 +125,7 @@
         <NanoMolarity specieID="PP2BCamCa2C"          value="1710" />
         <NanoMolarity specieID="PP2BCamCa2N"          value="260" />
         <NanoMolarity specieID="PP2BCamCa4"           value="15" />
-        <NanoMolarity specieID="PP1"                  value="0" />
+        <NanoMolarity specieID="PP1"                  value="220" />
 	<NanoMolarity specieID="PP2AB56d"            value="110" />
 	<NanoMolarity specieID="PKAcPP2AB56d"        value="0" />
         <NanoMolarity specieID="pPP2A"                value="20" />
@@ -141,10 +141,10 @@
         <NanoMolarity specieID="CKpCamCa4PP1"         value="0" />
 
 <!-- total DARPP32 = 50 uM, 12 uM D32p75 and 1% D32p32 at basal -->
-        <NanoMolarity specieID="D32"                  value="37160" />
+        <NanoMolarity specieID="D32"                  value="37060" />
         <NanoMolarity specieID="D32PKAc"               value="0" />
-        <NanoMolarity specieID="D32p34"                 value="80" />
-        <NanoMolarity specieID="D32p34PP1"              value="400" />
+        <NanoMolarity specieID="D32p34"                 value="0" />
+        <NanoMolarity specieID="D32p34PP1"              value="580" />
         <NanoMolarity specieID="D32p34PP2BCamCa4"       value="0" />
         <NanoMolarity specieID="D32p34PP1PP2BCamCa4"    value="0" />
         <NanoMolarity specieID="D32p34PP2ABPR72"       value="0" />

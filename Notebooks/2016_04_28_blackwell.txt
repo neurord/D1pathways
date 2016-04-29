@@ -1,0 +1,126 @@
+Lab Notebook for Blackwell Apr 28, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    Do sims with and without ACh modulation
+		    What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    Simulate both D1 and D2 neurons
+		 3. Can extra high calcium substitute for dopamine in LTP?  If so, how does extra high calcium produce LTD without Gq?
+		    Simulate with decrease Da and increase Ca
+		 4. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    Block CaMKII phos of Dgl and repeat sims
+		 5. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    Create signature
+		    Can some molecules substitute for others (increase Ca and decrease Gq via mGlu block)
+
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2 model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 wit Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+   
+########## Simulations with NeuroRD-3.0.5, and model files: Model_SPNspineCaMKII_DagL_AChm4R*.xml
+---------> Da stim: Ca ~75 nM
+   	 D32p34PP1 too low. (measured 40-50 s after simulation onset
+	   AKAR response still not great.  Perhaps improve with different phos and dephos rates? Perhaps need to increase PKAc activation rate?  Currently it misses the 10 sec elevation in cAMP due to brief Da pulses.  How fast is the phos rate in Polito???  Increased PKAc activation would also increase basal Dp34 activity.  pAKAR not returning all the way to basal, perhaps dephos is too low?  But pAKAR decay is quite fast currently - faster than Polito.
+>>>>>>  Bath stim: Basal: Ca ~75 nM, ACh ~71 nM, Da=10 nM, cAMP=44-50 nM
+     D32p34PP1 basal = 464 nM.  Two factors contribute to this higher level than the Da stim
+---------> 1. no AKAR3 target for PKA here.
+     2. ss measured later.  from 40-50 sec D32p34PP1 is still as low as 200 nM, and finally increases by 70 s
+     SOLUTION: no AKAR3 when measuring DARPP32, and do not stim until 80 sec, not 50 sec.
+     Another possible solution: make PP2B dephos AKAR so that both PKA phos and PP2B dephos of Dp34 decrease when AKAR is added.
+>>>>>> Stimulated values:
+	   D32p34PP1 increases to 5000 nM (10x increase) with Da - goal: 5x - 11x inc
+	   	     increases to 3700 nM with Da+Ca (25% lower)
+		     decreases to 305 nM with Ca alone (33% decrease - goal is 50%)
+	   D32p75 decreases to 7 uM with Ca (4/11 decrease, goal is 75%)
+---------> to obtain higher need PP2A more sensitive to calcium - difficult with 1 Ca binding site, or with small quantity of PP2A sensitive to Ca.
+	   OR, could just increase calcium during Ca bath.
+	   D32p75 decreases to 5.9 uM with Da (~50% dec, goal is 50%)
+	   
+>>>>>> Block cases
+	     basal & Stim D32p75	basal & stim D32p34
+   CyA + Ca  11uM  	7.5 uM		587	737  2x greater than with Ca alone; inc instead of dec
+   CyA + Da  11 uM	6.2 uM		361	5976	~ 20% greater than without CyA
+    OA 90%     45 uM	NA  		392	3392, goal: Dp34 inc by 5x - a little high, 3x D32p75 excellent
+    CyA	    drops to 6.1 uM		inc to 6.8uM, goal: 17x D32p34 - excellent!
+--------->   Why does blocking PP2B cause Dp75 to decrease?  Possibly because so much Dp34PP1 is depleting available pool for Cdk5 phosphorylation?  Also, cAMP (and PKA) is going up with CyA block.
+    Blocking OA causes decrease in GiaGTP, decrease in AC5GsaGsiATP, and increase in AC5GsaATP.  WHy does OA block decrease Gia?  This is responsible for the cAMP and PKA increase observed.  Lack of Stim for these cases!  Need basal ACh stim.
+
+########## Simulations with NeuroRD-3.0.5, and model files: Model_SPNspineCaMKII_DagL_AChm4R*.xml
+	   Repeat Calcium bath with 2x calcium influx to improve decrease in D32p75 (both bathCa and bathDaCa)
+	   Repeat OA alone and CyA alone with basal ACh stim
+--------->Da stim: pAKAR still looks funny, it might be improved with PP2A or pPP2A dephosphorylation
+   Also, the 0.1s Da pulse could be better - longish decay may be decreasing difference between 0.1 and 0.3 s cAMP responses
+   	 PKAc increase is still considerably slower than cAMP.  Possibly too slow based on time course of pAKAR increase. 2x increase in speed of PKAc act would help this, though might throw other things else off balance.
+>>>>>>   Bath cases, Ca plateau ~4 uM
+	     basal & Stim D32p75 goal	basal & stim D32p34	goal
+	  Da: 10.7u  5.9u 	50%	423n  	5.0u		11x increase GOAL MET
+	  Ca: 10.7   5.0u	75%	183n	88		50% GOAL MET, but basal too low
+	DaCa:							goal is 25-50% lower than Da alone
+	CyA:	11.3u	NA		167	"372n"	Why no increase when PP2B is blocked?
+	OA:	45.9u	NA		261	"385n"	reduction due to saturating Dp75
+	CyA+Ca	10.6	4.8u		586	1080	~2x increase.  Why is basal so much higher?
+	CyA+Da	10.6	6.2u		361n	5.0u	why is increase not even greater with PP2B blocked? no Ca.  Or because cAMP (and PKAc) is transient?  Or because PP2A is working too hard.
+	
+--------->With CyA block, there is no PP2B to dephos Dp34PP1, but the PP2A is available for the job.  Even though Dp34PP1 is greater with the OA block than CyA, the amount of PP2Abound to Dp34PP1 is greater with CyA than OA.
+With OA block, there is still significant binding of OA to Dp34PP1.  This is crazy given the 46 uM of Dp75 competing for PP2A. Perhaps this affinity is too high. No, 50 uM. Issue is that dephos of unbound is 5x faster, and with OA there is less PP1.
+Options:  A. increase PP1 in OA block case - this would only affect the OA block, but might allow Dp34 to increase a bit.
+	  B. make PP2A even slower to dephos bound - this would increase basal somewhat, which would be good since it is on the low side.
+	  C. To compensate for time for PKAc to increase, start Dp34PP1 above expected basal
+	  D. Keep in mind that with low basal calcium (80 nM) very little PP2B is active.
+---------> Stim:
+	   CKpCamCa4 is considerably higher for theta, but stil minor effect on 2ag
+	   Perhaps increase phos rate by CKpCam, and reduce that for CKCam?
+	   cAMP is ~300 nM after first burst.  What should the value be?
+	   Would cAMP stim be higher with AC1? Esp for theta?
+---------->Genesis model shows ~10 uM for theta and 1 uM for 20 Hz IN THE SPINE, model shows 8 uM (theta) and 1.3 uM (20Hz) in spine - very close.  Could increase differential if needed, but for now keep.
+NOTE: Dp34PP1 may be extremely sensitive to cAMP and PKAc levels.  THus, stochastic fluctuation may produce large variation in basal level.  This is problematic.
+
+########## Simulations with NeuroRD-3.0.5, and model files: Model_SPNspineCaMKII_DagL_AChm4R*.xml
+	   Go back to previous calcium bath stim - 1 uM plateau
+	   PP1=800nM total in OA block case
+	   kf=0.15e-6,kb=0.0061,kcat=0.0014 (50% of previous) for PP2A against Dp34PP1
+	   Dp34PP1 IC=580, D32=37060, PP1=3400 (delta=100)
+	   Remove CKCam phos of CaDgl - this will lower basal, and stimulated for both theta and 20 Hz
+	   Double rate of CKpCam phos of Dgl and CaDgl - this may compensate for lack of CKCamCa4 activity?
+	   It might also decrease rate of autophos, unless double those rate constants.
+	   SUMMARY: Initialize Dp34PP1 higher.  Increase CKpCam phos of Dgl and CaDgl. Decrease PP2A activity against Dp34PP1 to produce more PP2B sensitivity
+>>>>>>  Bath cases
+  condition:  basal & Stim D32p75 goal	basal & stim D32p34	goal		Assessment
+	  Da: 10.9u   	   	  50%	  	      		5x 	 	
+	  Ca: 10.9   7.2u	  75%	537n	217n		50% 	     	BOTH GOALS MET, basal good
+	DaCa: 10.9u  5.0u		352n	3.6u		25-50% of Da	L
+	CyA:  11.1u  10.3u	  100%	286n	1.2u		3-17x		2.7x over "mean basal" of 444	
+	OA:      45.5u		  3x	565n	880n		5x		2x over "mean basal" of 444
+	CyA+Ca	11.0u 7.4u	  	542n	1.2u	  	
+	CyA+Da	11.3u 6.0u	  	296	5.2u		
+--------->Inc in Dp34 with CyA and OA alone are smaller than (or at low end of) reported (3-17x and 5x respectively); however, CyA causes greater increase in Dp34 than does OA, and OA causes increase despite the saturation of Dp75.  Also, CyA relative inc is even greater if use 352n as basal and Dp34 appers to be increasing beyond the 250s of sim, so I consider Goal met.
+>>>>>> Stim cases:    basal   peak:20hz	theta	AUC assessment
+       2ag  	      44-50   144	159	similar
+       CKCamCa4	      34      500	1u
+       CKpCamCa4      0	      17	67	theta 3-4x greater
+       PkcCaDag	      9	      33	58	theta 2x greater
+       CapDgl	      3	      30	56	 theta 2x greater
+       DagCapDgl      2	      21	36	 theta 2x greater
+-------> New Dgl phos rates are better, but ammount of phospho Dgl is still small compared to non-phos, so effect on 2ag is difficult to see.
+
+After these tweaks, consider AC1 to allow higher PKAc for theta.  Then PKA phos of RGS would be worthwhile. BUT, might need to increase calcium and PP2B activity to compensate for higher cAMP and PKAc?  Or make AC1 quite low.
+Worthwhile to increase Dgl phos rate further?  Is ACh burst too high?
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?
+2. What happens if decrease ACh alone??

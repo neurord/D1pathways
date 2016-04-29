@@ -62,20 +62,24 @@ def argparse(args):
         return ans
 
     #1st and 2nd arguements used to construct pattern for reading in multiple files
-    pattern=args[2]+'*'
+    pattern=args[2]
     if len(args[0]):
         params=args[0].split(" ")
         for par in params:
             pattern=pattern+'-'+par+'*'
     else:
         params=[]
-    print "pattern", pattern
     whole_pattern=pattern+'.h5'
+    print "pattern:", pattern, whole_pattern
 
     lastslash=str.rfind(pattern,'/')
     subdir=pattern[0:lastslash]
 
     fnames = glob.glob(whole_pattern)
+    if len(params):
+        fnames=[fname for fname in fnames if str.count(fname,'-')<=len(params)]
+
+    print "files:", fnames
     print "NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir
     if len(fnames)==0:
         print "FILES:", os.listdir(subdir+'/'+'*.h5')

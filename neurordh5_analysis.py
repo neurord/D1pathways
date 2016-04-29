@@ -41,7 +41,8 @@ showplot=1
 #No need to specify subspecies if uniquely determined by string
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
-tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl"]
+tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
+#tot_species=[]
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -133,6 +134,7 @@ for fnum,ftuple in enumerate(ftuples):
     #use the above lists and volume of each region, and each region-structure
     ######################################
     if maxvols>1:
+        print parval[fnum], molecule.rjust(14),
         molecule_name_issue=0
         for imol,molecule in enumerate(plot_molecules):
           if out_location[molecule]!=-1:

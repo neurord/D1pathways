@@ -31,16 +31,4 @@
         <rate>                0.5         </rate>
 </InjectionStim>
 
-  <InjectionStim specieID="ACh" injectionSite="sa2[0:3].pointD">
-        <onset>               100000         </onset>
-        <duration>            160000         </duration>
-        <rate>                0.000         </rate>
-  </InjectionStim>
-
-  <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               100000         </onset>
-        <duration>            160000         </duration>
-        <rate>                0.000         </rate>
-  </InjectionStim>
-
 </StimulationSet>
