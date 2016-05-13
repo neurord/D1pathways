@@ -22,7 +22,6 @@
 
     <!-- lengthDensity means you set the number per micron along the segment -->
     <SpineAllocation id="sa1" spineType="spineA" region="dend" lengthDensity="0.1"/>
-    <!--SpineAllocation id="sa2" spineType="spineC" region="dendrite" lengthDensity="6.0"/-->
     <SpineAllocation id="sa2" spineType="spineC" region="dend" lengthDensity="0.5"/>
     
     <Segment   id="seg1"    region="dend">

@@ -11,8 +11,8 @@
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the
 results (also, 3D may not work yet...)  -->
-    <geometry>          2D           </geometry>
-    <depth2D>           2          </depth2D>
+    <geometry>          3D           </geometry>
+    <depth2D>           2.0          </depth2D>
     <distribution>      BINOMIAL     </distribution>
     <algorithm>         INDEPENDENT  </algorithm>
     <simulationSeed>    123       </simulationSeed>
@@ -34,6 +34,8 @@ results (also, 3D may not work yet...)  -->
 
 	<!-- This specifies the surface layers, first implemented in v.2.1.7 -->
 	<!--surfaceLayers>0.1, 0.2</surfaceLayers-->
+      <elementShape>Curved</elementShape>
+      <maxAspectRatio>2.5</maxAspectRatio>
 
 	<!-- override the default for a particular region. -->
 	<!-- Matches against id or regionClass in the morphology file -->

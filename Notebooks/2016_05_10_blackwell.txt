@@ -1,0 +1,53 @@
+Lab Notebook for Blackwell May 10-, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+   small amount of AC1 to allow Theta to have higher cAMP and PKA??
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+   
+########## Simulations with NeuroRD-3.1.0.5, using 20 um long dendrite with multiple spines
+Model_SPNspineCaMKII_DagL_AChm4R_20um-sp1-stim20hz.xml
+Stim20hzACh-sp1.xml
+Morph20um.xml
+>>>>>>>>> 1. Output files are huge - 180 Mb (10x larger).  Edit output file to eliminate molecules I never evaluate.
+	  2. Da is ~10x lower, both overall and spine. NOT REALLY: averaging over all spine heads - both stim and not.
+--------->  Fixed neurordh5_analysis to analyze multiple spines.  Now, stim is quite similar in spines between 20um and 2 um dendrite.  However, ACh is extremely high in spine - ~700 nM.  May need to fix this.
+	    Noticed that ACh is 700 in spine of both 20um and 2 um morphology, however ACh overall is too low in 20 um morphology.  Basal injection is into spine.  So, diffusion is limiting the overall concentration.  change basal injection to injection spines so it is better distributed.
+	    
+########## Simulate both 20 Hz and theta - 2um and 20 um morphology.  Repeat bath sims also.
+	   Also, consider removing burst ACh stimulation frome dendrite (injection spines)
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?
+2. What happens if decrease ACh alone??

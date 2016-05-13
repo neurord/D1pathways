@@ -88,17 +88,18 @@
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
+<!--InjectionStim specieID="Ca" injectionSite="dend:submembrane"-->
 <InjectionStim specieID="Ca" injectionSite="sa2[:].pointD">
         <onset>               50000          </onset>
         <duration>            3              </duration>
-        <rate>                156            </rate>
+        <rate>                1560            </rate>
         <period>              50             </period>
         <end>                 50999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
-<!-- basal ACh value prior to stim = desired conc * decay rate -->
+<!-- basal ACh value prior to stim = desired conc * decay ra te -->
 <InjectionStim specieID="ACh" injectionSite="sa2[:].pointD">
         <onset>               0          </onset>
         <duration>            50000      </duration>
@@ -123,11 +124,12 @@
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
+<!--InjectionStim specieID="ACh" injectionSite="dend"-->
 <!-- Should this stimulation be eliminated???-->
 <InjectionStim specieID="ACh" injectionSite="sa2[:].pointD">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>                8.0           </rate>
+        <rate>                80.0           </rate>
         <period>              50             </period>
         <end>                 50999          </end>
         <numTrains>           20             </numTrains>

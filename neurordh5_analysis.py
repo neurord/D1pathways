@@ -34,8 +34,9 @@ prnvox=1
 prninfo=0
 showss=0
 #outputavg determines whether output files are written
-outputavg=0
-showplot=1
+outputavg=1
+showplot=2  #2 indicates plot the head conc
+stimspine=0 #number of stimulated spine
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -94,6 +95,10 @@ for fnum,ftuple in enumerate(ftuples):
             head_vox=list(region_list[:]).index(spinehead)
         except ValueError:
             head_vox=-1
+        if head_vox>0:
+            spinelist,spinevox=h5utils.multi_spines(data['model'],spinehead)
+        else:
+            spinelist=''
     #
     ##### Initialization done only for first file in the list
     #
@@ -146,35 +151,48 @@ for fnum,ftuple in enumerate(ftuples):
                 header=header.replace(molecule+'default ','')
             #calculate region-structure menas
             header2,RegionStructMeans=h5utils.region_means(molecule_pop,region_struct_list,region_struct_vox,RegStructVol,time,molecule)
+            #if more than one spine, calculate individual spine means
+            if len(spinelist)>1:
+                spineheader,spinemeans=h5utils.region_means_dict(molecule_pop,spinevox,time,molecule)
+            else:
+                spineheader=''
             #calculate overall mean
             OverallMean=np.zeros(len(time))
             for itime in range(len(time)):
                 for k in range(maxvols):
                     OverallMean[itime]+=molecule_pop[itime,k]
             OverallMean[:]/=(TotVol*mol_per_nM_u3)
-            header='#time ' +header+header2+molecule+'AvgTot\n'
+            header='#time ' +header+header2+molecule+'AvgTot '+spineheader+'\n'
             #
-            plot_array.append(OverallMean)
+            if showplot==2:
+                if len(spinelist)>1:
+                    plot_array.append(spinemeans[:,stimspine])
+                else:
+                    plot_array.append(RegionMeans[:,head_vox])
+            else:
+                plot_array.append(OverallMean)
             #
             #write averages to separate files
             if outputavg:
-                outfname=fname[0:-8]+molecule+'_avg.txt'
+                outfname=fname[0:-3]+'_'+molecule+'_avg.txt'
                 if molecule in plot_molecules:
                     print 'output file: ', outfname
                     if all(item==True for item in np.isnan(RegionMeans[:,0])):
                         start_col=1
                     else:
                         start_col=0
-                    outdata=np.column_stack((time,RegionMeans[:,start_col:],RegionStructMeans,OverallMean))
+                    if len(spinelist)>1:
+                        outdata=np.column_stack((time,RegionMeans[:,start_col:],RegionStructMeans,OverallMean,spinemeans))
+                    else:
+                        outdata=np.column_stack((time,RegionMeans[:,start_col:],RegionStructMeans,OverallMean))
                     f=open(outfname, 'w')
                     f.write(header)
                     np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                     f.close()
-            else:
-                print molecule.rjust(14),
-                if head_vox>-1:
-                    print "head ss:%8.4f pk %8.4f " % (RegionMeans[sstart[imol]:ssend[imol],head_vox].mean(), RegionMeans[ssend[imol]:,head_vox].max()),
-                print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_deltaY[dsm_vox]),
+            print molecule.rjust(14),
+            if head_vox>-1:
+                print "head ss:%8.4f pk %8.4f " % (RegionMeans[sstart[imol]:ssend[imol],head_vox].mean(), RegionMeans[ssend[imol]:,head_vox].max()),
+            print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_deltaY[dsm_vox]),
                                                      (RegionStructMeans[ssend[imol]:,dsm_vox].max()*region_struct_deltaY[dsm_vox]))
           else:
               if fnum==0 and molecule_name_issue==0:

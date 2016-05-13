@@ -3,6 +3,7 @@ from string import *
 import glob
 import os
 import plot_h5 as pu5
+from collections import OrderedDict
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
 
@@ -15,6 +16,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
         temp_dict={}
         tot_voxels=0
         for outset in outputsets[1:]:           #better to go backward from last set, and then go to 0 set if mol not found
+        #for each in outputsets[-1::-1]:
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
@@ -25,16 +27,16 @@ def get_mol_info(simData,plot_molecules,gridpoints):
             out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': tot_voxels,'location': temp_dict}
         else:
             outset=outputsets[0]
-            print "************* MOLECULE",molecule, " NOT IN REGULAR OUTPUT SETS !!!!!!!!!!!!"
+            print "************* MOLECULE",molecule, " NOT IN REGULAR OUTPUT SETS !"
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
                 dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000. #convert msec to sec
                 temp_dict[outset]={'mol_index':mol_index,'elements':simData['model']['output'][outset]['elements'][:]}
-                out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': grid_points,'location': temp_dict}
+                out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': gridpoints,'location': temp_dict}
             else:
                 out_location[molecule]=-1
-                print "** MOLECULE",molecule, " DOES NOT EXIST !!"
+                print "** Even Worse: MOLECULE",molecule, " DOES NOT EXIST !!!!!!!!!!!!!"
     return out_location,dt,samples
          
 def get_mol_index(simData,outputset,molecule):
@@ -133,6 +135,32 @@ def subvol_list(structType,model):
                 totnum=totnum+2
     return region_list,region_voxels,reg_struct_list,region_struct_vox,reg_struct_deltaY
 
+def multi_spines(model,spinename):
+    #create list of spine voxels
+    spinelist=[]
+    spinelist_vox=[]
+    #first identify all spine voxels and spine labels
+    for voxnum,voxgroup in enumerate(model['grid'][:]['group']):
+        #using spinename means that spine neck will be ignored
+        if voxgroup != '' and model['regions'][model['grid'][voxnum]['region']]==spinename:
+            spinelist.append(voxgroup)
+            spinelist_vox.append(voxnum)
+    #create a unique set of spine labels
+    newspinelist=np.unique(spinelist)
+    newspinevox={}
+    #identify which voxels go with which spine labels
+    for spine in newspinelist:
+        temp=[]
+        spinevol=0
+        for el,sp in enumerate(spinelist):
+            if sp==spine:
+                temp.append(spinelist_vox[el])
+                #calculate volume of each spine.
+                spinevol+=model['grid'][spinelist_vox[el]]['volume']
+        newspinevox[spine]={'vox':temp,'vol':spinevol}
+    #Need to do better job of sorting spines than this OrderedDict
+    return newspinelist,OrderedDict(sorted(newspinevox.items(), key=lambda t: t[0]))
+
 def region_means(data,regionList,regionCol,regionVol,time,molecule):
     RegionMeans=np.zeros((len(time),len(regionList)))
     header=''       #Header for output file
@@ -147,5 +175,17 @@ def region_means(data,regionList,regionCol,regionVol,time,molecule):
         header=header+molecule+regionList[j]+' '       #Header for output file
     return header,RegionMeans
 
- 
+def region_means_dict(data,regionDict,time,molecule):
+    RegionMeans=np.zeros((len(time),len(regionDict)))
+    header=''       #Header for output file
+    for itime in range(len(time)):
+        for j,item in enumerate(regionDict):
+            for vox in regionDict[item]['vox']:
+                RegionMeans[itime,j]+=data[itime,vox]
+
+    for j,item in enumerate(regionDict):
+        RegionMeans[:,j]/=(regionDict[item]['vol']*mol_per_nM_u3)
+        header=header+molecule+'_'+item+' '       #Header for output file
+    return header,RegionMeans
+    
  

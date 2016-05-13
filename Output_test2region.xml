@@ -1,0 +1,128 @@
+<OutputScheme>
+<!--
+     Each file will have a set of concentrations in compartments
+     sampled according to a specific dt
+-->
+
+<!--
+    Every Output block must have in its definition one (and only)
+    instance of:
+     * filename
+    And might have one (and only) instance of:
+     * region or
+     * dt
+    If "region" is ommited then the concs for the whole system will be
+    saved.
+    If "dt" is ommited than the concs will be written at each time step.
+    So the "io file" will be dependent on information stated in the
+    "morph" (regions) and "model" (dt).
+-->
+
+  <OutputSet filename = "dend"  region="dend" dt="10.0">
+
+    <OutputSpecie name="Ca"/>
+    <OutputSpecie name="CaOut"/>
+    <OutputSpecie name="Leak"/>
+    <OutputSpecie name="Calbin"/>
+    <OutputSpecie name="CalbinC"/>
+    <OutputSpecie name="pmca"/>
+    <OutputSpecie name="pmcaCa"/>
+    <OutputSpecie name="ncx"/>
+    <OutputSpecie name="ncxCa"/>
+
+    <OutputSpecie name="Cam"/>
+    <OutputSpecie name="CamCa2C"/>
+    <OutputSpecie name="CamCa2N"/>
+    <OutputSpecie name="CamCa4"/>
+
+    <OutputSpecie name="Da"/>
+    <OutputSpecie name="DaOut"/>
+    <OutputSpecie name="D1R"/>
+    <OutputSpecie name="DaD1R"/>
+    <OutputSpecie name="Gsabg"/>
+    <OutputSpecie name="DaD1RGs"/>
+    <OutputSpecie name="PKAcDaD1RGs"/>
+    <OutputSpecie name="pDaD1RGs"/>
+    <OutputSpecie name="GsD1R"/>
+    <OutputSpecie name="GasGTP"/>
+    <OutputSpecie name="GasGDP"/>
+    <OutputSpecie name="Gbg"/>
+
+    <OutputSpecie name="Glu"/>
+    <OutputSpecie name="GluOut"/>
+    <OutputSpecie name="MgluR"/>
+    <OutputSpecie name="GluMgluR"/>
+    <OutputSpecie name="GluMgluRdesens"/>
+    <OutputSpecie name="Gqabg"/>
+    <OutputSpecie name="MgluRGq"/>
+    <OutputSpecie name="GluMgluRGq"/>
+    <OutputSpecie name="GaqGTP"/>
+    <OutputSpecie name="GaqGDP"/>
+
+<!-- mACh m4 associated membrane molecules -->
+    <OutputSpecie name="ACh"/>
+    <OutputSpecie name="m4R"/>
+    <OutputSpecie name="AChm4R"/>
+    <OutputSpecie name="Giabg"/>
+    <OutputSpecie name="AChm4RGi"/>
+    <OutputSpecie name="Gim4R"/>
+    <OutputSpecie name="GaiGTP"/>
+    <OutputSpecie name="GaiGDP"/>
+
+    <OutputSpecie name="m1R"/>
+    <OutputSpecie name="AChm1R"/>
+    <OutputSpecie name="m1RGq"/>
+    <OutputSpecie name="AChm1RGq"/>
+
+    <OutputSpecie name="AC"/>
+    <OutputSpecie name="ACGai"/>
+    <OutputSpecie name="ACGasATP"/>
+    <OutputSpecie name="ACGasGai"/>
+    <OutputSpecie name="ACGasGaiATP"/>
+
+    <OutputSpecie name="ATP"/>
+    <OutputSpecie name="cAMP"/>
+    <OutputSpecie name="AMP"/>
+
+  </OutputSet>
+
+ <OutputSet filename = "inter" region="inter" dt="10.0">
+    <OutputSpecie name="Ca"/>
+    <OutputSpecie name="CaOut"/>
+    <OutputSpecie name="Leak"/>
+    <OutputSpecie name="Calbin"/>
+    <OutputSpecie name="CalbinC"/>
+    <OutputSpecie name="pmca"/>
+    <OutputSpecie name="pmcaCa"/>
+    <OutputSpecie name="ncx"/>
+    <OutputSpecie name="ncxCa"/>
+
+    <OutputSpecie name="Cam"/>
+    <OutputSpecie name="CamCa2C"/>
+    <OutputSpecie name="CamCa2N"/>
+    <OutputSpecie name="CamCa4"/>
+ </OutputSet>
+
+ <OutputSet filename = "all" dt="10.0">
+    <OutputSpecie name="PDE1"/>
+    <OutputSpecie name="PDE1CamCa4"/>
+    <OutputSpecie name="PDE1CamCa4cAMP"/>
+
+    <OutputSpecie name="PDE10"/>
+    <OutputSpecie name="PDE10cAMP"/>
+    <OutputSpecie name="PKAcPDE10"/>
+    <OutputSpecie name="PKAcPDE10cAMP"/>
+    <OutputSpecie name="pPDE10"/>
+    <OutputSpecie name="pPDE10cAMP"/>
+    <OutputSpecie name="PDE4"/>
+    <OutputSpecie name="PDE4cAMP"/>
+    <OutputSpecie name="PKAcPDE4"/>
+    <OutputSpecie name="pPDE4"/>
+    <OutputSpecie name="pPDE4cAMP"/>
+
+    <OutputSpecie name="PDE2"/>
+    <OutputSpecie name="PDE2cAMP"/>
+    <OutputSpecie name="PDE2cAMP2"/>
+ </OutputSet>
+
+</OutputScheme>

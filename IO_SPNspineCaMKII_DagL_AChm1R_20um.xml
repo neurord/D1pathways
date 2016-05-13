@@ -21,14 +21,6 @@
   <OutputSet filename = "all"  dt="100.0">
 
     <OutputSpecie name="Ca"/>
-    <OutputSpecie name="CaOut"/>
-    <OutputSpecie name="Leak"/>
-    <OutputSpecie name="Calbin"/>
-    <OutputSpecie name="CalbinC"/>
-    <OutputSpecie name="pmca"/>
-    <OutputSpecie name="pmcaCa"/>
-    <OutputSpecie name="ncx"/>
-    <OutputSpecie name="ncxCa"/>
 
     <OutputSpecie name="Cam"/>
     <OutputSpecie name="CamCa2C"/>
@@ -36,7 +28,6 @@
     <OutputSpecie name="CamCa4"/>
 
     <OutputSpecie name="Da"/>
-    <OutputSpecie name="DaOut"/>
     <OutputSpecie name="D1R"/>
     <OutputSpecie name="DaD1R"/>
     <OutputSpecie name="Gsabg"/>
@@ -45,11 +36,8 @@
     <OutputSpecie name="pDaD1RGs"/>
     <OutputSpecie name="GsD1R"/>
     <OutputSpecie name="GsaGTP"/>
-    <OutputSpecie name="GsaGDP"/>
-    <OutputSpecie name="Gbg"/>
 
     <OutputSpecie name="Glu"/>
-    <OutputSpecie name="GluOut"/>
     <OutputSpecie name="MgluR"/>
     <OutputSpecie name="GluMgluR"/>
     <OutputSpecie name="GluMgluRdesens"/>
@@ -57,7 +45,6 @@
     <OutputSpecie name="MgluRGq"/>
     <OutputSpecie name="GluMgluRGq"/>
     <OutputSpecie name="GqaGTP"/>
-    <OutputSpecie name="GqaGDP"/>
 
 <!-- mACh m4 associated membrane molecules -->
     <OutputSpecie name="ACh"/>
@@ -67,7 +54,6 @@
     <OutputSpecie name="AChm4RGi"/>
     <OutputSpecie name="Gim4R"/>
     <OutputSpecie name="GiaGTP"/>
-    <OutputSpecie name="GiaGDP"/>
 
     <OutputSpecie name="m1R"/>
     <OutputSpecie name="AChm1R"/>
@@ -75,15 +61,11 @@
     <OutputSpecie name="AChm1RGq"/>
 
     <OutputSpecie name="AC5"/>
-    <OutputSpecie name="AC5Gsa"/>
     <OutputSpecie name="AC5Gia"/>
     <OutputSpecie name="AC5GsaATP"/>
-    <OutputSpecie name="AC5GsaGia"/>
     <OutputSpecie name="AC5GsaGiaATP"/>
 
-    <OutputSpecie name="ATP"/>
     <OutputSpecie name="cAMP"/>
-    <OutputSpecie name="AMP"/>
 
     <OutputSpecie name="PDE1"/>
     <OutputSpecie name="PDE1CamCa4"/>
@@ -106,18 +88,12 @@
     <OutputSpecie name="PDE2cAMP2"/>
 
     <OutputSpecie name="Plc"/>
-    <OutputSpecie name="PlcCa"/>
     <OutputSpecie name="PlcGqa"/>
-    <OutputSpecie name="PlcCaGqa"/>
     <OutputSpecie name="Pip2"/>
     <OutputSpecie name="PlcCaPip2"/>
     <OutputSpecie name="PlcCaGqaPip2"/>
     <OutputSpecie name="Ip3"/>
     <OutputSpecie name="Dag"/>
-
-    <OutputSpecie name="DagK"/>
-    <OutputSpecie name="DagKdag"/>
-    <OutputSpecie name="PA"/>
 
     <OutputSpecie name="Dgl"/>
     <OutputSpecie name="pDgl"/>
@@ -126,12 +102,7 @@
     <OutputSpecie name="DagCaDgl"/>
     <OutputSpecie name="DagCapDgl"/>
     <OutputSpecie name="2ag"/>
-    <OutputSpecie name="2agDegrad"/>
 
-    <OutputSpecie name="Ip3degrad"/>
-    <OutputSpecie name="PIkinase"/>
-    <OutputSpecie name="Ip3degPIk"/>
-    
     <OutputSpecie name="Pkc"/>
     <OutputSpecie name="PkcCa"/>
     <OutputSpecie name="PkcCaDag"/>
@@ -171,10 +142,7 @@
     <OutputSpecie name="D32PKAc"/>
     <OutputSpecie name="D32p34"/>
     <OutputSpecie name="D32p34PP1"/>
-    <OutputSpecie name="D32p34PP2BCamCa4"/>
     <OutputSpecie name="D32p34PP1PP2BCamCa4"/>
-    <OutputSpecie name="D32p34PP2ABPR72"/>
-    <OutputSpecie name="D32p34PP2AB56d"/>
     <OutputSpecie name="D32p34PP1PP2ABPR72"/>
     <OutputSpecie name="D32p34PP1PP2AB56d"/>
 
@@ -187,10 +155,6 @@
     <OutputSpecie name="D32p75PP2Acal"/>
     <OutputSpecie name="D32p75pPP2A"/>
     
-    <OutputSpecie name="AKAR3"/>
-    <OutputSpecie name="pAKAR3"/>
-    <OutputSpecie name="PKAcAKAR3"/>
-    <OutputSpecie name="PP1pAKAR3"/>
   </OutputSet>
 
 </OutputScheme>

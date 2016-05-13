@@ -7,7 +7,7 @@
         <rate>                 45           </rate>
   </InjectionStim>
 
-  <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
+  <InjectionStim specieID="Da" injectionSite="sa2[:].pointD">
         <onset>               80000         </onset>
         <duration>            100           </duration>
         <rate>                 45           </rate>
@@ -18,14 +18,14 @@
         <duration>       99900.0       </duration>
         <rate>               6.0    </rate>
       </InjectionStim>
-      <InjectionStim specieID="Da" injectionSite="sa2[0:3].pointD">
+      <InjectionStim specieID="Da" injectionSite="sa2[:].pointD">
         <onset>           80100        </onset>
         <duration>       99900.0       </duration>
         <rate>               6.0    </rate>
       </InjectionStim>
 
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="ACh" injectionSite="sa2[:].pointD">
         <onset>               0          </onset>
         <duration>            300000      </duration>
         <rate>                0.5         </rate>
@@ -37,7 +37,7 @@
         <rate>                48           </rate>
   </InjectionStim>
 
-  <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+  <InjectionStim specieID="Ca" injectionSite="sa2[:].pointD">
         <onset>               80000         </onset>
         <duration>            100           </duration>
         <rate>                48           </rate>
@@ -49,7 +49,7 @@
         <rate>                8.1            </rate>
   </InjectionStim>
 
-  <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+  <InjectionStim specieID="Ca" injectionSite="sa2[:].pointD">
         <onset>               80100         </onset>
         <duration>            900           </duration>
         <rate>                8.1            </rate>
@@ -61,7 +61,7 @@
         <rate>                6.9            </rate>
   </InjectionStim>
 
-  <InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+  <InjectionStim specieID="Ca" injectionSite="sa2[:].pointD">
         <onset>               81000         </onset>
         <duration>            200000        </duration>
         <rate>                6.9            </rate>
