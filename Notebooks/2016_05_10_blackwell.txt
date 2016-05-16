@@ -47,7 +47,37 @@ Morph20um.xml
 	    
 ########## Simulate both 20 Hz and theta - 2um and 20 um morphology.  Repeat bath sims also.
 	   Also, consider removing burst ACh stimulation frome dendrite (injection spines)
-
+>>>>>ACh: basal is < 100 in spine and dendrite - this is fine now.	   
+>>>>>>>Da Stim results: cAMP is very transient (except for the 10s stim).  This is likely due to the high ACGi.  Nonetheless, pAKAR3 can distinguish the different durations.  However, the 1s stim still produces much less pAKAR than does the 10s stim - not consistent with results.
+>>>>>>>Bath stim results: Very similar to previous results (and to experiments):
+	     	 basal/stim Dp34  goal     basal/stim Dp75 goal		assessment
+	Da   	 378/4.9u   	   5x      10.8u/6.3u	50%	  	BOTH goals met
+     	Ca   	 393n/152n	   50%     11.0u/7.4u	75%		BOTH goals met
+      	DaCa	 327n/3.7u   	50% of Da  11.1u/5.3u			Close to goal met
+	CyA:  	 285n/1185n	 3-17x 	   11.1u/10.3u	100%		3x over "max basal" of 400	
+	OA:      565n/>890n	  5x	   45.5u	3x		2x over "max basal" of 400
+	CyA+Ca	 312n/446n	  	   11.0u/7.6u	  	
+	CyA+Da	 405n/4.9u		   11.0u/6.3u
+--------->Overall assessment: Bath application is quite good.  Blockers only OK.
+	Inc in Dp34 with CyA and OA alone are at low end of reported
+	Da with CyA does not caused even bigger increase in Dp34 than Da alone, which is expected.
+	Why does CyA alone causes initial drop in Dp34?
+>>>>>> Stim cases:    basal   20hz	theta	AUC assessment
+       Dp34PP1	     389-489  4.3u	4.3u	20hz slightly greater than theta
+       Dp75	      11.1u   6.5u	6.5u	similar
+       2ag  	      41-50   143	176	similar
+       CKCamCa4	      35      494	1.1u	theta 2x greater
+       CKpCamCa4      0	      17	75	theta 4x greater
+       PkcCaDag	      3	      39	60	theta 2x greater
+       CapDgl	      4	      27	59	theta 2x greater
+       DagCapDgl      1	      18	37	theta 2x greater
+------->Pkc and CKpCam are good. Amount of phospho Dgl is still small compared to non-phos, so effect on 2ag is difficult to see.
+--------->1. Will need AC1 to see increased PKAc with theta.
+	  2. Should CKpCam phos of Dgl be increased?
+	  3. Should PKA activation be 2x faster?
+>>>>>>Ca in spine is slightly higher than in dendrite during bath stimulation - this is fine
+	 Da in spine is considerably higher than dend with bath (21 vs 10 uM), 20hz and theta stim (~4x greater) - should this be fixed?
+	 
 Still need to evaluate the following:
 1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?
 2. What happens if decrease ACh alone??
