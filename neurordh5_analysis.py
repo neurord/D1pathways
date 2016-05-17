@@ -34,9 +34,9 @@ prnvox=1
 prninfo=0
 showss=0
 #outputavg determines whether output files are written
-outputavg=1
+outputavg=0
 showplot=2  #2 indicates plot the head conc
-stimspine=0 #number of stimulated spine
+stimspine='sa1[0]' #"name" of stimulated spine
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -86,16 +86,14 @@ for fnum,ftuple in enumerate(ftuples):
     if maxvols>1 and fnum==0:
         molecules=data['model']['species'][:]
         structType=data['model']['grid'][:]['type']
-        region_list,region_vox,region_struct_list,region_struct_vox,region_struct_deltaY=h5utils.subvol_list(structType,data['model'])
-        RegVol=h5utils.region_volume(region_list,region_vox,data['model']['grid']['volume'],prnvox)
-        RegStructVol=h5utils.region_volume(region_struct_list,region_struct_vox,data['model']['grid']['volume'],prnvox)
-        #
-        dsm_vox=region_struct_list.index(dend+submembname)
+        region_list,region_dict,region_struct_dict=h5utils.subvol_list(structType,data['model'])
+        dsm_name=dend+submembname
+        dsm_vox=region_struct_dict.keys().index(dsm_name)
         try:
-            head_vox=list(region_list[:]).index(spinehead)
+            head_index=list(region_list[:]).index(spinehead)
         except ValueError:
-            head_vox=-1
-        if head_vox>0:
+            head_index=-1
+        if head_index>0:
             spinelist,spinevox=h5utils.multi_spines(data['model'],spinehead)
         else:
             spinelist=''
@@ -146,11 +144,11 @@ for fnum,ftuple in enumerate(ftuples):
             molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols)
             time_array.append(time)
             #calculate region means
-            header,RegionMeans=h5utils.region_means(molecule_pop,region_list,region_vox,RegVol,time,molecule)
+            header,RegionMeans=h5utils.region_means_dict(molecule_pop,region_dict,time,molecule)
             if all(item==True for item in np.isnan(RegionMeans[:,0])):
                 header=header.replace(molecule+'default ','')
             #calculate region-structure menas
-            header2,RegionStructMeans=h5utils.region_means(molecule_pop,region_struct_list,region_struct_vox,RegStructVol,time,molecule)
+            header2,RegionStructMeans=h5utils.region_means_dict(molecule_pop,region_struct_dict,time,molecule)
             #if more than one spine, calculate individual spine means
             if len(spinelist)>1:
                 spineheader,spinemeans=h5utils.region_means_dict(molecule_pop,spinevox,time,molecule)
@@ -166,9 +164,10 @@ for fnum,ftuple in enumerate(ftuples):
             #
             if showplot==2:
                 if len(spinelist)>1:
-                    plot_array.append(spinemeans[:,stimspine])
+                    stimspinenum=list(spinelist).index(stimspine)
+                    plot_array.append(spinemeans[:,stimspinenum])
                 else:
-                    plot_array.append(RegionMeans[:,head_vox])
+                    plot_array.append(RegionMeans[:,head_index])
             else:
                 plot_array.append(OverallMean)
             #
@@ -190,10 +189,17 @@ for fnum,ftuple in enumerate(ftuples):
                     np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                     f.close()
             print molecule.rjust(14),
-            if head_vox>-1:
-                print "head ss:%8.4f pk %8.4f " % (RegionMeans[sstart[imol]:ssend[imol],head_vox].mean(), RegionMeans[ssend[imol]:,head_vox].max()),
-            print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_deltaY[dsm_vox]),
-                                                     (RegionStructMeans[ssend[imol]:,dsm_vox].max()*region_struct_deltaY[dsm_vox]))
+            if head_index>-1:
+                if len(spinelist)>1:
+                    stimspinenum=list(spinelist).index(stimspine)
+                    headmean=spinemeans[sstart[imol]:ssend[imol],stimspinenum].mean()
+                    headmax=spinemeans[sstart[imol]:ssend[imol],stimspinenum].max()
+                else:
+                    headmean=RegionMeans[sstart[imol]:ssend[imol],head_index].mean()
+                    headmax=RegionMeans[ssend[imol]:,head_index].max()
+                print "head ss:%8.4f pk %8.4f " % (headmean, headmax),
+            print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_dict[dsm_name]['depth']),
+                                                     (RegionStructMeans[ssend[imol]:,dsm_vox].max()*region_struct_dict[dsm_name]['depth']))
           else:
               if fnum==0 and molecule_name_issue==0:
                   print "Choose molecules from:", molecules
@@ -230,9 +236,9 @@ for fnum,ftuple in enumerate(ftuples):
             mol_index=h5utils.get_mol_index(data,outset,subspecie)
             mol_pop=data['trial0']['output'][outset]['population'][0,:,mol_index]
             ss_tot[fnum,imol]+=mol_pop.sum()/TotVol/mol_per_nM_u3
-            dsm_tot[fnum,imol]+=mol_pop[region_struct_vox[dsm_vox]].sum()/RegStructVol[dsm_vox]*region_struct_deltaY[dsm_vox]/mol_per_nM_u3
-            if head_vox>-1:
-                head_tot[fnum,imol]+=mol_pop[region_vox[head_vox]].sum()/RegVol[head_vox]/mol_per_nM_u3
+            dsm_tot[fnum,imol]+=mol_pop[region_struct_dict[dsm_name]['vox']].sum()/region_struct_dict[dsm_name]['vol']*region_struct_dict[dsm_name]['depth']/mol_per_nM_u3
+            if head_index>-1:
+                head_tot[fnum,imol]+=mol_pop[region_dict[spinehead]['vox']].sum()/region_dict[spinehead]['vol']/mol_per_nM_u3
             else:
                 head_tot[fnum,imol]+=-1
         print "Total",mol,

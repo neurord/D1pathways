@@ -95,45 +95,31 @@ def argparse(args):
         ftuples=[(fnames[0],1)]
     return ftuples,parlist,params
 
-
-def region_volume(List,Vox,volume,prnvox):
-    #This volume is in units of cubic microns, multiply by 1e-15 to convert to Liters
-    print "\nFOR region avg: j,regionvox,vol:"
-    region_volume=np.zeros(len(List))
-    for j in range(len(List)):
-        for k in Vox[j]:
-            region_volume[j]+=volume[k] 
-        if prnvox:
-            print j, List[j],Vox[j],region_volume[j]
-        else:
-            print "not printed"
-    return region_volume
-
 def subvol_list(structType,model):
     #better to use dictionaries with region_list or reg_struct_list the keys.
     #Will need to change region_means for dictionary compatibility
     region_list=model['regions']
     region_voxels=[]
-    for region in region_list:
-        region_voxels.append([])
-    for elnum,element in enumerate(model['grid']):
-        region_voxels[element['region']].append(elnum) 
-    region_struct_vox=[]
-    reg_struct_list=[]
-    reg_struct_deltaY=[]
-    totnum=0
-    for setnum,voxel_set in enumerate(region_voxels):
-        if len(voxel_set)>1:
-            struct_set=model['grid'][voxel_set]['type']
-            if list(struct_set).count(struct_set[0])<len(struct_set):
-                region_struct_vox.append(list(np.where(struct_set==struct_set[0])[0]))
-                region_struct_vox.append(list(np.where(struct_set!=struct_set[0])[0]))
-                reg_struct_list.append(model['regions'][setnum]+structType[region_struct_vox[0+totnum][0]][0:3])
-                reg_struct_list.append(model['regions'][setnum]+structType[region_struct_vox[1+totnum][0]][0:3])
-                reg_struct_deltaY.append(model['grid'][region_struct_vox[0+totnum][0]]['y0']-model['grid'][region_struct_vox[0+totnum][0]]['y2'])
-                reg_struct_deltaY.append(model['grid'][region_struct_vox[1+totnum][0]]['y0']-model['grid'][region_struct_vox[1+totnum][0]]['y2'])
-                totnum=totnum+2
-    return region_list,region_voxels,reg_struct_list,region_struct_vox,reg_struct_deltaY
+    region_dict=OrderedDict()
+    for regnum,region in enumerate(region_list):
+        temp_voxel_list=[]
+        region_volume=0
+        for elnum,element in enumerate(model['grid']):
+            if element['region']==regnum:
+                temp_voxel_list.append(elnum)
+                region_volume+=element['volume']
+        region_dict[region]={'vox': temp_voxel_list, 'vol': region_volume}
+    region_struct_dict=OrderedDict()
+    for reg in region_dict.keys():
+        if len(region_dict[reg]['vox'])>1:
+            struct_set=model['grid'][region_dict[reg]['vox']]['type']
+            if len(np.unique(struct_set))>1:
+                for structure in np.unique(struct_set):
+                    voxels=list(np.where(struct_set==structure)[0])
+                    structure_volume=np.sum(model['grid'][voxels]['volume'])
+                    depth=model['grid'][voxels[0]]['y0']-model['grid'][voxels[0]]['y2']
+                    region_struct_dict[reg+structure[0:3]]={'vox':voxels,'depth':depth,'vol': structure_volume}
+    return region_list,region_dict,region_struct_dict
 
 def multi_spines(model,spinename):
     #create list of spine voxels
@@ -160,20 +146,6 @@ def multi_spines(model,spinename):
         newspinevox[spine]={'vox':temp,'vol':spinevol}
     #Need to do better job of sorting spines than this OrderedDict
     return newspinelist,OrderedDict(sorted(newspinevox.items(), key=lambda t: t[0]))
-
-def region_means(data,regionList,regionCol,regionVol,time,molecule):
-    RegionMeans=np.zeros((len(time),len(regionList)))
-    header=''       #Header for output file
-    for itime in range(len(time)):
-        for j in range(len(regionList)):
-            for k in regionCol[j]:
-                RegionMeans[itime,j]+=data[itime,k]
-
-    for j in range(len(regionList)):
-        RegionMeans[:,j]/=(regionVol[j]*mol_per_nM_u3)
-        #print "head",header,"mol",molecule,"reg",regionList[j]
-        header=header+molecule+regionList[j]+' '       #Header for output file
-    return header,RegionMeans
 
 def region_means_dict(data,regionDict,time,molecule):
     RegionMeans=np.zeros((len(time),len(regionDict)))
