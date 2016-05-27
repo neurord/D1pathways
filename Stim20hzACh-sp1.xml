@@ -89,7 +89,7 @@
 </InjectionStim>
 
 <!--InjectionStim specieID="Ca" injectionSite="dend:submembrane"-->
-<InjectionStim specieID="Ca" injectionSite="sa2[:].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               50000          </onset>
         <duration>            3              </duration>
         <rate>                1560            </rate>
@@ -100,13 +100,13 @@
 </InjectionStim>
 
 <!-- basal ACh value prior to stim = desired conc * decay ra te -->
-<InjectionStim specieID="ACh" injectionSite="sa2[:].pointD">
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            50000      </duration>
         <rate>                0.5         </rate>
 </InjectionStim>
 <!-- basal ACh stim paused during Da stim-->
-<InjectionStim specieID="ACh" injectionSite="sa2[:].pointD">
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               52400          </onset>
         <duration>            7800      </duration>
         <rate>                0.5         </rate>
@@ -126,7 +126,7 @@
 
 <!--InjectionStim specieID="ACh" injectionSite="dend"-->
 <!-- Should this stimulation be eliminated???-->
-<InjectionStim specieID="ACh" injectionSite="sa2[:].pointD">
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               50000          </onset>
         <duration>            15              </duration>
         <rate>                80.0           </rate>

@@ -1,0 +1,94 @@
+Lab Notebook for Blackwell May 10-, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+   small amount of AC1 to allow Theta to have higher cAMP and PKA??
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+
+########## Testing out new features of neurord using NeuroRD-3.1.1
+A. Evaluate injection directly into dendrite
+   1. Repeat bath simulations using -Dneurord.trials=3 (Da, Ca, DaCa, OA, CyA)
+      Discovered that ACh was injected into spine for block trials - fix and repeat these
+   2. Eliminate FAKE spines and stimulate directly into dendrite - 3 trials (Da, Ca, DaCa, OA, CyA)
+   Morph_1sp2umDend.xml
+   StimDend_CaBath.xml
+   StimDend_DaBath.xml
+   StimDend_DaCaBath.xml
+   StimDend_AChBath.xml
+   Model_SPNspineCaMKII_DagL_AChm4R-bathDendCa.xml
+   Model_SPNspineCaMKII_DagL_AChm4R-bathDendDa.xml
+   Model_SPNspineCaMKII_DagL_AChm4R-blockOADendACh.xml
+   Model_SPNspineCaMKII_DagL_AChm4R-bathDendDaCa.xml
+   Model_SPNspineCaMKII_DagL_AChm4R-blockCyADendACh.xml
+
+B. Begin test of restart facility
+   1. Run no-stim simulation for steady state
+   2. repeat 20Hz and Theta sims 2 more times using --ic nostim.h5 and --ic-time -1
+   
+>>>>Analysis of 20um long sims
+Spine specificity: Neurotransmitters are much greater in stim spine than non-stim spine.  non-stim spine conc is closer to overall concentration, though a bit higher.  Possibly due to stochasticity?
+For some reason, the spine conc is ~2x higher for Theta than for 20 hz.  I.e., the gradient is larger from spine to dendrite.  E.g. both have same mean Da concentration, but spine peak is higher for theta than for 20 Hz. this is not due to 20 um long dendrite, because the spine conc are higher for theta than 20 hz in the 2um case.  This may be caused by using diffusion constant of 10 for Glu, ACh and Da.  Diffusion = 174 for calcium, but buffers impede its diffusion.  Need to investigate reasonable diffusion constants.  Bartol uses 220 for Ca and Glutmate, but his glutamate experiences the tortuosity of the ec space.
+simulation time for 1 spine case:
+20um 20hz: 116.9 hours
+20um theta: 116.4 hours
+Note that theta files were larger, but no significant difference in simulation time
+--------->Stimulation is sufficient to evaluate effect of 1 sp vs 2 sp adjacent vs 2 spine separated
+Compare these times with the cases of no fake spines:
+########## new files (re-run the sp1 sims with no fake spines also)
+Model_SPNspineCaMKII_DagL_AChm4R_20um-sp2adj-stim20hz.xml
+Model_SPNspineCaMKII_DagL_AChm4R_20um-sp2adj-stimtheta.xml
+Model_SPNspineCaMKII_DagL_AChm4R_20um-sp2sep-stim20hz.xml
+Model_SPNspineCaMKII_DagL_AChm4R_20um-sp2sep-stimtheta.xml
+Morph20um.xml has been changed to eliminate fake spines
+The following Stim files also inject directly into the dendrite submembrane:
+Stim20hzACh-sp2adj.xml
+StimTheta10hzACh-sp2adj.xml
+Stim20hzACh-sp2sep.xml
+StimTheta10hzACh-sp2sep.xml
+Stim20hzACh-sp1.xml
+StimTheta10hzACh-sp1.xml
+
+########## What happens if decrease ACh alone??
+Model_SPNspineCaMKII_DagL_AChm4R-noACh.xml - this eliminates the basal ACh stim.
+
+########## Should PKA activation be faster still?  Might need to compensate some reactions (NO!):
+   a. dephos of DaD1RGS - currently 1st order - easy to speed up, but also could use phosphatase
+   b. dephos of PDEs - currently 1st order - easy to speed up, but also could use phosphatase
+   c. DARPP: currently value is a bit low, so doubling PKA would not need to be compensated completely.  PP2B dephos kcat is currently 0.5.  Measured value: King, Hemmings: Vmax =0.2-1/sec.  So, could speed this up.
+   d. AKAR3
+Note that increased activation rate of PKA will mostly not affect the basal, steady state level.  It  could have small effect if PKAc dissociated more often from PKAr at basal level.  But if no change in basal, then no need to compensate the dephos rates, EXCEPT the AKAR3 since it is too high.
+-------> repeat the nostim case with 5x rate of PKA activation (Jeanette uses 20x the current rate!)
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?

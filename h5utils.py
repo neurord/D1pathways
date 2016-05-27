@@ -7,6 +7,7 @@ from collections import OrderedDict
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
 
+####### FIX/IMPROVE THIS by going background from last outputset, only using outset __main__ if no voxels?
 def get_mol_info(simData,plot_molecules,gridpoints):
     outputsets=simData['model']['output'].keys()
     dt=np.zeros((len(plot_molecules)))
@@ -16,7 +17,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
         temp_dict={}
         tot_voxels=0
         for outset in outputsets[1:]:           #better to go backward from last set, and then go to 0 set if mol not found
-        #for each in outputsets[-1::-1]:
+        #for each in outputsets[-1::-1] and while tot_voxels>grid_points:
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
@@ -46,14 +47,16 @@ def get_mol_index(simData,outputset,molecule):
     else:
         return -1
 
-def get_mol_pop(simData, out_location,gridpoints):
+def get_mol_pop(simData, out_location,gridpoints,trials):
     samples=out_location['samples']
-    conc=np.zeros((samples,gridpoints))
+    conc=np.zeros((len(trials),samples,gridpoints))
     for outset in out_location['location'].keys():
         elements=out_location['location'][outset]['elements']
-        tempConc=simData['trial0']['output'][outset]['population'][:,:,out_location['location'][outset]['mol_index']]
-        time=simData['trial0']['output'][outset]['times'][:]/1000.     #Convert msec to sec
-        conc[:,elements]=tempConc
+        time=simData[trials[0]]['output'][outset]['times'][:]/1000.     #Convert msec to sec
+        for trialnum,trial in enumerate(trials):
+            tempConc=simData[trial]['output'][outset]['population'][:,:,out_location['location'][outset]['mol_index']]
+            #transpose required to undo the transpose automatically done by python when specifying elements as 3d index
+            conc[trialnum,:,elements]=tempConc.T
     return conc,time
 
 def argparse(args):
@@ -95,32 +98,28 @@ def argparse(args):
         ftuples=[(fnames[0],1)]
     return ftuples,parlist,params
 
+from orderedmultidict import omdict
 def subvol_list(structType,model):
-    #better to use dictionaries with region_list or reg_struct_list the keys.
-    #Will need to change region_means for dictionary compatibility
+    #use dictionaries to store voxels corresponding to regions, region_classes (e.g. head) or regions/structures
     region_list=model['regions']
-    region_voxels=[]
     region_dict=OrderedDict()
-    for regnum,region in enumerate(region_list):
-        temp_voxel_list=[]
-        region_volume=0
-        for elnum,element in enumerate(model['grid']):
-            if element['region']==regnum:
-                temp_voxel_list.append(elnum)
-                region_volume+=element['volume']
-        region_dict[region]={'vox': temp_voxel_list, 'vol': region_volume}
     region_struct_dict=OrderedDict()
-    for reg in region_dict.keys():
-        if len(region_dict[reg]['vox'])>1:
-            struct_set=model['grid'][region_dict[reg]['vox']]['type']
-            if len(np.unique(struct_set))>1:
-                for structure in np.unique(struct_set):
-                    voxels=list(np.where(struct_set==structure)[0])
-                    structure_volume=np.sum(model['grid'][voxels]['volume'])
-                    depth=model['grid'][voxels[0]]['y0']-model['grid'][voxels[0]]['y2']
-                    region_struct_dict[reg+structure[0:3]]={'vox':voxels,'depth':depth,'vol': structure_volume}
+    #create dictionary of voxels and volumes for each region
+    reg_voxel=omdict(( zip(model['grid'][:]['region'],range(len(model['grid'])) ) ))
+    reg_voxel_vol=omdict(( zip(model['grid'][:]['region'],model['grid'][:]['volume'] ) ))
+    for regnum in reg_voxel.keys():
+        region_dict[region_list[regnum]]={'vox': reg_voxel.allvalues(regnum), 'vol': sum(reg_voxel_vol.allvalues(regnum))}
+        # for regions of more than one type, create dictionary of voxels and volumes for each type of each region
+        if len(np.unique(model['grid'][reg_voxel.allvalues(regnum)]['type']))>1:
+            struct_voxels=omdict(( zip(model['grid'][reg_voxel.allvalues(regnum)]['type'],reg_voxel.allvalues(regnum)) ))
+            struct_vox_vol=omdict(( zip(model['grid'][reg_voxel.allvalues(regnum)]['type'],reg_voxel_vol.allvalues(regnum)) ))
+            for struct in struct_voxels.keys():
+                depth=model['grid'][struct_voxels.allvalues(struct)]['y0']-model['grid'][struct_voxels.allvalues(struct)]['y2']
+                #Depth is an array.  For submemb, only a single value, for cyt - different values.  Presently only storing one of the values
+                region_struct_dict[region_list[regnum]+struct[0:3]]={'vox': struct_voxels.allvalues(struct),'depth':depth[0],'vol': sum(struct_vox_vol.allvalues(struct))}
     return region_list,region_dict,region_struct_dict
 
+####### FIX/IMPROVE THIS USING omdict
 def multi_spines(model,spinename):
     #create list of spine voxels
     spinelist=[]
@@ -147,17 +146,16 @@ def multi_spines(model,spinename):
     #Need to do better job of sorting spines than this OrderedDict
     return newspinelist,OrderedDict(sorted(newspinevox.items(), key=lambda t: t[0]))
 
-def region_means_dict(data,regionDict,time,molecule):
-    RegionMeans=np.zeros((len(time),len(regionDict)))
+def region_means_dict(data,regionDict,time,molecule,trials):
+    RegionMeans=np.zeros((len(trials),len(time),len(regionDict)))
     header=''       #Header for output file
-    for itime in range(len(time)):
-        for j,item in enumerate(regionDict):
-            for vox in regionDict[item]['vox']:
-                RegionMeans[itime,j]+=data[itime,vox]
-
     for j,item in enumerate(regionDict):
-        RegionMeans[:,j]/=(regionDict[item]['vol']*mol_per_nM_u3)
+        RegionMeans[:,:,j]=np.sum(data[:,:,regionDict[item]['vox']],axis=2)/(regionDict[item]['vol']*mol_per_nM_u3)
         header=header+molecule+'_'+item+' '       #Header for output file
-    return header,RegionMeans
+    RegionMeanStd={}
+    if len(trials)>1:
+        RegionMeanStd['mean']=np.mean(RegionMeans,axis=0)
+        RegionMeanStd['std']=np.std(RegionMeans,axis=0)
+    return header,RegionMeans,RegionMeanStd
     
  

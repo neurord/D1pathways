@@ -4,10 +4,9 @@
 	 reaction data brought in from other files --> 
 
           <xi:include href="Rxn_SPNspineCaMKII_DagL_AChm4R.xml" />
-          <xi:include href="Morph20um.xml" />
+          <xi:include href="Morph_1sp2umDend.xml" />
 	  <xi:include href="IC_SPNspineCaMKII_DagL_AChm4R.xml" />       
-          <xi:include href="IO_SPNspineCaMKII_DagL_AChm1R_20um.xml" />
-          <xi:include href="StimTheta10hzACh-sp1.xml" />
+          <xi:include href="IO_SPNspineCaMKII_DagL_AChm1R.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the
@@ -21,7 +20,7 @@ results (also, 3D may not work yet...)  -->
 
 
     <!-- run time for the calculation, milliseconds -->
-    <runtime>          300000         </runtime>
+    <runtime>          250000         </runtime>
 <!-- 100001 -->
     <!-- set the seed to get the same spines each time testing -->
     <spineSeed>          123          </spineSeed>

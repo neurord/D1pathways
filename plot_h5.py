@@ -54,9 +54,9 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
                     imol=row+rows*col
                     if imol<len(plotmol) and plotarray[imol][0]>-1:
                          axes[row,col].plot(time[imol][:],plotarray[imol][:],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
+                         axes[row,col].set_ylabel(plotmol[imol])#+' (nM)')
                     if imol==0:
                          axes[row,col].legend(fontsize=8, loc='best')
-                    axes[row,col].set_ylabel(plotmol[imol])#+' (nM)')
                axes[rows-1,col].set_xlabel('Time (sec)')
      fig.canvas.draw()
      return

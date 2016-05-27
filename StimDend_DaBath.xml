@@ -7,7 +7,7 @@
         <rate>                45           </rate>
   </InjectionStim>
 
-  <InjectionStim specieID="Da" injectionSite="sa2[:].pointD">
+  <InjectionStim specieID="Da" injectionSite="dend:submembrane">
         <onset>               80000         </onset>
         <duration>            100           </duration>
         <rate>                45           </rate>
@@ -18,14 +18,14 @@
         <duration>       99900.0       </duration>
         <rate>               6.0    </rate>
       </InjectionStim>
-      <InjectionStim specieID="Da" injectionSite="sa2[:].pointD">
+      <InjectionStim specieID="Da" injectionSite="dend:submembrane">
         <onset>           80100        </onset>
         <duration>       99900.0       </duration>
         <rate>               6.0    </rate>
       </InjectionStim>
 
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
-<InjectionStim specieID="ACh" injectionSite="sa2[:].pointD">
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            300000      </duration>
         <rate>                0.3         </rate>

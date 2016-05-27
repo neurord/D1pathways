@@ -5,8 +5,10 @@
 #e.g. ARGS="Ca GaqGTP,Ca GaqGTP Ip3,../Repo/plc/Model_PLCassay,15 20" time units are sec
 #from outside python, type python neurordh5_analysis [par1 par2] [mol1 mol2]
 #Assumes that molecule outputs are integers, and the hypens used ONLY for parameters
-#Can process multiple parameter variations, but all files must use same morphology, and meshfile.  
+#Can process multiple parameter variations, but all files must use same morphology, and meshfile.
+#Can process multiple trials for each parameter variation
 #It will provide region averages (each spine, dendrite submembrane, cytosol)
+#If only a single file, will plot multiple trials; if multiple trials, plots the mean over trials
 #Future improvements:
 #   1. spatial average along dendrite
 
@@ -35,7 +37,7 @@ prninfo=0
 showss=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=2  #2 indicates plot the head conc
+showplot=1  #2 indicates plot the head conc
 stimspine='sa1[0]' #"name" of stimulated spine
 
 #Example of how to total some molecule forms; turn off with tot_species={}
@@ -43,7 +45,7 @@ stimspine='sa1[0]' #"name" of stimulated spine
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
 tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
-#tot_species=[]
+tot_species=[]
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -60,14 +62,14 @@ except NameError: #NameError refers to an undefined variable (in this case ARGS)
 
 ftuples,parlist,params=h5utils.argparse(args)
 figtitle=args[2].split('/')[-1]
-numfiles=len(ftuples)
-ss_tot=np.zeros((numfiles,len(tot_species)))
-dsm_tot=np.zeros((numfiles,len(tot_species)))
-head_tot=np.zeros((numfiles,len(tot_species)))
+if showplot==2:
+    figtitle=figtitle+' '+stimspine
 
 ###################################################
 
 parval=[]
+whole_plot_array=[]
+numfiles=len(ftuples)
 for fnum,ftuple in enumerate(ftuples):
     fname=ftuple[0]
     parval.append(ftuple[1])
@@ -77,20 +79,29 @@ for fnum,ftuple in enumerate(ftuples):
     plot_array=[]
     time_array=[]
     
-    if len(data.keys())==3:     #only a single trial
-        outputsets=data['trial0']['output'].keys()
-    #else - will need to average over multiple trials eventually.
-
-    #Extract region and structure voxels and volumes
+    trials=[a for a in data.keys() if 'trial' in a]
+    numtrials=len(trials)
+    outputsets=data[trials[0]]['output'].keys()
+    #print data.keys(),trials,outputsets
+    if numfiles==1:
+        arraysize=numtrials
+        parval=trials
+    else:
+        arraysize=numfiles
     #
+    ##########################################################
+    #   Extract region and structure voxels and volumes
+    ##########################################################
     if maxvols>1 and fnum==0:
         molecules=data['model']['species'][:]
         structType=data['model']['grid'][:]['type']
         region_list,region_dict,region_struct_dict=h5utils.subvol_list(structType,data['model'])
+        dsm_tot=np.zeros((arraysize,len(tot_species)))
+        head_tot=np.zeros((arraysize,len(tot_species)))
         dsm_name=dend+submembname
         dsm_vox=region_struct_dict.keys().index(dsm_name)
         try:
-            head_index=list(region_list[:]).index(spinehead)
+            head_index=region_dict.keys().index(spinehead)
         except ValueError:
             head_index=-1
         if head_index>0:
@@ -106,20 +117,19 @@ for fnum,ftuple in enumerate(ftuples):
             plot_molecules=args[1].split()
         else:
             plot_molecules=molecules
+        num_mols=len(plot_molecules)
         out_location,dt,rows=h5utils.get_mol_info(data,plot_molecules,maxvols)
-        if showplot:
-            fig,axes,col_inc,scale,numpar=pu5.plot_setup(plot_molecules,parlist,params)
-            #need fnames
-            fig.suptitle(figtitle)
         #
-        ss=np.zeros((numfiles,len(plot_molecules)))
-        slope=np.zeros((numfiles,len(plot_molecules)))
-        peaktime=np.zeros((numfiles,len(plot_molecules)))
-        baseline=np.zeros((numfiles,len(plot_molecules)))
-        peakval=np.zeros((numfiles,len(plot_molecules)))
-        lowval=np.zeros((numfiles,len(plot_molecules)))
-        sstart=np.zeros((len(plot_molecules)),dtype=np.int)
-        ssend=np.zeros((len(plot_molecules)),dtype=np.int)
+        ss_tot=np.zeros((arraysize,len(tot_species)))
+        ss=np.zeros((arraysize,num_mols))
+        slope=np.zeros((arraysize,num_mols))
+        peaktime=np.zeros((arraysize,num_mols))
+        baseline=np.zeros((arraysize,num_mols))
+        peakval=np.zeros((arraysize,num_mols))
+        lowval=np.zeros((arraysize,num_mols))
+        sstart=np.zeros((num_mols),dtype=np.int)
+        ssend=np.zeros((num_mols),dtype=np.int)
+        #
         if len(args)>3:
             for imol,molecule in enumerate(plot_molecules):
                 if out_location[molecule]!=-1:
@@ -141,50 +151,64 @@ for fnum,ftuple in enumerate(ftuples):
         molecule_name_issue=0
         for imol,molecule in enumerate(plot_molecules):
           if out_location[molecule]!=-1:
-            molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols)
+            molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols,trials)
             time_array.append(time)
             #calculate region means
-            header,RegionMeans=h5utils.region_means_dict(molecule_pop,region_dict,time,molecule)
-            if all(item==True for item in np.isnan(RegionMeans[:,0])):
-                header=header.replace(molecule+'default ','')
-            #calculate region-structure menas
-            header2,RegionStructMeans=h5utils.region_means_dict(molecule_pop,region_struct_dict,time,molecule)
+            header,RegionMeans,RegMeanStd=h5utils.region_means_dict(molecule_pop,region_dict,time,molecule,trials)
+            #calculate region-structure means
+            header2,RegionStructMeans,RegStructMeanStd=h5utils.region_means_dict(molecule_pop,region_struct_dict,time,molecule,trials)
             #if more than one spine, calculate individual spine means
             if len(spinelist)>1:
-                spineheader,spinemeans=h5utils.region_means_dict(molecule_pop,spinevox,time,molecule)
+                spineheader,spinemeans,spineMeanStd=h5utils.region_means_dict(molecule_pop,spinevox,time,molecule,trials)
             else:
                 spineheader=''
             #calculate overall mean
-            OverallMean=np.zeros(len(time))
-            for itime in range(len(time)):
-                for k in range(maxvols):
-                    OverallMean[itime]+=molecule_pop[itime,k]
-            OverallMean[:]/=(TotVol*mol_per_nM_u3)
+            OverallMean=np.zeros((numtrials,len(time)))
+            OverallMean[:,:]=np.sum(molecule_pop[:,:,:],axis=2)/(TotVol*mol_per_nM_u3)
             header='#time ' +header+header2+molecule+'AvgTot '+spineheader+'\n'
             #
             if showplot==2:
                 if len(spinelist)>1:
                     stimspinenum=list(spinelist).index(stimspine)
-                    plot_array.append(spinemeans[:,stimspinenum])
+                    #TEST THIS LINE FOR MULTIPLE SPINES/TRIALS
+                    if numfiles>1:
+                        plot_array.append(np.mean(spinemeans,axis=0)[:,stimspinenum])
+                    else:
+                        plot_array.append(spinemeans[:,:,stimspinenum])
                 else:
-                    plot_array.append(RegionMeans[:,head_index])
+                    if numfiles>1:
+                        plot_array.append(np.mean(RegionMeans,axis=0)[:,head_index])
+                    else:
+                        plot_array.append(RegionMeans[:,:,head_index])
+                        
             else:
-                plot_array.append(OverallMean)
+                if numfiles>1:
+                    plot_array.append(np.mean(OverallMean,axis=0))
+                    #plot_array dimensions=number of molecules x sample times
+                else:
+                    plot_array.append(OverallMean)
+                    #plot_array dimensions=number of molecules x number of trials x sample times
             #
             #write averages to separate files
             if outputavg:
                 outfname=fname[0:-3]+'_'+molecule+'_avg.txt'
                 if molecule in plot_molecules:
                     print 'output file: ', outfname
-                    if all(item==True for item in np.isnan(RegionMeans[:,0])):
-                        start_col=1
+                    if numtrials>1:
+                        region_out=np.column_stack((RegionMeansStd['mean'],RegionMeanStd['std'],RegStructMeanStd['mean'],RegStructMeanStd['std']))
+                        overall_out=np.column_stack((np.mean(OverallMean,axis=0),np.std(OverallMean,axis=0)))
                     else:
-                        start_col=0
+                        region_out=np.column_stack((RegionMeans[0,:,:],RegionStructMean[0,:,:]))
+                        overall_out=OverallMean[0,:]
                     if len(spinelist)>1:
-                        outdata=np.column_stack((time,RegionMeans[:,start_col:],RegionStructMeans,OverallMean,spinemeans))
+                        if numtrials>1:
+                            outdata=np.column_stack((time,region_out,overall_out,spineMeanStd['mean'],spineMeanStd['std']))
+                        else:
+                            outdata=np.column_stack((time,region_out,overall_out,spinemeans[0,:,:]))
                     else:
-                        outdata=np.column_stack((time,RegionMeans[:,start_col:],RegionStructMeans,OverallMean))
+                        outdata=np.column_stack((time,region_out,overall_out))
                     f=open(outfname, 'w')
+                    ############## NEED TO FIX HEADER FOR MULTI-TRIALS - INCLUDE STDEV ################3
                     f.write(header)
                     np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                     f.close()
@@ -195,11 +219,13 @@ for fnum,ftuple in enumerate(ftuples):
                     headmean=spinemeans[sstart[imol]:ssend[imol],stimspinenum].mean()
                     headmax=spinemeans[sstart[imol]:ssend[imol],stimspinenum].max()
                 else:
-                    headmean=RegionMeans[sstart[imol]:ssend[imol],head_index].mean()
-                    headmax=RegionMeans[ssend[imol]:,head_index].max()
+                    headmean=np.mean(RegionMeans[:,sstart[imol]:ssend[imol],head_index])
+                    tempmax=np.max(RegionMeans[:,ssend[imol]:,head_index],axis=1)
+                    headmax=np.mean(tempmax)
                 print "head ss:%8.4f pk %8.4f " % (headmean, headmax),
-            print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_dict[dsm_name]['depth']),
-                                                     (RegionStructMeans[ssend[imol]:,dsm_vox].max()*region_struct_dict[dsm_name]['depth']))
+            dsm_max=np.max(RegionStructMeans[:,ssend[imol]:,dsm_vox],axis=1)
+            print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[:,sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_dict[dsm_name]['depth']),
+                                                     (np.mean(dsm_max)*region_struct_dict[dsm_name]['depth']))
           else:
               if fnum==0 and molecule_name_issue==0:
                   print "Choose molecules from:", molecules
@@ -207,31 +233,51 @@ for fnum,ftuple in enumerate(ftuples):
               plot_array.append([-1])
               #
     else:
-        #no processing needed if only a single voxel.  Just extract, calculate ss, and plot specified molecules
-        for imol,mol in enumerate(plot_molecules):
+        #minimal processing needed if only a single voxel.  Just extract, calculate ss, and plot specified molecules
+        #might want to create output files with mean and stdev
+        voxel=0
+        for mol in plot_molecules:
           if out_location[mol]!=-1:
-            voxel=0
-            for outset in out_location[2].keys():
-                tempConc=data['trial0']['output'][outset]['population'][:,out_location[2][outset]['mol_index']]/TotVol/mol_per_nM_u3
-                plot_array.append(tempConc)
+            outset = out_location[mol]['location'].keys()[0]
+            imol=out_location[mol]['location'][outset]['mol_index']
+            tempConc=np.zeros((numtrials,out_location[mol]['samples']))
+            time_array.append(data[trials[0]]['output'][outset]['times'][:]/1000.)
+            #generate output files for these cases
+            for trialnum,trial in enumerate(trials):
+                tempConc[trialnum]=data[trial]['output'][outset]['population'][:,voxel,imol]/TotVol/mol_per_nM_u3
+            plot_array.append(tempConc)
+            #dimensions of plot_array=num trials x num molecules x sample times
           else:
               print "molecule", molecule, "not found in output data!!!!!!!!!!!"
               if fnum==0:
                   print "choose from:", molecules
               plot_array.append([-1])
+    #Whether 1 voxel or multi-voxel, create array holding means for all molecules, all files, all trials
+    if numfiles>1:
+        #plot_array dimensions=num molecules x sample times
+        #whole_plot_array dimension=num files*num molecules*sample time
+        whole_plot_array.append(plot_array)
+    else:
+        #dimensions of plot_array=num molecules x num trials x sample times
+        #whole_plot_array dimension=num trials*num molecules*sample time
+        whole_plot_array=np.swapaxes(plot_array,0,1)
     #
-    #in both cases (single voxel and multi-voxel):
-    ######### total some molecule forms, to verify initial conditions
+    ###################################################
+    #   in both cases (single voxel and multi-voxel):
+    #   total some molecule forms, to verify initial conditions
+    ###################################################
     #
     outset="__main__"
     for imol,mol in enumerate(tot_species):
         mol_set=[]
+        #first set up arrays of all species (sub_species) that are a form of the molecule
         if mol in sub_species.keys():
             mol_set=sub_species[mol]
         else:
             for subspecie in data['model']['output']['__main__']['species'][:]:
                 if mol in subspecie:
                     mol_set.append(subspecie)
+        #second, find molecule index of the sub_species and total then
         for subspecie in mol_set:
             mol_index=h5utils.get_mol_index(data,outset,subspecie)
             mol_pop=data['trial0']['output'][outset]['population'][0,:,mol_index]
@@ -244,57 +290,64 @@ for fnum,ftuple in enumerate(ftuples):
         print "Total",mol,
         if fnum==0:
             print mol_set,
-        print ss_tot[fnum,imol],"nM, or head:",head_tot[fnum,imol],"nM, or dsm:", dsm_tot[fnum,imol], "picoSD" 
-    #
-    #####################################################################
-    #after main processing, extract a few characteristics of molecule trajectory
-    #####################################################################
-    print params, parval[fnum]
+        print ss_tot[fnum,imol],"nM, or head:",head_tot[fnum,imol],"nM, or dsm:", dsm_tot[fnum,imol], "picoSD"
+#
+#####################################################################
+#after main processing, extract a few characteristics of molecule trajectory
+#####################################################################
+for pnum in range(arraysize):
+    print params, parval[pnum]
     print "        molecule  baseline  peakval   ptime    slope      min     ratio"
     for imol,mol in enumerate(plot_molecules):
       if out_location[mol]!=-1:
-        ss[fnum,imol]=plot_array[imol][sstart[imol]:ssend[imol]].mean()
-        baseline[fnum,imol]=plot_array[imol][sstart[imol]:ssend[imol]].mean()
-        peakpt=plot_array[imol][ssend[imol]:].argmax()+ssend[imol]
-        peaktime[fnum,imol]=peakpt*dt[imol]
-        peakval[fnum,imol]=plot_array[imol][peakpt-10:peakpt+10].mean()
-        lowpt=plot_array[imol][ssend[imol]:].argmin()+ssend[imol]
-        lowval[fnum,imol]=plot_array[imol][lowpt-10:lowpt+10].mean()
-        begin_slopeval=0.2*(peakval[fnum,imol]-baseline[fnum,imol])+baseline[fnum,imol]
-        end_slopeval=0.8*(peakval[fnum,imol]-baseline[fnum,imol])+baseline[fnum,imol]
-        exceedsthresh=np.where(plot_array[imol][ssend[imol]:]>begin_slopeval)
+        ss[pnum,imol]=whole_plot_array[pnum][imol][sstart[imol]:ssend[imol]].mean()
+        baseline[pnum,imol]=whole_plot_array[pnum][imol][sstart[imol]:ssend[imol]].mean()
+        peakpt=whole_plot_array[pnum][imol][ssend[imol]:].argmax()+ssend[imol]
+        peaktime[pnum,imol]=peakpt*dt[imol]
+        peakval[pnum,imol]=whole_plot_array[pnum][imol][peakpt-10:peakpt+10].mean()
+        lowpt=whole_plot_array[pnum][imol][ssend[imol]:].argmin()+ssend[imol]
+        lowval[pnum,imol]=whole_plot_array[pnum][imol][lowpt-10:lowpt+10].mean()
+        begin_slopeval=0.2*(peakval[pnum,imol]-baseline[pnum,imol])+baseline[pnum,imol]
+        end_slopeval=0.8*(peakval[pnum,imol]-baseline[pnum,imol])+baseline[pnum,imol]
+        exceedsthresh=np.where(whole_plot_array[pnum][imol][ssend[imol]:]>begin_slopeval)
         begin_slopept=0
         end_slopept=0
         found=0
         if len(exceedsthresh[0]):
             begin_slopept=np.min(exceedsthresh[0])+ssend[imol]
             found=1
-            exceedsthresh=np.where(plot_array[imol][begin_slopept:]>end_slopeval)
+            exceedsthresh=np.where(whole_plot_array[pnum][imol][begin_slopept:]>end_slopeval)
             if len(exceedsthresh[0]):
                 end_slopept=np.min(exceedsthresh[0])+begin_slopept
             else:
                 found=0
-        if found and len(plot_array[imol][begin_slopept:end_slopept])>1:
-                slope[fnum,imol]=(peakval[fnum,imol]-baseline[fnum,imol])/((end_slopept-begin_slopept)*dt[imol])
+        if found and len(whole_plot_array[pnum][imol][begin_slopept:end_slopept])>1:
+                slope[pnum,imol]=(peakval[pnum,imol]-baseline[pnum,imol])/((end_slopept-begin_slopept)*dt[imol])
         else:
-                slope[fnum,imol]=-9999
-        print mol.rjust(16),"%8.2f" % baseline[fnum,imol],"%8.2f" %peakval[fnum,imol],
-        print "%8.2f" % peaktime[fnum,imol], "%8.3f" %slope[fnum,imol], "%8.2f" %lowval[fnum,imol],
-        if baseline[fnum,imol]>1e-5:
-            print  "%8.2f" %(peakval[fnum,imol]/baseline[fnum,imol])
+                slope[pnum,imol]=-9999
+        print mol.rjust(16),"%8.2f" % baseline[pnum,imol],"%8.2f" %peakval[pnum,imol],
+        print "%8.2f" % peaktime[pnum,imol], "%8.3f" %slope[pnum,imol], "%8.2f" %lowval[pnum,imol],
+        if baseline[pnum,imol]>1e-5:
+            print  "%8.2f" %(peakval[pnum,imol]/baseline[pnum,imol])
         else:
             print "   inf"
-    #
-    #Now plot some of these molcules, either single voxel or overall average if multi-voxel
-    #
-    if showplot:
-        pu5.plottrace(plot_molecules,time_array,plot_array,parval[fnum],axes,fig,col_inc,scale,parlist)
+#
+#####################################################################
+#Now plot some of these molcules, either single voxel or overall average if multi-voxel
+#####################################################################
+#
+if showplot:
+    fig,axes,col_inc,scale,numpar=pu5.plot_setup(plot_molecules,parlist,params)
+    #need fnames
+    fig.suptitle(figtitle)
+    for pnum in range(arraysize):
+        pu5.plottrace(plot_molecules,time_array,whole_plot_array[pnum],parval[pnum],axes,fig,col_inc,scale,parlist)
     #
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
 if len(params)>1:
         print np.column_stack((parval,ss))
-        xval=[]#np.zeros(len(parval))
+        xval=[]
         for i,pv in enumerate(parval):
                 if len(parlist[0])>len(parlist[1]):
                         xval.append(pv[0])
