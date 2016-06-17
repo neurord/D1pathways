@@ -85,7 +85,9 @@ for fnum,ftuple in enumerate(ftuples):
     #print data.keys(),trials,outputsets
     if numfiles==1:
         arraysize=numtrials
-        parval=trials
+        params=['trial']
+        parval=range(len(trials))
+        parlist=[parval,[]]
     else:
         arraysize=numfiles
     #
@@ -165,7 +167,7 @@ for fnum,ftuple in enumerate(ftuples):
             #calculate overall mean
             OverallMean=np.zeros((numtrials,len(time)))
             OverallMean[:,:]=np.sum(molecule_pop[:,:,:],axis=2)/(TotVol*mol_per_nM_u3)
-            header='#time ' +header+header2+molecule+'AvgTot '+spineheader+'\n'
+            header='#time ' +header+header2+molecule+'AvgTot\n'
             #
             if showplot==2:
                 if len(spinelist)>1:
@@ -194,22 +196,37 @@ for fnum,ftuple in enumerate(ftuples):
                 outfname=fname[0:-3]+'_'+molecule+'_avg.txt'
                 if molecule in plot_molecules:
                     print 'output file: ', outfname
+                    newheader=''
+                    newheaderstd=''
+                    for item in header.split():
+                        newheader=newheader+params[0]+parval[fnum]+'_'+item+' '
+                        if not item.startswith('#'):
+                            newheaderstd=newheaderstd+params[0]+parval[fnum]+'_'+item+'std '
                     if numtrials>1:
-                        region_out=np.column_stack((RegionMeansStd['mean'],RegionMeanStd['std'],RegStructMeanStd['mean'],RegStructMeanStd['std']))
+                        newheader=newheader+newheaderstd
+                        region_out=np.column_stack((RegMeanStd['mean'],RegStructMeanStd['mean'],RegMeanStd['std'],RegStructMeanStd['std']))
                         overall_out=np.column_stack((np.mean(OverallMean,axis=0),np.std(OverallMean,axis=0)))
                     else:
-                        region_out=np.column_stack((RegionMeans[0,:,:],RegionStructMean[0,:,:]))
+                        region_out=np.column_stack((RegionMeans[0,:,:],RegionStructMeans[0,:,:]))
                         overall_out=OverallMean[0,:]
                     if len(spinelist)>1:
+                        newspinehead=''
+                        newspineheadstd=''
+                        for item in spineheader.split():
+                            newspinehead=newspinehead+params[0]+parval[fnum]+'_'+item+' '
+                            newspineheadstd=newspineheadstd+params[0]+parval[fnum]+'_'+item+'std '
                         if numtrials>1:
+                            newheader=newheader+newheaderstd+newspinehead+newspineheadstd+'\n'
                             outdata=np.column_stack((time,region_out,overall_out,spineMeanStd['mean'],spineMeanStd['std']))
                         else:
+                            newheader=newheader+newspinehead+'\n'
                             outdata=np.column_stack((time,region_out,overall_out,spinemeans[0,:,:]))
                     else:
+                        newheader=newheader+'\n'
                         outdata=np.column_stack((time,region_out,overall_out))
                     f=open(outfname, 'w')
                     ############## NEED TO FIX HEADER FOR MULTI-TRIALS - INCLUDE STDEV ################3
-                    f.write(header)
+                    f.write(newheader)
                     np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                     f.close()
             print molecule.rjust(14),

@@ -7,7 +7,7 @@ from collections import OrderedDict
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
 
-####### FIX/IMPROVE THIS by going background from last outputset, only using outset __main__ if no voxels?
+####### FIX/IMPROVE THIS by going back from last outputset, only using outset __main__ if no voxels?
 def get_mol_info(simData,plot_molecules,gridpoints):
     outputsets=simData['model']['output'].keys()
     dt=np.zeros((len(plot_molecules)))
