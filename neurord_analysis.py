@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 #Python version, i.e. alternative of NRDpostAB
 #in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurord_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
@@ -176,8 +177,8 @@ for fnum,ftuple in enumerate(ftuples):
     plot_array=np.zeros((rows,len(plot_molecules)))
     dt=time[1]#/1000
     if len(args)>3:
-            sstart=int(float(args[3].split(" ")[0])/dt)
-            ssend=int(float(args[3].split(" ")[1])/dt)
+            sstart = float(args[3].split(" ")[0]) // dt
+            ssend = float(args[3].split(" ")[1]) // dt
             if ssend>0.5*rows:
                     print("WARNING*******. Possible SS time issue: only", rows, "rows, end time=", time[-1])
     else:
@@ -202,10 +203,10 @@ for fnum,ftuple in enumerate(ftuples):
                        for k in range(maxvols):
                                 OverallMean[itime]+=data[itime,k]
                 if (data[:,np.where(structType=='cyt')[0]].all==0):
-                        OverallMean[:]/=(submembVol*mol_per_nM_u3)
+                        OverallMean[:] /= submembVol*mol_per_nM_u3
                         OverallDensity=OverallMean*deltaY[0]
                 else:
-                        OverallMean[:]/=(TotVol*mol_per_nM_u3)
+                        OverallMean[:] /= TotVol*mol_per_nM_u3
                 header='#time ' +header+header2+molecules[imol]+'AvgTot\n'
                 #
                 if molecules[imol] in plot_molecules:

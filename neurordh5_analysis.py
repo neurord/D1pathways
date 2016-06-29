@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 #neurordh5_analysis.py
 #in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurordh5_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
@@ -136,8 +137,8 @@ for fnum,ftuple in enumerate(ftuples):
         if len(args)>3:
             for imol,molecule in enumerate(plot_molecules):
                 if out_location[molecule]!=-1:
-                    sstart[imol]=int(float(args[3].split(" ")[0])/dt[imol])
-                    ssend[imol]=int(float(args[3].split(" ")[1])/dt[imol])
+                    sstart[imol] = float(args[3].split(" ")[0]) // dt[imol]
+                    ssend[imol] = float(args[3].split(" ")[1]) // dt[imol]
                     if ssend[imol]>0.5*rows[imol]:
                         print("WARNING*******. Possible SS time issue: only", rows, "rows")
         else:
@@ -259,7 +260,7 @@ for fnum,ftuple in enumerate(ftuples):
             outset = out_location[mol]['location'].keys()[0]
             imol=out_location[mol]['location'][outset]['mol_index']
             tempConc=np.zeros((numtrials,out_location[mol]['samples']))
-            time_array.append(data[trials[0]]['output'][outset]['times'][:]/1000.)
+            time_array.append(data[trials[0]]['output'][outset]['times'][:]/1000)
             #generate output files for these cases
             for trialnum,trial in enumerate(trials):
                 tempConc[trialnum]=data[trial]['output'][outset]['population'][:,voxel,imol]/TotVol/mol_per_nM_u3

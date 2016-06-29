@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 import numpy as np
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
@@ -223,7 +224,7 @@ def region_means(data,regionList,regionCol,regionVol,time,molecule):
                 RegionMeans[itime,j]+=data[itime,k]
 
     for j in range(len(regionList)):
-        RegionMeans[:,j]/=(regionVol[j]*mol_per_nM_u3)
+        RegionMeans[:,j] /= regionVol[j]*mol_per_nM_u3
         #print "head",header,"mol",molecule,"reg",regionList[j]
         header=header+molecule+regionList[j]+' '       #Header for output file
     return header,RegionMeans

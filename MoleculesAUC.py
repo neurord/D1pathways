@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 #This calculates area under the curve for the DSI simulations for two or more molecule species.
 #Edit the mollist varable if other molecules are of interest
 #Present, it only evaluates the mean value (averaged over the entire morphology), but can also process other

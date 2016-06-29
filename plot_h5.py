@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
@@ -6,7 +7,7 @@ def plot_setup(plot_molecules,param_list,param_name):
      pyplot.ion()
      if len(plot_molecules)>10:
           rows=int(np.sqrt(len(plot_molecules)))+1
-          cols=len(plot_molecules)/(rows-1)
+          cols=len(plot_molecules)//(rows-1)
      else:
           cols=1
           rows=len(plot_molecules)
@@ -17,7 +18,7 @@ def plot_setup(plot_molecules,param_list,param_name):
      for i,paramset in enumerate(param_list):
           numpar=len(paramset)
           if numpar>1:
-               col_inc[i]=1.0/(len(paramset))
+               col_inc[i]=1.0/len(paramset)
                print("plot_setup: col_inc,scale=",col_inc, scale)
      return fig,axes,col_inc,scale,numpar
 

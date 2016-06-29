@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 import numpy as np
 from string import *
 import glob
@@ -22,7 +23,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
-                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000. #convert msec to sec
+                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000 #convert msec to sec
                 tot_voxels=tot_voxels+len(simData['model']['output'][outset]['elements'])
                 temp_dict[outset]={'mol_index':mol_index,'elements':simData['model']['output'][outset]['elements'][:]}
         if len(temp_dict)>0:
@@ -33,7 +34,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
-                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000. #convert msec to sec
+                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000 #convert msec to sec
                 temp_dict[outset]={'mol_index':mol_index,'elements':simData['model']['output'][outset]['elements'][:]}
                 out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': gridpoints,'location': temp_dict}
             else:
@@ -53,7 +54,7 @@ def get_mol_pop(simData, out_location,gridpoints,trials):
     conc=np.zeros((len(trials),samples,gridpoints))
     for outset in out_location['location'].keys():
         elements=out_location['location'][outset]['elements']
-        time=simData[trials[0]]['output'][outset]['times'][:]/1000.     #Convert msec to sec
+        time=simData[trials[0]]['output'][outset]['times'][:]/1000     #Convert msec to sec
         for trialnum,trial in enumerate(trials):
             tempConc=simData[trial]['output'][outset]['population'][:,:,out_location['location'][outset]['mol_index']]
             #transpose required to undo the transpose automatically done by python when specifying elements as 3d index
