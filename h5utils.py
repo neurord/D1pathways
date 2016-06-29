@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 from string import *
 import glob
@@ -28,7 +29,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
             out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': tot_voxels,'location': temp_dict}
         else:
             outset=outputsets[0]
-            print "************* MOLECULE",molecule, " NOT IN REGULAR OUTPUT SETS !"
+            print("************* MOLECULE",molecule, " NOT IN REGULAR OUTPUT SETS !")
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
@@ -37,7 +38,7 @@ def get_mol_info(simData,plot_molecules,gridpoints):
                 out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': gridpoints,'location': temp_dict}
             else:
                 out_location[molecule]=-1
-                print "** Even Worse: MOLECULE",molecule, " DOES NOT EXIST !!!!!!!!!!!!!"
+                print("** Even Worse: MOLECULE",molecule, " DOES NOT EXIST !!!!!!!!!!!!!")
     return out_location,dt,samples
          
 def get_mol_index(simData,outputset,molecule):
@@ -75,7 +76,7 @@ def argparse(args):
     else:
         params=[]
     whole_pattern=pattern+'.h5'
-    print "pattern:", pattern, whole_pattern
+    print("pattern:", pattern, whole_pattern)
 
     lastslash=str.rfind(pattern,'/')
     subdir=pattern[0:lastslash]
@@ -84,10 +85,10 @@ def argparse(args):
     if len(params):
         fnames=[fname for fname in fnames if str.count(fname,'-')<=len(params)]
 
-    print "files:", fnames
-    print "NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir
+    print("files:", fnames)
+    print("NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir)
     if len(fnames)==0:
-        print "FILES:", os.listdir(subdir+'/'+'*.h5')
+        print("FILES:", os.listdir(subdir+'/'+'*.h5'))
         #exit program
 
     parlist=[]

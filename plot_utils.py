@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 from matplotlib import pyplot
 
@@ -17,11 +18,11 @@ def plot_setup(plot_molecules,param_list,param_name):
           numpar=len(paramset)
           if numpar>1:
                col_inc[i]=1.0/(len(paramset))
-               print "plot_setup: col_inc,scale=",col_inc, scale
+               print("plot_setup: col_inc,scale=",col_inc, scale)
      return fig,axes,col_inc,scale,numpar
 
 def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
-     print "plottrace: parval,parlist:", parval, parlist
+     print("plottrace: parval,parlist:", parval, parlist)
      if len(parlist)==0:
           p0=p1=0
      else:
@@ -85,13 +86,13 @@ def file_tuple(fnames,params):
             parval0=parts[1].split(params[0])[1]
             if (parval0 not in par0list):
                  par0list.append(parval0)
-            print 'pu: fname, par0:',fname,par0list
+            print('pu: fname, par0:',fname,par0list)
             if len(params)>1:
                     parval1=parts[2].split(params[1])[1]
                     ftuple.append((fname,(parval0,parval1)))
                     if (parval1 not in par1list):
                          par1list.append(parval1)
-                    print 'pu: par1:',par1list
+                    print('pu: par1:',par1list)
             else:
                     ftuple.append((fname,parval0))
      return ftuple,[par0list,par1list]

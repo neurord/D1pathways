@@ -1,3 +1,4 @@
+from __future__ import print_function
 #Python version, i.e. alternative of NRDpostAB
 #in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurord_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
@@ -64,11 +65,11 @@ def sortorder(ftuple):
 
 try:
 	args = ARGS.split(",")
-	print "ARGS =", ARGS, "commandline=", args
+	print("ARGS =", ARGS, "commandline=", args)
  	do_exit = False
 except NameError: #NameError refers to an undefined variable (in this case ARGS)
 	args = sys.argv[1:]
-	print "commandline =", args
+	print("commandline =", args)
 	do_exit = True
 
 #1st and 2nd arguements used to construct pattern for reading in multiple files
@@ -88,9 +89,9 @@ subdir=pattern[0:lastslash]
 ###################################################
 
 fnames = glob.glob(whole_pattern)
-print "NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir
+print("NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir)
 if len(fnames)==0:
-    print "MESHFILES:", os.listdir(subdir+'/'+meshend)
+    print("MESHFILES:", os.listdir(subdir+'/'+meshend))
 ss_tot=np.zeros((len(fnames),len(tot_species.keys())))
 parlist=[]
 if len(args[0]):
@@ -103,7 +104,7 @@ else:
 if len(fnames)>0:
         meshfile=glob.glob(meshname)[0]
 else:
-        print "********** no meshfile **************"
+        print("********** no meshfile **************")
 maxvols,vox_volume,xloc,yloc,TotVol,deltaY=hparse.read_mesh(meshfile,prninfo)
 
 parval=[]
@@ -116,16 +117,16 @@ for fnum,ftuple in enumerate(ftuples):
         #will not be needed once using hdf5 file, since the region and structure info is part of the mesh information
         data=f.readline()
         if (prnheader==1):
-            print "header",data
+            print("header",data)
         else:
-            print "header not printed"
+            print("header not printed")
         #UPDATE maxvols, or number of voxels in this function
         regionID,structType,molecules,volnums,maxvols=hparse.header_parse(data,maxvols,prninfo)
         if prninfo:
-            print "in neurord_analysis: vox#", volnums
-            print "      regions",regionID
-            print "      structures",structType
-        print "      molecules",molecules
+            print("in neurord_analysis: vox#", volnums)
+            print("      regions",regionID)
+            print("      structures",structType)
+        print("      molecules",molecules)
         f.close()
         #prepare to plot stuff (instead of calculating averages)
         #plot_molecules determines what is plotted
@@ -178,7 +179,7 @@ for fnum,ftuple in enumerate(ftuples):
             sstart=int(float(args[3].split(" ")[0])/dt)
             ssend=int(float(args[3].split(" ")[1])/dt)
             if ssend>0.5*rows:
-                    print "WARNING*******. Possible SS time issue: only", rows, "rows, end time=", time[-1]
+                    print("WARNING*******. Possible SS time issue: only", rows, "rows, end time=", time[-1])
     else:
             sstart=int(0.075*rows)
             ssend=int(0.1*rows)
@@ -220,17 +221,17 @@ for fnum,ftuple in enumerate(ftuples):
                 if outputavg:
                         outfname=fname[0:-8]+molecules[imol]+'_avg.txt'
                         if molecules[imol] in plot_molecules:
-                                print 'output file: ', outfname, np.mean(RegionMeans[sstart:ssend],0)
+                                print('output file: ', outfname, np.mean(RegionMeans[sstart:ssend],0))
                         outdata=np.column_stack((time,RegionMeans,RegionStructMeans,OverallMean))
                         f=open(outfname, 'w')
                         f.write(header)
                         np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                         f.close()
                 else:
-                    print molecules[imol].rjust(14),
+                    print(molecules[imol].rjust(14), end=' ')
                     if head_vox>-1:
-                        print "head ss:%8.4f pk %8.4f " % (RegionMeans[sstart:ssend,head_vox].mean(), RegionMeans[ssend:,head_vox].max()),
-                    print "dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart:ssend,dsm_vox].mean()*deltaY[0]), (RegionStructMeans[ssend:,dsm_vox].max()*deltaY[0]))
+                        print("head ss:%8.4f pk %8.4f " % (RegionMeans[sstart:ssend,head_vox].mean(), RegionMeans[ssend:,head_vox].max()), end=' ')
+                    print("dend sm %8.4f pk %8.4f" %((RegionStructMeans[sstart:ssend,dsm_vox].mean()*deltaY[0]), (RegionStructMeans[ssend:,dsm_vox].max()*deltaY[0])))
                #
                 #write space
                 if spatialaverage:
@@ -254,12 +255,12 @@ for fnum,ftuple in enumerate(ftuples):
                    mol_sum=molecule_array[0,molecules.index(subspecies),:].sum()
                    #print imol,mol,subspecies,molecule_array[0,molecules.index(subspecies),:],mol_sum
                    ss_tot[fnum,imol]+=mol_sum/TotVol/mol_per_nM_u3
-           print imol,mol,ss_tot[fnum,imol],"nM, or in picoSD:", ss_tot[fnum,imol]*(TotVol/submembVol)*deltaY[0]
+           print(imol,mol,ss_tot[fnum,imol],"nM, or in picoSD:", ss_tot[fnum,imol]*(TotVol/submembVol)*deltaY[0])
     #####################################################################
     #after main processing, extract a few characteristics of molecule trajectory
     #####################################################################
-    print params, parval[fnum]
-    print "      molecule  baseline  peakval  ptime   slope     min     ratio"
+    print(params, parval[fnum])
+    print("      molecule  baseline  peakval  ptime   slope     min     ratio")
     for imol,mol in enumerate(plot_molecules):
         baseline[fnum,imol]=plot_array[sstart:ssend,imol].mean()
         peakpt=plot_array[ssend:,imol].argmax()+ssend
@@ -285,9 +286,9 @@ for fnum,ftuple in enumerate(ftuples):
                 slope[fnum,imol]=(peakval[fnum,imol]-baseline[fnum,imol])/((end_slopept-begin_slopept)*dt)
         else:
                 slope[fnum,imol]=-9999
-        print mol.rjust(16),"%8.2f" % baseline[fnum,imol],"%8.2f" %peakval[fnum,imol],
-        print "%8.2f" % peaktime[fnum,imol], "%8.3f" %slope[fnum,imol],  
-        print "%8.2f" %lowval[fnum,imol], "%8.2f" %(peakval[fnum,imol]/baseline[fnum,imol])
+        print(mol.rjust(16),"%8.2f" % baseline[fnum,imol],"%8.2f" %peakval[fnum,imol], end=' ')
+        print("%8.2f" % peaktime[fnum,imol], "%8.3f" %slope[fnum,imol], end=' ')  
+        print("%8.2f" %lowval[fnum,imol], "%8.2f" %(peakval[fnum,imol]/baseline[fnum,imol]))
     #
     #Now plot some of these molcules, either single voxel or overall average if multi-voxel
     #
@@ -297,14 +298,14 @@ for fnum,ftuple in enumerate(ftuples):
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
 if len(params)>1:
-        print np.column_stack((parval,ss))
+        print(np.column_stack((parval,ss)))
         xval=[]#np.zeros(len(parval))
         for i,pv in enumerate(parval):
                 if len(parlist[0])>len(parlist[1]):
                         xval.append(pv[0])
                 else:
                         xval.append(pv[1])
-        print xval
+        print(xval)
         if showss:
                 pu.plotss(plot_molecules,xval,ss)
 else:
