@@ -89,8 +89,8 @@ def argparse(args):
     print("files:", fnames)
     print("NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir)
     if len(fnames)==0:
-        print("FILES:", os.listdir(subdir+'/'+'*.h5'))
-        #exit program
+        print("FILES:", glob.glob(subdir+'/'+'*.h5'))
+        raise IOError("no files found")
 
     parlist=[]
     if len(args[0]):
