@@ -6,12 +6,17 @@ import glob
 import os
 import plot_h5 as pu5
 from collections import OrderedDict
+from orderedmultidict import omdict
+
+def decode(table):
+    return np.array([s.decode('utf-8') for s in table])
+
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
 
 ####### FIX/IMPROVE THIS by going back from last outputset, only using outset __main__ if no voxels?
 def get_mol_info(simData,plot_molecules,gridpoints):
-    outputsets=simData['model']['output'].keys()
+    outputsets=list(simData['model']['output'].keys())
     dt=np.zeros((len(plot_molecules)))
     samples=np.zeros((len(plot_molecules)),dtype=int)
     out_location={}
@@ -43,7 +48,8 @@ def get_mol_info(simData,plot_molecules,gridpoints):
     return out_location,dt,samples
          
 def get_mol_index(simData,outputset,molecule):
-    indices=np.where(simData['model']['output'][outputset]['species'][:]==molecule)[0]
+    species = decode(simData['model']['output'][outputset]['species'])
+    indices=np.where(species == molecule)[0]
     if len(indices) == 1:
         return indices[0]
     else:
@@ -89,7 +95,7 @@ def argparse(args):
     print("files:", fnames)
     print("NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir)
     if len(fnames)==0:
-        print("FILES:", glob.glob(subdir+'/'+'*.h5'))
+        print("FILES:", *glob.glob(subdir+'/'+'*.h5'), sep='\n')
         raise IOError("no files found")
 
     parlist=[]
@@ -100,10 +106,9 @@ def argparse(args):
         ftuples=[(fnames[0],1)]
     return ftuples,parlist,params
 
-from orderedmultidict import omdict
 def subvol_list(structType,model):
     #use dictionaries to store voxels corresponding to regions, region_classes (e.g. head) or regions/structures
-    region_list=model['regions']
+    region_list=decode(model['regions'])
     region_dict=OrderedDict()
     region_struct_dict=OrderedDict()
     #create dictionary of voxels and volumes for each region
@@ -113,12 +118,16 @@ def subvol_list(structType,model):
         region_dict[region_list[regnum]]={'vox': reg_voxel.allvalues(regnum), 'vol': sum(reg_voxel_vol.allvalues(regnum))}
         # for regions of more than one type, create dictionary of voxels and volumes for each type of each region
         if len(np.unique(model['grid'][reg_voxel.allvalues(regnum)]['type']))>1:
-            struct_voxels=omdict(( zip(model['grid'][reg_voxel.allvalues(regnum)]['type'],reg_voxel.allvalues(regnum)) ))
-            struct_vox_vol=omdict(( zip(model['grid'][reg_voxel.allvalues(regnum)]['type'],reg_voxel_vol.allvalues(regnum)) ))
+            types = decode(model['grid'][reg_voxel.allvalues(regnum)]['type'])
+            struct_voxels=omdict(( zip(types,reg_voxel.allvalues(regnum)) ))
+            struct_vox_vol=omdict(( zip(types,reg_voxel_vol.allvalues(regnum)) ))
             for struct in struct_voxels.keys():
                 depth=model['grid'][struct_voxels.allvalues(struct)]['y0']-model['grid'][struct_voxels.allvalues(struct)]['y2']
                 #Depth is an array.  For submemb, only a single value, for cyt - different values.  Presently only storing one of the values
-                region_struct_dict[region_list[regnum]+struct[0:3]]={'vox': struct_voxels.allvalues(struct),'depth':depth[0],'vol': sum(struct_vox_vol.allvalues(struct))}
+                key = region_list[regnum] + struct[0:3]
+                region_struct_dict[key]={'vox': struct_voxels.allvalues(struct),
+                                         'depth':depth[0],
+                                         'vol': sum(struct_vox_vol.allvalues(struct))}
     return region_list,region_dict,region_struct_dict
 
 ####### FIX/IMPROVE THIS USING omdict

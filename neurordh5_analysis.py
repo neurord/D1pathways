@@ -103,9 +103,9 @@ for fnum,ftuple in enumerate(ftuples):
         dsm_tot=np.zeros((arraysize,len(tot_species)))
         head_tot=np.zeros((arraysize,len(tot_species)))
         dsm_name=dend+submembname
-        dsm_vox=region_struct_dict.keys().index(dsm_name)
+        dsm_vox=list(region_struct_dict.keys()).index(dsm_name)
         try:
-            head_index=region_dict.keys().index(spinehead)
+            head_index=list(region_dict.keys()).index(spinehead)
         except ValueError:
             head_index=-1
         if head_index>0:
