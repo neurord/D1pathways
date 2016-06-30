@@ -29,11 +29,17 @@
         <duration>           10      </duration>
         <rate>               955    </rate>
       </InjectionStim>
-<!--First try with no depletion of ACh -->
+<!--With depletion of ACh -->
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
-        <duration>            300000      </duration>
+        <duration>            50000      </duration>
+        <rate>                0.3         </rate>
+</InjectionStim>
+
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               52000          </onset>
+        <duration>            248000      </duration>
         <rate>                0.3         </rate>
 </InjectionStim>
     </StimulationSet>
