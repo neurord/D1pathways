@@ -1,15 +1,22 @@
+from __future__ import print_function
+from __future__ import division
 import numpy as np
 from string import *
 import glob
 import os
 import plot_h5 as pu5
 from collections import OrderedDict
+from orderedmultidict import omdict
+
+def decode(table):
+    return np.array([s.decode('utf-8') for s in table])
+
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
 
 ####### FIX/IMPROVE THIS by going back from last outputset, only using outset __main__ if no voxels?
 def get_mol_info(simData,plot_molecules,gridpoints):
-    outputsets=simData['model']['output'].keys()
+    outputsets=list(simData['model']['output'].keys())
     dt=np.zeros((len(plot_molecules)))
     samples=np.zeros((len(plot_molecules)),dtype=int)
     out_location={}
@@ -21,27 +28,28 @@ def get_mol_info(simData,plot_molecules,gridpoints):
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
-                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000. #convert msec to sec
+                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000 #convert msec to sec
                 tot_voxels=tot_voxels+len(simData['model']['output'][outset]['elements'])
                 temp_dict[outset]={'mol_index':mol_index,'elements':simData['model']['output'][outset]['elements'][:]}
         if len(temp_dict)>0:
             out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': tot_voxels,'location': temp_dict}
         else:
             outset=outputsets[0]
-            print "************* MOLECULE",molecule, " NOT IN REGULAR OUTPUT SETS !"
+            print("************* MOLECULE",molecule, " NOT IN REGULAR OUTPUT SETS !")
             mol_index=get_mol_index(simData,outset,molecule)
             if mol_index>-1:
                 samples[imol]=len(simData['trial0']['output'][outset]['times'])
-                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000. #convert msec to sec
+                dt[imol]=simData['trial0']['output'][outset]['times'][1]/1000 #convert msec to sec
                 temp_dict[outset]={'mol_index':mol_index,'elements':simData['model']['output'][outset]['elements'][:]}
                 out_location[molecule]={'samples':samples[imol],'dt':dt[imol],'voxels': gridpoints,'location': temp_dict}
             else:
                 out_location[molecule]=-1
-                print "** Even Worse: MOLECULE",molecule, " DOES NOT EXIST !!!!!!!!!!!!!"
+                print("** Even Worse: MOLECULE",molecule, " DOES NOT EXIST !!!!!!!!!!!!!")
     return out_location,dt,samples
          
 def get_mol_index(simData,outputset,molecule):
-    indices=np.where(simData['model']['output'][outputset]['species'][:]==molecule)[0]
+    species = decode(simData['model']['output'][outputset]['species'])
+    indices=np.where(species == molecule)[0]
     if len(indices) == 1:
         return indices[0]
     else:
@@ -52,7 +60,7 @@ def get_mol_pop(simData, out_location,gridpoints,trials):
     conc=np.zeros((len(trials),samples,gridpoints))
     for outset in out_location['location'].keys():
         elements=out_location['location'][outset]['elements']
-        time=simData[trials[0]]['output'][outset]['times'][:]/1000.     #Convert msec to sec
+        time=simData[trials[0]]['output'][outset]['times'][:]/1000     #Convert msec to sec
         for trialnum,trial in enumerate(trials):
             tempConc=simData[trial]['output'][outset]['population'][:,:,out_location['location'][outset]['mol_index']]
             #transpose required to undo the transpose automatically done by python when specifying elements as 3d index
@@ -75,7 +83,7 @@ def argparse(args):
     else:
         params=[]
     whole_pattern=pattern+'.h5'
-    print "pattern:", pattern, whole_pattern
+    print("pattern:", pattern, whole_pattern)
 
     lastslash=str.rfind(pattern,'/')
     subdir=pattern[0:lastslash]
@@ -84,11 +92,11 @@ def argparse(args):
     if len(params):
         fnames=[fname for fname in fnames if str.count(fname,'-')<=len(params)]
 
-    print "files:", fnames
-    print "NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir
+    print("files:", fnames)
+    print("NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir)
     if len(fnames)==0:
-        print "FILES:", os.listdir(subdir+'/'+'*.h5')
-        #exit program
+        print("FILES:", *glob.glob(subdir+'/'+'*.h5'), sep='\n')
+        raise IOError("no files found")
 
     parlist=[]
     if len(args[0]):
@@ -98,10 +106,9 @@ def argparse(args):
         ftuples=[(fnames[0],1)]
     return ftuples,parlist,params
 
-from orderedmultidict import omdict
 def subvol_list(structType,model):
     #use dictionaries to store voxels corresponding to regions, region_classes (e.g. head) or regions/structures
-    region_list=model['regions']
+    region_list=decode(model['regions'])
     region_dict=OrderedDict()
     region_struct_dict=OrderedDict()
     #create dictionary of voxels and volumes for each region
@@ -111,12 +118,16 @@ def subvol_list(structType,model):
         region_dict[region_list[regnum]]={'vox': reg_voxel.allvalues(regnum), 'vol': sum(reg_voxel_vol.allvalues(regnum))}
         # for regions of more than one type, create dictionary of voxels and volumes for each type of each region
         if len(np.unique(model['grid'][reg_voxel.allvalues(regnum)]['type']))>1:
-            struct_voxels=omdict(( zip(model['grid'][reg_voxel.allvalues(regnum)]['type'],reg_voxel.allvalues(regnum)) ))
-            struct_vox_vol=omdict(( zip(model['grid'][reg_voxel.allvalues(regnum)]['type'],reg_voxel_vol.allvalues(regnum)) ))
+            types = decode(model['grid'][reg_voxel.allvalues(regnum)]['type'])
+            struct_voxels=omdict(( zip(types,reg_voxel.allvalues(regnum)) ))
+            struct_vox_vol=omdict(( zip(types,reg_voxel_vol.allvalues(regnum)) ))
             for struct in struct_voxels.keys():
                 depth=model['grid'][struct_voxels.allvalues(struct)]['y0']-model['grid'][struct_voxels.allvalues(struct)]['y2']
                 #Depth is an array.  For submemb, only a single value, for cyt - different values.  Presently only storing one of the values
-                region_struct_dict[region_list[regnum]+struct[0:3]]={'vox': struct_voxels.allvalues(struct),'depth':depth[0],'vol': sum(struct_vox_vol.allvalues(struct))}
+                key = region_list[regnum] + struct[0:3]
+                region_struct_dict[key]={'vox': struct_voxels.allvalues(struct),
+                                         'depth':depth[0],
+                                         'vol': sum(struct_vox_vol.allvalues(struct))}
     return region_list,region_dict,region_struct_dict
 
 ####### FIX/IMPROVE THIS USING omdict

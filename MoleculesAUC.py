@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import division
 #This calculates area under the curve for the DSI simulations for two or more molecule species.
 #Edit the mollist varable if other molecules are of interest
 #Present, it only evaluates the mean value (averaged over the entire morphology), but can also process other
@@ -30,11 +32,11 @@ endtime=50
 
 try:
 	args = ARGS.split(",")
-	print "ARGS =", ARGS, "commandline=", args
+	print("ARGS =", ARGS, "commandline=", args)
  	do_exit = False
 except NameError: #NameError refers to an undefined variable (in this case ARGS)
 	args = sys.argv[1:]
-	print "commandline =", args
+	print("commandline =", args)
 	do_exit = True
 
 #*************Use assignments above to sum corresponding columns in files *******************
@@ -49,7 +51,7 @@ for filenm in range(len(args)):
                 
 #this loop reads in the data arrays and adds them together
                 data=loadtxt(fullfilename,skiprows=1)
-                print fullfilename,data.shape
+                print(fullfilename,data.shape)
                 
 #make sure the second to last column is identified, and extract the time column
                 meancol=data.shape[1]-1
@@ -63,7 +65,7 @@ for filenm in range(len(args)):
                 endsample=min(len(time),endtime/dt)
                 auc[dhpg,dur]=(data[stimsample:endsample,meancol].mean()-data[basalstart:basalend,meancol].mean())
         #End of first for dhpg and for dur loop
-        print "AUC for", mol, "\n",auc
+        print("AUC for", mol, "\n",auc)
         for dhpg in range(1,len(dhpgconc)):
             for dur in range(len(duration)):
                 #print "auc calc", dhpg, dhpgconc[dhpg], "dur=", dur
@@ -73,7 +75,7 @@ for filenm in range(len(args)):
 #	outdata=column_stack((time, headstimdata, newdata[:,meancol]))
 
         outfname=args[filenm]+mol+'-auc.txt'
-        print outfname
+        print(outfname)
         savetxt(outfname, auc, fmt='%.4f', delimiter=' ')
         outfname=args[filenm]+mol+'-ratio.txt'
         savetxt(outfname, ratio, fmt='%.4f', delimiter=' ')

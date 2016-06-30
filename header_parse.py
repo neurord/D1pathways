@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import division
 import numpy as np
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
@@ -21,11 +23,11 @@ def header_parse(header,maxvols,prninfo):
         volnum[i]=int(voxel_text[1])
         if i==0:
             minvolnum=int(volnum[0])
-            print "min vox num", minvolnum,"max vox num", maxvols
+            print("min vox num", minvolnum,"max vox num", maxvols)
         #if output of only part of morphology, need to reduce maxvols
         if (i>0 and volnum[i]==volnum[0]):
             maxvols=int(volnum[i-1]-minvolnum+1)
-            print "*******new max", maxvols
+            print("*******new max", maxvols)
             #need to exit loop
         else:
             dotyn=voxel_text[2].find(dot)
@@ -42,16 +44,16 @@ def header_parse(header,maxvols,prninfo):
     regionID=np.resize(regionID,maxvols)
     structType=np.resize(structType,maxvols)
     if prninfo:
-        print "in hparse: voxels", volnums
-        print "   regionID", np.size(regionID),regionID
-        print "   structures", np.size(structType),structType
+        print("in hparse: voxels", volnums)
+        print("   regionID", np.size(regionID),regionID)
+        print("   structures", np.size(structType),structType)
     #
     #Now determine the molecules in the file - last characters of volume string
     #skip all[0] which has time, increment by maxvols to find vol0 of each molecule
     for i,j in enumerate(range(1,len(volnames),maxvols)):
         molecules.append(volnames[j].split(underscore)[-1])
         if prninfo:
-            print j, volnames[j],molecules[i]
+            print(j, volnames[j],molecules[i])
     return regionID,structType,molecules,volnums,maxvols
 
 def read_mesh(meshname,prninfo):
@@ -60,7 +62,7 @@ def read_mesh(meshname,prninfo):
     #sum of volumes within a region will be used for calculating mean concentration
     meshdata=np.loadtxt(meshname,skiprows=1)
     if np.shape(meshdata)[0]==np.size(meshdata):
-        print 'mesh file:', meshdata
+        print('mesh file:', meshdata)
         volume=meshdata[volcol]
         xloc=meshdata[1]
         yloc=meshdata[2]
@@ -70,7 +72,7 @@ def read_mesh(meshname,prninfo):
         TotVol=volume
     else:
         if prninfo:
-            print '1st mesh file row:', meshdata[0,:]
+            print('1st mesh file row:', meshdata[0,:])
         volume=meshdata[:,volcol]
         depth=meshdata[:,volcol+1]
         maxvols=len(volume)
@@ -81,20 +83,20 @@ def read_mesh(meshname,prninfo):
         for k in range(maxvols):
             TotVol+=volume[k]
     if prninfo:
-        print "TotVol:", TotVol, "\ndepth", depth, "\ndeltaY", SurfaceLayer
+        print("TotVol:", TotVol, "\ndepth", depth, "\ndeltaY", SurfaceLayer)
     return maxvols,volume,xloc,yloc,TotVol,SurfaceLayer
 
 def region_volume(List,Vox,volume,prnvox):
     #This volume is in units of cubic microns, multiply by 1e-15 to convert to Liters
-    print "\nFOR region avg: j,regionvox,vol:",
+    print("\nFOR region avg: j,regionvox,vol:", end=' ')
     region_volume=np.zeros(len(List))
     for j in range(len(List)):
         for k in Vox[j]:
             region_volume[j]+=volume[k] 
         if prnvox:
-            print j, List[j],Vox[j],region_volume[j]
+            print(j, List[j],Vox[j],region_volume[j])
         else:
-            print "not printed"
+            print("not printed")
     return region_volume
 
 def subvol_list(structType,regionID,volnum,fake):
@@ -184,8 +186,8 @@ def spatial_average(xloc,yloc,bins,regionID,structType,volnum):
     binmin[bins]=maxloc+bininc/bins
      
     #Now assign voxels to bins, either by x or y location
-    print "binmin: ",binmin[:]
-    print "regions=", len(regionID), "structures=", len(structType), "meshfile=", len(volume), "volnums=", len(volnum)
+    print("binmin: ",binmin[:])
+    print("regions=", len(regionID), "structures=", len(structType), "meshfile=", len(volume), "volnums=", len(volnum))
     for k in range(len(volnum)):
         if (regionID[k]==dend):
             j=0
@@ -199,18 +201,18 @@ def spatial_average(xloc,yloc,bins,regionID,structType,volnum):
             
     #now calculate volume for these spatial bins
     SpatialVol=np.zeros(bins)
-    print "\nFOR spatial average: j, vol, binvoxels, bincolums:"
+    print("\nFOR spatial average: j, vol, binvoxels, bincolums:")
     for j in range(bins):
         for k in binvoxels[j]:
             SpatialVol[j]+=volume[k]
         if (prnvox==1):
-            print j, SpatialVol[j], binvoxels[j], bincolumns[j]
+            print(j, SpatialVol[j], binvoxels[j], bincolumns[j])
         else:
-            print "not printed"
+            print("not printed")
 
     for j in range(bins):
         spaceheader=spaceheader+' '+str(format(binmin[j],'.1f'))+'-'+str(format(binmin[j]+bininc,'.1f'))
-    print 'Space header:', spaceheader
+    print('Space header:', spaceheader)
     return
 
 def region_means(data,regionList,regionCol,regionVol,time,molecule):
@@ -222,7 +224,7 @@ def region_means(data,regionList,regionCol,regionVol,time,molecule):
                 RegionMeans[itime,j]+=data[itime,k]
 
     for j in range(len(regionList)):
-        RegionMeans[:,j]/=(regionVol[j]*mol_per_nM_u3)
+        RegionMeans[:,j] /= regionVol[j]*mol_per_nM_u3
         #print "head",header,"mol",molecule,"reg",regionList[j]
         header=header+molecule+regionList[j]+' '       #Header for output file
     return header,RegionMeans
@@ -262,7 +264,7 @@ def readdata(fname,maxvols,molecules,finalrow=0):
     if maxvols*arrays == np.shape(data)[1]:
             molecule_array=np.reshape(data, (rows,arrays,maxvols))
     else:
-            print "UH OH! voxels:", maxvols, "molecules:", len(molecules), "columns:", np.shape(data)[1],"arrays",arrays
+            print("UH OH! voxels:", maxvols, "molecules:", len(molecules), "columns:", np.shape(data)[1],"arrays",arrays)
     return time,molecule_array,rows
 
  
