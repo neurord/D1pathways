@@ -1,18 +1,26 @@
-from __future__ import print_function
-from __future__ import division
 #neurordh5_analysis.py
 #in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurordh5_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
-#if mol ommitted, then all molecules processed
+#mol1 mol2, etc are the names of molecles to process
+#par1 and optionally par2 are specifications of parameter variations, as follows:
+#The filenames to read in are constructed as "subdir/fileroot"+"-"+par1+"*"-"+par2+"*"
+#DO NOT use hyphens in filenames except for preceding parameter name
+#if no parameters specified, then fileroot needs to be full filename (excluding the extension)
 #e.g. ARGS="Ca GaqGTP,Ca GaqGTP Ip3,../Repo/plc/Model_PLCassay,15 20" time units are sec
+#e.g. ARGS=",Ca GaqGTP IP3,plc/Model_PLCassay_Ca1"
+#if mol ommitted, then all molecules processed.  if sstart ssend are ommitted, then calculates basal from 7.5-10% of runtime
+#in the first set of parameters below, change outputavg from 0 to 1 to generate output files of region averages for plotting
 #from outside python, type python neurordh5_analysis [par1 par2] [mol1 mol2]
-#Assumes that molecule outputs are integers, and the hypens used ONLY for parameters
+#Assumes that molecule outputs are integers
 #Can process multiple parameter variations, but all files must use same morphology, and meshfile.
 #Can process multiple trials for each parameter variation
 #It will provide region averages (each spine, dendrite submembrane, cytosol)
 #If only a single file, will plot multiple trials; if multiple trials, plots the mean over trials
 #Future improvements:
-#   1. spatial average along dendrite
+#   spatial average along dendrite
+
+from __future__ import print_function
+from __future__ import division
 
 import os
 import numpy as np
