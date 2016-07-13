@@ -2,29 +2,6 @@
 #To start multiple NeuroRD simulations at once, add & at end of each line.
 #run the batch file using: at -f NeuroRD.bat NOW (or you can specify a different time)
 set -ex
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDEhigh-BlockOA.xml output/Model_MSPNmerge0.9um-PDEhigh-BlockOA > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDEhigh-BlockCyA.xml output/Model_MSPNmerge0.9um-PDEhigh-BlockCyA > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R-PDEhigh-BathCa.xml output/Model_MSPNmerge0.9umPKAcD1R-PDEhigh-BathCa > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R-PDEhigh-BathDa.xml output/Model_MSPNmerge0.9umPKAcD1-PDEhigh-BathDa > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R-PDEhigh-BathDaCa.xml output/Model_MSPNmerge0.9umPKAcD1R-PDEhigh-BathDaCa > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmergeSpine-PDEhigh.xml output/Model_MSPNmergeSpine-PDEhigh > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDEhigh-BlockCyA-BathDa.xml output/Model_MSPNmerge0.9um-PDEhigh-BlockCyA-BathDa > /dev/null&  
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDEhigh-BlockCyA-BathDaCa.xml output/Model_MSPNmerge0.9um-PDEhigh-BlockCyA-BathDaCa > /dev/null&
-
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDElow-BlockOA.xml output/Model_MSPNmerge0.9um-PDElow-BlockOA > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDElow-BlockCyA.xml output/Model_MSPNmerge0.9um-PDElow-BlockCyA > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R-PDElow-BathCa.xml output/Model_MSPNmerge0.9umPKAcD1R-PDElow-BathCa > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R-PDElow-BathDa.xml output/Model_MSPNmerge0.9umPKAcD1-PDElow-BathDa > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9umPKAcD1R-PDElow-BathDaCa.xml output/Model_MSPNmerge0.9umPKAcD1R-PDElow-BathDaCa > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmergeSpine-PDElow.xml output/Model_MSPNmergeSpine-PDElow > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDa.xml output/Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDa > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-9.jar Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDaCa.xml output/Model_MSPNmerge0.9um-PDElow-BlockCyA-BathDaCa > /dev/null&
-
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL-stim20hz.xml > /dev/null&
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_SPNspineCaMKII_DagL-stimtheta.xml > /dev/null&
-
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_Spine_AChtest-stim20hz.xml > /dev/null &
-#java -jar -Dstochdiff.log=false /home/neuroware/stochdif/stochdiff-3.0.0-11.jar Model_Spine_AChtest-stimtheta.xml > /dev/null &
 
 #stimulate 1 spine, evaluate dendritic signature vs spine, and spatial specificity
 #Then, stimulate 2 spines, either adjacent or separated - how does dendritie signature change?
@@ -74,12 +51,19 @@ set -ex
 #Test the restart = end of prior sim
 
 ####Using the release version of Neurord-3.1.2 (June 15, 2016)
-java -jar -Dneurord.writers=h5 -Dneurord.trials=3 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml ss_bath/ &
-java -jar -Dneurord.writers=h5 -Dneurord.trials=3 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/ &
-java -jar -Dneurord.writers=h5 -Dneurord.trials=3 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da0.1.xml ss_bath/ 
-java -jar -Dneurord.writers=h5 -Dneurord.trials=3 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da0.3.xml ss_bath/ &
-java -jar -Dneurord.writers=h5 -Dneurord.trials=3 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da1.xml ss_bath/ &
-java -jar -Dneurord.writers=h5 -Dneurord.trials=3 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da10.xml ss_bath/  
+#java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -Dneurord.SDRun.runtime=10000 -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_10s-rbat
+#java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_250s-rbat
+#java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -Dneurord.trials=3 -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_250s_trials3-rbat
+#java -jar ~zbyszek/neurord-3.1.2.jar Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml -Dneurord.trials=3 /var/tmp/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_nebish-rbat -v
+
+java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-t1-nostim &
+java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml -Dneurord.trials=3 ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-t3-nostim &
+java -jar ~zbyszek/neurord-3.1.2.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml -Dneurord.trials=3 ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-t3z-nostim 
+#java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/ &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da0.1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da0.1 &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da0.3.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da0.3 &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da1 &
+java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da10.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da10 &
 #alternative:
 #To run things in parallel (instead of batch file):
 #parallel --gnu java -Dstochdiff.writers=text -Dstochdiff.log=false -jar /home/neuroware/stochdif/stochdiff-3.0.0-9.jar ::: Model*.xml

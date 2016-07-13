@@ -1284,7 +1284,7 @@ MUCH slower binding compared to CaDgl  -->
 	<Product specieID="PKAcAMP2"/>
 
 
-        <forwardRate>0.26e-06</forwardRate>
+        <forwardRate>0.261e-06</forwardRate>
 	<reverseRate>0.060e-03</reverseRate>
     </Reaction>
 
@@ -1927,8 +1927,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CapDgl"               />
         <Product  specieID="DagCapDgl"            />
 
-        <forwardRate> 0.00025e-03     </forwardRate>
-        <reverseRate> 0.5e-03    </reverseRate>
+        <forwardRate> 0.0001e-03     </forwardRate>
+        <reverseRate> 0.2e-03    </reverseRate>
     </Reaction>
 
     <!-- DagCapDgl <-> CapDgl + 2ag -->
@@ -1937,7 +1937,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="CapDgl"               />
         <Product  specieID="2ag"            />
 
-        <forwardRate> 0.125e-03     </forwardRate>
+        <forwardRate> 0.05e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
     </Reaction>
     <!-- AKAR3 rates to allow comparison to Castro, etc. -->

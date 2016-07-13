@@ -1,0 +1,85 @@
+Lab Notebook for Blackwell July 1-, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+NEXT STEPS:
+    1. Validate the nostim and ACh depletion cases. Da durations (Castro) with lower ACh during Da stim
+    2. bath and block cases for final tuning
+     	use ic start and earlier application for bath cases to save  computational time
+    3. Then, repeat 20hz vs theta, create signature
+    4. Multi-spine sims - spatial specificity
+    5. Other questions:
+       a. role of ACh during burst or pause or rebound?
+       b. confirm role of CamKII phos Dgl?
+       c. Can molecules substitute for others in signature?
+    5. parameter robusteness
+
+########## New simulations as of July 1, 2016
+USE
+a. faster PKA - 5x faster than previous, but still ~2x lower than Jeanette
+b. greater Gs hydrolysis (4x faster) PLUS lower affinity of ACh for m4 - these should balance somewhat wrt cAMP
+c. double rate of PKA phos of PDE4/10, PP1 dephos of PDE4/10 (to reduce their dephos when PKA and p34DARPPP32 are high) - these should enhance control of cAMP during bath application
+d. dendritic injection (instead of fake spines) - this should improve computational efficiency somewhat
+e. AC1: help support cAMP basal in response to the greater Gs hydrolysis.
+f. pDagL: same Km, but 20% of DagL activity (vs 50% to enhance CamKII effect) - alternative is faster CamKII phos
+
+SIMULATE:
+1. Da stim 0.1-10sec using lower rate of ACh (0.3 instead of 0.5), and AKAR
+2. Repeat nostim and noACh using faster PDE phos, PP1 dephos
+
+CONSIDER:
+1a. double rate of PP2B dephos of p34-DARPP-32 if basal is too high
+1b. 5x faster CamKII phos of DagL (going back to higher pDagL activity) if still insufficient 2ag suppression
+2. Eliminate ATP.  If no depletion, then either have 1000x lower ATP with 1000x faster kf,
+   or incorporate ATP binding into production rate
+   i.e., ACGsa->AcGsa+cAMP using VMax, since ATP conc is ~10x greater than Km
+   This will eliminate 1 diffusing species of high conc, and 4 reactions
+3. New method for compensating for injected molecules (test this with no other changes):
+   a. inject Da and Dbuf together as Dabuf to control amount injected
+   b. have fast dissociation of Dabuf into Da(internal) and Dbuf (external)
+   c. DaOut still reactions with Dbuf, but goes to null (don't track it?)
+   d. balanced Da and Dbuf means that basal DaOut doesn't need to be large to avoid baseline shifts
+      - lower quantities means lower diffusion
+      - eliminate the specification of separate Dbuf and calculation of compensatory amounts
+   e. Do the same for GluOut and Gbuf.
+4. To speed Da pulses: increase extrusion rate, e.g. 10x; increase injected amount to compensate, e.g. 10x
+   test this AFTER testing new method for compensation
+
+3
+>>>>>>>>>>>>
+	       
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?
