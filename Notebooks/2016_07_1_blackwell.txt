@@ -25,7 +25,7 @@ Small questions: 1. How does ACh contribute to LTP or LTD
 NEXT STEPS:
     1. Validate the nostim and ACh depletion cases. Da durations (Castro) with lower ACh during Da stim
     2. bath and block cases for final tuning
-     	use ic start and earlier application for bath cases to save  computational time
+     	use ic start and earlier application for bath cases to save computational time
     3. Then, repeat 20hz vs theta, create signature
     4. Multi-spine sims - spatial specificity
     5. Other questions:
@@ -47,6 +47,18 @@ SIMULATE:
 1. Da stim 0.1-10sec using lower rate of ACh (0.3 instead of 0.5), and AKAR
 2. Repeat nostim and noACh using faster PDE phos, PP1 dephos
 
+>>>>>>>>>Results as of July
+13, 2016: re-ran many of the Da sims using different command to try and track down bug.  Intermittent behavior suggests a memory issue.  Upgraded Fedora to v24 and will re-run everything.
+Otherwise,
+basal cAMP looks good ~45-50, way too big for 10s - so restore ACh sooner
+basal Dp34PP1 looks OK - for three Da inject values obtained 201, but for one of them obtained 336, verify whether this occurs with new version.  If so, try to determine why 3 are so similar (and too low)
+KAc exhibits nice gradations, except that the 0.1 is bigger than the 0.3 - need to evaluate actual injection values.
+Da vs Dbuf: Dbuf > Da for 0.1, but opposite for 0.3.  
+pAKAR3 exhibits gradations, but not quite sufficient
+Ca ~76
+
+If Da vs Dbuf is still issue - use new method (3 below) for compensating injected molecules
+
 CONSIDER:
 1a. double rate of PP2B dephos of p34-DARPP-32 if basal is too high
 1b. 5x faster CamKII phos of DagL (going back to higher pDagL activity) if still insufficient 2ag suppression
@@ -65,7 +77,6 @@ CONSIDER:
 4. To speed Da pulses: increase extrusion rate, e.g. 10x; increase injected amount to compensate, e.g. 10x
    test this AFTER testing new method for compensation
 
-3
 >>>>>>>>>>>>
 	       
 &&&&&&& To finish model:

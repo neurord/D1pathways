@@ -103,7 +103,7 @@ def argparse(args):
         ftuples,parlist=pu5.file_tuple(fnames,params)
         ftuples = sorted(ftuples, key=lambda x:x[1])
     else:
-        ftuples=[(fnames[0],1)]
+        ftuples=[(fnames[0],'1')]
     return ftuples,parlist,params
 
 def subvol_list(structType,model):

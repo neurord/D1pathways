@@ -96,7 +96,7 @@ for fnum,ftuple in enumerate(ftuples):
     if numfiles==1:
         arraysize=numtrials
         params=['trial']
-        parval=range(len(trials))
+        parval=[str(x) for x in range(len(trials))]
         parlist=[parval,[]]
     else:
         arraysize=numfiles
@@ -159,7 +159,7 @@ for fnum,ftuple in enumerate(ftuples):
     #use the above lists and volume of each region, and each region-structure
     ######################################
     if maxvols>1:
-        print(parval[fnum], molecule.rjust(14), end=' ')
+        print(params, "=",parval[fnum])
         molecule_name_issue=0
         for imol,molecule in enumerate(plot_molecules):
           if out_location[molecule]!=-1:
@@ -201,7 +201,7 @@ for fnum,ftuple in enumerate(ftuples):
                     plot_array.append(OverallMean)
                     #plot_array dimensions=number of molecules x number of trials x sample times
             #
-            #write averages to separate files
+            ############# write averages to separate files #######################3
             if outputavg:
                 outfname=fname[0:-3]+'_'+molecule+'_avg.txt'
                 if molecule in plot_molecules:
@@ -288,6 +288,7 @@ for fnum,ftuple in enumerate(ftuples):
         #dimensions of plot_array=num molecules x num trials x sample times
         #whole_plot_array dimension=num trials*num molecules*sample time
         whole_plot_array=np.swapaxes(plot_array,0,1)
+    print ("injection stats", data['trial0']['output']['event_statistics'][0,0:5,1])
     #
     ###################################################
     #   in both cases (single voxel and multi-voxel):
