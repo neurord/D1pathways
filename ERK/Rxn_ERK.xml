@@ -1,0 +1,30 @@
+<ReactionScheme>
+<!-- First version of merges Gq Gs coupled pathway reactions
+     when reactions differ between the models, notes indicate which was source.
+     Either StriatumCRCNS/StochasticSP1/MSPNfinalxml/MSPNreactions_4spine_new50.xml for Gs
+     or MURI/BoHung/FinalMarch2012/mglu_2ag_reac12mar20desens025.xml for Gq
+     phosphatase reactions take from revision of Gs to improve Ca dep dphos of Dp32-->
+<!-- calcium stuff first -->
+    <Specie name="CamCa4"                id="CamCa4"                kdiff="174.3" kdiffunit="mu2/s"/>
+    <Specie name="RasGRF"                id="RasGRF"                kdiff="174.3" kdiffunit="mu2/s"/>
+    <Specie name="CamCa4RasGRF"          id="CamCa4RasGRF"          kdiff="174.3" kdiffunit="mu2/s"/>
+
+
+<!--*************************************************************************
+    Now, the reactions themselves 
+    **************************************************************************-->
+
+    <Reaction name = "CamCa4+RasGRF--CamCa4RasGRF" id="CamCa4+RasGRF--CamCa4RasGRF">
+        <Reactant specieID="CamCa4"           />
+        <Reactant specieID="RasGRF"              />
+        <Product  specieID="CamCa4RasGRF"               />
+
+        <forwardRate> 0.0005e-03   </forwardRate>
+        <reverseRate> 1e-03        </reverseRate>
+        <Q10>         0.2           </Q10>
+    </Reaction>
+
+    
+    
+
+ </ReactionScheme>
