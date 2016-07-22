@@ -1,0 +1,193 @@
+Lab Notebook for Blackwell July 18-, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+NEXT STEPS:
+    1. Validate the nostim and ACh depletion cases. Da durations (Castro) with lower ACh during Da stim
+    2. bath and block cases for final tuning
+     	use ic start and earlier application for bath cases to save computational time
+    3. Then, repeat 20hz vs theta, create signature
+    4. Multi-spine sims - spatial specificity
+    5. Other questions:
+       a. role of ACh during burst or pause or rebound?
+       b. confirm role of CamKII phos Dgl?
+       c. Can molecules substitute for others in signature?
+    5. parameter robusteness
+
+########## New simulations as of July 1, 2016
+USE
+a. faster PKA - 5x faster than previous, but still ~2x lower than Jeanette
+b. greater Gs hydrolysis (4x faster) PLUS lower affinity of ACh for m4 - these should balance somewhat wrt cAMP
+c. double rate of PKA phos of PDE4/10, PP1 dephos of PDE4/10 (to reduce their dephos when PKA and p34DARPPP32 are high) - these should enhance control of cAMP during bath application
+d. dendritic injection (instead of fake spines) - this should improve computational efficiency somewhat
+e. AC1: help support cAMP basal in response to the greater Gs hydrolysis.
+f. pDagL: same Km, but 20% of DagL activity (vs 50% to enhance CamKII effect) - alternative is faster CamKII phos
+
+SIMULATE:
+1. Da stim 0.1-10sec using lower rate of ACh (0.3 instead of 0.5), and AKAR
+2. Repeat nostim and noACh using faster PDE phos, PP1 dephos
+
+>>>>>>>>>Results as of July 18
+No issues / funny results / IC when running single trials
+
+1. basal cAMP looks good ~45-50, Stim is still way too big for 10s
+-----> restore ACh sooner at 5 sec instead of 10.  Maybe the reduction is not doing anything?
+       Why is PKAc and phos PDE4 not taking care of it? pPDE4 indeed increasing, but not sufficient:
+       During peak, PDE4cAMP=250, but pPDE4cAMP = 10.  pPDE4 and pPDE10 do increase, but miss the peak.  Wouldn't be good to increase phos rate else shorter cAMP applications will be too small (1 s -> 1 uM).
+2. Very strange that 0.1s has cAMP > 0.3s.  Da stim is fine as is ACh.  Perhaps the new, coupled injection will fix this?  Alternatively, results due to stochastic variation (or different manifestation of bug?)
+0.1 has the higher basal D32p34PP1 (~400 vs 200 for 0.3 Da), due to higher basal PKAc?  Could this be causing the skew? 
+------> try new injection with Dbuf coupled to Da
+-------> Try different random seed
+3.---->basal Dp34PP1 possibly too low - for three Da inject values obtained 201, but for one of them obtained 336.  Why 3 are so similar?  Run longer no-stim case and use final results to initialize
+4. PKAc exhibits nice gradations, except that the 0.1 is bigger than the 0.3 - need to evaluate actual injection values. pAKAR3 also exhibits gradations, but 0.1 is too high compared to 1s.  Also, once PKAc decreases, pAKAR3 drops quickly - faster than the gradual PKAc decrease.  It seems that pAKAR3 and Dp34 is very sensitive to PKAc level.
+5. GiaGTP levels do not decrease except for 10s stim - the current brief decreases are not sufficiently long, or GiaGTP degradation is too slow (1/sec), or dissociation of ACh from m4R is too slow
+
+Response to bath application:
+1. Fair amount of pDgl of various forms
+2. cAMP is significantly smaller with DaCa than Da alone.  Peak (10 uM) is transient despite continued application - reinforces not to change reactions, and instead change ACh reduction.
+3. Basal Dp34 more reasonable: 407,429,508 - these are all good values; with basal cAMP of 30-40
+   	Dp34tot	   Dp75
+Da	5200n	   6327
+Ca	1320n	   6561
+DaCa	4000n	   4839
+
+No stim and no ACh: nostim case has peak cAMP = 78, slightly higher than basal. - this allows D32p34PP1 to increase to ~2 uM?
+   No ACh has peak cAMP ~1 uM.  Not too bad.  Except that this allow ~5 uM D32p34.
+
+----->Basal results suggest that phosphatases are not strong enough, and that a good basal requires a very long simulation time (as has been observed before).
+
+################## using Neurord-3.1.3, which has mostly bug fixes
+1a. double rate of PP2B dephos of p34-DARPP-32 since basal is too high (with no-stim)
+2. Increase PDE2 (to partly compensate for large cAMP transient with very long stim)
+3. New method for compensating for injected molecules (test this with no other changes):
+   a. inject Da and Dbuf together as Dabuf to control amount injected
+   b. have fast dissociation of Dabuf into Da(internal) and Dbuf (external)
+   c. DaOut still reacts with Dbuf, but goes to null (don't track it?)
+   d. balanced Da and Dbuf means that basal DaOut doesn't need to be large to avoid baseline shifts
+      - lower quantities means lower diffusion
+      - eliminate the specification of separate Dbuf and calculation of compensatory amounts
+   e. Do the same for GluOut and Gbuf.
+****** Files:
+Stim_CoupleDa0.1
+Stim_CoupleDa0.3
+Stim_CoupleDa1
+Stim_CoupleDa10
+Rxn_SPNspineAChm4R_Gshydr5_AC1_couple.xml : increased PP2B rate, molecules for new stim
+IC_SPNspineAChm4R_AC1_couple.xml : increased PDE2
+IC_SPNspineAChm4R_AC1_couple_AKAR.xml : increased PDE2
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-Da0.1.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-Da0.3.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-Da10.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-Da1.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-nostim.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-bathDa.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-bathCa.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-bathDaCa.xml
+No need for injecting DaDbuf with bath application since we don't inject Dbuf either.
+4.Evaluate all of the above using the slightly modified neurord.  Run one case of 3 trials using a model causing problems before to see if problem still present.  Also use new seeds to determine if that makes a significant difference.
+5. Delay the Da stim to 80 sec (same as bath) for possibly better basal (though will make earlier once good basal from no-stim case)
+NOTE: the bath applied sims don't differ in injection from previous sims, they only differ in the PP2B activity and PDE2 quantity
+>>>>>>>>>>>>
+INJECTION IS GREAT!
+Da stim: 0.1Da has slightly smaller PKAc and phos response than 0.3Da.  Not small enough to match imaging data, but slightly smaller to confirm that previous issues were due to injection.
+Basal D32p34 = ~600 - excellent value.
+cAMP with 10s Da = 16 uM.  Unknow what this value should be.  Possibly the Gi pause is doing nothing for the shorter stimuli and this could be eliminated.
+Da0.1 produces nearly saturated pAKAR3.  This suggests that PKA phos is too strong.  Peak should require ~30 sec, not the 15 s it requires now.
+If no change to PP1 dephos, then peak will be lower, but decay will be too fast.  If decrease PP1 dephos, may not lower the peak, but will slow down the decay.  But maybe peak will be lower because it will be reached when PKAc is decaying
+Bath stim: Peak cAMP = 6 uM - confirms that the ACh reduction should be eliminated for Da cases.
+Calcium reduces the cAMP to 5 uM and Dp34 from 5 uM to 3.7 uM.
+
+noACh and nostim cases:
+nostim run for 500 seconds: D32p34PP1 increased to 2 uM near 100 s and then decreased.  went down to 1 uM at 500 s, would possiblly go down even lower.
+noACh: the simulation did not run well - 3 trials, but slightly different duration, and never finished.
+Response: there is a cAMP increase to 1 uM, but then decreases.  So, the release from ACh is stronger than the basal response.  Run this for longer to see what the final basal would be.  Also, use the new Rxn files, even though should not be different.
+
+##################
+---------> 1. Repeat the Da Stim simulations with (a) no reduction in ACh, and (b) slower AKAR phos:
+Use same files, but the following AKAR rates (will not affect bath cases).
+Also, run the four block cases
+<!-- AKAR3 rates to allow comparison to Castro, etc. -->
+     <Reaction name = "AKAR3+PKAc bind" >
+        <Reactant specieID="AKAR3"            />
+        <Reactant  specieID="PKAc"               />
+        <Product  specieID="PKAcAKAR3"            />
+
+        <forwardRate> 0.0125e-03     </forwardRate>
+        <reverseRate> 0.25e-03    </reverseRate>
+    </Reaction>
+
+    <Reaction name = "PKAcAKAR3 phos" >
+       <Reactant specieID="PKAcAKAR3"            />
+        <Product  specieID="PKAc"               />
+        <Product  specieID="pAKAR3"            />
+
+        <forwardRate> 0.375e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+    </Reaction>
+
+     <Reaction name = "pAKAR3+PP1 bind" >
+        <Reactant specieID="pAKAR3"            />
+        <Reactant  specieID="PP1"               />
+        <Product  specieID="PP1pAKAR3"            />
+
+        <forwardRate> 0.00025e-03     </forwardRate>
+        <reverseRate> 0.9e-03    </reverseRate>
+    </Reaction>
+
+    <Reaction name = "PP1pAKAR3 dephos" >
+       <Reactant specieID="PP1pAKAR3"            />
+        <Product  specieID="PP1"               />
+        <Product  specieID="AKAR3"            />
+
+        <forwardRate> 0.625e-03     </forwardRate>
+        <reverseRate> 0e-03    </reverseRate>
+    </Reaction>
+---------> 2. Run the CyA and OA block cases (faster Gshydr and AC1 have not been run with these)
+---------> 3.  Re-run nostim for 1000 s to determine if ss is still lower.
+---------> 4. Try noACh with new injection method and 500s - new inject shouldn't make a difference, but need to check, see whether basal cAMP comes down further.  Also, use trials =3 to see if it works this time (doesn't get stuck).
+
+&&&&&&& CONSIDER:
+1b. 5x faster CamKII phos of DagL (going back to higher pDagL activity) if still insufficient 2ag suppression
+2. Eliminate ATP.  If no depletion, then either have 1000x lower ATP with 1000x faster kf,
+   or incorporate ATP binding into production rate
+   i.e., ACGsa->AcGsa+cAMP using VMax, since ATP conc is ~10x greater than Km
+   This will eliminate 1 diffusing species of high conc, and 4 reactions
+4. To speed Da pulses: increase extrusion rate, e.g. 10x; increase injected amount to compensate, e.g. 10x
+   test this AFTER testing new method for compensation
+
+	       
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?

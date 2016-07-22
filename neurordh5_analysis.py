@@ -90,6 +90,8 @@ for fnum,ftuple in enumerate(ftuples):
     time_array=[]
     
     trials=[a for a in data.keys() if 'trial' in a]
+    #trials=['trial0']
+    seeds=[data[trial]['simulation_seed'][:] for trial in trials]
     numtrials=len(trials)
     outputsets=data[trials[0]]['output'].keys()
     #print data.keys(),trials,outputsets
@@ -288,7 +290,8 @@ for fnum,ftuple in enumerate(ftuples):
         #dimensions of plot_array=num molecules x num trials x sample times
         #whole_plot_array dimension=num trials*num molecules*sample time
         whole_plot_array=np.swapaxes(plot_array,0,1)
-    print ("injection stats", data['trial0']['output']['event_statistics'][0,0:5,1])
+    if 'event_statistics' in data['trial0']['output'].keys():
+        print ("injection stats", data['trial0']['output']['event_statistics'][0,0:5,1], "seeds", seeds)
     #
     ###################################################
     #   in both cases (single voxel and multi-voxel):
