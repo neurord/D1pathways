@@ -1962,8 +1962,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant  specieID="PKAc"               />
         <Product  specieID="PKAcAKAR3"            />
 
-        <forwardRate> 0.0125e-03     </forwardRate>
-        <reverseRate> 0.25e-03    </reverseRate>
+        <forwardRate> 0.00625e-03     </forwardRate>
+        <reverseRate> 0.125e-03    </reverseRate>
     </Reaction>
 
     <Reaction name = "PKAcAKAR3 phos" >
@@ -1971,7 +1971,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PKAc"               />
         <Product  specieID="pAKAR3"            />
 
-        <forwardRate> 0.375e-03     </forwardRate>
+        <forwardRate> 0.1875e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
     </Reaction>
 
@@ -1980,8 +1980,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant  specieID="PP1"               />
         <Product  specieID="PP1pAKAR3"            />
 
-        <forwardRate> 0.00025e-03     </forwardRate>
-        <reverseRate> 0.9e-03    </reverseRate>
+        <forwardRate> 0.000125e-03     </forwardRate>
+        <reverseRate> 0.45e-03    </reverseRate>
     </Reaction>
 
     <Reaction name = "PP1pAKAR3 dephos" >
@@ -1989,7 +1989,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"               />
         <Product  specieID="AKAR3"            />
 
-        <forwardRate> 0.625e-03     </forwardRate>
+        <forwardRate> 0.3125e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
     </Reaction>
 <!-- ############### AC1 activated by Gs and CamCa4 ###################-->

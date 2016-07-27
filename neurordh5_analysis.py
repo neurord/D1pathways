@@ -55,7 +55,7 @@ stimspine='sa1[0]' #"name" of stimulated spine
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
 tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
-tot_species=[]
+tot_species=["Plc"]
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -90,11 +90,9 @@ for fnum,ftuple in enumerate(ftuples):
     time_array=[]
     
     trials=[a for a in data.keys() if 'trial' in a]
-    #trials=['trial0']
     seeds=[data[trial]['simulation_seed'][:] for trial in trials]
     numtrials=len(trials)
     outputsets=data[trials[0]]['output'].keys()
-    #print data.keys(),trials,outputsets
     if numfiles==1:
         arraysize=numtrials
         params=['trial']
@@ -113,7 +111,10 @@ for fnum,ftuple in enumerate(ftuples):
         dsm_tot=np.zeros((arraysize,len(tot_species)))
         head_tot=np.zeros((arraysize,len(tot_species)))
         dsm_name=dend+submembname
-        dsm_vox=list(region_struct_dict.keys()).index(dsm_name)
+        try:
+            dsm_vox=list(region_struct_dict.keys()).index(dsm_name)
+        except ValueError:
+            dsm_vox=-1
         try:
             head_index=list(region_dict.keys()).index(spinehead)
         except ValueError:
@@ -252,8 +253,9 @@ for fnum,ftuple in enumerate(ftuples):
                     tempmax=np.max(RegionMeans[:,ssend[imol]:,head_index],axis=1)
                     headmax=np.mean(tempmax)
                 print("head ss:%8.4f pk %8.4f " % (headmean, headmax), end=' ')
-            dsm_max=np.max(RegionStructMeans[:,ssend[imol]:,dsm_vox],axis=1)
-            print("dend sm %8.4f pk %8.4f" %((RegionStructMeans[:,sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_dict[dsm_name]['depth']),
+            if dsm_vox>-1:
+                dsm_max=np.max(RegionStructMeans[:,ssend[imol]:,dsm_vox],axis=1)
+                print("dend sm %8.4f pk %8.4f" %((RegionStructMeans[:,sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_dict[dsm_name]['depth']),
                                                      (np.mean(dsm_max)*region_struct_dict[dsm_name]['depth'])))
           else:
               if fnum==0 and molecule_name_issue==0:
@@ -274,14 +276,18 @@ for fnum,ftuple in enumerate(ftuples):
             #generate output files for these cases
             for trialnum,trial in enumerate(trials):
                 tempConc[trialnum]=data[trial]['output'][outset]['population'][:,voxel,imol]/TotVol/mol_per_nM_u3
-            plot_array.append(tempConc)
-            #dimensions of plot_array=num trials x num molecules x sample times
+            if numfiles>1:
+                 plot_array.append(np.mean(tempConc,axis=0))
+                 #plot_array dimensions=numfiles x number of molecules x sample times
+            else:
+                #plot_array dimensions=number of molecules (x number of trials) x sample times
+                plot_array.append(tempConc)
           else:
               print("molecule", molecule, "not found in output data!!!!!!!!!!!")
               if fnum==0:
                   print("choose from:", molecules)
               plot_array.append([-1])
-    #Whether 1 voxel or multi-voxel, create array holding means for all molecules, all files, all trials
+    #Whether 1 voxel or multi-voxel, create array of means for all molecules, all files, all trials
     if numfiles>1:
         #plot_array dimensions=num molecules x sample times
         #whole_plot_array dimension=num files*num molecules*sample time
@@ -313,15 +319,21 @@ for fnum,ftuple in enumerate(ftuples):
             mol_index=h5utils.get_mol_index(data,outset,subspecie)
             mol_pop=data['trial0']['output'][outset]['population'][0,:,mol_index]
             ss_tot[fnum,imol]+=mol_pop.sum()/TotVol/mol_per_nM_u3
-            dsm_tot[fnum,imol]+=mol_pop[region_struct_dict[dsm_name]['vox']].sum()/region_struct_dict[dsm_name]['vol']*region_struct_dict[dsm_name]['depth']/mol_per_nM_u3
-            if head_index>-1:
-                head_tot[fnum,imol]+=mol_pop[region_dict[spinehead]['vox']].sum()/region_dict[spinehead]['vol']/mol_per_nM_u3
-            else:
-                head_tot[fnum,imol]+=-1
+            if maxvols>1:
+                if dsm_vox>-1:
+                    dsm_tot[fnum,imol]+=mol_pop[region_struct_dict[dsm_name]['vox']].sum()/region_struct_dict[dsm_name]['vol']*region_struct_dict[dsm_name]['depth']/mol_per_nM_u3
+                else:
+                    dsm_tot[fnum,imol]+=-1
+                if head_index>-1:
+                    head_tot[fnum,imol]+=mol_pop[region_dict[spinehead]['vox']].sum()/region_dict[spinehead]['vol']/mol_per_nM_u3
+                else:
+                    head_tot[fnum,imol]+=-1
         print("Total",mol, end=' ')
         if fnum==0:
             print(mol_set, end=' ')
-        print(ss_tot[fnum,imol],"nM, or head:",head_tot[fnum,imol],"nM, or dsm:", dsm_tot[fnum,imol], "picoSD")
+        print(ss_tot[fnum,imol],"nM")
+        if maxvols>1:
+            print(" or head:",head_tot[fnum,imol],"nM, or dsm:", dsm_tot[fnum,imol], "picoSD")
 #
 #####################################################################
 #after main processing, extract a few characteristics of molecule trajectory
