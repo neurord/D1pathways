@@ -55,7 +55,7 @@ stimspine='sa1[0]' #"name" of stimulated spine
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
 tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
-tot_species=["Plc"]
+tot_species=[]
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -162,7 +162,7 @@ for fnum,ftuple in enumerate(ftuples):
     #use the above lists and volume of each region, and each region-structure
     ######################################
     if maxvols>1:
-        print(params, "=",parval[fnum])
+        print(params, "=",parval[fnum], "voxels=",maxvols)
         molecule_name_issue=0
         for imol,molecule in enumerate(plot_molecules):
           if out_location[molecule]!=-1:
@@ -246,8 +246,8 @@ for fnum,ftuple in enumerate(ftuples):
             if head_index>-1:
                 if len(spinelist)>1:
                     stimspinenum=list(spinelist).index(stimspine)
-                    headmean=spinemeans[sstart[imol]:ssend[imol],stimspinenum].mean()
-                    headmax=spinemeans[sstart[imol]:ssend[imol],stimspinenum].max()
+                    headmean=np.mean(np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0),axis=0)
+                    headmax=np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0).max()
                 else:
                     headmean=np.mean(RegionMeans[:,sstart[imol]:ssend[imol],head_index])
                     tempmax=np.max(RegionMeans[:,ssend[imol]:,head_index],axis=1)
