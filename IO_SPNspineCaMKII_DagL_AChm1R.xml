@@ -191,6 +191,14 @@
     <OutputSpecie name="pAKAR3"/>
     <OutputSpecie name="PKAcAKAR3"/>
     <OutputSpecie name="PP1pAKAR3"/>
+    <OutputSpecie name="OkadaicAcid"/>
+    <OutputSpecie name="CyclosporinA"/>
+    <OutputSpecie name="OA_PP2ABPR72"/>
+    <OutputSpecie name="OA_PP2AB56d"/>
+    <OutputSpecie name="OA_pPP2A"/>   
+    <OutputSpecie name="OA_PP2Acal"/> 
+    <OutputSpecie name="OA_PP1"/>
+    <OutputSpecie name="CyA_PP2B"/>  
   </OutputSet>
 
 </OutputScheme>

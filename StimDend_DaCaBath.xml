@@ -2,24 +2,24 @@
 
     <!-- the injectionSite must match a regionLabel defined in the morphology -->
   <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
-        <onset>               80000         </onset>
+        <onset>               20000         </onset>
         <duration>            100           </duration>
         <rate>                 45           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Da" injectionSite="dend:submembrane">
-        <onset>               80000         </onset>
+        <onset>               20000         </onset>
         <duration>            100           </duration>
         <rate>                 45           </rate>
   </InjectionStim>
 
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
-        <onset>           80100        </onset>
+        <onset>           20100        </onset>
         <duration>       99900.0       </duration>
         <rate>               6.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="dend:submembrane">
-        <onset>           80100        </onset>
+        <onset>           20100        </onset>
         <duration>       99900.0       </duration>
         <rate>               6.0    </rate>
       </InjectionStim>
@@ -32,37 +32,37 @@
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               80000         </onset>
+        <onset>               20000         </onset>
         <duration>            100           </duration>
         <rate>                48           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               80000         </onset>
+        <onset>               20000         </onset>
         <duration>            100           </duration>
         <rate>                48           </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               80100         </onset>
+        <onset>               20100         </onset>
         <duration>            900           </duration>
         <rate>                8.1            </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               80100         </onset>
+        <onset>               20100         </onset>
         <duration>            900           </duration>
         <rate>                8.1            </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               81000         </onset>
+        <onset>               21000         </onset>
         <duration>            200000        </duration>
         <rate>                6.9            </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               81000         </onset>
+        <onset>               21000         </onset>
         <duration>            200000        </duration>
         <rate>                6.9            </rate>
   </InjectionStim>

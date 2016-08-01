@@ -5,9 +5,9 @@
 
           <xi:include href="Rxn_SPNspineAChm4R_Gshydr5_AC1_couple.xml" />
           <xi:include href="Morph_1spine2umDend.xml" />
-	  <xi:include href="IC_SPNspineAChm4R_AC1_couple_CyA.xml" />       
+	  <xi:include href="IC_SPNspineAChm4R_AC1_couple.xml" />       
           <xi:include href="IO_SPNspineCaMKII_DagL_AChm1R.xml" />
-          <xi:include href="Stim_CaBath.xml" />
+          <xi:include href="Stim_CaBathCyA.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the

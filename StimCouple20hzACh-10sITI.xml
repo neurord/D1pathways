@@ -5,33 +5,33 @@
 
 <!-- Train 1 -->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               20000          </onset>
         <duration>            5              </duration>
         <rate>                18.0           </rate>
         <period>              50             </period>
-        <end>                 50999          </end>
+        <end>                 20999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 1 to produce 0.5 uM alone -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               20000          </onset>
         <duration>            15              </duration>
         <rate>                36            </rate>
         <period>              50             </period>
-        <end>                 50010          </end>
+        <end>                 20010          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9990          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 2 = half of pulse 1 -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               50050          </onset>
+        <onset>               20050          </onset>
         <duration>            15              </duration>
         <rate>                18.0           </rate>
         <period>              50             </period>
-        <end>                 50060          </end>
+        <end>                 20060          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9990          </interTrainInterval>   
 </InjectionStim>
@@ -49,31 +49,31 @@
 
 <!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               50150          </onset>
+        <onset>               20150          </onset>
         <duration>            15              </duration>
         <rate>                9           </rate>
         <period>              50             </period>
-        <end>                 50999          </end>
+        <end>                 20999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9151          </interTrainInterval>   
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               20000          </onset>
         <duration>            3              </duration>
         <rate>                156            </rate>
         <period>              50             </period>
-        <end>                 50999          </end>
+        <end>                 20999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               50000          </onset>
+        <onset>               20000          </onset>
         <duration>            3              </duration>
         <rate>                156            </rate>
         <period>              50             </period>
-        <end>                 50999          </end>
+        <end>                 20999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
@@ -81,46 +81,46 @@
 <!-- basal ACh value prior to stim = desired conc * decay rate -->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
-        <duration>            50000      </duration>
-        <rate>                0.5         </rate>
+        <duration>            20000      </duration>
+        <rate>                0.3         </rate>
 </InjectionStim>
 <!-- basal ACh stim paused during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               52400          </onset>
+        <onset>               22400          </onset>
         <duration>            7800      </duration>
-        <rate>                0.5         </rate>
+        <rate>                0.3         </rate>
         <period>              10000             </period>
         <end>                 300000          </end>
 </InjectionStim>
 <!-- burst during stim : Assume that ACh neurons can follow 20 Hz -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               20000          </onset>
         <duration>            15              </duration>
         <rate>                8.0           </rate>
         <period>              50             </period>
-        <end>                 50999          </end>
+        <end>                 20999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
 <!-- Should this stimulation be eliminated???-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               50000          </onset>
+        <onset>               20000          </onset>
         <duration>            15              </duration>
         <rate>                8.0           </rate>
         <period>              50             </period>
-        <end>                 50999          </end>
+        <end>                 20999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
  </InjectionStim>
 
  <!-- rebound burst: develops more slowly -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               52400          </onset>
+        <onset>               22400          </onset>
         <duration>            800            </duration>
         <rate>                1.11            </rate>
         <period>              600           </period>
-        <end>                 52999          </end>
+        <end>                 22999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9401          </interTrainInterval>  
 </InjectionStim>

@@ -162,6 +162,14 @@
         <NanoMolarity specieID="D32p75PP2Acal"          value="10" />
         <NanoMolarity specieID="D32p75pPP2A"            value="10" />
 
+        <NanoMolarity specieID="OA"                 value="0" />
+        <NanoMolarity specieID="CyA"                 value="0" />
+        <NanoMolarity specieID="OA_PP2ABPR72"                 value="0" />
+        <NanoMolarity specieID="OA_PP2AB56d"                 value="0" />
+        <NanoMolarity specieID="OA_pPP2A"                 value="0" />
+        <NanoMolarity specieID="OA_PP2Acal"                 value="0" />
+        <NanoMolarity specieID="OA_PP1"                 value="0" />
+        <NanoMolarity specieID="CyA_PP2B"                 value="0" />
         <NanoMolarity specieID="AKAR3"                 value="0" />
         <NanoMolarity specieID="pAKAR3"                 value="0" />
     </ConcentrationSet> 
