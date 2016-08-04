@@ -1,54 +1,75 @@
 <ReactionScheme>
 <!-- Gs coupled Dopamine D1 Receptor; Ligand is Da,
      Dabuf is used to eliminate injected Da -->
-    <Specie name="Da"                id="Da"               kdiff="10"      kdiffunit = "mu2/s"/>
-    <Specie name="DaOut"             id="DaOut"            kdiff="1"      kdiffunit = "mu2/s"/>
-    <Specie name="Dbuf"              id="Dbuf"             kdiff="1"      kdiffunit="mu2/s"/>
-    <Specie name="DaOutbuf"          id="DaOutbuf"         kdiff="0"      kdiffunit="mu2/s"/>
+    <Specie name="Da"            id="Da"            kdiff="10"     kdiffunit="mu2/s"/>
+    <Specie name="Dbuf"          id="Dbuf"          kdiff="1"      kdiffunit="mu2/s"/>
+    <Specie name="DaDbuf"        id="DaDbuf"        kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="DaOut"         id="DaOut"         kdiff="1"      kdiffunit = "mu2/s"/>
 
     <Specie name="Ca"                id="Ca"                kdiff="10"      kdiffunit = "mu2/s"/>
+    <Specie name="ACh"               id="ACh"                kdiff="10"      kdiffunit = "mu2/s"/>
 
-    <Specie name="Glu"               id="Glu"               kdiff="10"      kdiffunit = "mu2/s"/>
-    <Specie name="GluOut"            id="GluOut"            kdiff="1"      kdiffunit = "mu2/s"/>
-    <Specie name="Gbuf"              id="Gbuf"              kdiff="1"      kdiffunit="mu2/s"/>
-    <Specie name="GluOutbuf"         id="GluOutbuf"           kdiff="0"       kdiffunit="mu2/s"/>
+    <Specie name="Glu"            id="Glu"           kdiff="10"   kdiffunit="mu2/s"/>
+    <Specie name="GluGbuf"        id="GluGbuf"     kdiff="0"       kdiffunit="mu2/s"/>
+    <Specie name="GluOut"         id="GluOut"        kdiff="1"   kdiffunit="mu2/s"/>
+    <Specie name="Gbuf"           id="Gbuf"          kdiff="1"      kdiffunit="mu2/s"/>
 
-   <!--0a. Da or Da Agonist is extruded, if necessary, add in: excess binds to buffer: DaOut + Dbuf  <->  DaOutbuf  -->
+    <Reaction name = "DaDbuf--Da+Dbuf" id="DaDbuf--Da+Dbuf">
+        <Reactant specieID="DaDbuf"                      />
+        <Product  specieID="Dbuf"                      />
+        <Product  specieID="Da"                     />
+        <forwardRate> 10e-03 </forwardRate>
+        <reverseRate> 0      </reverseRate>
+    </Reaction>
+    
+  <!--0b. Da or Da Agonist is extruded  -->
    <Reaction name = "Da--DaOut" id="Da--DaOut">
   	<Reactant specieID="Da"/>
         <Product  specieID="DaOut"                   />
-        <forwardRate> 1.50e-3      </forwardRate>
-        <reverseRate> 0.06e-6      </reverseRate>
-        <Q10>         0.2          </Q10>
+        <forwardRate> 1.0e-3      </forwardRate>
+        <reverseRate> 0.055e-6      </reverseRate>
     </Reaction>
 
-    <Reaction name = "DaOut+Dbuf--DaOutbuf" id="DaOut_buf--DaOutbuf">
+   <!--0c. excess DaOut eliminated to prevent baseline shift: DaOut + Dbuf  <->  DaOutbuf  -->
+    <Reaction name = "DaOut+Dbuf--NULL" id="DaOut_buf--NULL">
         <Reactant specieID="DaOut"                      />
         <Reactant specieID="Dbuf"                      />
-        <Product  specieID="DaOutbuf"                     />
-        <forwardRate> 0.1e-06 </forwardRate>
+        <forwardRate> 1e-06 </forwardRate>
         <reverseRate> 0      </reverseRate>
-        <Q10>         0.2          </Q10>
     </Reaction>
     
+    <!--0a. Injected DaDbuf dissociates to Dbuf (external) and Da: DaDbuf -> Da + Dbuf  -->
+    <Reaction name = "Glubuf--Glu+Gbuf" id="GluGbuf--Glu+Gbuf">
+        <Reactant specieID="GluGbuf"                      />
+        <Product  specieID="Gbuf"                      />
+        <Product  specieID="Glu"                     />
+        <forwardRate> 10e-03 </forwardRate>
+        <reverseRate> 0      </reverseRate>
+    </Reaction>
+    
+    <!--0b. GluOut    Glu <-> GluOut>  -->
   <Reaction name = "Glu--GluOut" id="Glu--GluOut">
   	<Reactant specieID="Glu"/>
 	<Product specieID="GluOut"/>
 
   	<forwardRate>0.6e-3</forwardRate>
   	<reverseRate>0.03e-6</reverseRate>
-  	<Q10>0.2</Q10>
   </Reaction>
   
-  <!--0c. GluOut binds irreversible buffer: GluOut + Gbuf  <->  GluOutbuf  -->
+  <!--0c. GluOut eliminated to prevent baseline shift: GluOut + Gbuf <-> Null -->
     <Reaction name = "GluOut-buf reac" id="Glu-buf_id">
         <Reactant specieID="GluOut"                      />
         <Reactant specieID="Gbuf"                      />
-        <Product  specieID="GluOutbuf"                   />
 
-        <forwardRate> 0.1e-6      </forwardRate>
+        <forwardRate> 1e-6      </forwardRate>
         <reverseRate> 0      </reverseRate>
-        <Q10>         0.2          </Q10>
+    </Reaction>
+    
+    <!--0. ACh        -> null      -->
+    <Reaction name = "ACh--null" id="ACh--null">
+        <Reactant specieID="ACh"                      />
+ 
+        <forwardRate> 6e-03 </forwardRate>
     </Reaction>
 </ReactionScheme>
 

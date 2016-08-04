@@ -152,6 +152,10 @@ for fnum,ftuple in enumerate(ftuples):
                     ssend[imol] = float(args[3].split(" ")[1]) // dt[imol]
                     if ssend[imol]>0.5*rows[imol]:
                         print("WARNING*******. Possible SS time issue: only", rows, "rows")
+                    if ssend[imol]>rows[imol]:
+                        ssend[imol]=0.1*rows[imol]
+                        sstart[imol]=0.075*rows[imol]
+                        print ("WARNING *****. ssend exceeds sim time, reassigning to ", ssend[imol]*dt)
         else:
             for imol,molecule in enumerate(plot_molecules):
                 if out_location[molecule]!=-1:
@@ -264,7 +268,8 @@ for fnum,ftuple in enumerate(ftuples):
               plot_array.append([-1])
               #
     else:
-        #minimal processing needed if only a single voxel.  Just extract, calculate ss, and plot specified molecules
+        #minimal processing needed if only a single voxel.
+        #Just extract, calculate ss, and plot specified molecules
         #might want to create output files with mean and stdev
         voxel=0
         for mol in plot_molecules:
@@ -297,7 +302,9 @@ for fnum,ftuple in enumerate(ftuples):
         #whole_plot_array dimension=num trials*num molecules*sample time
         whole_plot_array=np.swapaxes(plot_array,0,1)
     if 'event_statistics' in data['trial0']['output'].keys():
-        print ("injection stats", data['trial0']['output']['event_statistics'][0,0:5,1], "seeds", seeds)
+        print ("seeds", seeds," injection stats:")
+        for inject_sp,inject_num in zip(data['model']['event_statistics'][:],data['trial0']['output']['event_statistics'][0]):
+            print (inject_sp.split()[-1].rjust(20),inject_num[:])
     #
     ###################################################
     #   in both cases (single voxel and multi-voxel):

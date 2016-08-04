@@ -91,8 +91,8 @@
 </InjectionStim>
 <!-- basal ACh stim paused during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               23200          </onset>
-        <duration>             6800      </duration>
+        <onset>               28000          </onset>
+        <duration>             2000      </duration>
         <rate>                0.3         </rate>
         <period>              10000             </period>
         <end>                 220000          </end>

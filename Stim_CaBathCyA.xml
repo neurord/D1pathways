@@ -33,23 +33,23 @@
   </InjectionStim>
 
   <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               81000         </onset>
+        <onset>               21000         </onset>
         <duration>            200000        </duration>
         <rate>                6.9            </rate>
   </InjectionStim>
 
   <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               81000         </onset>
+        <onset>               21000         </onset>
         <duration>            200000        </duration>
         <rate>                6.9            </rate>
   </InjectionStim>
 <InjectionStim specieID="CyA" injectionSite="dend:submembrane">
-        <onset>               1000          </onset>
+        <onset>               2000          </onset>
         <duration>            90      </duration>
         <rate>                45         </rate>
 </InjectionStim>
 <InjectionStim specieID="CyA" injectionSite="sa1[0].pointA">
-        <onset>               1000          </onset>
+        <onset>               2000          </onset>
         <duration>            90      </duration>
         <rate>                25         </rate>
 </InjectionStim>

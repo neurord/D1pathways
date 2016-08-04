@@ -1,0 +1,186 @@
+Lab Notebook for Blackwell July 18-, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+NEXT STEPS:
+DONE    1. Validate the nostim and ACh depletion cases. Da durations (Castro) with lower ACh during Da stim
+DONE    2. bath and block cases for final tuning
+NOW     	use ic start and earlier application for bath cases to save computational time
+--------->	Possibly repeat all prior cases using better ic (end July)
+NOW    3. Then, repeat 20hz vs theta, create signature (end July, begin Aug)
+    4. Multi-spine sims - spatial specificity (after signature and good IC) (Aug, while away)
+    5. Other questions:
+       a. role of ACh during burst or pause or rebound? - repeat sims without ACh modulation
+       b. confirm role of CamKII phos Dgl? - repeat sims without pDgl
+       c. Can molecules substitute for others in signature? - repeat sims as above
+    5. parameter robusteness
+
+##################
+---------> 1. Repeat the Da Stim simulations with (a) no reduction in ACh, and (b) slower AKAR phos (see 07_18 Notebook)
+---------> 2. Run the CyA and OA block cases (faster Gshydr and AC1 have not been run with these)
+---------> 3.  Re-run nostim for 1000 s to determine if ss is still lower.
+---------> 4. Try noACh with new injection method and 500s - new inject shouldn't make a difference, but need to check, see whether basal cAMP comes down further.  Also, use trials =3 to see if it works this time (doesn't get stuck).
+>>>>>>>Bath stim results: Very similar to previous results (and to experiments):
+                 basal/stim Dp34  goal     basal/stim Dp75 goal         assessment
+        Da       407/5.2u          5x      10.8u/6.3u   50%             BOTH goals met, though Dp75 reduction could be more
+        Ca       429n/1.3u         50%     11.0u/6.6u   75%             Dp75 decreases a bit too much
+        DaCa     508n/4.0u      50% of Da  11.1u/4.7u                   Close to goal met
+        CyA:     ??/2.5u      	3-17x      11.1u/9.7u  100%             3x over "max basal" of 400
+        OA:      ??/0.8u       	1.3x,5x         44.8u        3x         2x over "max basal" of 400
+        CyA+Ca   ??/2.9u                   11.0u/6.8u           	higher Dp34 than Ca without CyA     
+        CyA+Da   ??/5.3u                   11.0u/5.8u			Dp34 similar to Da alone
+---------->Very nice Dp34 increase with CyA block.  Similar Dp75 increase as previous with OA block
+Could adjust the Da vs Ca effect on Dp75 by increase the PKA phos subunit vs Ca dep subunit of PP2A
+Ca should cause reduction in Dp34.  Perhaps the increase reflects the non-basal level of Dp34PP1?
+
+Da Stim:
+cAMP for 10s is 6 uM, which is fine.
+0.1s Da produces lower pAKAR3 than 0.3 or 1s, which is slightly lower than 10s.  This is an improvement, but the decrease from peak is till too fast.
+Perhaps slow down phos and dephos of AKAR3 another 2x?
+
+noStim: D32p34PP1 decreases to 1 uM at 500s.
+############## slow down phos and dephos of AKAR3 another 2x, repeat Da Stim.  
+Also try 20Hz vs Theta - 1 spine, using the new coupled stimulation
+Run noACh without trials=3 switch, and try the re-start with nostim - does it work?  what is Dp34 steady state?
+StimCoupleTheta10hzACh-15sITI.xml
+StimCouple20hzACh-10sITI.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-stimtheta.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-stim20hz.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-noACh.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_couple-nostim.xml
+
+>>>>>Da stim: pAKAR3 is better.  now the 0.3 does not saturate.  Rise time ~30 sec (20s for 10s Da).
+Decay time is ~30 sec, still a bit fast.  It almost follows the decay in D32p34pp1 - suggesting that PP1 is too fast and it's availability is limitin dephos.
+--------> slow down PP1 dephos another 2x, also change phos and dephos rates to use the 4x rule of kb:kcat, which will lower affinity of PKA for AKAR from 50 nM to 150 nM - still quite high
+>>>>>restart:
+	works great!  additional 500 s reveals that D32p34PP1 equilibrium is indeed near or above 1 uM
+-----> need to lower balance of kinases and phosphatases active at D32p34PP1 (without lowering D32p75 phosphorylation)
+       a. increase PP2B dephos still further - CANNOT, PP2B is at its max
+       b. increase PP2A activity a bit (will slightly increase D32p75 basal, which is closer to 10 uM)
+       	  DONE.  Go back to values in spreadsheet, since OA has insufficient effect.
+----> use restart for the Ca/Da bath sims, with short wait prior to stim
+
+A. change the block cases to inject blockers (add in block reactions) in order to allow re-start facility
+   block reactions do not need to be extremely fast
+B. run noACh and nostim with new AKAR rates and also D32p34 stuff
+
+C. do Da and Bath with new rates and re-start, do block with new rates, re-start and block inject
+  ****** need to create new stim files!!!  
+D. do theta and 20hz with new rates and re-start
+############## AKAR rates (per sec):
+PKA phos: 0.00625, 0.75,0.1875
+PP1 dephos: 0.000125, 0.6, 0.156
+PP2A rates: 0.0003, 12.2, 2.8 against PP1 bound D32p34
+CyA IC50: Tocris: 5 nM; Oetjen .. Knepel 2005 - 10 nM; Groblewski, Wagner, Williams - 65 nM
+OA inhibition: article: Ki=150 nM for PP1, 32 pM for Pp2A; tocris: IC50=3 nM PP1, 0.1-1 nM PP2A
+Quantity to inject (PP1tot=4 uM, PP2Atot=2.8 uM, PP2Btot= 5uM):
+NISHI: cyclosporin: 5 uM, OA: 1 uM - but needs to be this concentration FREE, since bath perfused
+NISHI: OA blocks ~100% of PP2A but only 30% of PP1.
+Therefore, inject ~10 CyA and 6 OA?  Check how much is free and bound after block simulations
+Add these changes to latest files.  Need 4 new stim files:
+Stim_AChCyA.xml 
+Stim_AChOA.xml 
+Stim_CaBathCyA.xml
+Stim_DaBathCyA.xml
+
+Test out Eliminating ATP.  If no depletion incorporate ATP binding into kf of kf*ATP*ACx
+   This will eliminate 1 diffusing species of high conc, and 5 reactions
+   Multiply forwardRate by 2e6, eliminate <Reactant specieID="ATP"/> for the following reactions:
+   1.  <Reaction name = "AC5Gsa+ATP--AC5GsaATP reac" id="AC5Gsa+ATP--AC5GsaATP_id">
+     <forwardRate> 0.1276e-6 -> 0.255
+   2.  <Reaction name = "AC5GsaGia+ATP--AC5GsaGiaATP" id="AC5GsaGia+ATP--AC5GsaGiaATP">
+     <forwardRate> 0.01276e-6 -> 0.0255
+   3. <Reaction name = "AC1GsaGTPCamCa4_ATP_Reac" id="AC1GsaGTPCamCa4_ATP_Reac">
+    <forwardRate>0.01e-3</forwardRate> ->  -> 20.0
+   4.  <Reaction name = "AC1CamCa4ATP_bind" id="AC1CamCa4ATP_bind">
+     <forwardRate>0.01e-3</forwardRate> -> 20.0
+    5. Eliminate AMP -> ATP reaction
+    6. make ATP = 0 as initial conditions
+Compare to results with explicit ATP
+
+>>>>>>>>>> NO ATP: Simulation time was no faster, so go back to previous
+New basal of D32p34PP1 ~ 600-800 nM - much better than previous.
+
+2016 July 29:
+######## using higher PP2A dephos of D32p34PP1 and slower dephos of AKAR3
+1. Repeat Da stim sims: use re-start, start inject after 20s, decrease simtime by 50s, inject AKAR at 0s
+2. Repeat Bath sims: use re-start, start inject after 20s, decrease simtime by 50
+Not ready yet:
+3. Repeat Bath BLock sims: use re-start, start inject after 20s, decrease simtime by 50, inject CyA and OA at 1s
+4. theta and 20 Hz
+
+2016 Aug 1:
+>>>>>>>> nostim using restart: basal remains the same (GREAT)
+       dephos of AKAR3 is slower, but never reaches basal.  Why?
+       cAMP, PKAc, PP1 do not return to basal by 200s.  Appears to be two phases of decay.
+       phosph PDEs should make new cAMP basal lower
+       elevation in pPP2A diverts some PP2A from D32p34, and pPP2A does not return to basal.
+
+>>>>>>>>>> Da stim sims
+AKAR3: 3.7 uM - inject 20% less
+D32p34PP1: 460 nM (slight dec, due to AKAR3?)
+cAMP: 400, 472, 613, 6000: too small a difference with brief stim, especially 0.3 and 1s needs larger peak/duration
+pAKAR3: similar too small difference among the briefer Da stimuli.
+
+>>>>>>>>>> Bath stims
+D32p34PP1 basal between 682-750, flat
+>>>>>>>Bath stim results: Very similar to experiments, though D32p34 changes too quickly (< 30 sec):
+                 basal/stim Dp34  goal     basal/stim Dp75 goal         assessment
+        Da       700/4.8u          5x      9.8u/6.5u   50%             BOTH goals met, though Dp75 reduction too small
+        Ca       749n/427         50%      9.7u/6.4u   75%             BOTH goals met, though Dp75 reduction too big
+        DaCa     683n/3.4u      50% of Da  9.9u/5.0u                   BOTH goals met, though Dp34 dec is too brief
+
+	CyA:     ??/u      	3-17x      u/u  100%             
+        OA:      ??/u       	1.3x,5x         u        3x      
+        CyA+Ca   ??/u                   0u/u           	
+        CyA+Da   ??/u                   0u/u		
+
+Transient response to Da probably due to PDE10/4 neg feedback loop on cAMP.
+	  pPDE10 inc to ~150 total, and pPDE4 to ~80.
+pDgl increases to 80, CapDgl to 170.  Might be sufficient to decrease 2ag with theta.
+
+########### Block/bath sims using CyA and OA inject and re-start
+	    Theta/20Hz with restart and higher PP activity\
+	    Repeat Da duration with less AKAR inject
+	    
+&&&&&&& CONSIDER:
+1. 5x faster CamKII phos of DagL (going back to higher pDagL activity) if still insufficient 2ag suppression
+2. To speed Da pulses: increase extrusion rate, e.g. 10x; increase injected amount to compensate, e.g. 10x
+   test this AFTER testing new method for compensation
+
+	       
+&&&&&&& To finish model:
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+
+Still need to evaluate the following:
+1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?
