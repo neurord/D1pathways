@@ -4,7 +4,7 @@
    <!-- 20 Glu and Ca pulses / sec for 1 sec * 20 trains = 400 pulses -->
 
 <!-- Train 1 -->
-<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            5              </duration>
         <rate>                18.0           </rate>
@@ -14,51 +14,41 @@
         <interTrainInterval>  9001          </interTrainInterval>   
 </InjectionStim>
 
-<InjectionStim specieID="Gbuf" injectionSite="sa1[0].pointA">
-        <onset>               51000          </onset>
-        <duration>            20              </duration>
-        <rate>                4.5           </rate>
-        <period>              100             </period>
-        <end>                 52999          </end>
-        <numTrains>           20             </numTrains>
-        <interTrainInterval>  9001          </interTrainInterval>   
-</InjectionStim>
-
 <!-- pulse 1 to produce 0.5 uM alone -->
-<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            15              </duration>
         <rate>                36            </rate>
         <period>              50             </period>
-        <end>                 50010          </end>
+        <end>                 50020          </end>
         <numTrains>           20             </numTrains>
-        <interTrainInterval>  9990          </interTrainInterval>   
+        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 2 = half of pulse 1 -->
-<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               50050          </onset>
         <duration>            15              </duration>
         <rate>                18.0           </rate>
         <period>              50             </period>
-        <end>                 50060          </end>
+        <end>                 50070          </end>
         <numTrains>           20             </numTrains>
-        <interTrainInterval>  9990          </interTrainInterval>   
+        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 3 = half of pulse 2  -->
-<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               50100          </onset>
         <duration>            15              </duration>
         <rate>                12.6           </rate>
         <period>              50             </period>
-        <end>                 50110          </end>
+        <end>                 50120          </end>
         <numTrains>           20             </numTrains>
-        <interTrainInterval>  9990          </interTrainInterval>   
+        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
-<InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               50150          </onset>
         <duration>            15              </duration>
         <rate>                9           </rate>
@@ -67,16 +57,6 @@
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9151          </interTrainInterval>   
 </InjectionStim>
-
-  <InjectionStim specieID="Dbuf" injectionSite="sa1[0].pointA">
-        <onset>               51000          </onset>
-        <duration>            2000            </duration>
-        <rate>                1.46            </rate>
-        <period>              10000            </period>
-        <end>                 250000          </end>
-  </InjectionStim>
-
-<!--  Ca pulses  Only 40 pulses per train to achieve reasonable Ca -->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
@@ -88,7 +68,6 @@
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
-<!--InjectionStim specieID="Ca" injectionSite="dend:submembrane"-->
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               50000          </onset>
         <duration>            3              </duration>
@@ -99,19 +78,24 @@
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
-<!-- basal ACh value prior to stim = desired conc * decay ra te -->
+<!-- basal ACh value prior to and after stim  -->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            50000      </duration>
-        <rate>                0.5         </rate>
+        <rate>                3         </rate>
+</InjectionStim>
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               250000          </onset>
+        <duration>            200000      </duration>
+        <rate>                3         </rate>
 </InjectionStim>
 <!-- basal ACh stim paused during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               52400          </onset>
-        <duration>            7800      </duration>
-        <rate>                0.5         </rate>
+        <onset>               53200          </onset>
+        <duration>            6800      </duration>
+        <rate>                3         </rate>
         <period>              10000             </period>
-        <end>                 300000          </end>
+        <end>                 220000          </end>
 </InjectionStim>
 <!-- burst during stim : Assume that ACh neurons can follow 20 Hz -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
@@ -124,7 +108,6 @@
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
-<!--InjectionStim specieID="ACh" injectionSite="dend"-->
 <!-- Should this stimulation be eliminated???-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               50000          </onset>
@@ -141,10 +124,10 @@
         <onset>               52400          </onset>
         <duration>            800            </duration>
         <rate>                1.11            </rate>
-        <period>              600           </period>
-        <end>                 52999          </end>
+        <period>              900           </period>
+        <end>                 53299          </end>
         <numTrains>           20             </numTrains>
-        <interTrainInterval>  9401          </interTrainInterval>  
+        <interTrainInterval>  9101          </interTrainInterval>  
 </InjectionStim>
 
 </StimulationSet>

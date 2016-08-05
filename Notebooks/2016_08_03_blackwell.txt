@@ -86,9 +86,20 @@ Injection not working - probably due to duration of stim being shorter than peri
       AC5GsaGiaATP is greater for 20Hz than theta, due to slightly higher Gs?
       Pauses in GiaGTP not seen following ACh bursts, only during pause alone.
       What if no rebound burst at all?  Or pause after burst?
+
+#################
       a. Repeat sims with fix in stim files to avoid the pauses once stim has ceased
       b. stimulate without rebound, resume basal ACH at same time - 3.2 sec after initial burst
       c. Lengthen pause (keeping rebound) to 8s.
+
+>>>>>>> No rebound sims ran, but not the others
+NoRebound: 2AG initially has higher peaks with theta, but then peaks decrease as pDgl builds up.  So, theta has slightly lower 2ag, and CaMKII phos seems to be working.  PkcCaDag has slightly higher peaks for theta initially, and much higher peaks as pDgl builds up, diverting Dag to Pkc.
+Lack of rebound does not allow the Gi dips to be visible.
+AC5 is higher for 20hz, but AC1 is higher for theta.  20hz wins because AC5 dominates.
+--------> Re-run other sims (with longer pause), and also the 20um morph cases (1 trial each)
+Using the ACH with rebound firing.  Will need to repeat the 20 um morph using longer pause or no rebound it that works "better"
+
+>>>>>>>>> Block-bath sims didn't work - corrupt header
       
 &&&&&&& CONSIDER:
 1. 5x faster CamKII phos of DagL (going back to higher pDagL activity) if still insufficient 2ag suppression
