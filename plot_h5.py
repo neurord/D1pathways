@@ -74,6 +74,17 @@ def plotss(plot_mol,xparval,ss):
     fig.canvas.draw()
     return
 
+def plot_signature(condition,traces,time,title):
+     fig,axes=pyplot.subplots(1,1)
+     for i,cond in enumerate(condition):
+          axes.plot(time,traces[i],label=cond)
+     axes.legend(fontsize=8, loc='best')
+     axes.set_ylabel('signature (nM)')
+     axes.set_xlabel('Time (sec)')
+     fig.suptitle(title)
+     fig.canvas.draw()
+     return
+
 #The files are sorted on the parameters, assumes no hyphens in root filename
 def file_tuple(fnames,params):
      ftuple=[]

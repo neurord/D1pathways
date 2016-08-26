@@ -49,6 +49,7 @@ showss=0
 outputavg=0
 showplot=1  #2 indicates plot the head conc
 stimspine='sa1[0]' #"name" of stimulated spine
+calc_signature=1
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -136,7 +137,6 @@ for fnum,ftuple in enumerate(ftuples):
         out_location,dt,rows=h5utils.get_mol_info(data,plot_molecules,maxvols)
         #
         ss_tot=np.zeros((arraysize,len(tot_species)))
-        ss=np.zeros((arraysize,num_mols))
         slope=np.zeros((arraysize,num_mols))
         peaktime=np.zeros((arraysize,num_mols))
         baseline=np.zeros((arraysize,num_mols))
@@ -350,7 +350,6 @@ for pnum in range(arraysize):
     print("        molecule  baseline  peakval   ptime    slope      min     ratio")
     for imol,mol in enumerate(plot_molecules):
       if out_location[mol]!=-1:
-        ss[pnum,imol]=whole_plot_array[pnum][imol][sstart[imol]:ssend[imol]].mean()
         baseline[pnum,imol]=whole_plot_array[pnum][imol][sstart[imol]:ssend[imol]].mean()
         peakpt=whole_plot_array[pnum][imol][ssend[imol]:].argmax()+ssend[imol]
         peaktime[pnum,imol]=peakpt*dt[imol]
@@ -393,6 +392,21 @@ if showplot:
     for pnum in range(arraysize):
         pu5.plottrace(plot_molecules,time_array,whole_plot_array[pnum],parval[pnum],axes,fig,col_inc,scale,parlist)
     #
+if calc_signature:
+    #simple signature - average over whole structure
+    auc_label=[]
+    signature=np.sum(whole_plot_array,axis=1)
+    sign_title=''
+    for mol in plot_molecules:
+        sign_title=sign_title+mol+'+'
+    #area between signature and basal
+    basal_sig=np.mean(signature[:,sstart[0]:ssend[0]],axis=1)
+    auc=np.zeros(len(parval))
+    for i in range(len(parval)):
+        auc[i]=np.sum(signature[i,:]-basal_sig[i])*dt[0]/1000
+        auc_label.append(parval[i]+" auc="+str(auc[i]))
+    pu5.plot_signature(auc_label,signature,time,sign_title)
+    #eventually, separate spine and dend signature
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
 if len(params)>1:
