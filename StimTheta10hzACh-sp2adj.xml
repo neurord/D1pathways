@@ -43,7 +43,7 @@
         <duration>            200000      </duration>
         <rate>                3         </rate>
 </InjectionStim>
-<!-- basal ACh stim paused during Da stim-->
+<!-- basal ACh stim restored after pauses during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               53200          </onset>
         <duration>            11800      </duration>
@@ -52,7 +52,6 @@
         <end>                 200000          </end>
 </InjectionStim>
 
- <!-- burst during stim specified for each Glu/Da train (below)-->
  <!-- rebound burst: develops more slowly -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0,1].pointA">
         <onset>               52400          </onset>
@@ -64,6 +63,7 @@
         <interTrainInterval>  14101          </interTrainInterval>  
 </InjectionStim>
 
+ <!-- burst during stim specified for each Glu/Da train (below)-->
 
    <!-- *****************TRAIN 1 *** Glu inject **********-->   
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,1].pointA">

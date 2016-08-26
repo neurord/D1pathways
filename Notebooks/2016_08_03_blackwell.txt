@@ -1,4 +1,4 @@
-Lab Notebook for Blackwell July 18-, 2016
+Lab Notebook for Blackwell Aug 24, 2016
 >>>>>>>>> Results
 ---------> indicates conclusion from previous set of simulations or what needs to be done next
 ****** name of file that is either ready to go, or should have parameters changed according to --------->
@@ -28,85 +28,41 @@ DONE    2. bath and block cases for final tuning
 DONE    	use ic start and earlier application for bath cases to save computational time
 DONE	Possibly repeat all prior cases using better ic (end July)
 NOW    3. Then, repeat 20hz vs theta, create signature (end July, begin Aug)
-    4. Multi-spine sims - spatial specificity (after signature and good IC) (Aug, while away)
+NOW    4. Multi-spine sims - spatial specificity (after signature and good IC) (Aug, while away)
     5. Other questions:
-       a. role of ACh during burst or pause or rebound? - repeat sims without ACh modulation
-       b. confirm role of CamKII phos Dgl? - repeat sims without pDgl
-       c. Can molecules substitute for others in signature? - repeat sims as above
+NOW       a. role of ACh during burst or pause or rebound? - repeat sims without ACh burst (already doing no rebound)
+NOW       b. confirm role of CamKII phos Dgl? - repeat sims without pDgl - first need effective pDgl
+NOW       c. Can molecules substitute for others in signature? - sims with altered Ca or CaMKII, etc - evaluate signature
     5. parameter robusteness
 
-2016 Aug 1:
-######## using higher PP2A dephos of D32p34PP1 and slower dephos of AKAR3, and bug fixed neurord3.1.3
->>>>>>>> nostim using restart: basal remains the same (GREAT)
-	 noACh: Gi decreases to ~zero in ~35 sec.  This is a bit slow.  Would need GAP activity (RGS) to see an effect of pauses during theta or 20Hz.
-	 Gi decrease produces transient cAMP elevation and D32p34 elevation.  Saturates, then decreases to ~2.5 uM.  Remains slightly elevated.
-	 cAMP transient produced by increase in PDE activity via PKA phosphorylation.  pPP2A transient actually works against reduction in d32p34 because the phos form only acts on D32p75.
----> REPEAT WITH TRIALS=3
-	 
->>>>>>>>>> Da stim sims with lower AKAR3 inject
-AKAR3: 3.0 uM
-D32p34PP1: 380-400 nM (slight dec, due to AKAR3?)
-GsaGTP: minimal difference between 0.1 and 0.3s
-cAMP: small difference between 0.1 and 0.3s, slightly bigger increment with 1s, much larger increment with 10s
-cAMP: 350, 544, 900, 7100: too small a difference with brief stim, especially 0.3 and 1s needs larger peak/duration
-pAKAR3: similar too small difference among the briefer Da stimuli.
-	Decay rate from 10s stim is ~120 s (2 min) though not yet to basal
-PKA activity very sensitive to small increases in cAMP, e.gl increase to 500 nM cAMP will produce large increase in phosphorylation of DARPP and AKAR, likely because minimal increase in phosphatase activity.
----> REPEAT WITH TRIALS=3
+>>>>>>> Long Morphology sims
+1. ACh stimultion looks a bit strange.  No rebound for some cases, too much dip towards end of 20Hz
+2. Once again, PKAc greater for 20hz, CKpCam greater for theta
+3. 2 spines theta has greater CKpCam than 1sp theta or 20hz, adjacent slightly greater than separated
+4. Pkc is greater for theta than 20hz, but levels are quite low.  What approach could increase PKc without increasing 2ag basal?
+------> increased 2ag degradation while increasing Dag (via rate or Plc quantity)
+5. pDgl increases with the increase in CkpCamCa4, but little effect on 2ag because still only 10% of unphos.
+5. No pause in Gi observed except at end with 6s pauses in ACh.  But observed pauses are much briefer.
+-------->Increase rate of CKpCamCa4 phos of Dgl? 2-5x
+-------->re-run short and/or long morph without ACh rebound? eliminate rebound burst
+-------->accelerate production AND degradation of Gi to improve pause? 2-5x?
+	    Would need to accelerate (10x) forward and backward rate of ACh binding to Gim4R and Gi binding to AChm4R
 
->>>>>>>>>> Bath and block sims
-D32p34PP1 basal between 682-750, flat
-CyA free = 8 uM (goal 5 uM), PP2B bound =  1 uM, free = 10 nM.  Rest of PP2B is CamCa2 or Cam bound.  Should CyA bind to those?  If so, would have less CyA free.
-OA free ~0.8 uM - slightly low.  Increase inject quantity (duration) by 20%
-PP1 free = 800, bound=2700 - this is blocking MORE than stated by NISHI
-PP2A free =0 - all is bound, so no need to increase OA inject
---------> NO CHANGE OA INJECT, reduce CyA inject
->>>>>>>Very similar to experiments, though D32p34 changes too quickly (< 30 sec):
-                 basal/stim Dp34  goal     basal/stim Dp75 goal         assessment
-        Da       700/4.8u          5x      9.8u/6.5u   50%             BOTH goals met, though Dp75 reduction too small
-        Ca       749n/427         50%      9.7u/6.4u   75%             BOTH goals met, though Dp75 reduction too big
-        DaCa     683n/3.4u      50% of Da  9.9u/5.0u                   BOTH goals met, though Dp34 dec is too brief
+Send to jeanette
+1. output of the short morphology sims
+2. references for ACh stim
 
-	CyA:     700/700      	3-17x      9.8u/10.2u  100%            No effect on D32p34PP1!!!
-        OA:      700/900       	1.3x,5x    9.8u/49.7        3x         Huge increase Dp75, reasonable inc Dp34, but transient!  pPDE increase a bit, which may slightly lower cAMP and PKA activity
-        CyA+Ca   723/1.4u                   9.6u/10.0u           	CyA converts Ca decrement to Ca increment
-        CyA+Da   713/4.8u                   9.8u/10.3u			Dp34 inc no greater than Da alone
-------> Why does CyA not change D32p34?  Why does OA produce only transient increase in D32p34??
-	If pPDE was dephos by a different PP, might not see increaes in pPDE, which would reduce basal cAMP, PKAc and Dp34.
----> REPEAT WITH TRIALS=3
-
->>>>>>>>Theta/20Hz
-Injection not working - probably due to duration of stim being shorter than period.  THis was changed, and in the stimtest model it is working.
----> REPEAT WITH TRIALS=3
->>>>> PKAc and Dp34 similar between 20 Hz and theta
-      PKc activity higher for theta (vs 20Hz)
-      CapDgl is higher for theta, but so is CaDgl, same goes for Dag bound form (because greater calcium).  Result is similar 2ag for theta and 20hz.
-      CKCam and CKpCam is much higher for theta.
-      GiaGTP does not show pauses in ACh - probably Gi degradation is too slow.
-      AC5GsaGiaATP is greater for 20Hz than theta, due to slightly higher Gs?
-      Pauses in GiaGTP not seen following ACh bursts, only during pause alone.
-      What if no rebound burst at all?  Or pause after burst?
-
-#################
-      a. Repeat sims with fix in stim files to avoid the pauses once stim has ceased
-      b. stimulate without rebound, resume basal ACH at same time - 3.2 sec after initial burst
-      c. Lengthen pause (keeping rebound) to 8s.
-
->>>>>>> No rebound sims ran, but not the others
-NoRebound: 2AG initially has higher peaks with theta, but then peaks decrease as pDgl builds up.  So, theta has slightly lower 2ag, and CaMKII phos seems to be working.  PkcCaDag has slightly higher peaks for theta initially, and much higher peaks as pDgl builds up, diverting Dag to Pkc.
-Lack of rebound does not allow the Gi dips to be visible.
-AC5 is higher for 20hz, but AC1 is higher for theta.  20hz wins because AC5 dominates.
---------> Re-run other sims (with longer pause), and also the 20um morph cases (1 trial each)
-Using the ACH with rebound firing.  Will need to repeat the 20 um morph using longer pause or no rebound it that works "better"
-
->>>>>>>>> Block-bath sims didn't work - corrupt header
-      
-&&&&&&& CONSIDER:
-1. 5x faster CamKII phos of DagL (going back to higher pDagL activity) if still insufficient 2ag suppression
-2. faster Gi production and degradation to see better Gi modulation
-   Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
-   
+###### Theta and 20hz simulations with
+       2x CKpCamCa4 phos of Dgl and CaDgl
+       4x production AND degradation of Gi
+       uses the no rebound stim file
+       ****** Rxn_SPNspineAChm4R_Gshydr5_AC1_Gifast.xml
+       Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stimthetaNoReb.xml
+       Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stim20hzNoReb.xml
+       If these look better, will need to repeat all bath, block and Da sims with new params
+       
 &&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
+   Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
 1. D1R model:
    PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
    PKA + RGS <-> pRGS + PKA (2 steps - not too fast to avoid decreasing other Dp34 basal)
@@ -119,5 +75,3 @@ Using the ACH with rebound firing.  Will need to repeat the 20 um morph using lo
    b. Use D2R values instead of m4R values
    c. Replace ACh stim with Aden stim
 
-Still need to evaluate the following:
-1. Chuhma et al., 2014: 10 ms time constant for action of activated G proteins -> may need faster G protein production (and degradation).  Currently G protein production is considerably slower than DaD1RGs binding?
