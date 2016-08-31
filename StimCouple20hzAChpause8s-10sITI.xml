@@ -38,11 +38,11 @@
 
 <!-- pulse 3 = half of pulse 2  -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               50100          </onset>
+        <onset>               20100          </onset>
         <duration>            15              </duration>
         <rate>                12.6           </rate>
         <period>              50             </period>
-        <end>                 50120          </end>
+        <end>                 20120          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
