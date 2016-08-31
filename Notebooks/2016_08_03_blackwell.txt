@@ -49,7 +49,7 @@ NOW       c. Can molecules substitute for others in signature? - sims with alter
 	    Would need to accelerate (10x) forward and backward rate of ACh binding to Gim4R and Gi binding to AChm4R
 
 Send to jeanette
-1. output of the short morphology sims
+1. output of the short morphology sims - READY
 2. references for ACh stim
 
 ###### Theta and 20hz simulations with
@@ -60,6 +60,13 @@ Send to jeanette
        Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stimthetaNoReb.xml
        Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stim20hzNoReb.xml
        If these look better, will need to repeat all bath, block and Da sims with new params
+
+>>>>>>>>>>>>>
+1. Discovered bug in 20Hz sims.  Part of Da stim was beginning at 50s instead of 20s - repeat all of these
+2. NoRebound and 8s pause have only small effect on cAMP.  Both no rebound and 8s pause similarly increase D32p34 for theta(~200 nM inc), but 8s pause 300 nM inc with 20Hz, and small but noisy inc in CKpCam
+3. Gifast-nostim: basal cAMP slightly lower 31 vs 51 nM; PKAc is lower: 4 vs 5 nM; D32p34 is lower: 635 vs 899
+These low values are still reasonable.
+4. the theta and 20hz did not run - need to repeat those sims, add in the rebound for comparison
        
 &&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
