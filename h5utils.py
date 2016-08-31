@@ -130,32 +130,21 @@ def subvol_list(structType,model):
                                          'vol': sum(struct_vox_vol.allvalues(struct))}
     return region_list,region_dict,region_struct_dict
 
-####### FIX/IMPROVE THIS USING omdict
-def multi_spines(model,spinename):
+def multi_spines(model):
+    spine_dict=OrderedDict()
     #create list of spine voxels
-    spinelist=[]
-    spinelist_vox=[]
     #first identify all spine voxels and spine labels
-    for voxnum,voxgroup in enumerate(model['grid'][:]['group']):
-        #using spinename means that spine neck will be ignored
-        if voxgroup != '' and model['regions'][model['grid'][voxnum]['region']]==spinename:
-            spinelist.append(voxgroup)
-            spinelist_vox.append(voxnum)
+    groups=model['grid'][:]['group']
+    for n,i in enumerate(groups):
+        if i =='':
+            groups[n]='nonspine'
+    spine_voxel=omdict((zip(groups,range(len(model['grid'])) ) ))
+    spine_voxel_vol=omdict(( zip(groups,model['grid'][:]['volume']) ))
     #create a unique set of spine labels
-    newspinelist=np.unique(spinelist)
-    newspinevox={}
-    #identify which voxels go with which spine labels
-    for spine in newspinelist:
-        temp=[]
-        spinevol=0
-        for el,sp in enumerate(spinelist):
-            if sp==spine:
-                temp.append(spinelist_vox[el])
-                #calculate volume of each spine.
-                spinevol+=model['grid'][spinelist_vox[el]]['volume']
-        newspinevox[spine]={'vox':temp,'vol':spinevol}
-    #Need to do better job of sorting spines than this OrderedDict
-    return newspinelist,OrderedDict(sorted(newspinevox.items(), key=lambda t: t[0]))
+    newspinelist=spine_voxel.keys()
+    for spinenum,spine in enumerate(newspinelist):
+        spine_dict[spine]={'vox':spine_voxel.allvalues(spine), 'vol': sum(spine_voxel_vol.allvalues(spine))}
+    return newspinelist,spine_dict
 
 def region_means_dict(data,regionDict,time,molecule,trials):
     RegionMeans=np.zeros((len(trials),len(time),len(regionDict)))

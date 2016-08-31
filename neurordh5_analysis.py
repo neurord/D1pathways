@@ -42,14 +42,14 @@ spinehead="head"
 spatialaverage=0
 bins=10
 #how much info to print
-prnvox=1
-prninfo=0
 showss=0
+show_inject=0
+print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=1  #2 indicates plot the head conc
-stimspine='sa1[0]' #"name" of stimulated spine
-calc_signature=1
+showplot=2  #2 indicates plot the head conc, 0 means no plots
+stimspine='sa1[0]' #"name" of (stimulated) spine
+calc_signature=0
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -73,8 +73,6 @@ except NameError: #NameError refers to an undefined variable (in this case ARGS)
 
 ftuples,parlist,params=h5utils.argparse(args)
 figtitle=args[2].split('/')[-1]
-if showplot==2:
-    figtitle=figtitle+' '+stimspine
 
 ###################################################
 
@@ -116,12 +114,14 @@ for fnum,ftuple in enumerate(ftuples):
             dsm_vox=list(region_struct_dict.keys()).index(dsm_name)
         except ValueError:
             dsm_vox=-1
+        #Replace the following with test for whether there is more than one "group"
         try:
             head_index=list(region_dict.keys()).index(spinehead)
         except ValueError:
             head_index=-1
         if head_index>0:
-            spinelist,spinevox=h5utils.multi_spines(data['model'],spinehead)
+            #create "group" dictionary - spinelist & spinevox but with one more for nonspine voxels
+            spinelist,spinevox=h5utils.multi_spines(data['model'])
         else:
             spinelist=''
     #
@@ -162,8 +162,7 @@ for fnum,ftuple in enumerate(ftuples):
                     sstart[imol]=int(0.075*rows[imol])
                     ssend[imol]=int(0.1*rows[imol])
     ######################################
-    #Calculate various region averages, such as soma and dend, subm vs cyt, 
-    #use the above lists and volume of each region, and each region-structure
+    #Calculate various region averages, such as soma and dend, subm vs cyt, spines
     ######################################
     if maxvols>1:
         print(params, "=",parval[fnum], "voxels=",maxvols)
@@ -177,7 +176,7 @@ for fnum,ftuple in enumerate(ftuples):
             #calculate region-structure means
             header2,RegionStructMeans,RegStructMeanStd=h5utils.region_means_dict(molecule_pop,region_struct_dict,time,molecule,trials)
             #if more than one spine, calculate individual spine means
-            if len(spinelist)>1:
+            if len(spinelist)>0:
                 spineheader,spinemeans,spineMeanStd=h5utils.region_means_dict(molecule_pop,spinevox,time,molecule,trials)
             else:
                 spineheader=''
@@ -187,19 +186,19 @@ for fnum,ftuple in enumerate(ftuples):
             header='#time ' +header+header2+molecule+'AvgTot\n'
             #
             if showplot==2:
-                if len(spinelist)>1:
-                    stimspinenum=list(spinelist).index(stimspine)
-                    #TEST THIS LINE FOR MULTIPLE SPINES/TRIALS
-                    if numfiles>1:
-                        plot_array.append(np.mean(spinemeans,axis=0)[:,stimspinenum])
-                    else:
-                        plot_array.append(spinemeans[:,:,stimspinenum])
+                if stimspine in spinelist:
+                    spine_index=spinelist.index(stimspine)
+                    if fnum==0 and imol==0:
+                        figtitle=figtitle+' '+stimspine
                 else:
-                    if numfiles>1:
-                        plot_array.append(np.mean(RegionMeans,axis=0)[:,head_index])
-                    else:
-                        plot_array.append(RegionMeans[:,:,head_index])
-                        
+                    spine_index=0
+                    if fnum==0 and imol==0:
+                        figtitle=figtitle+' '+'nonspine'
+                #TEST THIS PART FOR MULTIPLE SPINES/TRIALS
+                if numfiles>1:
+                    plot_array.append(np.mean(spinemeans,axis=0)[:,stimspinenum])
+                else:
+                    plot_array.append(spinemeans[:,:,stimspinenum])
             else:
                 if numfiles>1:
                     plot_array.append(np.mean(OverallMean,axis=0))
@@ -246,20 +245,21 @@ for fnum,ftuple in enumerate(ftuples):
                     f.write(newheader)
                     np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                     f.close()
-            print(molecule.rjust(14), end=' ')
-            if head_index>-1:
-                if len(spinelist)>1:
-                    stimspinenum=list(spinelist).index(stimspine)
-                    headmean=np.mean(np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0),axis=0)
-                    headmax=np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0).max()
-                else:
-                    headmean=np.mean(RegionMeans[:,sstart[imol]:ssend[imol],head_index])
-                    tempmax=np.max(RegionMeans[:,ssend[imol]:,head_index],axis=1)
-                    headmax=np.mean(tempmax)
-                print("head ss:%8.4f pk %8.4f " % (headmean, headmax), end=' ')
-            if dsm_vox>-1:
-                dsm_max=np.max(RegionStructMeans[:,ssend[imol]:,dsm_vox],axis=1)
-                print("dend sm %8.4f pk %8.4f" %((RegionStructMeans[:,sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_dict[dsm_name]['depth']),
+            if print_head_stats:
+                print(molecule.rjust(14), end=' ')
+                if head_index>-1:
+                    if len(spinelist)>1:
+                        stimspinenum=list(spinelist).index(stimspine)
+                        headmean=np.mean(np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0),axis=0)
+                        headmax=np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0).max()
+                    else:
+                        headmean=np.mean(RegionMeans[:,sstart[imol]:ssend[imol],head_index])
+                        tempmax=np.max(RegionMeans[:,ssend[imol]:,head_index],axis=1)
+                        headmax=np.mean(tempmax)
+                    print("head ss:%8.4f pk %8.4f " % (headmean, headmax), end=' ')
+                if dsm_vox>-1:
+                    dsm_max=np.max(RegionStructMeans[:,ssend[imol]:,dsm_vox],axis=1)
+                    print("dend sm %8.4f pk %8.4f" %((RegionStructMeans[:,sstart[imol]:ssend[imol],dsm_vox].mean()*region_struct_dict[dsm_name]['depth']),
                                                      (np.mean(dsm_max)*region_struct_dict[dsm_name]['depth'])))
           else:
               if fnum==0 and molecule_name_issue==0:
@@ -301,7 +301,7 @@ for fnum,ftuple in enumerate(ftuples):
         #dimensions of plot_array=num molecules x num trials x sample times
         #whole_plot_array dimension=num trials*num molecules*sample time
         whole_plot_array=np.swapaxes(plot_array,0,1)
-    if 'event_statistics' in data['trial0']['output'].keys():
+    if 'event_statistics' in data['trial0']['output'].keys() and show_inject:
         print ("seeds", seeds," injection stats:")
         for inject_sp,inject_num in zip(data['model']['event_statistics'][:],data['trial0']['output']['event_statistics'][0]):
             print (inject_sp.split()[-1].rjust(20),inject_num[:])
@@ -321,7 +321,7 @@ for fnum,ftuple in enumerate(ftuples):
             for subspecie in data['model']['output']['__main__']['species'][:]:
                 if mol in subspecie:
                     mol_set.append(subspecie)
-        #second, find molecule index of the sub_species and total then
+        #second, find molecule index of the sub_species and total them
         for subspecie in mol_set:
             mol_index=h5utils.get_mol_index(data,outset,subspecie)
             mol_pop=data['trial0']['output'][outset]['population'][0,:,mol_index]
@@ -406,7 +406,10 @@ if calc_signature:
         auc[i]=np.sum(signature[i,:]-basal_sig[i])*dt[0]/1000
         auc_label.append(parval[i]+" auc="+str(auc[i]))
     pu5.plot_signature(auc_label,signature,time,sign_title)
-    #eventually, separate spine and dend signature
+'''NEXT, separate spine and dend signature, use spinelist and spinemeans
+calculate signature for every group
+if multiple spines, this will calculate signature in each spine'''
+
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
 if len(params)>1:
