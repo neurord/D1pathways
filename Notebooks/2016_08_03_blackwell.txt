@@ -27,13 +27,13 @@ DONE    1. Validate the nostim and ACh depletion cases. Da durations (Castro) wi
 DONE    2. bath and block cases for final tuning
 DONE    	use ic start and earlier application for bath cases to save computational time
 DONE	Possibly repeat all prior cases using better ic (end July)
-NOW    3. Then, repeat 20hz vs theta, create signature (end July, begin Aug)
+DONE    3. Then, repeat 20hz vs theta, create signature (end July, begin Aug)
 NOW    4. Multi-spine sims - spatial specificity (after signature and good IC) (Aug, while away)
     5. Other questions:
 NOW       a. role of ACh during burst or pause or rebound? - repeat sims without ACh burst (already doing no rebound)
 NOW       b. confirm role of CamKII phos Dgl? - repeat sims without pDgl - first need effective pDgl
 NOW       c. Can molecules substitute for others in signature? - sims with altered Ca or CaMKII, etc - evaluate signature
-    5. parameter robusteness
+    6. parameter robusteness
 
 >>>>>>> Long Morphology sims
 1. ACh stimultion looks a bit strange.  No rebound for some cases, too much dip towards end of 20Hz
@@ -67,7 +67,40 @@ Send to jeanette
 3. Gifast-nostim: basal cAMP slightly lower 31 vs 51 nM; PKAc is lower: 4 vs 5 nM; D32p34 is lower: 635 vs 899
 These low values are still reasonable.
 4. the theta and 20hz did not run - need to repeat those sims, add in the rebound for comparison
-       
+
+>>>>>>>>using Gifast (and higher CKpCam phos of Dgl):
+Small dip in GiaGTP during theta and 20 hz with no rebound
+rebound has no effect on GsaGTP
+AC5GsaATP has ~20% larger transient increases
+AC5GsaGiaATP is ~20% larger without rebound.  IMPORTANT: the very large AC5GsaGiaATP concentration and the slow modulation of this molecule (especially compared to GiaGTP) suggest that it is protecting GiaGTP hydrolysis.  What if slowed down GiaGTP hydrolysis and allowed small AC5Gia or AC5GiaGsaATP hydrolysis?
+Probably will not  change effect of rebound on cAMP and PKAc activity.
+Small increase in cAMP with no rebound, and small increase in D32p34 with no rebound
+
+phos of Dgl is significantly greater with theta than 20hz
+This is sufficient to lower the 2ag during the 20hz stimulation compared to theta
+
+Signature of PKAc+CKpCamCa4+PkcCaDag is greater for theta than 20hz, and no rebound increases the sig by 0.3 only
+	     			     no PKAc
+	  reb	norebound	     reb   norebound
+20hz      9.5	9.8		     5.8   5.8
+theta	  18.3	18.5		     15.3  15.6
+
+Signature of 2ag is slightly greater for 20hz than theta: 10.6 vs 9.3 (no rebound) or 10.3 vs 9.3 (rebound)
+What about including PP1 in signature - measure of PKA activity?  No good because (a) magnitude too high compared to other molecules and (b) smaller for 20hz than theta
+PP2B? too transient
+
+What next?  Try an additional 2x CKpCamCa4 phos of Dgl?
+     This will enhance the difference between theta and 20hz for 2ag.
+     Better constraints are needed for these values.
+
+What happens if block CKpCamCa4?  Increase in 2ag for theta? lower of LTP signature?  minimal change in 20hz sign?
+What happens if block Da?  Excluding PKAc from signature doesn't change things, so might not block LTP.
+What happens if eliminate initial ACh burst.
+
+Block Da = no Da release? (use the norebound to compare)
+Block initial ACh burst = no additional ACh, nor dip nor rebound? - compare to the no rebound case.
+Block CKpCamCa4 = cannot be done with stim files.  Ideally, add molecule to binds to active CKCam?
+
 &&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
 1. D1R model:

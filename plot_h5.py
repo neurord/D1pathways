@@ -75,12 +75,25 @@ def plotss(plot_mol,xparval,ss):
     return
 
 def plot_signature(condition,traces,time,title):
-     fig,axes=pyplot.subplots(1,1)
-     for i,cond in enumerate(condition):
-          axes.plot(time,traces[i],label=cond)
-     axes.legend(fontsize=8, loc='best')
-     axes.set_ylabel('signature (nM)')
-     axes.set_xlabel('Time (sec)')
+     if len(np.shape(traces))==3:
+          numrows=np.shape(traces)[2]
+     else:
+          numrows=1
+     fig,axes=pyplot.subplots(numrows,1,sharex=True)
+     domain=[]
+     for j in range(numrows):
+          if numrows==1:
+               for i,cond in enumerate(condition):
+                    axes.plot(time,traces[i],label=cond)
+                    domain.append('')
+          else:
+               domain.append(condition[0][j].split()[-1])
+               for i,cond in enumerate(condition):
+                    axes[j].plot(time,traces[i,:,j],label=cond[j].split()[0:2])
+     for j in range(numrows):
+          axes[j].legend(fontsize=8, loc='best')
+          axes[j].set_ylabel('signature (nM) '+domain[j])
+     axes[numrows-1].set_xlabel('Time (sec)')
      fig.suptitle(title)
      fig.canvas.draw()
      return

@@ -47,9 +47,9 @@ show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=2  #2 indicates plot the head conc, 0 means no plots
+showplot=0  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
-calc_signature=0
+calc_signature=2   #1 means one overall signature, 2 mean separate spine and dend signature
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -75,7 +75,7 @@ ftuples,parlist,params=h5utils.argparse(args)
 figtitle=args[2].split('/')[-1]
 
 ###################################################
-
+signature_array=[]
 parval=[]
 whole_plot_array=[]
 numfiles=len(ftuples)
@@ -87,6 +87,7 @@ for fnum,ftuple in enumerate(ftuples):
     TotVol=data['model']['grid'][:]['volume'].sum()
     plot_array=[]
     time_array=[]
+    all_spine_means=[]
     
     trials=[a for a in data.keys() if 'trial' in a]
     seeds=[data[trial]['simulation_seed'][:] for trial in trials]
@@ -120,7 +121,7 @@ for fnum,ftuple in enumerate(ftuples):
         except ValueError:
             head_index=-1
         if head_index>0:
-            #create "group" dictionary - spinelist & spinevox but with one more for nonspine voxels
+            #create "group" dictionary-spinelist & spinevox, with one more for nonspine voxels
             spinelist,spinevox=h5utils.multi_spines(data['model'])
         else:
             spinelist=''
@@ -196,9 +197,9 @@ for fnum,ftuple in enumerate(ftuples):
                         figtitle=figtitle+' '+'nonspine'
                 #TEST THIS PART FOR MULTIPLE SPINES/TRIALS
                 if numfiles>1:
-                    plot_array.append(np.mean(spinemeans,axis=0)[:,stimspinenum])
+                    plot_array.append(np.mean(spinemeans,axis=0)[:,spine_index])
                 else:
-                    plot_array.append(spinemeans[:,:,stimspinenum])
+                    plot_array.append(spinemeans[:,:,spine_index])
             else:
                 if numfiles>1:
                     plot_array.append(np.mean(OverallMean,axis=0))
@@ -206,11 +207,18 @@ for fnum,ftuple in enumerate(ftuples):
                 else:
                     plot_array.append(OverallMean)
                     #plot_array dimensions=number of molecules x number of trials x sample times
+            if calc_signature==2:
+                if numfiles>1:
+                    #dimensions will be number of molecules x sample times x (1+ num spines)
+                    all_spine_means.append(np.mean(spinemeans,axis=0))
+                else:
+                    #dimensions will be number of molecules x number of trials x sample times x 1+ num spines
+                    all_spine_means.append(spinemeans)
             #
             ############# write averages to separate files #######################3
             if outputavg:
-                outfname=fname[0:-3]+'_'+molecule+'_avg.txt'
-                if molecule in plot_molecules:
+                 if molecule in plot_molecules:
+                    outfname=fname[0:-3]+'_'+molecule+'_avg.txt'
                     print('output file: ', outfname)
                     newheader=''
                     newheaderstd=''
@@ -268,9 +276,11 @@ for fnum,ftuple in enumerate(ftuples):
               plot_array.append([-1])
               #
     else:
+        ######################################
         #minimal processing needed if only a single voxel.
         #Just extract, calculate ss, and plot specified molecules
         #might want to create output files with mean and stdev
+        ######################################
         voxel=0
         for mol in plot_molecules:
           if out_location[mol]!=-1:
@@ -292,15 +302,22 @@ for fnum,ftuple in enumerate(ftuples):
               if fnum==0:
                   print("choose from:", molecules)
               plot_array.append([-1])
-    #Whether 1 voxel or multi-voxel, create array of means for all molecules, all files, all trials
+    ######################################
+    #Whether 1 voxel or multi-voxel, create plotting array of means for all molecules, all files, all trials
     if numfiles>1:
         #plot_array dimensions=num molecules x sample times
         #whole_plot_array dimension=num files*num molecules*sample time
         whole_plot_array.append(plot_array)
+        #dimensions of signature array = num files x num mol x sample times x (1+numspines)
+        if calc_signature==2:
+            signature_array.append(all_spine_means)
     else:
         #dimensions of plot_array=num molecules x num trials x sample times
         #whole_plot_array dimension=num trials*num molecules*sample time
         whole_plot_array=np.swapaxes(plot_array,0,1)
+        #dimensions of signature array = num mol x num trials x sample times x (1+numspines)
+        if calc_signature==2:
+            signature_array=np.swapaxes(all_spine_means,0,1)
     if 'event_statistics' in data['trial0']['output'].keys() and show_inject:
         print ("seeds", seeds," injection stats:")
         for inject_sp,inject_num in zip(data['model']['event_statistics'][:],data['trial0']['output']['event_statistics'][0]):
@@ -383,6 +400,7 @@ for pnum in range(arraysize):
 #
 #####################################################################
 #Now plot some of these molcules, either single voxel or overall average if multi-voxel
+#also calculate the signature
 #####################################################################
 #
 if showplot:
@@ -393,23 +411,35 @@ if showplot:
         pu5.plottrace(plot_molecules,time_array,whole_plot_array[pnum],parval[pnum],axes,fig,col_inc,scale,parlist)
     #
 if calc_signature:
-    #simple signature - average over whole structure
+    #just sum over molecules.  Could add normalization.  Need more params to subtract or divide by some molecules
     auc_label=[]
-    signature=np.sum(whole_plot_array,axis=1)
     sign_title=''
     for mol in plot_molecules:
         sign_title=sign_title+mol+'+'
+    if calc_signature==1:   #simple signature - average over whole structure
+        signature=np.sum(whole_plot_array,axis=1)
+        #signature dimensions=num files/trials x sample times
+        auc=np.zeros(len(parval))
+    elif calc_signature==2: #separate spine and dendrite signatures
+        signature=np.sum(signature_array,axis=1)
+        #signature dimensions=num files/trials x sample times x (1+numspines)
+        num_spines=np.shape(signature)[-1]
+        auc=np.zeros((len(parval),num_spines))
     #area between signature and basal
     basal_sig=np.mean(signature[:,sstart[0]:ssend[0]],axis=1)
-    auc=np.zeros(len(parval))
-    for i in range(len(parval)):
-        auc[i]=np.sum(signature[i,:]-basal_sig[i])*dt[0]/1000
-        auc_label.append(parval[i]+" auc="+str(auc[i]))
-    pu5.plot_signature(auc_label,signature,time,sign_title)
-'''NEXT, separate spine and dend signature, use spinelist and spinemeans
-calculate signature for every group
-if multiple spines, this will calculate signature in each spine'''
-
+    if calc_signature==1:
+        for i in range(len(parval)):
+            auc[i]=np.sum(signature[i,:]-basal_sig[i])*dt[0]/1000
+            auc_label.append(parval[i]+" auc="+str(auc[i]))
+        pu5.plot_signature(auc_label,signature,time,sign_title)
+    elif calc_signature==2:
+        auc_label=[[] for sp in range(len(parval))]
+        for par in range(len(parval)):
+            for sp in range(num_spines):
+                auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/1000
+                auc_label[par].append(parval[par]+" auc="+str(auc[par,sp])+" "+spinelist[sp])
+        pu5.plot_signature(auc_label,signature,time,sign_title)
+#
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
 if len(params)>1:
