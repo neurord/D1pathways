@@ -1,0 +1,144 @@
+<StimulationSet>
+
+    <!-- the injectionSite must match a regionLabel deefined in the morphology -->
+   <!-- 20 Glu and Ca pulses / sec for 1 sec * 20 trains = 400 pulses -->
+
+<InjectionStim specieID="AIP" injectionSite="dend:submembrane">
+        <onset>               2000          </onset>
+        <duration>            90      </duration>
+        <rate>                45         </rate>
+</InjectionStim>
+<InjectionStim specieID="AIP" injectionSite="sa1[0].pointA">
+        <onset>               2000          </onset>
+        <duration>            90      </duration>
+        <rate>                25         </rate>
+</InjectionStim>
+
+<!-- Train 1 -->
+<InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            5              </duration>
+        <rate>                18.0           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 1 to produce 0.5 uM alone -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            15              </duration>
+        <rate>                36            </rate>
+        <period>              50             </period>
+        <end>                 20020          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9980          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 2 = half of pulse 1 -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20050          </onset>
+        <duration>            15              </duration>
+        <rate>                18.0           </rate>
+        <period>              50             </period>
+        <end>                 20070          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9980          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 3 = half of pulse 2  -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20100          </onset>
+        <duration>            15              </duration>
+        <rate>                12.6           </rate>
+        <period>              50             </period>
+        <end>                 20120          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9980          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20150          </onset>
+        <duration>            15              </duration>
+        <rate>                9           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9151          </interTrainInterval>   
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            3              </duration>
+        <rate>                156            </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>  
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
+        <onset>               20000          </onset>
+        <duration>            3              </duration>
+        <rate>                156            </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>  
+</InjectionStim>
+
+<!-- basal ACh value prior to and after stim  -->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               0          </onset>
+        <duration>            20000      </duration>
+        <rate>                0.3         </rate>
+</InjectionStim>
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               220000          </onset>
+        <duration>            200000      </duration>
+        <rate>                0.3         </rate>
+</InjectionStim>
+<!-- basal ACh stim paused during Da stim-->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               23200          </onset>
+        <duration>             6800      </duration>
+        <rate>                0.3         </rate>
+        <period>              10000             </period>
+        <end>                 220000          </end>
+</InjectionStim>
+<!-- burst during stim : Assume that ACh neurons can follow 20 Hz -->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            15              </duration>
+        <rate>                8.0           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>  
+</InjectionStim>
+
+<!-- Should this stimulation be eliminated???-->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               20000          </onset>
+        <duration>            15              </duration>
+        <rate>                8.0           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>  
+ </InjectionStim>
+
+ <!-- rebound burst: develops more slowly -->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               22400          </onset>
+        <duration>            800            </duration>
+        <rate>                0            </rate>
+        <period>              900           </period>
+        <end>                 23299          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9101          </interTrainInterval>  
+</InjectionStim>
+
+</StimulationSet>

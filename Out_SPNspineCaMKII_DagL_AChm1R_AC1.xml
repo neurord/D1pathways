@@ -169,7 +169,9 @@
     <OutputSpecie name="Dgl_CKp"/>
     <OutputSpecie name="CKpPP1"/>
     <OutputSpecie name="CKpCamCa4PP1"/>
-
+    <OutputSpecie name="CKCam_block"/>
+    <OutputSpecie name="AIP"/>
+ 
     <OutputSpecie name="PKA"/>
     <OutputSpecie name="PKAcAMP2"/>
     <OutputSpecie name="PKAcAMP4"/>

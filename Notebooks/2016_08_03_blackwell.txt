@@ -30,9 +30,9 @@ DONE	Possibly repeat all prior cases using better ic (end July)
 DONE    3. Then, repeat 20hz vs theta, create signature (end July, begin Aug)
 NOW    4. Multi-spine sims - spatial specificity (after signature and good IC) (Aug, while away)
     5. Other questions:
-NOW       a. role of ACh during burst or pause or rebound? - repeat sims without ACh burst (already doing no rebound)
-NOW       b. confirm role of CamKII phos Dgl? - repeat sims without pDgl - first need effective pDgl
-NOW       c. Can molecules substitute for others in signature? - sims with altered Ca or CaMKII, etc - evaluate signature
+DONE    a. role of ACh during burst or pause or rebound? - repeat sims without ACh burst (already doing no rebound)
+DONE    b. confirm role of CamKII phos Dgl? - repeat sims without pDgl - first need effective pDgl
+NOW     c. Can molecules substitute for others in signature? - sims with altered Ca or CaMKII, etc - evaluate signature
     6. parameter robusteness
 
 >>>>>>> Long Morphology sims
@@ -79,6 +79,9 @@ Small increase in cAMP with no rebound, and small increase in D32p34 with no reb
 phos of Dgl is significantly greater with theta than 20hz
 This is sufficient to lower the 2ag during the 20hz stimulation compared to theta
 
+Compared to not using Gifast (and slower CKpCamCa4 phos of Dgl):
+	 CKpCamCa4 slightly greater (Theta) pDgl slightly greater.  Greater different in 2ag between theta and 20hz
+
 Signature of PKAc+CKpCamCa4+PkcCaDag is greater for theta than 20hz, and no rebound increases the sig by 0.3 only
 	     			     no PKAc
 	  reb	norebound	     reb   norebound
@@ -89,17 +92,42 @@ Signature of 2ag is slightly greater for 20hz than theta: 10.6 vs 9.3 (no reboun
 What about including PP1 in signature - measure of PKA activity?  No good because (a) magnitude too high compared to other molecules and (b) smaller for 20hz than theta
 PP2B? too transient
 
-What next?  Try an additional 2x CKpCamCa4 phos of Dgl?
-     This will enhance the difference between theta and 20hz for 2ag.
-     Better constraints are needed for these values.
+-------->What next?  Try an additional 2x CKpCamCa4 phos of Dgl?
+     	      This will enhance the difference between theta and 20hz for 2ag.
+     	      Better constraints are needed for these values.
 
-What happens if block CKpCamCa4?  Increase in 2ag for theta? lower of LTP signature?  minimal change in 20hz sign?
-What happens if block Da?  Excluding PKAc from signature doesn't change things, so might not block LTP.
-What happens if eliminate initial ACh burst.
+-------->What happens if block CKpCamCa4?  Increase in 2ag for theta? lower of LTP signature?  minimal change in 20hz sign?
+-------->What happens if block Da?  Excluding PKAc from signature doesn't change things, so might not block LTP.
+-------->What happens if eliminate initial ACh burst.
 
-Block Da = no Da release? (use the norebound to compare)
+Block Da = no Da release? (use the no-rebound to compare)
 Block initial ACh burst = no additional ACh, nor dip nor rebound? - compare to the no rebound case.
 Block CKpCamCa4 = cannot be done with stim files.  Ideally, add molecule to binds to active CKCam?
+KN62: IC50 = 0.9 μM.  Binds to calmodulin binding site of the enzyme (tocris)
+autocamtide: IC50=40 nM (available myristolated for cell permeability) - use 0.5 uM?
+competitive with the substrate/autophos site.  Simulate this one to minimize altering calmodulin binding
+
+###########Repeat all Gifast reactions with the new reaction to allow using IC
+	  no stim, no rebound, with rebound
+	     Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-nostim.xml
+	     Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stimtheta-noReb.xml
+	     Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stim20hz-noReb.xml
+	     Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stimtheta.xml
+	     Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stim20hz.xml
+	add in: no ACh initial burst (nor dip nor rebound - just constant ACh)?
+	    Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stimtheta-noACh.xml
+	    Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stim20hz-noACh.xml
+	add in: no Da release (add into no-rebound case) - keep ACh burst from electrical stim
+	    Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stimtheta-noDa.xml
+	    Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stim20hz-noDa.xml
+	add in: KN62 injection 5-10 uM?
+	    Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stimtheta-noCKp.xml
+	    Model_SPNspineAChm4R_Gshydr5_AC1_Gifast-stim20hz-noCKp.xml
+Model initial values: AIP binds with kb=1e-3, kf=25e-6. inject to reach ~10 uM (90 ms - similar to CyA)
+Might not be fast enough to find the transient CKCamCa4 (Kb=3e-3).
+If not, speed up 10x.  If conc too high, decrease inject duration from 90 to 60 (similar to OA).
+
+If good signatures, need to repeat the controls : Da stim, block & bath, with these new parameters
 
 &&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz

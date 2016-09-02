@@ -162,7 +162,7 @@
     <Specie name="PP2AB56d"       id="PP2AB56d"     kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PKAcPP2AB56d"   id="PKAcPP2AB56d" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPP2A"          id="pPP2A"         kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="PP2Acal"          id="PP2Acal"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PP2Acal"        id="PP2Acal"       kdiff="0"     kdiffunit="mu2/s"/>
 
 <!-- CaMKII: delete Complex and pComplex and re-do rate  constants when using new NeuroRD version -->
     <Specie name="CK"             id="CK"            kdiff="3.6"   kdiffunit="mu2/s"/>
@@ -171,8 +171,10 @@
     <Specie name="CKp"            id="CKp"           kdiff="3.6"   kdiffunit="mu2/s"/>
     <Specie name="CKpPP1"         id="CKpPP1"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="CKpCamCa4PP1"   id="CKpCamCa4PP1"  kdiff="0"     kdiffunit="mu2/s"/>
-
-<!-- PKA -->
+    <Specie name="CKCam_block"    id="CKCam_block"   kdiff="0"   kdiffunit="mu2/s"/>
+    <Specie name="AIP"           id="AIP"          kdiff="4"   kdiffunit="mu2/s"/>
+        
+    <!-- PKA -->
     <Specie name="PKA"            id="PKA"           kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PKAcAMP2"       id="PKAcAMP2"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PKAcAMP4"       id="PKAcAMP4"      kdiff="0"     kdiffunit="mu2/s"/>
@@ -1824,6 +1826,16 @@ MUCH slower binding compared to CaDgl  -->
 
         <forwardRate> 0.0         </forwardRate>
         <reverseRate> 0.0         </reverseRate>
+    </Reaction>
+
+<!--2a)  CKCamCa4 + AIP <-> CKCamCa4_block, affinity = 40 nM-->
+    <Reaction name = "CKCamblock" id="CKCamblock">
+        <Reactant specieID="CKCamCa4"          />
+        <Reactant specieID="AIP"          />
+        <Product  specieID="CKCamCa4_block"           />
+
+        <forwardRate> 25-6 </forwardRate>
+        <reverseRate> 1e-3     </reverseRate>
     </Reaction>
 
 
