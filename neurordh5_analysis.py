@@ -429,19 +429,22 @@ if calc_signature:
     basal_sig=np.mean(signature[:,sstart[0]:ssend[0]],axis=1)
     if calc_signature==1:
         for i in range(len(parval)):
+            label=h5utils.join_params(parval[i],params)
             auc[i]=np.sum(signature[i,:]-basal_sig[i])*dt[0]/1000
-            auc_label.append(parval[i]+" auc="+str(auc[i]))
-        pu5.plot_signature(auc_label,signature,time,sign_title)
+            auc_label.append(label+" auc="+str(auc[i]))
     elif calc_signature==2:
         auc_label=[[] for sp in range(len(parval))]
         for par in range(len(parval)):
+            label=h5utils.join_params(parval[i],params)
             for sp in range(num_spines):
                 auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/1000
-                auc_label[par].append(parval[par]+" auc="+str(auc[par,sp])+" "+spinelist[sp])
-        pu5.plot_signature(auc_label,signature,time,sign_title)
+                auc_label[par].append(label+" auc="+str(auc[par,sp])+" "+spinelist[sp])
+    pu5.plot_signature(auc_label,signature,time,sign_title)
 #
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
+#is ss the baseline?  Or measuring at some other time point?
+ss=baseline
 if len(params)>1:
         print(np.column_stack((parval,ss)))
         xval=[]

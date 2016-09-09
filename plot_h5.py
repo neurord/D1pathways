@@ -80,20 +80,21 @@ def plot_signature(condition,traces,time,title):
      else:
           numrows=1
      fig,axes=pyplot.subplots(numrows,1,sharex=True)
-     domain=[]
-     for j in range(numrows):
-          if numrows==1:
-               for i,cond in enumerate(condition):
-                    axes.plot(time,traces[i],label=cond)
-                    domain.append('')
-          else:
+     if numrows==1:
+          for i,cond in enumerate(condition):
+               axes.plot(time,traces[i],label=cond)
+               axes.legend(fontsize=8, loc='best')
+               axes.set_ylabel('signature (nM) ')
+               axes.set_xlabel('Time (sec)')
+     else:
+          domain=[]
+          for j in range(numrows):
                domain.append(condition[0][j].split()[-1])
                for i,cond in enumerate(condition):
                     axes[j].plot(time,traces[i,:,j],label=cond[j].split()[0:2])
-     for j in range(numrows):
-          axes[j].legend(fontsize=8, loc='best')
-          axes[j].set_ylabel('signature (nM) '+domain[j])
-     axes[numrows-1].set_xlabel('Time (sec)')
+               axes[j].legend(fontsize=8, loc='best')
+               axes[j].set_ylabel('signature (nM) '+domain[j])
+          axes[numrows-1].set_xlabel('Time (sec)')
      fig.suptitle(title)
      fig.canvas.draw()
      return
@@ -104,24 +105,26 @@ def file_tuple(fnames,params):
      par0list=[]
      par1list=[]
      for fname in fnames:
-          parts=fname.split('-')
-          parval0=parts[1].split(params[0])[1]
-          dotloc= parval0.rfind('.')
-          if dotloc>0:
-               parval0=parval0[0:dotloc]
+          dotloc=fname.rfind('.')
+          lasthyphen=fname.rfind('-')
+          parval0=fname[lasthyphen:dotloc].split(params[-1])[1]
           if (parval0 not in par0list):
                par0list.append(parval0)
           print('pu: fname, par0:',fname,par0list)
           if len(params)>1:
-               parval1=parts[2].split(params[1])[1]
-               dotloc= parval1.find('.')
-               if dotloc>0:
-                    parval1=parval1[0:dotloc]
-               ftuple.append((fname,(parval0,parval1)))
+               hyphen=fname[0:lasthyphen].rfind('-')
+               parval1=fname[hyphen:lasthyphen].split(params[0])[1]
+               ftuple.append((fname,(parval1,parval0)))
                if (parval1 not in par1list):
                     par1list.append(parval1)
                print('pu: par1:',par1list)
           else:
                ftuple.append((fname,parval0))
+     if len(par1list):
+          print (par0list,par1list)
+          temp=par1list
+          par1list=par0list
+          par0list=temp
+          print (par0list,par1list)
      return ftuple,[par0list,par1list]
 

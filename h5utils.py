@@ -14,6 +14,13 @@ def decode(table):
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
 
+def join_params(parval,params):
+    if len(params)>1:
+        label=join(parval)
+    else:
+        label=parval
+    return label
+        
 ####### FIX/IMPROVE THIS by going back from last outputset, only using outset __main__ if no voxels?
 def get_mol_info(simData,plot_molecules,gridpoints):
     outputsets=list(simData['model']['output'].keys())
@@ -86,11 +93,12 @@ def argparse(args):
     print("pattern:", pattern, whole_pattern)
 
     lastslash=str.rfind(pattern,'/')
-    subdir=pattern[0:lastslash]
+    if lastslash > -1:
+        subdir=pattern[0:lastslash]
+    else:
+        subdir='.'
 
     fnames = glob.glob(whole_pattern)
-    if len(params):
-        fnames=[fname for fname in fnames if str.count(fname,'-')<=len(params)]
 
     print("files:", fnames)
     print("NUM FILES:", len(fnames), "CURRENT DIRECTORY:", os.getcwd(), ", Target directory:", subdir)
