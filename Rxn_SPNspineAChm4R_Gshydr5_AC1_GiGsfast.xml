@@ -708,8 +708,8 @@
         <Reactant specieID="AC5"                     />
         <Product  specieID="AC5Gsa"                />
 
-        <forwardRate> 0.00037e-03   </forwardRate>
-        <reverseRate> 0.1e-03        </reverseRate>
+        <forwardRate> 0.0037e-03   </forwardRate>
+        <reverseRate> 1.0e-03        </reverseRate>
     </Reaction>
     <!--2. AC5Gsa(GTP) + ATP    <-> AC5Gsa(GTP)ATP     -->
     <Reaction name = "AC5Gsa+ATP--AC5GsaATP reac" id="AC5Gsa+ATP--AC5GsaATP_id">

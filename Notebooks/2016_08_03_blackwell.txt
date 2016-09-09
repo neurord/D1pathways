@@ -129,6 +129,19 @@ If not, speed up 10x.  If conc too high, decrease inject duration from 90 to 60 
 
 If good signatures, need to repeat the controls : Da stim, block & bath, with these new parameters
 
+>>>>>>>
+1. re-evaluation of Gifast with new reaction (non-function with theta/20hz and noReb)
+   Qualitatively same 
+2. evaluate effect of no rebound, no ACh, no Dopamine, no CKp
+noDa: Da is indeed 10 nM througout, cAMP exhibits no increases
+noACh: ACh is ~40 nM throughout, Gi does not exhibit increases, allowing slightly sooner increase in AC5Gsa and cAMP. AC5GsaGiaATP shows very little difference - slow build up.  This suggests that this reaction is too slow to sense the pulses of GiaGTP!  AC5Gia is indeed following the stimulation, but AC5GsaGia is not.  The increase in AC5GsaGia requires 1st Gsa bind and then Gia bind, the Gia binding.  Gia binding is much faster (30x) than Gsa binding, so tha latter is rate limiting.  Try 10x faster binding (and unbinding).  Could also allow Gi binding first.  Interestingly, Gsa binding to AC1 is 100x faster!
+Speeding up Gsa binding might allow slowing back down the Gia, or 
+GqaGTP also is much lower.  Both Pkc and 2ag are lower, though less than 10% difference.  This suggests that the basal GqaGTP is sufficient to activate Plc.  OR, GqaGTP in the spine is sufficiently high due to mGluR.  Should test it's effect - noMGlu
+noCKp: CKpCamCa4 looks identical to the control.  AIP is 9 uM, but no binding to CKCam - mistake in rates - re-run
+noReb: sort of control
+
+------->GOAL with Gi/Gs part: see an effect of no Gi transient on cAMP.  If achieved, repeate bath, block, Dadur sims as well as simulation experiments
+
 &&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
 1. D1R model:
