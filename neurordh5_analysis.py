@@ -49,7 +49,7 @@ print_head_stats=0
 outputavg=0
 showplot=1  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
-calc_signature=0   #1 means one overall signature, 2 mean separate spine and dend signature
+calc_signature=0#1 means one overall signature, 2 mean separate spine and dend signature
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -428,14 +428,14 @@ if calc_signature:
     #area between signature and basal
     basal_sig=np.mean(signature[:,sstart[0]:ssend[0]],axis=1)
     if calc_signature==1:
-        for i in range(len(parval)):
-            label=h5utils.join_params(parval[i],params)
-            auc[i]=np.sum(signature[i,:]-basal_sig[i])*dt[0]/1000
-            auc_label.append(label+" auc="+str(auc[i]))
+        for par in range(len(parval)):
+            label=h5utils.join_params(parval[par],params)
+            auc[par]=np.sum(signature[par,:]-basal_sig[par])*dt[0]/1000
+            auc_label.append(label+" auc="+str(auc[par]))
     elif calc_signature==2:
         auc_label=[[] for sp in range(len(parval))]
         for par in range(len(parval)):
-            label=h5utils.join_params(parval[i],params)
+            label=h5utils.join_params(parval[par],params)
             for sp in range(num_spines):
                 auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/1000
                 auc_label[par].append(label+" auc="+str(auc[par,sp])+" "+spinelist[sp])
@@ -446,7 +446,7 @@ if calc_signature:
 #is ss the baseline?  Or measuring at some other time point?
 ss=baseline
 if len(params)>1:
-        print(np.column_stack((parval,ss)))
+        #print(np.column_stack((parval,ss)))
         xval=[]
         for i,pv in enumerate(parval):
                 if len(parlist[0])>len(parlist[1]):

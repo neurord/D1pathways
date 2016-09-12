@@ -5,12 +5,12 @@
 
 <InjectionStim specieID="AIP" injectionSite="dend:submembrane">
         <onset>               2000          </onset>
-        <duration>            90      </duration>
+        <duration>            60      </duration>
         <rate>                45         </rate>
 </InjectionStim>
 <InjectionStim specieID="AIP" injectionSite="sa1[0].pointA">
         <onset>               2000          </onset>
-        <duration>            90      </duration>
+        <duration>            60      </duration>
         <rate>                25         </rate>
 </InjectionStim>
 

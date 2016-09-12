@@ -33,6 +33,7 @@ NOW    4. Multi-spine sims - spatial specificity (after signature and good IC) (
 DONE    a. role of ACh during burst or pause or rebound? - repeat sims without ACh burst (already doing no rebound)
 DONE    b. confirm role of CamKII phos Dgl? - repeat sims without pDgl - first need effective pDgl
 NOW     c. Can molecules substitute for others in signature? - sims with altered Ca or CaMKII, etc - evaluate signature
+	d. alcohol effects
     6. parameter robusteness
 
 >>>>>>> Long Morphology sims
@@ -142,6 +143,84 @@ noReb: sort of control
 
 ------->GOAL with Gi/Gs part: see an effect of no Gi transient on cAMP.  If achieved, repeate bath, block, Dadur sims as well as simulation experiments
 
+>>>>>>>>Sept 12, 2016 - Effect of faster Gs
+GiaGTP: minimal difference - maybe slightly larger dip
+GsaGTP: peaks are smaller (~40 vs ~60)
+AC5Gsa: peaks are larger - 30-40 vs 20-30
+AC5Gia: larger modulation of peaks
+AC5GsaGia: larger value, no peaks/modulation visible
+AC5GsaGiaATP: larger, and more modulation of peaks
+AC5GsaATP: larger, larger peak modulation
+AC1Gsa: smaller
+AC1GsaCamCa4ATP: slightly smaller, probably because Gs is now binding more to AC5
+cAMP: larger peaks
+
+noMgluR vs noACh burst: it appears that only one of these has a reduced GqaGTP burst.
+noMGlu appears to have full height GqaGTP; HOWEVER, if plot just the spinehead - the difference is apparent.
+
+Other sims:
+noDa: much lower PKAc, D32p34; higher D32p75
+noCKp: much lower CKpCamCa4. pDgl is only ~20% of Dgl, so blocking CKp is not producing much effect
+noAChburst: significantly lower PkcCaDag, but slightly greater D32p34.
+noMGlu: minimal effect on overall mean PkcCaDag, possibly higher in the spine head???  
+
+CKCam block is effective - only using 3 of 10 uM (6 uM free), so can reduce AIP to 2/3:
+-------->decrease inject duration from 90 to 60 
+But, CKCam block is still not producing much increase in 2ag
+---------->increase CKpCam phos rate of Dgl still more?
+
+Signatures:
+1. Blocking CKCamCa4 greatly reduces the signature for theta, but only slightly for 20hz.
+2. Blocking Da has no effect on theta signature, but does reduce signature for 20hz; BUT, that might be because the CKpCam is much larger for theta.  Perhaps a normalization is needed so that each molecule counts the same.
+CKp block also increase 2ag and reduces Pkc for theta, though effect is small.
+3. blocking ACh burst slightly increases spine signature for both theta and 20hz - i.e., the Gi inhibition from m4 has very little effect.  No effect on dendrite signature.
+WIth GiGsfast simulation, blocking ACh causes trivial change in signature: reduction in Pkc, but slight increase in PKAc.  Most significant effect is reduction in 2ag and Pkc without initial burst of ACh - this is a Gq effect.  Similar effect seen with theta and 20hz. 
+blocking mGluR also has very small effect.  Quite interesting that blocking either ACh or mGlu alone have such small effect on Dag requiring molecules.  Is calcium sensitivity too high?  Is Gq sensitivity of Plc too low? - not too much higher than BoHung model.  What happens if both are blocked?
+PlcCaPip2: basal ~30, peaks~280
+All PlcGq forms: peak = 10 - so contributing negligibly!
+GaqGTP: peaks<=20 - so not very much.   This explains those results.  Calcium sensitivity is so high, and Gqa so low, that blocking it does nothing.  Gq is only 2 uM, though it is more abundant than Gs and Gi.  Perhaps increase Gq by 5x? Problem is that it will be close to Pip2 concentration. 
+
+Response to bath application (Gifast):
+   	Dp34tot	   	   Dp75
+Da	570/4600n	   6288
+Ca	580/305n	   6400
+DaCa	570/3200n	   4960
+Great basal.  Good increase with Da, which is reduced by Ca.
+Good calcium induced decrease, though too transient - unclear why so transient, possibly due to diverting Pp2Acal from D32p34 to D32p75.  However, this is better than prior sims, which never showed a decrease.
+D32p75 - fine - similar to previous
+CyA:   555/774		9753
+OA     555/770/0	50000
+OA causes transient increase in D32p34, but then it decreases because all of the D32 is converted into D32p75.  Might need to reduce the OA block - yes.  Too strong and blocking everything.  Reduce by ~30%: dur=40 instead of 60
+CyA still leaves similar amount of PP2BCamCa4 interacting with D32p34.  Keep as is.
+Perhaps we need to PP2Acal to have some activity against D32p34???  Do this first with the non-PP1 bound form.  Either no effect, or slow effect (which is what we want).
+
+What next?
+-------->decrease AIP inject duration from 90 to 60 - expected to have no effect
+-------->increase CKpCam phos rate of Dgl still more?  3x, in with GiGsfast file
+-------->OA block - duration =40 instead of 60
+------->increase Gqabg quantity - do this with GiGsfast model.  This may help with Uchigashima also.
+------->PP2Acal has activity against D32p34
+Initialize with greater Gq:
+Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.xml
+update Rx file with faster CKpCam phos Dgl:
+Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast.xml
+Models to simulate
+Controls:
+Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noReb.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noReb.xml
+noACh - does increase in Gq allow reduction to be significant?
+Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noACh.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noACh.xml
+Does more CKp phos Dgl allow block to be significant?
+Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noCKp.xml
+Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noCKp.xml
+
+If good, repeat block/bath/DaDur using above and update spreadsheet
+Also simulate the noDa and noMGluR cases
+What other simulations should be used as constraint?
+a) simulate Colbran experiments using CamKII?
+b) Parul will repeat the Uchigashima simulations
+
 &&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
 1. D1R model:
@@ -155,4 +234,6 @@ noReb: sort of control
    a. Replace D1 with Aden params
    b. Use D2R values instead of m4R values
    c. Replace ACh stim with Aden stim
+
+For publication, do we simulate a D2R model?  Or alcohol effects?
 

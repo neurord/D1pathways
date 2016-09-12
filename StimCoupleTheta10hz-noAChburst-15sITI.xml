@@ -275,6 +275,17 @@
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
+<!--*********Glu******TRAIN 8***************-->
+<InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
+        <onset>              125000          </onset>
+        <duration>            5              </duration>
+        <rate>                18.0           </rate>
+        <period>              20             </period>
+        <end>                 125066          </end>
+        <numTrains>           10             </numTrains>
+        <interTrainInterval>  29             </interTrainInterval>    
+</InjectionStim>
+
 <!--**********Calcium******TRAIN 8******* 320 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">

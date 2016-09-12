@@ -23,7 +23,7 @@ def plot_setup(plot_molecules,param_list,param_name):
      return fig,axes,col_inc,scale,numpar
 
 def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
-     print("plottrace: plotmol,parval,parlist:", plotmol,parval, parlist)
+     #print("plottrace: plotmol,parval,parlist:", plotmol,parval, parlist)
      if len(parlist)==0:
           p0=p1=0
      else:

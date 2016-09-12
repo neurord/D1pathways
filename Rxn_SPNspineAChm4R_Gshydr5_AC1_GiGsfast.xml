@@ -186,6 +186,7 @@
     <Specie name="D32"            id="D32"           kdiff="8.9"   kdiffunit="mu2/s"/>
     <Specie name="D32PKAc"         id="D32PKAc"        kdiff="6.8"   kdiffunit="mu2/s"/>
     <Specie name="D32p34"           id="D32p34"          kdiff="8.8"   kdiffunit="mu2/s"/>
+    <Specie name="D32p34PP2Acal"    id="D32p34PP2Acal"   kdiff="8.8"   kdiffunit="mu2/s"/>
     <Specie name="D32p34PP1"        id="D32p34PP1"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP2BCamCa4" id="D32p34PP2BCamCa4" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP1PP2BCamCa4" id="D32p34PP1PP2BCamCa4" kdiff="0"  kdiffunit="mu2/s"/>
@@ -1576,6 +1577,25 @@ MUCH slower binding compared to CaDgl  -->
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
+    <Reaction name = "D32p34+PP2Acal--D32p34PP2Acal reac" id="D32p34+PP2Acal--D32p34PP2Acal_id">
+        <Reactant specieID="D32p34"                   />
+        <Reactant specieID="PP2Acal"              />
+        <Product  specieID="D32p34PP2Acal"          />
+
+        <forwardRate> 1.52e-06        </forwardRate>
+        <reverseRate> 0.056           </reverseRate>
+    </Reaction>
+
+    <!-- D32p34PP2Acal            -> D32 + PP2Acal  (in xpp: v22b=0.5) -->
+    <Reaction name = "D32p34PP2Acal--PP2Acal+D32 reac" id="D32p34PP2Acal--PP2Acal+D32_id">
+        <Reactant specieID="D32p34PP2Acal"          />
+        <Product  specieID="PP2Acal"              />
+        <Product  specieID="D32"                    />
+
+        <forwardRate> 0.014           </forwardRate>
+        <reverseRate> 0.0             </reverseRate>
+    </Reaction>
+
     <!-- D32p34pp1 + PP2ABPR72  <-> D32p34PP1PP2ABPR72 -> D32 + PP1 + PP2ABPR72  (in xpp: k36b=0.0001 k_36b=2, Kd=) -->
     <Reaction name = "D32p34pp1+PP2ABPR72--D32p34PP1PP2ABPR72 reac" id="D32p34pp1+PP2ABPR72--D32p34PP1PP2ABPR72_id">
         <Reactant specieID="D32p34PP1"                 />
@@ -1867,8 +1887,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKpCamCa4"          />
         <Product  specieID="Dgl_CKpCamCa4"    />
 
-        <forwardRate> 1.8e-6          </forwardRate>
-        <reverseRate> 0.5e-3          </reverseRate>
+        <forwardRate> 5.4e-6          </forwardRate>
+        <reverseRate> 1.5e-3          </reverseRate>
     </Reaction>
 
     <!-- Dgl_CKpCam -> pDgl + CKpCam -->
@@ -1877,7 +1897,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="pDgl"         />
         <Product  specieID="CKpCamCa4"          />
 
-        <forwardRate> 0.125e-3        </forwardRate>
+        <forwardRate> 0.375e-3        </forwardRate>
         <reverseRate> 0.0               </reverseRate>
     </Reaction>
 
@@ -1907,8 +1927,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="CKpCamCa4"          />
         <Product  specieID="CaDgl_CKpCamCa4"    />
 
-        <forwardRate> 1.8e-6          </forwardRate>
-        <reverseRate> 0.5e-3          </reverseRate>
+        <forwardRate> 5.4e-6          </forwardRate>
+        <reverseRate> 1.5e-3          </reverseRate>
     </Reaction>
 
     <!-- CaDgl_CKpCam -> CapDgl + CKpCam -->
@@ -1917,7 +1937,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="CapDgl"         />
         <Product  specieID="CKpCamCa4"          />
 
-        <forwardRate> 0.125e-3        </forwardRate>
+        <forwardRate> 0.375e-3        </forwardRate>
         <reverseRate> 0.0               </reverseRate>
     </Reaction>
 
