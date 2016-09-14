@@ -226,9 +226,9 @@
         <NanoMolarity specieID="GiaGDP"                 value="0"  />
         <NanoMolarity specieID="GiaGTP"                 value="80" />
 
-        <NanoMolarity specieID="MgluR"              value="150"     /> 
+        <NanoMolarity specieID="MgluR"              value="350"     /> 
         <NanoMolarity specieID="MgluRGq"              value="50"     /> 
-        <NanoMolarity specieID="Gqabg"              value="9950"  />
+        <NanoMolarity specieID="Gqabg"              value="3950"  />
         <NanoMolarity specieID="Plc"                value="360"   />
         <NanoMolarity specieID="PlcCa"              value="0"    />
         <NanoMolarity specieID="Pip2"               value="19120"  />
@@ -329,9 +329,9 @@
         <PicoSD specieID="pPDE10cAMP"            value="0" />
 
 <!-- all are within 1 order of magnitude to Falkenburger, who lists other references with density estimates near his-->
-        <PicoSD specieID="m1R"              value="50"  />
+        <PicoSD specieID="m1R"              value="150"  />
         <PicoSD specieID="m1RGq"            value="50"  />
-        <PicoSD specieID="Gqabg"              value="4950"  />
+        <PicoSD specieID="Gqabg"              value="1950"  />
         <PicoSD specieID="Plc"                value="177"  />
         <PicoSD specieID="PlcCa"              value="8"    />
         <PicoSD specieID="Pip2"               value="9565" />
