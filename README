@@ -31,14 +31,18 @@ DONE. 2E. Include Gi reactions here to help decrease basal cAMP - simulate ss in
 
 Step 3. Interaction between Gs and Gq/calcium pathways
 DONE. 3A. CaMKII inhibition of Dagl
-3B. Replace the D2R parameters with m4R parameters in the D1R model. Higher affinity of m4R and higher ACh will decrease basal cAMP, may need to add AC1 or otherwise tweak params to fix basal cAMP and Dp34PP1.
-3C. PKA enhances of Gq or Gi GAP activity?  Via RGS?  Speed GaGTP production according to Chuhma et al.?
-3D. Add in Epac (from Chay et al.) or AKAR (from Nair ... Kotaleski) to quantify assays
-3E. Re-run all assays to verify, including Uchigashima bath application simulations - still valid?
+POSTPONE 3B. Replace the D2R parameters with m4R parameters in the D1R model. Higher affinity of m4R and higher ACh will decrease basal cAMP, may need to add AC1 or otherwise tweak params to fix basal cAMP and Dp34PP1.
+POSTPONE 3C. PKA enhances of Gq or Gi GAP activity?  Via RGS?  Speed GaGTP production according to Chuhma et al.?
+DONE 3D. Add in Epac (from Chay et al.) or AKAR (from Nair ... Kotaleski) to quantify assays
+IN PROGRESS 3E. Re-run all assays to verify, including Uchigashima bath application simulations - still valid?
 
 Step 4.  Simulation experiments: 20 Hz vs theta 
-4A. Stim files: Glu: how to account for release refractoriness and receptor desensitization (Ca and mGluR)?
+IN PROGRESS 4A. Stim files: Glu: how to account for release refractoriness and receptor desensitization (Ca and mGluR)?
     constrain by Lovinger imaging or Asia calcium dynamics model
 DONE. 4B. Stim files: Da and ACh: what pattern of release occurs (Da from Lovinger)
-4C. Which temporal patterns select for LTP vs LTD? - repetition of BoHung sims
-4D. Sensitivity to order of Ca and Da?  Do we need AC1 for this aspect?
+IN PROGRESS 4C. Which temporal patterns select for LTP vs LTD? - repetition of BoHung sims
+4D. Sensitivity to order of Ca and Da?  Create alternative stimulation files
+IN PROGRESS 4E. Effect of blocking various molecules, such as protein phosphatases or CamKII
+IN PROGRESS 4F. Create signature that can correctly predict LTP vs LTD for block cases also.  Then create novel stim patterns.
+IN PROGRESS 4F. Spatial specificity
+4F. Effect of alcohol
