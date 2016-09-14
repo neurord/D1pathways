@@ -5,7 +5,7 @@
 
           <xi:include href="Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast.xml" />
           <xi:include href="Morph_1sp2umDend.xml" />
-	  <xi:include href="IC_SPNspineAChm4R_AC1_coupleGq10u.xml" />       
+	  <xi:include href="IC_SPNspineAChm4R_AC1_coupleGqhigh.xml" />       
           <xi:include href="Out_SPNspineCaMKII_DagL_AChm1R_AC1.xml" />
           <xi:include href="StimCoupleTheta10hzAChNoRebound-15sITI.xml" />
 
