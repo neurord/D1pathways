@@ -221,7 +221,54 @@ What other simulations should be used as constraint?
 a) simulate Colbran experiments using CamKII?
 b) Parul will repeat the Uchigashima simulations
 
-&&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
+PlcCaPip2: basal ~30, peaks~90-100 (20hz) 190-200 (theta) - peaks smaller than previous
+PlcGq forms: peak = 12 (20hz) or 16 (theta) : larger than before
+GaqGTP: peaks=40 - double previous simulations
+ACh is significantly reducing Dag and Ip3
+CKp block produces significant reduction in pDgl forms (~25%).  50% reduction for theta burst!
+CKp block: elevation in 2ag for both 20hz and theta, reduction in PkcCaDag, especially for theta
+Overall: CkpBlock significantly reduces signature (Pkc+CkpCam+PKAc) for theta, but only slightly for 20hz: with CKpblock, theta signature is similar to 20hz signature
+
+ACh block: reduction in Gqa, Dag and Ip3 for both theta and 20hz.
+    	   reduction in 2ag (20% for 20hz, 30% for theta) and Pkc
+	   no AC5Gia transient increases or AC5GsaATP transient decreases - 
+	   But, GiaGTP dips not observed, even though degradation is 4 per sec.
+	   Also, only slightly smaller Ac5GsaGiaATP.  cAMP transients are slightly higher, especialy at beginning of train.  pPDE builds up and may prevent a larger difference
+	   This negative feedback loop may explain why no difference in PKA activity for two paradigms
+	   signature:Pkc+CKp+Pka       	   	       2ag
+	  norebound  noCKp	  noACh burst	       norebound  noCKp	  noACh burst
+20hz      10.4	     7.1	  9.1		       11.5	  13.9	  7.6
+theta	  22.0	     6.2	  22.2		       8.1	  12.4	  5.3
+ratio of LTP sig to 2ag:
+20hz  	  0.9 	    0.5		1.2
+theta	  2.7	    0.5		4.2  
+
+2ag goes up and signature goes down: predict no LTP, possibly enhanced 20hz LTD with CKpblock
+noACh burst is more subtle. 2ag goes down a bit due to its Gq contribution, smaller to trivial change in signature, possibly due to Gi contribution to PKA.
+
+*************To compare to experiments, would need to block m1 receptor (new rxn), or mGluR receptor (stim file ready).  Could also block m4 receptor (new rxn) to make prediction.
+
+Response to bath application (GiGsfast):
+   	Dp34tot	   	   Dp75
+Da	sims didn't run
+Ca	1.2/688n	   6100
+DaCa	1.2/3300n	   4970
+Basal: D32p34 is a bit higher than before - perhaps too high. cAMP is 61 - producing too much PKAc
+Good calcium induced decrease, to 688 and persistant.
+D32p75 - fine - similar to previous
+CyA:   1208/1029 - no increase at all!!!
+OA     very transient increase in D32p34, and then decreases due to D32p75 saturation
+
+Why does CyA block not have any effect?  Basal calcium = 32, PP2B = 6-8 bound to Dp34 = 4-6, Pp2A bound is 23!  Affinity of PP2B is higher, but it's basal quantity is much higher due to such low CamCa4 due to low calcium.
+
+Lowering cAMP to lower D32p34 will not solve problem of such low PP2B.
+------------->What were Jeanette's values to solve this problem?
+-------------> Add in m4 block rxn and m1 block rxn before re-running everything
+------------->solve the CyA block problem and re-run everything.  Then run the 2 spine cases.
+-------------->Compare m4 block with m4 block+no Da - rescue?
+-------------->Research effects of alcohol.
+
+&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
 1. D1R model:
    PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
