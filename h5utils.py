@@ -82,9 +82,9 @@ def argparse(args):
         return ans
 
     #1st and 2nd arguements used to construct pattern for reading in multiple files
-    pattern=args[2]
-    if len(args[0]):
-        params=args[0].split(" ")
+    pattern=args[0]
+    if len(args[1]):
+        params=args[1].split(" ")
         for par in params:
             pattern=pattern+'-'+par+'*'
     else:
@@ -107,7 +107,7 @@ def argparse(args):
         raise IOError("no files found")
 
     parlist=[]
-    if len(args[0]):
+    if len(args[1]):
         ftuples,parlist=pu5.file_tuple(fnames,params)
         ftuples = sorted(ftuples, key=lambda x:x[1])
     else:

@@ -1,5 +1,5 @@
 #neurordh5_analysis.py
-#in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurordh5_analysis.py')
+#in python, type ARGS="subdir/fileroot,par1 par2,mol1 mol2,sstart ssend,rows" then execfile('neurordh5_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
 #mol1 mol2, etc are the names of molecles to process
 #par1 and optionally par2 are specifications of parameter variations, as follows:
@@ -72,7 +72,7 @@ except NameError: #NameError refers to an undefined variable (in this case ARGS)
     do_exit = True
 
 ftuples,parlist,params=h5utils.argparse(args)
-figtitle=args[2].split('/')[-1]
+figtitle=args[0].split('/')[-1]
 
 ###################################################
 signature_array=[]
@@ -130,8 +130,8 @@ for fnum,ftuple in enumerate(ftuples):
     #
     if fnum==0:
         #initialize plot stuff, arrays for static measurements, and find molecules among the output sets
-        if len(args[1].split()):
-            plot_molecules=args[1].split()
+        if len(args[2].split()):
+            plot_molecules=args[2].split()
         else:
             plot_molecules=molecules
         num_mols=len(plot_molecules)
