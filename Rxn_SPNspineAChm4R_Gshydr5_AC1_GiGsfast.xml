@@ -749,8 +749,8 @@
 	<Reactant specieID="AC5Gsa"/>
 	<Product specieID="AC5GsaGia"/>
 
-	<forwardRate>0.0125e-3</forwardRate>
-	<reverseRate>2e-3</reverseRate>
+	<forwardRate>0.00125e-3</forwardRate>
+	<reverseRate>0.2e-3</reverseRate>
     </Reaction>
     <!-- AC5GsaGia + ATP    <-> AC5GsaGiaATP       source: Dessauer CW, Gilman AG JBC 1997-->
     <Reaction name = "AC5GsaGia+ATP--AC5GsaGiaATP" id="AC5GsaGia+ATP--AC5GsaGiaATP">
@@ -1497,8 +1497,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2BCamCa4"             />
         <Product  specieID="D32p34PP2BCamCa4"         />
 
-        <forwardRate> 2.5e-06       </forwardRate>
-        <reverseRate> 4.0e-03         </reverseRate>
+        <forwardRate> 8.0e-06       </forwardRate>
+        <reverseRate> 8.0e-03         </reverseRate>
     </Reaction>
 
     <!-- D32p34PP2BCamCa4     -> D32 + PP2BCamCa4   King, Hemmings: Vmax =0.2-1/sec-->
@@ -1507,7 +1507,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP2BCamCa4"             />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 1.0e-03         </forwardRate>
+        <forwardRate> 2e-03         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
@@ -1517,8 +1517,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2BCamCa4"             />
         <Product  specieID="D32p34PP1PP2BCamCa4"      />
 
-        <forwardRate> 2.5e-06      </forwardRate>
-        <reverseRate> 4.0e-03       </reverseRate>
+        <forwardRate> 8.0e-06      </forwardRate>
+        <reverseRate> 8.0e-03       </reverseRate>
     </Reaction>
 
     <!-- D32p34PP1PP2BCamCa4        -> PP1PP2BCamCa4  +  D32  (in xpp: v36=0.5) -->
@@ -1528,7 +1528,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 1.0e-03      </forwardRate>
+        <forwardRate> 2e-03      </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 

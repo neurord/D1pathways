@@ -124,10 +124,6 @@
     <OutputSpecie name="Ip3"/>
     <OutputSpecie name="Dag"/>
 
-    <OutputSpecie name="DagK"/>
-    <OutputSpecie name="DagKdag"/>
-    <OutputSpecie name="PA"/>
-
     <OutputSpecie name="Dgl"/>
     <OutputSpecie name="pDgl"/>
     <OutputSpecie name="CaDgl" />
@@ -135,12 +131,7 @@
     <OutputSpecie name="DagCaDgl"/>
     <OutputSpecie name="DagCapDgl"/>
     <OutputSpecie name="2ag"/>
-    <OutputSpecie name="2agDegrad"/>
 
-    <OutputSpecie name="Ip3degrad"/>
-    <OutputSpecie name="PIkinase"/>
-    <OutputSpecie name="Ip3degPIk"/>
-    
     <OutputSpecie name="Pkc"/>
     <OutputSpecie name="PkcCa"/>
     <OutputSpecie name="PkcCaDag"/>
@@ -169,8 +160,6 @@
     <OutputSpecie name="Dgl_CKp"/>
     <OutputSpecie name="CKpPP1"/>
     <OutputSpecie name="CKpCamCa4PP1"/>
-    <OutputSpecie name="CKCam_block"/>
-    <OutputSpecie name="AIP"/>
  
     <OutputSpecie name="PKA"/>
     <OutputSpecie name="PKAcAMP2"/>
@@ -190,7 +179,6 @@
     <OutputSpecie name="D32p34PP1PP2ABPR72"/>
     <OutputSpecie name="D32p34PP1PP2AB56d"/>
 
-    <OutputSpecie name="Cdk5"/>
     <OutputSpecie name="Cdk5D32"/>
     <OutputSpecie name="D32p75"/>
     <OutputSpecie name="D32p75PKAc"/>
@@ -203,14 +191,6 @@
     <OutputSpecie name="pAKAR3"/>
     <OutputSpecie name="PKAcAKAR3"/>
     <OutputSpecie name="PP1pAKAR3"/>
-    <OutputSpecie name="OA"  />
-    <OutputSpecie name="CyA"  />
-    <OutputSpecie name="OA_PP2ABPR72"  />
-    <OutputSpecie name="OA_PP2AB56d"  />
-    <OutputSpecie name="OA_pPP2A"  />
-    <OutputSpecie name="OA_PP2Acal"  />
-    <OutputSpecie name="OA_PP1"  />
-    <OutputSpecie name="CyA_PP2B"  />
   </OutputSet>
 
 </OutputScheme>

@@ -1,0 +1,112 @@
+Lab Notebook for Blackwell October 5, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause (eliminate one or the other)
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+NEXT STEPS (once model tuning finished):
+    1. 20hz vs theta, create signature 
+    2.  Multi-spine sims - spatial specificity
+    3. Other questions:
+       a. role of ACh during burst or pause or rebound? - repeat sims without ACh burst 
+       b. confirm role of CamKII phos Dgl? - repeat sims without pDgl 
+       c. Can molecules substitute for others in signature? - sims with altered Ca or CaMKII, etc - evaluate signature
+       d. alcohol effects
+    6. parameter robusteness
+
+---------------------------------------------------------------------------------
+October 5, 2016
+---------> PP2B dephos is ineffective.
+#######iupdate Rx file with higher affinity of Pp2B dephos of D32p34 kf=4.0e-3 -> 1.25 uM, 60% greater:
+******Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast.xml
+******Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.xml
+#######iinject half the OA to decrease block of PP2A and prevent saturation of Dp75
+NISHI: cyclosporin: 5 uM, OA: 1 uM
+NISHI: OA blocks ~100% of PP2A but only 30% of PP1.
+Free PP2A drops from 1.1 uM each to ~200 nM each (80% block)
+Free PP1 drops from 2.8 uM to ~1.8 uM - so block is a bit too weak, though working quite nice.
+
+&&&&If D32p34 is now too low, decrease the PP2A dephos rates to enhance effect of PP2B block
+Else, if good, repeat DaDur and various LTP/LTD sims and update spreadsheet with new rates
+Also, add in block m1 receptor (kf for binding =0), or mGluR receptor (stim file ready with new reaction).
+Also block m4 receptor (kf for binding =0) to make prediction, and block m4 and no Da burst to see if compensates.
+
+>>>>>>>>> Results
+basal Dp34 ~800 nM
+OA: much better response - small increase D32p34, big increase in Dp75
+Bath Ca: ~60% reduction in Dp34
+CyA: small increase in D32p34 - need still more
+#######increase kf to 5e-6, and kb & kcat by 50%.  Km=1.5 uM (close to measured) kcat is 50% greater
+This is more appropriate because Km are more precise measurements
+>>>>>>>>>Results WORSE!
+#######increase all rates.  kf=6.3e-3, kb=8, kcat=2.  Km~1.6 uM, kcat is 2x greater than original
+>>>>>>>basal is 750-800 nM - still too high
+>>>>>>>bath:  Da produces large increase in Dp34 (>4 uM), reduced by Ca (2 uM peak for DaCa)
+	      Ca produces reduction: 246 minimum, ~400-450 prolonged - almost meets goal
+>>>>>>block: CyA slowly increases Dp34 to 950 nM - still too weak
+
+#####increase kf to 8e-3 (from 6.3e-3) (Km=1.25 uM)
+Regarding Gi dip: consider slowing down rate of Gia binding to AC5Gsa form, e.g. 10x 
+##### Kf, kb=0.00125,0.2 (from 0.0125, 2)
+Will this improve the pAKAR results?
+
+MGluR results: trivial effect on Gq, 2ag, Pkc from blocking it.  Gq bound Plc is ~5% of ca bound Plc
+That could be due to much faster plc activity with Gq bound (~60x faster kcat, 30x faster kf)
+OR, could be due to greater m1R contribution?  YES: no ACh reduces GqaGTP drastically (from 35 nM to 10 nM.  noMGlu only reduces it from 35 nM to 30 nM
+Re-assess quantity of bound receptor for mGluR vs AChR after next set of sims
+
+&&&&To simulate no m1 or no m4: once reaction rates are settled, set kf=0 for ACh + m1R/m4R and m1RGq/m4RGi
+(two rxn files, simulated with each of 2 stim files).  
+
+Response to bath application (GiGsfast):
+   	Dp34tot	  goal		Dp75	goal
+basal	1.2	  500 nM		10-12 uM
+Da		  5x  			50%
+Ca	688n	  50%		6100	25%
+DaCa	3300n	  2-3x		4970	??
+CyA:		  3-17x			no change
+OA:		  5x			3x
+
+   	 norebound  noCKp	  noACh burst	       norebound  noCKp	  noACh burst
+20hz      10.4	     7.1	  9.1		       11.5	  13.9	  7.6
+theta	  22.0	     6.2	  22.2		       8.1	  12.4	  5.3
+ratio of LTP sig to 2ag:
+20hz  	  0.9 	    0.5		1.2
+theta	  2.7	    0.5		4.2  
+
+-------------->Research effects of alcohol.  What stimulation protocal would optimize LTP?
+
+&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
+   Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps - not too fast to avoid decreasing other Dp34 basal)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+
+For publication, do we simulate a D2R model?  Or alcohol effects?
+

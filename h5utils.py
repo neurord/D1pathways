@@ -8,6 +8,14 @@ import plot_h5 as pu5
 from collections import OrderedDict
 from orderedmultidict import omdict
 
+#shows how to use tables instead of h5py:  Also how to test for rotation of population table
+#f = tables.open_file('...', 'r')
+#pop = f.root.trial0.output.__main__.population
+#elements_last = getattr(pop.attrs, 'elements_last', 0)
+#data.root.model.species will list all species without [:]
+#data.root.model.grid[:]['type'] - will list all  voxels - note the switch to [''] after the [:]
+#to make it work in python 2 & 3, use np.core.defchararray.decode(text stuff)
+
 def decode(table):
     return np.array([s.decode('utf-8') for s in table])
 
