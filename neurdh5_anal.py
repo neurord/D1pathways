@@ -47,7 +47,7 @@ show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=1  #2 indicates plot the head conc, 0 means no plots
+showplot=0  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 calc_signature=0#1 means one overall signature, 2 mean separate spine and dend signature
 
@@ -56,7 +56,7 @@ calc_signature=0#1 means one overall signature, 2 mean separate spine and dend s
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
 tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
-tot_species=[]
+#tot_species=[]
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -74,6 +74,11 @@ except NameError: #NameError refers to an undefined variable (in this case ARGS)
 ftuples,parlist,params=h5utils.argparse(args)
 figtitle=args[0].split('/')[-1]
 
+try:
+    data.close()
+except NameError:
+    pass
+
 ###################################################
 signature_array=[]
 parval=[]
@@ -90,7 +95,10 @@ for fnum,ftuple in enumerate(ftuples):
     all_spine_means=[]
     
     trials=[a for a in data.keys() if 'trial' in a]
-    seeds=[data[trial]['simulation_seed'][:] for trial in trials]
+    try:
+        seeds=[data[trial].attrs['simulation_seed'] for trial in trials]
+    except KeyError:
+        seeds=[data[trial]['simulation_seed'][:] for trial in trials]
     numtrials=len(trials)
     outputsets=data[trials[0]]['output'].keys()
     if numfiles==1:
