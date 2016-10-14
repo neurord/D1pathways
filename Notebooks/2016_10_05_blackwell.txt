@@ -49,32 +49,72 @@ Else, if good, repeat DaDur and various LTP/LTD sims and update spreadsheet with
 Also, add in block m1 receptor (kf for binding =0), or mGluR receptor (stim file ready with new reaction).
 Also block m4 receptor (kf for binding =0) to make prediction, and block m4 and no Da burst to see if compensates.
 
->>>>>>>>> Results
+>>>>>>>>> 10/4/2016 Results 
 basal Dp34 ~800 nM
 OA: much better response - small increase D32p34, big increase in Dp75
 Bath Ca: ~60% reduction in Dp34
 CyA: small increase in D32p34 - need still more
 #######increase kf to 5e-6, and kb & kcat by 50%.  Km=1.5 uM (close to measured) kcat is 50% greater
 This is more appropriate because Km are more precise measurements
->>>>>>>>>Results WORSE!
+>>>>>>>>>10/5/2015 Results WORSE!
 #######increase all rates.  kf=6.3e-3, kb=8, kcat=2.  Km~1.6 uM, kcat is 2x greater than original
->>>>>>>basal is 750-800 nM - still too high
->>>>>>>bath:  Da produces large increase in Dp34 (>4 uM), reduced by Ca (2 uM peak for DaCa)
-	      Ca produces reduction: 246 minimum, ~400-450 prolonged - almost meets goal
->>>>>>block: CyA slowly increases Dp34 to 950 nM - still too weak
+
+>>>>>>> 10/10/2016 Results
+basal is 750-800 nM - still too high
+bath:  Da produces large increase in Dp34 (>4 uM), reduced by Ca (2 uM peak for DaCa)
+      Ca produces reduction: 246 minimum, ~400-450 prolonged - almost meets goal
+block: CyA slowly increases Dp34 to 950 nM - still too weak
 
 #####increase kf to 8e-3 (from 6.3e-3) (Km=1.25 uM)
 Regarding Gi dip: consider slowing down rate of Gia binding to AC5Gsa form, e.g. 10x 
 ##### Kf, kb=0.00125,0.2 (from 0.0125, 2)
-Will this improve the pAKAR results?
+---------->Will this improve the pAKAR results?
 
 MGluR results: trivial effect on Gq, 2ag, Pkc from blocking it.  Gq bound Plc is ~5% of ca bound Plc
 That could be due to much faster plc activity with Gq bound (~60x faster kcat, 30x faster kf)
 OR, could be due to greater m1R contribution?  YES: no ACh reduces GqaGTP drastically (from 35 nM to 10 nM.  noMGlu only reduces it from 35 nM to 30 nM
-Re-assess quantity of bound receptor for mGluR vs AChR after next set of sims
+---------->Re-assess quantity of bound receptor for mGluR vs AChR after next set of sims
 
-&&&&To simulate no m1 or no m4: once reaction rates are settled, set kf=0 for ACh + m1R/m4R and m1RGq/m4RGi
-(two rxn files, simulated with each of 2 stim files).  
+>>>>>>>>>10/11/2016
+crazy high basal quantity of D32p34PP1 - cAMP also is high.  This is caused by the slow Gi binding?
+GiaGTP values are similar, but AC5Gsa is a bit higher now (5 vs 2), AC5GsaGia is lower 75 vs 86, and AC5GsaATP is higher (30 vs 20).
+Solution: go back to fast Gi binding, or
+	  increase ACh quantity?  ACh will increase Gq basal, or
+	  increase m4R - ACh affinity - already at outer end of published
+	  increase speed of AChR binding Gi (kf &kb) - currently too low given kcat
+	   
+####### AChR binding Giabg: from 0.096,1.68 to 0.129,3.35; from 0.01824,10 to 0.0365,20
+----->If Gi is higher (currently 33), but cAMP still too high (currently 121) go back to fast GI binding to AC5; Consider adding Gs binding 2nd, to that Gs can come off first also.  
+	 cAMP good/low values: AC5Gia   469.18, AC5GsaGiaATP    92.76, AC5GsaATP    12.33
+	 cAMP too high values: AC5Gia   464.5, AC5GsaGiaATP    74.07, AC5GsaATP    35.24
+----->If Gi is now fine, but still no dip effect visible, go back to previous, or even faster Gi dissocation, and add in Gs binding 2nd (according to Dessauer)
+
+>>>>>>>>>10/13/2016
+Da dur: no discrimination of different durations - basal cAMP still too high
+GiaGTP: still 33; AC5GsaATP: 38 - too high, AC5GsaGiaATP: 67 - too low
+D32p34 - crazy high (> 2 uM) basal
+-----------> go back to previous values for Gia binding.  Keep the updated PP2B values
+----------> add in Gs binding to AC5Gia complex - which allows GsaGTP to come off first
+	    What if AC5 needed two Gs/Golf to bind for activity?
+	    What if second G binding had lower affinity? - lower Gs binding to ACGi would compensate lowe Gi binding to ACGs?
+theta/20hz-noReb: no dip detected. GiaGTP dip possibly smaller than previous rates.
+
+>>>check total molecules and adjust before re-running
+1. Cam is 70 too high (both in nostim and in spreadsheet)- reduce the Cam form by 70
+2. Darpp is to high by 65 - reduce the D32p75 form by 65
+3. PP2B is 16 too low, but is fine in spread sheet - must be stochastic, though larger than most discrepancies
+>>>>Adjusted/updated diffusion constants - based on MW and viscosity.  Still need to update CamKII based on direct measurement
+
+############# Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast.xml, Previous AC5-Gi parameters, but with Gs binding 2nd, and 2x lower affinity.
+Gs binds to AC5Gia complex, kf=0.0037, kb=2: kb 2x higher (affinity 3x lower) than for Gs to AC5
+Gi binding to AC5Gs complex: kb inc to 4: 2x higher than for Gi to AC5
+
+>>>>>>>>>> Cam: 8978, Darpp:49993, PP2B: 4984 - within random variation, or am I missing a form?
+basal: Dp34: 1463 (too high) Dp75: 8728 (too low).
+AC5GsaATP=22.6 - in between, AC5GsaGsiATP: 96 - good.  cAMP: 80 - too high
+Go back to higher affinity Gi binding to AC5Gs, but keep both pathways (which should not affect basal).
+
+&&&&To simulate no m1 or no m4: once reaction rates are settled, set kf=0 for ACh + m1R/m4R and m1RGq/m4RGi (two rxn files, simulated with each of 2 stim files).  
 
 Response to bath application (GiGsfast):
    	Dp34tot	  goal		Dp75	goal

@@ -102,13 +102,13 @@
     <Specie name="PDE2"           id="PDE2"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE2cAMP"       id="PDE2cAMP"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE2cAMP2"      id="PDE2cAMP2"     kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="PDE4"         id="PDE4"      kdiff="6" kdiffunit="mu2/s"/>
-    <Specie name="PDE4cAMP"     id="PDE4cAMP"  kdiff="6" kdiffunit="mu2/s"/>
-    <Specie name="PKAcPDE4"     id="PKAcPDE4"  kdiff="6" kdiffunit="mu2/s"/>
-    <Specie name="PKAcPDE4cAMP"  id="PKAcPDE4cAMP"  kdiff="6" kdiffunit="mu2/s"/>
-    <Specie name="pPDE4"        id="pPDE4"     kdiff="6" kdiffunit="mu2/s"/>
-    <Specie name="pPDE4PP1"     id="pPDE4PP1"     kdiff="6" kdiffunit="mu2/s"/>
-    <Specie name="pPDE4cAMP"    id="pPDE4cAMP" kdiff="6" kdiffunit="mu2/s"/>
+    <Specie name="PDE4"         id="PDE4"      kdiff="6.01" kdiffunit="mu2/s"/>
+    <Specie name="PDE4cAMP"     id="PDE4cAMP"  kdiff="6.0" kdiffunit="mu2/s"/>
+    <Specie name="PKAcPDE4"     id="PKAcPDE4"  kdiff="5.4" kdiffunit="mu2/s"/>
+    <Specie name="PKAcPDE4cAMP"  id="PKAcPDE4cAMP"  kdiff="5.41" kdiffunit="mu2/s"/>
+    <Specie name="pPDE4"        id="pPDE4"     kdiff="6.01" kdiffunit="mu2/s"/>
+    <Specie name="pPDE4PP1"     id="pPDE4PP1"     kdiff="6.61" kdiffunit="mu2/s"/>
+    <Specie name="pPDE4cAMP"    id="pPDE4cAMP" kdiff="6.0" kdiffunit="mu2/s"/>
 
     <!-- Gq, PLC, Dag, IP3, PKC and 2ag are from Gq model --> 
     <Specie name="Plc"            id="Plc"           kdiff="0"     kdiffunit="mu2/s"/>
@@ -118,7 +118,7 @@
     <Specie name="Pip2"           id="Pip2"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PlcCaPip2"      id="PlcCaPip2"     kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PlcCaGqaPip2"   id="PlcCaGqaPip2"  kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="Ip3"            id="Ip3"           kdiff="10.6"  kdiffunit="mu2/s"/>
+    <Specie name="Ip3"            id="Ip3"           kdiff="79.6"  kdiffunit="mu2/s"/>
     <Specie name="Dag"            id="Dag"           kdiff="0"     kdiffunit="mu2/s"/>
 
 <!-- degradation of Dag, 2ag and IP3 -->
@@ -126,7 +126,7 @@
     <Specie name="DagKdag"        id="DagKdag"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PA"             id="PA"            kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="2agDegrad"      id="2agDegrad"     kdiff="88.6"  kdiffunit="mu2/s"/>
-    <Specie name="Ip3degrad"      id="Ip3degrad"     kdiff="10.6"  kdiffunit="mu2/s"/>
+    <Specie name="Ip3degrad"      id="Ip3degrad"     kdiff="79.6"  kdiffunit="mu2/s"/>
 <!-- Production of endocannabinoid -->
     <Specie name="Dgl"            id="Dgl"           kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pDgl"           id="pDgl"          kdiff="0"     kdiffunit="mu2/s"/>
@@ -145,11 +145,12 @@
     <Specie name="PIkinase"       id="PIkinase"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Ip3degPIk"      id="Ip3degPIk"     kdiff="0"     kdiffunit="mu2/s"/>
     
-    <Specie name="Pkc"            id="Pkc"           kdiff="14"    kdiffunit="mu2/s"/>
-    <Specie name="PkcCa"          id="PkcCa"         kdiff="14"    kdiffunit="mu2/s"/>
+    <Specie name="Pkc"            id="Pkc"           kdiff="6.61"    kdiffunit="mu2/s"/>
+    <Specie name="PkcCa"          id="PkcCa"         kdiff="6.61"    kdiffunit="mu2/s"/>
     <Specie name="PkcCaDag"       id="PkcCaDag"      kdiff="0"     kdiffunit="mu2/s"/>
    
 <!-- PP1, PP2B, PP2A, CaMKII, PKA, Darpp32 from Gs, since Gq didn't have them -->     
+<!-- PP1, PP2B, PP2A are non-diffusible? -->     
     <Specie name="PP2B"           id="PP2B"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PP2BCam"        id="PP2BCam"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PP2BCamCa2C"    id="PP2BCamCa2C"   kdiff="0"     kdiffunit="mu2/s"/>
@@ -172,7 +173,7 @@
     <Specie name="CKpPP1"         id="CKpPP1"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="CKpCamCa4PP1"   id="CKpCamCa4PP1"  kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="CKCam_block"    id="CKCam_block"   kdiff="0"   kdiffunit="mu2/s"/>
-    <Specie name="AIP"           id="AIP"          kdiff="4"   kdiffunit="mu2/s"/>
+    <Specie name="AIP"            id="AIP"           kdiff="1"   kdiffunit="mu2/s"/>
         
     <!-- PKA -->
     <Specie name="PKA"            id="PKA"           kdiff="0"     kdiffunit="mu2/s"/>
@@ -186,7 +187,7 @@
     <Specie name="D32"            id="D32"           kdiff="8.9"   kdiffunit="mu2/s"/>
     <Specie name="D32PKAc"         id="D32PKAc"        kdiff="6.8"   kdiffunit="mu2/s"/>
     <Specie name="D32p34"           id="D32p34"          kdiff="8.8"   kdiffunit="mu2/s"/>
-    <Specie name="D32p34PP2Acal"    id="D32p34PP2Acal"   kdiff="8.8"   kdiffunit="mu2/s"/>
+    <Specie name="D32p34PP2Acal"    id="D32p34PP2Acal"   kdiff="0"   kdiffunit="mu2/s"/>
     <Specie name="D32p34PP1"        id="D32p34PP1"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP2BCamCa4" id="D32p34PP2BCamCa4" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP1PP2BCamCa4" id="D32p34PP1PP2BCamCa4" kdiff="0"  kdiffunit="mu2/s"/>
@@ -590,7 +591,7 @@
  
         <forwardRate> 6e-03 </forwardRate>
     </Reaction>
-   <!-- ACh or ACh agonist: ACh + m4R <==> AChm4R       Kd = 3.7uM: low affinity-->
+   <!-- ACh or ACh agonist: ACh + m4R <==> AChm4R       Kd = 7.4uM: low affinity Leach 2010 -->
       <Reaction name = "ACh+m4R--AChm4R" id="ACh+m4R--AChm4R">
         <Reactant specieID="ACh"              />
         <Reactant specieID="m4R"              />
@@ -600,7 +601,7 @@
         <reverseRate> 2.5e-03      </reverseRate>
     </Reaction>
 
-   <!-- Giabg + AChm4R    <-> GiabgAChm4R    Kd = 12.21  source:  sengeles JBiolChem 265 -->
+   <!-- Giabg + AChm4R    <-> GiabgAChm4R    Kd = 17.5  source:  sengeles JBiolChem 265 -->
     <Reaction name = "Giabg+AChm4R--AChm4RGi" id="Giabg+AChm4R--AChm4RGi">
         <Reactant specieID="AChm4R"             />
         <Reactant specieID="Giabg"               />
@@ -610,7 +611,7 @@
         <reverseRate>  1.68e-03  </reverseRate>
     </Reaction>
 
-    <!-- Gi + m4R       <-> Gim4R     Kd = 350  source:  PMR, Hein et al. JBC 2006: Gi dissoc tau=14s  -->
+    <!-- Gi + m4R       <-> Gim4R     Kd = 236  source:  PMR, Hein et al. JBC 2006: Gi dissoc tau=14s  -->
     <Reaction name = "Giabg+m4R--Gim4R" id="Giabg+m4R--Gim4R">
         <Reactant specieID="Giabg"                      />
         <Reactant specieID="m4R"                      />
@@ -619,7 +620,7 @@
         <forwardRate> 0.00178e-03 </forwardRate>
         <reverseRate> 0.42e-03  </reverseRate>
     </Reaction>
-    <!-- Gim4R + ACh    <-> AChm4RGi     Kd = 274 nM: high affinity (4x greater than measured)-->
+    <!-- Gim4R + ACh    <-> AChm4RGi     Kd = 548 nM: high affinity (4x greater than measured)-->
     <Reaction name = "Gim4R+ACh--AChm4RGi" id="Gm4R+ACh--AChm4RGi">
         <Reactant specieID="Gim4R"                     />
         <Reactant specieID="ACh"                      />
@@ -732,7 +733,7 @@
         <reverseRate> 0.2592e-6    </reverseRate>
     </Reaction>
     
-<!-- 2a) GiaGTP + AC5 <-> AC5GiaGTP)  Kd=96 for AC6 (160 for this rxn) source: Chen-Goodspeed JBC 280-1808, Nielson JBC 271-33308 1996 -->
+<!-- 2a) GiaGTP + AC5 <-> AC5GiaGTP  Kd=160 for AC5: Chen-Goodspeed JBC 280-1808, Nielson JBC 271-33308 1996 -->
     <Reaction name = "GiaGTP_AC5_reac" id="GiaGTP_AC5_reac">
 	<Reactant specieID="GiaGTP"/>
 	<Reactant specieID="AC5"/>
@@ -742,15 +743,22 @@
 	<reverseRate>2e-3</reverseRate>
     </Reaction>
 
-<!-- 2a) GiaGTP + AC5Gsa <-> AC5GsaGTP-GiaGTP)  Kd=96 for AC6 (160 for this rxn) source: Chen-Goodspeed JBC 280-18
-08, Nielson JBC 271-33308 1996 -->
+<!-- 2a) GiaGTP + AC5Gsa <-> AC5GsaGTP-GiaGTP  Kd=160 for AC5: Chen-Goodspeed JBC 280-1808, Nielson JBC 271-33308 1996 -->
     <Reaction name = "GiaGTP_AC5GsaGTP_reac" id="GiaGTP_AC5GsaGTP_reac">
 	<Reactant specieID="GiaGTP"/>
 	<Reactant specieID="AC5Gsa"/>
 	<Product specieID="AC5GsaGia"/>
 
-	<forwardRate>0.00125e-3</forwardRate>
-	<reverseRate>0.2e-3</reverseRate>
+	<forwardRate>0.0125e-3</forwardRate>
+	<reverseRate>2e-3</reverseRate>
+    </Reaction>
+    <Reaction name = "GsaGTP_AC5GiaGTP_reac" id="GsaGTP_AC5GiaGTP_reac">
+	<Reactant specieID="GsaGTP"/>
+	<Reactant specieID="AC5Gia"/>
+	<Product specieID="AC5GsaGia"/>
+
+        <forwardRate> 0.0037e-03   </forwardRate>
+	<reverseRate> 1.0e-03</reverseRate>
     </Reaction>
     <!-- AC5GsaGia + ATP    <-> AC5GsaGiaATP       source: Dessauer CW, Gilman AG JBC 1997-->
     <Reaction name = "AC5GsaGia+ATP--AC5GsaGiaATP" id="AC5GsaGia+ATP--AC5GsaGiaATP">

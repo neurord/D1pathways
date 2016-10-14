@@ -20,7 +20,7 @@
 
 <!-- cytosolic molecules -->
 	<!-- total calmodulin = 9000 nM -->
-      	<NanoMolarity specieID="Cam"          value="3495"/>
+      	<NanoMolarity specieID="Cam"          value="3425"/>
       	<NanoMolarity specieID="CamCa2C"      value="185"/>
       	<NanoMolarity specieID="CamCa2N"      value="35"/>
       	<NanoMolarity specieID="CamCa4"       value="0"/>
@@ -153,7 +153,7 @@
         <NanoMolarity specieID="D32p34PP1PP2AB56d"     value="10" />
         <NanoMolarity specieID="Cdk5"                  value="370" />
         <NanoMolarity specieID="Cdk5D32"               value="1215" />
-        <NanoMolarity specieID="D32p75"                 value="10650" />
+        <NanoMolarity specieID="D32p75"                 value="10585" />
         <NanoMolarity specieID="D32p75PKAc"             value="0" />
         <NanoMolarity specieID="D32p75PP2ABPR72"       value="260" />
         <NanoMolarity specieID="D32p75PP2AB56d"        value="260" />
@@ -162,12 +162,12 @@
 
         <NanoMolarity specieID="OA"                 value="0" />
         <NanoMolarity specieID="CyA"                 value="0" />
-        <NanoMolarity specieID="OA_PP2ABPR72"                 value="0" />
-        <NanoMolarity specieID="OA_PP2AB56d"                 value="0" />
-        <NanoMolarity specieID="OA_pPP2A"                 value="0" />
-        <NanoMolarity specieID="OA_PP2Acal"                 value="0" />
+        <NanoMolarity specieID="OA_PP2ABPR72"          value="0" />
+        <NanoMolarity specieID="OA_PP2AB56d"           value="0" />
+        <NanoMolarity specieID="OA_pPP2A"              value="0" />
+        <NanoMolarity specieID="OA_PP2Acal"             value="0" />
         <NanoMolarity specieID="OA_PP1"                 value="0" />
-        <NanoMolarity specieID="CyA_PP2B"                 value="0" />
+        <NanoMolarity specieID="CyA_PP2B"                value="0" />
         <NanoMolarity specieID="AKAR3"                 value="0" />
         <NanoMolarity specieID="pAKAR3"                 value="0" />
     </ConcentrationSet> 
@@ -257,8 +257,8 @@
  	<NanoMolarity specieID="AC1CamCa4"              value="0" />
         <NanoMolarity specieID="AC1CamCa4ATP"           value="0" />
 
-        <NanoMolarity specieID="PDE10"                value="620" />
-        <NanoMolarity specieID="PDE10cAMP"            value="80" />
+        <NanoMolarity specieID="PDE10"                value="580" />
+        <NanoMolarity specieID="PDE10cAMP"            value="120" />
         <NanoMolarity specieID="PKAcPDE10"            value="0" />
         <NanoMolarity specieID="PKAcPDE10cAMP"        value="0" />
         <NanoMolarity specieID="pPDE10"               value="0" />
@@ -344,7 +344,7 @@
 
         <PicoSD specieID="PIkinase"           value="280"  />
         <PicoSD specieID="Ip3degPIk"          value="0"  />
-        <PicoSD specieID="Ip3"                value="20"  />
+        <PicoSD specieID="Ip3"                value="40"  />
         <PicoSD specieID="Ip3degrad"          value="0"  />
 	<!--sm Ip3 initialization is to more easily balance Pip2 and PIkinase -->
  
