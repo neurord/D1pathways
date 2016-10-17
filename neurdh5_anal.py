@@ -46,7 +46,7 @@ showss=0
 show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
-outputavg=0
+outputavg=1
 showplot=1  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 calc_signature=0#1 means one overall signature, 2 mean separate spine and dend signature
@@ -56,7 +56,7 @@ calc_signature=0#1 means one overall signature, 2 mean separate spine and dend s
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
 tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
-#tot_species=[]
+tot_species=[]
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -227,13 +227,17 @@ for fnum,ftuple in enumerate(ftuples):
             if outputavg:
                  if molecule in plot_molecules:
                     outfname=fname[0:-3]+'_'+molecule+'_avg.txt'
-                    print('output file: ', outfname)
+                    if len(params)==1:
+                        param_name=params[0]+parval[fnum]
+                    if len(params)==2:
+                        param_name=params[0]+parval[fnum][0]+params[1]+parval[fnum][1]
+                    print('output file:', outfname,  ' param_name:', param_name)
                     newheader=''
                     newheaderstd=''
                     for item in header.split():
-                        newheader=newheader+params[0]+parval[fnum]+'_'+item+' '
+                        newheader=newheader+param_name+'_'+item+' '
                         if not item.startswith('#'):
-                            newheaderstd=newheaderstd+params[0]+parval[fnum]+'_'+item+'std '
+                            newheaderstd=newheaderstd+param_name+'_'+item+'std '
                     if numtrials>1:
                         newheader=newheader+newheaderstd
                         region_out=np.column_stack((RegMeanStd['mean'],RegStructMeanStd['mean'],RegMeanStd['std'],RegStructMeanStd['std']))
@@ -245,8 +249,8 @@ for fnum,ftuple in enumerate(ftuples):
                         newspinehead=''
                         newspineheadstd=''
                         for item in spineheader.split():
-                            newspinehead=newspinehead+params[0]+parval[fnum]+'_'+item+' '
-                            newspineheadstd=newspineheadstd+params[0]+parval[fnum]+'_'+item+'std '
+                            newspinehead=newspinehead+param_name+'_'+item+' '
+                            newspineheadstd=newspineheadstd+param_name+'_'+item+'std '
                         if numtrials>1:
                             newheader=newheader+newheaderstd+newspinehead+newspineheadstd+'\n'
                             outdata=np.column_stack((time,region_out,overall_out,spineMeanStd['mean'],spineMeanStd['std']))
