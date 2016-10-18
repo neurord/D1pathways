@@ -91,7 +91,7 @@ def plot_signature(condition,traces,time,title):
           for j in range(numrows):
                domain.append(condition[0][j].split()[-1])
                for i,cond in enumerate(condition):
-                    axes[j].plot(time,traces[i,:,j],label=cond[j].split()[0:2])
+                    axes[j].plot(time,traces[i,:,j],label=cond[j].split()[0:3])
                axes[j].legend(fontsize=8, loc='best')
                axes[j].set_ylabel('signature (nM) '+domain[j])
           axes[numrows-1].set_xlabel('Time (sec)')
