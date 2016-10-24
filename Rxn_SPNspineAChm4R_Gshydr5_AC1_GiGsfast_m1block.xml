@@ -539,7 +539,7 @@
         <Reactant specieID="m1R"              />
         <Product  specieID="AChm1R"         />
 
-        <forwardRate> 0.095e-06 </forwardRate>
+        <forwardRate> 0.0e-06 </forwardRate>
         <reverseRate> 2.5e-03      </reverseRate>
     </Reaction>
 
@@ -569,7 +569,7 @@
         <Reactant specieID="m1RGq" />
         <Product specieID="AChm1RGq" />
 
-        <forwardRate> 0.00396e-03 </forwardRate>
+        <forwardRate> 0.00e-03 </forwardRate>
         <reverseRate> 2.5e-03        </reverseRate>
    </Reaction>
 
@@ -2166,14 +2166,14 @@ MUCH slower binding compared to CaDgl  -->
 	<forwardRate>0.001e-3</forwardRate>
 	<reverseRate>0.15e-3</reverseRate>
    </Reaction>
-  <!-- cyclosporin A inhibits Pp2B -->
+  <!-- cyclosporin A inhib)its Pp2B -->
    <Reaction name="CyAblock" id="CyAblock">
     <Reactant specieID="CyA"/>
     <Reactant specieID="PP2BCamCa4"/>
     <Product specieID="CyA_PP2B"/>
 
 	<forwardRate>0.001e-3</forwardRate>
-	<reverseRate>0.005e-3</reverseRate>
+	<reverseRate>0.05e-3</reverseRate>
    </Reaction>
 
 </ReactionScheme>

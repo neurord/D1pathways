@@ -157,7 +157,7 @@ noACh burst reduces 2ag quantity third (expected), reduces dendritic signature b
 noMGlu - trivial effect on spine signature for theta, small effect for 20hz, despite doubling the Gq in the spine head to 4 uM, and doubling the MgluR to 400. 
 ----------->This does not agree with experiments.  What about Uchigashima simulations?  Do we need to lower Plc affinity for calcium to make Gq more important?
 
-############ New simulations with higher PDE concentration
+############ New simulations with higher PDE concentration (should still have issues with noMGlu)
 20% because even 20% smaller Dp34 is still on the large side
 PDE4=336 (330/6 vs 275/5)
 PDE2=672 (vs 560)
@@ -165,7 +165,29 @@ PDE10=840 (720/120 vs 620/80 neck, 680/160 vs 580/120 head, 294/42 vs 245/35 den
 
 long simulations are running - ~70 sec in 24 hours -> 4 days for simulations.  Started on 10/17 in morning, should finish 10/21.  Entire set of short simulations takes ~2 days -> Begin the new nostim case on 10/21, should be finished by 10/23 - ready to evaluate by 10/24.  Repeat long simulations if new parameters are better.  Possibly tweak Gq first to match Uchigashima.
 
--------------->Research effects of alcohol.  What stimulation protocal would optimize LTP?
+Response to bath application (GiGsfast):
+   	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
+basal	676-680	  500 nM	9750	10-12 uM			0.1	0.82
+Da	4416	  5x  		6295	50%				0.3	0.89
+Ca	260n	  50%		6666	25%				1	1.2
+DaCa	1443	  2-3x		4935	unknown				10	2.6
+CyA:	795	  3-17x		10.0	no change
+OA:	1105n	  5x		34.2u	3x
+------------> basal MUCH better, da duration still not saturating with 1s.
+	      great response to Da, Ca, Da+Ca, OA bath
+	      Transient increase in Dp34 wit CyA block - still not sufficient!
+PP2BCamCa4 levels are not altered by CyA block - what is inject value?
+CyA=8 uM, CyA_PP2B = 1 uM, free PP2B ~8 nM, Dp34PP1 bound PP2B ~4 nM - these are same values as without CyA!
+CyA affinity is 50 nM, but these are possible values for IC50: Tocris: 5 nM; Oetjen .. Knepel 2005 - 10 nM; Groblewski, Wagner, Williams - 65 nM.
+This means that affinity is way to low.  Increase affinity 10x (but reduce quantity by 30%) and re-run ONLY THIS ONE.
+
+Theta & 20 hz: noACh has higher D32p34
+ACh burst (vs no ACh) delays the increase in AC5GsaATP, but the small transient dips in GiaGTP do not produce small transient bursts of AC5GsaATP.  On the other hand, the early increase in AC5GsaATP produces slightly higher cAMP and PKAc in those conditions, with slightly higher D32p34.  However, these changes aren't huge, and are similar for theta and 20 hz
+noMGlu and noACh
+
+------->A) Research effects of alcohol.
+	   investigate something abot plasticity and alcohol
+	B) What stimulation protocol would optimize LTP?
 
 &&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz

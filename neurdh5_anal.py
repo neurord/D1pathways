@@ -46,7 +46,7 @@ showss=0
 show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
-outputavg=1
+outputavg=0
 showplot=1  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 calc_signature=0#1 means one overall signature, 2 mean separate spine and dend signature
