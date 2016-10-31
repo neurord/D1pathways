@@ -57,7 +57,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               52400          </onset>
         <duration>            800            </duration>
-        <rate>                1.11            </rate>
+        <rate>                0            </rate>
         <period>              900           </period>
         <end>                 53299          </end>
         <numTrains>           10             </numTrains>

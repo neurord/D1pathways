@@ -95,7 +95,7 @@
         <duration>            6800      </duration>
         <rate>                3         </rate>
         <period>              10000             </period>
-        <end>                 220000          </end>
+        <end>                 250000          </end>
 </InjectionStim>
 <!-- burst during stim : Assume that ACh neurons can follow 20 Hz -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0,6].pointA">
@@ -123,7 +123,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0,6].pointA">
         <onset>               52400          </onset>
         <duration>            800            </duration>
-        <rate>                2.22            </rate>
+        <rate>                0            </rate>
         <period>              900           </period>
         <end>                 53299          </end>
         <numTrains>           20             </numTrains>
