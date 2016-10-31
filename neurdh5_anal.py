@@ -76,7 +76,7 @@ figtitle=args[0].split('/')[-1]
 
 try:
     data.close()
-except NameError:
+except Exception:
     pass
 
 ###################################################
@@ -316,6 +316,10 @@ for fnum,ftuple in enumerate(ftuples):
               plot_array.append([-1])
     ######################################
     #Whether 1 voxel or multi-voxel, create plotting array of means for all molecules, all files, all trials
+    #Doesn't work if molecules have different dt / number of time samples
+    #make num_molecules the left most dimension?  I.e., whole_plot_array=plot_array for numfiles=1
+    #for each molecule, append to whole_plot_array[mol], change plottrace and extracting measures
+    #implement these changes when swapping axes for neurord v3.1.5
     if numfiles>1:
         #plot_array dimensions=num molecules x sample times
         #whole_plot_array dimension=num files*num molecules*sample time

@@ -38,14 +38,14 @@ prnheader=0
 prninfo=0
 showss=0
 #outputavg determines whether output files are written
-outputavg=1
+outputavg=0
 showplot=1
 ##change these endings depending on whether using neurord3.x:
 meshend="*mesh.txt.out"
 concend='all-conc.txt.out'
 ## or neurord2.x (uncomment these)
-#meshend="*mesh.txt"
-#concend='conc.txt'
+meshend="*mesh.txt"
+concend='conc.txt'
 #Example of how to total some molecule forms; turn off with tot_species={}
 #tot_species={
 #        "PKAtot":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"],
@@ -74,9 +74,9 @@ except NameError: #NameError refers to an undefined variable (in this case ARGS)
 	do_exit = True
 
 #1st and 2nd arguements used to construct pattern for reading in multiple files
-pattern=args[2]+'*'
-if len(args[0]):
-        params=args[0].split(" ")
+pattern=args[0]+'*'
+if len(args[1]):
+        params=args[1].split(" ")
         for par in params:
                 pattern=pattern+'-'+par+'*'
 else:
@@ -87,6 +87,11 @@ meshname=pattern.split('-')[0]+meshend
 lastslash=rfind(pattern,'/')
 subdir=pattern[0:lastslash]
 
+try:
+    data.close()
+except Exception:
+   pass
+
 ###################################################
 
 fnames = glob.glob(whole_pattern)
@@ -95,7 +100,7 @@ if len(fnames)==0:
     print("MESHFILES:", os.listdir(subdir+'/'+meshend))
 ss_tot=np.zeros((len(fnames),len(tot_species.keys())))
 parlist=[]
-if len(args[0]):
+if len(args[1]):
         ftuples,parlist=pu.file_tuple(fnames,params)
         ftuples = sorted(ftuples, key=lambda x:x[1])
 else:
@@ -131,8 +136,8 @@ for fnum,ftuple in enumerate(ftuples):
         f.close()
         #prepare to plot stuff (instead of calculating averages)
         #plot_molecules determines what is plotted
-        if len(args[1].split()):
-            plot_molecules=args[1].split()
+        if len(args[2].split()):
+            plot_molecules=args[2].split()
         else:
             plot_molecules=molecules
         if showplot:
@@ -168,7 +173,6 @@ for fnum,ftuple in enumerate(ftuples):
                         hparse.spatial_average(xloc,yloc,bins,regionID,structType,volnums)
      #
     #Read in the data, reshape so that each molecule in separate array
-    #this will not be needed when using hdf5 file
     if len(args)>4:
             time,molecule_array,rows=hparse.readdata(fname,maxvols,molecules,int(args[4]))
     else:
@@ -180,7 +184,10 @@ for fnum,ftuple in enumerate(ftuples):
             sstart = float(args[3].split(" ")[0]) // dt
             ssend = float(args[3].split(" ")[1]) // dt
             if ssend>0.5*rows:
-                    print("WARNING*******. Possible SS time issue: only", rows, "rows, end time=", time[-1])
+                print("WARNING*******. Possible SS time issue: only", rows, "rows, end time=", time[-1])
+            if ssend>rows:
+                ssend=0.1*rows
+                sstart=0.075*rows
     else:
             sstart=int(0.075*rows)
             ssend=int(0.1*rows)

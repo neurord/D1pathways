@@ -54,7 +54,7 @@ basal Dp34 ~800 nM
 OA: much better response - small increase D32p34, big increase in Dp75
 Bath Ca: ~60% reduction in Dp34
 CyA: small increase in D32p34 - need still more
-#######increase kf to 5e-6, and kb & kcat by 50%.  Km=1.5 uM (close to measured) kcat is 50% greater
+#######increase kf to 5e-6, and kb & kcat by 50% for PP2B.  Km=1.5 uM (close to measured) kcat is 50% greater
 This is more appropriate because Km are more precise measurements
 >>>>>>>>>10/5/2015 Results WORSE!
 #######increase all rates.  kf=6.3e-3, kb=8, kcat=2.  Km~1.6 uM, kcat is 2x greater than original
@@ -65,9 +65,9 @@ bath:  Da produces large increase in Dp34 (>4 uM), reduced by Ca (2 uM peak for 
       Ca produces reduction: 246 minimum, ~400-450 prolonged - almost meets goal
 block: CyA slowly increases Dp34 to 950 nM - still too weak
 
-#####increase kf to 8e-3 (from 6.3e-3) (Km=1.25 uM)
+#####increase kf to 8e-3 (from 6.3e-3) for PP2B (Km=1.25 uM)
 Regarding Gi dip: consider slowing down rate of Gia binding to AC5Gsa form, e.g. 10x 
-##### Kf, kb=0.00125,0.2 (from 0.0125, 2)
+##### Kf, kb=0.00125,0.2 (from 0.0125, 2) for Gia binds AC5Gsa
 ---------->Will this improve the pAKAR results?
 
 MGluR results: trivial effect on Gq, 2ag, Pkc from blocking it.  Gq bound Plc is ~5% of ca bound Plc
@@ -84,13 +84,13 @@ Solution: go back to fast Gi binding, or
 	  increase speed of AChR binding Gi (kf &kb) - currently too low given kcat
 	   
 ####### AChR binding Giabg: from 0.096,1.68 to 0.129,3.35; from 0.01824,10 to 0.0365,20
------>If Gi is higher (currently 33), but cAMP still too high (currently 121) go back to fast GI binding to AC5; Consider adding Gs binding 2nd, to that Gs can come off first also.  
+----->If Gi is higher (currently 33), but cAMP still too high (currently 121) go back to fast Gi binding to AC5; Consider adding Gs binding 2nd, to that Gs can come off first also.  
 	 cAMP good/low values: AC5Gia   469.18, AC5GsaGiaATP    92.76, AC5GsaATP    12.33
 	 cAMP too high values: AC5Gia   464.5, AC5GsaGiaATP    74.07, AC5GsaATP    35.24
 ----->If Gi is now fine, but still no dip effect visible, go back to previous, or even faster Gi dissocation, and add in Gs binding 2nd (according to Dessauer)
 
 >>>>>>>>>10/13/2016
-Da dur: no discrimination of different durations - basal cAMP still too high
+Da dur: no discrimination of different durations, basal cAMP still too high
 GiaGTP: still 33; AC5GsaATP: 38 - too high, AC5GsaGiaATP: 67 - too low
 D32p34 - crazy high (> 2 uM) basal
 -----------> go back to previous values for Gia binding.  Keep the updated PP2B values
@@ -183,11 +183,43 @@ This means that affinity is way to low.  Increase affinity 10x (but reduce quant
 
 Theta & 20 hz: noACh has higher D32p34
 ACh burst (vs no ACh) delays the increase in AC5GsaATP, but the small transient dips in GiaGTP do not produce small transient bursts of AC5GsaATP.  On the other hand, the early increase in AC5GsaATP produces slightly higher cAMP and PKAc in those conditions, with slightly higher D32p34.  However, these changes aren't huge, and are similar for theta and 20 hz
-noMGlu and noACh
+noMGlu and noACh: no ACh yields significantly (20%?) less Dag, and thus less 2ag and Pkc active. Effect on Pkc only appears for theta, not 20hz.
+
+############# 50 nM affinity, lower injection of CyA:
+<Reaction name="CyAblock" id="CyAblock">
+    <Reactant specieID="CyA"/>
+    <Reactant specieID="PP2BCamCa4"/>
+    <Product specieID="CyA_PP2B"/>
+	<forwardRate>0.001e-3</forwardRate>
+	<reverseRate>0.005e-3</reverseRate>
+>>>>>>> CyA=6 uM free, CyA_PP2B=3.2 uM, PP2BCamCa4 dec to 2 nM free, 2 nM Dp34 bound
+Dp34PP1 increases a bit - remains close to 800 nM.  Still not sufficient.  Try 1 nM affinity.
+>>>>>> Dp34 = 866 nM - still less than 2fold increase, only slightly greater than 50 nM affinity.
+The decrease in PP2B is slow - may need to simulate for longer to observe maximum increase.
+
+
+Alternative approach to detecting Gi dip
+1. AC5 has some GAP activity against Gs, but what if AC5 had GAP activity against Gi?
+Make short simulation to evaluate basal, then if good evaluate Da stim sims
+GapGs: 25 sec of "control"
+GapGiA: Gi gap instead of Gs gap with same value of 0.01/sec
+GapGiB: same gap activity of A, but double rate of Gi production to compensate: AChR binding Giabg: from 0.096,1.68 to 0.192,3.35; from 0.01824,10 to 0.0365,20, and GiGTP synthesis double from 4 to 8
+Goals: AC5GsaGiaATP    92.76, AC5GsaATP    12.33.  GiaGTP: 34  Then see if dip is detected
+
+>>>>>>>>>>Results 10/27/16
+			cAMP	GiaGTP	AC5GsaATP	AC5GsaGiaATP	
+GapGs (ctrl) 	      	30	34	11		97
+GapGiA is not good	49	34	18		105
+GapGiB: good   		33	63	12		113
+
+These are results after 25 sec.  Clearly GapGiA has too much cAMp and AC5GsaATP.  GapGiB is promixing - needs to be simulated longer
+Try nostim for 500 sec - new basal
+Try theta - is gap detected
 
 ------->A) Research effects of alcohol.
 	   investigate something abot plasticity and alcohol
 	B) What stimulation protocol would optimize LTP?
+	   According to Reynolds - burst of Da needs to be AFTER ACh burst, e.g. by 0.6 sec.  Adjust theta stim file to achieve this.
 
 &&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
