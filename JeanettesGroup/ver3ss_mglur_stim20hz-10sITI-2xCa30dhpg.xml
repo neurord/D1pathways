@@ -33,7 +33,7 @@
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               20000          </onset>
         <duration>            3              </duration>
-        <rate>                260            </rate>
+        <rate>                1040            </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
