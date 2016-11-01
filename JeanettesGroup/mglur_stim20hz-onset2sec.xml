@@ -1,0 +1,29 @@
+<StimulationSet>
+
+
+
+    <!-- the injectionSite must match a regionLabel deefined in the morphology -->
+
+   <!-- Make each train have 25 pulses, 4 trains = 100 pulses, same as theta -->
+
+<!-- Train 1 -->
+<InjectionStim specieID="Dhpg" injectionSite="pointB">
+        <onset>               1000          </onset>
+        <duration>            5              </duration>
+        <rate>                30.0           </rate>
+        <period>              50             </period>
+        <end>                 1999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>   
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="pointB">
+        <onset>               2000          </onset>
+        <duration>            3              </duration>
+        <rate>                260            </rate>
+        <period>              50             </period>
+        <end>                 2999          </end>
+        <numTrains>           20             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>  
+</InjectionStim>
+</StimulationSet>

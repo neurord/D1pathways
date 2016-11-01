@@ -17,7 +17,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
   </InjectionStim>
 
-<!--  Ca pulses TRAIN 1 : 40 Ca pulses -->
+<!--  Ca pulses TRAIN 1  40 Ca pulses -->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
@@ -29,7 +29,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               20000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -40,7 +40,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------**********DHPG *******TRAIN 2************---------->
+<!---**********DHPG *******TRAIN 2************-->
   <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>               35000          </onset>
         <duration>            5              </duration>
@@ -63,7 +63,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>       
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               35000          </onset>
         <duration>            3              </duration>
         <rate>               260            </rate>
@@ -74,7 +74,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------*********DHPG******TRAIN 3***************---------->
+<!--*********DHPG******TRAIN 3***************-->
   <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            5              </duration>
@@ -85,7 +85,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
   </InjectionStim>
   
-<!-----Calcium TRAIN 3-----120 total Ca pulses ------>
+<!--Calcium TRAIN 3-120 total Ca pulses -->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
@@ -97,7 +97,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>      
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               50000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -108,7 +108,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------**********DHPG******TRAIN 4******************------>
+<!--**********DHPG******TRAIN 4*****************-->
 <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>               65000          </onset>
         <duration>            5              </duration>
@@ -119,7 +119,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
   
-<!---***Ca TRAIN 4 - 160 total pulses -------->
+<!---***Ca TRAIN 4 - 160 total pulses -->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               65000          </onset>
@@ -131,7 +131,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval> 
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               65000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -142,7 +142,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------*********DHPG******TRAIN 5***************---------->
+<!--*********DHPG******TRAIN 5***************-->
 <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>               80000          </onset>
         <duration>            5              </duration>
@@ -153,7 +153,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>  
 </InjectionStim>
 
-<!--------*******Ca TRAIN 5 200 pulses **********------------>
+<!--*******Ca TRAIN 5 200 pulses **********-->
 
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
@@ -166,7 +166,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               80000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -177,7 +177,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------**********DHPG******TRAIN 6******************------>
+<!--**********DHPG******TRAIN 6******************-->
 <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>               95000          </onset>
         <duration>            5              </duration>
@@ -188,7 +188,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<!--------**********Calcium******TRAIN 6******* 240 total Ca pulses ***********------>
+<!--**********Calcium******TRAIN 6******* 240 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               95000          </onset>
@@ -200,7 +200,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>  
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               95000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -210,7 +210,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>   
 </InjectionStim>
 
-<!--------*********DHPG******TRAIN 7***************---------->
+<!--*********DHPG******TRAIN 7***************-->
 <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>              110000          </onset>
         <duration>            5              </duration>
@@ -222,7 +222,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------**********Calcium******TRAIN 7******* 280 total Ca pulses ***********------>
+<!---**********Calcium******TRAIN 7******* 280 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>              110000          </onset>
@@ -234,7 +234,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>              110000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -244,7 +244,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<!--------*********DHPG******TRAIN 8***************---------->
+<!--*********DHPG******TRAIN 8***************-->
 <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>              125000          </onset>
         <duration>            5              </duration>
@@ -255,7 +255,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<!--------**********Calcium******TRAIN 8******* 320 total Ca pulses ***********------>
+<!--**********Calcium******TRAIN 8******* 320 total Ca pulses ***********-->
 
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
@@ -268,7 +268,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>      
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>              125000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -279,7 +279,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------*********DHPG******TRAIN 9***************---------->
+<!--*********DHPG******TRAIN 9***************-->
 <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>              140000          </onset>
         <duration>            5              </duration>
@@ -290,7 +290,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<!--------**********Calcium******TRAIN 9******* 360 total Ca pulses ***********------>
+<!--**********Calcium******TRAIN 9******* 360 total Ca pulses ***********-->
 
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
@@ -303,7 +303,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>       
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>              140000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>
@@ -314,7 +314,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
 </InjectionStim>
 
 
-<!--------*********DHPG******TRAIN 10***************---------->
+<!--*********DHPG******TRAIN 10***************-->
 <InjectionStim specieID="Dhpg" injectionSite="sa1[0].pointA">
         <onset>              155000          </onset>
         <duration>            5              </duration>
@@ -324,7 +324,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>       
 </InjectionStim>
-<!--------**********Calcium******TRAIN 10******* 320 total Ca pulses ***********------>
+<!--**********Calcium******TRAIN 10******* 320 total Ca pulses ***********-->
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>              155000          </onset>
@@ -336,7 +336,7 @@ DHGP has been changed to once per Ca pulse, but 1/4 the value-->
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="sa2[0:3].pointD">
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>              155000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>

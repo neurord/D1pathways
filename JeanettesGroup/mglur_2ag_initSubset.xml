@@ -1,0 +1,42 @@
+<InitialConditions>
+
+<!-- Nov 30: decrease Pip2 by 2x to get more physiological conc 
+Note that with smaller voxels, local conc is greater -->
+<!-- Dec 6: reinitialized for ..reac11dec2_SlowPLC.xml -->
+    <!-- these apply to everything unless overridden -->
+<!--feb 24: add terms for Gap activity and desensitization -->
+<!-- mar 1: reduce Gabg quantity to decrease Dhpg effect still further -->
+    <ConcentrationSet>
+        
+        <NanoMolarity specieID="Ca" value="51"/>
+        <NanoMolarity specieID="CaOut" value="2015100"/>
+        <NanoMolarity specieID="Calbin" value="153290"/>
+        <NanoMolarity specieID="CalbinC" value="7648"/>
+       <NanoMolarity specieID="Mglu"           value="5e3"     /> 
+       <NanoMolarity specieID="Dhpg"           value="1e3"     />   
+       <NanoMolarity specieID="DhpgMglu"           value="0"     />   
+       <NanoMolarity specieID="DhpgOut"       value="0"     />
+       <NanoMolarity specieID="pmca" value="659"/>
+       <NanoMolarity specieID="pmcaCa" value="178"/>
+       <NanoMolarity specieID="ncx" value="14980"/>
+       <NanoMolarity specieID="ncxCa" value="784"/>
+       <NanoMolarity specieID="pmca" value="659"/>
+    </ConcentrationSet>
+
+<!-- Should there be mGLu in the dendrite?  Would the results change significantly?  Notice that surface density is ~20% of spine concentration. 
+Multiply by 0.6 to get particles/um2 (6e11 particles/pM*1e-12 m2/um2)-->
+
+    <!-- number densities are in particles per cubic micron. You
+         get about one particles per cubic micron in a 1.6 nM solution -->
+
+    <!-- surface concentrations for membrane-bound species. The value attribute for
+         a PicoSD element is the number of picomoles per square metre. For comparison
+         with the volume concentrations, a surface density of 1 picomole/m^2, if spread
+         over a layer 1 micron deep, gives a 1 nanoMolar solution, so to average one
+         particle per square micron you need a PicoSD value of about 1.6. -->
+
+<!--    <SurfaceDensitySet region="dendrite">
+        <PicoSD        specieID="GaGTP"      value="003.729"    />
+        <PicoSD        specieID="PLC"         value="2.521e+04"  />
+    </SurfaceDensitySet>-->
+</InitialConditions>

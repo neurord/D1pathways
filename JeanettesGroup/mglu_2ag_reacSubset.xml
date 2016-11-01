@@ -1,0 +1,174 @@
+<ReactionScheme>
+<!-- changes by AB: 
+   1. changed variable names, such as Q to G
+   2. Suggested reactions for more realistic (and partly depleting) PIP2 regen
+   3. Comment that we need DAG degradation -->
+
+<!-- changes on 110923:
+   1. removed Mpep molecules and reactions (not used) and CaB (not used)
+   2. Added DAG conversion to PA
+-->
+<!-- changes on Nov 29, 2011:
+Elminate Q term, now have true regeneration of Pip2 from Ip3 degrad
+-->
+<!-- changes on Nov 30, 2011:
+1. Decrease rate of PLC binding to Ca by 5x (keep same affinity)
+2. Decrease rate of PlcCa binding to GaGTP (keep affinity)
+3. Decrease rate of PlcCa hydrolysis of Pip2 by 5x (producing way too much Ip3 basal)
+4. Decrease rate of PlcCaGaGTP hydrolysis by 2x (keep GaGTP accelerates PLC by 10x)
+5. Increase rate of PIkinase activity by 10x (too high Ip3deg is building up) 
+-->
+<!-- changes on Dec 2, 2011:
+A: mglu_2ag_reac11dec2pikinase10x.xml
+1. decrease  degradation rate of Ip3 (to increase conc) and 2ag
+2. halve affinity and binding rate of Dgl for Ca
+B: mglu_2ag_reac11dec2plcSlow.xml
+Slow down PLC even more by increasing kb 5x.
+-->
+<!-- Changes on Dec 8, 2011:
+1. speed up PIkinase degradation even more
+2. lower speed and affinity of Dag lipase for DAG
+-->
+<!-- changese on Dec 16, 2011:
+1. Ca binds Cam on either site first 
+-->
+<!-- changes on Dec 20, 2011:
+1. halve the 2ag degrad
+2. Slowing down Dgl activity by 4x to help the saturation
+-->
+<!-- changes on Jan 4, 2012:
+1. lower affinity of Dag lipase (mistakenly raised it on Dec 8, 2011)
+-->
+<!-- Mglu agonist and antagonist reactions leading to IP3, DAG, and 2AG production-->
+<!-- changes on Jan 31, 2012:
+1. lower affinity of Dag lipase for calcium -->
+<!-- Changes on Feb 15, 2011
+Many previous attemps at more Gap activity didn't work
+Let's try lower affinity of Plc for GaGTP, since current values not based on data -->
+<!-- Changes on Feb 17, 2012
+1. Desensitization of DhpgMglu - need to decrease rate of GaGTP production
+2. True Gap activity - moderate rate of regeneration of Gabg from GaGDP - does Gabg deplete at all?--> 
+<!--Changes on Feb 22, 2012
+1. Gap activity of PlcCaGaGTP 
+2. spont hydrolysis of GaGTP
+Note that GaGTP has higher quantity, but slower hydrolysis than PlcCaGaGTP -->
+<!-- Changes on Mar5, 2012
+less desensitization of DhpgMglu - can be weaker since Gabg is lower -->
+<!--changes on Mar 20, 2012
+even less desensitization to match even lower Gabg -->
+
+    <Specie name="Dhpg"          id="Dhpg"          kdiff="10"    kdiffunit = "mu2/s"/>
+    <Specie name="DhpgOut"       id="DhpgOut"       kdiff="10"    kdiffunit = "mu2/s"/>
+    <Specie name="DhpgMglu"      id="DhpgMglu"      kdiff="0"    kdiffunit = "mu2/s"/>
+    <Specie name="Mglu"          id="Mglu"          kdiff="0"    kdiffunit = "mu2/s"/>
+    <Specie name="Ca"            id="Ca"            kdiff="174.3"   kdiffunit="mu2/s"/>
+    <Specie name="CaOut"         id="CaOut"         kdiff="174.3"   kdiffunit="mu2/s"/>
+    <Specie name="CaOutLeak"     id="CaOutLeak"     kdiff="0"       kdiffunit="mu2/s"/>
+    <Specie name="Leak"          id="Leak"          kdiff="0"       kdiffunit="mu2/s"/>
+    <Specie name="Calbin"        id="Calbin"        kdiff="9.3"     kdiffunit="mu2/s"/>
+    <Specie name="CalbinC"       id="CalbinC"       kdiff="9.3"     kdiffunit="mu2/s"/>
+    
+    <Specie name="pmca" id="pmca" kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="ncx" id="ncx" kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="pmcaCa" id="pmcaCa" kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="ncxCa" id="ncxCa" kdiff="0" kdiffunit="mu2/s"/>
+    
+
+<!-- Ca pump high affinity -    Ca + pmca <-> pmcaCa -->
+    <Reaction name = "Ca_pump1a" id="Ca_pump1a">
+	<Reactant specieID="Ca"/>
+	<Reactant specieID="pmca"/>
+	<Product specieID="pmcaCa"/>
+
+	<forwardRate>0.5e-4</forwardRate>
+	<reverseRate>0.007</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!-- Ca pump high affinity -    pmcaCa <-> pmca + CaOut -->
+    <Reaction name = "Ca_pump1b" id="Ca_pump1b">
+	<Reactant specieID="pmcaCa"/>
+	<Product specieID="pmca"/>
+	<Product specieID="CaOut"/>
+
+	<forwardRate>0.0035</forwardRate>
+	<reverseRate>0</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!-- Ca pump low affinity -    Ca + ncx <-> ncxCa -->
+    <Reaction name = "Ca_pump2a" id="Ca_pump2a">
+	<Reactant specieID="Ca"/>
+	<Reactant specieID="ncx"/>
+	<Product specieID="ncxCa"/>
+
+	<forwardRate>1.68e-5</forwardRate>
+	<reverseRate>0.0112</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!-- Ca pump low affinity -    ncxCa <-> ncx + CaOut -->
+    <Reaction name = "Ca_pump2b" id="Ca_pump2b">
+	<Reactant specieID="ncxCa"/>
+	<Product specieID="ncx"/>
+	<Product specieID="CaOut"/>
+
+	<forwardRate>0.0056</forwardRate>
+	<reverseRate>0</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!-- Ca leak -    CaOut + Leak <-> CaOutLeak -->
+    <Reaction name = "Ca_leak" id="Ca_leak">
+	<Reactant specieID="CaOut"/>
+	<Reactant specieID="Leak"/>
+	<Product specieID="CaOutLeak"/>
+
+        <forwardRate>1.5e-6</forwardRate>
+	<reverseRate>1.1e-3</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!-- Ca leak -    CaOutLeak <-> Ca (inside) + Leak  -->
+    <Reaction name = "Ca_leak" id="Ca_leak">
+	<Reactant specieID="CaOutLeak"/>
+	<Product specieID="Ca"/>
+	<Product specieID="Leak"/>
+
+        <forwardRate>1.1e-3</forwardRate>
+	<reverseRate>0</reverseRate>
+	<Q10>0.2</Q10>
+    </Reaction>
+
+<!-- Ca Buffer    Ca + Calbindin <-> calbinCa -->
+    <Reaction name = "Ca_buffer" id="Ca_Buffer">
+        <Reactant specieID="Ca"/>
+        <Reactant specieID="Calbin"/>
+        <Product specieID="CalbinC"/>
+
+        <forwardRate>2.8e-5</forwardRate>
+        <reverseRate>0.0196</reverseRate>
+        <Q10>0.2</Q10>
+    </Reaction>
+
+   <!-- DhpgOut    Dhpg <-> DhpgOut>  -->
+  <Reaction name = "Dhpg--DhpgOut" id="Dhpg--DhpgOut">
+  	<Reactant specieID="Dhpg"/>
+	  <Product specieID="DhpgOut"/>
+
+  	<forwardRate>2e-3</forwardRate>
+  	<reverseRate>0</reverseRate>
+  	<Q10>0.2</Q10>
+  </Reaction>
+  
+   <!-- Dhpg + Mglu <==> DhpgMglu  -->
+      <Reaction name = "Dhpg+Mglu--DhpgMglu" id="Dhpg+Mglu--DhpgMglu">
+        <Reactant specieID="Dhpg"              />
+        <Reactant specieID="Mglu"              />
+        <Product  specieID="DhpgMglu"         />
+
+        <forwardRate> 0.1e-06 </forwardRate>
+        <reverseRate> 0e-03      </reverseRate>
+        <Q10>         0.2          </Q10>
+    </Reaction>
+</ReactionScheme>
