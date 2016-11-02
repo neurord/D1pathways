@@ -46,7 +46,7 @@ showss=0
 show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
-outputavg=1
+outputavg=0
 showplot=1  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 calc_signature=0#1 means one overall signature, 2 mean separate spine and dend signature
@@ -143,6 +143,9 @@ for fnum,ftuple in enumerate(ftuples):
         else:
             plot_molecules=molecules
         num_mols=len(plot_molecules)
+        if numfiles>1:
+            for mol in range(num_mols):
+                whole_plot_array.append([])
         out_location,dt,rows=h5utils.get_mol_info(data,plot_molecules,maxvols)
         #
         ss_tot=np.zeros((arraysize,len(tot_species)))
@@ -213,8 +216,8 @@ for fnum,ftuple in enumerate(ftuples):
                     plot_array.append(np.mean(OverallMean,axis=0))
                     #plot_array dimensions=number of molecules x sample times
                 else:
+                    #dimensions of plot_array=num molecules x num trials x sample times
                     plot_array.append(OverallMean)
-                    #plot_array dimensions=number of molecules x number of trials x sample times
             if calc_signature==2:
                 if numfiles>1:
                     #dimensions will be number of molecules x sample times x (1+ num spines)
@@ -316,24 +319,20 @@ for fnum,ftuple in enumerate(ftuples):
               plot_array.append([-1])
     ######################################
     #Whether 1 voxel or multi-voxel, create plotting array of means for all molecules, all files, all trials
-    #Doesn't work if molecules have different dt / number of time samples
-    #make num_molecules the left most dimension?  I.e., whole_plot_array=plot_array for numfiles=1
-    #for each molecule, append to whole_plot_array[mol], change plottrace and extracting measures
-    #implement these changes when swapping axes for neurord v3.1.5
     if numfiles>1:
         #plot_array dimensions=num molecules x sample times
-        #whole_plot_array dimension=num files*num molecules*sample time
-        whole_plot_array.append(plot_array)
-        #dimensions of signature array = num files x num mol x sample times x (1+numspines)
+        #whole_plot_array dimension  = num molecules*num files*sample time
+        for mol in range(num_mols):
+            whole_plot_array[mol].append(plot_array[mol])
+        #dimensions of signature array = num mol x num files x sample times x (1+numspines)
         if calc_signature==2:
-            signature_array.append(all_spine_means)
+            signature_array.append(np.swapaxes(all_spine_means,0,1))
     else:
         #dimensions of plot_array=num molecules x num trials x sample times
-        #whole_plot_array dimension=num trials*num molecules*sample time
-        whole_plot_array=np.swapaxes(plot_array,0,1)
+        whole_plot_array=plot_array
         #dimensions of signature array = num mol x num trials x sample times x (1+numspines)
         if calc_signature==2:
-            signature_array=np.swapaxes(all_spine_means,0,1)
+            signature_array=all_spine_means
     if 'event_statistics' in data['trial0']['output'].keys() and show_inject:
         print ("seeds", seeds," injection stats:")
         for inject_sp,inject_num in zip(data['model']['event_statistics'][:],data['trial0']['output']['event_statistics'][0]):
@@ -383,27 +382,27 @@ for pnum in range(arraysize):
     print("        molecule  baseline  peakval   ptime    slope      min     ratio")
     for imol,mol in enumerate(plot_molecules):
       if out_location[mol]!=-1:
-        baseline[pnum,imol]=whole_plot_array[pnum][imol][sstart[imol]:ssend[imol]].mean()
-        peakpt=whole_plot_array[pnum][imol][ssend[imol]:].argmax()+ssend[imol]
+        baseline[pnum,imol]=whole_plot_array[imol][pnum][sstart[imol]:ssend[imol]].mean()
+        peakpt=whole_plot_array[imol][pnum][ssend[imol]:].argmax()+ssend[imol]
         peaktime[pnum,imol]=peakpt*dt[imol]
-        peakval[pnum,imol]=whole_plot_array[pnum][imol][peakpt-10:peakpt+10].mean()
-        lowpt=whole_plot_array[pnum][imol][ssend[imol]:].argmin()+ssend[imol]
-        lowval[pnum,imol]=whole_plot_array[pnum][imol][lowpt-10:lowpt+10].mean()
+        peakval[pnum,imol]=whole_plot_array[imol][pnum][peakpt-10:peakpt+10].mean()
+        lowpt=whole_plot_array[imol][pnum][ssend[imol]:].argmin()+ssend[imol]
+        lowval[pnum,imol]=whole_plot_array[imol][pnum][lowpt-10:lowpt+10].mean()
         begin_slopeval=0.2*(peakval[pnum,imol]-baseline[pnum,imol])+baseline[pnum,imol]
         end_slopeval=0.8*(peakval[pnum,imol]-baseline[pnum,imol])+baseline[pnum,imol]
-        exceedsthresh=np.where(whole_plot_array[pnum][imol][ssend[imol]:]>begin_slopeval)
+        exceedsthresh=np.where(whole_plot_array[imol][pnum][ssend[imol]:]>begin_slopeval)
         begin_slopept=0
         end_slopept=0
         found=0
         if len(exceedsthresh[0]):
             begin_slopept=np.min(exceedsthresh[0])+ssend[imol]
             found=1
-            exceedsthresh=np.where(whole_plot_array[pnum][imol][begin_slopept:]>end_slopeval)
+            exceedsthresh=np.where(whole_plot_array[imol][pnum][begin_slopept:]>end_slopeval)
             if len(exceedsthresh[0]):
                 end_slopept=np.min(exceedsthresh[0])+begin_slopept
             else:
                 found=0
-        if found and len(whole_plot_array[pnum][imol][begin_slopept:end_slopept])>1:
+        if found and len(whole_plot_array[imol][pnum][begin_slopept:end_slopept])>1:
                 slope[pnum,imol]=(peakval[pnum,imol]-baseline[pnum,imol])/((end_slopept-begin_slopept)*dt[imol])
         else:
                 slope[pnum,imol]=-9999
@@ -423,8 +422,7 @@ if showplot:
     fig,axes,col_inc,scale,numpar=pu5.plot_setup(plot_molecules,parlist,params)
     #need fnames
     fig.suptitle(figtitle)
-    for pnum in range(arraysize):
-        pu5.plottrace(plot_molecules,time_array,whole_plot_array[pnum],parval[pnum],axes,fig,col_inc,scale,parlist)
+    pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,axes,fig,col_inc,scale,parlist)
     #
 if calc_signature:
     #just sum over molecules.  Could add normalization.  Need more params to subtract or divide by some molecules
@@ -433,11 +431,11 @@ if calc_signature:
     for mol in plot_molecules:
         sign_title=sign_title+mol+'+'
     if calc_signature==1:   #simple signature - average over whole structure
-        signature=np.sum(whole_plot_array,axis=1)
+        signature=np.sum(whole_plot_array,axis=0)
         #signature dimensions=num files/trials x sample times
         auc=np.zeros(len(parval))
     elif calc_signature==2: #separate spine and dendrite signatures
-        signature=np.sum(signature_array,axis=1)
+        signature=np.sum(signature_array,axis=0)
         #signature dimensions=num files/trials x sample times x (1+numspines)
         num_spines=np.shape(signature)[-1]
         auc=np.zeros((len(parval),num_spines))
