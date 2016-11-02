@@ -46,7 +46,7 @@ showss=0
 show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
-outputavg=0
+outputavg=1
 showplot=1  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 calc_signature=0#1 means one overall signature, 2 mean separate spine and dend signature
@@ -181,9 +181,9 @@ for fnum,ftuple in enumerate(ftuples):
             molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols,trials)
             time_array.append(time)
             #calculate region means
-            header,RegionMeans,RegMeanStd=h5utils.region_means_dict(molecule_pop,region_dict,time,molecule,trials)
+            headstruct,RegionMeans,RegMeanStd=h5utils.region_means_dict(molecule_pop,region_dict,time,molecule,trials)
             #calculate region-structure means
-            header2,RegionStructMeans,RegStructMeanStd=h5utils.region_means_dict(molecule_pop,region_struct_dict,time,molecule,trials)
+            headreg,RegionStructMeans,RegStructMeanStd=h5utils.region_means_dict(molecule_pop,region_struct_dict,time,molecule,trials)
             #if more than one spine, calculate individual spine means
             if len(spinelist)>0:
                 spineheader,spinemeans,spineMeanStd=h5utils.region_means_dict(molecule_pop,spinevox,time,molecule,trials)
@@ -192,7 +192,7 @@ for fnum,ftuple in enumerate(ftuples):
             #calculate overall mean
             OverallMean=np.zeros((numtrials,len(time)))
             OverallMean[:,:]=np.sum(molecule_pop[:,:,:],axis=2)/(TotVol*mol_per_nM_u3)
-            header='#time ' +header+header2+molecule+'AvgTot\n'
+            header='#time ' +headstruct+headreg+molecule+'AvgTot\n'
             #
             if showplot==2:
                 if stimspine in spinelist:
@@ -235,16 +235,17 @@ for fnum,ftuple in enumerate(ftuples):
                     newheader=''
                     newheaderstd=''
                     for item in header.split():
-                        newheader=newheader+param_name+'_'+item+' '
+                        if item.startswith('#'):
+                            newheader=newheader+item+' '
+                        else:
+                            newheader=newheader+param_name+'_'+item+' '
                         if not item.startswith('#'):
                             newheaderstd=newheaderstd+param_name+'_'+item+'std '
                     if numtrials>1:
-                        newheader=newheader+newheaderstd
-                        region_out=np.column_stack((RegMeanStd['mean'],RegStructMeanStd['mean'],RegMeanStd['std'],RegStructMeanStd['std']))
-                        overall_out=np.column_stack((np.mean(OverallMean,axis=0),np.std(OverallMean,axis=0)))
+                        nonspine_out=np.column_stack((RegMeanStd['mean'],RegStructMeanStd['mean'],np.mean(OverallMean,axis=0),RegMeanStd['std'],RegStructMeanStd['std'],np.std(OverallMean,axis=0)))
                     else:
-                        region_out=np.column_stack((RegionMeans[0,:,:],RegionStructMeans[0,:,:]))
-                        overall_out=OverallMean[0,:]
+                        newheaderstd=''
+                        nonspine_out=np.column_stack((RegionMeans[0,:,:],RegionStructMeans[0,:,:],OverallMean[0,:]))
                     if len(spinelist)>1:
                         newspinehead=''
                         newspineheadstd=''
@@ -252,17 +253,16 @@ for fnum,ftuple in enumerate(ftuples):
                             newspinehead=newspinehead+param_name+'_'+item+' '
                             newspineheadstd=newspineheadstd+param_name+'_'+item+'std '
                         if numtrials>1:
-                            newheader=newheader+newheaderstd+newspinehead+newspineheadstd+'\n'
-                            outdata=np.column_stack((time,region_out,overall_out,spineMeanStd['mean'],spineMeanStd['std']))
+                            wholeheader=newheader+newheaderstd+newspinehead+newspineheadstd+'\n'
+                            outdata=np.column_stack((time,nonspine_out,spineMeanStd['mean'],spineMeanStd['std']))
                         else:
-                            newheader=newheader+newspinehead+'\n'
-                            outdata=np.column_stack((time,region_out,overall_out,spinemeans[0,:,:]))
+                            wholeheader=newheader+newspinehead+'\n'
+                            outdata=np.column_stack((time,nonspine_out,spinemeans[0,:,:]))
                     else:
-                        newheader=newheader+'\n'
-                        outdata=np.column_stack((time,region_out,overall_out))
+                        wholeheader=newheader+newheaderstd+'\n'
+                        outdata=nonspine_out
                     f=open(outfname, 'w')
-                    ############## NEED TO FIX HEADER FOR MULTI-TRIALS - INCLUDE STDEV ################3
-                    f.write(newheader)
+                    f.write(wholeheader)
                     np.savetxt(f, outdata, fmt='%.4f', delimiter=' ')
                     f.close()
             if print_head_stats:
