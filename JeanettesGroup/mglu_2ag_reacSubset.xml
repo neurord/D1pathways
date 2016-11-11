@@ -57,25 +57,26 @@ less desensitization of DhpgMglu - can be weaker since Gabg is lower -->
 <!--changes on Mar 20, 2012
 even less desensitization to match even lower Gabg -->
 
-    <Specie name="Dhpg"          id="Dhpg"          kdiff="10"    kdiffunit = "mu2/s"/>
-    <Specie name="DhpgOut"       id="DhpgOut"       kdiff="10"    kdiffunit = "mu2/s"/>
-    <Specie name="DhpgMglu"      id="DhpgMglu"      kdiff="0"    kdiffunit = "mu2/s"/>
-    <Specie name="Mglu"          id="Mglu"          kdiff="0"    kdiffunit = "mu2/s"/>
-    <Specie name="Ca"            id="Ca"            kdiff="174.3"   kdiffunit="mu2/s"/>
-    <Specie name="CaOut"         id="CaOut"         kdiff="174.3"   kdiffunit="mu2/s"/>
-    <Specie name="CaOutLeak"     id="CaOutLeak"     kdiff="0"       kdiffunit="mu2/s"/>
-    <Specie name="Leak"          id="Leak"          kdiff="0"       kdiffunit="mu2/s"/>
-    <Specie name="Calbin"        id="Calbin"        kdiff="9.3"     kdiffunit="mu2/s"/>
-    <Specie name="CalbinC"       id="CalbinC"       kdiff="9.3"     kdiffunit="mu2/s"/>
+<!-- ctrl x then r then k will kill a rectangular region.  You can then paste using Ctrl x r y -->
+    <Specie name="Dhpg"          kdiff="10"      kdiffunit = "mu2/s"/>
+    <Specie name="DhpgOut"       kdiff="10"      kdiffunit = "mu2/s"/>
+    <Specie name="DhpgMglu"      kdiff="0"       kdiffunit = "mu2/s"/>
+    <Specie name="Mglu"          kdiff="0"       kdiffunit = "mu2/s"/>
+    <Specie name="Ca"            kdiff="174.3"   kdiffunit="mu2/s"/>
+    <Specie name="CaOut"         kdiff="174.3"   kdiffunit="mu2/s"/>
+    <Specie name="CaOutLeak"     kdiff="0"       kdiffunit="mu2/s"/>
+    <Specie name="Leak"          kdiff="0"       kdiffunit="mu2/s"/>
+    <Specie name="Calbin"        kdiff="9.3"     kdiffunit="mu2/s"/>
+    <Specie name="CalbinC"       kdiff="9.3"     kdiffunit="mu2/s"/>
     
-    <Specie name="pmca" id="pmca" kdiff="0" kdiffunit="mu2/s"/>
-    <Specie name="ncx" id="ncx" kdiff="0" kdiffunit="mu2/s"/>
-    <Specie name="pmcaCa" id="pmcaCa" kdiff="0" kdiffunit="mu2/s"/>
-    <Specie name="ncxCa" id="ncxCa" kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="pmca"   kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="ncx"    kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="pmcaCa" kdiff="0" kdiffunit="mu2/s"/>
+    <Specie name="ncxCa"  kdiff="0" kdiffunit="mu2/s"/>
     
 
-<!-- Ca pump high affinity -    Ca + pmca <-> pmcaCa -->
-    <Reaction name = "Ca_pump1a" id="Ca_pump1a">
+<!-- Ca pump high affinity -    Ca + pmca ↔ pmcaCa -->
+    <Reaction name = "Ca_pump1a" >
 	<Reactant specieID="Ca"/>
 	<Reactant specieID="pmca"/>
 	<Product specieID="pmcaCa"/>
@@ -85,8 +86,8 @@ even less desensitization to match even lower Gabg -->
 	<Q10>0.2</Q10>
     </Reaction>
 
-<!-- Ca pump high affinity -    pmcaCa <-> pmca + CaOut -->
-    <Reaction name = "Ca_pump1b" id="Ca_pump1b">
+<!-- Ca pump high affinity -    pmcaCa ↔ pmca + CaOut -->
+    <Reaction name = "Ca_pump1b" >
 	<Reactant specieID="pmcaCa"/>
 	<Product specieID="pmca"/>
 	<Product specieID="CaOut"/>
@@ -97,7 +98,7 @@ even less desensitization to match even lower Gabg -->
     </Reaction>
 
 <!-- Ca pump low affinity -    Ca + ncx <-> ncxCa -->
-    <Reaction name = "Ca_pump2a" id="Ca_pump2a">
+    <Reaction name = "Ca_pump2a" >
 	<Reactant specieID="Ca"/>
 	<Reactant specieID="ncx"/>
 	<Product specieID="ncxCa"/>
@@ -108,7 +109,7 @@ even less desensitization to match even lower Gabg -->
     </Reaction>
 
 <!-- Ca pump low affinity -    ncxCa <-> ncx + CaOut -->
-    <Reaction name = "Ca_pump2b" id="Ca_pump2b">
+    <Reaction name = "Ca_pump2b" >
 	<Reactant specieID="ncxCa"/>
 	<Product specieID="ncx"/>
 	<Product specieID="CaOut"/>
@@ -130,7 +131,7 @@ even less desensitization to match even lower Gabg -->
     </Reaction>
 
 <!-- Ca leak -    CaOutLeak <-> Ca (inside) + Leak  -->
-    <Reaction name = "Ca_leak" id="Ca_leak">
+    <Reaction name = "Ca_leak" >
 	<Reactant specieID="CaOutLeak"/>
 	<Product specieID="Ca"/>
 	<Product specieID="Leak"/>
@@ -141,7 +142,7 @@ even less desensitization to match even lower Gabg -->
     </Reaction>
 
 <!-- Ca Buffer    Ca + Calbindin <-> calbinCa -->
-    <Reaction name = "Ca_buffer" id="Ca_Buffer">
+    <Reaction name = "Ca_buffer" >
         <Reactant specieID="Ca"/>
         <Reactant specieID="Calbin"/>
         <Product specieID="CalbinC"/>
@@ -152,7 +153,7 @@ even less desensitization to match even lower Gabg -->
     </Reaction>
 
    <!-- DhpgOut    Dhpg <-> DhpgOut>  -->
-  <Reaction name = "Dhpg--DhpgOut" id="Dhpg--DhpgOut">
+  <Reaction name = "Dhpg--DhpgOut" >
   	<Reactant specieID="Dhpg"/>
 	  <Product specieID="DhpgOut"/>
 
@@ -162,7 +163,7 @@ even less desensitization to match even lower Gabg -->
   </Reaction>
   
    <!-- Dhpg + Mglu <==> DhpgMglu  -->
-      <Reaction name = "Dhpg+Mglu--DhpgMglu" id="Dhpg+Mglu--DhpgMglu">
+      <Reaction name = "Dhpg+Mglu--DhpgMglu" >
         <Reactant specieID="Dhpg"              />
         <Reactant specieID="Mglu"              />
         <Product  specieID="DhpgMglu"         />

@@ -52,6 +52,7 @@
         <end>                 200000          </end>
 </InjectionStim>
 
+ <!-- burst during stim specified for each Glu/Da train (below)-->
  <!-- rebound burst: develops more slowly -->
 <InjectionStim specieID="ACh" injectionSite="sa1[0,1].pointA">
         <onset>               52400          </onset>
@@ -63,7 +64,6 @@
         <interTrainInterval>  14101          </interTrainInterval>  
 </InjectionStim>
 
- <!-- burst during stim specified for each Glu/Da train (below)-->
 
    <!-- *****************TRAIN 1 *** Glu inject **********-->   
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,1].pointA">

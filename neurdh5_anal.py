@@ -55,7 +55,8 @@ calc_signature=0#1 means one overall signature, 2 mean separate spine and dend s
 #No need to specify subspecies if uniquely determined by string
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
-tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
+#tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
+tot_species=["Calbin", "CaM", "ncx", "pmca", "CaOut"]
 tot_species=[]
 ###################################################
 

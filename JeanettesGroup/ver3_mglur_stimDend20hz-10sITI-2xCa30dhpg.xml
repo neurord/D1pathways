@@ -30,7 +30,7 @@
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
-<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
+<InjectionStim specieID="Ca" injectionSite="dendrite:submembrane">
         <onset>               20000          </onset>
         <duration>            3              </duration>
         <rate>                260            </rate>

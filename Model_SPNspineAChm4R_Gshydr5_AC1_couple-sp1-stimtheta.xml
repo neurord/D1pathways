@@ -3,7 +3,7 @@
     <!-- this file defines a single run of the calculation, using morphology and 
 	 reaction data brought in from other files --> 
 
-          <xi:include href="Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast.xml" />
+          <xi:include href="Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-GapGiB.xml" />
           <xi:include href="Morph20um.xml" />
 	  <xi:include href="IC_SPNspineAChm4R_AC1_coupleGqhigh.xml" />       
           <xi:include href="Out_SPNspineCaMKII_DagL_AChm1R_AC1subset.xml" />

@@ -43,7 +43,7 @@
         <duration>            200000      </duration>
         <rate>                3         </rate>
 </InjectionStim>
-<!-- basal ACh stim paused during Da stim-->
+<!-- basal ACh stim restored after pauses during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               53200          </onset>
         <duration>            11800      </duration>

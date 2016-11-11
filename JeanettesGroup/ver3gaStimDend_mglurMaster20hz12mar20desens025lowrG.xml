@@ -4,9 +4,9 @@
 	 reaction data brought in from other files --> 
 
           <xi:include href="mglu_2ag_reac12mar20desens025.xml" />
-          <xi:include href="ver3ga_mglur_morph.xml" />
+          <xi:include href="mglur_morph.xml" />
 	  <xi:include href="mglur_2ag_init12mar1lowrGabg.xml" />       
-	  <xi:include href="ver3ss_mglur_stim20hz-10sITI-2xCa30dhpg.xml" />
+	  <xi:include href="ver3_mglur_stimDend20hz-10sITI-2xCa30dhpg.xml" />
           <xi:include href="mglur_outPIKnewCaM.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for

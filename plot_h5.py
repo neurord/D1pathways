@@ -40,25 +40,27 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
                if not np.shape(axes):
                     imol=0
                     axes.plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
+                    axes.set_xlabel('Time (sec)')
+                    axes.set_ylabel(plotmol[imol]+' (nM)')
                else:
                     rows=np.shape(axes)[0]
-               if np.size(axes)==rows:
-                    for imol in range(len(plotmol)):
-                         if plotarray[imol][pnum][0]>-1:
-                              axes[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
-                         axes[imol].set_ylabel(plotmol[imol])#+' (nM)')
-                    axes[len(plotmol)-1].set_xlabel('Time (sec)')
-                    axes[0].legend(fontsize=8, loc='best')
-               else:
-                    cols=np.shape(axes)[1]
-                    for col in range(cols):
-                         for row in range(rows):
-                              imol=row+rows*col
-                              if imol<len(plotmol) and plotarray[imol][pnum][0]>-1:
-                                   axes[row,col].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
-                                   axes[row,col].set_ylabel(plotmol[imol])#+' (nM)')
-                         axes[rows-1,col].set_xlabel('Time (sec)')
-                    axes[0,0].legend(fontsize=8, loc='best')
+                    if np.size(axes)==rows:
+                         for imol in range(len(plotmol)):
+                              if plotarray[imol][pnum][0]>-1:
+                                   axes[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
+                              axes[imol].set_ylabel(plotmol[imol]+' (nM)')
+                         axes[len(plotmol)-1].set_xlabel('Time (sec)')
+                         axes[0].legend(fontsize=8, loc='best')
+                    else:
+                         cols=np.shape(axes)[1]
+                         for col in range(cols):
+                              for row in range(rows):
+                                   imol=row+rows*col
+                                   if imol<len(plotmol) and plotarray[imol][pnum][0]>-1:
+                                        axes[row,col].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
+                                        axes[row,col].set_ylabel(plotmol[imol])#+' (nM)')
+                              axes[rows-1,col].set_xlabel('Time (sec)')
+                         axes[0,0].legend(fontsize=8, loc='best')
      fig.canvas.draw()
      return
 

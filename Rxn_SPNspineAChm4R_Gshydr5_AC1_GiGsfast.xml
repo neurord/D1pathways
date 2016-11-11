@@ -1,5 +1,6 @@
 <ReactionScheme>
-  <!-- Merged, tuned model, with CamKII phos of DagL.
+  <!-- how to specify unicode arrows: alt(right one), shift from here ← ↔ → -->
+  <!-- MERGED, tuned model, with CamKII phos of DagL.
        Uses higher order reactions for CamKII phosphorylation -->
 <!-- calcium stuff first -->
     <Specie name="Ca"             id="Ca"            kdiff="174.3" kdiffunit="mu2/s"/>
@@ -238,7 +239,7 @@
     </Reaction>
 
 <!-- ii: Ca pump high affinity -    pmcaCa <-> pmca + CaOut   SAME-->
-    <Reaction name = "Ca_pump1b" id="Ca_pump1b">
+    <Reaction name = "Ca pump1b" id="Ca_pump1b">
 	<Reactant specieID="pmcaCa"/>
 	<Product specieID="pmca"/>
 	<Product specieID="CaOut"/>
@@ -380,8 +381,8 @@
         <forwardRate> 0.03e-03 </forwardRate>
         <reverseRate> 0.4e-03  </reverseRate>
     </Reaction>
-    <!-- 1b. Gsabg + D1R       <-> GsD1R         Kd=35   source: PMR-->
-    <Reaction name = "Gsabg+D1R--GsD1R" id="Gsabg+D1R--GsD1R">
+    <!-- 1b. Gsabg + D1R       <->  GsD1R         Kd=35   source: PMR-->
+    <Reaction name = "Gsabg + D1R ↔ GsD1R" id="Gsabg+D1R--GsD1R">
         <Reactant specieID="Gsabg"                      />
         <Reactant specieID="D1R"                      />
         <Product  specieID="GsD1R"                     />

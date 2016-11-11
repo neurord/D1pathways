@@ -607,8 +607,8 @@
         <Reactant specieID="Giabg"               />
         <Product  specieID="AChm4RGi"            />
 
-        <forwardRate>  0.096e-03  </forwardRate>
-        <reverseRate>  1.68e-03  </reverseRate>
+        <forwardRate>  0.192e-03  </forwardRate>
+        <reverseRate>  3.36e-03  </reverseRate>
     </Reaction>
 
     <!-- Gi + m4R       <-> Gim4R     Kd = 236  source:  PMR, Hein et al. JBC 2006: Gi dissoc tau=14s  -->
@@ -626,8 +626,8 @@
         <Reactant specieID="ACh"                      />
         <Product  specieID="AChm4RGi"                    />
 
-        <forwardRate> 0.01824e-03 </forwardRate>
-        <reverseRate> 10.0e-03        </reverseRate>
+        <forwardRate> 0.0365e-03 </forwardRate>
+        <reverseRate> 20.0e-03        </reverseRate>
     </Reaction>
 
    <!--    AChm4RGiabg   <-> GiaGTP + AChm4R +Gbg   -->
@@ -637,7 +637,7 @@
         <Product  specieID="AChm4R"                     />
         <Product  specieID="Gbg"                    />
 
-        <forwardRate>  4.0e-03 </forwardRate>
+        <forwardRate>  8.0e-03 </forwardRate>
         <reverseRate>   0  </reverseRate>
     </Reaction>
 
@@ -783,9 +783,9 @@
     <!-- Gap activity for part of AC5GsaGiaATP-->
     <Reaction name = "AC5GsaGiaATP--AC5Gia+Gs+cAMP" id="AC5GsaGiaATP--AC5Gia+Gs+cAMP">
         <Reactant specieID="AC5GsaGiaATP"             />
-        <Product  specieID="AC5Gia"                />
+        <Product  specieID="AC5Gsa"                />
         <Product  specieID="cAMP"                   />
-        <Product  specieID="GsaGDP"                   />
+        <Product  specieID="GiaGDP"                   />
 
         <forwardRate> 0.01e-03     </forwardRate>
         <reverseRate> 0.0    </reverseRate>
@@ -2166,14 +2166,14 @@ MUCH slower binding compared to CaDgl  -->
 	<forwardRate>0.001e-3</forwardRate>
 	<reverseRate>0.15e-3</reverseRate>
    </Reaction>
-  <!-- cyclosporin A inhib)its Pp2B -->
+  <!-- cyclosporin A inhibits Pp2B -->
    <Reaction name="CyAblock" id="CyAblock">
     <Reactant specieID="CyA"/>
     <Reactant specieID="PP2BCamCa4"/>
     <Product specieID="CyA_PP2B"/>
 
 	<forwardRate>0.001e-3</forwardRate>
-	<reverseRate>0.05e-3</reverseRate>
+	<reverseRate>0.001e-3</reverseRate>
    </Reaction>
 
 </ReactionScheme>
