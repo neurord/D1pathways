@@ -1,4 +1,5 @@
 <ReactionScheme>
+  <!-- how to specify unicode arrows: copy from here ← ↔ → -->
   <!-- Merged, tuned model, with CamKII phos of DagL.
        Uses higher order reactions for CamKII phosphorylation -->
 <!-- calcium stuff first -->
@@ -350,8 +351,8 @@
    <Reaction name = "Da--DaOut" id="Da--DaOut">
   	<Reactant specieID="Da"/>
         <Product  specieID="DaOut"                   />
-        <forwardRate> 1.0e-3      </forwardRate>
-        <reverseRate> 0.055e-6      </reverseRate>
+        <forwardRate> 2.0e-3      </forwardRate>
+        <reverseRate> 0.11e-6      </reverseRate>
     </Reaction>
 
    <!--0c. excess DaOut eliminated to prevent baseline shift: DaOut + Dbuf  <->  DaOutbuf  -->
@@ -2031,8 +2032,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant  specieID="PP1"               />
         <Product  specieID="PP1pAKAR3"            />
 
-        <forwardRate> 0.000125e-03     </forwardRate>
-        <reverseRate> 0.6e-03    </reverseRate>
+        <forwardRate> 0.00025e-03     </forwardRate>
+        <reverseRate> 1.2e-03    </reverseRate>
     </Reaction>
 
     <Reaction name = "PP1pAKAR3 dephos" >
@@ -2040,7 +2041,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"               />
         <Product  specieID="AKAR3"            />
 
-        <forwardRate> 0.156e-03     </forwardRate>
+        <forwardRate> 0.312e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
     </Reaction>
 <!-- ############### AC1 activated by Gs and CamCa4 ###################-->

@@ -1,0 +1,95 @@
+Lab Notebook for Blackwell november 18, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause - repeat sims without ACh burst 
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+		 6. alcohol effects, parameter robusteness
+
+11/18/2016: using new, NeuroRD (slower reactions)
+>>>>>>>>>>>Results of Da duration
+1. Da reaches 16 uM because pumps are slower
+2. cAMP is lower
+3. PKAc is lower
+4. phosphorylation of AKAR3 and D32p34PP1 are slower - the latter is good as it occurs to quickly
+--------------> inject less dopamine or speed up decay.
+>>>>>>>>>>>Results of bath application
+1. Da reaches 17 uM
+2. calcium reaches 2.3 uM (not necessarily bad)
+3. D32p75 decreases to 5.4 uM with Ca alone
+4. maximal Da effect takes 1-2 minutes to develop (this is good).
+5. Basal D32p34PP1 is too low.
+----------> slightly lower PP2A
+>>>>>>>>>>>Results of block application
+1. CyA block increases D32p34PP1 to ~0.8 uM - great increase. HOWEVER, this appears to be due to slow increase in cAMP.
+fix this by: reducing affinity of AC5GsaGia for ATP, which grows steadily during OA block, possibly due to fast increase in GiaGTP
+2. OA block increases D32p34PP1 to 400 nM - smaller - showing less effective.
+
+>>>>>>>>>>Overall
+ACh basal is 75; basal Gi is 100, basal Gs < 1, basal AC5GsATP is 5-10
+Basal cAMP is far too low.  This explains the low D32p34
+1. Da basal: fine. Keep ratio of Kf to Kb for Da to DaOut, double rates to lower Da peaks.
+2. STIM FILES: Increase Da inject for shorter pulses, decrease (delay to 100 ms) Da inject for longer pulses)
+3. increase basal cAMP: reduce PDEs
+
+############### NEW PARAMETERS:
+Da to DaOut Kf=2e-3, Kb=0.11e-6/msec
+PDE4 conc = 275,5; PDE2=560, PDE10=620,80 head; 580,120 neck; 245,35 dend
+Da stim: 500 for first 10 msec, wait until 100msec and then turn on prolonged stim.
+Speed up AKAR dephosphorylation (phosphorylation will speed up with higher PKAc)
+Run all simulations longer - to 300s, prolong basal ACH stim?
+
+If these parameters are not sufficient:
+lower tonic ACh to decrease Gi, or decrease production of Gi, to increase cAMP
+reduce Pp2B activity, to increase D32p34
+
+Response to bath application (GiGsfast):
+   	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
+basal	676-680	  500 nM	9750	10-12 uM			0.1	0.82
+Da	4416	  5x  		6295	50%				0.3	0.89
+Ca	260n	  50%		6666	25%				1	1.2
+DaCa	1443	  2-3x		4935	unknown				10	2.6
+CyA:	795	  3-17x		10.0	no change
+OA:	1105n	  5x		34.2u	3x
+
+
+------->A) Research effects of alcohol.
+	   investigate something about plasticity and alcohol
+	B) What stimulation protocol would optimize LTP?
+	   According to Reynolds - burst of Da needs to be AFTER ACh burst, e.g. by 0.6 sec.  Adjust theta stim file to achieve this.
+>>>Added in DaDelay case
+
+&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
+   Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps - not too fast to avoid decreasing other Dp34 basal)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+
+For publication, do we simulate a D2R model?  Or alcohol effects?
+

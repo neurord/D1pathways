@@ -29,16 +29,16 @@ java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic
 java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AaC1_GiGsfast-stimtheta-noMGlu.xml  &
 java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noMGlu.xml  
 
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noM1.xml &
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noM1.xml &
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noM1.xml &
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noM1.xml &
 
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noM4.xml &
-# java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noM4.xml 
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noM4.xml &
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noM4.xml 
 
 #These have been updated and are ready to go
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp1-stimtheta.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp1-stim20hz.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2sep-stimtheta.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2adj-stimtheta.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2adj-stim20hz.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2sep-stim20hz.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp1-stimtheta.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp1-stim20hz.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2sep-stimtheta.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2adj-stimtheta.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2adj-stim20hz.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.1-all-deps.jar -v -s injections Model_SPNspineAChm4R_Gshydr5_AC1_couple-sp2sep-stim20hz.xml&
