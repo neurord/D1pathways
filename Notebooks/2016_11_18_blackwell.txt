@@ -57,9 +57,32 @@ Da stim: 500 for first 10 msec, wait until 100msec and then turn on prolonged st
 Speed up AKAR dephosphorylation (phosphorylation will speed up with higher PKAc)
 Run all simulations longer - to 300s, prolong basal ACH stim?
 
-If these parameters are not sufficient:
-lower tonic ACh to decrease Gi, or decrease production of Gi, to increase cAMP
-reduce Pp2B activity, to increase D32p34
+>>>>>>>>>>>>>>>>>>>>>>>>Results
+1. cAMP now too high - go partway back to higher PDEs?  Not yet
+2. Da is pretty good, tweak to be a bit higher ->
+   increase inject from 390 to 500 for 10s (forgot previously)
+   Increase rate of DaDbuf dissociation - currently rises too slowly for uncaging (0.1 s trial reaches peak at 0.2 s).
+3. Stimulated cAMP is too low!  Production of Gs leads to large AC5GsaGiaATP, and much smaller AC5GsaATP -> reduce affinity of Gia for Gs bound form (and vice versa?).  E.g. faster Gi dissociation from Gs bound form, (but also will need to slow Gs binding to Gi bound form, or speed Gs dissociation from Gi bound form.
+Why does Da-Ca produce MUCH higher  cAMP than Da alone?  AC1 is now quite active.  This is OK.
+4. Both GsaGTP and GiaGTP are higher and slightly increasing
+previous values for good cAMP: AC5Gia   469.18 , AC5GsaGiaATP    92.76, AC5GsaATP    12.33
+Current values                 AC5Gia: ~470      AC5GsaGiaTP    >500!!, AC5GsaATP  20
+suggests too much Gi and Gs, though still not enough Gq!
+a. Lower Gq hydrolysis
+b. lower Gi and Gs production rates, or increase hydrolysis rates (or both).
+5. During theta or 20 hz: AChm1RGq exceeds 200 during peaks, but GluMgluRGq only reachs 10, so of  course blocking it will not do anything. GluMgluRGq reaches 200 IN THE SPINE HEAD, but of course this structure is so small that the overall amount is too small.  Only 1-2 molecules of Gq bound Plc observed during theta
+Need to increase both amounts in the spine:MgluR and Gq
+
+Summary:
+1. Increase rate DaDbuf dissociation.  Rates: from 10 to 20
+2. Increase MgluR to 800 in spine, and Gqabg to 8000 in spine.  
+3. Gi bind to AC5Gs: kf=0.0125	kb=6 (3x higher)
+   	  Gs bind to AC5Gi: kf=0.0037	kb=2.997 (3x higher)
+4. Change Galphai production: kcat =4.0 (from 8.0) - less basal and stimulated Gi
+5. Change Galphas hydrolysis: to 1.0 (from 0.5) - less basal and stimulated Gs
+
+If these parameters still have too much cAMP:
+2. Restore PDEs, or decrease rate of PKA phosphorylation of PDEs 
 
 Response to bath application (GiGsfast):
    	Dp34tot	  goal		Dp75	goal				Da	pAKAR3

@@ -2,12 +2,12 @@
       <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>           20000        </onset>
         <duration>           10         </duration>
-        <rate>               390    </rate>
+        <rate>               500    </rate>
      </InjectionStim>
       <InjectionStim specieID="DaDbuf" injectionSite="dend:submembrane">
         <onset>           20000        </onset>
         <duration>           10         </duration>
-        <rate>               390    </rate>
+        <rate>               500    </rate>
       </InjectionStim>
       <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>           20100        </onset>

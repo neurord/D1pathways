@@ -343,7 +343,7 @@
         <Reactant specieID="DaDbuf"                      />
         <Product  specieID="Dbuf"                      />
         <Product  specieID="Da"                     />
-        <forwardRate> 10e-03 </forwardRate>
+        <forwardRate> 20e-03 </forwardRate>
         <reverseRate> 0      </reverseRate>
     </Reaction>
     
@@ -638,7 +638,7 @@
         <Product  specieID="AChm4R"                     />
         <Product  specieID="Gbg"                    />
 
-        <forwardRate>  8.0e-03 </forwardRate>
+        <forwardRate>  4.0e-03 </forwardRate>
         <reverseRate>   0  </reverseRate>
     </Reaction>
 
@@ -648,7 +648,7 @@
         <Reactant specieID="GsaGTP"                  />
         <Product  specieID="GsaGDP"                  />
 
-        <forwardRate> 0.5e-03        </forwardRate>
+        <forwardRate> 1.0e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
     </Reaction>
 
@@ -712,7 +712,7 @@
         <Product  specieID="AC5Gsa"                />
 
         <forwardRate> 0.0037e-03   </forwardRate>
-        <reverseRate> 1.0e-03        </reverseRate>
+        <reverseRate> 0.999e-03        </reverseRate>
     </Reaction>
     <!--2. AC5Gsa(GTP) + ATP    <-> AC5Gsa(GTP)ATP     -->
     <Reaction name = "AC5Gsa+ATP--AC5GsaATP reac" id="AC5Gsa+ATP--AC5GsaATP_id">
@@ -751,7 +751,7 @@
 	<Product specieID="AC5GsaGia"/>
 
 	<forwardRate>0.0125e-3</forwardRate>
-	<reverseRate>2e-3</reverseRate>
+	<reverseRate>6e-3</reverseRate>
     </Reaction>
     <Reaction name = "GsaGTP_AC5GiaGTP_reac" id="GsaGTP_AC5GiaGTP_reac">
 	<Reactant specieID="GsaGTP"/>
@@ -759,7 +759,7 @@
 	<Product specieID="AC5GsaGia"/>
 
         <forwardRate> 0.0037e-03   </forwardRate>
-	<reverseRate> 1.0e-03</reverseRate>
+	<reverseRate> 2.992e-03</reverseRate>
     </Reaction>
     <!-- AC5GsaGia + ATP    <-> AC5GsaGiaATP       source: Dessauer CW, Gilman AG JBC 1997-->
     <Reaction name = "AC5GsaGia+ATP--AC5GsaGiaATP" id="AC5GsaGia+ATP--AC5GsaGiaATP">
