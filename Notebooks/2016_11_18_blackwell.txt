@@ -73,7 +73,7 @@ b. lower Gi and Gs production rates, or increase hydrolysis rates (or both).
 5. During theta or 20 hz: AChm1RGq exceeds 200 during peaks, but GluMgluRGq only reachs 10, so of  course blocking it will not do anything. GluMgluRGq reaches 200 IN THE SPINE HEAD, but of course this structure is so small that the overall amount is too small.  Only 1-2 molecules of Gq bound Plc observed during theta
 Need to increase both amounts in the spine:MgluR and Gq
 
-Summary:
+##############Summary/new parameters:
 1. Increase rate DaDbuf dissociation.  Rates: from 10 to 20
 2. Increase MgluR to 800 in spine, and Gqabg to 8000 in spine.  
 3. Gi bind to AC5Gs: kf=0.0125	kb=6 (3x higher)
@@ -81,17 +81,42 @@ Summary:
 4. Change Galphai production: kcat =4.0 (from 8.0) - less basal and stimulated Gi
 5. Change Galphas hydrolysis: to 1.0 (from 0.5) - less basal and stimulated Gs
 
-If these parameters still have too much cAMP:
-2. Restore PDEs, or decrease rate of PKA phosphorylation of PDEs 
+>>>>>>>>>>>>>>>>>>>>>Results
+1. Basal:
+GsaGTP: 3   AC5Gia: ~480   AC5GsaGiaATP   160-180; AC5GsaATP  40; GqaGTP: 10; PlcGqTot: 4
+Gq slightly higher, though still low
+AC5GsaGiaATP is much better, though still a bit high.  AC5GsaATP too high
+cAMP=160 - way too high
+D32p34PP1=~2500 - way too high, but better than previous; D32p75= 7500 - too low
+phospho PDEs increase  to 40 (PDE4) and 80 (PDE10), minimal pDaD1RGs, pPP2A>200 - possibly explaining the Dp75
 
-Response to bath application (GiGsfast):
-   	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
-basal	676-680	  500 nM	9750	10-12 uM			0.1	0.82
-Da	4416	  5x  		6295	50%				0.3	0.89
-Ca	260n	  50%		6666	25%				1	1.2
-DaCa	1443	  2-3x		4935	unknown				10	2.6
-CyA:	795	  3-17x		10.0	no change
-OA:	1105n	  5x		34.2u	3x
+2. Bath:
+cAMP increases to 3.9 uM for Da and 2.4uM for Da+Ca - this is high enough that PDEs can be increased
+
+PDE1CamCa4 is 1500, but only 300 bound to cAMP -> perhaps affinity or rates should be higher to enhance activity dependence over basal?
+
+3. Da Stim: though basal is too high, the pAKAR3 distinguishes the 4 different durations
+1 s of Da gives ~600 nM, 0.3s gives 395n, 0.1s =306n.  What should they be?
+
+4. Block: Dp34 increases with both OA and CyA.  The CyA increases is much slower. CyA bound to PP2B increases quite slowly, though CyA itself goes up rapidly.  This is not necessarily wrong - expers show that block develops over minutes, but makes it difficult to see effect within 5 min.
+
+5. Stim: Gq bound Plc is ~5% of Ca bound. Blocking ACh eliminates all of that, blocking mGluR blocks none of it, even with much higher mGluR and Gq in spine.  Because still only 1-2 molecules of PlcCaGqaPip2 in the spine.  Perhaps Plc is limiting, because only 400 nM total Plc in spine head?  Perhaps GqGTPase is too fast (given the GTPase activity of Plc?)
+
+##############New parameters
+1. Go back to higher PDEs - this is 20% higher than previous.  
+2. Speed CyA binding by 2x to see effect with 300s.  Decrease OA binding rate so that it is not so much faster than CyA, and so that D32p75 increases more slowly.
+3. Reduce GqaGTPase to 0.1 in absence of Plc (perhaps even 0.01).
+4. Fix MGluR rate constants: A: Were violating PMR, B: Mukhopaday and Ross say that GDP can dissociate at 1.5/sec and is rate limiting.
+  --> Faster kcat for Gq production
+  --> higher affinity for Glu to bind to Gq bound mGluR (instead of lower)
+  --> Need to adjust Glu binding to MgluRGq when adjusting Glu binding to MgluR alone
+
+Evaluate:
+A. cAMP and downstream: If cAMP is now too low, reduce to only 10% higher
+B. Gq, Plc bound Gq, effect of MGluR stimulation: if too low, increase Plc quantity in the spine?
+C. effect of Block - increase Dp34 with CyA?
+D. Effect of dopamine duration: need PKA acceleration of Gap activity against Gi to get larger effect of 0.1s Da?  Or lower tonic ACh for these simulations?
+
 
 
 ------->A) Research effects of alcohol.

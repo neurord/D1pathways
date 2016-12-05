@@ -41,7 +41,7 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
                     imol=0
                     axes.plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
                     axes.set_xlabel('Time (sec)')
-                    axes.set_ylabel(plotmol[imol]+' (nM)')
+                    axes.set_ylabel(plotmol[imol])
                else:
                     rows=np.shape(axes)[0]
                     if np.size(axes)==rows:

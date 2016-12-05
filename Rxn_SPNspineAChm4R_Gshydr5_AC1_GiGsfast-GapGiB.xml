@@ -485,11 +485,11 @@
         <Reactant specieID="MgluR"              />
         <Product  specieID="GluMgluR"         />
 
-        <!--forwardRate> 0.5e-06 </forwardRate>
-        <reverseRate> 6.6e-03      </reverseRate-->
+
+        <!--reverseRate> 6.6e-03      </reverseRate-->
 	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
-        <forwardRate> 0.002e-03 </forwardRate>
-        <reverseRate> 1e-03      </reverseRate>
+        <forwardRate> 0.001e-03 </forwardRate>
+        <reverseRate> 0.5e-03      </reverseRate>
     </Reaction>
 
     <!--2a. Gqabg + GluMgluR    <-> GluMgluRGq    -->
@@ -498,8 +498,8 @@
         <Reactant specieID="GluMgluR"             />
         <Product  specieID="GluMgluRGq"            />
 
-        <forwardRate>  0.0015e-03  </forwardRate>
-        <reverseRate>   0.68e-03  </reverseRate>
+        <forwardRate>  0.009e-03  </forwardRate>
+        <reverseRate>   1.36e-03  </reverseRate>
     </Reaction>
 
   <!--1b. Gqabg + MgluR <-> MgluRGq -->
@@ -508,8 +508,8 @@
         <Reactant specieID="MgluR" />
         <Product specieID="MgluRGq" />
 
-        <forwardRate> 0.75e-06 </forwardRate>
-        <reverseRate> 6.8e-03 </reverseRate>
+        <forwardRate> 0.00225e-03 </forwardRate>
+        <reverseRate> 0.68e-03 </reverseRate>
    </Reaction>
 
    <!--2b. Glu + MgluRGq <-> GluMgluRGq -->
@@ -518,7 +518,9 @@
         <Reactant specieID="MgluRGq" />
         <Product specieID="GluMgluRGq" />
 
-        <forwardRate> 0.001e-03 </forwardRate>
+        <!--reverseRate> 13.2e-03      </reverseRate-->
+	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
+        <forwardRate> 0.004e-03 </forwardRate>
         <reverseRate> 1e-03 </reverseRate>
    </Reaction>
 
@@ -669,7 +671,7 @@
         <Reactant specieID="GqaGTP"            />
         <Product  specieID="GqaGDP"            />
 
-        <forwardRate>   1e-03   </forwardRate>
+        <forwardRate>   0.1e-03   </forwardRate>
         <reverseRate>   0  </reverseRate>
     </Reaction>
 
@@ -2131,31 +2133,31 @@ MUCH slower binding compared to CaDgl  -->
     <Reactant specieID="PP2AB56d"/>
     <Product specieID="OA_PP2AB56d"/>
 
-	<forwardRate>0.01e-3</forwardRate>
-	<reverseRate>0.0003e-3</reverseRate>
+	<forwardRate>0.005e-3</forwardRate>
+	<reverseRate>0.00015e-3</reverseRate>
   </Reaction>
   <Reaction name="OAblockB56pp" id="OAblockB56p">
     <Reactant specieID="OA"/>
     <Reactant specieID="pPP2A"/>
     <Product specieID="OA_pPP2A"/>
-	<forwardRate>0.01e-3</forwardRate>
-	<reverseRate>0.0003e-3</reverseRate>
+	<forwardRate>0.005e-3</forwardRate>
+	<reverseRate>0.00015e-3</reverseRate>
 
   </Reaction>
   <Reaction name="OAblockBPR" id="OAblockBPR">
     <Reactant specieID="OA"/>
     <Reactant specieID="PP2ABPR72"/>
     <Product specieID="OA_PP2ABPR72"/>
-	<forwardRate>0.01e-3</forwardRate>
-	<reverseRate>0.0003e-3</reverseRate>
+	<forwardRate>0.005e-3</forwardRate>
+	<reverseRate>0.00015e-3</reverseRate>
 
   </Reaction>
   <Reaction name="OAblock2BPRal" id="OAblockBPRcal">
     <Reactant specieID="OA"/>
     <Reactant specieID="PP2Acal"/>
     <Product specieID="OA_PP2Acal"/>
-	<forwardRate>0.01e-3</forwardRate>
-	<reverseRate>0.0003e-3</reverseRate>
+	<forwardRate>0.005e-3</forwardRate>
+	<reverseRate>0.00015e-3</reverseRate>
 
   </Reaction>
   <!-- cyclosporin A inhibits PP1 -->
@@ -2173,8 +2175,8 @@ MUCH slower binding compared to CaDgl  -->
     <Reactant specieID="PP2BCamCa4"/>
     <Product specieID="CyA_PP2B"/>
 
-	<forwardRate>0.001e-3</forwardRate>
-	<reverseRate>0.001e-3</reverseRate>
+	<forwardRate>0.002e-3</forwardRate>
+	<reverseRate>0.002e-3</reverseRate>
    </Reaction>
 
 </ReactionScheme>
