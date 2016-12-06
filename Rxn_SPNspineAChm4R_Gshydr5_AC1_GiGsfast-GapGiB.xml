@@ -1,5 +1,4 @@
 <ReactionScheme>
-  <!-- how to specify unicode arrows: copy from here ← ↔ → -->
   <!-- Merged, tuned model, with CamKII phos of DagL.
        Uses higher order reactions for CamKII phosphorylation -->
 <!-- calcium stuff first -->
@@ -351,8 +350,8 @@
    <Reaction name = "Da--DaOut" id="Da--DaOut">
   	<Reactant specieID="Da"/>
         <Product  specieID="DaOut"                   />
-        <forwardRate> 2.0e-3      </forwardRate>
-        <reverseRate> 0.11e-6      </reverseRate>
+        <forwardRate> 1.0e-3      </forwardRate>
+        <reverseRate> 0.055e-6      </reverseRate>
     </Reaction>
 
    <!--0c. excess DaOut eliminated to prevent baseline shift: DaOut + Dbuf  <->  DaOutbuf  -->
@@ -485,10 +484,9 @@
         <Reactant specieID="MgluR"              />
         <Product  specieID="GluMgluR"         />
 
-
-        <!--reverseRate> 6.6e-03      </reverseRate-->
-	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
         <forwardRate> 0.001e-03 </forwardRate>
+        <!--reverseRate> 6.6e-03      </reverseRate-->
+	<!-- uncomment below and comment above for Glu (opposite for Dhpg) -->
         <reverseRate> 0.5e-03      </reverseRate>
     </Reaction>
 
@@ -508,7 +506,7 @@
         <Reactant specieID="MgluR" />
         <Product specieID="MgluRGq" />
 
-        <forwardRate> 0.00225e-03 </forwardRate>
+        <forwardRate> 0.00225e-06 </forwardRate>
         <reverseRate> 0.68e-03 </reverseRate>
    </Reaction>
 
@@ -518,9 +516,9 @@
         <Reactant specieID="MgluRGq" />
         <Product specieID="GluMgluRGq" />
 
-        <!--reverseRate> 13.2e-03      </reverseRate-->
-	<!-- uncomment below and comment above for Glu (vs Dhpg) -->
         <forwardRate> 0.004e-03 </forwardRate>
+        <!--reverseRate> 13.2e-03      </reverseRate-->
+	<!-- uncomment below and comment above for Glu (opposite for Dhpg) -->
         <reverseRate> 1e-03 </reverseRate>
    </Reaction>
 
@@ -531,7 +529,7 @@
         <Product specieID="GluMgluR"            /> 
         <Product specieID="Gbg"             />
  
-        <forwardRate>  0.5e-03 </forwardRate>
+        <forwardRate>  1.5e-03 </forwardRate>
         <reverseRate>   0  </reverseRate>
     </Reaction>
 
@@ -640,7 +638,7 @@
         <Product  specieID="AChm4R"                     />
         <Product  specieID="Gbg"                    />
 
-        <forwardRate>  4.0e-03 </forwardRate>
+        <forwardRate>  8.0e-03 </forwardRate>
         <reverseRate>   0  </reverseRate>
     </Reaction>
 
@@ -761,7 +759,7 @@
 	<Product specieID="AC5GsaGia"/>
 
         <forwardRate> 0.0037e-03   </forwardRate>
-	<reverseRate> 2.992e-03</reverseRate>
+	<reverseRate> 2.997e-03</reverseRate>
     </Reaction>
     <!-- AC5GsaGia + ATP    <-> AC5GsaGiaATP       source: Dessauer CW, Gilman AG JBC 1997-->
     <Reaction name = "AC5GsaGia+ATP--AC5GsaGiaATP" id="AC5GsaGia+ATP--AC5GsaGiaATP">
@@ -2034,8 +2032,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant  specieID="PP1"               />
         <Product  specieID="PP1pAKAR3"            />
 
-        <forwardRate> 0.00025e-03     </forwardRate>
-        <reverseRate> 1.2e-03    </reverseRate>
+        <forwardRate> 0.000125e-03     </forwardRate>
+        <reverseRate> 0.6e-03    </reverseRate>
     </Reaction>
 
     <Reaction name = "PP1pAKAR3 dephos" >
@@ -2043,7 +2041,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"               />
         <Product  specieID="AKAR3"            />
 
-        <forwardRate> 0.312e-03     </forwardRate>
+        <forwardRate> 0.156e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
     </Reaction>
 <!-- ############### AC1 activated by Gs and CamCa4 ###################-->

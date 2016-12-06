@@ -66,7 +66,7 @@ Run all simulations longer - to 300s, prolong basal ACH stim?
 Why does Da-Ca produce MUCH higher  cAMP than Da alone?  AC1 is now quite active.  This is OK.
 4. Both GsaGTP and GiaGTP are higher and slightly increasing
 previous values for good cAMP: AC5Gia   469.18 , AC5GsaGiaATP    92.76, AC5GsaATP    12.33
-Current values                 AC5Gia: ~470      AC5GsaGiaTP    >500!!, AC5GsaATP  20
+Current values                 AC5Gia: ~470      AC5GsaGiaATP    >500!!, AC5GsaATP  20
 suggests too much Gi and Gs, though still not enough Gq!
 a. Lower Gq hydrolysis
 b. lower Gi and Gs production rates, or increase hydrolysis rates (or both).
@@ -117,9 +117,30 @@ B. Gq, Plc bound Gq, effect of MGluR stimulation: if too low, increase Plc quant
 C. effect of Block - increase Dp34 with CyA?
 D. Effect of dopamine duration: need PKA acceleration of Gap activity against Gi to get larger effect of 0.1s Da?  Or lower tonic ACh for these simulations?
 
-***************************Discovered bug in IC.  Not sure if any of the new parameter tuning is correct.
-Re-do using old parameters
+***************************Discovered bug in IC assignment.  Not sure if any of the new parameter tuning is correct.
+Re-do using old parameters.  BETTER, but a few things need fixing based on previous sims:
+1. Increase rate DaDbuf dissociation.  Rates: from 10 to 20
+2. Increase MgluR to 800 in spine, and Gqabg to 8000 in spine.  
+3. Speed CyA binding by 2x to see effect with 300s.  Decrease OA binding rate so that it is not so much faster than CyA, and so that D32p75 increases more slowly.
+4. Reduce GqaGTPase to 0.1 in absence of Plc (perhaps even 0.01).
+5. Fix MGluR rate constants: A: Were violating PMR, B: Mukhopaday and Ross say that GDP can dissociate at 1.5/sec and is rate limiting.
+  --> Faster kcat for Gq production
+  --> higher affinity for Glu to bind to Gq bound mGluR (instead of lower)
+  --> Need to adjust Glu binding to MgluRGq when adjusting Glu binding to MgluR alone
+cAMP is still too high. Fix with
+1. Gi bind to AC5Gs: kf=0.0125	kb=6 (3x higher) (compensate with Gs faster binding to AC5Gi)
+2. Faster Gs hydrolysis
 
+>>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AChm1RGq Glu GluMgluRGq GqaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PDE2cAMP PDE2cAMP2 PDE4cAMP pPDE4 pPDE4cAMP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag PP2BCamCa4 pPP2A PP2Acal CKCamCa4 PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A"
+
+Response to bath application :
+   	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
+basal		  500-600 nM		10-12 uM			0.1	
+Da		  5x  			50%				0.3	
+Ca		  50%			25%				1	
+DaCa		  2-3x			unknown				10	
+CyA:		  3-17x			no change
+OA:		  5x			3x
 
 
 ------->A) Research effects of alcohol.
