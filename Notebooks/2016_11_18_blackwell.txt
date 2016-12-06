@@ -117,6 +117,9 @@ B. Gq, Plc bound Gq, effect of MGluR stimulation: if too low, increase Plc quant
 C. effect of Block - increase Dp34 with CyA?
 D. Effect of dopamine duration: need PKA acceleration of Gap activity against Gi to get larger effect of 0.1s Da?  Or lower tonic ACh for these simulations?
 
+***************************Discovered bug in IC.  Not sure if any of the new parameter tuning is correct.
+Re-do using old parameters
+
 
 
 ------->A) Research effects of alcohol.
