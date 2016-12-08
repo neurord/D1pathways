@@ -131,7 +131,30 @@ cAMP is still too high. Fix with
 1. Gi bind to AC5Gs: kf=0.0125	kb=6 (3x higher) (compensate with Gs faster binding to AC5Gi)
 2. Faster Gs hydrolysis
 
->>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AChm1RGq Glu GluMgluRGq GqaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PDE2cAMP PDE2cAMP2 PDE4cAMP pPDE4 pPDE4cAMP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag PP2BCamCa4 pPP2A PP2Acal CKCamCa4 PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A"
+>>>>>>>>>>>> Basal - MUCH BETTER!
+OLD:     GsaGTP: 3             AC5Gia: ~480  AC5GsaGiaATP 160-180                    AC5GsaATP  40; 
+CURRENT: GsaGTP: 3 GiaGTP: 100 AC5Gia: ~580  AC5GsaGiaATP 250       AC5GsaGia: 5     AC5GsaATP  30
+AC5GsaATP is better, but AC5GsaGiaATP is higher.
+cAMP = 80
+D32p34PP1=1434
+D32p75=9000 due to pPP2A
+-------->Need to lower cAMP a bit more
+a. Even faster hydrolysis?
+b. Higher PDEs?
+
+>>>>>>>More Results
+Bath application of Da, Ca yields peak cAMP < 1.5 uM.  IF increase PDEs, this will decrease.
+Da duration: peak cAMP is 1 uM for 10s of Da.  Peak < 400 nM for 1s Da.  At end of sim, ACh inject ceases early - cAMP increases to 3 uM (and then deceases to 2 uM)  -> this suggests that
+A decrease in ACh during Da stim would allow greater cAMP with Da Dur, and could compensate for an increase in PDEs.
+Da is too high.  Peak < 10 uM for 0.1 (needs to increase) but > 10 uM for other durations (decrease later stim).
+-----------> Changes to parameters
+1. increase PDE10 by 20% (decrease basal cAMP from 90 to 50), but minimize effect on stimulated
+2. increase initial Da inject (from 390 to 450), and decrease later inject (from 5.7 to 5.0)
+3. Decrease ACh (stop injection) during stimulation.  2s for 0.1 and 0.3 (~time for Da to decay to half), 4s for 1s; only 4 s for 10s Da -> assume adaptation occurs
+
+>>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PP2BCamCa4 pPP2A PP2Acal PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A"
+>>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,AChm1RGq Glu GluMgluRGq GqaGTP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag CKCamCa4"
+>>> ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,Da,Da DaD1RGs GsaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 pAKAR3"
 
 Response to bath application :
    	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
