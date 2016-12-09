@@ -71,11 +71,11 @@
         <NanoMolarity specieID="AC5Ca"           value="0" />
         <NanoMolarity specieID="AC5GsaCa"        value="0" />
         <NanoMolarity specieID="AC5GsaCaATP"     value="0" />
-        <NanoMolarity specieID="PDE4"           value="330" />
+        <NanoMolarity specieID="PDE4"           value="396" />
         <NanoMolarity specieID="PDE4cAMP"       value="0" />
         <NanoMolarity specieID="PKAcPDE4"       value="0" />
         <NanoMolarity specieID="PKAcPDE4cAMP"       value="0" />
-        <NanoMolarity specieID="pPDE4"          value="6" />
+        <NanoMolarity specieID="pPDE4"          value="7.2" />
         <NanoMolarity specieID="pPDE4PP1"          value="0" />
 	<NanoMolarity specieID="pPDE4cAMP"      value="0" />
 
