@@ -143,7 +143,7 @@ a. Even faster hydrolysis?
 b. Higher PDEs?
 
 >>>>>>>More Results
-Bath application of Da, Ca yields peak cAMP < 1.5 uM.  IF increase PDEs, this will decrease.
+Bath application of Da, Ca yields peak cAMP < 1.5 uM.  If increase PDEs, this will decrease.
 Da duration: peak cAMP is 1 uM for 10s of Da.  Peak < 400 nM for 1s Da.  At end of sim, ACh inject ceases early - cAMP increases to 3 uM (and then deceases to 2 uM)  -> this suggests that
 A decrease in ACh during Da stim would allow greater cAMP with Da Dur, and could compensate for an increase in PDEs.
 Da is too high.  Peak < 10 uM for 0.1 (needs to increase) but > 10 uM for other durations (decrease later stim).
@@ -152,9 +152,52 @@ Da is too high.  Peak < 10 uM for 0.1 (needs to increase) but > 10 uM for other 
 2. increase initial Da inject (from 390 to 450), and decrease later inject (from 5.7 to 5.0)
 3. Decrease ACh (stop injection) during stimulation.  2s for 0.1 and 0.3 (~time for Da to decay to half), 4s for 1s; only 4 s for 10s Da -> assume adaptation occurs
 
+>>>>>>>>>>>>>>>>
+With 20% higher PDE10:
+mean cAMP=70
+mean D32p34PP1=1.05 uM
+------>GOOD, but not enough.
+############# increase PDE4 by 20%
+
+>>>>>>>>>>>>>>>>>>>>>
+Gs part: GsaGTP: 1 AC5Gsa=4 GiaGTP: 100 AC5Gia: 570  AC5GsaGiaATP 260       AC5GsaGia: 3     AC5GsaATP  34
+cAMP, etc: cAMP=83 PKAc=6 D32p34PP1=1260
+-------> Basal still too high.  The PDE4 increase did not help.  Go back to previous PDE4 and increase PDE10 still more.
+Da Stim:
+     cAMP	PKAc	pAKAR3	D32p34PP1	Da peak
+0.1: 350	14	1167	2.4u		10u
+0.3: 515	18	1288	2.6u		13u
+1.0  1.2u	21	1442	2.9u		13.7u
+10:  1.9u	30	2.0u	3.6u		14.2u
+Nice increase with stimulation - ACh decrease is quite effective, reduce the prolonged Da stim still further
+Bath:
+cAMP: increases with Da to 1 uM, to 750 nM with Da+Ca
+D32p34PP1 increases with Da, decreases with Ca or Da+Ca:
+	  Not caused by too much PDE1cAMP activity since cAMP is still fine
+	  Possibly due to excess PP2B activity; possibly due to high basal - do not reduce unless still remains with correct basal
+Response to block:
+	 D32p34PP1 increases with both CyA and OA -> higher with OA - therefore do not reduce PP2B activity.
+	 Possibly eliminate PP2Acal activity
+
+Theta/20hz stim:
+      What is response to Glutamate stimulation?
+      Basal 2ag, Dag, Ip3 a bit high.  Possibly increase rate of degradation of some or all.
+      for 20hz: noMGlu has peak Gq=48 (vs 81  control) BUT, effect on Plc bound forms is trivial, small effect on PkcCaDag
+      for theta: simulation did not run
+Options:
+	a. Small mGluR in dendritic submembrane
+	b. lower affinity of Plc for Ca - to increase dependence on Gq - this will lower basal 2ag, Dag and Ip3
+	Note that increased degradaion will not improve effect of mGluR block, but might be needed if mGluR in dend submemb
+
+#################
+Da stim - reduce prolonged from 5.0 to 4.0
+PDEs: lower PDE4 back to previous, increase PDE10 another 20%
+
+Once basal is good, consider tuning phosphatase activity against D32p34, and the Gq pathways.
+
 >>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PP2BCamCa4 pPP2A PP2Acal PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A"
 >>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,AChm1RGq Glu GluMgluRGq GqaGTP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag CKCamCa4"
->>> ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,Da,Da DaD1RGs GsaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 pAKAR3"
+>>> ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,Da,Da DaD1RGs AChm4RGi GsaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 pAKAR3"
 
 Response to bath application :
    	Dp34tot	  goal		Dp75	goal				Da	pAKAR3

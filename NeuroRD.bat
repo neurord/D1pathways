@@ -26,7 +26,7 @@ java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic
 java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noCKp.xml &
 java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noCKp.xml &
 
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AaC1_GiGsfast-stimtheta-noMGlu.xml  &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noMGlu.xml  &
 java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stim20hz-noMGlu.xml  
 
 java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-DaDelay-stim20hz.xml &

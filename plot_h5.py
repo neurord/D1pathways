@@ -5,9 +5,9 @@ from matplotlib import pyplot
 
 def plot_setup(plot_molecules,param_list,param_name):
      pyplot.ion()
-     if len(plot_molecules)>10:
-          rows=int(np.sqrt(len(plot_molecules)))+1
-          cols=len(plot_molecules)//(rows-1)
+     if len(plot_molecules)>8:
+          rows=int(np.round(np.sqrt(len(plot_molecules))))
+          cols=int(np.ceil(len(plot_molecules)/float(rows)))
      else:
           cols=1
           rows=len(plot_molecules)
