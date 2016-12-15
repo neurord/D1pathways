@@ -1435,8 +1435,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PKAc"               />
         <Product  specieID="PKAcPP2AB56d"      />
 
-        <forwardRate> 0.0025e-03      </forwardRate>
-        <reverseRate> 0.37e-03         </reverseRate>
+        <forwardRate> 0.0008e-03      </forwardRate>
+        <reverseRate> 0.12e-03         </reverseRate>
     </Reaction>
 
     <!--PKAcPP2AB56d        ->  PKAc + pPP2A(_B56d)   (in xpp: v27=0.1) -->
@@ -1445,7 +1445,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PKAc"           />
         <Product  specieID="pPP2A"          />
 
-        <forwardRate> 0.06e-03         </forwardRate>
+        <forwardRate> 0.02e-03         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 

@@ -188,12 +188,65 @@ Options:
 	a. Small mGluR in dendritic submembrane
 	b. lower affinity of Plc for Ca - to increase dependence on Gq - this will lower basal 2ag, Dag and Ip3
 	Note that increased degradaion will not improve effect of mGluR block, but might be needed if mGluR in dend submemb
+increased PDE10	to lower basal cAMP, lower Da stim
 
 #################
 Da stim - reduce prolonged from 5.0 to 4.0
 PDEs: lower PDE4 back to previous, increase PDE10 another 20%
+>>>>>>>>> no stim: much better, but still too high D32p34PP1
+cAMP: 56
+D32p34PP1: 994
+D32p75: 9235
+PKAc: 6.3
+pPP2A: 104
+pPDE10: 13
+Gs part - no change: GsaGTP: 1 AC5Gsa=3.5 GiaGTP: 102 AC5Gia: 588  AC5GsaGiaATP 240      AC5GsaGia: 3     AC5GsaATP  27.4
 
-Once basal is good, consider tuning phosphatase activity against D32p34, and the Gq pathways.
+------->increase PDE10 still more - will have less effect on stimulated than on basal since high affinity
+D32p75 is too low:
+A. decrease PP2A quantity - this could also raise D32p34PP1 quantity
+B. decrease pPP2A via lower cAMP and PKAc - will probably not be enough
+C. increase Cdk5
+Note that the sharp decrease in Dp75 coincides with sharp increase in pPP2A, so probably do not need the Cdk5 increase
+
+##############New parameters
+PDE10=1244, 1175; PDE10cAMP=208,276 (previous: 1037, 979; 173, 230)
+>>>>>>Results, basal
+cAMP:59
+D32p34PP1: 857
+D32p75: 9685
+PKAc: 5.7
+pPP2A: 81.5
+pPDE10: 14.1
+Gs part - no change: GsaGTP: 1 AC5Gsa=3.7 GiaGTP: 102 AC5Gia: 595  AC5GsaGiaATP 228      AC5GsaGia: 3     AC5GsaATP  30
+
+>>>>>>>>>>>Results, Bath
+Better: cAMP similar, but Dp34 is lower and Dp75 is higher.  Still not enough.
+Bath:	Da   	  Ca      DaCa
+cAMP	652	  115	  1u
+Dp34	3.7u	  1.5u	  2.8u - rebound peak.
+------------>DaCa actually DECREASES Dp34, despite having the largest cAMP, possibly due to too strong PP2B, or due to too high a calcium during Ca stim.
+>>>>>>>Results, block
+OA block: D32p75 reaches > 30 uM within 30s
+   D32p34 increases during 20 sec to 1.6 uM (almost double)
+CyA block: D32p34 increases during 30 sec to 1.1 uM  - barely acceptable.
+
+------------>
+If PKA activity were lowered, likely blocking Pp2B would produce even smaller increase in Dp34.
+Possibly could produce larger effect of Pp2B block if basal Pp2B were higher, i.e. if basal calcium were higher.  That may explain variability in results. Could simulate this with small continuous injection of calcium?
+Perhaps live with this basal Dp34?
+
+1. Need to reduce ACh during bath, e.g. for 10s, similar to the Dopamine duration sims
+2. Reduce Da and Ca peak values - likely smaller effect on Da than on Ca
+******StimDend_DaBath, StimDend_CaBath, StimDend_DaCaBath
+Ca stim at 21s reduced from 6.9 to 5.0
+Da stim reduced from 45 to 40 at 20s, from 6 to 4 at 100 ms and 1s
+ACh paused for 10s at 20s
+3. Reduce pPP2A by decreasing PKA activity for this molecule - presently kcat=0.06 for PP2a, vs 0.006 for PDE10
+   will increase Dp75 and pPP2A, which might actually affect (reduce) Dp34
+   Kf=0.0008, kb=0.12, kcat=0.02 - one third activity.  Can't reduce too much, else Da will not cause Dp75 decrease
+
+Once basal is good, consider tuning phosphatase activity against D32p34, and the Gq pathways.  Is it necessary to have small mGluR in the dendrites?
 
 >>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PP2BCamCa4 pPP2A PP2Acal PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A"
 >>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,AChm1RGq Glu GluMgluRGq GqaGTP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag CKCamCa4"
