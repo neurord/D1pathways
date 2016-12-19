@@ -1,0 +1,41 @@
+<StimulationSet>
+
+    <!-- Uchigashima - DSI sims 100 ms  -->
+
+<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+        <onset>               22000          </onset>
+        <duration>            20             </duration>
+        <rate>                125           </rate>
+</InjectionStim>
+
+<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+        <onset>               22050          </onset>
+        <duration>            250             </duration>
+        <rate>                6           </rate>
+</InjectionStim>
+
+<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+        <onset>               22300          </onset>
+        <duration>            19700             </duration>
+        <rate>                5           </rate>
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
+        <onset>               24000           </onset>
+        <duration>             100           </duration>
+        <rate>                   12           </rate>
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
+        <onset>               24000           </onset>
+        <duration>             100           </duration>
+        <rate>                  60           </rate>
+</InjectionStim>
+
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               0          </onset>
+        <duration>            80000      </duration>
+        <rate>                0.3         </rate>
+</InjectionStim>
+
+</StimulationSet>
