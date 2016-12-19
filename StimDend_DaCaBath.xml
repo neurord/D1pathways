@@ -15,16 +15,16 @@
 
       <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
         <onset>           20100        </onset>
-        <duration>       99900.0       </duration>
+        <duration>       199900.0       </duration>
         <rate>               4.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="Da" injectionSite="dend:submembrane">
         <onset>           20100        </onset>
-        <duration>       99900.0       </duration>
+        <duration>       199900.0       </duration>
         <rate>               4.0    </rate>
       </InjectionStim>
 
-<!-- basal ACh stim value for paused for 10s - similar to Da duration -->
+<!-- basal ACh stim value reduced for 10s - similar to Da duration -->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            20000      </duration>
@@ -32,8 +32,14 @@
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               30000          </onset>
-        <duration>            270000      </duration>
+        <onset>               20000          </onset>
+        <duration>            120000      </duration>
+        <rate>                0.15         </rate>
+</InjectionStim>
+
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               120000          </onset>
+        <duration>            180000      </duration>
         <rate>                0.3         </rate>
 </InjectionStim>
 
