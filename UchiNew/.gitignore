@@ -1,0 +1,12 @@
+*.xml~
+*.out
+*.log
+*.pyc
+*.bat~
+*.txt~
+*avg.txt
+*mesh.txt
+*conc.txt
+*.h5
+*.png
+discretized-tree.swc

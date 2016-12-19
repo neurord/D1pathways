@@ -57,7 +57,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>                8.0           </rate>
+        <rate>                4.0           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
@@ -68,7 +68,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>                8.0           </rate>
+        <rate>                4.0           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
