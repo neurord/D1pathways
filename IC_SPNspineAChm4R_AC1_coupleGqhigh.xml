@@ -285,8 +285,8 @@
         <PicoSD specieID="D1R"                       value="0" />
         <PicoSD specieID="DaD1R"                     value="0" />
         <PicoSD specieID="Gsabg"                     value="1745" />
-        <PicoSD specieID="DaD1RGs"                   value="3" />
-        <PicoSD specieID="GsD1R"                     value="197" />
+        <PicoSD specieID="DaD1RGs"                   value="0" />
+        <PicoSD specieID="GsD1R"                     value="200" />
         <PicoSD specieID="pDaD1RGs"                  value="0" />
         <PicoSD specieID="PKAcDaD1RGs"               value="0" />
         <PicoSD specieID="GsaGDP"                    value="0" />
