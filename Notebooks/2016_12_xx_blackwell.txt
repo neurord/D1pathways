@@ -1,0 +1,139 @@
+Lab Notebook for Blackwell november 18, 2016
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+&&&&&&& Big Question: How do neuromodulators interact with calcium to control plasticity direction
+Small questions: 1. How does ACh contribute to LTP or LTD
+      		    >>Do sims with and without ACh modulation
+		    >>What is role of ACh burst vs pause - repeat sims without ACh burst 
+      		 2. How do D1 and D2 neurons differ in their response
+		    >>Simulate both D1 and D2 neurons
+		    	  replace m4R with D2R (and affinities), D1R with A2AR
+			  need adenosine stim patterns
+		 3. What is the role of phosphorylation of Dgl in LTP (already demonstrated for LTD)?
+		    >>Block CaMKII phos of Dgl and repeat sims
+		 4. Which molecules differ between theta and 20 Hz? (theta and 20 Hz)
+		    >>Create signature
+		    >>Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+		    	increase Ca and decrease Gq via mGlu block
+		  	increase Ca and decrease dopamine.
+		 5. Spatial specificity.  Compare 1 sp with 2 sp adjacent with 2 sp apart
+
+		 6. alcohol effects, parameter robusteness
+
+##############New parameters - Dec 14, 2016
+1. Need to reduce ACh during bath, e.g. for 10s, similar to the Dopamine duration sims
+2. Reduce Da and Ca peak values - likely smaller effect on Da than on Ca
+******StimDend_DaBath, StimDend_CaBath, StimDend_DaCaBath
+Ca stim at 21s reduced from 6.9 to 5.0
+Da stim reduced from 45 to 40 at 20s, from 6 to 4 at 100 ms and 1s
+ACh paused for 10s at 20s
+3. Reduce pPP2A by decreasing PKA activity for this molecule - presently kcat=0.06 for PP2a, vs 0.006 for PDE10
+   will increase Dp75 and pPP2A, which might actually affect (reduce) Dp34
+   Kf=0.0008, kb=0.12, kcat=0.02 - one third activity.  Can't reduce too much, else Da will not cause Dp75 decrease
+
+>>>>>>Results, basal
+cAMP:60, PKAc: 5.7, , pPDE10: 14.1 - no change
+Gs part - no change: GsaGTP: 1 AC5Gsa=3.7 GiaGTP: 102 AC5Gia: 595  AC5GsaGiaATP 228      AC5GsaGia: 3     AC5GsaATP  30
+pPP2A: 27 MUCH LOWER - this is excellent
+
+Bath:	  Da   	  Ca      DaCa
+cAMP	  >15uM	  100n	  >6uM
+Dp34 	  4.4u	  300n	  slow decrement
+Dp75		  6.9u
+
+cAMP still a bit high.  Da basal=11.5 - perhaps lowering this a bit would help.
+cAMP with Da is huge but quite transient - due to reduction in Gi for 10s - don't lower ACh as much.
+
+########### New parametes - Dec 16, 2016\
+Note that ACh has been 70 nM basal with new version, but cannot reduce since cAMP too high
+Reduce ACh only by 50% for 10s during Da bath, and more prolonged (20s)
+Make DaD1R=0 (instead of 3) to reduce basal cAMP (and D32p34PP1) without blunting peak
+Dp34 still decreasing with DaCa - PKA not strong enough to overcome Pp2B.  More prolonged ACh reduction may help this.  Also, eliminate PP2Acal activity against Dp34.
+
+>>>>>>>>RESULTS
+nostim: Da=10 (good) cAMP=61 (no better) PKAc=5.9 (no better) pPP2A=36 (no better)
+Gs part - no change: GsaGTP: 1 AC5Gsa=3.7 GiaGTP: 102 AC5Gia: 595  AC5GsaGiaATP 228      AC5GsaGia: 3     AC5GsaATP  30
+
+	   basal      Da   	  Ca	   DaCa	    CyA 	OA
+cAMP	   60	      1856	  113n	   1411	    NA		NA
+Dp34 	   886n	      4.0u	  	   2.1u	    1.4u	1.5u	
+Dp75	   10.5u      9.3u	  6.9u	   6.1u	    10.9u	3.6u
+D32p75PKAc  25n	      175n	  42n	   107n	    39		114
+
+--------->reducing ACh to 0.15 was good - peak cAMP=2 uM, but need to prolong the reduction, e.g. 100s?
+Now there is insufficient pPP2A to reduce Dp75 with Da alone - would this be fixed by more prolonged cAMP?
+DaCa case still does not increase Dp34 - is Pp2B too strong?  Would more prolonged cAMP counteract Pp2B?
+Why is Da stil on 200s long, but Ca stim is 200s long?
+In fact, there is sharp dip in cAMP when ACh is restored, and then a drop in cAMP when Da stops.  the latter corresponds to decrease in Dp34.
+Would this also fix the Dp75 part?  Possibly need to restore part of the PKA phos of PP2A -
+Dp75 inhibition of PKAc limits the Dp34 increase with OA block
+2. Consider partial restoring of PKA phos of PP2A, e.g. kcat=0.03e-3, kf,kb=.00125,0.185
+
+###############
+1. FIX BATH STIM - no need to re-run other cases - prolong Da stim and ACh decrease extra 100s
+2. double again rate of CyA block of PP2B - re-run just this case
+
+>>>>>>>>>>>>>>>>>>Results of theta and 20hz
+Glu transients are very long - >5 sec - speed the pumping/extrusion?
+######Fa. double the dissociation of Glu from Gbuf (from 10 to 20 - same as DaDbuf)
+######Fb. increase extrusion rate - from 0.6 to 1.2 (and kb from .03 to .06), which may halve the peak value - from 4u to 2u
+ACh transients exceed 1 uM - what should they be?  Unclear.  Reduce injection anyway because cAMP is too low.
+######From rate=8.0 to rate =4.0
+Neither of these will affect steady state
+
+Run Uchi sims
+1. Depth 2D is now 0.6, was 0.4, diameter is now 0.9, was 1.0
+volume now: 0.6*0.9, =0.54; volume prior: 0.4*1.0 = 0.444
+For Uchi sims, adjust depth2D to equate volume.  Make depth2D=0.45
+2. Once depth2D is adjusted, can use same stimulation quantities - just create new Model files
+   depth2d=0.45
+   latest rxn file, but with dhpg uncommented
+3. edit stim files to:
+   x1. add in ACh
+   x2. change start time to 20s
+   x3. change sa2 to dend:submembrane
+   x4. change dhpg to glu
+   5. May need to change Glu inject if it doesn't stay constant.  Possibly inject GluGbuf instead of Glu 
+
+Once basal is good, consider tuning phosphatase activity against D32p34, and the Gq pathways.  Is it necessary to have small mGluR in the dendrites?
+
+>>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PP2BCamCa4 pPP2A PP2Acal PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A  D32p75PKAc"
+>>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,AChm1RGq Glu GluMgluRGq GqaGTP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag CKCamCa4"
+>>> ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,Da,Da DaD1RGs AChm4RGi GsaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 pAKAR3"
+
+Response to nostim, bath and block application :
+   	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
+basal		  500-600 nM		10-12 uM			0.1	
+Da		  5x  			50%				0.3	
+Ca		  50%			25%				1	
+DaCa		  2-3x			unknown				10	
+CyA:		  3-17x			no change
+OA:		  5x			3x
+
+
+------->A) Research effects of alcohol.
+	   investigate something about plasticity and alcohol
+	B) What stimulation protocol would optimize LTP?
+	   According to Reynolds - burst of Da needs to be AFTER ACh burst, e.g. by 0.6 sec.  Adjust theta stim file to achieve this.
+>>>Added in DaDelay case
+
+&&&&&& To finish model (may help with degradation of Gi during ACh pauses):
+   Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
+1. D1R model:
+   PKA phos of RGS (enzyme assay); possibly tune G pathways and CaMKII  - Dgl rates (Jeanette's group)
+   PKA + RGS <-> pRGS + PKA (2 steps - not too fast to avoid decreasing other Dp34 basal)
+   RGS + GiGTP <-> RGS + GiGDP (2 steps - rate similar to current spontaneous)
+   pRGS + GiGTP <-> pRGS + GiGDP (2 steps - 10x faster?)
+   pRGS -> RGS (adjust rate for low basal)
+2. To create D2R model
+     Aden (stim files) + A2AR  (affinity measures, reactions)
+   a. Replace D1 with Aden params
+   b. Use D2R values instead of m4R values
+   c. Replace ACh stim with Aden stim
+
+For publication, do we simulate a D2R model?  Or alcohol effects?
+
