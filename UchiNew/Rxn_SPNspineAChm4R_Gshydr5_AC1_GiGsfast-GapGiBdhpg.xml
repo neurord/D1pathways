@@ -406,7 +406,7 @@
         <Product  specieID="GsaGTP"                  />
         <Product  specieID="Gbg"                  />
 
-        <forwardRate> 0.25e-03        </forwardRate>
+        <forwardRate> 0.15e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
     </Reaction>
 
@@ -1091,17 +1091,17 @@ at=18x source: WadaJBiolChem262-5139   -->
 <!-- PLC, Dag, IP3, 2ag and PKC, from Gq RXN FILE --> 
 <!-- Review these and check all molecule names -->
 
-    <!--1a. Plc+Ca <-> PlcCa -->
+    <!--1a. Plc+Ca <-> PlcCa 2500 nM -->
     <Reaction name = "Plc+Ca--PlcCa" id="Plc+Ca--PlcCa">
         <Reactant specieID="Ca"           />
         <Reactant specieID="Plc"              />
         <Product  specieID="PlcCa"               />
 
-        <forwardRate> 0.0005e-03   </forwardRate>
+        <forwardRate> 0.0004e-03   </forwardRate>
         <reverseRate> 1e-03        </reverseRate>
     </Reaction>
 
-    <!--2a. PlcCa + GaGTP    <->   PlcCaGqa  100 nM-->
+    <!--2a. PlcCa + GaGTP    <->   PlcCaGqa  200 nM-->
     <Reaction name = "PlcCa+GqaGTP--PlcCaGqa" id="PlcCa+GqaGTP--PlcCaGqa">
         <Reactant specieID="GqaGTP"           />
         <Reactant specieID="PlcCa"              />
@@ -1111,7 +1111,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <reverseRate> 0.7e-03        </reverseRate>
     </Reaction>
 
-    <!--1b. Plc + GqaGTP    <->   PlcGqa 1200 nM -->
+    <!--1b. Plc + GqaGTP    <->   PlcGqa 1000 nM -->
 <!--AB: Falkenburger 2010 uses 0.71e-3 for reverse rate --> 
     <Reaction name = "Plc+GqaGTP--PlcGqa" id="Plc+GqaGTP--PlcGqa">
         <Reactant specieID="GqaGTP"           />
@@ -1128,7 +1128,7 @@ at=18x source: WadaJBiolChem262-5139   -->
         <Reactant specieID="PlcGqa"              />
         <Product  specieID="PlcCaGqa"               />
 
-        <forwardRate> 0.0025e-03   </forwardRate>
+        <forwardRate> 0.002e-03   </forwardRate>
         <reverseRate> 1.0e-03        </reverseRate>
     </Reaction>
 
@@ -1435,8 +1435,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PKAc"               />
         <Product  specieID="PKAcPP2AB56d"      />
 
-        <forwardRate> 0.0008e-03      </forwardRate>
-        <reverseRate> 0.12e-03         </reverseRate>
+        <forwardRate> 0.00125e-03      </forwardRate>
+        <reverseRate> 0.185e-03         </reverseRate>
     </Reaction>
 
     <!--PKAcPP2AB56d        ->  PKAc + pPP2A(_B56d)   (in xpp: v27=0.1) -->
@@ -1445,7 +1445,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PKAc"           />
         <Product  specieID="pPP2A"          />
 
-        <forwardRate> 0.02e-03         </forwardRate>
+        <forwardRate> 0.03e-03         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
@@ -1586,33 +1586,14 @@ MUCH slower binding compared to CaDgl  -->
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
-    <Reaction name = "D32p34+PP2Acal--D32p34PP2Acal reac" id="D32p34+PP2Acal--D32p34PP2Acal_id">
-        <Reactant specieID="D32p34"                   />
-        <Reactant specieID="PP2Acal"              />
-        <Product  specieID="D32p34PP2Acal"          />
-
-        <forwardRate> 1.52e-06        </forwardRate>
-        <reverseRate> 0.056           </reverseRate>
-    </Reaction>
-
-    <!-- D32p34PP2Acal            -> D32 + PP2Acal  (in xpp: v22b=0.5) -->
-    <Reaction name = "D32p34PP2Acal--PP2Acal+D32 reac" id="D32p34PP2Acal--PP2Acal+D32_id">
-        <Reactant specieID="D32p34PP2Acal"          />
-        <Product  specieID="PP2Acal"              />
-        <Product  specieID="D32"                    />
-
-        <forwardRate> 0.014           </forwardRate>
-        <reverseRate> 0.0             </reverseRate>
-    </Reaction>
-
     <!-- D32p34pp1 + PP2ABPR72  <-> D32p34PP1PP2ABPR72 -> D32 + PP1 + PP2ABPR72  (in xpp: k36b=0.0001 k_36b=2, Kd=) -->
     <Reaction name = "D32p34pp1+PP2ABPR72--D32p34PP1PP2ABPR72 reac" id="D32p34pp1+PP2ABPR72--D32p34PP1PP2ABPR72_id">
         <Reactant specieID="D32p34PP1"                 />
         <Reactant specieID="PP2ABPR72"              />
         <Product  specieID="D32p34PP1PP2ABPR72"       />
 
-        <forwardRate> 0.3e-06        </forwardRate>
-        <reverseRate> 0.0122          </reverseRate>
+        <forwardRate> 0.36e-06        </forwardRate>
+        <reverseRate> 0.0146          </reverseRate>
     </Reaction>
 
     <!-- D32p34PP1PP2ABPR72          -> PP1PP2ABPR72 + D32 (in xpp: v36b=0.5) -->
@@ -1622,7 +1603,7 @@ MUCH slower binding compared to CaDgl  -->
 	<Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0028          </forwardRate>
+        <forwardRate> 0.00336          </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
@@ -1632,8 +1613,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2AB56d"              />
         <Product  specieID="D32p34PP1PP2AB56d"       />
 
-        <forwardRate> 0.3e-06        </forwardRate>
-        <reverseRate> 0.0122          </reverseRate>
+        <forwardRate> 0.36e-06        </forwardRate>
+        <reverseRate> 0.0146          </reverseRate>
     </Reaction>
 
     <!-- D32p34PP1PP2AB56d          -> PP1PP2AB56d + D32 (in xpp: v36b=0.5) -->
@@ -1643,7 +1624,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.0028         </forwardRate>
+        <forwardRate> 0.00336         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 

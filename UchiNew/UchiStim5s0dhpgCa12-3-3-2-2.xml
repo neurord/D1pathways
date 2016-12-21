@@ -2,7 +2,7 @@
 
     <!-- Uchigashima - DSI sims 5 s  -->
 
-<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="Glu" injectionSite="dend:submembrane">
         <onset>               22000          </onset>
         <duration>            5             </duration>
         <rate>                  0           </rate>
@@ -88,7 +88,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            80000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 
 </StimulationSet>

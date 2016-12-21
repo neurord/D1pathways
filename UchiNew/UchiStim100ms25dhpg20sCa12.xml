@@ -2,22 +2,22 @@
 
     <!-- Uchigashima - DSI sims 100 ms  -->
 
-<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="Glu" injectionSite="dend:submembrane">
         <onset>               22000          </onset>
         <duration>            20            </duration>
-        <rate>                625           </rate>
+        <rate>                500           </rate>
 </InjectionStim>
 
-<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="Glu" injectionSite="dend:submembrane">
         <onset>               22020          </onset>
         <duration>            280            </duration>
-        <rate>                30           </rate>
+        <rate>                25           </rate>
 </InjectionStim>
 
-<InjectionStim specieID="Glu" injectionSite="sa1[0].pointA">
+<InjectionStim specieID="Glu" injectionSite="dend:submembrane">
         <onset>               22300          </onset>
         <duration>            19700             </duration>
-        <rate>                25           </rate>
+        <rate>                20           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
@@ -35,7 +35,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            80000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 
 </StimulationSet>
