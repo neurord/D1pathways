@@ -36,12 +36,12 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            170000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               170000          </onset>
         <duration>            200000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 
    <!-- *****************TRAIN 1 *** Glu inject **********-->   

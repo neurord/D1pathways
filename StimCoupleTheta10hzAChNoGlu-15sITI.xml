@@ -36,18 +36,18 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            20000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               170000          </onset>
         <duration>            200000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 <!-- basal ACh stim restored between pauses during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               23200          </onset>
         <duration>            11800      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
         <period>              15000             </period>
         <end>                 170000          </end>
 </InjectionStim>
@@ -102,7 +102,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 20066          </end>
         <numTrains>           10             </numTrains>
@@ -112,7 +112,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 20066          </end>
         <numTrains>           10             </numTrains>
@@ -156,7 +156,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               35000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 35066          </end>
         <numTrains>           10             </numTrains>
@@ -166,7 +166,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               35000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 35066          </end>
         <numTrains>           10             </numTrains>
@@ -210,7 +210,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 50066          </end>
         <numTrains>           10             </numTrains>
@@ -220,7 +220,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               50000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 50066          </end>
         <numTrains>           10             </numTrains>
@@ -265,7 +265,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               65000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 65066          </end>
         <numTrains>           10             </numTrains>
@@ -275,7 +275,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               65000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 65066          </end>
         <numTrains>           10             </numTrains>
@@ -320,7 +320,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               80000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 80066          </end>
         <numTrains>           10             </numTrains>
@@ -330,7 +330,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               80000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 80066          </end>
         <numTrains>           10             </numTrains>
@@ -375,7 +375,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               95000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 95066          </end>
         <numTrains>           10             </numTrains>
@@ -385,7 +385,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               95000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 95066          </end>
         <numTrains>           10             </numTrains>
@@ -429,7 +429,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               110000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 110066          </end>
         <numTrains>           10             </numTrains>
@@ -439,7 +439,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               110000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 110066          </end>
         <numTrains>           10             </numTrains>
@@ -483,7 +483,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               125000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 125066          </end>
         <numTrains>           10             </numTrains>
@@ -493,7 +493,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               125000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 125066          </end>
         <numTrains>           10             </numTrains>
@@ -538,7 +538,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               140000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 140066          </end>
         <numTrains>           10             </numTrains>
@@ -548,7 +548,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               140000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 140066          </end>
         <numTrains>           10             </numTrains>
@@ -592,7 +592,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               155000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 155066          </end>
         <numTrains>           10             </numTrains>
@@ -602,7 +602,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               155000          </onset>
         <duration>            15              </duration>
-        <rate>               4.0          </rate>
+        <rate>               3.0          </rate>
         <period>              40             </period>
         <end>                 155066          </end>
         <numTrains>           10             </numTrains>

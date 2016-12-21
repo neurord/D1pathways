@@ -28,18 +28,18 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            20000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               20000          </onset>
-        <duration>            120000      </duration>
-        <rate>                0.15         </rate>
+        <duration>            220000      </duration>
+        <rate>                0.1         </rate>
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               120000          </onset>
-        <duration>            180000      </duration>
-        <rate>                0.3         </rate>
+        <onset>               220000          </onset>
+        <duration>            80000      </duration>
+        <rate>                0.2         </rate>
 </InjectionStim>
 </StimulationSet>
