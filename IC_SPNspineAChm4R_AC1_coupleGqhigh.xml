@@ -229,15 +229,15 @@
         <NanoMolarity specieID="MgluR"              value="700"     /> 
         <NanoMolarity specieID="MgluRGq"              value="100"     /> 
         <NanoMolarity specieID="Gqabg"              value="7900"  />
-        <NanoMolarity specieID="Plc"                value="360"   />
+        <NanoMolarity specieID="Plc"                value="1160"   />
         <NanoMolarity specieID="PlcCa"              value="0"    />
         <NanoMolarity specieID="Pip2"               value="19120"  />
         <NanoMolarity specieID="PlcCaPip2"          value="40"   />
 
         <NanoMolarity specieID="Dag"        value="40"  />
         <NanoMolarity specieID="DagK"        value="280"  />
-        <NanoMolarity specieID="Dgl"         value="640"  />
-        <NanoMolarity specieID="CaDgl"       value="200"   />
+        <NanoMolarity specieID="Dgl"         value="1280"  />
+        <NanoMolarity specieID="CaDgl"       value="400"   />
         <NanoMolarity specieID="PIkinase"    value="560"    />
         <NanoMolarity specieID="Ip3degPIk"   value="0"    />
         <NanoMolarity specieID="Ip3"         value="40"  />

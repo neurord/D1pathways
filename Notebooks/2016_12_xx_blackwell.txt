@@ -48,7 +48,7 @@ Dp75		  6.9u
 cAMP still a bit high.  Da basal=11.5 - perhaps lowering this a bit would help.
 cAMP with Da is huge but quite transient - due to reduction in Gi for 10s - don't lower ACh as much.
 
-########### New parametes - Dec 16, 2016\
+########### New parametes - Dec 16, 2016
 Note that ACh has been 70 nM basal with new version, but cannot reduce since cAMP too high
 Reduce ACh only by 50% for 10s during Da bath, and more prolonged (20s)
 Make DaD1R=0 (instead of 3) to reduce basal cAMP (and D32p34PP1) without blunting peak
@@ -73,37 +73,107 @@ Would this also fix the Dp75 part?  Possibly need to restore part of the PKA pho
 Dp75 inhibition of PKAc limits the Dp34 increase with OA block
 2. Consider partial restoring of PKA phos of PP2A, e.g. kcat=0.03e-3, kf,kb=.00125,0.185
 
-###############
-1. FIX BATH STIM - no need to re-run other cases - prolong Da stim and ACh decrease extra 100s
-2. double again rate of CyA block of PP2B - re-run just this case
-
 >>>>>>>>>>>>>>>>>>Results of theta and 20hz
 Glu transients are very long - >5 sec - speed the pumping/extrusion?
 ######Fa. double the dissociation of Glu from Gbuf (from 10 to 20 - same as DaDbuf)
 ######Fb. increase extrusion rate - from 0.6 to 1.2 (and kb from .03 to .06), which may halve the peak value - from 4u to 2u
 ACh transients exceed 1 uM - what should they be?  Unclear.  Reduce injection anyway because cAMP is too low.
-######From rate=8.0 to rate =4.0
-Neither of these will affect steady state
+######ACh stim change from rate=8.0 to rate =4.0
+Neither of these will affect steady state.
+Note that PP2A dephos of D32p34PP1 is lower than of D32p34 - could increase these a bit to lower basal D32p34, then would emphasize effect of OA block, e.g. 10% increase? 
+---->Re-run theta and 20hz after seeing results of Bath and Uchi, possibly with slightly higher Pp2A dephos rates for D32p34PP1
 
-Run Uchi sims
-1. Depth 2D is now 0.6, was 0.4, diameter is now 0.9, was 1.0
+>>>>>>>>Gq pathways:
+no MGlu produces large decrease in Gq, but only small change in Ip3 and 2ag
+no ACh (constant ACh) produces a smaller change in Gq - blunts the early peak, but not later part of the peak, but produces a larger reduction in Ip3 and 2ag.  Both show reduction in PlcCaGq, no ACh has smaller Pip2 bound form.  Gq bound Plc (~10nM) is still quite small compared to the Ca alone form (~160 nM peaks), so may not  contribute much, especially in spine with higher Ca conc.
+Briefer Glu may reveal larger effect of blocking ACh modulation on Gq.
+--------> Consider lower Plc affinity for  calcium to enhance Gq role (and lower 2ag basal) - depends on Uchi sims
+
+###############
+1. FIX BATH STIM - no need to re-run other cases - prolong Da stim and ACh decrease extra 100s
+2. double again rate of CyA block of PP2B - re-run just this case
+3. Eliminate PP2Acal dephosphorylates D32p34.  With bath calcium, D32p34 dephos is stronger than without - may contribute to the DaCa reduction. Would have minimal effect on steady state. Hopefully will have minimal effect on Ca alone, since very little D32p34 in this condition.
+Shouldn't have effect on block either - since only 1 of these molecules ever observed.
+
+4.Run Uchi sims
+a. Depth 2D is now 0.6, was 0.4, diameter is now 0.9, was 1.0
 volume now: 0.6*0.9, =0.54; volume prior: 0.4*1.0 = 0.444
 For Uchi sims, adjust depth2D to equate volume.  Make depth2D=0.45
-2. Once depth2D is adjusted, can use same stimulation quantities - just create new Model files
+b. Once depth2D is adjusted, can use same stimulation quantities - just create new Model files
    depth2d=0.45
    latest rxn file, but with dhpg uncommented
-3. edit stim files to:
+c. edit stim files to:
    x1. add in ACh
    x2. change start time to 20s
    x3. change sa2 to dend:submembrane
    x4. change dhpg to glu
-   5. May need to change Glu inject if it doesn't stay constant.  Possibly inject GluGbuf instead of Glu 
+   5. May need to change Glu inject if it doesn't stay constant.  Possibly inject GluGbuf instead of Glu
 
-Once basal is good, consider tuning phosphatase activity against D32p34, and the Gq pathways.  Is it necessary to have small mGluR in the dendrites?
+>>>>>>>Results of new Bath and Uchi sims - 12-20-16
+Better cAMP signal - exceeds 1 uM for ~100s
+D32p34 is no better - Da+Ca still does not exceed basal.  Replacement of ACh does lower D32p34 and cAMP - prolong this effect, but wouldn't fix problem.
+D32p75: definitely better.  Decreases to 8.8u with Da alone
+-------> Restore some of PKA phos of PP2A activity.  this will increase the D32p75 dip with Da, and possibly further reduce pp2a activity against Dp34, and possibly reduce PKA activity against D32 via competition.  Reduce D32p75 may also provide more PKA for Dp34.
+
+UCHI:
+Glu is too high!  39 instead of 25, 7.9 instead of 5, 1.8 instead of 1.0 -> suggests that depth2D is too small?
+WORSE: GqaGTP has no effect on Ip3 or 2ag -  possibly because Ca is saturating Plc?  Larger depth2D/volume would lower ca conc - may make Gq more important.
+Spine head conc = 1.5u vs 1u for dend (1s), and 4 uM vs 3.5u (5s) - too high for DSI protocol - lower spine calcium inject
+-------->depth2D=0.6 will lower dend calcium, make PLC more dependent on Gq
+		     lower spine calcium inject, make PLC more dependent on Gq, OR
+		     lower Plc affinity for calcium? - make PLC more dependent on Gq, lower basal Ip3 and 2ag
+Dag certainly depends on Dhpg conc in the spine - why no effect on 2ag?  2ag conc = 10% of Dag conc
+Dhpg effect on overall Dag is low, since dhpg doesn't produce Gq in the dendrite
+     Also, the Dag with lowest amount of dhpg (1 uM) saturates the CaDgl - again eliminating a difference in 2ag due to dhpg.  Strangely, the 2ag doesn't increase with dag.  
+
+BLock: OA increases Dp34 ~50%
+       CyA block also increases Dp34 ~50%
+  -----> These are much better than previous values.  OA binding is still faster than CyA binding, which corresponds to the faster Dp34 increase with OA. Will leave speed as is for now.
+
+No ACh case: transient increase in cAMP to 1.6u, then decreases to 200 nM.  No too bad.
+
+#########New params - re-run no stim case
+1. ACh lowered to 0.15 for 200s - to help Bath DaCa case
+2. PKA phos against PP2A: 0.00125, 0.185, 0.03 - to help Bath DaCa case
+3. Increase PP2A activity 10% to lower basal Dp34 (and increase effect of OA block)
+4. Depth2D=0.6 for Uchi - will lower Glu /dhpg conc to proper amount
+5. Glu inject to dend:submembrane instead of spine, since dhpg is bath applied
+6. Lower PLC affinity for Calcium by 20%: 2500 nM for Plc + Ca, 500 nM for PlcGq + Ca
+
+>>>>>>>>>>>Bath:
+Basal: D32p34=735 - great
+Dp75 decreases to 8.1u with Da - better, but
+Dp34 only increases to 1.1u with Da+Ca - better, but still not good enough
+
+-->Solution: decrease calcium injection 20% for less Pp2B activation
+
+>>>>>>>>Uchi:
+Glu is much better: 1.3 uM, 30 uM - still 20-30% too high - reduce 20%
+Basal Dag=302-311, 2ag=60-80, IP3=200-300 - much lower 2ag basal
+100ms calcium: still no effect of Glu!
+3. Dgl decreases to 300 briefly during calcium - still room for further decrease
+2. Dag slightly increases with Glu, even though GqaGTP increases greatly
+1. PlcCaGq increases the tiniest amount - only 4 molecules!
+PlcCa increases a bit during calcium, but quite low
+Spine: GqaGTP increases to 600 nM - sufficient
+       PlcGq increases from 0 to 50nm (but only 2 molecules!)
+       PlcCaGqPip2 increases from 0 to 1 molecule!
+       Dag increases in spine head from ~80 to 600nM - but still a small fraction of total because not seen when averaged over dendrite
+       Dgl decreases to 0, suggesting it  could be limiting with higher DAG
+----> increase Plc (triple) and Dgl (double)  in spine - consistent with mGluR and Gq increase in spine
+
+############## Additional new parameters to achieve lower cAMP basal:
+decrease ACh basal - inject 0.2 vs 0.3, and decrease Gs production - kcat from 0.25 to 0.15
+>>>>>> ACh=48, cAMP=46, Dp34: 549: PERFECT, pPP2A: 36, Dp75:10.5
+Gs part - lower: GsaGTP: 0.6 AC5Gsa=3.2 GiaGTP: 70 AC5Gia: 596  AC5GsaGiaATP 139      AC5GsaGia: 2     AC5GsaATP  24
+
+
+Thurs: update 2 spine stim files to run these simulations over xmas
 
 >>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PP2BCamCa4 pPP2A PP2Acal PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A  D32p75PKAc"
 >>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,AChm1RGq Glu GluMgluRGq GqaGTP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag CKCamCa4"
 >>> ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,Da,Da DaD1RGs AChm4RGi GsaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 pAKAR3"
+ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,bath,Da Ca DaD1RGs AChm4RGi GsaGTP GiaGTP AC5GsaATP AC5GsaGiaATP AC1GsaCamCa4ATP AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 D32p75,10 20"
 
 Response to nostim, bath and block application :
    	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
