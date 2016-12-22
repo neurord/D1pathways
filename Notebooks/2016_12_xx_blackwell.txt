@@ -163,34 +163,19 @@ Spine: GqaGTP increases to 600 nM - sufficient
 ----> increase Plc (triple) and Dgl (double)  in spine - consistent with mGluR and Gq increase in spine
 
 ############## Additional new parameters to achieve lower cAMP basal:
-decrease ACh basal - inject 0.2 vs 0.3, and decrease Gs production - kcat from 0.25 to 0.15
+decrease ACh basal - inject 0.2 vs 0.3 (all stim files), and decrease Gs production - kcat from 0.25 to 0.15 (Rxn)
+increase Plc (triple) and Dgl (double) in spine (IC file)
+decrease calcium injection 20% for less Pp2B activation in Ca bath stim
+>>>>>>>Results Basal:
 >>>>>> ACh=48, cAMP=46, Dp34: 549: PERFECT, pPP2A: 36, Dp75:10.5
 Gs part - lower: GsaGTP: 0.6 AC5Gsa=3.2 GiaGTP: 70 AC5Gia: 596  AC5GsaGiaATP 139      AC5GsaGia: 2     AC5GsaATP  24
 
-
-Thurs: update 2 spine stim files to run these simulations over xmas
-
->>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,Ca Da DaD1RGs GsaGTP ACh AChm4RGi GiaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP PP2BCamCa4 pPP2A PP2Acal PKAc D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2ABPR72 D32p34PP1PP2AB56d D32p75 D32p75PP2ABPR72 D32p75PP2AB56d D32p75PP2Acal D32p75pPP2A  D32p75PKAc"
->>> ARGS="Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim,,AChm1RGq Glu GluMgluRGq GqaGTP PlcCa PlcCaGqa PlcGqa PlcCaPip2 PlcCaGqaPip2 Ip3 Dag pDgl CaDgl CapDgl DagCaDgl DagCapDgl 2ag PkcCa PkcCaDag CKCamCa4"
->>> ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,Da,Da DaD1RGs AChm4RGi GsaGTP AC5Gsa AC5GsaATP AC5Gia AC5GsaGia AC5GsaGiaATP AC1Gsa AC1CamCa4 AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 pAKAR3"
-ARGS="ss_bath/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast,bath,Da Ca DaD1RGs AChm4RGi GsaGTP GiaGTP AC5GsaATP AC5GsaGiaATP AC1GsaCamCa4ATP AC1CamCa4ATP cAMP PDE1CamCa4cAMP PDE1CamCa4 PDE10cAMP pPDE10 pPDE10cAMP pPP2A PKAc D32p34 D32p34PP1 D32p75,10 20"
-
-Response to nostim, bath and block application :
-   	Dp34tot	  goal		Dp75	goal				Da	pAKAR3
-basal		  500-600 nM		10-12 uM			0.1	
-Da		  5x  			50%				0.3	
-Ca		  50%			25%				1	
-DaCa		  2-3x			unknown				10	
-CyA:		  3-17x			no change
-OA:		  5x			3x
-
+SIMULATE ALL EXPERIMENTS
 
 ------->A) Research effects of alcohol.
 	   investigate something about plasticity and alcohol
 	B) What stimulation protocol would optimize LTP?
 	   According to Reynolds - burst of Da needs to be AFTER ACh burst, e.g. by 0.6 sec.  Adjust theta stim file to achieve this.
->>>Added in DaDelay case
-
 &&&&&& To finish model (may help with degradation of Gi during ACh pauses):
    Note that PKA phos of RGS will not help theta since PKA is same for theta and 20 Hz
 1. D1R model:
