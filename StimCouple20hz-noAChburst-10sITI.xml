@@ -82,11 +82,11 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
         <duration>            220000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               220000          </onset>
         <duration>            200000      </duration>
-        <rate>                0.3         </rate>
+        <rate>                0.2         </rate>
 </InjectionStim>
 </StimulationSet>
