@@ -78,8 +78,20 @@ def get_mol_pop(simData, out_location,gridpoints,trials):
         time=simData[trials[0]]['output'][outset]['times'][:]/1000     #Convert msec to sec
         for trialnum,trial in enumerate(trials):
             tempConc=simData[trial]['output'][outset]['population'][:,:,out_location['location'][outset]['mol_index']]
+            #if simulation is still running, array sizes may not be the same. 
+            print('samples', samples, 'tempConc',np.shape(tempConc))
+            if np.shape(tempConc)[0]>samples:
+                trialConc=np.resize(tempConc,(samples,len(elements)))
+                print ('tempconc',np.shape(trialConc),'too big')
+            elif np.shape(tempConc)[0]<samples:
+                extrazeros=np.zeros((samples-np.shape(tempConc)[0],len(elements)))
+                print('zeros',np.shape(extrazeros))
+                trialConc=np.vstack((tempConc,extrazeros))
+                print('tempconc too small, add',np.shape(extrazeros), 'for', np.shape(trialConc))
+            else:
+                trialConc=tempConc
             #transpose required to undo the transpose automatically done by python when specifying elements as 3d index
-            conc[trialnum,:,elements]=tempConc.T
+            conc[trialnum,:,elements]=trialConc.T
     return conc,time
 
 def argparse(args):
@@ -163,7 +175,8 @@ def multi_spines(model):
     return newspinelist,spine_dict
 
 def region_means_dict(data,regionDict,time,molecule,trials):
-    RegionMeans=np.zeros((len(trials),len(time),len(regionDict)))
+    samples=np.shape(data)[1]
+    RegionMeans=np.zeros((len(trials),samples,len(regionDict)))
     header=''       #Header for output file
     for j,item in enumerate(regionDict):
         RegionMeans[:,:,j]=np.sum(data[:,:,regionDict[item]['vox']],axis=2)/(regionDict[item]['vol']*mol_per_nM_u3)

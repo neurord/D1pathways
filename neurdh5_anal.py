@@ -194,7 +194,7 @@ for fnum,ftuple in enumerate(ftuples):
             else:
                 spineheader=''
             #calculate overall mean
-            OverallMean=np.zeros((numtrials,len(time)))
+            OverallMean=np.zeros((numtrials,np.shape(molecule_pop)[1]))
             OverallMean[:,:]=np.sum(molecule_pop[:,:,:],axis=2)/(TotVol*mol_per_nM_u3)
             header='#time ' +headstruct+headreg+molecule+'AvgTot\n'
             #
@@ -423,6 +423,11 @@ if showplot:
     fig,axes,col_inc,scale,numpar=pu5.plot_setup(plot_molecules,parlist,params)
     #need fnames
     fig.suptitle(figtitle)
+    #fix time array for simulations not finished - variable length of time
+    for i in range(len(plot_molecules)):
+        if len(time_array[i]) != np.shape(whole_plot_array[i])[1]:
+            samples=np.shape(whole_plot_array[i])[1]
+            time_array[i]=np.linspace(0,time_array[i][1]*samples,samples)
     pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,axes,fig,col_inc,scale,parlist)
     #
 if calc_signature:
