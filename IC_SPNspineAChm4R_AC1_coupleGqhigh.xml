@@ -331,6 +331,8 @@
 <!-- all are within 1 order of magnitude to Falkenburger, who lists other references with density estimates near his-->
         <PicoSD specieID="m1R"              value="150"  />
         <PicoSD specieID="m1RGq"            value="50"  />
+        <PicoSD specieID="MgluR"              value="30"  />
+        <PicoSD specieID="MgluRGq"            value="10"  />
         <PicoSD specieID="Gqabg"              value="1950"  />
         <PicoSD specieID="Plc"                value="177"  />
         <PicoSD specieID="PlcCa"              value="8"    />
