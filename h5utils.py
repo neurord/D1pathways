@@ -79,7 +79,7 @@ def get_mol_pop(simData, out_location,gridpoints,trials):
         for trialnum,trial in enumerate(trials):
             tempConc=simData[trial]['output'][outset]['population'][:,:,out_location['location'][outset]['mol_index']]
             #if simulation is still running, array sizes may not be the same. 
-            print('samples', samples, 'tempConc',np.shape(tempConc))
+            #print('samples', samples, 'tempConc',np.shape(tempConc))
             if np.shape(tempConc)[0]>samples:
                 trialConc=np.resize(tempConc,(samples,len(elements)))
                 print ('tempconc',np.shape(trialConc),'too big')
