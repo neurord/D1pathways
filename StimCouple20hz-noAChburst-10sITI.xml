@@ -7,7 +7,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            5              </duration>
-        <rate>                18.0           </rate>
+        <rate>                9.0           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
