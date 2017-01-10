@@ -3,91 +3,91 @@
     <!-- Uchigashima - DSI sims 5 s  -->
 
 <InjectionStim specieID="Glu" injectionSite="dend:submembrane">
-        <onset>               22000          </onset>
+        <onset>               42000          </onset>
         <duration>            5             </duration>
         <rate>                  0           </rate>
 </InjectionStim>
 
 <!-- 1st sec - must have same rate as 1 s -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               24000           </onset>
+        <onset>               44000           </onset>
         <duration>            100           </duration>
         <rate>                   12           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               24000           </onset>
+        <onset>               44000           </onset>
         <duration>            100           </duration>
         <rate>                  60           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               24100           </onset>
+        <onset>               44100           </onset>
         <duration>            900           </duration>
         <rate>                   3           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               24100           </onset>
+        <onset>               44100           </onset>
         <duration>            900           </duration>
         <rate>                  15           </rate>
 </InjectionStim>
 
 <!-- 2nd sec  -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               25000           </onset>
+        <onset>               45000           </onset>
         <duration>            1000           </duration>
         <rate>                   3           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               25000           </onset>
+        <onset>               45000           </onset>
         <duration>            1000           </duration>
         <rate>                  15           </rate>
 </InjectionStim>
 
 <!-- 3rd sec - half the rate -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               26000           </onset>
+        <onset>               46000           </onset>
         <duration>            1000           </duration>
         <rate>                   3           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               26000           </onset>
+        <onset>               46000           </onset>
         <duration>            1000           </duration>
         <rate>                  15           </rate>
 </InjectionStim>
 
 <!-- 4th sec - half the rate -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               27000           </onset>
+        <onset>               47000           </onset>
         <duration>            1000           </duration>
         <rate>                   2           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               27000           </onset>
+        <onset>               47000           </onset>
         <duration>            1000           </duration>
         <rate>                  10           </rate>
 </InjectionStim>
 
 <!-- 5th sec - yet half again -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               28000           </onset>
+        <onset>               48000           </onset>
         <duration>            1000           </duration>
         <rate>                   2           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               28000           </onset>
+        <onset>               48000           </onset>
         <duration>            1000           </duration>
         <rate>                  10           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
-        <duration>            80000      </duration>
+        <duration>            100000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
 

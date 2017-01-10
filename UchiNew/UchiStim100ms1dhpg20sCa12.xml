@@ -3,38 +3,38 @@
     <!-- Uchigashima - DSI sims 100 ms  -->
 
 <InjectionStim specieID="Glu" injectionSite="dend:submembrane">
-        <onset>               22000          </onset>
+        <onset>               42000          </onset>
         <duration>            20             </duration>
         <rate>                25           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Glu" injectionSite="dend:submembrane">
-        <onset>               22050          </onset>
+        <onset>               42050          </onset>
         <duration>            450             </duration>
         <rate>                1.0           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Glu" injectionSite="dend:submembrane">
-        <onset>               22500          </onset>
+        <onset>               42500          </onset>
         <duration>            19500             </duration>
         <rate>                1.0           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
-        <onset>               24000           </onset>
+        <onset>               44000           </onset>
         <duration>             100           </duration>
         <rate>                   12           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
-        <onset>               24000           </onset>
+        <onset>               44000           </onset>
         <duration>             100           </duration>
         <rate>                  60           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
-        <duration>            80000      </duration>
+        <duration>            100000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
 
