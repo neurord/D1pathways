@@ -69,7 +69,7 @@
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>               50000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 50066          </end>
         <numTrains>           10             </numTrains>
@@ -123,7 +123,7 @@
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>               65000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 65066          </end>
         <numTrains>           10             </numTrains>
@@ -177,7 +177,7 @@
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>               80000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 80066          </end>
         <numTrains>           10             </numTrains>
@@ -232,7 +232,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>               95000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 95066          </end>
         <numTrains>           10             </numTrains>
@@ -287,7 +287,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>               110000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 110066          </end>
         <numTrains>           10             </numTrains>
@@ -342,7 +342,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>               125000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 125066          </end>
         <numTrains>           10             </numTrains>
@@ -396,7 +396,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>              140000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 140066          </end>
         <numTrains>           10             </numTrains>
@@ -450,7 +450,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>              155000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 155066          </end>
         <numTrains>           10             </numTrains>
@@ -505,7 +505,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>              170000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 140066          </end>
         <numTrains>           10             </numTrains>
@@ -559,7 +559,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0,6].pointA">
         <onset>              185000          </onset>
         <duration>            5              </duration>
-        <rate>                36.0           </rate>
+        <rate>                9.0           </rate>
         <period>              20             </period>
         <end>                 155066          </end>
         <numTrains>           10             </numTrains>

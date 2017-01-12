@@ -53,7 +53,7 @@
 
     <!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
      GluOut is used to eliminate injected Glu -->
-    <Specie name="Glu"            id="Glu"           kdiff="5"   kdiffunit="mu2/s"/>
+    <Specie name="Glu"            id="Glu"           kdiff="2"   kdiffunit="mu2/s"/>
     <Specie name="GluGbuf"        id="GluGbuf"     kdiff="0"       kdiffunit="mu2/s"/>
     <Specie name="GluOut"         id="GluOut"        kdiff="1"   kdiffunit="mu2/s"/>
     <Specie name="Gbuf"           id="Gbuf"          kdiff="1"      kdiffunit="mu2/s"/>

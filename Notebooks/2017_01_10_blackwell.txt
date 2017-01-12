@@ -1,0 +1,138 @@
+Lab Notebook for Blackwell January 10-12, 2017
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+>>>>>>Bath simulations
+	basal  Da   	  Ca      DaCa	  CyA 	  OA
+cAMP	52n    2.9u	  94n	  2.1u
+Dp34 	600n   4.1	  190n	  1.4u	  957n	  1.2u	
+  goal	       5x	  50%	  2-3x	  3-17x	  5x
+Dp75	10.5u  7.8u	  7.5u	  6.1u	  10.7u	  37u
+  goal         50%        25%     NR	  NC	  3x
+
+--------> qualitatively correct.  Ideally could have larger increase of Dp34 with CyA and OA, but this is the best so far.  Reduction in Dp75 with calcium could be larger - perhaps need larger calcium signal.
+
+>>>>>>>>Da duration
+	   cAMP		PKAc	pAKAR3
+0.1	   154n		8	720n
+0.3	   216n		10	715n
+1	   350n		8	618n
+10	   929n		24	1.6u
+------------> cAMP is too low and too brief, especially for brief stimuli
+	      double the pause in ACh in the stim file
+	      basal AKAR may be too high - increse dephos rate
+	      
+>>>>>>>no ACh:
+cAMP increases to 1 uM (in 50 s) and then decreases back to 130 nM steady state
+Dp75 decreases to ~9 uM ss, Dp34 increases to ~1.7 u ss
+
+>>>>>>>> Uchi
+Glu: correct values
+GqaGTP: 20, 35, 50 for 1, 5 and 25 uM Dhpg
+PlcGq: still tiny
+Dag, Ip3: basal is not good: starts to high.  20s not sufficient to reach good basal, why?  The Uchi sims pretend that glu is dhpg by changing rate  constants.  The lower affinity for dhpg means that "basal glu" has less effect.
+Just wait longer to reach steady state.
+100ms calcium: 
+Dag is slightly higher for 25 uM dhpg, but barely noticeable with 2ag
+1s calcium
+Dag is higher for 25 uM dhpg than 5 uM, which is slightly higher than 1 uM, but barely noticeable with 2ag
+Dgl is decreasing to 200 nM - same decrement for all.
+5s calcium:
+dag for 25 and 5 uM dhpg are similar (800 nM, vs 600 nM for 0 and 1 uM dhpg).
+Dgl is decreasing to 64 nM - same decrement for all.  The saturation is fine for this calcium duration
+
+Differences with previous
+1. Plc affinity for Ca was 6 uM, now 2.5 uM
+2. PlcCa affinity for Pip2 was 16 uM, now 45 uM
+   lowered to keep lower basal Ip3 and Dag
+Similar affinity of Plc for Gq (both with and without Ca bound)
+----------->Is Plc still too sensitive to calcium?  Is there insufficient mGluR receptor (and insufficient Gq)? Note that Dag differs hugely with dhpg in the spine.  This suggests the problem is insufficient mGluR in the dendrite.
+
+----------->Note that Glutamate has similar concentration spine and dendrite.  This is fine for Uchi, but should have higher glu spine and low glu dendrite for LTP/LTD sims.  
+>>>>>>>> Glu is 10 uM in spine and 3 uM in dendrite - decrease diffusion, and also quantity of simulation, to decrease Glu in dendrite
+
+1. noMGlu has no effect on 2ag - consistent with Uchi results
+2. noCKp: small increase in 2ag with theta, bigger increase in 2ag with 20hz GOOD
+3. no ACh: small reduction in 2ag with 20hz, trivial effect with theta 
+4. M1 block: large reduction in 2ag and Dag and Pkc
+5. M4 block: increase in PKAc
+						     (20hz/theta)	
+      	     	  signature		2ag	PKAc 	     CKpCam	Pkc
+		20hz	theta	  20hz	theta	26.6/24.9   23.3/97.9	71.8/151.6
+Ctrl (noReb)	17.1	31.7	  160n	150n
+noACh burst	16.5	28.4	  135n	150n
+noCKp 		11.4*	11.4*	  190n*	234n*
+no M1		11.3*	26.4*	  100n*	112n*
+no M4		14.7	32.0	  160n	180n
+no mGluR	14.0	31.0	  160n	180n
+DaDelay		15.2	28.4	  165n	180n	21.6/18.0   17.4/91.4	80.1/148.3
+--------->with no CKp: signature is lower for both, especially for theta, and 2ag is higher - stronger LTD, and convert LTP to LTD (unless 2ag dependent LTP)
+---------> slight increase in signature with M4 block for theta, but not 20hz.  Might be bigger except that PKAc does not contribute much to signature; 2ag is lower with M1 block, but no effect of block mGluR (bad) and M4 (good) for 20hz
+-----------> Da delay produces small decrease in signature - not expected!  Molecule quantities are quite similar, except that PKAc is actually SMALLER with Da delay, possibly the Da is now less aligned with the ACh reduction? 
+
+######### Re-run Da dur simulations with large ACh pauses (in stim file) and faster PP1 dephos rate (in Rxn file); fix the ACh rate for the 1s stimulation (was 0.3, should be 0.2)
+######### Add mGluR receptor to dendrites - but less than AChR in dendrites, e.g. 20%
+	  PicoSD of MgluR = 30, MgluRGq = 10
+######## Delay Uchi stimulation by additional 20s (consider also injecting low basal all the time to fix steady state issue, OR decrease the Glu to GluOut extrusion rate - but then need to increase GluGbuf inject)
+######## Decrease glu diffusion from 10 to 5; in Stim file: decrease Glu inject by half (from 18.0 to 9.0) - should reduce dendritic glu by more than 50%, hopefully with minimal decrease to spine
+
+>>>>>>>>Da duration: MUCH BETTER
+	   cAMP		PKAc	pAKAR3	D32p34PP1
+0.1	   217		9	282	1145
+0.3	   356		10	360	1259
+1	   867		21	634	2068
+10	   3582		33	1282	3302
+10s> 1s>0.3s>0.1s
+Decay is complete by 300s for 10s stim, earlier for 0.1 and 0.3s stim
+Still problem: 1s does not saturate, i.e. peak is much less than 10s.
+Note that peak PKAc occurs ~5-10 s after peak cAMP.
+
+Possibly better Da shape or ACh shape would give better results; or possibly need faster cAMP and PKA activation?
+
+>>>>>>>> Uchi: MUCH BETTER
+now, 2ag increases with Glu
+qualitatively: 100ms: very little 2ag without dhpg, perhaps linear increase of AUC with dhpg: 2x, 4x, 6x
+	       1s: nice 2ag response without dhpg, 5s and 25s dhpg not hugely different
+	       5s: large 2ag without dhpg, increase apparent with dhpg, though perhaps not quite as big
+PEAK VALUE ANAL   	   	     	%increase (mean basal = 58)	% inc over 0 dhpg
+dhpg \ Ca basal	0.1	1	5    	    0.1	     1	     5    	0.1	1	5   
+0      	  51,57	74	89	151	   27.6	     53.4   160		-	-	-
+1	  49,56	103	121	194	   77.6	     108.6  234		3x	2x	1.4x
+5	  65,61	133	177	280	   129.3     205.2  383		5x	4x	2.4x
+25	  63,65	164	203	330	   182.8     250    469		6.5x	5x	2.9x
+
+Possibly could improve results with an even larger calcium for 5s stimulation.
+
+>>>>>>>> Theta and 20hz stimulation
+Glu dend: peak is 1.5 uM for theta and 800 nM for 20hz (overall - vs 3uM and 1.5 uM)
+decay rate similar
+Glu spine: peak = 8 uM for theta and 4 uM for 20hz
+decay: almost back to basal within 1 s of end of stim, slower decay component: from 200 nM to 50 nM in 2 sec.
+------> good glu in spine, but too high in dendrite!
+
+DagCaDgl: higher peaks for theta, but longer for 20hz - similar AUC?
+DagCapDgl: much higher for theta
+
+PKAc is slighlty higher for 20hz, probably because more prolonged and PKA is still slowish.  More AC5GsaGiaATP and AC5GsaATP with 20hz.  cAMP larger for 20hz.
+CKpCamCa4 MUCH bigger for theta
+PkcCaDag much bigger for theta
+2ag: much larger for theta/no CKp - predict CKp required for theta LTP - -------> need to test experimentally
+     only small increase in 2ag with CKp block - it wasn't that high to begin with.
+
+ACh block = constant ACh - no effect on CkpCam, minimal effect on PKA phos, minimal effect on PkcCaDag - probably because of mGluR in dendrite!  Need to reduce Glu in dendrite even futher
+
+MGlu block: reduces Pkc overall by >25% (peak from > 200 to 150)
+     	    reduces Pkc spine: from peak near 500 to peak < 200 nM
+
+Why is PKA required for theta?  Possibly ACh is smaller for theta? This would make cAMP and PKA larger.
+
+#################
+1. New parameters for 5s Uchi sims
+2. Further reduction in Glu diffusion (from 5 to 2), reduce Glu stim by another 50%
+
+--------->NEW SIMS:
+1. larger decrease in ACh with theta - make prediction, but definitely need experiment to test
+2. alcohol:
