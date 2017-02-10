@@ -1,0 +1,129 @@
+Lab Notebook for Blackwell January 10-12, 2017
+>>>>>>>>> Results
+---------> indicates conclusion from previous set of simulations or what needs to be done next
+****** name of file that is either ready to go, or should have parameters changed according to --------->
+########## indicates the set of parameters used for the set of simulations
+&&&&&&& Notes
+
+
+#################
+1. New parameters for 5s Uchi sims - too increase Ca during 5s
+2. Further reduction in Glu diffusion (from 5 to 2), reduce Glu stim by another 50%
+3. Delay Da stim in Da dur to allow better ss with pAKAR
+
+--------->NEW SIMS:
+1. larger decrease in ACh with theta - make prediction, but definitely need experiment to test
+2. alcohol:
+
+
+>>>>>>Bath simulations - similar to previous results, since no Glu involved in these
+overall: Dec in Dp75 with Da and Ca is a bit small (qualitative agreement)
+	 Inc in Dp34 with CyA and OA is half what it should be (qualitative agreement)
+	basal  Da   	  Ca      DaCa	  CyA 	      OA
+cAMP	64n    2.9u	  109n	  2.1u
+Dp34 	734n   4.1	  220n	  1.4u	  1.0u	(50%)  1.3u  (2x)
+  goal	       5x Y	  50% Y	  2-3x Y  3-17x	       5x
+Dp75	10.6u  8.0u	  7.3u	  6.1u	  10.6u	       36u
+  goal         50%        25%     NR	  NC Y	       3x Y
+
+>>>>>>>>Da duration
+	   cAMP		PKAc	pAKAR3	D32p34PP1
+0.1	   256		11.9	426	1410
+0.3	   484		12.5	515	1592
+1	   1080		22	692	2290
+10	   4188		37	1418	3540
+10s> 1s>0.3s~=0.1s
+Decay is not complete by 300s, =400 for 10s and ~250 for others.  Because AC5GsaATP and cAMP not returning to basal.
+Discrepancy: 10s much greater than 1s (should be similar), 0.1 and 0.3s similar (should be different).
+AC5GsaATP discriminates 0.1 from 0.3 (good), but is bigger for 10s than 1s (bad).
+the cAMP peak for 0.3 vs 0.1 not being translated into PKAc difference. Faster PKAc activation may improve this discrimination, but would not fix AKAR part unless cAMP with 1s saturated the PKAc.  But, the PKA is already similar to jeanettes - slower 1st step but faster last step
+
+>>>>>UCHI Peak 2ag BASAL=62   	     	%increase (x-0dhpg/0dhpg-basal)
+dhpg \ Ca basal	0.1	1	5    	    0.1	     1	     5   
+0      	  	74	105	182	    -	     -      -
+1	  	105	116	232	    258	     25     41
+5	  	138	169	284	    533      49     85
+25	  	181	235	327	    892      70    121
+Using peak, 5s isn't saturating at all. Using AUC, it looks a bit  better.  Larger Ca boosted the 0 and 1s dhpg, but not the 5 or 25 dhpg
+
+>>>>>Theta/20hz:
+Glu 20hz: 3.5 uM spine vs 380 nM dend
+Glu theta: 6.5 uM spine vs 750 nM dend
+MUCH BETTER.
+						     (20hz/theta)	
+      	     	  signature		2ag	PKAc 	     CKpCam	Pkc
+		20hz	theta	  20hz	theta	26.6/26.0   23.3/121.4	71.8/199.2
+Ctrl (noReb)	17.6	40.7	  221n	256n
+noACh burst	17.7	33.1	  193n	230n
+noCKp 		11.4*	13.6*	  234n	300n
+
+no M1		13.8*	27.0*	  136n	181n
+no M4		16.7	34.2	  206n	256n
+no mGluR	14.3	29.6	  180n	214n
+
+DaDelay		16.2	32.4			slightly lower for theta!
+
+2ag is smaller with no ACH burst - this is not the same as no ACh though
+M1 block lowers signature even more.  Both M1 and mGluR block reduce sig by 25%
+
+blocking M1 lowers 2ag, but blocking mGluR does not - is mGluR required for 20hz LTD
+
+2ag definitely bigger for theta with no CKp
+
+What about spine signatures?  similar
+theta, no ACh burst,ctrl,delay : ~62  no ACh has small 2ag reduction - still LTP?
+20hz  no ACh burst,ctrl,delay:  ~41  no ACh has small 2ag reduction - still LTD?
+NO Ckp (theta or 20hz):	       ~29  2ag increase converts LTD to LTP and enhances LTD
+
+>>>>>>>>>>multi-spine
+dendrite: theta > 20hz for both 1sp and 2sp
+	  2sp has bigger signature than 1sp
+spines: sp 6 elevated only for 2sp separated
+	sp 0 elevated for all
+	sp 1 elevated only for 2sp adj
+
+So: similar to Zhai, increase in dendrite with additional spine.  Unknown effect on ERK
+    similar to ???, spine specificity.
+
+Next steps???
+A. calculate Uchi results correctly, using AUC
+dhpg \ Ca basal	0.1	1	5    	ratio    0.1	     1	     5   
+0      	  	0.5	0.9	3.8		 -	     -	     -
+1	  	1.5	2.9	4.4		 3x	     3x	     1.2x
+5	  	2.9	4.1	7.7		 6x	     4x	     2x
+25	  	4.3	6.5	10.0		 8x	     6x	     2.6x
+
+Pretty good!  Compare to BoHung's results
+
+B. try to improve the Da dur simulations?  But how?
+
+C. What is PKA doing? Is some reaction missing to increase it?
+   ---------> Lower ACh more for theta (prediction)
+
+D. Better signature - can all results be predicted correctly?
+
+E. Can some molecules substitute for others? If so, how does extra high calcium produce LTD without Gq? 
+     	increase Ca and decrease Gq via mGlu block?
+  	increase Ca and decrease dopamine?
+
+F. alcohol simulations
+
+------------------------------------
+1. Lower ACh for theta compared to 20hz.  Re-run noReb case.  Depending on the results, perhaps try other cases.
+#############
+2a. increase calcium and repeat m1 block and mGlu block - can it  compensate?
+2b. depending on whether lower ACh allows PKA difference, try increasing Ca and decreasing Da
+#############
+3. Develop signature: write separate program to uses similar pieces, but has two sets of molecules - one for LTP and one for LTD.  Consider normalization and separate spine and dend
+4. look into results with Da delay more: is the stimulation correct?  What are GaGTPs doing?
+
+Plan: set up (1), and develop sig while running
+      Then, possibly re-run other cases plus the compensation cases (2)
+
+2017_02_10
+Developed initial sig.py.  Also modified neurdh5_anal.py
+a. use function for sstart and ssend
+b. changed how all_spine_means and whole_plot_array were begin assigned because noticed mistake in sig.py
+->works for one file, sig works for multiple files
+fix neurh5_anal signature for multiple files (or eliminate)
+fix sig for multiple files (working for single file; summing over region instead of molecule)

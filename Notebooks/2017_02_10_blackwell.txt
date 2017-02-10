@@ -1,0 +1,7 @@
+2017_02_10
+A. Started simulations using ACh =2 instead of =3 during burst for theta only
+also started bathCa + block to compare to Nishi JBC 2017 paper
+B. Developed initial sig.py.  Also modified neurdh5_anal.py
+- use function for sstart and ssend in both
+---->Now, need to fix neurh5_anal signature for multiple files, it is not being plotted (probably eliminate, but not till sig.py is fixed)
+---->fix sig for multiple files (working for single file; but summing over region instead of molecule for multiple files)

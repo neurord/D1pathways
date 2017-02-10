@@ -132,6 +132,7 @@ Why is PKA required for theta?  Possibly ACh is smaller for theta? This would ma
 #################
 1. New parameters for 5s Uchi sims
 2. Further reduction in Glu diffusion (from 5 to 2), reduce Glu stim by another 50%
+3. Delay Da stim in Da dur to allow better ss with pAKAR
 
 --------->NEW SIMS:
 1. larger decrease in ACh with theta - make prediction, but definitely need experiment to test

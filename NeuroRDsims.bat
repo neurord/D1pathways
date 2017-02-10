@@ -5,20 +5,20 @@
 set -ex
 
 #First line will elminate output, 
-java -Dstochdiff.writers= -jar stochdiff
+#java -Dstochdiff.writers= -jar stochdiff
 #Alternatively, can get only h5, only text, or both
--Dstochdiff.writers=h5
--Dstochdiff.writers=text
--Dstochdiff.writers=text,h5
+#-Dstochdiff.writers=h5
+#-Dstochdiff.writers=text
+#-Dstochdiff.writers=text,h5
 
 #To avoid information scrolling on screen (and not getting a huge .log file):
-> /dev/null 
+#> /dev/null 
 
 
-To run things in parallel (instead of batch file):
-parallel --gnu java -Dstochdiff.writers=text -Dstochdiff.log=false -jar /home/neuroware/stochdif/stochdiff-3.0.0-1.jar ::: Model_cAMPassaySoma*.xml
+#To run things in parallel (instead of batch file):
+#parallel --gnu java -Dstochdiff.writers=text -Dstochdiff.log=false -jar /home/neuroware/stochdif/stochdiff-3.0.0-1.jar ::: Model_cAMPassaySoma*.xml
 
-result: ran very fast: 3 min for 9 voxel model (2.1.9 required 33 min)
+#result: ran very fast: 3 min for 9 voxel model (2.1.9 required 33 min)
 
 #ptdump to look at h5 file.
 #-Dneurord.writers=h5,text for text output
@@ -39,19 +39,9 @@ result: ran very fast: 3 min for 9 voxel model (2.1.9 required 33 min)
 #Not sure how to adapt dopamine and ACh, which is non-synaptic
 #Other sims expers: calcium from Da depleted case, or change molecules and calcium according to alcohol effects
 
-Command used to try and better characterize the bug:
-####Using the release version of Neurord-3.1.2 (June 15, 2016)
-#java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -Dneurord.SDRun.runtime=10000 -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_10s-rbat
-#java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_250s-rbat
-#java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -Dneurord.trials=3 -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_250s_trials3-rbat
-#java -jar ~zbyszek/neurord-3.1.2.jar Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml -Dneurord.trials=3 /var/tmp/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_noACh_nebish-rbat -v
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-stimtheta-noReb_ACh2.xml &
 
-java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-t1-nostim &
-java -jar /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml -Dneurord.trials=3 ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-t3-nostim &
-java -jar ~zbyszek/neurord-3.1.2.jar -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml -Dneurord.trials=3 ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-t3z-nostim 
-#java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-noACh.xml ss_bath/ &
-java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da0.1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da0.1 &
-java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da0.3.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da0.3 &
-java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da1.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da1 &
-java -jar -Dneurord.writers=h5 /home/neuroware/stochdif/neurord-3.1.2-all-deps.jar -v -s injections Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-Da10.xml ss_bath/Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1_t1-Da10 &
-#
+#Compare the following to Nishi 2017 JBC paper
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-BlockOA-bathCa.xml ss_bath/ &
+
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-BlockCyA-bathCa.xml ss_bath/ &
