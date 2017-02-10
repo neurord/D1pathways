@@ -28,7 +28,29 @@ def join_params(parval,params):
     else:
         label=parval
     return label
-        
+
+def sstart_end(molecule_list, args, arg_num, out_location,dt,rows):
+    num_mols=len(molecule_list)
+    sstart=np.zeros((num_mols),dtype=np.int)
+    ssend=np.zeros((num_mols),dtype=np.int)
+    if len(args)>arg_num:
+        for imol,molecule in enumerate(molecule_list):
+            if out_location[molecule]!=-1:
+                sstart[imol] = float(args[arg_num].split(" ")[0]) // dt[imol]
+                ssend[imol] = float(args[arg_num].split(" ")[1]) // dt[imol]
+                if ssend[imol]>0.5*rows[imol]:
+                    print("WARNING*******. Possible SS time issue: only", rows, "rows")
+                if ssend[imol]>rows[imol]:
+                    ssend[imol]=0.1*rows[imol]
+                    sstart[imol]=0.075*rows[imol]
+                    print ("WARNING *****. ssend exceeds sim time, reassigning to ", ssend[imol]*dt)
+    else:
+        for imol,molecule in enumerate(molecule_list):
+            if out_location[molecule]!=-1:
+                sstart[imol]=int(0.075*rows[imol])
+                ssend[imol]=int(0.1*rows[imol])
+    return sstart,ssend
+
 ####### FIX/IMPROVE THIS by going back from last outputset, only using outset __main__ if no voxels?
 def get_mol_info(simData,plot_molecules,gridpoints):
     outputsets=list(simData['model']['output'].keys())

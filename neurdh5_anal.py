@@ -1,5 +1,5 @@
 #neurdh5_anal.py
-#in python, type ARGS="subdir/fileroot,par1 par2,mol1 mol2,sstart ssend,rows" then execfile('neurordh5_analysis.py')
+#in python, type ARGS="subdir/fileroot,par1 par2,mol1 mol2,sstart ssend,rows" then execfile('neurdh5_anal.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
 #mol1 mol2, etc are the names of molecles to process
 #par1 and optionally par2 are specifications of parameter variations, as follows:
@@ -10,7 +10,7 @@
 #e.g. ARGS=",Ca GaqGTP IP3,plc/Model_PLCassay_Ca1"
 #if mol ommitted, then all molecules processed.  if sstart ssend are ommitted, then calculates basal from 7.5-10% of runtime
 #in the first set of parameters below, change outputavg from 0 to 1 to generate output files of region averages for plotting
-#from outside python, type python neurordh5_analysis [par1 par2] [mol1 mol2]
+#from outside python, type python neurordh5_analysis "subdir/fileroot [par1 par2] [mol1 mol2]"
 #Assumes that molecule outputs are integers
 #Can process multiple parameter variations, but all files must use same morphology, meshfile, and simulation time/sampling rate.
 #Can process multiple trials for each parameter variation
@@ -47,9 +47,9 @@ show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=1  #2 indicates plot the head conc, 0 means no plots
+showplot=2  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
-calc_signature=0#1 means one overall signature, 2 mean separate spine and dend signature
+calc_signature=2#1 means one overall signature, 2 mean separate spine and dend signature
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -147,6 +147,7 @@ for fnum,ftuple in enumerate(ftuples):
         if numfiles>1:
             for mol in range(num_mols):
                 whole_plot_array.append([])
+        #whole_plot_array=[[[]]*numfiles]*num_mols
         out_location,dt,rows=h5utils.get_mol_info(data,plot_molecules,maxvols)
         #
         ss_tot=np.zeros((arraysize,len(tot_species)))
@@ -155,25 +156,10 @@ for fnum,ftuple in enumerate(ftuples):
         baseline=np.zeros((arraysize,num_mols))
         peakval=np.zeros((arraysize,num_mols))
         lowval=np.zeros((arraysize,num_mols))
-        sstart=np.zeros((num_mols),dtype=np.int)
-        ssend=np.zeros((num_mols),dtype=np.int)
         #
-        if len(args)>3:
-            for imol,molecule in enumerate(plot_molecules):
-                if out_location[molecule]!=-1:
-                    sstart[imol] = float(args[3].split(" ")[0]) // dt[imol]
-                    ssend[imol] = float(args[3].split(" ")[1]) // dt[imol]
-                    if ssend[imol]>0.5*rows[imol]:
-                        print("WARNING*******. Possible SS time issue: only", rows, "rows")
-                    if ssend[imol]>rows[imol]:
-                        ssend[imol]=0.1*rows[imol]
-                        sstart[imol]=0.075*rows[imol]
-                        print ("WARNING *****. ssend exceeds sim time, reassigning to ", ssend[imol]*dt)
-        else:
-            for imol,molecule in enumerate(plot_molecules):
-                if out_location[molecule]!=-1:
-                    sstart[imol]=int(0.075*rows[imol])
-                    ssend[imol]=int(0.1*rows[imol])
+        #Which "rows" should be used for baseline value, specifed in args[3]
+        #
+        sstart,ssend=h5utils.sstart_end(plot_molecules,args,3,out_location,dt,rows)
     ######################################
     #Calculate various region averages, such as soma and dend, subm vs cyt, spines
     ######################################
@@ -325,13 +311,14 @@ for fnum,ftuple in enumerate(ftuples):
         #whole_plot_array dimension  = num molecules*num files*sample time
         for mol in range(num_mols):
             whole_plot_array[mol].append(plot_array[mol])
-        #dimensions of signature array = num mol x num files x sample times x (1+numspines)
+            #whole_plot_array[mol][fnum]=plot_array[mol]
+        #dimensions of signature array = num files x num mol x sample times x (1+numspines)
         if calc_signature==2:
             signature_array.append(np.swapaxes(all_spine_means,0,1))
     else:
         #dimensions of plot_array=num molecules x num trials x sample times
         whole_plot_array=plot_array
-        #dimensions of signature array = num mol x num trials x sample times x (1+numspines)
+        #dimensions of signature array = num trials x num mol x sample times x (1+numspines)
         if calc_signature==2:
             signature_array=all_spine_means
     if 'event_statistics' in data['trial0']['output'].keys() and show_inject:
