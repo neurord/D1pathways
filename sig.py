@@ -181,11 +181,19 @@ else:
 #add values of LTP molecules
 for each_mol in ltp_molecules:
     col=all_molecules.index(each_mol)
-    signature=signature+signature_array[col]
+    for f in range(numfiles):
+        #subtract basal value from trace
+        basal=np.mean(signature_array[col][f][sstart[0]:ssend[0]],axis=0)
+        sig_subtracted=signature_array[col][f]-basal
+        signature[f]=signature[f]+sig_subtracted
 #subtract LTD molecules
 for each_mol in ltd_molecules:
     col=all_molecules.index(each_mol)
-    signature=signature-signature_array[col]
+    for f in range(numfiles):
+        #subtract basal value from trace
+        basal=np.mean(signature_array[col][f][sstart[0]:ssend[0]],axis=0)
+        sig_subtracted=signature_array[col][f]-basal
+        signature[f]=signature[f]-sig_subtracted
 #signature dimensions=num files/trials x sample times x (1+numspines)
 #End customization
 #############################

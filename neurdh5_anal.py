@@ -47,9 +47,8 @@ show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=2  #2 indicates plot the head conc, 0 means no plots
+showplot=1  #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
-calc_signature=2#1 means one overall signature, 2 mean separate spine and dend signature
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -84,7 +83,6 @@ except Exception:
 parval=[]
 numfiles=len(ftuples)
 whole_plot_array=[]
-signature_array=[]
 for fnum,ftuple in enumerate(ftuples):
     fname=ftuple[0]
     parval.append(ftuple[1])
@@ -93,7 +91,6 @@ for fnum,ftuple in enumerate(ftuples):
     TotVol=data['model']['grid'][:]['volume'].sum()
     plot_array=[]
     time_array=[]
-    all_spine_means=[]
     
     trials=[a for a in data.keys() if 'trial' in a]
     try:
@@ -204,13 +201,6 @@ for fnum,ftuple in enumerate(ftuples):
                 else:
                     #dimensions of plot_array=num molecules x num trials x sample times
                     plot_array.append(OverallMean)
-            if calc_signature==2:
-                if numfiles>1:
-                    #dimensions will be number of molecules x sample times x (1+ num spines)
-                    all_spine_means.append(np.mean(spinemeans,axis=0))
-                else:
-                    #dimensions will be number of molecules x number of trials x sample times x 1+ num spines
-                    all_spine_means.append(spinemeans)
             #
             ############# write averages to separate files #######################3
             if outputavg:
@@ -310,15 +300,9 @@ for fnum,ftuple in enumerate(ftuples):
         #whole_plot_array dimension  = num molecules*num files*sample time
         for mol in range(num_mols):
             whole_plot_array[mol].append(plot_array[mol])
-       #dimensions of signature array = num files x num mol x sample times x (1+numspines)
-        if calc_signature==2:
-            signature_array.append(all_spine_means)
     else:
         #dimensions of plot_array=num molecules x num trials x sample times
         whole_plot_array=plot_array
-        #dimensions of signature array = num mol x num trials x sample times x (1+numspines)
-        if calc_signature==2:
-            signature_array=np.swapaxes(all_spine_means,0,1)
     if 'event_statistics' in data['trial0']['output'].keys() and show_inject:
         print ("seeds", seeds," injection stats:")
         for inject_sp,inject_num in zip(data['model']['event_statistics'][:],data['trial0']['output']['event_statistics'][0]):
@@ -401,7 +385,6 @@ for pnum in range(arraysize):
 #
 #####################################################################
 #Now plot some of these molcules, either single voxel or overall average if multi-voxel
-#also calculate the signature
 #####################################################################
 #
 if showplot:
@@ -415,36 +398,6 @@ if showplot:
             time_array[i]=np.linspace(0,time_array[i][1]*samples,samples)
     pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,axes,fig,col_inc,scale,parlist)
     #
-if calc_signature:
-    #just sum over molecules.  Could add normalization.  Need more params to subtract or divide by some molecules
-    auc_label=[]
-    sign_title=''
-    for mol in plot_molecules:
-        sign_title=sign_title+mol+'+'
-    if calc_signature==1:   #simple signature - average over whole structure
-        signature=np.sum(whole_plot_array,axis=0)
-        #signature dimensions=num files/trials x sample times
-        auc=np.zeros(len(parval))
-    elif calc_signature==2: #separate spine and dendrite signatures
-        signature=np.sum(signature_array,axis=1)
-        #signature dimensions=num files/trials x sample times x (1+numspines)
-        num_spines=np.shape(signature)[-1]
-        auc=np.zeros((len(parval),num_spines))
-    #area between signature and basal
-    basal_sig=np.mean(signature[:,sstart[0]:ssend[0]],axis=1)
-    if calc_signature==1:
-        for par in range(len(parval)):
-            label=h5utils.join_params(parval[par],params)
-            auc[par]=np.sum(signature[par,:]-basal_sig[par])*dt[0]/1000
-            auc_label.append(label+" auc="+str(auc[par]))
-    elif calc_signature==2:
-        auc_label=[[] for sp in range(len(parval))]
-        for par in range(len(parval)):
-            label=h5utils.join_params(parval[par],params)
-            for sp in range(num_spines):
-                auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/1000
-                auc_label[par].append(label+" auc="+str(auc[par,sp])+" "+spinelist[sp])
-    pu5.plot_signature(auc_label,signature,time,sign_title)
 #
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
