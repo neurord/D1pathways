@@ -120,10 +120,3 @@ F. alcohol simulations
 Plan: set up (1), and develop sig while running
       Then, possibly re-run other cases plus the compensation cases (2)
 
-2017_02_10
-Developed initial sig.py.  Also modified neurdh5_anal.py
-a. use function for sstart and ssend
-b. changed how all_spine_means and whole_plot_array were begin assigned because noticed mistake in sig.py
-->works for one file, sig works for multiple files
-fix neurh5_anal signature for multiple files (or eliminate)
-fix sig for multiple files (working for single file; summing over region instead of molecule)

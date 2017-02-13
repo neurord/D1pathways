@@ -52,6 +52,7 @@ except Exception:
 ###################################################
 parval=[]
 numfiles=len(ftuples)
+signature_array=[]
 for fnum,ftuple in enumerate(ftuples):
     fname=ftuple[0]
     parval.append(ftuple[1])
@@ -102,7 +103,9 @@ for fnum,ftuple in enumerate(ftuples):
         num_ltdmols=len(ltd_molecules)
         all_molecules=ltp_molecules+ltd_molecules
         num_mols=len(all_molecules)
-        signature_array=[[[]]*numfiles]*num_mols
+        if numfiles>1:
+            for mol in range(num_mols):
+                signature_array.append([])
         #
         out_location,dt,rows=h5utils.get_mol_info(data,all_molecules,maxvols)
         #
@@ -155,14 +158,12 @@ for fnum,ftuple in enumerate(ftuples):
     ##########################################
     if numfiles>1:
         for mol in range(num_mols):
-            #dimensions of signature array = num files x num mol x sample times [x (1+numspines)]
-            signature_array[mol][fnum]=sig_data[mol]
+            signature_array[mol].append(sig_data[mol])
     else:
         signature_array=sig_data
 #####################################################################
 #Calculate signature
 #####################################################################
-print('sig_data', np.shape(sig_data),'sig_array',np.shape(signature_array))
 auc_label=[]
 sign_title=''
 for mol in ltp_molecules:

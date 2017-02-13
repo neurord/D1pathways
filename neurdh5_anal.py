@@ -81,10 +81,10 @@ except Exception:
     pass
 
 ###################################################
-signature_array=[]
 parval=[]
-whole_plot_array=[]
 numfiles=len(ftuples)
+whole_plot_array=[]
+signature_array=[]
 for fnum,ftuple in enumerate(ftuples):
     fname=ftuple[0]
     parval.append(ftuple[1])
@@ -147,7 +147,6 @@ for fnum,ftuple in enumerate(ftuples):
         if numfiles>1:
             for mol in range(num_mols):
                 whole_plot_array.append([])
-        #whole_plot_array=[[[]]*numfiles]*num_mols
         out_location,dt,rows=h5utils.get_mol_info(data,plot_molecules,maxvols)
         #
         ss_tot=np.zeros((arraysize,len(tot_species)))
@@ -311,16 +310,15 @@ for fnum,ftuple in enumerate(ftuples):
         #whole_plot_array dimension  = num molecules*num files*sample time
         for mol in range(num_mols):
             whole_plot_array[mol].append(plot_array[mol])
-            #whole_plot_array[mol][fnum]=plot_array[mol]
-        #dimensions of signature array = num files x num mol x sample times x (1+numspines)
+       #dimensions of signature array = num files x num mol x sample times x (1+numspines)
         if calc_signature==2:
-            signature_array.append(np.swapaxes(all_spine_means,0,1))
+            signature_array.append(all_spine_means)
     else:
         #dimensions of plot_array=num molecules x num trials x sample times
         whole_plot_array=plot_array
-        #dimensions of signature array = num trials x num mol x sample times x (1+numspines)
+        #dimensions of signature array = num mol x num trials x sample times x (1+numspines)
         if calc_signature==2:
-            signature_array=all_spine_means
+            signature_array=np.swapaxes(all_spine_means,0,1)
     if 'event_statistics' in data['trial0']['output'].keys() and show_inject:
         print ("seeds", seeds," injection stats:")
         for inject_sp,inject_num in zip(data['model']['event_statistics'][:],data['trial0']['output']['event_statistics'][0]):
@@ -428,7 +426,7 @@ if calc_signature:
         #signature dimensions=num files/trials x sample times
         auc=np.zeros(len(parval))
     elif calc_signature==2: #separate spine and dendrite signatures
-        signature=np.sum(signature_array,axis=0)
+        signature=np.sum(signature_array,axis=1)
         #signature dimensions=num files/trials x sample times x (1+numspines)
         num_spines=np.shape(signature)[-1]
         auc=np.zeros((len(parval),num_spines))
