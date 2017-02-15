@@ -8,3 +8,57 @@ B. Developed initial sig.py.  Also modified neurdh5_anal.py
 Initial debugged veresion of sig.py
 sig.py subtracts baseline from each molecule, then sums (or subtracts) the molecules.  Currently no normalization, e.g. relative to maximum.  Could also try multiplying or dividing.
 C. Removed rudimentary signature calculation from neurdh5_anal.py
+
+2017_02_13
+Analysis of signatures:PKA+CKpCam+Pkc-2ag
+		theta			20hz
+		dend/spine		dend/spine
+Ctrl (noreb)    17.5    43.23 LTP	-5.46  17.32 LTD
+noCKp		-15.42 	3.00  LTP  	-16.41 1.66  LTD
+noACh burst	13.58  44.24  LTP	-3.60  22.29 No
+lower ACh	11.73  38.20  LTP
+noM1		14.01  42.58  LTP	1.44  32.188 No
+noM4  		9.923  32.92  No	-7.88  17.48 LTD
+noMGlu  	14.47  11.44  No	-6.09  -3.98 LTD?
+
+>20 spine=LTP
+>10 dend=LTP
+What should LTD signature be?  Perhaps only 2ag?
+
+YES=consistent with expers, NA=no expers
+1. mGluR block (YES) reduces theta signature in the spine, but not dendrite
+2. CKpCam block (YES) reduces signature severely in spine and dend, makes it look more like 20hz signature - suggests converting to LTD.  20hz signature is more engative with noCKp, suggesting enhanced LTD.
+3. M4 block: curiously, it reduces signature for theta, but not 20hz.  Need to examine molecules!!! why would lack of Gi reduce the signature.  It should increase cAMP and PKA - indeed it does.  It reduces KCpCamCa4, leading to slight increase in 2ag - this counteracts effect of PKA, since it's contribution is small
+noM4 also increases Dp34 and inhibition of PP1 BUT, no effect is seen on CKpCamCa4 - should be increased - probably because PP1 dephosphorylation is increased trivially by no M4 and is minimal in ctrl case  - restricted to the CKp form, which is only a few molecules itself. 
+4. M1 block (YES): moderate reduction in theta dend signature, and increase in 20hz spine sig: the spine signature suggests LTP, except dend signature is way too low - thus neither LTP nor LTD would result.
+
+Multi-spine sims:
+1. CKpCamCa4 is greater for theta than 20hz, 2sp adj > 2sp sep > 1sp
+2. PKC greater for theta, 2sp > 1sp
+3. 2ag similar for all simulations
+4. PKA greater for 2sp 20hz, lowest for 1sp theta
+           dend     0stim    1     2      3      4       5     6      7      8      9 
+1sp 20hz  [ -5.77  13.79  -5.59  -5.3   -7.92  -6.25  -7.78  -5.95  -4.72  -7.57   -7.34]
+1sp theta [ -3.51   9.05  -4.51  -5.29  -3.87  -4.29  -8.86  -5.11  -4.35  -6.57   -5.8 ]
+2adj 20hz [ -6.01  13.64  12.6   -6.17 -14.23  -7.07  -6.9   -7.29  -8.35  -8.8   -5.71]
+2adj thet [ -2.43  14.83   7.12  -1.66  -2.52  -6.56  -4.68  -5.27  -2.68  -4.87   -9.53]
+2sep 20hz [ -5.71   7.34  -9.7   -7.7   -8.09  -4.08  -4.41   8.27  -5.26  -5.84   -7.03]
+2sep thet [ -2.5    6.8   -1.48  -0.54  -0.22  -1.83  -1.     9.05  -3.96  -1.85   -3.74]]
+
+Dendritic signature is consistently low - though lower for 20hz than theta
+spine signature is higher for 2 sp than 1 sp for theta, definitly higher for adjacent than for separated.  Dendritic signature not influenced by spine location.  Traces show that 2ag dominates, so normalization or considering 2ag separately would help this.
+
+Conclusion:
+>>>>By adding mGluR to dend, the effect of mGluR in Uchi sims was revealed, but now a block of M1 does not sufficiently reduce Dag, etc.  Perhaps still need to further reduce Glu diffusion to dendrite?  No, M1 block does reduce GqaGTP, especially between bursts.  The overall (dendritic) reduction in Dag is slightly more for M1 than MGluR block, BUT, the problem is that Dag reduction yields both lower 2ag and lower Pkc - these reductions are similar, canceling out.
+
+########### To Do
+>>>>Add dephosphorylation of CKpCamCa4 by PP1.  This will reduce CKpCamCa4, but allow an M4 mediated reduction in PP1 to increase CKpCamCa4.  WHAT SHOULD RATE CONSTANTS BE?
+We are currently using Myung's values.
+Asia used the same kb and kcat, but different kf and allowed dephos of both forms.  Thus,
+kf=0.6e-6/nM/msec
+kb=0.34e-3/msec
+kcat=.086e-3/msec
+
+>>>Is another normalization factor needed?  Divide by maximum response overall paradigms to increase wieght of PKA? Are other terms needed, i.e., explicitly increase phosphatases?  What if LTD resulted from separate threshold on 2ag?  Interestingly, CKp block does not enhance 2ag in the spine, only the dendrite.
+
+
