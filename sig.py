@@ -165,7 +165,7 @@ for fnum,ftuple in enumerate(ftuples):
 #Calculate signature
 #####################################################################
 auc_label=[]
-sign_title=''
+sign_title=figtitle+'\n'
 for mol in ltp_molecules:
     sign_title=sign_title+'+'+mol
 for mol in ltd_molecules:
@@ -203,13 +203,13 @@ if maxvols==1:
     for par in range(len(parval)):
         label=h5utils.join_params(parval[par],params)
         auc[par]=np.sum(signature[par,:]-basal_sig[par])*dt[0]/msec_per_sec
-        auc_label.append(label+" auc="+str(auc[par]))
+        auc_label.append(label+" auc="+str(np.round(auc[par],2)))
 else:
     auc_label=[[] for sp in range(len(parval))]
     for par in range(len(parval)):
         label=h5utils.join_params(parval[par],params)
         for sp in range(num_spines):
             auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/msec_per_sec
-            auc_label[par].append(label+" auc="+str(auc[par,sp])+" "+spinelist[sp])
+            auc_label[par].append(label+" auc="+str(np.round(auc[par,sp],2))+" "+spinelist[sp])
 pyplot.ion()
 pu5.plot_signature(auc_label,signature,time,sign_title)
