@@ -104,12 +104,12 @@ def get_mol_pop(simData, out_location,gridpoints,trials):
             #print('samples', samples, 'tempConc',np.shape(tempConc))
             if np.shape(tempConc)[0]>samples:
                 trialConc=np.resize(tempConc,(samples,len(elements)))
-                print ('tempconc',np.shape(trialConc),'too big')
+                #print ('tempconc',np.shape(trialConc),'too big')
             elif np.shape(tempConc)[0]<samples:
                 extrazeros=np.zeros((samples-np.shape(tempConc)[0],len(elements)))
-                print('zeros',np.shape(extrazeros))
+                #print('zeros',np.shape(extrazeros))
                 trialConc=np.vstack((tempConc,extrazeros))
-                print('tempconc too small, add',np.shape(extrazeros), 'for', np.shape(trialConc))
+                #print('tempconc too small, add',np.shape(extrazeros), 'for', np.shape(trialConc))
             else:
                 trialConc=tempConc
             #transpose required to undo the transpose automatically done by python when specifying elements as 3d index
@@ -153,7 +153,13 @@ def argparse(args):
         ftuples,parlist=pu5.file_tuple(fnames,params)
         ftuples = sorted(ftuples, key=lambda x:x[1])
     else:
-        ftuples=[(fnames[0],'1')]
+        star=str.find(pattern,'*')
+        if star:
+            dash=str.rfind(pattern,'-',0,star)
+            params=[pattern[dash+1:star]]
+            ftuples,parlist=pu5.file_tuple(fnames,params)
+        else:
+            ftuples=[(fnames[0],'1')]
     return ftuples,parlist,params
 
 def subvol_list(structType,model):

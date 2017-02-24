@@ -3,6 +3,9 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
+textsize=16
+legtextsize=10
+
 def plot_setup(plot_molecules,param_list,param_name):
      pyplot.ion()
      if len(plot_molecules)>8:
@@ -20,11 +23,13 @@ def plot_setup(plot_molecules,param_list,param_name):
           if numpar>1:
                col_inc[i]=1.0/len(paramset)
                print("plot_setup: col_inc,scale=",col_inc, scale)
-     return fig,axes,col_inc,scale,numpar
+     return fig,col_inc,scale,numpar
 
-def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
+def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist):
      print("plottrace: plotmol,parval,parlist:", plotmol,parval, parlist)
+     axis=fig.axes
      for pnum in range(len(parval)):
+          #First, determine the color scaleing
           if len(parlist)==0:
                p0=p1=0
           else:
@@ -37,30 +42,12 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
                else:
                     p0=parlist[0].index(parval[pnum][0])
                     p1=parlist[1].index(parval[pnum][1])
-               if not np.shape(axes):
-                    imol=0
-                    axes.plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
-                    axes.set_xlabel('Time (sec)')
-                    axes.set_ylabel(plotmol[imol])
-               else:
-                    rows=np.shape(axes)[0]
-                    if np.size(axes)==rows:
-                         for imol in range(len(plotmol)):
-                              if plotarray[imol][pnum][0]>-1:
-                                   axes[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
-                              axes[imol].set_ylabel(plotmol[imol]+' (nM)')
-                         axes[len(plotmol)-1].set_xlabel('Time (sec)')
-                         axes[0].legend(fontsize=8, loc='best')
-                    else:
-                         cols=np.shape(axes)[1]
-                         for col in range(cols):
-                              for row in range(rows):
-                                   imol=row+rows*col
-                                   if imol<len(plotmol) and plotarray[imol][pnum][0]>-1:
-                                        axes[row,col].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
-                                        axes[row,col].set_ylabel(plotmol[imol])#+' (nM)')
-                              axes[rows-1,col].set_xlabel('Time (sec)')
-                         axes[0,0].legend(fontsize=8, loc='best')
+          #Second, plot each molecule
+          for imol in range(len(plotmol)):
+               axis[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
+               axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
+          axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
+          axis[0].legend(fontsize=legtextsize, loc='best')
      fig.canvas.draw()
      return
 
@@ -71,7 +58,7 @@ def plotss(plot_mol,xparval,ss):
         axes[imol].set_ylabel('nM')
         if max(xparval)/min(xparval)>100:
             axes[imol].set_xscale("log")
-        axes[imol].legend(fontsize=8, loc='best')
+        axes[imol].legend(fontsize=legtextsize, loc='best')
     fig.canvas.draw()
     return
 
@@ -84,18 +71,18 @@ def plot_signature(condition,traces,time,title):
      if numrows==1:
           for i,cond in enumerate(condition):
                axes.plot(time,traces[i],label=cond)
-               axes.legend(fontsize=8, loc='best')
-               axes.set_ylabel('signature (nM) ')
-               axes.set_xlabel('Time (sec)')
+               axes.legend(fontsize=legtextsize, loc='best')
+               axes.set_ylabel('signature (nM) ',fontsize=textsize)
+               axes.set_xlabel('Time (sec)',fontsize=textsize)
      else:
           domain=[]
           for j in range(numrows):
                domain.append(condition[0][j].split()[-1])
                for i,cond in enumerate(condition):
                     axes[j].plot(time,traces[i,:,j],label=cond[j].split()[0:3])
-               axes[j].legend(fontsize=8, loc='best')
-               axes[j].set_ylabel(domain[j])
-          axes[numrows-1].set_xlabel('Time (sec)')
+               axes[j].legend(fontsize=legtextsize, loc='best')
+               axes[j].set_ylabel(domain[j],fontsize=textsize)
+          axes[numrows-1].set_xlabel('Time (sec)',fontsize=textsize)
      fig.suptitle(title)
      fig.canvas.draw()
      return
@@ -105,27 +92,25 @@ def file_tuple(fnames,params):
      ftuple=[]
      par0list=[]
      par1list=[]
+     print('pu: ',params, fnames)
      for fname in fnames:
           dotloc=fname.rfind('.')
-          lasthyphen=fname.rfind('-')
-          parval0=fname[lasthyphen:dotloc].split(params[-1])[1]
+          part_fname=fname[0:dotloc].split('-'+params[0])[-1] 
+          hyphen=part_fname.find('-')
+          if hyphen>-1:
+               parval0=part_fname[0:hyphen]
+          else:
+               parval0=part_fname 
           if (parval0 not in par0list):
                par0list.append(parval0)
           print('pu: fname, par0:',fname,par0list)
           if len(params)>1:
-               hyphen=fname[0:lasthyphen].rfind('-')
-               parval1=fname[hyphen:lasthyphen].split(params[0])[1]
-               ftuple.append((fname,(parval1,parval0)))
+               parval1=part_fname.split('-'+params[1])[-1] 
+               ftuple.append((fname,(parval0,parval1)))
                if (parval1 not in par1list):
                     par1list.append(parval1)
                print('pu: par1:',par1list)
           else:
                ftuple.append((fname,parval0))
-     if len(par1list):
-          print (par0list,par1list)
-          temp=par1list
-          par1list=par0list
-          par0list=temp
-          print (par0list,par1list)
      return ftuple,[par0list,par1list]
 
