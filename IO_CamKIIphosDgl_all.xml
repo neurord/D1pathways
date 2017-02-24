@@ -164,6 +164,8 @@
     <OutputSpecie name="PKAcAMP4"/>
     <OutputSpecie name="PKAc"/>
     <OutputSpecie name="PKAr"/>
+    <OutputSpecie name="Epac1"/>
+    <OutputSpecie name="Epac1cAMP"/>
 
     <OutputSpecie name="D32"/>
     <OutputSpecie name="D32PKA"/>

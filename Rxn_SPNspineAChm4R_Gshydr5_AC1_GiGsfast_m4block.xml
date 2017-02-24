@@ -1803,8 +1803,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP1"                    />
         <Product  specieID="CKpPP1"                 />
 
-        <forwardRate> 0.01e-06     </forwardRate>
-        <reverseRate> 0.085e-03   </reverseRate>
+        <forwardRate> 0.009e-06   </forwardRate>
+        <reverseRate> 0.08e-03    </reverseRate>
     </Reaction>
  
     <!-- CKpPP1 -> PP1 + CK -->
@@ -1813,7 +1813,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product specieID="PP1"                     />
         <Product specieID="CK"                      />
 
-        <forwardRate> 0.025e-03   </forwardRate>
+        <forwardRate> 0.019e-03   </forwardRate>
         <reverseRate> 0.0         </reverseRate>
     </Reaction>
 
@@ -1823,8 +1823,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP1"                    />
         <Product  specieID="CKpCamCa4PP1"           />
 
-        <forwardRate> 0.0         </forwardRate>
-        <reverseRate> 0.0         </reverseRate>
+        <forwardRate> 0.009e-6        </forwardRate>
+        <reverseRate> 0.08e-3         </reverseRate>
     </Reaction>
 
 <!--Dephos of CKpCamCa4 by PP1 -->
@@ -1834,7 +1834,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="CKCamCa4"               />
 
-        <forwardRate> 0.0         </forwardRate>
+        <forwardRate> 0.019e-3         </forwardRate>
         <reverseRate> 0.0         </reverseRate>
     </Reaction>
 

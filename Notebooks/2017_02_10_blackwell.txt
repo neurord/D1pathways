@@ -51,13 +51,24 @@ spine signature is higher for 2 sp than 1 sp for theta, definitly higher for adj
 Conclusion:
 >>>>By adding mGluR to dend, the effect of mGluR in Uchi sims was revealed, but now a block of M1 does not sufficiently reduce Dag, etc.  Perhaps still need to further reduce Glu diffusion to dendrite?  No, M1 block does reduce GqaGTP, especially between bursts.  The overall (dendritic) reduction in Dag is slightly more for M1 than MGluR block, BUT, the problem is that Dag reduction yields both lower 2ag and lower Pkc - these reductions are similar, canceling out.
 
-########### To Do
+>>>>>>>>>Analysis of Block/bath sims:
+CyA+Cabath increases D32p34 from 753.50  1447.61 - 2x increase
+	   Nishi says that CyA attenuates effect of AMPA.  Normally AMPA (ca) causes dephos, I see phos.  This is due to sl. increased PKA due to reduced D32p75.  However, Nishi doesn't show this data!
+	   reduction D32p75, from 10.6 to 7.3 uM (no effect on basal - consistent with Nishi)
+OA+Cabath increases D32p75 dramatically, to 30.5 uM, though it goes even higher - to 34 uM when calcium removed. - this is consistent with Nishi JBC 2016/2017, who shows that Dp75 is a bit lower with AMPA than without.
+Mechanism: PP2A goes down with block, but then increases with calcium, though not enough to compensate for block of most PP2A.  Pp2B goes up dramatically also, causing decrease of D32p34PP1
+
+########### To Do / NEW PARAMS
 >>>>Add dephosphorylation of CKpCamCa4 by PP1.  This will reduce CKpCamCa4, but allow an M4 mediated reduction in PP1 to increase CKpCamCa4.  WHAT SHOULD RATE CONSTANTS BE?
 We are currently using Myung's values.
 Asia used the same kb and kcat, but different kf and allowed dephos of both forms.  Thus,
-kf=0.6e-6/nM/msec
+kf=0.6e-9/nM/msec
 kb=0.34e-3/msec
 kcat=.086e-3/msec
+These are higher than in SPN model, and has KM way too low.   
+Bradshaw gives Km=11 uM, Vmax=31 nmol/min/mg, which gives kcat = .019/sec (using MW=37.5 kDa)
+
+>>>>Bradshaw, PNAS 2003: numerous plots of CamKII activity vs calcium, with and without PP1.  Need to simulate these with PP1 to verify fit
 
 >>>Is another normalization factor needed?  Divide by maximum response overall paradigms to increase wieght of PKA? Are other terms needed, i.e., explicitly increase phosphatases?  What if LTD resulted from separate threshold on 2ag?  Interestingly, CKp block does not enhance 2ag in the spine, only the dendrite.
 

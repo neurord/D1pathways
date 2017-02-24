@@ -1,0 +1,83 @@
+2017_02_10
+########### To Do / NEW PARAMS
+>>>>Add dephosphorylation of CKpCamCa4 by PP1.  This will reduce CKpCamCa4, but allow an M4 mediated reduction in PP1 to increase CKpCamCa4.  WHAT SHOULD RATE CONSTANTS BE?
+We are currently using Myung's values.
+Asia used the same kb and kcat, but different kf and allowed dephos of both forms.  Thus,
+kf=0.6e-9/nM/msec
+kb=0.34e-3/msec
+kcat=.086e-3/msec
+These are higher than in SPN model, and has KM way too low.   
+Bradshaw gives Km=11 uM, Vmax=31 nmol/min/mg, which gives kcat = .019/sec (using MW=37.5 kDa)
+
+bath sims: PP1 bound CKpCam is ~25% of total CKpCamCa4 - perhaps this is too much dephos, as the CKpCam drops ~50% in 70 sec.
+>>>>>>>Halve the rates of PP1 dephos, for CKpCamCa4 only.
+
+>>>>>>Add epac to simulations
+quantity=1 uM, kb=0.08/sec, kf=0.033e-3/sec, Kd=2.4 uM (params from Chay et al. half the quantity)
+
+>>>Is another normalization factor needed?  Divide by maximum response overall paradigms to increase wieght of PKA? Are other terms needed, i.e., explicitly increase phosphatases?  What if LTD resulted from separate threshold on 2ag?  Interestingly, CKp block does not enhance 2ag in the spine, only the dendrite.
+
+>>>>>>>>Results of new sims
+Bath:
+D32p34 similar to previous: > 4 uM with Da, 1.4 uM with DaCa, 200 nM with Ca alone
+CKpCamCa4: slightly higher with DaCa than Ca, likely due to Da->D32p34 inhibition of PP1
+	   Decay of CKpCamCa4 is ~33% over 80 sec - less than previous.
+	   PP1 bound CKpCam is 17% for DaCa, but 30% for Ca alone.
+Epac1cAMP: increases to 556 with Da alone, and 436 with DaCa - the Ca is reducing bound Epac1!
+Why does DaCa have less cAMp than Da alone?  PDE1CamCa4 is similar for both, but PDE1CamCa4cAMP is much higher for DaCa than Da alone. pPDE4 and pPDE10 are higher with Da than DaCa, but these increases more slowly - missing the peak - more likely responsible for the transient nature of cAMP.
+AC1 is much higher with DaCa, but contributes less than AC5.
+
+Da dur:
+Similar results to previously, slightly lower cAMP, because of Epac?
+
+	   cAMP		PKAc	pAKAR3	D32p34PP1
+0.1	   265		10.4	212	123
+0.3	   406		10.6	217	1383
+1	   811		19.2	324	1960
+10	   3429		32.1	915	3414
+10s> 1s>0.3s~=0.1s
+Though peak doesn't differ between 0.1 and 0.3s, the peak occurs earlier for 0.3s.  Thus, the phosphorylation level differs between 0.1 and 0.3 10-30 s after stimulation begins
+Decay to newish baseline by 300s for 10s Da and by 150s for shorter Da.  cAMP has not returned to basal by 300s, which is limiting PKAc and pX return to basal.
+
+GiaGTP returns (increases) to basal very quickly, DaD1RGs also returns to basal by 80s, but Gsa and AC5 bound forms remain elevated.  Gbg never dips below 700, so this is not cause of prlonged AC5.
+AChm4RGi dips to zero, but GiaGTP doesn't reach zero for 0.1 and 0.3s - perhaps GaGTP hydrolysis is still too slow?  1/sec for unbound, but no GAP activity!
+Gq: 0.1/sec unbound, 12/sec for Plc bound
+Gi: 4/sec unbound, 0.01/sec for AC5 bound (could make slightly higher, but if too high there would be not enough Gi to inhibit AC5 at basal.)
+Issue is not Gap activity of AC5 against Gs per se, but that AC5 protects Gs against hydrolysis.
+
+What if increased Gi hydrolysis by AC5 and decreased the unbound hydrolysis? e.g.
+2/sec and 0.02/sec
+1/sec and 0.04/sec
+Could try these variants for 200sec only. would it make system more sensitive to ACh pause?  Possibly more when Gs around, since GiaGTP doesn't vary as much as AC5GsaGiaATP.
+What if add in Gs hydrolysis by AC5 and similarly decrease unbound hydrolysis
+0.5/sec and 0.01/sec for AC5GsaATP? for each of above variants + ctrl (8 sets of sims).
+
+Block:
+CyA and OA each causes similar increases in Dp34: ~50% increases.
+Under CyA: PP2A bound to Dp34 increase, limiting the increase in Dp34.  Likely the increase in bound is due to less competition.
+Under OA, PP2B bound to Dp34 increases slightly, perhaps this slightly increase can compensate for PP2A.
+
+Stimulation:
+CKpCamCa4 is still much higher for theta than for 20hz (both nonspine and spine)
+PkcCaDag is still much higher for theta than for 20hz (both nonspine and spine)
+Both PKAc and Epac1cAMP are similar for theta and 20hz (both nonspine and spine)
+CKp block raises 2ag for both theta and 20hz (both nonspine and spine)
+
+signature:  Couldn't calculate with epac because it had different sample rate
+['20hz ACh auc=-4.96 nonspine', '20hz ACh auc=24.48 sa1[0]']
+['20hz CKp auc=-19.16 nonspine', '20hz CKp auc=2.89 sa1[0]']
+['20hz Reb auc=-7.49 nonspine', '20hz Reb auc=17.98 sa1[0]']
+['theta ACh auc=9.36 nonspine', 'theta ACh auc=32.68 sa1[0]']
+['theta CKp auc=-15.21 nonspine', 'theta CKp auc=-0.37 sa1[0]']
+['theta Reb auc=12.38 nonspine', 'theta Reb auc=37.26 sa1[0]']
+dend threshold=0              sp threshold=25 to 30 (depending on the flat ACh part)
+
+What about phosphatases?  PP2Acal and PP2BCamCa4 are higher for theta.  PP1 is lower for 20hz because D32p34 is higher - peaks /troughs are similar, but 20hz has less modulation (due to lower PP2BCamCa4).  So, PP1, PKAc and Epac do not help discriminate theta from 20hz.
+
+
+What figures?
+Pka, Pkc, CkpCam, 2ag, and signatures, for control and no CKpCam
+
+
+
+
