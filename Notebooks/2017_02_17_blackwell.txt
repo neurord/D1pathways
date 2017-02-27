@@ -46,11 +46,12 @@ Gi: 4/sec unbound, 0.01/sec for AC5 bound (could make slightly higher, but if to
 Issue is not Gap activity of AC5 against Gs per se, but that AC5 protects Gs against hydrolysis.
 
 What if increased Gi hydrolysis by AC5 and decreased the unbound hydrolysis? e.g.
-2/sec and 0.02/sec
+2/sec and 0.02/sec = Gap
 1/sec and 0.04/sec
 Could try these variants for 200sec only. would it make system more sensitive to ACh pause?  Possibly more when Gs around, since GiaGTP doesn't vary as much as AC5GsaGiaATP.
 What if add in Gs hydrolysis by AC5 and similarly decrease unbound hydrolysis
 0.5/sec and 0.01/sec for AC5GsaATP? for each of above variants + ctrl (8 sets of sims).
+Some of these are replicating prior simulations!
 
 Block:
 CyA and OA each causes similar increases in Dp34: ~50% increases.
@@ -74,10 +75,33 @@ dend threshold=0              sp threshold=25 to 30 (depending on the flat ACh p
 
 What about phosphatases?  PP2Acal and PP2BCamCa4 are higher for theta.  PP1 is lower for 20hz because D32p34 is higher - peaks /troughs are similar, but 20hz has less modulation (due to lower PP2BCamCa4).  So, PP1, PKAc and Epac do not help discriminate theta from 20hz.
 
+      	      	   	Gs Gap:		
+Gi Gap:	      	   	1/s, 0/sec	0.5/s,0.1/s	
+4/sec, 0.01/sec 	ctrl 		GapC
+2/sec, 0.02/sec		GapA		GapD
+1/sec, 0.04/sec		GapB		GapE
 
-What figures?
-Pka, Pkc, CkpCam, 2ag, and signatures, for control and no CKpCam
+Goals: 1. cAMP returns to basal by end of simulation (during Da dur simulations)
+       2. Gi decreases faster during mAChR dip
+       3. Good cAMP basal - may need a few more sets of parameters for this
+       4. better D32p34PP1 during DaCa - not as important, but evaluate these anyway
+       5. Better dip during theta or 20hz
+       	  
+>>>> Da dur:						Dp34 for Bath Da, DaCa
+Basal/300s	      	  	Gs spont/ Gap:		Gs spont/ Gap:	
+Gi spont/ Gap:	      	1/s, 0/sec	0.5/s,0.1/s	1/s, 0/sec	0.5/s,0.1/s	
+4/sec, 0.01/sec 	49/84    	32/17.5		4.2/1.4		4.2/1.35
+2/sec, 0.02/sec		38/59		21/29		4.1/1.2		4.0/1.29
+1/sec, 0.04/sec		23/52		17/23		3.9/1.1		3.9/1.1
 
-
-
-
+-------> Gs Gap returns to basal faster, but has lower basal
+Faster Gs Gap: 0.5/s spont and 0.1/s Gap, returns to basal faster, but also lowers the basal.
+lowering spontaneous Gi hydrolysis results in lower Da and DaCa response
+lower spont Gi also decreases ability to sense Gi pauses
+Compensate by (i.e., all files have Gs gap=0.1/sec)
+####	  C. lower spont hydrolysis for Gs, i.e.: 0.2/s, 0.1/s gap, Gi: 4/s, 0.01/sec 
+	  D. higher Gi gap, 	     	   0.5/0.1 for Gs,  	   Gi:   4/sec and 0.02/sec
+	  A. both a&b: 			   0.2/0.1/s for Gs	   Gi:   4/sec and 0.02/sec   
+	  B. even lower spont hydrolysis:  0.1/0.1 for Gs	   Gi:   4/sec and 0.02/sec
+	  E. even lower spont Gs+fast Gi gap:  0.1/0.1 for Gs	   Gi:   1/s and 0.1/sec
+	  

@@ -1,0 +1,46 @@
+    <StimulationSet>
+      <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>           50000        </onset>
+        <duration>           10.0      </duration>
+        <rate>               450    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="DaDbuf" injectionSite="dend:submembrane">
+        <onset>           50000        </onset>
+        <duration>           10.0      </duration>
+        <rate>               450    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>           50010        </onset>
+        <duration>         290.0       </duration>
+        <rate>               4    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="DaDbuf" injectionSite="dend:submembrane">
+        <onset>           50010        </onset>
+        <duration>         290.0       </duration>
+        <rate>               4    </rate>
+      </InjectionStim>
+<!--With depletion of ACh -->
+<!-- basal ACh stim value for entire sim = desired conc * decay rate -->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               0          </onset>
+        <duration>            50000      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               54000          </onset>
+        <duration>            280000      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+<InjectionStim specieID="AKAR3" injectionSite="dend:submembrane">
+        <onset>               1000          </onset>
+        <duration>            30      </duration>
+        <rate>                45         </rate>
+</InjectionStim>
+<InjectionStim specieID="AKAR3" injectionSite="sa1[0].pointA">
+        <onset>               1000          </onset>
+        <duration>            30      </duration>
+        <rate>                25         </rate>
+</InjectionStim>
+    </StimulationSet>
+

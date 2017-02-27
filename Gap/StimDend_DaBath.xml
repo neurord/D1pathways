@@ -1,0 +1,45 @@
+<StimulationSet>
+
+    <!-- keep the ACh bath in these - compare to Da100 results-->
+  <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               20000         </onset>
+        <duration>            100           </duration>
+        <rate>                40           </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Da" injectionSite="dend:submembrane">
+        <onset>               20000         </onset>
+        <duration>            100           </duration>
+        <rate>                40           </rate>
+  </InjectionStim>
+
+      <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>           20100        </onset>
+        <duration>       199900.0       </duration>
+        <rate>               4.0    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Da" injectionSite="dend:submembrane">
+        <onset>           20100        </onset>
+        <duration>       199900.0       </duration>
+        <rate>               4.0    </rate>
+      </InjectionStim>
+
+<!-- basal ACh stim value for paused for 10s - similar to Da duration -->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               0          </onset>
+        <duration>            20000      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               20000          </onset>
+        <duration>            220000      </duration>
+        <rate>                0.1         </rate>
+</InjectionStim>
+
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               220000          </onset>
+        <duration>            80000      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+</StimulationSet>

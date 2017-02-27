@@ -3,8 +3,8 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
-textsize=16
-legtextsize=10
+textsize=10
+legtextsize=8
 
 def plot_setup(plot_molecules,param_list,param_name):
      pyplot.ion()
