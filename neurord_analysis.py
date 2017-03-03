@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import division
 #Python version, i.e. alternative of NRDpostAB
-#in python, type ARGS="par1 par2,mol1 mol2,subdir/fileroot,sstart ssend,rows" then execfile('neurord_analysis.py')
+#in python, type ARGS="subdir/fileroot,par1 par2,mol1 mol2,sstart ssend,rows" then execfile('neurord_analysis.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
 #if mol ommitted, then all molecules processed
 #e.g. ARGS="Ca GaqGTP,Ca GaqGTP Ip3,../Repo/plc/Model_PLCassay,15 20" time units are sec
@@ -39,13 +39,15 @@ prninfo=0
 showss=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=1
+showplot=2
+#showplot=1 plots overallmean, showplot=2 allows plotregion to specify region number in the region_list
+plotregion=0
 ##change these endings depending on whether using neurord3.x:
-meshend="*mesh.txt.out"
-concend='all-conc.txt.out'
+#meshend="*mesh.txt.out"
+#concend='all-conc.txt.out'
 ## or neurord2.x (uncomment these)
 meshend="*mesh.txt"
-concend='conc.txt'
+concend='all_species-conc.txt'
 #Example of how to total some molecule forms; turn off with tot_species={}
 #tot_species={
 #        "PKAtot":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"],
@@ -216,10 +218,12 @@ for fnum,ftuple in enumerate(ftuples):
                         OverallMean[:] /= TotVol*mol_per_nM_u3
                 header='#time ' +header+header2+molecules[imol]+'AvgTot\n'
                 #
-                if molecules[imol] in plot_molecules:
-                        plot_index=plot_molecules.index(molecules[imol])
-                        plot_array[:,plot_index]=OverallMean
-                        ss[fnum,plot_index]=plot_array[sstart:ssend,plot_index].mean()
+                plot_index=plot_molecules.index(molecules[imol])
+                if showplot==1:
+                    plot_array[:,plot_index]=OverallMean
+                elif showplot==2:
+                    plot_array[:,plot_index]=RegionMeans[:,plotregion]
+                ss[fnum,plot_index]=plot_array[sstart:ssend,plot_index].mean()
                 #
                 #Repeat for spatial averages if specified
                 if spatialaverage:

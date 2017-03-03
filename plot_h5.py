@@ -3,8 +3,8 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
-textsize=10
-legtextsize=8
+textsize=12
+legtextsize=10
 
 def plot_setup(plot_molecules,param_list,param_name):
      pyplot.ion()
@@ -46,6 +46,7 @@ def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist):
           for imol in range(len(plotmol)):
                axis[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
                axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
+               axis[imol].tick_params(labelsize=textsize)
           axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
           axis[0].legend(fontsize=legtextsize, loc='best')
      fig.canvas.draw()
@@ -74,6 +75,7 @@ def plot_signature(condition,traces,time,title):
                axes.legend(fontsize=legtextsize, loc='best')
                axes.set_ylabel('signature (nM) ',fontsize=textsize)
                axes.set_xlabel('Time (sec)',fontsize=textsize)
+               axes.tick_params(labelsize=textsize)
      else:
           domain=[]
           for j in range(numrows):
@@ -82,6 +84,7 @@ def plot_signature(condition,traces,time,title):
                     axes[j].plot(time,traces[i,:,j],label=cond[j].split()[0:3])
                axes[j].legend(fontsize=legtextsize, loc='best')
                axes[j].set_ylabel(domain[j],fontsize=textsize)
+               axes[j].tick_params(labelsize=textsize)
           axes[numrows-1].set_xlabel('Time (sec)',fontsize=textsize)
      fig.suptitle(title)
      fig.canvas.draw()
@@ -114,3 +117,28 @@ def file_tuple(fnames,params):
                ftuple.append((fname,parval0))
      return ftuple,[par0list,par1list]
 
+def axis_config(ax):
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.get_xaxis().set_tick_params(direction='out', right=0, which='both')
+    ax.get_yaxis().set_tick_params(direction='out', top=0, which='both')
+
+def axlabel(ax, label):
+    ax.text(-0.2, 1.05, label, transform=ax.transAxes,
+            fontweight='bold', va='top', ha='right')   
+
+#from matplotlib.ticker import FuncFormatter
+#def other_stuff():
+     #PercentFormatter = FuncFormatter(lambda x, pos: '{:.0%}'.format(x).replace('%', r'\%'))
+     #plt.rc('text', usetex=1)
+     #plt.rc('text.latex', unicode=1)
+     #plt.rc('font', weight='bold')
+     #plt.rc('xtick', labelsize=20)
+     #plt.rc('ytick', labelsize=20)
+     #plt.rc('axes', labelsize=25)
+     #plt.rc('axes', labelweight='bold')
+     #plt.rc('legend', frameon=False)
+     #plt.rc('legend', fontsize=20)
+     #plt.rc('figure.subplot', bottom=0.15, left=0.18, right=0.93, top=0.93)
+     #plt.rc('axes', color_cycle=['r', 'g', 'b', 'c', 'm', 'k', 'y'])
+     #plt.rc('legend', numpoints=1)

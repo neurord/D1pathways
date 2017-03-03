@@ -3,6 +3,9 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
+textsize=12
+legtextsize=10
+
 def plot_setup(plot_molecules,param_list,param_name):
      pyplot.ion()
      if len(plot_molecules)>10:
@@ -40,29 +43,13 @@ def plottrace(plotmol,time,plotarray,parval,axes,fig,colinc,scale,parlist):
           imol=0
           axes.plot(time,plotarray[:,imol],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
      else:
-       rows=np.shape(axes)[0]
-       if np.size(axes)==rows:
+          axis=fig.axes
           for imol in range(len(plotmol)):
-               if imol==0:
-                    axes[imol].plot(time,plotarray[:,imol],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
-                    axes[imol].legend(fontsize=8, loc='best')
-               else:
-                    axes[imol].plot(time,plotarray[:,imol],color=(p0*colinc[0],0,p1*colinc[1]))
-               axes[imol].set_ylabel(plotmol[imol])#+' (nM)')
-          axes[imol].set_xlabel('Time (sec)')
-       else:
-          cols=np.shape(axes)[1]
-          for col in range(cols):
-               for row in range(rows):
-                    imol=row+rows*col
-                    if imol==0:
-                         axes[row,col].plot(time,plotarray[:,imol],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
-                         axes[row,col].set_ylabel(plotmol[imol])#+' (nM)')
-                         axes[row,col].legend(fontsize=8, loc='best')
-                    elif imol<len(plotmol):
-                         axes[row,col].plot(time,plotarray[:,imol],color=(p0*colinc[0],0,p1*colinc[1]))
-                         axes[row,col].set_ylabel(plotmol[imol])#+' (nM)')
-               axes[rows-1,col].set_xlabel('Time (sec)')
+               axes[imol].plot(time,plotarray[:,imol],label=parval,color=(p0*colinc[0],0,p1*colinc[1]))
+               axes[imol].set_ylabel(plotmol[imol],fontsize=textsize)
+               axis[imol].tick_params(labelsize=textsize)
+          axes[0].legend(fontsize=8, loc='best')
+          axes[imol].set_xlabel('Time (sec)',fontsize=textsize)
      fig.canvas.draw()
      return
 

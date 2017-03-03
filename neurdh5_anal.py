@@ -6,8 +6,8 @@
 #The filenames to read in are constructed as "subdir/fileroot"+"-"+par1+"*"-"+par2+"*"
 #DO NOT use hyphens in filenames except for preceding parameter name
 #if no parameters specified, then fileroot needs to be full filename (excluding the extension)
-#e.g. ARGS="Ca GaqGTP,Ca GaqGTP Ip3,../Repo/plc/Model_PLCassay,15 20" time units are sec
-#e.g. ARGS=",Ca GaqGTP IP3,plc/Model_PLCassay_Ca1"
+#e.g. ARGS="../Repo/plc/Model_PLCassay,Ca GaqGTP,Ca GaqGTP Ip3,15 20" time units are sec
+#e.g. ARGS="plc/Model_PLCassay_Ca1,Ca Gaq,GTP IP3"
 #if mol ommitted, then all molecules processed.  if sstart ssend are ommitted, then calculates basal from 7.5-10% of runtime
 #in the first set of parameters below, change outputavg from 0 to 1 to generate output files of region averages for plotting
 #from outside python, type python neurordh5_analysis "subdir/fileroot [par1 par2] [mol1 mol2]"
