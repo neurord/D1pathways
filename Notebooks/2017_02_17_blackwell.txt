@@ -104,4 +104,32 @@ Compensate by (i.e., all files have Gs gap=0.1/sec)
 	  A. both a&b: 			   0.2/0.1/s for Gs	   Gi:   4/sec and 0.02/sec   
 	  B. even lower spont hydrolysis:  0.1/0.1 for Gs	   Gi:   4/sec and 0.02/sec
 	  E. even lower spont Gs+fast Gi gap:  0.1/0.1 for Gs	   Gi:   1/s and 0.1/sec
-	  
+>>>>>
+(Gs Gap=0.1 for all)
+Gs spont    Gi		cAMP basal	after stim	D32p34PP1		Dp34	Da	DaCa
+xC. 0.2	   4/s, 0.01/s	  36/31		19    		378/400 - no discrim	didn't run
+xD. 0.5     2/s, 0.02/s	  25/21		25		351/346	- poor discrim	625    4.0u	1.25u
+A. 0.2	   4/s, 0.02/s    33/25		25		356/341	- best discrim	670    4.1u	1.2u
+
+B. 0.1	   4/s, 0.02/s	  29/28		18		375/430	- good discrim
+E. 0.1	   1/s, 0.1/s	  23/?		20		365			700	4.3u	1.45u	
+Dn. 0.1	   2/s, 0.2/s
+An. 0.1	   4/s, 0.4/s
+
+-----> higher spontaneous significantly reduces cAMP basal
+Gi Gap of 0.01 vs 0.02 has trivial effect
+50% lower spontaneous has no effect
+1/s and 0.1/s still had too much Gi (maybe - sims didn't run)
+bath sims were good
+new D:
+Gs spont=0.1 (same as E)
+Gi spont=2/s, Gi Gap=0.2/s - double both.  Same as a previous sim with Gi spont=2/s, but with 10x Gi Gap and 5x lower Gs spont (which probably has no effect)
+new A:
+Gs spont=0.1 (same as E)
+Gi spont=4/s, Gi Gap=0.4/s - double both again.  Same as previous sim with Gi spont=4/s, but with 10x Gi Gap and 5x lower Gs spont (which probably has no effect)
+
+Try these two new param sets with Da Dur and bath, and then try A, D and E with 20hz vs theta
+If good, do full set of sims with new params and create new figures
+Determine how to account for Gq block of CaL, and controlling ACh timing
+Determine how to account for alcohol
+Determine what else could be controlling PKA

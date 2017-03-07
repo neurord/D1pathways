@@ -1,0 +1,54 @@
+2017_03_06
+########### 
+To DO:
+Select best Gi/Gs hydrolysis; do full set of sims with new params and create new figures
+Determine how to account for Gq block of CaL, and controlling ACh timing
+Determine how to account for alcohol
+Determine what else could be controlling PKA
+       	  
+Goals: 1. cAMP returns to basal by end of simulation (during Da dur simulations)
+       2. Gi decreases faster during mAChR dip
+       3. Good cAMP basal - may need a few more sets of parameters for this
+       4. better D32p34PP1 during DaCa - not as important, but evaluate these anyway
+       5. Better dip during theta or 20hz
+
+############ Gs Gap=0.1, Gs spont= 0.1/sec
+>>>> 	     		 Da dur:			BATH:		
+     		      	cAMP basal/300s		Dp34	Dp34 for basal Bath Da, DaCa
+A: 4/sec, 0.4/sec 	29/39	15		600	     847/969	4.4u	1.5u 
+D: 2/sec, 0.2/sec	27/40	15		443	     673/765	4.4u	1.5u	     
+E: 1/sec, 0.1/sec	21/33	20		400	     618/751	4.3u	1.3u 
+
+A: Gi hydrolysis is too fast. too high D32p34 basal and rebound after bath DaCa
+E: basal cAMP a bit low, with lower DaCa?
+D: good basal, good stimulated.  Better detection of 0.1, 0.3 stimuli , because D32p34PP1 exceeds 3 uM, thus PP1 inhibition is slikely effective
+
+Theta vs 20hz: Now theta clearly has LESS D32p34PP1 than 20hz!  Same for cAMP.  So, these parameters suggest that PKAc is good for 20hz but not theta.  UNLESS, PKAc does something to hinder Pkc but not 2ag? Try the following:
+A. Longer ACh pause for Theta
+B. Lower Da for subsequent bursts for 20hz
+
+Plan:
+ready 1. Use GapD and repeat all "tuning" and Uchi sims
+ready 2. Use GapD and repeat theta vs 20hz
+ready 3. Use GapD and try theta with long pause, 20hz with less Da
+ready 4. Use GapD and try theta and 20hz with delayed dopamine, and theta long pause ,and 20hz low Da with delayed dopamine
+5. Select a subset of items 3&4 and perform the block cases
+
+6. Add in RGS4 (only for D2 neurons?): hydrolysis of both Gq and Gi:
+   Kreitzer shows that a. elevated cAMP or PKA blocks LTD in D2 neurons
+   	    	       b. elevated PKA enhances RGS4 which lowers Gq
+   Others show that RGS4 hydrolyzes BOTH Gq and Gi
+   	       RGS4 does not diffuse
+
+   Implementation:
+      RGS4+PKAc <->complex -> pRGS4 -> RGS4    tune back and for to have low basal, and minimal PKAc diversion
+      RGS4+Gi /Gq GTP <-> complex -> Gi/Gq GDP
+      	      rates: lower spontaneous rates (currently 0.1 for Gq and 2 for Gi), e.g. 10x
+	      	     Gq hydrolysis=0.01, with pRGS4, make Gq hydrolysis 1?  up to 5, will be limited by RGS4 quantity
+		     Gi hyrolysis =0.2, with pRGS4, make Gi hydrolysis 1, up to 5 - same as for Gq?
+	Phosphatidic acid inhibits RGS4
+	RGS4 + PA <-> complex, IC50=4 uM
+	This will prevent RGS4 from being phosphorylated by PKA.  Alternatively PA can bind pRGS4.
+    Adjust rates and RGS4 quantity to maintain G prot basal levels and low pRGS4 - might need more than 10x slower spont rates
+    Evaluate whether pRGS4 is more limiting of 2ag versus Pkc versus location of RGS4 - this might better occur if RGS4 is in dendrite, instead of spine, since Pkc is higher in spine where calcium is so high?
+

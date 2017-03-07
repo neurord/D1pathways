@@ -116,7 +116,7 @@
 	<!-- where did PKC quantity of 2 uM come from ???-->
         <NanoMolarity specieID="Pkc"         value="1950"     />  
         <NanoMolarity specieID="PkcCa"         value="50"     />  
-        <NanoMolarity specieID="Pkct"         value="0"     />  
+        <NanoMolarity specieID="PkcCaDag"         value="0"     />  
 
 <!-- cytosolic molecules -->
 <!-- total PP2B = 5000 nM, PP2ABPR72=1400, PP2AB56d=1400-->

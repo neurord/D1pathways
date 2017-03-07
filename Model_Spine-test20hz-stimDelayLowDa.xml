@@ -6,7 +6,7 @@
           <xi:include href="Rxn_stimtest.xml" />
           <xi:include href="Morph_1sp2umDend.xml" />
 	  <xi:include href="IC_stimtest_couple.xml" />       
-          <xi:include href="StimCoupleTheta10hzACh-15sITI.xml" />
+          <xi:include href="StimCouple20hzAChNoRebound_LowDaDelay-10sITI.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the

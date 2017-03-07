@@ -1,0 +1,286 @@
+# reactions from /home/avrama/StriatumCRCNS/Repo/Gap/Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-GapE.xml initial conditions from IC_SPNspineAChm4R_AC1_coupleGqhigh.xml
+init Ca=81, CaOut=1997000, CaOutLeak=0.0, Leak=9000.0, Calbin=159980, CalbinC=20
+init pmca=710.0, ncx=28400.0, pmcaCa=290.0, ncxCa=1600.0, Cam=3425, CamCa2C=185
+init CamCa2N=35, CamCa4=0, Da=10, Dbuf=0, DaDbuf=0, DaOut=200000
+init D1R=0.0, DaD1R=0.0, Gsabg=17450.0, DaD1RGs=0.0, GsD1R=2000.0, PKAcDaD1RGs=0.0
+init pDaD1RGs=0.0, GsaGTP=0.0, GsaGDP=0.0, Gbg=3820.0, ACh=95, m4R=50.0
+init AChm4R=0.0, Giabg=14780.0, AChm4RGi=230.0, Gim4R=1720.0, GiaGTP=220.0, GiaGDP=0.0
+init m1R=1500.0, AChm1R=0, m1RGq=500.0, AChm1RGq=0, telenz=0.0, telenzm1R=0.0
+init telenzm1RGq=0.0, PD1028=0.0, PD1028m4R=0.0, PD1028m4RGi=0.0, Glu=10, GluGbuf=0
+init GluOut=200000, Gbuf=0, MgluR=300.0, GluMgluR=0, GluMgluRdesens=0, MgluRGq=100.0
+init Gqabg=19500.0, GluMgluRGq=0, GqaGTP=0, GqaGDP=0, AC5=1900.0, AC5Gsa=0.0
+init AC5GsaATP=50.0, AC5Ca=0.0, AC5GsaCa=0, AC5GsaCaATP=0, AC5Gia=2550.0, AC5GsaGia=0.0
+init AC5GsaGiaATP=500.0, AC1=500.0, AC1Gsa=0.0, AC1GsaCamCa4=0.0, AC1GsaCamCa4ATP=0.0, AC1CamCa4=0.0
+init AC1CamCa4ATP=0.0, ATP=1998900, cAMP=50, AMP=0, PDE1=1700, PDE1CamCa4cAMP=0
+init PDE1CamCa4=300, PDE10=4220.0, PDE10cAMP=600.0, PKAcPDE10=0.0, PKAcPDE10cAMP=0.0, pPDE10=0.0
+init pPDE10cAMP=0.0, pPDE10PP1=0.0, PDE2=672, PDE2cAMP=0, PDE2cAMP2=0, PDE4=330
+init PDE4cAMP=0, PKAcPDE4=0, PKAcPDE4cAMP=0, pPDE4=6, pPDE4PP1=0, pPDE4cAMP=0
+init Plc=1770.0, PlcCa=80.0, PlcCaGqa=0, PlcGqa=0, Pip2=95650.0, PlcCaPip2=150.0
+init PlcCaGqaPip2=0, Ip3=400.0, Dag=400.0, DagK=1400.0, DagKdag=0, PA=0
+init 2agDegrad=0, Ip3degrad=0.0, Dgl=3080.0, pDgl=0.0, CaDgl=1120.0, CapDgl=0.0
+init DagCaDgl=0, DagCapDgl=0.0, 2ag=0, Dgl_CKCamCa4=0.0, Dgl_CKpCamCa4=0.0, CaDgl_CKCamCa4=0.0
+init CaDgl_CKpCamCa4=0.0, Dgl_CKp=0.0, PIkinase=2800.0, Ip3degPIk=0.0, Pkc=9950, PkcCa=50
+init PkcCaDag=0.0, PP2B=15, PP2BCam=3000, PP2BCamCa2C=1710, PP2BCamCa2N=260, PP2BCamCa4=15
+init PP1=3400, PP2ABPR72=1100, PP2AB56d=1100, PKAcPP2AB56d=0, pPP2A=20, PP2Acal=20
+init CK=11930, CKCamCa4=70, CKpCamCa4=0, CKp=0, CKpPP1=0, CKpCamCa4PP1=0
+init CKCam_block=0.0, AIP=0.0, PKA=8120.0, PKAcAMP2=1680.0, PKAcAMP4=200.0, PKAc=0.0
+init PKAr=0.0, Epac1=975.0, Epac1cAMP=25.0, D32=37560, D32PKAc=0, D32p34=0
+init D32p34PP2Acal=0.0, D32p34PP1=580, D32p34PP2BCamCa4=0, D32p34PP1PP2BCamCa4=0, D32p34PP2ABPR72=0, D32p34PP2AB56d=0
+init D32p34PP1PP2ABPR72=10, D32p34PP1PP2AB56d=10, Cdk5=370, Cdk5D32=1215, D32p75=10085, D32p75PKAc=0
+init D32p75PP2ABPR72=260, D32p75PP2AB56d=260, D32p75PP2Acal=10, D32p75pPP2A=10, AKAR3=0, pAKAR3=0
+init PKAcAKAR3=0.0, PP1pAKAR3=0.0, OA=0, CyA=0, OA_PP2ABPR72=0, OA_PP2AB56d=0
+init OA_pPP2A=0, OA_PP2Acal=0, OA_PP1=0, CyA_PP2B=0, Pkct=0, AC5CaGsa=0.0
+init AC5CaGsaATP=0.0, 
+param kf0=0.05e-3, kb0=9e-3
+param kf1=3.0e-3, kb1=0
+param kf2=0.011e-3, kb2=11.2e-3
+param kf3=5.6e-3, kb3=0
+param kf4=0.01e-6, kb4=1.1e-3
+param kf5=1.1e-3, kb5=0
+param kf6=0.028e-3, kb6=19.6
+param kf7=0.006e-3, kb7=9.1e-3
+param kf8=0.1e-3, kb8=1000e-3
+param kf9=0.1e-3, kb9=1000e-3
+param kf10=0.006e-3, kb10=9.1e-3
+param kf11=20e-03, kb11=0
+param kf12=1.0e-3, kb12=0.055e-6
+param kf13=1e-06, kb13=0
+param kf14=0.00166667e-03, kb14=5e-03
+param kf15=0.03e-03, kb15=0.4e-03
+param kf16=0.01e-03, kb16=0.4e-03
+param kf17=0.005e-03, kb17=5e-03
+param kf18=0.15e-03, kb18=0.0
+param kf19=0.0008e-03, kb19=0.08e-03
+param kf20=0.02e-03, kb20=0
+param kf21=0.002e-03, kb21=0
+param kf22=20e-03, kb22=0
+param kf23=1.2e-3, kb23=0.06e-6
+param kf24=1e-6, kb24=0
+param kf25=0.0625e-03, kb25=0.001e-03
+param kf26=0.001e-03, kb26=0.5e-03
+param kf27=0.009e-03, kb27=1.36e-03
+param kf28=0.00225e-06, kb28=0.68e-03
+param kf29=0.004e-03, kb29=1e-03
+param kf30=1.5e-03, kb30=0
+param kf31=0.095e-06, kb31=2.5e-03
+param kf32=0.024e-03, kb32=0.42e-03
+param kf33=0.000576e-03, kb33=0.42e-03
+param kf34=0.00396e-03, kb34=2.5e-03
+param kf35=0.5e-03, kb35=0
+param kf36=6e-03, kb36=0
+param kf37=0.000338e-03, kb37=2.5e-03
+param kf38=0.192e-03, kb38=3.36e-03
+param kf39=0.00178e-03, kb39=0.42e-03
+param kf40=0.0365e-03, kb40=20.0e-03
+param kf41=8.0e-03, kb41=0
+param kf42=0.1e-03, kb42=0.0
+param kf43=2e-03, kb43=0.0
+param kf44=0.1e-03, kb44=0
+param kf45=2e-03, kb45=0
+param kf46=1e-03, kb46=0
+param kf47=2e-03, kb47=0
+param kf48=0.0037e-03, kb48=0.999e-03
+param kf49=0.1276e-6, kb49=0.2612e-03
+param kf50=28.46e-03, kb50=0.2592e-6
+param kf51=0.1e-03, kb51=0.0
+param kf52=0.0125e-3, kb52=2e-3
+param kf53=0.0125e-3, kb53=6e-3
+param kf54=0.0037e-03, kb54=2.997e-03
+param kf55=0.01276e-6, kb55=0.02612e-03
+param kf56=0.2746e-03, kb56=0.2592e-6
+param kf57=0.1e-03, kb57=0.0
+param kf58=0.1e-03, kb58=1.0e-03
+param kf59=0.0046e-03, kb59=44.0e-03
+param kf60=11.00e-03, kb60=0.0
+param kf61=0.084e-3, kb61=16.8e-3
+param kf62=4.2e-3, kb62=0.0
+param kf63=0.336e-3, kb63=67.2e-3
+param kf64=16.8e-3, kb64=0.0
+param kf65=0.1e-03, kb65=0.0
+param kf66=0.25e-06, kb66=0.024e-03
+param kf67=0.006e-03, kb67=0
+param kf68=0.25e-06, kb68=0.024e-03
+param kf69=0.006e-03, kb69=0
+param kf70=0.008e-06, kb70=0.0032e-3
+param kf71=0.0008e-03, kb71=0
+param kf72=0.00002e-3, kb72=0.5e-3
+param kf73=0.0059e-3, kb73=0.5e-3
+param kf74=5.4e-3, kb74=0.0
+param kf75=0.0216e-03, kb75=68.95e-03
+param kf76=17.233e-03, kb76=0
+param kf77=0.0864e-03, kb77=275.8e-3
+param kf78=68.932e-3, kb78=0
+param kf79=0.25e-6, kb79=0.08e-3
+param kf80=0.02e-3, kb80=0
+param kf81=0.25e-6, kb81=0.08e-3
+param kf82=0.02e-3, kb82=0
+param kf83=0.008e-06, kb83=0.0032e-3
+param kf84=0.0008e-03, kb84=0
+param kf85=0.0004e-03, kb85=1e-03
+param kf86=0.0035e-03, kb86=0.7e-03
+param kf87=0.0007e-03, kb87=0.7e-03
+param kf88=0.002e-03, kb88=1.0e-03
+param kf89=0.05e-06, kb89=1.8e-03
+param kf90=0.45e-03, kb90=0e-03
+param kf91=1.665e-06, kb91=60e-03
+param kf92=30e-03, kb92=0e-03
+param kf93=12e-03, kb93=0
+param kf94=12e-03, kb94=0
+param kf95=0.125e-03, kb95=50e-03
+param kf96=0.0005e-03, kb96=1.0e-03
+param kf97=0.25e-03, kb97=0e-03
+param kf98=0.1e-03, kb98=0.0e-03
+param kf99=0.0005e-3, kb99=0.4e-03
+param kf100=0.1e-3, kb100=0e-3
+param kf101=0.25e-03, kb101=0.0e-03
+param kf102=0.00007e-03, kb102=0.8e-3
+param kf103=0.2e-03, kb103=0.0e-03
+param kf104=0.020e-03, kb104=50e-03
+param kf105=0.015e-06, kb105=0.15e-03
+param kf106=0.261e-06, kb106=0.060e-03
+param kf107=0.35e-06, kb107=0.6e-3
+param kf108=0.24e-03, kb108=0.0255e-03
+param kf109=0.033e-6, kb109=0.08e-3
+param kf110=0.0046e-3, kb110=0.0012e-3
+param kf111=0.046e-3, kb111=0.0012e-3
+param kf112=0.046e-3, kb112=0.0012e-3
+param kf113=6.0e-06, kb113=0.91e-03
+param kf114=0.1e-03, kb114=100e-03
+param kf115=0.046e-3, kb115=0.0012e-3
+param kf116=0.1e-03, kb116=1000e-03
+param kf117=6.0e-06, kb117=9.1e-03
+param kf118=0.00125e-03, kb118=0.185e-03
+param kf119=0.03e-03, kb119=0.0
+param kf120=0.02e-03, kb120=0.0
+param kf121=0.02e-6, kb121=0.1e-3
+param kf122=0.0027e-03, kb122=8.0e-03
+param kf123=2.0e-03, kb123=0.0
+param kf124=0.4e-03, kb124=0.58e-03
+param kf125=8.0e-06, kb125=8.0e-03
+param kf126=2e-03, kb126=0.0
+param kf127=8.0e-06, kb127=8.0e-03
+param kf128=2e-03, kb128=0.0
+param kf129=1.52e-06, kb129=0.056
+param kf130=0.014, kb130=0.0
+param kf131=1.52e-06, kb131=0.056
+param kf132=0.014, kb132=0.0
+param kf133=0.36e-06, kb133=0.0146
+param kf134=0.00336, kb134=0.0
+param kf135=0.36e-06, kb135=0.0146
+param kf136=0.00336, kb136=0.0
+param kf137=0.0045e-03, kb137=40e-3
+param kf138=10e-3, kb138=0.0
+param kf139=0.00037e-03, kb139=1.0e-03
+param kf140=0.015e-03, kb140=168e-3
+param kf141=42e-3, kb141=0.0
+param kf142=0.0023e-3, kb142=84e-3
+param kf143=21e-3, kb143=0.0
+param kf144=0.0023e-3, kb144=84e-3
+param kf145=21e-3, kb145=0.0
+param kf146=0.015e-03, kb146=168e-3
+param kf147=42e-3, kb147=0.0
+param kf148=0.01e-3, kb148=3e-3
+param kf149=13.0e-18, kb149=0e-3
+param kf150=2.0e-12, kb150=0e-3
+param kf151=27.1e-18, kb151=0e-3
+param kf152=0.0008e-3, kb152=0.01e-3
+param kf153=0.009e-06, kb153=0.08e-03
+param kf154=0.019e-03, kb154=0.0
+param kf155=0.0045e-06, kb155=0.04e-03
+param kf156=0.0095e-3, kb156=0.0
+param kf157=25e-6, kb157=1e-3
+param kf158=0.36e-6, kb158=0.1e-3
+param kf159=0.025e-3, kb159=0.0
+param kf160=5.4e-6, kb160=1.5e-3
+param kf161=0.375e-3, kb161=0.0
+param kf162=5.4e-6, kb162=1.5e-3
+param kf163=0.375e-3, kb163=0.0
+param kf164=0.36e-6, kb164=0.1e-3
+param kf165=0.025e-3, kb165=0.0
+param kf166=0.1e-3, kb166=0.0
+param kf167=0.125e-03, kb167=50e-03
+param kf168=0.0001e-03, kb168=0.2e-03
+param kf169=0.05e-03, kb169=0e-03
+param kf170=0.00625e-03, kb170=0.75e-03
+param kf171=0.1875e-03, kb171=0e-03
+param kf172=0.00025e-03, kb172=1.2e-03
+param kf173=0.312e-03, kb173=0e-03
+param kf174=0.0385e-3, kb174=10e-3
+param kf175=0.006e-3, kb175=0.9e-3
+param kf176=0.01e-3, kb176=2273e-3
+param kf177=56.84e-3, kb177=0
+param kf178=0.006e-3, kb178=0.9e-3
+param kf179=0.01e-3, kb179=2273e-3
+param kf180=5.684e-3, kb180=0
+param kf181=0.005e-3, kb181=0.00015e-3
+param kf182=0.005e-3, kb182=0.00015e-3
+param kf183=0.005e-3, kb183=0.00015e-3
+param kf184=0.005e-3, kb184=0.00015e-3
+param kf185=0.001e-3, kb185=0.15e-3
+param kf186=0.004e-3, kb186=0.004e-3
+param kf187=0.95e-03, kb187=2.5e-03
+param kf188=39.6e-03, kb188=2.5e-03
+param kf189=0.028e-03, kb189=2.5e-03
+param kf190=3.024e-03, kb190=20.0e-03
+
+dCa/dt=-kf0*Ca*pmca+kb0*pmcaCa-kf2*Ca*ncx+kb2*ncxCa-kf5*CaOutLeak+kb5*Ca*Leak-kf6*Ca*Calbin+kb6*CalbinC-kf7*Cam*Ca*2+kb7*CamCa2C-kf8*CamCa2C*Ca*2+kb8*CamCa4-kf9*Cam*Ca*2+kb9*CamCa2N-kf10*CamCa2N*Ca*2+kb10*CamCa4-kf85*Ca*Plc+kb85*PlcCa-kf88*Ca*PlcGqa+kb88*PlcCaGqa-kf95*Ca*Dgl+kb95*CaDgl-kf104*Ca*Pkc+kb104*PkcCa-kf113*PP2BCam*Ca*2+kb113*PP2BCamCa2C-kf114*PP2BCam*Ca*2+kb114*PP2BCamCa2N-kf116*PP2BCamCa2C*Ca*2+kb116*PP2BCamCa4-kf117*PP2BCamCa2N*Ca*2+kb117*PP2BCamCa4-kf121*PP2ABPR72*Ca+kb121*PP2Acal-kf167*Ca*pDgl+kb167*CapDgl
+dCaOut/dt=-kf1*pmcaCa+kb1*pmca*CaOut-kf3*ncxCa+kb3*ncx*CaOut-kf4*CaOut*Leak+kb4*CaOutLeak
+dCaOutLeak/dt=-kf4*CaOut*Leak+kb4*CaOutLeak-kf5*CaOutLeak+kb5*Ca*Leak
+dLeak/dt=-kf4*CaOut*Leak+kb4*CaOutLeak-kf5*CaOutLeak+kb5*Ca*Leak
+dCalbin/dt=-kf6*Ca*Calbin+kb6*CalbinC
+dCalbinC/dt=-kf6*Ca*Calbin+kb6*CalbinC
+dpmca/dt=-kf0*Ca*pmca+kb0*pmcaCa-kf1*pmcaCa+kb1*pmca*CaOut
+dncx/dt=-kf2*Ca*ncx+kb2*ncxCa-kf3*ncxCa+kb3*ncx*CaOut
+dpmcaCa/dt=-kf0*Ca*pmca+kb0*pmcaCa-kf1*pmcaCa+kb1*pmca*CaOut
+dncxCa/dt=-kf2*Ca*ncx+kb2*ncxCa-kf3*ncxCa+kb3*ncx*CaOut
+dCam/dt=-kf7*Cam*Ca*2+kb7*CamCa2C-kf9*Cam*Ca*2+kb9*CamCa2N-kf110*Cam*PP2B+kb110*PP2BCam
+dCamCa2C/dt=-kf7*Cam*Ca*2+kb7*CamCa2C-kf8*CamCa2C*Ca*2+kb8*CamCa4-kf111*CamCa2C*PP2B+kb111*PP2BCamCa2C
+dCamCa2N/dt=-kf9*Cam*Ca*2+kb9*CamCa2N-kf10*CamCa2N*Ca*2+kb10*CamCa4-kf112*CamCa2N*PP2B+kb112*PP2BCamCa2N
+dCamCa4/dt=-kf8*CamCa2C*Ca*2+kb8*CamCa4-kf10*CamCa2N*Ca*2+kb10*CamCa4-kf58*PDE1*CamCa4+kb58*PDE1CamCa4-kf115*CamCa4*PP2B+kb115*PP2BCamCa4-kf148*CamCa4*CK+kb148*CKCamCa4-kf152*CKpCamCa4+kb152*CamCa4*CKp-kf175*AC1Gsa*CamCa4+kb175*AC1GsaCamCa4-kf178*AC1*CamCa4+kb178*AC1CamCa4
+dDa/dt=-kf11*DaDbuf+kb11*Dbuf*Da-kf12*Da+kb12*DaOut-kf14*Da*D1R+kb14*DaD1R-kf17*GsD1R*Da+kb17*DaD1RGs
+dDbuf/dt=-kf11*DaDbuf+kb11*Dbuf*Da-kf13*DaOut*Dbuf+kb13
+dDaDbuf/dt=-kf11*DaDbuf+kb11*Dbuf*Da
+dDaOut/dt=-kf12*Da+kb12*DaOut-kf13*DaOut*Dbuf+kb13
+dD1R/dt=-kf14*Da*D1R+kb14*DaD1R-kf16*Gsabg*D1R+kb16*GsD1R
+dDaD1R/dt=-kf14*Da*D1R+kb14*DaD1R-kf15*DaD1R*Gsabg+kb15*DaD1RGs-kf18*DaD1RGs+kb18*DaD1R*GsaGTP*Gbg
+dGsabg/dt=-kf15*DaD1R*Gsabg+kb15*DaD1RGs-kf16*Gsabg*D1R+kb16*GsD1R-kf43*GsaGDP*Gbg+kb43*Gsabg
+dDaD1RGs/dt=-kf15*DaD1R*Gsabg+kb15*DaD1RGs-kf17*GsD1R*Da+kb17*DaD1RGs-kf18*DaD1RGs+kb18*DaD1R*GsaGTP*Gbg-kf19*PKAc*DaD1RGs+kb19*PKAcDaD1RGs-kf21*pDaD1RGs+kb21*DaD1RGs
+dGsD1R/dt=-kf16*Gsabg*D1R+kb16*GsD1R-kf17*GsD1R*Da+kb17*DaD1RGs
+dPKAcDaD1RGs/dt=-kf19*PKAc*DaD1RGs+kb19*PKAcDaD1RGs-kf20*PKAcDaD1RGs+kb20*pDaD1RGs*PKAc
+dpDaD1RGs/dt=-kf20*PKAcDaD1RGs+kb20*pDaD1RGs*PKAc-kf21*pDaD1RGs+kb21*DaD1RGs
+dGsaGTP/dt=-kf18*DaD1RGs+kb18*DaD1R*GsaGTP*Gbg-kf42*GsaGTP+kb42*GsaGDP-kf48*GsaGTP*AC5+kb48*AC5Gsa-kf54*GsaGTP*AC5Gia+kb54*AC5GsaGia-kf174*GsaGTP*AC1+kb174*AC1Gsa
+dGsaGDP/dt=-kf42*GsaGTP+kb42*GsaGDP-kf43*GsaGDP*Gbg+kb43*Gsabg-kf51*AC5GsaATP+kb51*AC5*cAMP*GsaGDP
+dGbg/dt=-kf18*DaD1RGs+kb18*DaD1R*GsaGTP*Gbg-kf30*GluMgluRGq+kb30*GqaGTP*GluMgluR*Gbg-kf35*AChm1RGq+kb35*GqaGTP*AChm1R*Gbg-kf41*AChm4RGi+kb41*GiaGTP*AChm4R*Gbg-kf43*GsaGDP*Gbg+kb43*Gsabg-kf45*GqaGDP*Gbg+kb45*Gqabg-kf47*GiaGDP*Gbg+kb47*Giabg
+dACh/dt=-kf31*ACh*m1R+kb31*AChm1R-kf34*ACh*m1RGq+kb34*AChm1RGq-kf36*ACh+kb36-kf37*ACh*m4R+kb37*AChm4R-kf40*Gim4R*ACh+kb40*AChm4RGi
+dm4R/dt=-kf37*ACh*m4R+kb37*AChm4R-kf39*Giabg*m4R+kb39*Gim4R-kf189*PD1028*m4R+kb189*PD1028m4R
+dAChm4R/dt=-kf37*ACh*m4R+kb37*AChm4R-kf38*AChm4R*Giabg+kb38*AChm4RGi-kf41*AChm4RGi+kb41*GiaGTP*AChm4R*Gbg
+dGiabg/dt=-kf38*AChm4R*Giabg+kb38*AChm4RGi-kf39*Giabg*m4R+kb39*Gim4R-kf47*GiaGDP*Gbg+kb47*Giabg
+dAChm4RGi/dt=-kf38*AChm4R*Giabg+kb38*AChm4RGi-kf40*Gim4R*ACh+kb40*AChm4RGi-kf41*AChm4RGi+kb41*GiaGTP*AChm4R*Gbg
+dGim4R/dt=-kf39*Giabg*m4R+kb39*Gim4R-kf40*Gim4R*ACh+kb40*AChm4RGi-kf190*Gim4R*PD1028+kb190*PD1028m4RGi
+dGiaGTP/dt=-kf41*AChm4RGi+kb41*GiaGTP*AChm4R*Gbg-kf46*GiaGTP+kb46*GiaGDP-kf52*GiaGTP*AC5+kb52*AC5Gia-kf53*GiaGTP*AC5Gsa+kb53*AC5GsaGia
+dGiaGDP/dt=-kf46*GiaGTP+kb46*GiaGDP-kf47*GiaGDP*Gbg+kb47*Giabg-kf57*AC5GsaGiaATP+kb57*AC5Gsa*cAMP*GiaGDP
+dm1R/dt=-kf31*ACh*m1R+kb31*AChm1R-kf33*Gqabg*m1R+kb33*m1RGq-kf187*telenz*m1R+kb187*telenzm1R
+dAChm1R/dt=-kf31*ACh*m1R+kb31*AChm1R-kf32*Gqabg*AChm1R+kb32*AChm1RGq-kf35*AChm1RGq+kb35*GqaGTP*AChm1R*Gbg
+dm1RGq/dt=-kf33*Gqabg*m1R+kb33*m1RGq-kf34*ACh*m1RGq+kb34*AChm1RGq-kf188*telenz*m1RGq+kb188*telenzm1RGq
+dAChm1RGq/dt=-kf32*Gqabg*AChm1R+kb32*AChm1RGq-kf34*ACh*m1RGq+kb34*AChm1RGq-kf35*AChm1RGq+kb35*GqaGTP*AChm1R*Gbg
+dtelenz/dt=-kf187*telenz*m1R+kb187*telenzm1R-kf188*telenz*m1RGq+kb188*telenzm1RGq
+dtelenzm1R/dt=-kf187*telenz*m1R+kb187*telenzm1R
+dtelenzm1RGq/dt=-kf188*telenz*m1RGq+kb188*telenzm1RGq
+dPD1028/dt=-kf189*PD1028*m4R+kb189*PD1028m4R-kf190*Gim4R*PD1028+kb190*PD1028m4RGi
+dPD1028m4R/dt=-kf189*PD1028*m4R+kb189*PD1028m4R
+dPD1028m4RGi/dt=-kf190*Gim4R*PD1028+kb190*PD1028m4RGi
+dGlu/dt=-kf22*GluGbuf+kb22*Gbuf*Glu-kf23*Glu+kb23*GluOut-kf26*Glu*MgluR+kb26*GluMgluR-kf29*Glu*MgluRGq+kb29*GluMgluRGq
+dGluGbuf/dt=-kf22*GluGbuf+kb22*Gbuf*Glu
+dGluOut/dt=-kf23*Glu+kb23*GluOut-kf24*GluOut*Gbuf+kb24
+dGbuf/dt=-kf22*GluGbuf+kb22*Gbuf*Glu-kf24*GluOut*Gbuf+kb24
+dMgluR/dt=-kf26*Glu*MgluR+kb26*GluMgluR-kf28*Gqabg*MgluR+kb28*MgluRGq
+dGluMgluR/dt=-kf25*GluMgluR+kb25*GluMgluRdesens-kf26*Glu*MgluR+kb26*GluMgluR-kf27*Gqabg*GluMgluR+kb27*GluMgluRGq-kf30*GluMgluRGq+kb30*GqaGTP*GluMgluR*Gbg
+dGluMgluRdesens/dt=-kf25*GluMgluR+kb25*GluMgluRdesens
+dMgluRGq/dt=-kf28*Gqabg*MgluR+kb28*MgluRGq-kf29*Glu*MgluRGq+kb29*GluMgluRGq
+dGqabg/dt=-kf27*Gqabg*GluMgluR+kb27*GluMgluRGq-kf28*Gqabg*MgluR+kb28*MgluRGq-kf32*Gqabg*AChm1R+kb32*AChm1RGq-kf33*Gqabg*m1R+kb33*m1RGq-kf45*GqaGDP*Gbg+kb45*Gqabg
+dGluMgluRGq/dt=-kf27*Gqabg*GluMgluR+kb27*GluMgluRGq-kf29*Glu*MgluRGq+kb29*GluMgluRGq-kf30*GluMgluRGq+kb30*GqaGTP*GluMgluR*Gbg
+dGqaGTP/dt=-kf30*GluMgluRGq+kb30*GqaGTP*GluMgluR*Gbg-kf35*AChm1RGq+kb35*GqaGTP*AChm1R*Gbg-kf44*GqaGTP+kb44*GqaGDP-kf86*GqaGTP*PlcCa+kb86*PlcCaGqa-kf87*GqaGTP*Plc+kb87*PlcGqa
+dGqaGDP/dt=-kf44*GqaGTP+kb44*GqaGDP-kf45*GqaGDP*Gbg+kb45*Gqabg-kf93*PlcGqa+kb93*Plc*GqaGDP-kf94*PlcCaGqa+kb94*PlcCa*GqaGDP
+dAC5/dt=-kf48*GsaGTP*AC5+kb48*AC5Gsa-kf51*AC5GsaATP+kb51*AC5*cAMP*GsaGDP-kf52*GiaGTP*AC5+kb52*AC5Gia
+dAC5Gsa/dt=-kf48*GsaGTP*AC5+kb48*AC5Gsa-kf49*AC5Gsa*ATP+kb49*AC5GsaATP-kf50*AC5GsaATP+kb50*AC5Gsa*cAMP-kf53*GiaGTP*AC5Gsa+kb53*AC5GsaGia-kf57*AC5GsaGiaATP+kb57*AC5Gsa*cAMP*GiaGDP
+dAC5GsaATP/dt=-kf49*AC5Gsa*ATP+kb49*AC5GsaATP-kf50*AC5GsaATP+kb50*AC5Gsa*cAMP-kf51*AC5GsaATP+kb51*AC5*cAMP*GsaGDP

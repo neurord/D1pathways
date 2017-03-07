@@ -6,10 +6,10 @@
     <Specie name="DaDbuf"        id="DaDbuf"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="DaOut"         id="DaOut"         kdiff="1"      kdiffunit = "mu2/s"/>
 
-    <Specie name="Ca"                id="Ca"                kdiff="10"      kdiffunit = "mu2/s"/>
+    <Specie name="Ca"                id="Ca"                kdiff="1"      kdiffunit = "mu2/s"/>
     <Specie name="ACh"               id="ACh"                kdiff="10"      kdiffunit = "mu2/s"/>
 
-    <Specie name="Glu"            id="Glu"           kdiff="10"   kdiffunit="mu2/s"/>
+    <Specie name="Glu"            id="Glu"           kdiff="2"   kdiffunit="mu2/s"/>
     <Specie name="GluGbuf"        id="GluGbuf"     kdiff="0"       kdiffunit="mu2/s"/>
     <Specie name="GluOut"         id="GluOut"        kdiff="1"   kdiffunit="mu2/s"/>
     <Specie name="Gbuf"           id="Gbuf"          kdiff="1"      kdiffunit="mu2/s"/>
@@ -18,7 +18,7 @@
         <Reactant specieID="DaDbuf"                      />
         <Product  specieID="Dbuf"                      />
         <Product  specieID="Da"                     />
-        <forwardRate> 10e-03 </forwardRate>
+        <forwardRate> 20e-03 </forwardRate>
         <reverseRate> 0      </reverseRate>
     </Reaction>
     
@@ -43,7 +43,7 @@
         <Reactant specieID="GluGbuf"                      />
         <Product  specieID="Gbuf"                      />
         <Product  specieID="Glu"                     />
-        <forwardRate> 10e-03 </forwardRate>
+        <forwardRate> 20e-03 </forwardRate>
         <reverseRate> 0      </reverseRate>
     </Reaction>
     
@@ -52,8 +52,8 @@
   	<Reactant specieID="Glu"/>
 	<Product specieID="GluOut"/>
 
-  	<forwardRate>0.6e-3</forwardRate>
-  	<reverseRate>0.03e-6</reverseRate>
+  	<forwardRate>1.2e-3</forwardRate>
+  	<reverseRate>0.06e-6</reverseRate>
   </Reaction>
   
   <!--0c. GluOut eliminated to prevent baseline shift: GluOut + Gbuf <-> Null -->

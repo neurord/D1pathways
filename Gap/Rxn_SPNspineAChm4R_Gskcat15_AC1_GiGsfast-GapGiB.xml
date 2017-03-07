@@ -50,24 +50,16 @@
     <Specie name="AChm1R"       id="AChm1R"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="m1RGq"        id="m1RGq"       kdiff="0"     kdiffunit="mu2/s"/> 
     <Specie name="AChm1RGq"     id="AChm1RGq"    kdiff="0"     kdiffunit="mu2/s"/>
-<!--m1R or m4R inhibition -->
-    <Specie name="telenz"       id="telenz"      kdiff="1"     kdiffunit="mu2/s"/>
-    <Specie name="telenzm1R"    id="telenzm1R"   kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="telenzm1RGq"  id="telenzm1RGq" kdiff="0"     kdiffunit="mu2/s"/>
-
-    <Specie name="PD1028"       id="PD1028"      kdiff="1"      kdiffunit = "mu2/s"/>
-    <Specie name="PD1028m4R"    id="PD1028m4R"   kdiff="0"      kdiffunit = "mu2/s"/>
-    <Specie name="PD1028m4RGi"  id="PD1028m4RGi" kdiff="0"      kdiffunit = "mu2/s"/>
 
     <!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
      GluOut is used to eliminate injected Glu -->
-    <Specie name="Glu"            id="Glu"           kdiff="2"   kdiffunit="mu2/s"/>
-    <Specie name="GluGbuf"        id="GluGbuf"       kdiff="0"    kdiffunit="mu2/s"/>
+    <Specie name="Glu"            id="Glu"           kdiff="10"   kdiffunit="mu2/s"/>
+    <Specie name="GluGbuf"        id="GluGbuf"     kdiff="0"       kdiffunit="mu2/s"/>
     <Specie name="GluOut"         id="GluOut"        kdiff="1"   kdiffunit="mu2/s"/>
-    <Specie name="Gbuf"           id="Gbuf"          kdiff="1"     kdiffunit="mu2/s"/>
+    <Specie name="Gbuf"           id="Gbuf"          kdiff="1"      kdiffunit="mu2/s"/>
     <Specie name="MgluR"          id="MgluR"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluR"       id="GluMgluR"      kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="GluMgluRdesens" id="GluMgluRdesens" kdiff="0"    kdiffunit="mu2/s"/>
+    <Specie name="GluMgluRdesens" id="GluMgluRdesens" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="MgluRGq"        id="MgluRGq"       kdiff="0"     kdiffunit="mu2/s"/> 
     <Specie name="Gqabg"          id="Gqabg"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GluMgluRGq"     id="GluMgluRGq"    kdiff="0"     kdiffunit="mu2/s"/>
@@ -189,8 +181,6 @@
     <Specie name="PKAcAMP4"       id="PKAcAMP4"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PKAc"           id="PKAc"          kdiff="0.836" kdiffunit="mu2/s"/>
     <Specie name="PKAr"           id="PKAr"          kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="Epac1"          id="Epac1"         kdiff="10"    kdiffunit="mu2/s"/>
-    <Specie name="Epac1cAMP"      id="Epac1cAMP"     kdiff="10"    kdiffunit="mu2/s"/>
 <!-- Use the updated reactions from Asia's hippocampal model -->
 
 <!-- D32,D32p34 -->
@@ -658,7 +648,7 @@
         <Reactant specieID="GsaGTP"                  />
         <Product  specieID="GsaGDP"                  />
 
-        <forwardRate> 0.1e-03        </forwardRate>
+        <forwardRate> 1.0e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
     </Reaction>
 
@@ -744,16 +734,6 @@
         <reverseRate> 0.2592e-6    </reverseRate>
     </Reaction>
     
-    <Reaction name = "AC5GsaATP--AC5Gsa+cAMP reac" id="AC5GsaATP--AC5Gsa+cAMP_id">
-        <Reactant specieID="AC5GsaATP"             />
-        <Product  specieID="AC5"                />
-        <Product  specieID="cAMP"                   />
-        <Product  specieID="GsaGDP"                   />
-
-        <forwardRate> 0.1e-03     </forwardRate>
-        <reverseRate> 0.0    </reverseRate>
-    </Reaction>
-    
 <!-- 2a) GiaGTP + AC5 <-> AC5GiaGTP  Kd=160 for AC5: Chen-Goodspeed JBC 280-1808, Nielson JBC 271-33308 1996 -->
     <Reaction name = "GiaGTP_AC5_reac" id="GiaGTP_AC5_reac">
 	<Reactant specieID="GiaGTP"/>
@@ -808,7 +788,7 @@
         <Product  specieID="cAMP"                   />
         <Product  specieID="GiaGDP"                   />
 
-        <forwardRate> 0.4e-03     </forwardRate>
+        <forwardRate> 0.01e-03     </forwardRate>
         <reverseRate> 0.0    </reverseRate>
     </Reaction>
 
@@ -1367,18 +1347,7 @@ MUCH slower binding compared to CaDgl  -->
 	<reverseRate>0.0255e-03</reverseRate>
     </Reaction>
 
-    <!--1) Epac1-camps + cAMP <-> Epac1-camps_cAMP -->
-    <Reaction name = "PKA_bind" id="PKA_bind">
-	<Reactant specieID="Epac1"/>
-        <Reactant specieID="cAMP"/>
-	<Product specieID="Epac1cAMP"/>
-
-        <forwardRate>0.033e-6</forwardRate>
-	<reverseRate>0.08e-3</reverseRate>
-	<Q10>0.2</Q10>
-    </Reaction>
-
-    <!-- Cam or CamC2N or CamC2C or CamCa4 binding to PP2B.  Check rates for microscopic reversibility -->
+<!-- Cam or CamC2N or CamC2C or CamCa4 binding to PP2B.  Check rates for microscopic reversibility -->
      <!--4x) Cam    +   PP2B     <->  PP2BCam     (in xpp: k33a=1 k_33a=3)  -->
     <Reaction name = "Cam+PP2B--PP2BCam reac" id="Cam+PP2B--PP2BCam_id">
         <Reactant specieID="Cam"                    />
@@ -1834,8 +1803,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP1"                    />
         <Product  specieID="CKpPP1"                 />
 
-        <forwardRate> 0.009e-06   </forwardRate>
-        <reverseRate> 0.08e-03    </reverseRate>
+        <forwardRate> 0.01e-06     </forwardRate>
+        <reverseRate> 0.085e-03   </reverseRate>
     </Reaction>
  
     <!-- CKpPP1 -> PP1 + CK -->
@@ -1844,7 +1813,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product specieID="PP1"                     />
         <Product specieID="CK"                      />
 
-        <forwardRate> 0.019e-03   </forwardRate>
+        <forwardRate> 0.025e-03   </forwardRate>
         <reverseRate> 0.0         </reverseRate>
     </Reaction>
 
@@ -1854,8 +1823,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP1"                    />
         <Product  specieID="CKpCamCa4PP1"           />
 
-        <forwardRate> 0.0045e-06  </forwardRate>
-        <reverseRate> 0.04e-03   </reverseRate>
+        <forwardRate> 0.0         </forwardRate>
+        <reverseRate> 0.0         </reverseRate>
     </Reaction>
 
 <!--Dephos of CKpCamCa4 by PP1 -->
@@ -1865,7 +1834,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="CKCamCa4"               />
 
-        <forwardRate> 0.0095e-3    </forwardRate>
+        <forwardRate> 0.0         </forwardRate>
         <reverseRate> 0.0         </reverseRate>
     </Reaction>
 
@@ -2044,8 +2013,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant  specieID="PP1"               />
         <Product  specieID="PP1pAKAR3"            />
 
-        <forwardRate> 0.00025e-03     </forwardRate>
-        <reverseRate> 1.2e-03    </reverseRate>
+        <forwardRate> 0.000125e-03     </forwardRate>
+        <reverseRate> 0.6e-03    </reverseRate>
     </Reaction>
 
     <Reaction name = "PP1pAKAR3 dephos" >
@@ -2053,7 +2022,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"               />
         <Product  specieID="AKAR3"            />
 
-        <forwardRate> 0.312e-03     </forwardRate>
+        <forwardRate> 0.156e-03     </forwardRate>
         <reverseRate> 0e-03    </reverseRate>
     </Reaction>
 <!-- ############### AC1 activated by Gs and CamCa4 ###################-->
@@ -2170,7 +2139,7 @@ MUCH slower binding compared to CaDgl  -->
 	<reverseRate>0.00015e-3</reverseRate>
 
   </Reaction>
-  <!-- Okadaic acid inhibits PP1 -->
+  <!-- cyclosporin A inhibits PP1 -->
   <Reaction name="OAblock1" id="OAblock1">
     <Reactant specieID="OA"/>
     <Reactant specieID="PP1"/>
@@ -2188,43 +2157,5 @@ MUCH slower binding compared to CaDgl  -->
 	<forwardRate>0.004e-3</forwardRate>
 	<reverseRate>0.004e-3</reverseRate>
    </Reaction>
-
-   <!--block of m1R IC50 is 0.94 nM -->
-      <Reaction name = "telenz+m1R--telenzm1R" id="telenz+m1R--telenzm1R">
-        <Reactant specieID="telenz"              />
-        <Reactant specieID="m1R"              />
-        <Product  specieID="telenzm1R"         />
-
-        <forwardRate> 0.95e-03 </forwardRate>
-        <reverseRate> 2.5e-03      </reverseRate>
-    </Reaction>
-
-   <Reaction name = "telenz+m1RGq- -telenzm1RGq" id="telenz+m1RGq- -telenzm1RGq">
-        <Reactant specieID="telenz" />
-        <Reactant specieID="m1RGq" />
-        <Product specieID="telenzm1RGq" />
-
-        <forwardRate> 39.6e-03 </forwardRate>
-        <reverseRate> 2.5e-03        </reverseRate>
-   </Reaction>
-
-   <!-- block of M4R IC50 is 91 nM -->
-   <Reaction name = "PD1028+m4R--PD1028m4R" id="PD1028+m4R--PD1028m4R">
-        <Reactant specieID="PD1028"              />
-        <Reactant specieID="m4R"              />
-        <Product  specieID="PD1028m4R"         />
-
-        <forwardRate> 0.028e-03 </forwardRate>
-        <reverseRate> 2.5e-03      </reverseRate>
-    </Reaction>
-
-    <Reaction name = "Gim4R+PD1028--PD1028m4RGi" id="Gm4R+PD1028--PD1028m4RGi">
-        <Reactant specieID="Gim4R"                     />
-        <Reactant specieID="PD1028"                      />
-        <Product  specieID="PD1028m4RGi"                    />
-
-        <forwardRate> 3.024e-03 </forwardRate>
-        <reverseRate> 20.0e-03        </reverseRate>
-    </Reaction>
 
 </ReactionScheme>

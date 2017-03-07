@@ -1,7 +1,8 @@
 <StimulationSet>
 
-    <!-- the injectionSite must match a regionLabel deefined in the morphology -->
+    <!-- the injectionSite must match a regionLabel defined in the morphology -->
    <!-- 20 Glu and Ca pulses / sec for 1 sec * 20 trains = 400 pulses -->
+<!--first burst of Da - full strength -->
 <!-- pulse 1 to produce 0.5 uM alone -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20600          </onset>
@@ -9,8 +10,6 @@
         <rate>                36            </rate>
         <period>              50             </period>
         <end>                 20620          </end>
-        <numTrains>           20             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 2 = half of pulse 1 -->
@@ -20,8 +19,6 @@
         <rate>                18.0           </rate>
         <period>              50             </period>
         <end>                 20670          </end>
-        <numTrains>           20             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 3 = half of pulse 2  -->
@@ -31,8 +28,6 @@
         <rate>                12.6           </rate>
         <period>              50             </period>
         <end>                 20720          </end>
-        <numTrains>           20             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
@@ -42,7 +37,50 @@
         <rate>                9           </rate>
         <period>              50             </period>
         <end>                 21599          </end>
-        <numTrains>           20             </numTrains>
+</InjectionStim>
+
+<!--later bursts of Da - partial strength (2/3d) -->
+<!-- pulse 1 to produce 0.5 uM alone -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               30600          </onset>
+        <duration>            15              </duration>
+        <rate>                24            </rate>
+        <period>              50             </period>
+        <end>                 30620          </end>
+        <numTrains>           19             </numTrains>
+        <interTrainInterval>  9980          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 2 = half of pulse 1 -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               30650          </onset>
+        <duration>            15              </duration>
+        <rate>                12.0           </rate>
+        <period>              50             </period>
+        <end>                 30670          </end>
+        <numTrains>           19             </numTrains>
+        <interTrainInterval>  9980          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulse 3 = half of pulse 2  -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               30700          </onset>
+        <duration>            15              </duration>
+        <rate>                8.4           </rate>
+        <period>              50             </period>
+        <end>                 30720          </end>
+        <numTrains>           19             </numTrains>
+        <interTrainInterval>  9980          </interTrainInterval>   
+</InjectionStim>
+
+<!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               30750          </onset>
+        <duration>            15              </duration>
+        <rate>                6           </rate>
+        <period>              50             </period>
+        <end>                 31599          </end>
+        <numTrains>           19             </numTrains>
         <interTrainInterval>  9151          </interTrainInterval>   
 </InjectionStim>
 

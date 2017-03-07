@@ -11,11 +11,11 @@
     longer duration of inject provides for the >100msegion rise time-->
   <!-- the 15 s repetition of train provides the first burst for each of 10 trains -->
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20600          </onset>
+        <onset>               20000          </onset>
         <duration>            60              </duration>
         <rate>                12.0           </rate>
         <period>              105             </period>
-        <end>                 20700          </end>
+        <end>                 20100          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14900             </interTrainInterval>    
   </InjectionStim>
@@ -23,11 +23,11 @@
   <!-- These next Da are single pulse, represent 4 pulse burst; burst 2-10 amp = 1/2 amp of 1st burst -->
   <!-- the 15 s repetition of train provides bursts 2-10 for each of 10 trains -->
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20695          </onset>
+        <onset>               20095          </onset>
         <duration>            60              </duration>
         <rate>                4.5           </rate>
         <period>              95             </period>
-        <end>                 21549          </end>
+        <end>                 20949          </end>
         <numTrains>           10             </numTrains>
         <interTrainInterval>  14051             </interTrainInterval>    
   </InjectionStim>
@@ -45,8 +45,8 @@
 </InjectionStim>
 <!-- basal ACh stim paused during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               23200          </onset>
-        <duration>            11800      </duration>
+        <onset>               24200          </onset>
+        <duration>            10800      </duration>
         <rate>                0.2         </rate>
         <period>              15000             </period>
         <end>                 170000          </end>
