@@ -49,6 +49,7 @@ print_head_stats=0
 outputavg=0
 showplot=1    #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
+auc_mol='2ag'
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -150,6 +151,7 @@ for fnum,ftuple in enumerate(ftuples):
         slope=np.zeros((arraysize,num_mols))
         peaktime=np.zeros((arraysize,num_mols))
         baseline=np.zeros((arraysize,num_mols))
+        auc=np.zeros((arraysize,num_mols))
         peakval=np.zeros((arraysize,num_mols))
         lowval=np.zeros((arraysize,num_mols))
         #
@@ -354,6 +356,7 @@ for pnum in range(arraysize):
       if out_location[mol]!=-1:
         baseline[pnum,imol]=whole_plot_array[imol][pnum][sstart[imol]:ssend[imol]].mean()
         peakpt=whole_plot_array[imol][pnum][ssend[imol]:].argmax()+ssend[imol]
+        auc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:]-baseline[pnum,imol])*dt[imol]
         peaktime[pnum,imol]=peakpt*dt[imol]
         peakval[pnum,imol]=whole_plot_array[imol][pnum][peakpt-10:peakpt+10].mean()
         lowpt=whole_plot_array[imol][pnum][ssend[imol]:].argmin()+ssend[imol]
@@ -399,6 +402,13 @@ if showplot:
     pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,fig,col_inc,scale,parlist)
     #
 #
+if auc_mol:
+    for i,dhpg in enumerate(parlist[1]):
+        for j,dur in enumerate(parlist[0]):
+            pnum=parval.index((dur,dhpg))
+            molnum=plot_molecules.index(auc_mol)
+            print('auc: dur=', dur, 'dhpg=', dhpg, pnum, molnum, 'auc',auc[pnum][molnum])
+            #to calculate ratio, need to identify the one with 0 for denominator
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
 #is ss the baseline?  Or measuring at some other time point?
