@@ -3,7 +3,6 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
-textsize=12
 legtextsize=10
 
 def plot_setup(plot_molecules,param_list,param_name):
@@ -25,7 +24,7 @@ def plot_setup(plot_molecules,param_list,param_name):
                print("plot_setup: col_inc,scale=",col_inc, scale)
      return fig,col_inc,scale,numpar
 
-def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist):
+def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist,textsize):
      print("plottrace: plotmol,parval,parlist:", plotmol,parval, parlist)
      axis=fig.axes
      for pnum in range(len(parval)):
@@ -63,7 +62,7 @@ def plotss(plot_mol,xparval,ss):
     fig.canvas.draw()
     return
 
-def plot_signature(condition,traces,time,title):
+def plot_signature(condition,traces,time,title,textsize):
      if len(np.shape(traces))==3:
           numrows=np.shape(traces)[2]
      else:

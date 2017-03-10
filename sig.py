@@ -28,6 +28,7 @@ import h5py as h5
 spinehead="head"
 stimspine='sa1[0]' #"name" of (stimulated) spine
 msec_per_sec=1000
+textsize=12 #make bigger for presentations
 
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
@@ -212,4 +213,4 @@ else:
             auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/msec_per_sec
             auc_label[par].append(label+" auc="+str(np.round(auc[par,sp],2))+" "+spinelist[sp])
 pyplot.ion()
-pu5.plot_signature(auc_label,signature,time,sign_title)
+pu5.plot_signature(auc_label,signature,time,sign_title,textsize)

@@ -50,6 +50,7 @@ outputavg=0
 showplot=1    #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 auc_mol='2ag'
+textsize=8 #for plots.  Make bigger for presentations
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
@@ -399,7 +400,7 @@ if showplot:
         if len(time_array[i]) != np.shape(whole_plot_array[i])[1]:
             samples=np.shape(whole_plot_array[i])[1]
             time_array[i]=np.linspace(0,time_array[i][1]*samples,samples)
-    pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,fig,col_inc,scale,parlist)
+    pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,fig,col_inc,scale,parlist,textsize)
     #
 #
 if auc_mol:
