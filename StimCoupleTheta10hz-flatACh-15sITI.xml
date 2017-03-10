@@ -35,7 +35,7 @@
 <!-- basal ACh value prior to and after stim  -->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
-        <duration>            21000      </duration>
+        <duration>            170000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
@@ -43,27 +43,6 @@
         <duration>            200000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
-<!-- basal ACh stim paused during Da stim-->
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               23200          </onset>
-        <duration>            12800      </duration>
-        <rate>                0.2         </rate>
-        <period>              15000             </period>
-        <end>                 170000          </end>
-</InjectionStim>
-
- <!-- burst during stim specified for each Glu/Da train (below)-->
- <!-- rebound burst: develops more slowly -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               22400          </onset>
-        <duration>            800            </duration>
-        <rate>                0            </rate>
-        <period>              900           </period>
-        <end>                 23299          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  14101          </interTrainInterval>  
-</InjectionStim>
-
 
    <!-- *****************TRAIN 1 *** Glu inject **********-->   
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
@@ -98,27 +77,6 @@
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               20000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 20066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               20000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 20066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
 <!--**********Glu *******TRAIN 2************-->
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>               35000          </onset>
@@ -151,27 +109,6 @@
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
-
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               35000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 35066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               35000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 35066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
 
 <!--*********Glu******TRAIN 3***************-->
   <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
@@ -206,28 +143,6 @@
         <interTrainInterval>  29             </interTrainInterval>   
 </InjectionStim>
 
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 50066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               50000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 50066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
-
 <!--**********Glu******TRAIN 4******************-->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>               65000          </onset>
@@ -260,28 +175,6 @@
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval> 
 </InjectionStim>
-
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               65000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 65066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               65000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 65066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
 
 <!--*********Glu******TRAIN 5***************-->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
@@ -316,28 +209,6 @@
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               80000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 80066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               80000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 80066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
-
 <!--**********Glu******TRAIN 6******************-->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>               95000          </onset>
@@ -370,27 +241,6 @@
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>   
 </InjectionStim>
-
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               95000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 95066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               95000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 95066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
 
 <!--*********Glu******TRAIN 7***************-->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
@@ -425,27 +275,6 @@
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
 
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               110000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 110066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               110000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 110066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
 <!--*********Glu******TRAIN 8***************-->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>              125000          </onset>
@@ -478,28 +307,6 @@
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>    
 </InjectionStim>
-
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               125000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 125066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               125000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 125066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
 
 <!--*********Glu******TRAIN 9***************-->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
@@ -534,27 +341,6 @@
         <interTrainInterval>  29             </interTrainInterval>       
 </InjectionStim>
 
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               140000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 140066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               140000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 140066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
 <!--*********Glu******TRAIN 10***************-->
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>              155000          </onset>
@@ -587,27 +373,5 @@
         <numTrains>           10             </numTrains>
         <interTrainInterval>  29             </interTrainInterval>     
 </InjectionStim>
-
-<!-- ACh neurons fire only 1 of every two 50 Hz stim -->
-<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
-        <onset>               155000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 155066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               155000          </onset>
-        <duration>            15              </duration>
-        <rate>               0.0          </rate>
-        <period>              40             </period>
-        <end>                 155066          </end>
-        <numTrains>           10             </numTrains>
-        <interTrainInterval>  29          </interTrainInterval>  
- </InjectionStim>
-
 
 </StimulationSet>

@@ -52,3 +52,49 @@ ready 4. Use GapD and try theta and 20hz with delayed dopamine, and theta long p
     Adjust rates and RGS4 quantity to maintain G prot basal levels and low pRGS4 - might need more than 10x slower spont rates
     Evaluate whether pRGS4 is more limiting of 2ag versus Pkc versus location of RGS4 - this might better occur if RGS4 is in dendrite, instead of spine, since Pkc is higher in spine where calcium is so high?
 
+
+Bath sims results:
+Ca     molecule  baseline  peakval   
+              Ca    74.63   888.43   
+              Da    10.87    15.40   
+            cAMP    11.88    38.69   
+            PKAc     1.99     3.00   
+          D32p34     0.13     0.27   
+       D32p34PP1   236.97   353.79   
+          D32p75 11009.94 11069.18   min: 7787.10 (70%)
+
+Da     molecule  baseline  peakval   
+              Ca    75.23    75.89   
+              Da    13.15 11789.24   
+            cAMP    10.13  6861.99   
+            PKAc     1.87    48.51   
+          D32p34     0.10   561.86   
+       D32p34PP1   220.98  3787.64   ratio: 20x
+          D32p75 11020.36 11498.08   min  7861.18
+DaCa
+        molecule  baseline  peakval  
+              Ca    75.14   888.40   
+              Da    10.18 11763.87   
+            cAMP    11.64  3455.51   
+            PKAc     1.72    45.20   
+          D32p34     0.13     2.95   
+       D32p34PP1   233.50  1483.13   ratio: 6x
+          D32p75 11000.28 10969.50   min  6094.33
+
+D32p34 ratio looks good, but why is basal so low???  All three Da trials are lower than the single trial done previously.
+Time for cAMP to reach basal is 50-100 sec, so basal was not being observed previously.
+########## Increase Gi hydrolysis to 4/sec, 0.4/sec
+
+Initial DaDelay simulations:  AC5GsaATP is considerably slower than GsaGTP or AC5GsaGiaATP signal, so that the 600 ms delay is being lost.  Affinity (but not speed) is from Chen-Goodspeed; current Gi binding is 4x faster than Gs.
+####### Increase Gs binding rate by 4x.  This shouldn't affect basal, but will produce higher stimulation cAMP and pAKAR3, etc.
+
+Consider: make PKA binding to AKAR3 faster - will that allow the 10s to saturate pAKAR, and enhance 1s relative to 10s?  No - the increase takes 90 sec, which agrees with measurements.
+What about lowering AKAR3 concentration?  That will reduce the competition with Darpp, etc.  Would that allow saturation?  Reconsider these after increased Gs binding rate. - would only need to re-run the Da dur sims with different AKAR injection
+
+Previous Uchi sim results
+    	 dhpg0	1      5	25		ratios:
+100m	 -133	799    1738 	3958		not defined, but would be huge
+1s	 598	2146   4009	6063		3.6 6.7	10.1
+5s	 2090	4745   8889	10712		2.3 4.2	5.12
+
+Good, but how does it compare to previous?  Probably a little worse for the 5s.

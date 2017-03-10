@@ -17,7 +17,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20050          </onset>
         <duration>            15              </duration>
-        <rate>                18.0           </rate>
+        <rate>                0.0           </rate>
         <period>              50             </period>
         <end>                 20070          </end>
         <numTrains>           20             </numTrains>
@@ -28,7 +28,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20100          </onset>
         <duration>            15              </duration>
-        <rate>                12.6           </rate>
+        <rate>                0             </rate>
         <period>              50             </period>
         <end>                 20120          </end>
         <numTrains>           20             </numTrains>
@@ -39,7 +39,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20150          </onset>
         <duration>            15              </duration>
-        <rate>                9           </rate>
+        <rate>                0           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
@@ -49,7 +49,7 @@
 <!-- basal ACh value prior to and after stim  -->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
-        <duration>            21000      </duration>
+        <duration>            20000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
@@ -60,7 +60,7 @@
 <!-- basal ACh stim paused during Da stim-->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               23200          </onset>
-        <duration>             7800      </duration>
+        <duration>             6800      </duration>
         <rate>                0.2         </rate>
         <period>              10000             </period>
         <end>                 220000          </end>
@@ -69,7 +69,7 @@
 <InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>                0.0           </rate>
+        <rate>                3.0           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
@@ -80,7 +80,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>                0.0           </rate>
+        <rate>                3.0           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
