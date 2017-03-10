@@ -699,7 +699,7 @@
         <Reactant specieID="GiaGTP"            />
         <Product  specieID="GiaGDP"            />
 
-        <forwardRate>   2.0e-03   </forwardRate>
+        <forwardRate>   4.0e-03   </forwardRate>
         <reverseRate>   0  </reverseRate>
     </Reaction>
 
@@ -721,8 +721,8 @@
         <Reactant specieID="AC5"                     />
         <Product  specieID="AC5Gsa"                />
 
-        <forwardRate> 0.0037e-03   </forwardRate>
-        <reverseRate> 0.999e-03        </reverseRate>
+        <forwardRate> 0.0148e-03   </forwardRate>
+        <reverseRate> 0.3996e-03        </reverseRate>
     </Reaction>
     <!--2. AC5Gsa(GTP) + ATP    <-> AC5Gsa(GTP)ATP     -->
     <Reaction name = "AC5Gsa+ATP--AC5GsaATP reac" id="AC5Gsa+ATP--AC5GsaATP_id">
@@ -808,7 +808,7 @@
         <Product  specieID="cAMP"                   />
         <Product  specieID="GiaGDP"                   />
 
-        <forwardRate> 0.2e-03     </forwardRate>
+        <forwardRate> 0.4e-03     </forwardRate>
         <reverseRate> 0.0    </reverseRate>
     </Reaction>
 
