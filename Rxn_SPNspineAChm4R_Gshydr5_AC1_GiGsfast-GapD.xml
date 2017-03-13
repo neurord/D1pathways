@@ -658,7 +658,7 @@
         <Reactant specieID="GsaGTP"                  />
         <Product  specieID="GsaGDP"                  />
 
-        <forwardRate> 0.1e-03        </forwardRate>
+        <forwardRate> 0.05e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
     </Reaction>
 
@@ -750,7 +750,7 @@
         <Product  specieID="cAMP"                   />
         <Product  specieID="GsaGDP"                   />
 
-        <forwardRate> 0.1e-03     </forwardRate>
+        <forwardRate> 0.05e-03     </forwardRate>
         <reverseRate> 0.0    </reverseRate>
     </Reaction>
     
