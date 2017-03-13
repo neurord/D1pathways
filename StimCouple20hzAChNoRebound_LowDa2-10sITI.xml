@@ -30,7 +30,7 @@
         <end>                 20120          </end>
 </InjectionStim>
 
-<!-- pulses 4-20 = 40% of pulse 3, to produce smaller peak than theta, because 40 pulses of 20hz are needed to produce same amount as 40 theta pulses-->
+<!-- pulses 4-20 = 2/3 of ctrl Da, to produce smaller peak than theta, because 40 pulses of 20hz are needed to produce same amount as 40 theta pulses-->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20150          </onset>
         <duration>            15              </duration>
@@ -62,22 +62,22 @@
         <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
-<!-- pulse 3 = 40% of pulse 2  -->
+<!-- pulse 3 = half of pulse 2  -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30100          </onset>
         <duration>            15              </duration>
-        <rate>                4.8           </rate>
+        <rate>                8.4           </rate>
         <period>              50             </period>
         <end>                 30120          </end>
         <numTrains>           19             </numTrains>
         <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
-<!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
+<!-- pulses 4-20 = 2/3 of ctrl Da, faster injection to decrease stochasticity-->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30150          </onset>
         <duration>            15              </duration>
-        <rate>                6           </rate>
+        <rate>                4           </rate>
         <period>              50             </period>
         <end>                 30999          </end>
         <numTrains>           19             </numTrains>
@@ -166,16 +166,5 @@
         <interTrainInterval>  9001          </interTrainInterval>  
 </InjectionStim>
 
-
-<InjectionStim specieID="PD1028" injectionSite="dend:submembrane">
-        <onset>               2000          </onset>
-        <duration>            60      </duration>
-        <rate>                45         </rate>
-</InjectionStim>
-<InjectionStim specieID="PD1028" injectionSite="sa1[0].pointA">
-        <onset>               2000          </onset>
-        <duration>            60      </duration>
-        <rate>                25         </rate>
-</InjectionStim>
 
 </StimulationSet>
