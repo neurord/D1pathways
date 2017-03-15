@@ -2,22 +2,22 @@
       <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>           50000        </onset>
         <duration>           10         </duration>
-        <rate>               450    </rate>
+        <rate>               45.0    </rate>
      </InjectionStim>
       <InjectionStim specieID="DaDbuf" injectionSite="dend:submembrane">
         <onset>           50000        </onset>
         <duration>           10         </duration>
-        <rate>               450    </rate>
+        <rate>               45.0    </rate>
       </InjectionStim>
       <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>           50010        </onset>
         <duration>       9990.0       </duration>
-        <rate>               4    </rate>
+        <rate>               0.4    </rate>
       </InjectionStim>
       <InjectionStim specieID="DaDbuf" injectionSite="dend:submembrane">
         <onset>           50010        </onset>
         <duration>       9990.0       </duration>
-        <rate>               4    </rate>
+        <rate>               0.4    </rate>
       </InjectionStim>
 <!--With depletion of ACh -->
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
@@ -27,11 +27,6 @@
         <rate>                0.2         </rate>
 </InjectionStim>
 
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               56000          </onset>
-        <duration>            58000      </duration>
-        <rate>                0.1         </rate>
-</InjectionStim>
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               58000          </onset>
         <duration>            280000      </duration>
