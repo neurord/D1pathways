@@ -179,14 +179,10 @@ Perhaps the current Da concentration is saturating the receptor?  Presenty showi
 -------->Create figure for IBAGS and re-run simulations with decrease GsaGTP hydrolysis to 0.01 and dephos of pDaD1RGs into dissociated molecules
 should have 50% less decrement during stimulation because cAMP is too high for Da and DaCa
 
-Commit Stim*.xml -m" fixed erroneaous ACh stim, reduced Da quantity for 10s SKF simulation"
-commit Rxn*.xml -m"pDaD1RGs dephos also dissociates into 3 inactivate components to prevent excess stimulation after Da removed"
-commit neurdh5_anal -m" now calculates ratio of auc - useful for Uchigashima stimulations
-
 ############ New parameters
 1. decrease GsaGTP hydrolysis to 0.01 and Gap hydrolysis slightly, e.g. to 0.03
 2. Dissociation of pDaD1RGs to Da+DaR+Gsabg
 3. Lower Da inject by 50% in ALL stim files
-4. Less ACh reductoin during Bath simulations 
+4. Less ACh reduction during Bath simulations 
 
 
