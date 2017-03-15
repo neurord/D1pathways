@@ -34,7 +34,7 @@
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               20000          </onset>
         <duration>            200000      </duration>
-        <rate>                0.1         </rate>
+        <rate>                0.15         </rate>
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">

@@ -6,7 +6,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>                36            </rate>
+        <rate>                0            </rate>
         <period>              50             </period>
         <end>                 20020          </end>
         <numTrains>           20             </numTrains>

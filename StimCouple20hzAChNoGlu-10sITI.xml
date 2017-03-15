@@ -7,7 +7,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            15              </duration>
-        <rate>                36            </rate>
+        <rate>                18            </rate>
         <period>              50             </period>
         <end>                 20020          </end>
 </InjectionStim>
@@ -16,7 +16,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20050          </onset>
         <duration>            15              </duration>
-        <rate>                18.0           </rate>
+        <rate>                9.0           </rate>
         <period>              50             </period>
         <end>                 20070          </end>
 </InjectionStim>
@@ -25,7 +25,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20100          </onset>
         <duration>            15              </duration>
-        <rate>                12.6           </rate>
+        <rate>                6.3           </rate>
         <period>              50             </period>
         <end>                 20120          </end>
 </InjectionStim>
@@ -34,7 +34,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20150          </onset>
         <duration>            15              </duration>
-        <rate>                6           </rate>
+        <rate>                3           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
 </InjectionStim>
@@ -44,7 +44,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30000          </onset>
         <duration>            15              </duration>
-        <rate>                24            </rate>
+        <rate>                12            </rate>
         <period>              50             </period>
         <end>                 30020          </end>
         <numTrains>           19             </numTrains>
@@ -55,7 +55,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30050          </onset>
         <duration>            15              </duration>
-        <rate>                12.0           </rate>
+        <rate>                6.0           </rate>
         <period>              50             </period>
         <end>                 30070          </end>
         <numTrains>           19             </numTrains>
@@ -66,7 +66,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30100          </onset>
         <duration>            15              </duration>
-        <rate>                4.8           </rate>
+        <rate>                4.2           </rate>
         <period>              50             </period>
         <end>                 30120          </end>
         <numTrains>           19             </numTrains>
@@ -77,7 +77,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30150          </onset>
         <duration>            15              </duration>
-        <rate>                6           </rate>
+        <rate>                2           </rate>
         <period>              50             </period>
         <end>                 30999          </end>
         <numTrains>           19             </numTrains>
