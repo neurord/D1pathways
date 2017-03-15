@@ -443,7 +443,9 @@
     <!--6. pDaD1RGs -> DaD1RGs -->
     <Reaction name = "dephosD1R" id="dphospD1R">
         <Reactant specieID="pDaD1RGs"              />
-        <Product  specieID="DaD1RGs"               />
+        <Product  specieID="Gsabg"               />
+        <Product  specieID="D1R"               />
+        <Product  specieID="Da"               />
 
         <forwardRate>  0.002e-03    </forwardRate>
         <reverseRate>  0            </reverseRate>
@@ -658,7 +660,7 @@
         <Reactant specieID="GsaGTP"                  />
         <Product  specieID="GsaGDP"                  />
 
-        <forwardRate> 0.05e-03        </forwardRate>
+        <forwardRate> 0.01e-03        </forwardRate>
         <reverseRate> 0.0           </reverseRate>
     </Reaction>
 
@@ -750,7 +752,7 @@
         <Product  specieID="cAMP"                   />
         <Product  specieID="GsaGDP"                   />
 
-        <forwardRate> 0.05e-03     </forwardRate>
+        <forwardRate> 0.03e-03     </forwardRate>
         <reverseRate> 0.0    </reverseRate>
     </Reaction>
     

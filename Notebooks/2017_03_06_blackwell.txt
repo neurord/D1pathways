@@ -127,3 +127,66 @@ This effect not observed with theta
 ############### Gs hydrolysis =0.05 / 0.05 /sec
 Use the lowDa2 for 20hz, and theta NoRebound (same as prior control)
 lowDa2 has both smaller initial burst and smaller subsequent bursts
+
+If still too low (so far at 300sec cAMP ~30 and Dp34 ~450) decrease GsaGTP hydrolysis to 0.01, but keep Gap
+>>>>>>>>>>>>>>Results
+Bath sims results with 4, 0.4 for Gi hydrolysis and 0.05, 05 Gs hydrolysis
+Ca     molecule  baseline  peakval   
+            cAMP    18    53				
+            PKAc    3     5   				
+       D32p34PP1   324   594   				
+          D32p75   10793 10690    min: 7719 (70%)	
+
+Da     molecule  baseline  peakval   
+            cAMP    21     22973			
+            PKAc    3      47   			
+       D32p34PP1   353 	   3762  ratio: 21x		
+          D32p75 10823 	   11256   min  7945		
+DaCa
+        molecule  baseline  peakval  
+            cAMP    22      7390			
+            PKAc    3  	    47   			
+       D32p34PP1   357      1651  ratio: 4.6x		
+          D32p75 108141	    10947  min  6145		
+
+Basal still a bit low, but response is good - actually cAMP is too high.  Since Gi hydrolysis is now fast, probably not good to lower ACh quite that much.
+
+Rebound cAMP increase when Da stim is turned off - because DaD1RGs doesn't return to basal immediately.  Maybe Da dissociates from D1RGs too slowly? No, because pDaD1RGs turns into DaD1RGs, instead of D1RGs + Da or something like that.
+
+
+>>>>>>>>>>>>>>Results DaDur sims
+1. ACh is messed up for 10s Da sims - fix the stimulation
+2. Peak AKAR: 354 (0.1s), 462 (0.3s), 612 (1s) - nice increases
+   peak time: 97s 	  103s	      84s      - nice decreases
+   decay is faster for larger pAKAR3 - likely due to enhanced phosphodiesterases
+   10s response is still much bigger BUT, the experiments use 10s of SKF - bath applied, not Da uncaged SO, this is not necessarily comparable. And the forskolin response is higher still, so SKF is not saturating the AKAR or cAMP.  Try making Da during 10s only 1 uM, not 10 uM.  What happens if no Gi inhibition?
+   
+>>>>>>>>>>> Uchi sim results - BEAUTIFUL!!!
+    	 dhpg0	1      5	25		ratios:
+100m	 564	986    3778	4058		1.75	6.69	7.19
+1s	 667	2587   4823	6062		3.88	7.23	9.09
+5s	 3203	5353   8608	10385		1.67	2.69	2.68
+
+>>>>>>>>>>>>>>>Block sims: OA block works OK: 3x increase in Dp75, 1.4x increase in Dp34
+CyA block does not - only 21% increase in Dp34 to 447. likely due to low cAMP and PKAc
+Block/Bath: D32p34PP1 drops to 51 with OA block PLUS calcium
+	    D32p34PP1 increases to 657 with CyA block PLUS calcium - this should be SMALLER than CyA alone.  The  calcium is binding to AC1 - producing cAMP
+
+>>>>>>>>>>>Theta sims:
+lowDA has ~50% lower dopamine than the regular 20hz - this is great - definitely lower than theta.  ACh peaks are similar - theta is slightly higher.  BUT, cAMP is HIGHER for the 20hz with full dopamine compared to the low dopamine!!!  WHere is cAMP coming from if not Da?  Definitely not calcium as these are the same for both.  Ah, cAMP is lower for the regular 20hz da because that is with different parameters - faster Gs hydrolysis.
+Perhaps the current Da concentration is saturating the receptor?  Presenty showing 3 uM Da for overall conc.  DaD1RGs is only 20% lower for 20hz.  SO, lower both injections.
+
+-------->Create figure for IBAGS and re-run simulations with decrease GsaGTP hydrolysis to 0.01 and dephos of pDaD1RGs into dissociated molecules
+should have 50% less decrement during stimulation because cAMP is too high for Da and DaCa
+
+Commit Stim*.xml -m" fixed erroneaous ACh stim, reduced Da quantity for 10s SKF simulation"
+commit Rxn*.xml -m"pDaD1RGs dephos also dissociates into 3 inactivate components to prevent excess stimulation after Da removed"
+commit neurdh5_anal -m" now calculates ratio of auc - useful for Uchigashima stimulations
+
+############ New parameters
+1. decrease GsaGTP hydrolysis to 0.01 and Gap hydrolysis slightly, e.g. to 0.03
+2. Dissociation of pDaD1RGs to Da+DaR+Gsabg
+3. Lower Da inject by 50% in ALL stim files
+4. Less ACh reductoin during Bath simulations 
+
+
