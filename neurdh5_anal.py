@@ -47,7 +47,7 @@ show_inject=0
 print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=1    #2 indicates plot the head conc, 0 means no plots
+showplot=2    #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 auc_mol='2ag'
 textsize=8 #for plots.  Make bigger for presentations
@@ -359,7 +359,7 @@ for pnum in range(arraysize):
         peakpt=whole_plot_array[imol][pnum][ssend[imol]:].argmax()+ssend[imol]
         auc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:]-baseline[pnum,imol])*dt[imol]
         peaktime[pnum,imol]=peakpt*dt[imol]
-        peakval[pnum,imol]=whole_plot_array[imol][pnum][peakpt-10:peakpt+10].mean()
+        peakval[pnum,imol]=whole_plot_array[imol][pnum][peakpt-20:peakpt+20].mean()
         lowpt=whole_plot_array[imol][pnum][ssend[imol]:].argmin()+ssend[imol]
         lowval[pnum,imol]=whole_plot_array[imol][pnum][lowpt-10:lowpt+10].mean()
         begin_slopeval=0.2*(peakval[pnum,imol]-baseline[pnum,imol])+baseline[pnum,imol]
@@ -403,13 +403,18 @@ if showplot:
     pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,fig,col_inc,scale,parlist,textsize)
     #
 #
-if auc_mol:
-    for i,dhpg in enumerate(parlist[1]):
-        for j,dur in enumerate(parlist[0]):
+#This code is very specific for the Uchi sims where there are two parameters: dhpg and duration
+#it will work with other parameters, as long as there are two of them. Just change the auc_mol
+if auc_mol and auc_mol in plot_molecules:
+    dhpg0index=np.zeros(len(parlist[0]))
+    for i,dhpg in enumerate(np.sort(parlist[1])):
+        for j,dur in enumerate(np.sort(parlist[0])):
             pnum=parval.index((dur,dhpg))
+            if i==0:
+                dhpg0index[j]=pnum
             molnum=plot_molecules.index(auc_mol)
-            print('auc: dur=', dur, 'dhpg=', dhpg, pnum, molnum, 'auc',auc[pnum][molnum])
-            #to calculate ratio, need to identify the one with 0 for denominator
+            print('auc: dur=', dur, 'dhpg=', dhpg, 'auc',auc[pnum][molnum], 'ratio', auc[pnum][molnum]/auc[dhpg0index[j]][molnum])
+
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values
 #is ss the baseline?  Or measuring at some other time point?
