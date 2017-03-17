@@ -65,9 +65,9 @@
     <OutputSpecie name="AC5Gia"/>
     <OutputSpecie name="AC5GsaATP"/>
     <OutputSpecie name="AC5GsaGiaATP"/>
-       <OutputSpecie       name="AC1"         />
-         <OutputSpecie      name="AC1GsaCamCa4ATP"     />
-        <OutputSpecie      name="AC1CamCa4ATP"   />
+    <OutputSpecie name="AC1"         />
+    <OutputSpecie name="AC1GsaCamCa4ATP"     />
+    <OutputSpecie name="AC1CamCa4ATP"   />
  
     <OutputSpecie name="cAMP"/>
 
@@ -137,6 +137,7 @@
     <OutputSpecie name="D32p34PP1"/>
     <OutputSpecie name="D32p34PP2BCamCa4"/>
     <OutputSpecie name="D32p34PP1PP2BCamCa4"/>
+    <OutputSpecie name="D32p34PP1PP2BCamCa2C"/>
     <OutputSpecie name="D32p34PP2ABPR72"/>
     <OutputSpecie name="D32p34PP2AB56d"/>
     <OutputSpecie name="D32p34PP1PP2ABPR72"/>

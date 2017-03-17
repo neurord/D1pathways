@@ -1,0 +1,31 @@
+2017_03_17
+
+############ New parameters
+1. decrease GsaGTP hydrolysis to 0.01 and Gap hydrolysis slightly, e.g. to 0.03
+2. Dissociation of pDaD1RGs to Da+DaR+Gsabg
+3. Lower Da inject by 50% in ALL stim files
+4. Less ACh reduction during Bath simulations 
+
+Discovered mistake in AC5 affinity for GsaGTP - fix and re-run all sims
+If Dp34 is too high, fix by adding in partial activity of PP2BCamCa2 - could do this and lower PP2A activity?  No, because still need effect of OA.
+Presently, GsaGTP production is 0.15, this had been lowered from 0.25.  Possibly add in both effects?  Also, reduce regular PP2B activity because quantity of PP2BCamCa2C is 170x that of pp2BCamCa4
+
+Now that Gs is increasing adequately for the 0.1s Da stim - eliminate the Gi decrement for this to lower its response
+
+>>>>>>>>>>>>>>Results DaDur sims
+2. Peak AKAR: 354 (0.1s), 462 (0.3s), 612 (1s) - nice increases
+   peak time: 97s 	  103s	      84s      - nice decreases
+   
+>>>>>>>>>>> Uchi sim results - BEAUTIFUL!!! Create graph from these numbers
+    	 dhpg0	1      5	25		ratios:
+100m	 564	986    3778	4058		1.75	6.69	7.19
+1s	 667	2587   4823	6062		3.88	7.23	9.09
+5s	 3203	5353   8608	10385		1.67	2.69	2.68
+
+>>>>>>>>>>>>>>>Block sims:
+OA : 3x increase in Dp75, 1.4x increase in Dp34
+CyA block : only 21% increase in Dp34 to 447. 
+Block/Bath: D32p34PP1 drops to 51 with OA block PLUS calcium
+	    D32p34PP1 increases to 657 with CyA block PLUS calcium
+
+

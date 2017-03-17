@@ -201,6 +201,7 @@
     <Specie name="D32p34PP1"        id="D32p34PP1"       kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP2BCamCa4" id="D32p34PP2BCamCa4" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP1PP2BCamCa4" id="D32p34PP1PP2BCamCa4" kdiff="0"  kdiffunit="mu2/s"/>
+    <Specie name="D32p34PP1PP2BCamCa2C" id="D32p34PP1PP2BCamCa2C" kdiff="0"  kdiffunit="mu2/s"/>
     <Specie name="D32p34PP2ABPR72"  id="D32p34PP2ABPR72" kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP2AB56d"   id="D32p34PP2AB56d"  kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="D32p34PP1PP2ABPR72" id="D32p34PP1PP2ABPR72" kdiff="0"  kdiffunit="mu2/s"/>
@@ -230,7 +231,8 @@
     <Specie name="OA_PP2Acal"         id="OA_PP2Acal"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="OA_PP1"             id="OA_PP1"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="CyA_PP2B"           id="CyA_PP2B"        kdiff="0"     kdiffunit="mu2/s"/>
-    
+    <Specie name="CyA_PP2BCa2C"       id="CyA_PP2BCa2C"    kdiff="0"     kdiffunit="mu2/s"/>
+   
 <!-- For now, no GluA1 receptors -->
 
 <!--*************************************************************************
@@ -724,7 +726,7 @@
         <Product  specieID="AC5Gsa"                />
 
         <forwardRate> 0.0148e-03   </forwardRate>
-        <reverseRate> 0.3996e-03        </reverseRate>
+        <reverseRate> 3.996e-03        </reverseRate>
     </Reaction>
     <!--2. AC5Gsa(GTP) + ATP    <-> AC5Gsa(GTP)ATP     -->
     <Reaction name = "AC5Gsa+ATP--AC5GsaATP reac" id="AC5Gsa+ATP--AC5GsaATP_id">
@@ -1539,8 +1541,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2BCamCa4"             />
         <Product  specieID="D32p34PP2BCamCa4"         />
 
-        <forwardRate> 8.0e-06       </forwardRate>
-        <reverseRate> 8.0e-03         </reverseRate>
+        <forwardRate> 4.0e-06       </forwardRate>
+        <reverseRate> 4.0e-03         </reverseRate>
     </Reaction>
 
     <!-- D32p34PP2BCamCa4     -> D32 + PP2BCamCa4   King, Hemmings: Vmax =0.2-1/sec-->
@@ -1549,7 +1551,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP2BCamCa4"             />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 2e-03         </forwardRate>
+        <forwardRate> 1e-03         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
@@ -1559,8 +1561,8 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="PP2BCamCa4"             />
         <Product  specieID="D32p34PP1PP2BCamCa4"      />
 
-        <forwardRate> 8.0e-06      </forwardRate>
-        <reverseRate> 8.0e-03       </reverseRate>
+        <forwardRate> 4.0e-06      </forwardRate>
+        <reverseRate> 4.0e-03       </reverseRate>
     </Reaction>
 
     <!-- D32p34PP1PP2BCamCa4        -> PP1PP2BCamCa4  +  D32  (in xpp: v36=0.5) -->
@@ -1570,7 +1572,28 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 2e-03      </forwardRate>
+        <forwardRate> 1e-03      </forwardRate>
+        <reverseRate> 0.0             </reverseRate>
+    </Reaction>
+
+    <!--1/10th the activity compared to Ca4: Shifman ... Kennedy  PNAS 2006 (for CamKII)-->
+    <Reaction name = "D32p34PP1+PP2BCamCa2C--D32p34PP1PP2BCamCa2C reac" id="D32p34pp1+PP2BCamCa2C--D32p34PP1PP2BCamCa2C_id">
+        <Reactant specieID="D32p34PP1"                />
+        <Reactant specieID="PP2BCamCa2C"             />
+        <Product  specieID="D32p34PP1PP2BCamCa2C"      />
+
+        <forwardRate> 0.40e-06      </forwardRate>
+        <reverseRate> 0.40e-03       </reverseRate>
+    </Reaction>
+
+    <!-- D32p34PP1PP2BCamCa2C        -> PP1PP2BCamCa2C  +  D32  (in xpp: v36=0.5) -->
+    <Reaction name = "D32p34PP1PP2BCamCa2C--PP1+PP2BCamCa2C+D32 reac" id="D32p34PP1PP2BCamCa2C--PP1+PP2BCamCa2C+D32_id">
+        <Reactant specieID="D32p34PP1PP2BCamCa2C"      />
+        <Product  specieID="PP2BCamCa2C"             />
+        <Product  specieID="PP1"                    />
+        <Product  specieID="D32"                    />
+
+        <forwardRate> 0.1e-03      </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
@@ -2186,6 +2209,16 @@ MUCH slower binding compared to CaDgl  -->
     <Reactant specieID="CyA"/>
     <Reactant specieID="PP2BCamCa4"/>
     <Product specieID="CyA_PP2B"/>
+
+	<forwardRate>0.004e-3</forwardRate>
+	<reverseRate>0.004e-3</reverseRate>
+   </Reaction>
+
+  <!-- cyclosporin A inhibits Pp2B -->
+   <Reaction name="CyAblock2" id="CyAblock2">
+    <Reactant specieID="CyA"/>
+    <Reactant specieID="PP2BCamCa2C"/>
+    <Product specieID="CyA_PP2BCa2C"/>
 
 	<forwardRate>0.004e-3</forwardRate>
 	<reverseRate>0.004e-3</reverseRate>
