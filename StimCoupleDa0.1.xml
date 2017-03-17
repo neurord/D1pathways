@@ -13,7 +13,7 @@
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               0          </onset>
-        <duration>            50000      </duration>
+        <duration>            52000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
 
