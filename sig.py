@@ -26,9 +26,8 @@ import h5py as h5
 
 #######################################################
 spinehead="head"
-stimspine='sa1[0]' #"name" of (stimulated) spine
 msec_per_sec=1000
-textsize=12 #make bigger for presentations
+textsize=14 #make bigger for presentations
 
 Avogadro=6.023e14 #to convert to nanoMoles
 mol_per_nM_u3=Avogadro*1e-15
@@ -60,7 +59,6 @@ for fnum,ftuple in enumerate(ftuples):
     data = h5.File(fname,"r")
     maxvols=len(data['model']['grid'])
     TotVol=data['model']['grid'][:]['volume'].sum()
-    time_array=[]
     sig_data=[]
     #
     trials=[a for a in data.keys() if 'trial' in a]
@@ -120,7 +118,6 @@ for fnum,ftuple in enumerate(ftuples):
         for imol,molecule in enumerate(all_molecules):
           if out_location[molecule]!=-1:
             molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols,trials)
-            time_array.append(time)
             #calculate non-spine mean and individual spine means
             spineheader,spinemeans,spineMeanStd=h5utils.region_means_dict(molecule_pop,spinevox,time,molecule,trials)
             if numfiles>1:
@@ -139,7 +136,7 @@ for fnum,ftuple in enumerate(ftuples):
             outset = out_location[mol]['location'].keys()[0]
             imol=out_location[mol]['location'][outset]['mol_index']
             tempConc=np.zeros((numtrials,out_location[mol]['samples']))
-            time_array.append(data[trials[0]]['output'][outset]['times'][:]/msec_per_sec)
+            time=data[trials[0]]['output'][outset]['times'][:]/msec_per_sec
             #generate output files for these cases
             for trialnum,trial in enumerate(trials):
                 tempConc[trialnum]=data[trial]['output'][outset]['population'][:,voxel,imol]/TotVol/mol_per_nM_u3
@@ -166,7 +163,7 @@ for fnum,ftuple in enumerate(ftuples):
 #Calculate signature
 #####################################################################
 auc_label=[]
-sign_title=figtitle+'\n'
+sign_title=''
 for mol in ltp_molecules:
     sign_title=sign_title+'+'+mol
 for mol in ltd_molecules:
@@ -209,8 +206,10 @@ else:
     auc_label=[[] for sp in range(len(parval))]
     for par in range(len(parval)):
         label=h5utils.join_params(parval[par],params)
+        #label=parval[par][0]
         for sp in range(num_spines):
             auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/msec_per_sec
-            auc_label[par].append(label+" auc="+str(np.round(auc[par,sp],2))+" "+spinelist[sp])
+            #auc_label[par].append(label+" auc="+str(np.round(auc[par,sp],1))+" "+spinelist[sp])
+            auc_label[par].append(label+' '+str(np.round(auc[par,sp],1))+" "+spinelist[sp])
 pyplot.ion()
-pu5.plot_signature(auc_label,signature,time,sign_title,textsize)
+pu5.plot_signature(auc_label,signature,time,figtitle,sign_title,textsize)

@@ -3,7 +3,13 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
-legtextsize=10
+legtextsize=6
+     
+#colors=pyplot.get_cmap('viridis')
+colors=pyplot.get_cmap('plasma')
+colors2D=[pyplot.get_cmap('gist_heat'),pyplot.get_cmap('summer'),pyplot.get_cmap('Blues')]
+offset=[0,0,63]  #avoid the light colors in low indices for the 'Blues' map
+partial_scale=0.75 #avoid the very light colors.  Note that non-zero offset must be <= (1-partial_scale)*255
 
 def plot_setup(plot_molecules,param_list,param_name):
      pyplot.ion()
@@ -13,41 +19,47 @@ def plot_setup(plot_molecules,param_list,param_name):
      else:
           cols=1
           rows=len(plot_molecules)
-     fig,axes=pyplot.subplots(rows, cols,sharex=True) #n rows,  1 column
-     col_inc=[0.5,0.5]
+     fig,axes=pyplot.subplots(rows, cols,sharex=True) #n rows,  1 column #,figsize=(4*cols,rows)
+     col_inc=[0.0,0.0]
      scale=['lin','lin']
-     numpar=[0,0]
      for i,paramset in enumerate(param_list):
-          numpar=len(paramset)
-          if numpar>1:
-               col_inc[i]=1.0/len(paramset)
-               print("plot_setup: col_inc,scale=",col_inc, scale)
-     return fig,col_inc,scale,numpar
+          if len(paramset)>1:
+               col_inc[i]=(len(colors.colors)-1)/(len(paramset)-1)
+          else:
+               col_inc[i]=0.0
+     return fig,col_inc,scale
 
 def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist,textsize):
      print("plottrace: plotmol,parval,parlist:", plotmol,parval, parlist)
      axis=fig.axes
      for pnum in range(len(parval)):
-          #First, determine the color scaleing
+          #First, determine the color scaling
           if len(parlist)==0:
-               p0=p1=0
+               mycolor=[0,0,0]
           else:
                if np.shape(parlist[1])[0]==0:
-                    p0=parlist[0].index(parval[pnum])
-                    p1=0
+                    color_index=int(parlist[0].index(parval[pnum])*colinc[0]*partial_scale)
+                    mycolor=colors.colors[color_index]
                elif np.shape(parlist[0])[0]==0:
-                    p1=parlist[1].index(parval[pnum])
-                    p0=0
+                    color_index=int(parlist[1].index(parval[pnum])*colinc[1]*partial_scale)
+                    mycolor=colors.colors[color_index]
                else:
-                    p0=parlist[0].index(parval[pnum][0])
-                    p1=parlist[1].index(parval[pnum][1])
+                    if len(parlist[1])<len(parlist[0]):
+                         map_index=parlist[1].index(parval[pnum][1])
+                         color_index=int(parlist[0].index(parval[pnum][0])*colinc[0]*partial_scale)
+                    else:
+                         map_index=parlist[0].index(parval[pnum][0])
+                         color_index=int(parlist[1].index(parval[pnum][1])*colinc[1]*partial_scale)
+                    mycolor=colors2D[map_index].__call__(color_index+offset[map_index])
           #Second, plot each molecule
           for imol in range(len(plotmol)):
-               axis[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=(p0*colinc[0],0,p1*colinc[1]))
+               #axis[imol].autoscale(enable=True,tight=False)
+               #change label back to parval[pnum] after figures created
+               axis[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=mycolor)
                axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
                axis[imol].tick_params(labelsize=textsize)
           axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
-          axis[0].legend(fontsize=legtextsize, loc='best')
+     axis[0].legend(fontsize=legtextsize, loc='upper right')
      fig.canvas.draw()
      return
 
@@ -62,15 +74,21 @@ def plotss(plot_mol,xparval,ss):
     fig.canvas.draw()
     return
 
-def plot_signature(condition,traces,time,title,textsize):
+def plot_signature(condition,traces,time,figtitle,sign_title,textsize):
      if len(np.shape(traces))==3:
           numrows=np.shape(traces)[2]
      else:
           numrows=1
-     fig,axes=pyplot.subplots(numrows,1,sharex=True)
+     fig,axes=pyplot.subplots(numrows,1,sharex=True,figsize=(4,3))
      if numrows==1:
+          if len(condition)>1:
+               colinc=len(colors)/(len(condition)-1)
+          else:
+               colinc=0
           for i,cond in enumerate(condition):
-               axes.plot(time,traces[i],label=cond)
+               numpoints=np.shape(traces[i])[0]
+               newtime = np.linspace(0,time[1]*(numpoints-1), numpoints+1)
+               axes.plot(newtime,traces[i],label=cond,color=colors[int(i*colinc)])
                axes.legend(fontsize=legtextsize, loc='best')
                axes.set_ylabel('signature (nM) ',fontsize=textsize)
                axes.set_xlabel('Time (sec)',fontsize=textsize)
@@ -79,13 +97,23 @@ def plot_signature(condition,traces,time,title,textsize):
           domain=[]
           for j in range(numrows):
                domain.append(condition[0][j].split()[-1])
+               num_par=len(condition)/2
                for i,cond in enumerate(condition):
-                    axes[j].plot(time,traces[i,:,j],label=cond[j].split()[0:3])
-               axes[j].legend(fontsize=legtextsize, loc='best')
+                    #the following assumes that first parameter has only two values
+                    map_index=int( i/num_par )
+                    color_index=int( i%num_par *(255/num_par) )
+                    numpoints=np.shape(traces[i])[0]
+                    newtime = np.linspace(0,time[1]*(numpoints-1), numpoints)
+                    if j==0:
+                         axes[j].plot(newtime,traces[i,:,j],label=cond[j].split()[0:-1],color=colors2D[map_index].__call__(color_index))
+                    else:
+                         axes[j].plot(newtime,traces[i,:,j],label=cond[j].split()[-2],color=colors2D[map_index].__call__(color_index))
+                    axes[j].legend(fontsize=legtextsize, loc='upper right')
                axes[j].set_ylabel(domain[j],fontsize=textsize)
                axes[j].tick_params(labelsize=textsize)
           axes[numrows-1].set_xlabel('Time (sec)',fontsize=textsize)
-     fig.suptitle(title)
+     fig.canvas.set_window_title(figtitle)
+     fig.suptitle(sign_title)
      fig.canvas.draw()
      return
 
@@ -116,6 +144,14 @@ def file_tuple(fnames,params):
                ftuple.append((fname,parval0))
      return ftuple,[par0list,par1list]
 
+def tweak_fig(fig,yrange,legendloc,legendaxis,legtextsize):
+     axes=fig.axes
+     for axis in axes:
+          axis.set_ylim(yrange)
+          axis.set_ylim(yrange)
+          axes[legendaxis].legend(fontsize=legtextsize, loc=legendloc)
+     fig.tight_layout()
+
 def axis_config(ax):
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
@@ -141,3 +177,4 @@ def axlabel(ax, label):
      #plt.rc('figure.subplot', bottom=0.15, left=0.18, right=0.93, top=0.93)
      #plt.rc('axes', color_cycle=['r', 'g', 'b', 'c', 'm', 'k', 'y'])
      #plt.rc('legend', numpoints=1)
+     #matplotlib.rc('axes.formatter', useoffset=False)

@@ -44,21 +44,22 @@ bins=10
 #how much info to print
 showss=0
 show_inject=0
-print_head_stats=1
+print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
-showplot=1    #2 indicates plot the head conc, 0 means no plots
-stimspine='sa1[0]' #"name" of (stimulated) spine
+showplot=2    #2 indicates plot the head conc, 0 means no plots
+stimspine='sa1[1]' #"name" of (stimulated) spine
 auc_mol='2ag'
-textsize=8 #for plots.  Make bigger for presentations
+textsize=10 #for plots.  Make bigger for presentations
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string
 sub_species={"PI": ["Ip3","Ip3degrad","Ip3degPIk","Pip2","PlcCaPip2","PlcCaGqaPip2"],
         "PKA":["PKA", "PKAcAMP2", "PKAcAMP4", "PKAr"]}
-#tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "PI", "PKA","D32", "PDE10","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4"]
-tot_species=["Calbin", "CaM", "ncx", "pmca", "CaOut"]
+tot_species=["D1R","m4R", "m1R","Gi", "Gs", "Gq", "Plc", "AC5", "AC1", "PI", "PKA","D32","PP2A", "PP2B", "PP1", "Cam", "CK", "Pkc", "Dgl","PDE4", "PDE10", "PDE2"]
+#tot_species=["Calbin", "CaM", "ncx", "pmca", "CaOut"]
 tot_species=[]
+
 ###################################################
 
 Avogadro=6.023e14 #to convert to nanoMoles
@@ -74,7 +75,7 @@ except NameError: #NameError refers to an undefined variable (in this case ARGS)
     do_exit = True
 
 ftuples,parlist,params=h5utils.argparse(args)
-figtitle=args[0].split('/')[-1]
+figtitle=args[0].split('/')[-1]+args[1]
 
 try:
     data.close()
@@ -252,8 +253,8 @@ for fnum,ftuple in enumerate(ftuples):
                 if head_index>-1:
                     if len(spinelist)>1:
                         stimspinenum=list(spinelist).index(stimspine)
-                        headmean=np.mean(np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0),axis=0)
-                        headmax=np.mean(spinemeans[:][sstart[imol]:ssend[imol],stimspinenum],axis=0).max()
+                        headmean=np.mean(np.mean(spinemeans[:,sstart[imol]:ssend[imol],stimspinenum],axis=0),axis=0)
+                        headmax=np.mean(spinemeans[:,sstart[imol]:ssend[imol],stimspinenum],axis=0).max()
                     else:
                         headmean=np.mean(RegionMeans[:,sstart[imol]:ssend[imol],head_index])
                         tempmax=np.max(RegionMeans[:,ssend[imol]:,head_index],axis=1)
@@ -392,9 +393,9 @@ for pnum in range(arraysize):
 #####################################################################
 #
 if showplot:
-    fig,col_inc,scale,numpar=pu5.plot_setup(plot_molecules,parlist,params)
+    fig,col_inc,scale=pu5.plot_setup(plot_molecules,parlist,params)
     #need fnames
-    fig.suptitle(figtitle)
+    fig.canvas.set_window_title(figtitle)
     #fix time array for simulations not finished - variable length of time
     for i in range(len(plot_molecules)):
         if len(time_array[i]) != np.shape(whole_plot_array[i])[1]:
