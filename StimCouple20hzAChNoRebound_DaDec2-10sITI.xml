@@ -83,7 +83,16 @@
         <rate>                2.0            </rate>
         <period>              50             </period>
         <end>                 40999          </end>
-        <numTrains>           18             </numTrains>
+</InjectionStim>
+
+<!-- fourth and subsequent trains smaller still -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               50000          </onset>
+        <duration>            15              </duration>
+        <rate>                1.0            </rate>
+        <period>              50             </period>
+        <end>                 50999          </end>
+        <numTrains>           17             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>   
 </InjectionStim>
 

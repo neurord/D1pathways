@@ -7,8 +7,10 @@
 4. Less ACh reduction during Bath simulations 
 
 Discovered mistake in AC5 affinity for GsaGTP - fix and re-run all sims
-If Dp34 is too high, fix by adding in partial activity of PP2BCamCa2 - could do this and lower PP2A activity?  No, because still need effect of OA.
-Presently, GsaGTP production is 0.15, this had been lowered from 0.25.  Possibly add in both effects?  Also, reduce regular PP2B activity because quantity of PP2BCamCa2C is 170x that of pp2BCamCa4
+IC: Model_SPNspineAChm4R_Gshydr5_GapD-nostim
+If Dp34 is too high, fix by adding in partial activity of PP2BCamCa2
+IC: Model_SPNspineAChm4R_Gshydr5_GapD-nostimDp34CamCa2C 
+Reduce by 50% regular PP2B activity because quantity of PP2BCamCa2C is 170x that of pp2BCamCa4
 
 Now that Gs is increasing adequately for the 0.1s Da stim - eliminate the Gi decrement for this to lower its response
 
@@ -28,4 +30,145 @@ CyA block : only 21% increase in Dp34 to 447.
 Block/Bath: D32p34PP1 drops to 51 with OA block PLUS calcium
 	    D32p34PP1 increases to 657 with CyA block PLUS calcium
 
+>>>>>>>>>>>>Mar 20, 2017 Results
+>>>>>>>20hz vs theta:
+Both CKpCamCa4 and PkcCaDag are much greater for theta than for 20hz
+With lower Da for 20hz, the cAMP, epac1cAMP and PKAc are similar for both theta and 20hz.
+Mechanism:
+	20hz peak	theta peak	ratio				basal
+Da	600nM		1400-1600 nM	<50%
+DaD1RGs 166 nM		262 nM	  	~60%	20hz is catching up
+cAMP	790 		936						39-45
+PKAc	31		31						5
+Epac1cAMP 215		235						15
+CKpCamCa4 26		107						0
+2ag	  196		251						57
+Since there are 2x the number of pulses, 20hz now could produce more Gs.  GsaGTP has similar trajectory for both
+AC5 forms : similar for theta and 20hz
+------->PREDICTION: If PKA differs, than 20hz Da must decrement even more.
 
+2ag is similar for both 20hz and theta, though it is significantly higher for noCKpCam for theta, less effect for 20hz because the CKpCamCa4 was not that high
+
+Curiously, cAMP is slightly higher and PkcCaDag is lower for no CKpCam.  Mechanism:
+PP1 no longer binds CKpCam, and can more strongly dephosphorylate PDE4/10, making them weaker
+Calcium is not trapped by CKpCamCa4, making it more available for PkcCa
+
+############# Run addidtional 20hz simulations with
+a. bursts 18-20 have mean pulse amp = 2.0 (instead of mean of 2.7)
+b. burst 18 has pulse amp of 2, and bursts 17-20 have mean pulse amp = 1.0
+
+Experiment: measure Da for 2-4 trains of theta - how much decrement?
+	    measure Da for 2 trains for 100hz - compare one train 100hz with 2 trains of theta
+	    measure Da for 4 trains of 20hz - how much decrement
+	    	    compare 4 trains for 20hz with 2 trains of theta
+
+
+>>>>>>>>>>>>>>>>>>>
+ACh characteristics: 'flat', 'noB', 'noDip'
+      20hz ctrl   flat   noB   noDip       theta ctrl   flat noB noDip
+cAMP	   790 	  658	697    777   		 936	730  	 755
+PKAc	   31	  31	28	31		 31	30	 32
+Epac1cAMP  215	  219	211	201		 235	224	 224	
+CKpCamCa4  26	  30	25	22		 107	96	 101
+PkcCaDag   84  	  76	62	84		 209	169	 179
+2ag	   196	  180	177	207		 251	232	 256	
+
+
+Pkc higher with no Dip, and lower with flat or no Burst
+2ag higher with no Dip and lower with flat or no Burst
+cAMP is higher for ctrl than for flat or no Burst: the burst is inhibiting cAMP, especially for theta
+cAMP is lower for noDip - the Dip is helping cAMP, 
+
+Block : m1, m4, mGluR
+ACh characteristics: 'flat', 'noB', 'noDip'
+      20hz ctrl   m1    m4    mGluR       theta ctrl   m1	m4	mGluR
+cAMP	   790 	  676   902	760	  	936    820	1153	1001
+PKAc	   31	  31	33	29 	 	31     31	33	31
+Epac1cAMP  215	  188	266	219		235    196	292	257
+CKpCamCa4  26	  19	27	18		107    103	99	89
+PkcCaDag   84  	  66	82	66		209    150	213	136
+2ag	   196	  167	207	175		251    224	245	206
+
+Pkc and 2ag are lower with m1 block and mGluR block, 
+    likely that Pkc spine is much lower with mGluR block
+cAMP, PKA and Epac are higher with m4 block.  Even basal cAMP increases, to 72, with m4 block
+PKAc may not be good for signature because it varies so little.  perhaps epac1cAMp is better measuare, and simpler than quantifying PKA phosphorylation
+---------------------------------------------------------------------
+
+Signatures				ACh
+	Ctrl	noCKp	noMGlu	  flat	noB	noDip	noM1
+theta	9.4	-20.7	7.2	  7.1	5.2	8.0	6.2
+sp	31	-0.2	7.5	  32.2	26.6	29.7	36
+20hz	-11.2	-22.3	-8.5	  -9.2	-8.7	-12.9	-10.1
+sp	14	-5.0	-8.9	  14.7	17.1	13.8	13.9
+
+Theta threshold: 10-20 in spine, dendrite: > 7-10?  This is less clear
+20hz threshold: negative in dendrite, possibly more negative than -10?
+     		not too big in spine
+
+Prediction: dip not needed (since no cAMP molecule is relevant)
+ACh modulation has small effect - lack of burst lowers overall signature in dendrite
+
+How to improve contribution on m1? put small amount in spine? lower total m1R and mGluR?  to make each receptor relatively more important?  Is the current quantity saturating the Gq protein?
+
+Results of low Da sims: much better.  the DaDec2 has significantly less PKA activity
+There is still response compression.  I.e. difference in DaD1RGS is less than difference in Da.  Difference in cAMP is less than difference in DaD1RGs.  THis may be due to negative feedback loop of phosphorylation of PDEs.  ALso may be due to dopamine level, though peak is less than 1.5 uM - comparable to measured.
+
+Unclear if adding in positive feedback loop: PKA -> RGS -> more Gi hydrolysis, would help / counteract this.
+Would ca inhibition of cdk5 help?  There would be more cdk5 inhibition with theta, and thus less PKA inhibition.  Positive feedback of PKA-> pp2a -> D32p75 is working.  Less D32p75 for theta than all the others. THOUGH, D32p75PKAc is similar to the full strength 20hz Da, which peaks around 100 (2x that of free PKAc).  So, the quantity of D32p75 is still huge and the slightly higher decreasement with theta is not significant.
+IF  I added calcium inhibition of CDk5D32 with low affinity, the difference might be greater (what about the serine sight in Fernandez?) and amplify the difference even more so than RGS!
+
+BATH:   Dp34	    Dp75
+Basal	365 +348+3	    10600
+Ca	146 +506+48	    7443
+Da	3099 +1615	    7646
+DaCa	1952 +200+2154	    6151
+
+BLOCK:
+OA	693	36809		-Dp34 increase because eliminating half of phosphatase
+CyA	409	10699		-Dp34 goes up minimally, though eliminating phosphatase, OA takes over - WHY?
+OA Ca	75			- Dp34 decrease because enhanced PP2B activity
+CyA Ca	908 			- Dp34 increase due to AC1 - stronger than enhanced Pp2B
+    				  This is what is expected with CyA alone!
+
+BATH: Why is Dp34PP1 so much lower?  Where is the PP1?  Total is still 4 uM.
+Bound to D32p34PP1PP2BCamCa2!! Need to include this form in total Dp34 BUT, that makes Dp34 INCREASE with calcium.  Make PP2BCamCa2 have lower affinity.
+cAMP exceeds 20 uM for Da alone.
+
+BLOCK: CamCa2C didn't work!!!  Still D32p34PP1 only goes up a little with CyA block
+
+Rebound is still happening
+1. pDaD1RGs is still persistant
+2. DaD1RGs is still persistant, though drops dramatically from 200 to 30
+3. GsaGTP goes down slowly - independent of persistant DaD1RGS
+   Due to rate of 0.01e-3 for hydrolysis?  Even though AC5 acts as gap?
+4. Though ACh returns to basal, GiaGTP goes back down at T=250, which is the time of the large rebound - unknown the origin of this
+
+Da dur sims: 1 uM Da is above IC50, so reducing the Da didn't have much effect.
+DaD1RGs peaks at 224 for 10s and 390 for small durations - huge response compression
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+NEXT STEPS
+
+FIRST: Do this and test bath only
+******** 2. Lower affinity of Pp2BCamCa2 for D32p34PP1 by 2x or 4x via lower kf - this will raise basal D32p34 (good), and (hopefully) lower the PP2BCamCa2 bound form - can be summed in measure of Dp34
+	 Not expected to fix CyA problem
+*******3. eliminate PP2ACal binding to D32p34 - it doesn't do it anyway.
+*******4. elminate ACh reduction during bath Da and DaCa - way too high cAMP
+SECOND: Add in 5 and test Da Dur, add in 6 and re-do Uchi
+*******5. Reduce ALL Da stim to ~20-40% of current peak of 10 uM (improve AKAR response)
+*******6. slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative
+
+Then evaluate effect of cdk5 (improve Ca bath, possibly theta PKA effect):
+--------------------> Add in Cdk5 inhibition by calcium - look up Calpain affinity.
+******** 1. Add in active Calpain:
+Ca + Calpain <-> CaCalpain - low affinity (which means backward / forward is large)
+calpain+cdk5 <-> calpain-cdk5 - slow backward rate (high affinity?) OR
+calpain + cdk5 <-> calpain + cdk5inact - adjust?
+cdk5inact -> cdk5 - slow (to reflect synthesis).
+
+FIX Da for long sims 20hz
+?Add in CkpCamCa4 anchoring in spine?  Or just not diffusing?  Would this enhance CKpCamCa4 in spine?
+
+LOOK UP FERNANDEZ - method for improving CyA sims?

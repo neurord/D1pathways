@@ -71,12 +71,12 @@
         <NanoMolarity specieID="AC5Ca"           value="0" />
         <NanoMolarity specieID="AC5GsaCa"        value="0" />
         <NanoMolarity specieID="AC5GsaCaATP"     value="0" />
-        <NanoMolarity specieID="PDE4"           value="306" />
+        <NanoMolarity specieID="PDE4"           value="286" />
         <NanoMolarity specieID="PDE4cAMP"       value="0" />
         <NanoMolarity specieID="PKAcPDE4"       value="0" />
         <NanoMolarity specieID="PKAcPDE4cAMP"       value="0" />
         <NanoMolarity specieID="pPDE4"          value="10" />
-        <NanoMolarity specieID="pPDE4PP1"          value="20" />
+        <NanoMolarity specieID="pPDE4PP1"          value="40" />
 	<NanoMolarity specieID="pPDE4cAMP"      value="0" />
 
         <NanoMolarity specieID="PDE2"               value="672" />
@@ -129,7 +129,7 @@
         <NanoMolarity specieID="PP2BCamCa2C"          value="1410" />
         <NanoMolarity specieID="PP2BCamCa2N"          value="210" />
         <NanoMolarity specieID="PP2BCamCa4"           value="15" />
-        <NanoMolarity specieID="PP1"                  value="3380" />
+        <NanoMolarity specieID="PP1"                  value="3345" />
 	<NanoMolarity specieID="PP2AB56d"            value="1080" />
 	<NanoMolarity specieID="PKAcPP2AB56d"        value="0" />
         <NanoMolarity specieID="pPP2A"                value="40" />
@@ -325,12 +325,12 @@
  	<PicoSD specieID="AC1CamCa4"               value="0" />
         <PicoSD specieID="AC1CamCa4ATP"            value="0" />
 
-        <PicoSD specieID="PDE10"                 value="422" />
+        <PicoSD specieID="PDE10"                 value="382" />
         <PicoSD specieID="PDE10cAMP"             value="60" />
         <PicoSD specieID="PKAcPDE10"             value="0" />
         <PicoSD specieID="PKAcPDE10cAMP"         value="0" />
-        <PicoSD specieID="pPDE10"                value="0" />
-        <PicoSD specieID="pPDE10PP1"             value="0" />
+        <PicoSD specieID="pPDE10"                value="10" />
+        <PicoSD specieID="pPDE10PP1"             value="30" />
         <PicoSD specieID="pPDE10cAMP"            value="0" />
 
 <!-- all are within 1 order of magnitude to Falkenburger, who lists other references with density estimates near his-->

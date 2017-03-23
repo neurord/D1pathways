@@ -48,9 +48,9 @@ print_head_stats=0
 #outputavg determines whether output files are written
 outputavg=0
 showplot=2    #2 indicates plot the head conc, 0 means no plots
-stimspine='sa1[1]' #"name" of (stimulated) spine
+stimspine='sa1[0]' #"name" of (stimulated) spine
 auc_mol='2ag'
-textsize=10 #for plots.  Make bigger for presentations
+textsize=14 #for plots.  Make bigger for presentations
 
 #Example of how to total some molecule forms; turn off with tot_species={}
 #No need to specify subspecies if uniquely determined by string

@@ -3,10 +3,10 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
-legtextsize=6
+legtextsize=10
      
-#colors=pyplot.get_cmap('viridis')
-colors=pyplot.get_cmap('plasma')
+colors=pyplot.get_cmap('viridis')
+#colors=pyplot.get_cmap('plasma')
 colors2D=[pyplot.get_cmap('gist_heat'),pyplot.get_cmap('summer'),pyplot.get_cmap('Blues')]
 offset=[0,0,63]  #avoid the light colors in low indices for the 'Blues' map
 partial_scale=0.75 #avoid the very light colors.  Note that non-zero offset must be <= (1-partial_scale)*255
@@ -59,7 +59,7 @@ def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist,textsize):
                axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
                axis[imol].tick_params(labelsize=textsize)
           axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
-     axis[0].legend(fontsize=legtextsize, loc='upper right')
+     axis[0].legend(fontsize=legtextsize, loc='upper left')
      fig.canvas.draw()
      return
 
