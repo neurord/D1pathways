@@ -1,0 +1,23 @@
+2017_04_02
+
+############ New parameters
+
+1. Lower affinity of Pp2BCamCa2 for D32p34PP1 by 2x or 4x via lower kf - to raise basal D32p34 (good), and (hopefully) lower the PP2BCamCa2 bound form 
+
+2. elminate ACh reduction during bath Da and DaCa - way too high cAMP
+
+3. Reduce ALL Da stim to ~20-40% of current peak of 10 uM (improve AKAR response and DaBath)
+Also, Da D1 agonist should not inhibit ACh, this is a D2 thing.  So, eliminate ACh pause from 10s stim
+
+4. Replace CyA block mechanism with kcat=0
+   In Model file - use nostim.xml (i.e., just ACh) instead of CyA stim file
+      	    	 - use new Rxn file
+
+Assess:
+nostim, bath, noACh, DaDur:
+
+SECOND:
+Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34)
+
+THIRD: re-do Uchi
+slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative

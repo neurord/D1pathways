@@ -152,12 +152,14 @@ DaD1RGs peaks at 224 for 10s and 390 for small durations - huge response compres
 NEXT STEPS
 
 FIRST: Do this and test bath only
-******** 2. Lower affinity of Pp2BCamCa2 for D32p34PP1 by 2x or 4x via lower kf - this will raise basal D32p34 (good), and (hopefully) lower the PP2BCamCa2 bound form - can be summed in measure of Dp34
+DONE ******** 2. Lower affinity of Pp2BCamCa2 for D32p34PP1 by 2x or 4x via lower kf - this will raise basal D32p34 (good), and (hopefully) lower the PP2BCamCa2 bound form - can be summed in measure of Dp34
 	 Not expected to fix CyA problem
-*******3. eliminate PP2ACal binding to D32p34 - it doesn't do it anyway.
-*******4. elminate ACh reduction during bath Da and DaCa - way too high cAMP
+*******3. eliminate PP2ACal binding to D32p34 - This wasn't happening!
+DONE *******4. elminate ACh reduction during bath Da and DaCa - way too high cAMP
+
 SECOND: Add in 5 and test Da Dur, add in 6 and re-do Uchi
 *******5. Reduce ALL Da stim to ~20-40% of current peak of 10 uM (improve AKAR response)
+Also, Da D1 agonist should not inhibit ACh, this is a D2 thing.  So, eliminate ACh pause from 10s stim
 *******6. slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative
 
 Then evaluate effect of cdk5 (improve Ca bath, possibly theta PKA effect):
@@ -170,5 +172,4 @@ cdk5inact -> cdk5 - slow (to reflect synthesis).
 
 FIX Da for long sims 20hz
 ?Add in CkpCamCa4 anchoring in spine?  Or just not diffusing?  Would this enhance CKpCamCa4 in spine?
-
-LOOK UP FERNANDEZ - method for improving CyA sims?
+     - ROBUSTNESS sim
