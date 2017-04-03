@@ -1550,7 +1550,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP2BCamCa4"             />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 1e-03         </forwardRate>
+        <forwardRate> 0e-03         </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
@@ -1571,7 +1571,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 1e-03      </forwardRate>
+        <forwardRate> 0e-03      </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
@@ -1592,7 +1592,7 @@ MUCH slower binding compared to CaDgl  -->
         <Product  specieID="PP1"                    />
         <Product  specieID="D32"                    />
 
-        <forwardRate> 0.1e-03      </forwardRate>
+        <forwardRate> 0.0e-03      </forwardRate>
         <reverseRate> 0.0             </reverseRate>
     </Reaction>
 
