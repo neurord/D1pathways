@@ -107,8 +107,8 @@ def plot_signature(condition,traces,time,figtitle,sign_title,textsize):
                     if j==0:
                          axes[j].plot(newtime,traces[i,:,j],label=cond[j].split()[0:-1],color=colors2D[map_index].__call__(color_index))
                     else:
-                         axes[j].plot(newtime,traces[i,:,j],label=cond[j].split()[-2],color=colors2D[map_index].__call__(color_index))
-                    axes[j].legend(fontsize=legtextsize, loc='upper right')
+                         axes[j].plot(newtime,traces[i,:,j],color=colors2D[map_index].__call__(color_index))
+                    axes[0].legend(fontsize=legtextsize, loc='upper left')
                axes[j].set_ylabel(domain[j],fontsize=textsize)
                axes[j].tick_params(labelsize=textsize)
           axes[numrows-1].set_xlabel('Time (sec)',fontsize=textsize)
