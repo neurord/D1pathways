@@ -2,12 +2,12 @@
       <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>           50000        </onset>
         <duration>           10.0      </duration>
-        <rate>               450    </rate>
+        <rate>               400    </rate>
       </InjectionStim>
       <InjectionStim specieID="DaDbuf" injectionSite="dend:submembrane">
         <onset>           50000        </onset>
         <duration>           10.0      </duration>
-        <rate>               450    </rate>
+        <rate>               400    </rate>
       </InjectionStim>
 <!--With depletion of ACh -->
 <!-- basal ACh stim value for entire sim = desired conc * decay rate -->
