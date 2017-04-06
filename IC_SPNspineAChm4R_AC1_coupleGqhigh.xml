@@ -30,7 +30,7 @@
         <NanoMolarity specieID="Dbuf"            value="0" />
         <NanoMolarity specieID="DaDbuf"        value="0" />
         <NanoMolarity specieID="DaOut"           value="200000" />
-	<NanoMolarity specieID="ACh"             value="95" />
+	<NanoMolarity specieID="ACh"             value="105" />
 	<NanoMolarity specieID="Glu"             value="10"     />   
         <NanoMolarity specieID="GluOut"          value="200000" />
         <NanoMolarity specieID="Gbuf"            value="0" />
@@ -302,8 +302,8 @@
         <PicoSD specieID="m4R"                    value="5" />
         <PicoSD specieID="AChm4R"                 value="0" />
         <PicoSD specieID="Giabg"                  value="1448"/>
-        <PicoSD specieID="AChm4RGi"               value="23" />
-        <PicoSD specieID="Gim4R"                  value="172"/>
+        <PicoSD specieID="AChm4RGi"               value="33" />
+        <PicoSD specieID="Gim4R"                  value="162"/>
         <PicoSD specieID="GiaGDP"                 value="0"  />
         <PicoSD specieID="GiaGTP"                 value="22" />
 

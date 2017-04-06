@@ -13,11 +13,55 @@ Also, Da D1 agonist should not inhibit ACh, this is a D2 thing.  So, eliminate A
    In Model file - use nostim.xml (i.e., just ACh) instead of CyA stim file
       	    	 - use new Rxn file
 
-Assess:
+
+>>>>>>>>>>>>>>>RESULTS
 nostim, bath, noACh, DaDur:
 
-SECOND:
-Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34)
+nostim: much better, though cAMP, PKA and D32p34 drift up from ~600 to ~1000 beginning at 300 s.
+Drift is caused by - unknown
+----------->Solution: raise ACh a bit to inhibit AC5 more.  This will also help the ACh reduction be sensed.
+
+noACh - very transient cAMP elevation.  Should ben enhanced by higher ACh
+
+bath:
+cAMP still reaches almost 20uM for bath Da
+BATH:   Dp34    Dp34PP2B     Dp75
+Basal	900	232	     10100	    
+Ca	322	157	     7281
+Da	3850	722	     7834
+DaCa	2400	1131	     6044
+GREAT - DaCa is lower than Da alone - 25% lower
+Also, Ca reduces Dp75 more than Da
+Also, DaCa has higher CKpCamCa4 than Ca alone
+
+BLOCK:
+With both OA and CyA, cAMP and PKAc decrease
+with CyA, CKpCamCa4 increases (though calcium does not)
+Dp34PP1 increases transiently (less than 2x), and then decreases, likely due to lower PKAc
+
+WHy does cAMP decrease?  D32p34PP1 increases initially, which decreases PP1.  This allows higher PDE10 phosphorylation (because it is dephosphorylated by PP1), which lowers cAMP.  This suggests that I should change dephosphorylation of PDEs.
+
+----------->Solution: PP2A dephos of PDEs.  Justified by
+Resjo Biochem J 1999 states that PP2A dephos PDE3B
+Mol Pharmacol. 2008 De Arcangelis V1, Soto D, Xiang Y. shows that PP2A inhibition enhances Phospholamban phosphorylation.  unknown whether effect is on PDE4 (though PDE4 implicated in cAMP control)
+
+What would happen if PP2A instead of PP2B dephosphorylated PDE?
+
+1. Since basal activity is higher, would need to lower rates
+2. Because PP1 is reduced by PKA, replacing PP1 by PP2A will lower (but not eliminate) the strength of the negative feedback loop
+3. What sort of feedback?
+3a. PP2AB56d:As PKA increased, pPP2A increases - dephos PDE4 allowing more cAMP due to lower PDE activity - not good, because further decreases negative feedback loop strength.  If Dp75 increased that would decrease pPP2A and allow higher cAMP (and PKA - partially compensating for reduced PKA) - this might be OK.
+3b. PP2ABPR72: If PP2Acal were active against pPDEs, then elevated calcium would LOWER PDE activity and ENHANCE cAMP.  This may be the synergy needed!  Might not need calpain. Would reduce the Dp34 reduction by Ca.
+4.What would be predicted effect of OA and CyA?
+       CyA: Dp34 increases. Low pp2a activity since no calcium, so cAMP and PKA remain similar. Dp34 contiues to increase
+       OA: Dp34 increases. no pp2a means pPDE increases, which lowers cAMP and PKA, which lowers pPDE - may reach equilibrium.
+
+###################### NEW PARAMETERS: 04/06/17
+1. raise ACh by 20: ACh increased from 95 to 105, AChm4RGi raised by 10 and Gim4R decreased by 10 in dend
+2. Replace PP1 dephos of PDE4/10 with PP2ABPR72 dephos of PDE4/10 - adjust rates to get same basal phos level
+
+SECOND (if necessasry):
+Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34) e.g. PP2A, which is calcium activated and dephosphorylates PDE, will facilitate cAMP and PKA when calcium is present.
 
 THIRD: re-do Uchi
 slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative
