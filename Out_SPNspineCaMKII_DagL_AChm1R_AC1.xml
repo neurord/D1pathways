@@ -80,12 +80,12 @@
     <OutputSpecie name="AC5GsaATP"/>
     <OutputSpecie name="AC5GsaGia"/>
     <OutputSpecie name="AC5GsaGiaATP"/>
-        <OutputSpecie       name="AC1"         />
-        <OutputSpecie       name="AC1Gsa"    />
-        <OutputSpecie       name="AC1GsaCamCa4"        />
-        <OutputSpecie       name="AC1GsaCamCa4ATP"     />
-        <OutputSpecie       name="AC1CamCa4"      />
-        <OutputSpecie       name="AC1CamCa4ATP"   />
+    <OutputSpecie       name="AC1"         />
+    <OutputSpecie       name="AC1Gsa"    />
+    <OutputSpecie       name="AC1GsaCamCa4"        />
+    <OutputSpecie       name="AC1GsaCamCa4ATP"     />
+    <OutputSpecie       name="AC1CamCa4"      />
+    <OutputSpecie       name="AC1CamCa4ATP"   />
  
     <OutputSpecie name="ATP"/>
     <OutputSpecie name="cAMP"/>
@@ -100,14 +100,16 @@
     <OutputSpecie name="PKAcPDE10"/>
     <OutputSpecie name="PKAcPDE10cAMP"/>
     <OutputSpecie name="pPDE10"/>
-    <OutputSpecie name="pPDE10PP1"/>
+    <OutputSpecie name="pPDE10PP2A"/>
+    <OutputSpecie name="pPDE10PP2Ac"/>
     <OutputSpecie name="pPDE10cAMP"/>
     <OutputSpecie name="PDE4"/>
     <OutputSpecie name="PDE4cAMP"/>
     <OutputSpecie name="PKAcPDE4"/>
     <OutputSpecie name="PKAcPDE4cAMP"/>
     <OutputSpecie name="pPDE4"/>
-    <OutputSpecie name="pPDE4PP1"/>
+    <OutputSpecie name="pPDE4PP2A"/>
+    <OutputSpecie name="pPDE4PP2Ac"/>
     <OutputSpecie name="pPDE4cAMP"/>
 
     <OutputSpecie name="PDE2"/>
