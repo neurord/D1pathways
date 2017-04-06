@@ -76,7 +76,7 @@
         <NanoMolarity specieID="PKAcPDE4"       value="0" />
         <NanoMolarity specieID="PKAcPDE4cAMP"       value="0" />
         <NanoMolarity specieID="pPDE4"          value="10" />
-        <NanoMolarity specieID="pPDE4PP1"          value="40" />
+        <NanoMolarity specieID="pPDE4PP2A"          value="40" />
 	<NanoMolarity specieID="pPDE4cAMP"      value="0" />
 
         <NanoMolarity specieID="PDE2"               value="672" />
@@ -197,7 +197,7 @@
         <NanoMolarity specieID="PKAcPDE10"            value="0" />
         <NanoMolarity specieID="PKAcPDE10cAMP"        value="0" />
         <NanoMolarity specieID="pPDE10"               value="0" />
-        <NanoMolarity specieID="pPDE10PP1"            value="0" />
+        <NanoMolarity specieID="pPDE10PP2A"            value="0" />
         <NanoMolarity specieID="pPDE10cAMP"           value="0" />
     </ConcentrationSet>
 
@@ -267,7 +267,7 @@
         <NanoMolarity specieID="PKAcPDE10"            value="0" />
         <NanoMolarity specieID="PKAcPDE10cAMP"        value="0" />
         <NanoMolarity specieID="pPDE10"               value="0" />
-        <NanoMolarity specieID="pPDE10PP1"            value="0" />
+        <NanoMolarity specieID="pPDE10PP2A"            value="0" />
         <NanoMolarity specieID="pPDE10cAMP"           value="0" />
 
         <NanoMolarity specieID="PKA"                  value="1700" /> 
@@ -330,7 +330,7 @@
         <PicoSD specieID="PKAcPDE10"             value="0" />
         <PicoSD specieID="PKAcPDE10cAMP"         value="0" />
         <PicoSD specieID="pPDE10"                value="10" />
-        <PicoSD specieID="pPDE10PP1"             value="30" />
+        <PicoSD specieID="pPDE10PP2A"             value="30" />
         <PicoSD specieID="pPDE10cAMP"            value="0" />
 
 <!-- all are within 1 order of magnitude to Falkenburger, who lists other references with density estimates near his-->

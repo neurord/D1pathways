@@ -106,7 +106,8 @@
     <Specie name="PKAcPDE10cAMP"  id="PKAcPDE10cAMP"  kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPDE10"         id="pPDE10"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pPDE10cAMP"     id="pPDE10cAMP"    kdiff="0"     kdiffunit="mu2/s"/>
-    <Specie name="pPDE10PP1"      id="pPDE10PP1"     kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="pPDE10PP2A"      id="pPDE10PP2A"     kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="pPDE10PP2Ac"      id="pPDE10PP2Ac"     kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE2"           id="PDE2"          kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE2cAMP"       id="PDE2cAMP"      kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PDE2cAMP2"      id="PDE2cAMP2"     kdiff="0"     kdiffunit="mu2/s"/>
@@ -115,7 +116,8 @@
     <Specie name="PKAcPDE4"     id="PKAcPDE4"  kdiff="5.4" kdiffunit="mu2/s"/>
     <Specie name="PKAcPDE4cAMP"  id="PKAcPDE4cAMP"  kdiff="5.41" kdiffunit="mu2/s"/>
     <Specie name="pPDE4"        id="pPDE4"     kdiff="6.01" kdiffunit="mu2/s"/>
-    <Specie name="pPDE4PP1"     id="pPDE4PP1"     kdiff="6.61" kdiffunit="mu2/s"/>
+    <Specie name="pPDE4PP2A"     id="pPDE4PP2A"     kdiff="6.61" kdiffunit="mu2/s"/>
+    <Specie name="pPDE4PP2Ac"     id="pPDE4PP2Ac"     kdiff="6.61" kdiffunit="mu2/s"/>
     <Specie name="pPDE4cAMP"    id="pPDE4cAMP" kdiff="6.0" kdiffunit="mu2/s"/>
 
     <!-- Gq, PLC, Dag, IP3, PKC and 2ag are from Gq model --> 
@@ -974,20 +976,37 @@
         <reverseRate> 0             </reverseRate>
     </Reaction>
 
-    <!-- 23,24)  pPDE10 +PP1 -> PDE10 -->
+    <!-- 23,24)  pPDE10 +PP2ABPR72 -> PDE10 -->
     <Reaction name = "PDE10 d_phosp1" id="dphospPDE10a">
         <Reactant specieID="pPDE10"          />
-        <Reactant specieID="PP1"          />
-        <Product  specieID="pPDE10PP1"           />
-        <forwardRate> 0.008e-06     </forwardRate>
-        <reverseRate> 0.0032e-3            </reverseRate>
+        <Reactant specieID="PP2ABPR72"          />
+        <Product  specieID="pPDE10PP2A"           />
+        <forwardRate> 0.024e-06     </forwardRate>
+        <reverseRate> 0.0096e-3            </reverseRate>
     </Reaction>
 
     <Reaction name = "PDE10 d_phosp2" id="dphospPDE10b">
-        <Reactant specieID="pPDE10PP1"           />
+        <Reactant specieID="pPDE10PP2A"           />
         <Product specieID="PDE10"          />
-        <Product specieID="PP1"          />
-        <forwardRate> 0.0008e-03     </forwardRate>
+        <Product specieID="PP2ABPR72"          />
+        <forwardRate> 0.0024e-03     </forwardRate>
+        <reverseRate> 0            </reverseRate>
+    </Reaction>
+
+    <!-- 25,26)  pPDE10 +PP2Acal -> PDE10 -->
+    <Reaction name = "PDE10 d_phosp1" id="dphospPDE10a">
+        <Reactant specieID="pPDE10"          />
+        <Reactant specieID="PP2Acal"          />
+        <Product  specieID="pPDE10PP2Ac"           />
+        <forwardRate> 0.048e-06     </forwardRate>
+        <reverseRate> 0.0192e-3            </reverseRate>
+    </Reaction>
+
+    <Reaction name = "PDE10 d_phosp2" id="dphospPDE10b">
+        <Reactant specieID="pPDE10PP2Ac"           />
+        <Product specieID="PDE10"          />
+        <Product specieID="PP2Acal"          />
+        <forwardRate> 0.0048e-03     </forwardRate>
         <reverseRate> 0            </reverseRate>
     </Reaction>
 
@@ -1093,20 +1112,39 @@ at=18x source: WadaJBiolChem262-5139   -->
         <reverseRate> 0            </reverseRate>
     </Reaction>
 
-    <!-- 23,24)  pPDE4 +PP1 -> PDE4 -->
+    <!-- 23,24)  pPDE4 +PP2ABPR72 -> PDE4 
+    Resjo Biochem J 1999, Mol Pharmacol. 2008 De Arcangelis-->
     <Reaction name = "PDE4 d_phosp1" id="dphospPDE4a">
         <Reactant specieID="pPDE4"          />
-        <Reactant specieID="PP1"          />
-        <Product  specieID="pPDE4PP1"           />
-        <forwardRate> 0.008e-06     </forwardRate>
-        <reverseRate> 0.0032e-3            </reverseRate>
+        <Reactant specieID="PP2ABPR72"          />
+        <Product  specieID="pPDE4PP2A"           />
+        <forwardRate> 0.024e-06     </forwardRate>
+        <reverseRate> 0.0096e-3            </reverseRate>
     </Reaction>
 
     <Reaction name = "PDE4 d_phosp2" id="dphospPDE4b">
-        <Reactant specieID="pPDE4PP1"           />
+        <Reactant specieID="pPDE4PP2A"           />
         <Product specieID="PDE4"          />
-        <Product specieID="PP1"          />
-        <forwardRate> 0.0008e-03     </forwardRate>
+        <Product specieID="PP2ABPR72"          />
+        <forwardRate> 0.0024e-03     </forwardRate>
+        <reverseRate> 0            </reverseRate>
+    </Reaction>
+
+    <!-- 25,26)  pPDE4 +PP2Acal -> PDE4
+    Resjo Biochem J 1999, Mol Pharmacol. 2008 De Arcangelis-->
+    <Reaction name = "PDE4 d_phosp1" id="dphospPDE4a">
+        <Reactant specieID="pPDE4"          />
+        <Reactant specieID="PP2Acal"          />
+        <Product  specieID="pPDE4PP2Ac"           />
+        <forwardRate> 0.048e-06     </forwardRate>
+        <reverseRate> 0.0192e-3            </reverseRate>
+    </Reaction>
+
+    <Reaction name = "PDE4 d_phosp2" id="dphospPDE4b">
+        <Reactant specieID="pPDE4PP2Ac"           />
+        <Product specieID="PDE4"          />
+        <Product specieID="PP2Acal"          />
+        <forwardRate> 0.0048e-03     </forwardRate>
         <reverseRate> 0            </reverseRate>
     </Reaction>
 
