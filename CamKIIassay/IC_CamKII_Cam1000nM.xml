@@ -32,7 +32,7 @@
     </ConcentrationSet> 
 
     <SurfaceDensitySet region="dend" >
-       <PicoSD specieID="Dgl"                value="720"  />
+       <PicoSD specieID="Dgl"                value="0"  />
    </SurfaceDensitySet>
     <!-- number densities are in particles per cubic micron. You
          get about one particles per cubic micron in a 1.6 nM solution -->

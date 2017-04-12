@@ -13,9 +13,6 @@
      	<NanoMolarity specieID="CaBuf"       value="0"/>
       	<NanoMolarity specieID="CaInact"       value="0"/>
 
-        <NanoMolarity specieID="Dgl"            value="0"     /> 
-        <NanoMolarity specieID="pDgl"            value="0"     /> 
-
 <!-- cytosolic molecules -->
 <!-- total PP2B = 5000 nM, PP2ABPR72=1400, PP2AB56d=1400-->
         <NanoMolarity specieID="PP1"                  value="3500" />
@@ -31,9 +28,6 @@
 
     </ConcentrationSet> 
 
-    <SurfaceDensitySet region="dend" >
-       <PicoSD specieID="Dgl"                value="0"  />
-   </SurfaceDensitySet>
     <!-- number densities are in particles per cubic micron. You
          get about one particles per cubic micron in a 1.6 nM solution -->
 
