@@ -60,8 +60,46 @@ What would happen if PP2A instead of PP2B dephosphorylated PDE?
 1. raise ACh by 20: ACh increased from 95 to 105, AChm4RGi raised by 10 and Gim4R decreased by 10 in dend
 2. Replace PP1 dephos of PDE4/10 with PP2ABPR72 dephos of PDE4/10 - adjust rates to get same basal phos level
 
-SECOND (if necessasry):
-Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34) e.g. PP2A, which is calcium activated and dephosphorylates PDE, will facilitate cAMP and PKA when calcium is present.
+>>>>>>>>>>>>>>>RESULTS
+Very good nostim and bath response.  Both OA and CyA produce small increase in Dp34.  Unclear why increase is still limited.
+Peak cAMP = 15 uM for Da bath.  Unknown if this is too high.  Possibly need faster phosphorylation of D1R
+noACh: transient increase in cAMP and Dp34  Compensated by pPDE10 increase?
 
-THIRD: re-do Uchi
-slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative
+bath:
+cAMP still reaches 15uM for bath Da - still high, but better
+BATH:   cAMP   Dp34    Dp34PP2B Total  	Dp75
+Basal	36     440     115	555    	10.7
+Ca	36     160n    289	450    	7.6
+Da	15.6u  3.9u    722	4.6u    7.9
+DaCa	7.1u   2.5u    1.2u	3.7u	6.1
+GREAT - DaCa is lower than Da alone - 25% lower, even when adding in the PP2B forms
+basal Da is great
+Also, Ca reduces Dp75 slightly more than Da
+Also, DaCa has higher CKpCamCa4 (276) than Ca alone (296)
+
+block:   Dp34    Dp34PP2B Total  	Dp75
+basal	 500	 114	  614		10.7u
+CyA	 636	 200	  836		10.7u
+OA	 626	 163	  762		35.5u
+Only 36% increase with CyA, 25% increase with OA
+pPDEs are still increasing with OA block, despite increase in Dp75!  This is causing slight decrease in cAMP and late decrease in Dp34 with OA.  This is caused by lack of PP2A which dephosphorylates pPDEs.  So, this mechanism, similar to PP1 dephos of pPDEs, is limiting increase in Dp34 with OA block.  Likely a 1st order pPDE dephos would allow greater Dp34 increase.
+with OA: D32p75PKAc is increasing, PP2A bound forms of Dp75 and DP34 are decreasing as expected.  Large increase in Dp75 causes D32PKAc to decrease, accounting for only moderate increase in Dp34 with OA
+SURPRISINGLY: OA_PP1 increases and then goes back down. WHY?  Still > 3 uM free PP1 with OA.  Perhaps affinity for PP1 is too low and there is too little OA?  Yes.  OA spikes and then decreases to 0 by 80 sec.  Repeat this with greater injection of OA.
+with CyA: no compensatory increase in PP2A bound forms of Dp34
+OA inhibition: article: Ki=150 nM for PP1, 32 pM for Pp2A; tocris: IC50=3 nM PP1, 0.1-1 nM PP2A
+NISHI: OA blocks ~100% of PP2A but only 30% of PP1.
+
+NEXT: 1. slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative
+      Note that DaCaDgl indeed increases somewhat sharply, but 2ag is not.  It's increase is rather slow even with Dhpg.
+2. try theta simulations with DaDec - bursts 2-10 are 2/3 of burst 1.  Based on 20hz results, this will not lower PKAc, and if this is new "control", it will make theta more similar to 20hz DaDec2 and DaDec3
+If this works, repeat ACh flat, noB,noDIp, block M1,M4,MGLu and noCKp with this new Da, and choose either DaDec2 or DaDec3 to repeat all the 20hz sims.
+3. inject more OA (2x) and repeat those sims.
+
+
+Then, 1. try DaDelay sims again - or create new Reynolds sims and PDE blocked sims
+2. Update 20hz stim files before doing multi-spine sims again
+3. alcohol sims
+
+if necessasry:
+Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34)
+

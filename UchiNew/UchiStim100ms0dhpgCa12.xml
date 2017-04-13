@@ -11,13 +11,13 @@
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               44000           </onset>
         <duration>             100           </duration>
-        <rate>                   12           </rate>
+        <rate>                   18           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
         <onset>               44000           </onset>
         <duration>             100           </duration>
-        <rate>                  60           </rate>
+        <rate>                  80           </rate>
 </InjectionStim>
 
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">

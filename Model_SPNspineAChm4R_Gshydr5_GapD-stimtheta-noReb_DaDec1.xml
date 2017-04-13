@@ -7,7 +7,7 @@
           <xi:include href="Morph_1sp2umDend.xml" />
 	  <xi:include href="IC_SPNspineAChm4R_AC1_coupleGqhigh.xml" />       
           <xi:include href="Out_SPNspineCaMKII_DagL_AChm1R_AC1.xml" />
-          <xi:include href="StimCouple20hzAChNoRebound_DaDec-10sITI.xml" />
+          <xi:include href="StimCoupleTheta10hzAChNoRebound_DaDec1-15sITI.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the
@@ -43,8 +43,7 @@ results (also, 3D may not work yet...)  -->
 -->
     </discretization>
 
-    <!-- timestep used in fixed step calculations, in milliseconds
-    interval for outputing information into log if not using fixedDt-->
+    <!-- timestep used in fixed step calculations, in milliseconds -->
     <fixedStepDt>         1       </fixedStepDt>
 
     <!-- interval at which stuff should be saved to the output file(s) -->
