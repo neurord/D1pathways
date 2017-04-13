@@ -89,16 +89,28 @@ with CyA: no compensatory increase in PP2A bound forms of Dp34
 OA inhibition: article: Ki=150 nM for PP1, 32 pM for Pp2A; tocris: IC50=3 nM PP1, 0.1-1 nM PP2A
 NISHI: OA blocks ~100% of PP2A but only 30% of PP1.
 
+>>>>>>>>>>>>>>>RESULTS Stim:
+evaluating pPDEs reveals that theta has higher phos than the most extremen DaDec for 20hz, but comparable to the others.
+Overall pPDE4 is lowered, and possibly theta less so than others.  Signature of sum of all PKA targets reveals that theta is 50% greater than the most extreme DaDec of 20hz, but  comparable to the least extreme.  This suggests that the quite high Da used for theta is overkill.
+
 NEXT: 1. slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative
       Note that DaCaDgl indeed increases somewhat sharply, but 2ag is not.  It's increase is rather slow even with Dhpg.
 2. try theta simulations with DaDec - bursts 2-10 are 2/3 of burst 1.  Based on 20hz results, this will not lower PKAc, and if this is new "control", it will make theta more similar to 20hz DaDec2 and DaDec3
 If this works, repeat ACh flat, noB,noDIp, block M1,M4,MGLu and noCKp with this new Da, and choose either DaDec2 or DaDec3 to repeat all the 20hz sims.
 3. inject more OA (2x) and repeat those sims.
+4. Try PDE blocked sims - will need to re-init.  For now, simulate for 100s prior to injecting
+papaverine affinity for PDE10: IC50 = 17 nM (PDE10A; https://www.scbt.com/scbt/product/papaverine-58-74-2)
+rolipram affinity for PDE4: IC50=2.0 uM (Tocris)
+exper shows almost saturating effect of pap at 1 uM (5x increase) but <2x for rolipram
+
+(possibly if there is difference between 20hz PKA and theta PKA, could have PKA enhance Gi hydrolysis (positive fb loop))
+Then,
+1. repeat ACh flat, noB,noDip, block M1,M4,MGLu and noCKp with new Da theta
+2. try DaDelay sims again - or create new Reynolds sims 
+3. Update 20hz stim files before doing multi-spine sims again
+4. alcohol sims
 
 
-Then, 1. try DaDelay sims again - or create new Reynolds sims and PDE blocked sims
-2. Update 20hz stim files before doing multi-spine sims again
-3. alcohol sims
 
 if necessasry:
 Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34)
