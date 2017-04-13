@@ -13,7 +13,7 @@
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            60              </duration>
-        <rate>                6.0           </rate>
+        <rate>                12.0           </rate>
         <period>              105             </period>
         <end>                 20100          </end>
   </InjectionStim>
@@ -23,7 +23,7 @@
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20095          </onset>
         <duration>            60              </duration>
-        <rate>                2.5           </rate>
+        <rate>                4.5           </rate>
         <period>              95             </period>
         <end>                 20949          </end>
   </InjectionStim>
