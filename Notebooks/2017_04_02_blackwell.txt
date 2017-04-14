@@ -93,6 +93,13 @@ NISHI: OA blocks ~100% of PP2A but only 30% of PP1.
 evaluating pPDEs reveals that theta has higher phos than the most extremen DaDec for 20hz, but comparable to the others.
 Overall pPDE4 is lowered, and possibly theta less so than others.  Signature of sum of all PKA targets reveals that theta is 50% greater than the most extreme DaDec of 20hz, but  comparable to the least extreme.  This suggests that the quite high Da used for theta is overkill.
 
+ACh isoforms: very small effects
+m4 block: higher cAMP, pDaD1RGs. but effect is small in dend. slightly higher Pkc for theta - trivial for 20hz
+GiaGTP drops from 60 to 0, AChm4RGi drops from 50 to 0, AC5GsaATP increases ~35%
+m1 block: lowers Pkc 25%, lowers 2ag 10%?
+mGluR block: no effect in dendrite, large decrease of pKC in spine, BUT NOT OF 2AG.  Small effect on 2ag dendrite
+------------------------------------------------------------
+
 NEXT: 1. slightly higher initial Ca stim so that Uchi 100ms 0dhpg isn't negative
       Note that DaCaDgl indeed increases somewhat sharply, but 2ag is not.  It's increase is rather slow even with Dhpg.
 2. try theta simulations with DaDec - bursts 2-10 are 2/3 of burst 1.  Based on 20hz results, this will not lower PKAc, and if this is new "control", it will make theta more similar to 20hz DaDec2 and DaDec3
@@ -103,14 +110,31 @@ papaverine affinity for PDE10: IC50 = 17 nM (PDE10A; https://www.scbt.com/scbt/p
 rolipram affinity for PDE4: IC50=2.0 uM (Tocris)
 exper shows almost saturating effect of pap at 1 uM (5x increase) but <2x for rolipram
 
+>>>>>>>>>>>>>>>>>RESULTS
+1. DeDec didn't work - fix bug and rerun
+2. OA: NO GOOD - free OA is now 50, but Dp75 increases to 50 u.  Go back to previous value
+3. PDEblock:papaverine increase Dp34 to ~3 uM - OK, though Pap should be less quantity.  Rolipram didn't work.  re-run
+
+-------->Another idea
+PDE1 is another cAMP - calcium interaction molecule
+It is enhanced by calcium.  So that the large calcium with theta will reduce cAMP
+Due to high affinity for CamCa4, there is very little difference btween theta and 20hz.
+Binding to CamCa4 is currently very fast in the model.  If it were slowed down, it might decrease the effect during transient stimulation (e.g. theta and 20hz) without changing response to prolonged, bath stimulation.
+
+######################### PDE1 binding to CamCa4 has kf=0.001, kb=0.01 (100x slower)
+repeat:
+bath sims
+theta and 20hz with DaDec
+Dastim - too much Da in spine for spatially nonspecific uncaging
+
 (possibly if there is difference between 20hz PKA and theta PKA, could have PKA enhance Gi hydrolysis (positive fb loop))
 Then,
-1. repeat ACh flat, noB,noDip, block M1,M4,MGLu and noCKp with new Da theta
-2. try DaDelay sims again - or create new Reynolds sims 
-3. Update 20hz stim files before doing multi-spine sims again
-4. alcohol sims
+1. repeat ACh flat, noB,noDip, block M1,M4,MGLu and noCKp with new Da theta, while:
+*2. try DaDelay sims again - or create new Reynolds sims 
+UPDATED 3. Update 20hz stim files before doing multi-spine sims again, and add Da stimulation of non-stim spine, while:
+*4. alcohol sims
 
-
+SIGNATURE:  treat PKA targets differently than Pkc and CKpCam?
 
 if necessasry:
 Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34)

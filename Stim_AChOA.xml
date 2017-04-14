@@ -8,12 +8,12 @@
 </InjectionStim>
 <InjectionStim specieID="OA" injectionSite="dend:submembrane">
         <onset>               4000          </onset>
-        <duration>            40      </duration>
+        <duration>            20      </duration>
         <rate>                45         </rate>
 </InjectionStim>
 <InjectionStim specieID="OA" injectionSite="sa1[0].pointA">
         <onset>               4000          </onset>
-        <duration>            40      </duration>
+        <duration>            20      </duration>
         <rate>                25         </rate>
 </InjectionStim>
 

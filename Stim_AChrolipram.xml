@@ -6,14 +6,14 @@
         <duration>            300000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
-<InjectionStim specieID="Pap" injectionSite="dend:submembrane">
-        <onset>               4000          </onset>
-        <duration>            40      </duration>
+<InjectionStim specieID="Roli" injectionSite="dend:submembrane">
+        <onset>               100000          </onset>
+        <duration>            20      </duration>
         <rate>                45         </rate>
 </InjectionStim>
-<InjectionStim specieID="Pap" injectionSite="sa1[0].pointA">
-        <onset>               4000          </onset>
-        <duration>            40      </duration>
+<InjectionStim specieID="Roli" injectionSite="sa1[0].pointA">
+        <onset>               100000          </onset>
+        <duration>            20      </duration>
         <rate>                25         </rate>
 </InjectionStim>
 

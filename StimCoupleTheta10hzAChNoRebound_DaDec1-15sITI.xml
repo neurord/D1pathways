@@ -33,7 +33,7 @@
         <duration>            60              </duration>
         <rate>                4.0           </rate>
         <period>              105             </period>
-        <end>                 20100          </end>
+        <end>                 35100          </end>
         <numTrains>           9             </numTrains>
         <interTrainInterval>  14900             </interTrainInterval>    
   </InjectionStim>
@@ -45,7 +45,7 @@
         <duration>            60              </duration>
         <rate>                1.5           </rate>
         <period>              95             </period>
-        <end>                 20949          </end>
+        <end>                 35949          </end>
         <numTrains>           9             </numTrains>
         <interTrainInterval>  14051             </interTrainInterval>    
   </InjectionStim>
