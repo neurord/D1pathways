@@ -7,7 +7,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20600          </onset>
         <duration>            15              </duration>
-        <rate>                36            </rate>
+        <rate>                18            </rate>
         <period>              50             </period>
         <end>                 20620          </end>
 </InjectionStim>
@@ -16,7 +16,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20650          </onset>
         <duration>            15              </duration>
-        <rate>                18.0           </rate>
+        <rate>                9.0           </rate>
         <period>              50             </period>
         <end>                 20670          </end>
 </InjectionStim>
@@ -25,7 +25,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20700          </onset>
         <duration>            15              </duration>
-        <rate>                12.6           </rate>
+        <rate>                6.3           </rate>
         <period>              50             </period>
         <end>                 20720          </end>
 </InjectionStim>
@@ -34,7 +34,7 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20750          </onset>
         <duration>            15              </duration>
-        <rate>                9           </rate>
+        <rate>                3           </rate>
         <period>              50             </period>
         <end>                 21599          </end>
 </InjectionStim>
@@ -44,44 +44,56 @@
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30600          </onset>
         <duration>            15              </duration>
-        <rate>                24            </rate>
+        <rate>                12            </rate>
         <period>              50             </period>
         <end>                 30620          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 2 = half of pulse 1 -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30650          </onset>
         <duration>            15              </duration>
-        <rate>                12.0           </rate>
+        <rate>                6.0           </rate>
         <period>              50             </period>
         <end>                 30670          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 3 = half of pulse 2  -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30700          </onset>
         <duration>            15              </duration>
-        <rate>                8.4           </rate>
+        <rate>                4.2           </rate>
         <period>              50             </period>
         <end>                 30720          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               30750          </onset>
         <duration>            15              </duration>
-        <rate>                6           </rate>
+        <rate>                2           </rate>
         <period>              50             </period>
         <end>                 31599          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9151          </interTrainInterval>   
+</InjectionStim>
+
+<!-- third and subsequent trains even smaller -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               40600          </onset>
+        <duration>            15              </duration>
+        <rate>                2.0            </rate>
+        <period>              50             </period>
+        <end>                 41599          </end>
+</InjectionStim>
+
+<!-- fourth and subsequent trains smaller still -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               50600          </onset>
+        <duration>            15              </duration>
+        <rate>                1.0            </rate>
+        <period>              50             </period>
+        <end>                 51599          </end>
+        <numTrains>           17             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>   
 </InjectionStim>
 
 <!-- basal ACh value prior to and after stim  -->

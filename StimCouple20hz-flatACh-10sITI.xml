@@ -47,8 +47,6 @@
         <rate>                12            </rate>
         <period>              50             </period>
         <end>                 30020          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 2 = half of pulse 1 -->
@@ -58,8 +56,6 @@
         <rate>                6.0           </rate>
         <period>              50             </period>
         <end>                 30070          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulse 3 = half of pulse 2  -->
@@ -69,8 +65,6 @@
         <rate>                4.2           </rate>
         <period>              50             </period>
         <end>                 30120          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9980          </interTrainInterval>   
 </InjectionStim>
 
 <!-- pulses 4-20 = 2/3 of ctrl Da, faster injection to decrease stochasticity-->
@@ -80,8 +74,26 @@
         <rate>                2           </rate>
         <period>              50             </period>
         <end>                 30999          </end>
-        <numTrains>           19             </numTrains>
-        <interTrainInterval>  9151          </interTrainInterval>   
+</InjectionStim>
+
+<!-- third and subsequent trains even smaller -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               40000          </onset>
+        <duration>            15              </duration>
+        <rate>                2.0            </rate>
+        <period>              50             </period>
+        <end>                 40999          </end>
+</InjectionStim>
+
+<!-- fourth and subsequent trains smaller still -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               50000          </onset>
+        <duration>            15              </duration>
+        <rate>                1.0            </rate>
+        <period>              50             </period>
+        <end>                 50999          </end>
+        <numTrains>           17             </numTrains>
+        <interTrainInterval>  9001          </interTrainInterval>   
 </InjectionStim>
 
 <!-- basal ACh value prior to and after stim  -->

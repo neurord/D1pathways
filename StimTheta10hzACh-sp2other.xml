@@ -29,11 +29,11 @@
   </InjectionStim>
 
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0,8].pointA">
-        <onset>               50000          </onset>
+        <onset>               65000          </onset>
         <duration>            60              </duration>
         <rate>                8.0           </rate>
         <period>              105             </period>
-        <end>                 50100          </end>
+        <end>                 65100          </end>
         <numTrains>           9             </numTrains>
         <interTrainInterval>  14900             </interTrainInterval>    
   </InjectionStim>
@@ -41,11 +41,11 @@
   <!-- These next Da are single pulse, represent 4 pulse burst; burst 2-10 amp = 1/2 amp of 1st burst -->
   <!-- the 15 s repetition of train provides bursts 2-10 for each of 10 trains -->
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0,8].pointA">
-        <onset>               50095          </onset>
+        <onset>               65095          </onset>
         <duration>            60              </duration>
         <rate>                3.0           </rate>
         <period>              95             </period>
-        <end>                 50949          </end>
+        <end>                 65949          </end>
         <numTrains>           9             </numTrains>
         <interTrainInterval>  14051             </interTrainInterval>    
   </InjectionStim>
