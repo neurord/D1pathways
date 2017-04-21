@@ -1,0 +1,80 @@
+2017_04_17
+
+######################### PDE1 binding to CamCa4 has kf=0.001, kb=0.01 (100x slower)
+repeat:
+bath sims
+theta and 20hz with DaDec
+Dastim - too much Da in spine for spatially nonspecific uncaging.  Reduce spine stim dramatically
+
+>>>>>>>>>>>>>>>>>>>>Bath
+Da peak is now 10 uM, and ~16 uM in spine (could reduce spine Da further)
+cAMP peak is 20 uM
+Dp34=4.6 uM (Da), 3.5 (DaCa)
+PDE1CamCa4 elevation is noticeably delayed, which is causing the excess cAMP elevation compared to the faster rates
+
+>>>>>>>>>>>Da duration
+Peak value for 10s bath is now similar to peak for 1s wrt Dp34
+pAKAR3 is still larger for the 10s bath than 1 s uncaging.
+Longer uncaging pulse yields larger pAKAR3 and faster rise.  1s uncaging has faster  decay than 0.1 or 0.3 sec, likely due to slightly greater pPDE10
+
+>>>>>>>>>>>>>>>Theta vs 20hz
+1. Effect of DaDec (and slower PDE1) on theta response:
+cAMP is lower, PKAc is slightly lower.  Dp34 is ~10% lower, pPP2A, pPDE10 is ~25% lower
+pPDE1 has quite different trajectory: lower peak (1.1 vs 1.5 uM) doesn't return to basal between pulses.  THIS might be cause of lower cAMP.  Average PDE1 bound to cAMP is similar, with larger deviations for the slower PDE1/
+CKpCam is significantly greater!  possibly due to less CamCa4 bound to PDE1
+2. theta vs 20hz.
+Theta with DaDec has Da 2x that of 20hz daDec2, and 4x that of 20hz DaDec3.
+phospho proteins are now similar to the DaDec2, and DaDec3 is only slightly smaller.  This may be partly due to more effective PDE1CamCa4.
+
+>>>>>>>>>>>>>>>> Block:
+papaverine causes large increase in Dp34 (5x), Rolipgram causes only small increase in Dp34 - CONSISTENT WITH EXPERS.
+
+######################### Use PDE1 binding to CamCa4 has kf=0.01, kb=0.1 (only 10x slower)
+1. repeat ALL sims: Bath, DaDur, Block
+2. Repeat ALL theta vs 20hz, including: ACh flat, noB,noDip, block M1,M4,MGLu and noCKp with new Da theta
+3. try DaDelay sims again, using new lower Da
+
+>>>>>>>>>>>>>>>>>>>>Bath
+cAMP peak is now lower 17 uM for Da alone
+Dp34=4.6 uM (Da), 3.9 (DaCa) at the peak, and peak is quite transient for DaCa - 2 min after bath appl Dp34 dec to 4uM for Da and 2.2 uM for DaCa
+PDE1CamCa4 elevation not delayed - slightly slower increase compared to the really slow rates
+Strange rebound transient present in Da and DaCa sims.  Begins at 245 sec with sharp increase in AC5GsaATP in the presence of slow decrease in GsaGTP.  Accompanied by compensatory decrease in AC5GsaGia, though no sharp decrease in GiaGTP.  Only slow decrease beginning at 247 sec.  Possibly the tolerance is too big?  An error was seen in a simpler system, which was eliminated with smaller tolerance, though that was related to stimulation.  Re-run with tolerance =0.001 to see if that is cause, anyway.
+
+>>>>>>>>>>>>>>>> Block:
+1 uM Papeverine: cAMP increases to ~200 nM, which elevates PKAc and Dp34 (to 2 uM = 4x increase) GOOD
+1 uM Rolipram: no increase in cAMP, no change in Dp34
+OA: Dp75 increases to 3.7 uM, Dp34 transiently increases to 800 nM before declining due to excessive Dp75 and increased phospho PDE10 (due to inhibited PP2A)
+CyA: ~20% increase in Dp34  from 690 to 840
+-------------->PP2A dephos of PDE10 does not help OA block condition.  Perhaps going back to 1st order would be better
+>>>>>>>>>>>> noACh: transient cAMP increase, then returns to basal
+>>>>>>>>>>>>>>>Theta vs 20hz - controls
+PKC and CKpCamCa4 differ the most between 20hz and theta.  Dp34 , pPP2A, pPDE10 also differs.  Alternatively, looking at PKA bound proteins also shows a differece. Use sig.py to sum PKA phosphoproteins and PKAc bound forms.  May need to add additional normalization factor representing maximum achievable.  But maybe not, since sum of PKA isoforms (300-500) is actually 2x that of Pkc or CkpCam
+    	AUC:	  	    theta  	20hz, DaDec3
+sum of PKA phosphoproteins: 579		463		25% greater
+sum of PKAc bound proteins: 93		78		20% greater
+Peak values differ by ~33% (pProteins) or 40% (PKAbound)
+PKAc bound + Pkc+CKp  	   142	       95		50% great.  Threshold at 500 (dend) and 700 (spine)
+PKAc+Pkc+Ckp+epac	   162	       111		46% greater.  Threshold at 600 (dend)
+2ag is similar for both protocols.  Lowers all AUC.
+>>>>>>>>>>> Block cases:
+
+PLAN:
+1. Need to re-run blockM4 and AChnoDip - didn't finish
+2. Re-try 1st order dephos of pPDE4 and pPDE10.  Use previous rate of 0.005e-03
+3. Test whether Calpain would improve things
+4. alcohol sims - plan these
+
+SIGNATURE:  treat PKA targets differently than Pkc and CKpCam?
+
+if necessasry:
+Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34)
+Pkc is same for Da or DaCa and quite high - cAMP and PKA would be enhanced for both
+Pkc is so much higher for theta, that this would enhance cAMP for theta.
+Would likely need more inhibition of cAMP to increase PKA sensitivity to cAMP level
+
+Review paper: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3003456/
+Ca inhibition of AC5 (perhaps slow inhibition would be good for bath sims?)
+"The evidence is conflicting for the regulation of both ACs by PKC, despite data showing binding and/or phosphorylation of the enzymes (Kawabe et al. 1994; Iwami et al. 1995; Lai et al. 1997; Lin et al. 2002; Rhim et al. 2006)."
+
+possibly if there is difference between 20hz PKA and theta PKA, could have PKA enhance Gi hydrolysis (positive fb loop)?
+

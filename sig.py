@@ -1,6 +1,6 @@
 #sig.py
 #calculate LTP/LTD signature from two sets of molecules, separately for spines and dendrites
-#USAGE: in python, type ARGS="subdir/fileroot,par1 par2,LTPmol1 LTPmol2,,LTDmol1 LTdmol2,basal_start basal_end" then execfile('sig.py')
+#USAGE: in python, type ARGS="subdir/fileroot,par1 par2,LTPmol1 LTPmol2,LTDmol1 LTdmol2,basal_start basal_end" then execfile('sig.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
 #LTPmol1 LTPmol2, etc are the names of molecles which produce LTP is sufficiently high (and hinder LTD)
 #LTDmol1 LTDmol2, etc are the names of molecles which produce LTD is sufficiently high (and hinder LTP)

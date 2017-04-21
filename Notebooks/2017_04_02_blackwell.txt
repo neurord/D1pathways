@@ -125,7 +125,7 @@ Binding to CamCa4 is currently very fast in the model.  If it were slowed down, 
 repeat:
 bath sims
 theta and 20hz with DaDec
-Dastim - too much Da in spine for spatially nonspecific uncaging
+Dastim - too much Da in spine for spatially nonspecific uncaging.  Reduce spine stim dramatically
 
 (possibly if there is difference between 20hz PKA and theta PKA, could have PKA enhance Gi hydrolysis (positive fb loop))
 Then,
