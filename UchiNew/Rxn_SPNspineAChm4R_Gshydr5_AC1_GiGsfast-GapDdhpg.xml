@@ -120,6 +120,11 @@
     <Specie name="pPDE4PP2Ac"     id="pPDE4PP2Ac"     kdiff="6.61" kdiffunit="mu2/s"/>
     <Specie name="pPDE4cAMP"    id="pPDE4cAMP" kdiff="6.0" kdiffunit="mu2/s"/>
 
+    <Specie name="Pap"          id="Pap"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="PapPDE10"     id="PapPDE10"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Roli"          id="Roli"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="RoliPDE4"      id="RoliPDE4"         kdiff="0"     kdiffunit="mu2/s"/>
+
     <!-- Gq, PLC, Dag, IP3, PKC and 2ag are from Gq model --> 
     <Specie name="Plc"            id="Plc"           kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PlcCa"          id="PlcCa"         kdiff="0"     kdiffunit="mu2/s"/>
@@ -862,8 +867,8 @@
         <Reactant specieID="CamCa4"                 />
         <Product  specieID="PDE1CamCa4"             />
 
-        <forwardRate> 0.1e-03       </forwardRate>
-        <reverseRate> 1.0e-03       </reverseRate>
+        <forwardRate> 0.01e-03       </forwardRate>
+        <reverseRate> 0.1e-03       </reverseRate>
     </Reaction>
     <!-- PDE1CamCa4 + cAMP <-> PDE1CamCa4cAMP         (in xpp: KfPde1=0.0046 KbPde1=44) -->
     <Reaction name = "PDE1CamCa4+cAMP--PDE1CamCa4cAMP" id="PDE1CamCa4+cAMP--PDE1CamCa4cAMP_id">
@@ -2241,6 +2246,23 @@ MUCH slower binding compared to CaDgl  -->
 	<forwardRate>0.001e-3</forwardRate>
 	<reverseRate>0.15e-3</reverseRate>
    </Reaction>
+
+   <!-- Rolipram IC50=2.0, Papaverine IC50=17nM -->
+    <Reaction name = "PDE4 inhib" id="PDE4inhib">
+        <Reactant specieID="PDE4"           />
+        <Reactant specieID="Roli"            />
+        <Product  specieID="RoliPDE4"       />
+        <forwardRate>0.001e-03  </forwardRate>
+        <reverseRate>2e-03    </reverseRate>
+    </Reaction>
+
+    <Reaction name = "PDE10 inhib" id="PDE10inhib">
+        <Reactant specieID="PDE10"           />
+        <Reactant specieID="Pap"            />
+        <Product  specieID="PapPDE10"       />
+        <forwardRate>0.001e-03  </forwardRate>
+        <reverseRate>0.017e-03    </reverseRate>
+    </Reaction>
 
    <!--block of m1R IC50 is 0.94 nM -->
       <Reaction name = "telenz+m1R--telenzm1R" id="telenz+m1R--telenzm1R">

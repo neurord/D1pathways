@@ -867,8 +867,8 @@
         <Reactant specieID="CamCa4"                 />
         <Product  specieID="PDE1CamCa4"             />
 
-        <forwardRate> 0.1e-03       </forwardRate>
-        <reverseRate> 1.0e-03       </reverseRate>
+        <forwardRate> 0.01e-03       </forwardRate>
+        <reverseRate> 0.1e-03       </reverseRate>
     </Reaction>
     <!-- PDE1CamCa4 + cAMP <-> PDE1CamCa4cAMP         (in xpp: KfPde1=0.0046 KbPde1=44) -->
     <Reaction name = "PDE1CamCa4+cAMP--PDE1CamCa4cAMP" id="PDE1CamCa4+cAMP--PDE1CamCa4cAMP_id">
@@ -2204,7 +2204,7 @@ MUCH slower binding compared to CaDgl  -->
     </Reaction>
     
 <!-- ############### Inhibition of phosphatases by specific antagonists  ###################-->
-  <!-- cyclosporin A inhibits PP2A -->
+  <!-- cyclosporin A inhibits PP2A 32 pM (0.1-1nM according to Tocris)-->
   <Reaction name="OAblockB56" id="OAblockB56">
     <Reactant specieID="OA"/>
     <Reactant specieID="PP2AB56d"/>
@@ -2237,7 +2237,7 @@ MUCH slower binding compared to CaDgl  -->
 	<reverseRate>0.00015e-3</reverseRate>
 
   </Reaction>
-  <!-- Okadaic acid inhibits PP1 -->
+  <!-- Okadaic acid inhibits PP1 150 nM Kd-->
   <Reaction name="OAblock1" id="OAblock1">
     <Reactant specieID="OA"/>
     <Reactant specieID="PP1"/>

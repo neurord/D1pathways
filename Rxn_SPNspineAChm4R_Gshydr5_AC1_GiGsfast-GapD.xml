@@ -867,8 +867,8 @@
         <Reactant specieID="CamCa4"                 />
         <Product  specieID="PDE1CamCa4"             />
 
-        <forwardRate> 0.001e-03       </forwardRate>
-        <reverseRate> 0.01e-03       </reverseRate>
+        <forwardRate> 0.01e-03       </forwardRate>
+        <reverseRate> 0.1e-03       </reverseRate>
     </Reaction>
     <!-- PDE1CamCa4 + cAMP <-> PDE1CamCa4cAMP         (in xpp: KfPde1=0.0046 KbPde1=44) -->
     <Reaction name = "PDE1CamCa4+cAMP--PDE1CamCa4cAMP" id="PDE1CamCa4+cAMP--PDE1CamCa4cAMP_id">
