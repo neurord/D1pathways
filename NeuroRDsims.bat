@@ -39,11 +39,31 @@
 #Not sure how to adapt dopamine and ACh, which is non-synaptic
 #Other sims expers: calcium from Da depleted case, or change molecules and calcium according to alcohol effects
 
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD_tol001-bathDa.xml ss_bath/ &
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp1-stimtheta.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp1-stim20hz.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2sep-stimtheta.xml 
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2adj-stimtheta.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2adj-stim20hz.xml&
-java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2sep-stim20hz.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD_tol001-bathDa.xml ss_bath/ &
+#java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp1-stimtheta.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp1-stim20hz.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2sep-stimtheta.xml 
+#java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2adj-stimtheta.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2adj-stim20hz.xml&
+#java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-sp2sep-stim20hz.xml&
+
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_GapD_calpain-stim20hz-noReb_lowDaDec3.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_GapD_calpain-stimtheta-noReb_DaDec1.xml 
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_GapD_pPDE1st-stim20hz-noReb_lowDaDec3.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_GapD_pPDE1st-stimtheta-noReb_DaDec1.xml
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_GapD_calpain-bathCa.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_GapD_calpain-bathDaCa.xml
+
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-blockM4.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-stim20hz-blockM4.xml 
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-AChnoDip.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-stim20hz-AChnoDip.xml
+
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stim20hz-alcIC.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stim20hz-alcNMDA.xml
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stim20hz-alcNMDA_IC.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stimtheta-alcNMDA_IC.xml
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stimtheta-alcIC.xml &
+java -jar  /home/neuroware/stochdif/neurord-3.2.2-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stimtheta-alcNMDA.xml
+
 

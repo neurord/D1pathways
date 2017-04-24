@@ -57,20 +57,36 @@ PKAc bound + Pkc+CKp  	   142	       95		50% great.  Threshold at 500 (dend) and
 PKAc+Pkc+Ckp+epac	   162	       111		46% greater.  Threshold at 600 (dend)
 2ag is similar for both protocols.  Lowers all AUC.
 >>>>>>>>>>> Block cases:
+block MGlu had lower signature, both spine and dendrite for theta, lower signature for spine, not dend for 20hz.
+block m4 had ~10% higher signature dend for 20hz and theta, slightly higher sig for spine for 20hz
+block m1: lower signature 20hz spine, lower signature theta dend
+block Ckp: higher sig 20hz and lower sig theta - they now look similar
+ACh variantes: 20hz noDip had much lower signature than all the others
+20hz noB and flat had signature similar to theta
+Conclusion: shape of ACh is not important for theta.  20hz noBurst (no Burst of Gi) allows elevated cAMP for 20hz?  Check molecules.  Flat has no burst of Gi and also allows elevated cAMP?  Perhaps the burst of Gi has less effect when Da is quite high, as with theta.  Only important to facilitate low Da signals?  If so, then m4 block should elevate 20hz response similarly (or even more).  That is evident in the spine, but not the dendrite
+
+############ New simulations started on 4/24:
+1. Need to re-run blockM4 and AChnoDip - didn't finish
+READY 2. Re-try 1st order dephos of pPDE4 and pPDE10.  Use previous rate of 0.005e-03
+READY 3. Test whether Calpain would improve things.  conc=100 nM, kf=kb=0.0001/sec bind cdk5, 
+READY 4. alcohol sims -
+   A. 2x increase in NMDA calcium: 2x increase in spine calcium, not dendrite
+   B. Change in some molecule quantities: 25% reduction in AC, 25% increase in Gbg, 2x mGluR.  may need to reduce PDE to maintain basal
+   C. both changes together
 
 PLAN:
-1. Need to re-run blockM4 and AChnoDip - didn't finish
-2. Re-try 1st order dephos of pPDE4 and pPDE10.  Use previous rate of 0.005e-03
-3. Test whether Calpain would improve things
-4. alcohol sims - plan these
+1. once alcohol IC changes seem "reasonable", repeat sims with new nostim-initialization -  may need to reduce PDE to maintain basal
+2. If either Calpain or 1st order pPDE are better, then repeat all sims with those params
 
 SIGNATURE:  treat PKA targets differently than Pkc and CKpCam?
+	    Issues: Normalization or weight?  Normalize to maximum over all paradigms?  Weight epac differently than Pkc?
+	    Divide instead of subtract 2ag?  Have 4 thresholds: LTD vs LTP and spine vs dendrite?
+	    To implement the latter, make 4 different graphs, add in threshold line?
 
-if necessasry:
-Add in either Calpain or PKC phos of AC5 (or some other interaction whereby TRANSIENT or PRIOR calcium facilitates PKAc, though PROLONGED or LATER calcium inhibits Dp34)
+if necessary:
+Consider Pkc phos of AC5 (will this interaction allow PRIOR calcium to facilitate PKAc, though PROLONGED or LATER calcium inhibits Dp34)
 Pkc is same for Da or DaCa and quite high - cAMP and PKA would be enhanced for both
-Pkc is so much higher for theta, that this would enhance cAMP for theta.
-Would likely need more inhibition of cAMP to increase PKA sensitivity to cAMP level
+Pkc is so much higher for theta, that this would enhance cAMP for theta, would not inhibit AC5 if occured afterwards.
 
 Review paper: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3003456/
 Ca inhibition of AC5 (perhaps slow inhibition would be good for bath sims?)
