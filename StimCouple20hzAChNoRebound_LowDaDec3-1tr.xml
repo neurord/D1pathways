@@ -1,0 +1,102 @@
+<StimulationSet>
+
+    <!-- the injectionSite must match a regionLabel defined in the morphology -->
+   <!-- 20 Glu and Ca pulses / sec for 1 sec * 20 trains = 400 pulses -->
+<!--first burst of Da - full strength -->
+<!-- pulse 1 to produce 0.5 uM alone -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            15              </duration>
+        <rate>                18            </rate>
+        <period>              50             </period>
+        <end>                 20020          </end>
+</InjectionStim>
+
+<!-- pulse 2 = half of pulse 1 -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20050          </onset>
+        <duration>            15              </duration>
+        <rate>                9.0           </rate>
+        <period>              50             </period>
+        <end>                 20070          </end>
+</InjectionStim>
+
+<!-- pulse 3 = half of pulse 2  -->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20100          </onset>
+        <duration>            15              </duration>
+        <rate>                6.3           </rate>
+        <period>              50             </period>
+        <end>                 20120          </end>
+</InjectionStim>
+
+<!-- pulses 4-20 = 2/3 of ctrl Da, to produce smaller peak than theta, because 40 pulses of 20hz are needed to produce same amount as 40 theta pulses-->
+<InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
+        <onset>               20150          </onset>
+        <duration>            15              </duration>
+        <rate>                3           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+</InjectionStim>
+
+<!-- basal ACh value prior to and after stim  -->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               0          </onset>
+        <duration>            20000      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               30000          </onset>
+        <duration>            270000      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+<!-- basal ACh stim paused during Da stim-->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               23200          </onset>
+        <duration>             6800      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+<!-- burst during stim : Assume that ACh neurons can follow 20 Hz -->
+<InjectionStim specieID="ACh" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            15              </duration>
+        <rate>                3.0           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+</InjectionStim>
+
+<!-- Should this stimulation be eliminated???-->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               20000          </onset>
+        <duration>            15              </duration>
+        <rate>                3.0           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+ </InjectionStim>
+
+<InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            5              </duration>
+        <rate>                4.5           </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
+        <onset>               20000          </onset>
+        <duration>            3              </duration>
+        <rate>                156            </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="dend:submembrane">
+        <onset>               20000          </onset>
+        <duration>            3              </duration>
+        <rate>                156            </rate>
+        <period>              50             </period>
+        <end>                 20999          </end>
+</InjectionStim>
+
+
+</StimulationSet>

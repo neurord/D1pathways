@@ -2322,7 +2322,7 @@ MUCH slower binding compared to CaDgl  -->
         <Reactant specieID="Cdk5"/>
         <Product specieID="CaCalpCdk5"/>
 
-        <forwardRate>0.0001e-3</forwardRate>
+        <forwardRate>0.001e-3</forwardRate>
         <reverseRate>0.0001e-3</reverseRate>
     </Reaction>
 

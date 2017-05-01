@@ -1,0 +1,21 @@
+2017 May 1
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>> Evaluate effect of tolerance versus simulation results:
+Tol=0.002 is similar to tol=0.001 - neither have the strange increase in AC5Gsa.
+All have very high peak cAMP  - so increased PDE2 is required.
+Try 4x (or more?) increase in PDE2
+
+Sim time vs tolerance:
+.01 	19 hours
+.005 1d 1.5 hours
+.002 1d 11 hours
+.001 2d 6 hours
+
+---------------> Perform small set of simulations with higher PDE2 using 0.002 tolerance
+
+
+SIGNATURE:  treat PKA targets differently than Pkc and CKpCam?
+	    Issues: Normalization or weight?  Normalize to maximum over all paradigms?  Weight epac differently than Pkc?
+	    Divide instead of subtract 2ag?  Have 4 thresholds: LTD vs LTP and spine vs dendrite?
+	    To implement the latter, make 4 different graphs, add in threshold line?
+
