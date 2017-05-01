@@ -65,6 +65,11 @@ ACh variantes: 20hz noDip had much lower signature than all the others
 20hz noB and flat had signature similar to theta
 Conclusion: shape of ACh is not important for theta.  20hz noBurst (no Burst of Gi) allows elevated cAMP for 20hz?  Check molecules.  Flat has no burst of Gi and also allows elevated cAMP?  Perhaps the burst of Gi has less effect when Da is quite high, as with theta.  Only important to facilitate low Da signals?  If so, then m4 block should elevate 20hz response similarly (or even more).  That is evident in the spine, but not the dendrite
 
+>>>>>>>>>>>>> smaller tolerance:
+GOOD: the strange rebound cAMP is gone
+BAD: peak cAMP is now 50 uM, not 15 uM, but basal cAMP is similar.  Which other simulations & molecules will be difference with smaller tolerance???  How to fix stimulated cAMP without affecting basal cAMP?  Increase PDE2 - 4x?
+Can tolerance be bigger than 0.001?  e.g. 0.002, to avoid 4x longer simulations?
+
 ############ New simulations started on 4/24:
 1. Need to re-run blockM4 and AChnoDip - didn't finish
 READY 2. Re-try 1st order dephos of pPDE4 and pPDE10.  Use previous rate of 0.005e-03
@@ -74,9 +79,34 @@ READY 4. alcohol sims -
    B. Change in some molecule quantities: 25% reduction in AC, 25% increase in Gbg, 2x mGluR.  may need to reduce PDE to maintain basal
    C. both changes together
 
-PLAN:
-1. once alcohol IC changes seem "reasonable", repeat sims with new nostim-initialization -  may need to reduce PDE to maintain basal
-2. If either Calpain or 1st order pPDE are better, then repeat all sims with those params
+>>>>>>>>>>>>>>> Calpain results - compare to non-calpain
+bathCa: Dp75 decreases to 7496 (calpain) vs 7457 (ctrl) - no effect
+CaCalpCdk5 increases to 10 - very little, and Cdk5D32 is similar.  Try once more with faster Kf for calpain effect
+
+>>>>>>>>>>>>> pPDE1st results: lower cAMP.
+cAMP signaling is better for Calpain than pPDE1st.
+        theta   20hz
+Calpain: 119 vs 89	35%
+pPDE1st: 103 vs 90	14%
+ctrl:	 98  vs 78	26%
+
+Re-evaluate Calpain (but not pPDE1st) after tolerance/new NeuroRD is assessed
+
+******************************PLAN:
+1. Evaluate new neuroRD 3.2.3.  What value of tolerance is needed??? DO IC need to be adjusted, e.g. more PDE2?
+2a. Repeat bath and ctrl theta/20hz simulations with new neuroRD, correct tolerance and IC
+2b. Evaluate whether Calpain is better, and use the best mechanism
+3. Repeat all sims, including multi-spine
+4. once alcohol IC changes seem "reasonable", repeat sims with new nostim-initialization -  may need to reduce PDE to maintain basal
+2. 
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>> RESULTS of new NeuroRD evaluation
+1. Still see an increase in cAMP when stimulation turns off (tol=0.01 and 0.005) but it occurs around the time of turn off, instead of much later.  Change in AC5Gs is much smaller (100 vs 300).  FOr tol=0.005, occurs in only 1 trial, and amplitude is ~5000, whereas amp is 5000 - 10000 for tol=0.01.  Also, peak cAMP is 36-40 uM, thus rebound is < 30% of peak, whereas rebound is > 50% of peak in old NeuroRD
+2. tol=0.01 now takes 19 hours (vs 12 hours 3.2.2), tol=0.005 takes 1 day.  So, sims will definitely take longer
+3. Smaller tolerances: still running
+
+------------------------> Definitely need to increase PDE2 to prevent huge cAMP peak.  Basal is still fine.
+Try 4x (or more?) increase in PDE2
 
 SIGNATURE:  treat PKA targets differently than Pkc and CKpCam?
 	    Issues: Normalization or weight?  Normalize to maximum over all paradigms?  Weight epac differently than Pkc?
