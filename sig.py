@@ -94,11 +94,15 @@ for fnum,ftuple in enumerate(ftuples):
     #   Initialize some arrays and get molecule-region output set information
     ##########################################################
     if fnum==0:
-        #
+    #
         #Get list of molecules for LTP and list for LTD.  identify which output sets and voxels they are in
         ltp_molecules=args[2].split()
-        num_ltpmols=len(ltp_molecules)
         ltd_molecules=args[3].split()
+        if len(args)>5:
+            thresh=args[5].split()
+        else:
+            thresh=['0', '0', '0', '0']
+        num_ltpmols=len(ltp_molecules)
         num_ltdmols=len(ltd_molecules)
         all_molecules=ltp_molecules+ltd_molecules
         num_mols=len(all_molecules)
@@ -168,12 +172,14 @@ for mol in ltp_molecules:
     sign_title=sign_title+'+'+mol
 for mol in ltd_molecules:
     sign_title=sign_title+'-'+mol
-signature=np.zeros(np.shape(np.sum(signature_array,axis=0)))
+sig_ltp=np.zeros(np.shape(np.sum(signature_array[0:len(ltp_molecules)],axis=0)))
+sig_ltd=np.zeros(np.shape(np.sum(signature_array[len(ltp_molecules):],axis=0)))
 if maxvols==1:
     auc=np.zeros(len(parval))
 else:
-    num_spines=np.shape(signature)[-1]
+    num_spines=np.shape(sig_ltp)[-1]
     auc=np.zeros((len(parval),num_spines))
+    time_above_thresh=np.zeros((len(parval),num_spines))
 #############################
 #customize this part.  E.g.
 #add values of LTP molecules
@@ -183,7 +189,7 @@ for each_mol in ltp_molecules:
         #subtract basal value from trace
         basal=np.mean(signature_array[col][f][sstart[0]:ssend[0]],axis=0)
         sig_subtracted=signature_array[col][f]-basal
-        signature[f]=signature[f]+sig_subtracted
+        sig_ltp[f]=sig_ltp[f]+sig_subtracted
 #subtract LTD molecules
 for each_mol in ltd_molecules:
     col=all_molecules.index(each_mol)
@@ -191,16 +197,20 @@ for each_mol in ltd_molecules:
         #subtract basal value from trace
         basal=np.mean(signature_array[col][f][sstart[0]:ssend[0]],axis=0)
         sig_subtracted=signature_array[col][f]-basal
-        signature[f]=signature[f]-sig_subtracted
+        sig_ltd[f]=sig_ltd[f]+sig_subtracted
 #signature dimensions=num files/trials x sample times x (1+numspines)
 #End customization
 #############################
 #area between signature and basal
-basal_sig=np.mean(signature[:,sstart[0]:ssend[0]],axis=1)
+basal_ltp=np.mean(sig_ltp[:,sstart[0]:ssend[0]],axis=1)
+if len(ltd_molecules):
+    basal_ltd=np.mean(sig_ltd[:,sstart[0]:ssend[0]],axis=1)
 if maxvols==1:
     for par in range(len(parval)):
         label=h5utils.join_params(parval[par],params)
-        auc[par]=np.sum(signature[par,:]-basal_sig[par])*dt[0]/msec_per_sec
+        auc[par]=np.sum(sig_ltp[par,:]-basal_ltp[par])*dt[0]/msec_per_sec
+        if len(ltd_molecules):
+            auc[par]=np.sum(sig_ltd[par,:]-basal_ltd[par])*dt[0]/msec_per_sec
         auc_label.append(label+" auc="+str(np.round(auc[par],2)))
 else:
     auc_label=[[] for sp in range(len(parval))]
@@ -208,8 +218,17 @@ else:
         label=h5utils.join_params(parval[par],params)
         #label=parval[par][0]
         for sp in range(num_spines):
-            auc[par,sp]=np.sum(signature[par,:,sp]-basal_sig[par,sp])*dt[0]/msec_per_sec
+            auc[par,sp]=np.sum(sig_ltp[par,:,sp]-basal_ltp[par,sp])*dt[0]/msec_per_sec
+            time_above_thresh[par,sp]=sig_ltp[par,sig_ltp[par,:,sp]>thresh[0],sp]
+            if len(ltd_molecules):
+                auc[par,sp]=np.sum(sig_ltd[par,:,sp]-basal_ltp[par,sp])*dt[0]/msec_per_sec
             #auc_label[par].append(label+" auc="+str(np.round(auc[par,sp],1))+" "+spinelist[sp])
             auc_label[par].append(label+' '+str(np.round(auc[par,sp],1))+" "+spinelist[sp])
 pyplot.ion()
-pu5.plot_signature(auc_label,signature,time,figtitle,sign_title,textsize)
+if len(ltd_molecules):
+    pu5.plot_signature(auc_label,sig_ltp,time,figtitle,sign_title,textsize,thresh,sig_ltd)
+else:
+    pu5.plot_signature(auc_label,sig_ltp,time,figtitle,sign_title,textsize,thresh)
+#########FIX CALCULATION OF TIME_ABOVE_THRESHOLD
+print("time above threshold",time_above_thresh)
+

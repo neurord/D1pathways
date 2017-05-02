@@ -31,7 +31,7 @@ def plot_setup(plot_molecules,param_list,param_name):
 
 def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist,textsize):
      print("plottrace: plotmol,parval,parlist:", plotmol,parval, parlist)
-     axis=fig.axes
+     axis=fig.axes  #increments col index 1st
      for pnum in range(len(parval)):
           #First, determine the color scaling
           if len(parlist)==0:
@@ -74,12 +74,21 @@ def plotss(plot_mol,xparval,ss):
     fig.canvas.draw()
     return
 
-def plot_signature(condition,traces,time,figtitle,sign_title,textsize):
+def plot_signature(condition,traces,time,figtitle,sign_title,textsize,thresholds,moretraces=[]):
+     if len(moretraces):
+          plot_ltd=1
+     else:
+          plot_ltd=0
      if len(np.shape(traces))==3:
           numrows=np.shape(traces)[2]
      else:
           numrows=1
-     fig,axes=pyplot.subplots(numrows,1,sharex=True,figsize=(4,3))
+     if len(moretraces):
+          numcols=2
+     else:
+          numcols=1
+     fig,axes=pyplot.subplots(numrows,numcols,sharex=True,figsize=(4,3))
+     axis=fig.axes
      if numrows==1:
           if len(condition)>1:
                colinc=len(colors)/(len(condition)-1)
@@ -88,15 +97,20 @@ def plot_signature(condition,traces,time,figtitle,sign_title,textsize):
           for i,cond in enumerate(condition):
                numpoints=np.shape(traces[i])[0]
                newtime = np.linspace(0,time[1]*(numpoints-1), numpoints+1)
-               axes.plot(newtime,traces[i],label=cond,color=colors[int(i*colinc)])
-               axes.legend(fontsize=legtextsize, loc='best')
-               axes.set_ylabel('signature (nM) ',fontsize=textsize)
-               axes.set_xlabel('Time (sec)',fontsize=textsize)
-               axes.tick_params(labelsize=textsize)
+               axis[0].plot(newtime,traces[i],label=cond,color=colors[int(i*colinc)])
+               axis[0].legend(fontsize=legtextsize, loc='best')
+               axis[0].set_ylabel('LTP sig (nM) ',fontsize=textsize)
+               axis[0].set_xlabel('Time (sec)',fontsize=textsize)
+               axis[0].tick_params(labelsize=textsize)
+               if plot_ltd:
+                    axis[1].plot(newtime,moretraces[i],color=colors[int(i*colinc)])
+                    axis[1].set_ylabel('LTD sig (nM) ',fontsize=textsize)
+                    axis[1].set_xlabel('Time (sec)',fontsize=textsize)
      else:
           domain=[]
-          for j in range(numrows):
-               domain.append(condition[0][j].split()[-1])
+          for row,j in enumerate(range(0,numrows*numcols,numcols)):
+               #thresh_index=np.ceil(row/numrows)
+               domain.append(condition[0][row].split()[-1])
                num_par=len(condition)/2
                for i,cond in enumerate(condition):
                     #the following assumes that first parameter has only two values
@@ -105,13 +119,25 @@ def plot_signature(condition,traces,time,figtitle,sign_title,textsize):
                     numpoints=np.shape(traces[i])[0]
                     newtime = np.linspace(0,time[1]*(numpoints-1), numpoints)
                     if j==0:
-                         axes[j].plot(newtime,traces[i,:,j],label=cond[j].split()[0:-1],color=colors2D[map_index].__call__(color_index))
+                         axis[j].plot(newtime,traces[i,:,row],label=cond[row].split()[0:-1],color=colors2D[map_index].__call__(color_index))
                     else:
-                         axes[j].plot(newtime,traces[i,:,j],color=colors2D[map_index].__call__(color_index))
-                    axes[0].legend(fontsize=legtextsize, loc='upper left')
-               axes[j].set_ylabel(domain[j],fontsize=textsize)
-               axes[j].tick_params(labelsize=textsize)
-          axes[numrows-1].set_xlabel('Time (sec)',fontsize=textsize)
+                         axis[j].plot(newtime,traces[i,:,row],color=colors2D[map_index].__call__(color_index))
+                    axis[0].legend(fontsize=legtextsize, loc='lower right')
+                    if plot_ltd:
+                         axis[j+1].plot(newtime,moretraces[i,:,row],color=colors2D[map_index].__call__(color_index))
+               axis[j].set_ylabel(domain[row],fontsize=textsize)
+               axis[j].tick_params(labelsize=textsize)
+               #fix this threshold plot to work with multiple spines: thresh[1]->row=1:spines, thresh[3]-> row=1:spines
+               #print("j", j, "row", row, thresholds[row])
+               axis[j].plot([0,newtime[-1]],[thresholds[row],thresholds[row]],color='k',linestyle= 'dashed')
+               if plot_ltd:
+                    #print("j+1", j+1, "row", row, "row+nc", row+numcols, thresholds[row+numcols])
+                    axis[j+1].plot([0,newtime[-1]],[thresholds[row+numcols],thresholds[row+numcols]],color='k',linestyle= 'dashed')
+          if plot_ltd:
+               axis[len(axis)-1].set_xlabel('Time (sec) LTD',fontsize=textsize)
+               axis[len(axis)-2].set_xlabel('Time (sec) LTP',fontsize=textsize)
+          else:
+               axis[len(axis)-1].set_xlabel('Time (sec)',fontsize=textsize)
      fig.canvas.set_window_title(figtitle)
      fig.suptitle(sign_title)
      fig.canvas.draw()
