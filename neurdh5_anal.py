@@ -205,6 +205,8 @@ for fnum,ftuple in enumerate(ftuples):
                 else:
                     #dimensions of plot_array=num molecules x num trials x sample times
                     plot_array.append(OverallMean)
+            if imol==0:
+                print("samples", len(time), "maxtime", time[-1], "conc", np.shape(molecule_pop), np.shape(plot_array))
             #
             ############# write averages to separate files #######################3
             if outputavg:
@@ -396,17 +398,20 @@ if showplot:
     fig,col_inc,scale=pu5.plot_setup(plot_molecules,parlist,params)
     #need fnames
     fig.canvas.set_window_title(figtitle)
-    #fix time array for simulations not finished - variable length of time
-    for i in range(len(plot_molecules)):
-        if len(time_array[i]) != np.shape(whole_plot_array[i])[1]:
-            samples=np.shape(whole_plot_array[i])[1]
-            time_array[i]=np.linspace(0,time_array[i][1]*samples,samples)
+    #zero pad if some simulations didn't yet finish
+    for imol in range(len(plot_molecules)):
+        for fnum in range(len(ftuples)):
+            if len(time_array[imol]) > np.shape(whole_plot_array[imol][fnum])[0]:
+                extrazeros=np.zeros((len(time_array[imol])-np.shape(whole_plot_array[imol][fnum])[0]))
+                temp_conc=np.hstack((whole_plot_array[imol][fnum],extrazeros))
+                whole_plot_array[imol][fnum]=temp_conc
+    print("new shape", np.shape(whole_plot_array))
     pu5.plottrace(plot_molecules,time_array,whole_plot_array,parval,fig,col_inc,scale,parlist,textsize)
     #
 #
 #This code is very specific for the Uchi sims where there are two parameters: dhpg and duration
 #it will work with other parameters, as long as there are two of them. Just change the auc_mol
-if auc_mol and auc_mol in plot_molecules:
+if auc_mol and auc_mol in plot_molecules and 'dhpg' in parlist[1]:
     dhpg0index=np.zeros(len(parlist[0]))
     for i,dhpg in enumerate(np.sort(parlist[1])):
         for j,dur in enumerate(np.sort(parlist[0])):

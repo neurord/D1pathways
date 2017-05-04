@@ -94,6 +94,7 @@ def get_mol_index(simData,outputset,molecule):
 
 def get_mol_pop(simData, out_location,gridpoints,trials):
     samples=out_location['samples']
+    samples=max(out_location['samples'],len(simData['trial0']['output']['all']['times'][:]))
     conc=np.zeros((len(trials),samples,gridpoints))
     for outset in out_location['location'].keys():
         elements=out_location['location'][outset]['elements']

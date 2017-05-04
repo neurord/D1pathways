@@ -3,7 +3,7 @@ from __future__ import division
 import numpy as np
 from matplotlib import pyplot
 
-legtextsize=10
+legtextsize=8
      
 colors=pyplot.get_cmap('viridis')
 #colors=pyplot.get_cmap('plasma')
@@ -59,7 +59,7 @@ def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist,textsize):
                axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
                axis[imol].tick_params(labelsize=textsize)
           axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
-     axis[0].legend(fontsize=legtextsize, loc='upper left')
+     axis[0].legend(fontsize=legtextsize, loc='best')
      fig.canvas.draw()
      return
 
@@ -119,7 +119,8 @@ def plot_signature(condition,traces,time,figtitle,sign_title,textsize,thresholds
                     numpoints=np.shape(traces[i])[0]
                     newtime = np.linspace(0,time[1]*(numpoints-1), numpoints)
                     if j==0:
-                         axis[j].plot(newtime,traces[i,:,row],label=cond[row].split()[0:-1],color=colors2D[map_index].__call__(color_index))
+                         labl=cond[row][0][0:cond[row][0].rfind(' ')]
+                         axis[j].plot(newtime,traces[i,:,row],label=labl,color=colors2D[map_index].__call__(color_index))
                     else:
                          axis[j].plot(newtime,traces[i,:,row],color=colors2D[map_index].__call__(color_index))
                     axis[0].legend(fontsize=legtextsize, loc='lower right')
