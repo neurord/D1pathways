@@ -1,6 +1,7 @@
 #sig.py
 #calculate LTP/LTD signature from two sets of molecules, separately for spines and dendrites
-#USAGE: in python, type ARGS="subdir/fileroot,par1 par2,LTPmol1 LTPmol2,LTDmol1 LTdmol2,basal_start basal_end" then execfile('sig.py')
+#USAGE: in python, type ARGS="subdir/fileroot,par1 par2,LTPmol1 LTPmol2,LTDmol1 LTdmol2,basal_start basal_end, T_LTPd T_LTPsp T_LTDd T_LTDsp"
+#then execfile('sig.py')
 #DO NOT PUT ANY SPACES NEXT TO THE COMMAS, DO NOT USE TABS, rows is optional
 #LTPmol1 LTPmol2, etc are the names of molecles which produce LTP is sufficiently high (and hinder LTD)
 #LTDmol1 LTDmol2, etc are the names of molecles which produce LTD is sufficiently high (and hinder LTP)
@@ -172,56 +173,66 @@ for mol in ltp_molecules:
     sign_title=sign_title+'+'+mol
 for mol in ltd_molecules:
     sign_title=sign_title+'-'+mol
-sig_ltp=np.zeros(np.shape(np.sum(signature_array[0:len(ltp_molecules)],axis=0)))
-sig_ltd=np.zeros(np.shape(np.sum(signature_array[len(ltp_molecules):],axis=0)))
 if maxvols==1:
     auc=np.zeros(len(parval))
+    num_regions=1
 else:
-    num_spines=np.shape(sig_ltp)[-1]
-    auc=np.zeros((len(parval),num_spines))
-    time_above_thresh=np.zeros((len(parval),num_spines))
+    if len(spinelist):
+        num_regions=len(spinelist)
+    else:
+        num_regions=1
+    auc=np.zeros((len(parval),num_regions))
+ltp_above_thresh=np.zeros((len(parval),num_regions))
+ltd_above_thresh=np.zeros((len(parval),num_regions))
+lengths=[np.shape(signature_array[0][x])[0] for x in range(numfiles)]
+sig_ltp=np.zeros((numfiles,np.max(lengths),num_regions))
+sig_ltd=np.zeros((numfiles,np.max(lengths),num_regions))
 #############################
 #customize this part.  E.g.
-#add values of LTP molecules
-for each_mol in ltp_molecules:
-    col=all_molecules.index(each_mol)
-    for f in range(numfiles):
-        #subtract basal value from trace
-        basal=np.mean(signature_array[col][f][sstart[0]:ssend[0]],axis=0)
-        sig_subtracted=signature_array[col][f]-basal
-        sig_ltp[f]=sig_ltp[f]+sig_subtracted
-#subtract LTD molecules
-for each_mol in ltd_molecules:
-    col=all_molecules.index(each_mol)
-    for f in range(numfiles):
-        #subtract basal value from trace
-        basal=np.mean(signature_array[col][f][sstart[0]:ssend[0]],axis=0)
-        sig_subtracted=signature_array[col][f]-basal
-        sig_ltd[f]=sig_ltd[f]+sig_subtracted
+#add values of LTP molecules, subtract LTD molecules; or accumulate each signature separately
+def sig_subtract(sig_array,strt,send,num_regions,ltp_samples):
+    basal=np.mean(sig_array[strt:send],axis=0)
+    sig_subtracted=sig_array-basal
+    extra=ltp_samples-np.shape(sig_subtracted)[0]
+    if extra:
+        extra_zeros=np.zeros((extra,num_regions))
+        sig_subtracted=np.vstack((sig_subtracted,extra_zeros))
+    return sig_subtracted
+for f in range(numfiles):
+    for each_mol in ltp_molecules:
+        col=all_molecules.index(each_mol)
+        sig_ltp[f]=sig_ltp[f]+sig_subtract(signature_array[col][f],sstart[col],ssend[col],num_regions,np.shape(sig_ltp[f])[0])
+    for each_mol in ltd_molecules:
+        col=all_molecules.index(each_mol)
+        sig_ltd[f]=sig_ltd[f]+sig_subtract(signature_array[col][f],sstart[col],ssend[col],num_regions,np.shape(sig_ltd[f])[0])
 #signature dimensions=num files/trials x sample times x (1+numspines)
 #End customization
 #############################
 #area between signature and basal
-basal_ltp=np.mean(sig_ltp[:,sstart[0]:ssend[0]],axis=1)
-if len(ltd_molecules):
-    basal_ltd=np.mean(sig_ltd[:,sstart[0]:ssend[0]],axis=1)
 if maxvols==1:
     for par in range(len(parval)):
         label=h5utils.join_params(parval[par],params)
-        auc[par]=np.sum(sig_ltp[par,:]-basal_ltp[par])*dt[0]/msec_per_sec
+        auc[par]=np.sum(sig_ltp[par,:])*dt[0]/msec_per_sec
         if len(ltd_molecules):
-            auc[par]=np.sum(sig_ltd[par,:]-basal_ltd[par])*dt[0]/msec_per_sec
+            auc[par]=auc[par]-np.sum(sig_ltd[par,:])*dt[0]/msec_per_sec
         auc_label.append(label+" auc="+str(np.round(auc[par],2)))
 else:
     auc_label=[[] for sp in range(len(parval))]
     for par in range(len(parval)):
         label=h5utils.join_params(parval[par],params)
         #label=parval[par][0]
-        for sp in range(num_spines):
-            auc[par,sp]=np.sum(sig_ltp[par,:,sp]-basal_ltp[par,sp])*dt[0]/msec_per_sec
-            time_above_thresh[par,sp]=sig_ltp[par,sig_ltp[par,:,sp]>thresh[0],sp]
+        for sp in range(num_regions):
+            if sp==0:
+                T_LTP=float(thresh[0])
+                T_LTD=float(thresh[2])
+            else:
+                T_LTP=float(thresh[1])
+                T_LTD=float(thresh[3])
+            auc[par,sp]=np.sum(sig_ltp[par,:,sp])*dt[0]/msec_per_sec
+            ltp_above_thresh[par,sp]=np.sum(sig_ltp[par,sig_ltp[par,:,sp]>T_LTP,sp]-T_LTP)*dt[0]/msec_per_sec
             if len(ltd_molecules):
-                auc[par,sp]=np.sum(sig_ltd[par,:,sp]-basal_ltp[par,sp])*dt[0]/msec_per_sec
+                auc[par,sp]=auc[par,sp]-np.sum(sig_ltd[par,:,sp])*dt[0]/msec_per_sec
+                ltd_above_thresh[par,sp]=np.sum(sig_ltd[par,sig_ltd[par,:,sp]>T_LTD,sp]-T_LTD)*dt[0]/msec_per_sec
             #auc_label[par].append(label+" auc="+str(np.round(auc[par,sp],1))+" "+spinelist[sp])
             auc_label[par].append(label+' '+str(np.round(auc[par,sp],1))+" "+spinelist[sp])
 pyplot.ion()
@@ -229,6 +240,7 @@ if len(ltd_molecules):
     pu5.plot_signature(auc_label,sig_ltp,time,figtitle,sign_title,textsize,thresh,sig_ltd)
 else:
     pu5.plot_signature(auc_label,sig_ltp,time,figtitle,sign_title,textsize,thresh)
-#########FIX CALCULATION OF TIME_ABOVE_THRESHOLD
-print("time above threshold",time_above_thresh)
+print("area above threshold for LTP and LTD")
+for par in range(len(parval)):
+    print(parval[par], ltp_above_thresh[par], ltd_above_thresh[par])
 
