@@ -12,10 +12,71 @@ Sim time vs tolerance:
 .001 2d 6 hours
 
 ---------------> Perform small set of simulations with higher PDE2 using 0.002 tolerance
+When these look good, reduce Glu diffusion and repeat all simulations (maybe need to curther increase PDE2)
+First  check the Da for 20hz noCKp as this case has higher dend LTP signature than than controls.  It should be similar since 20hz activates minimal CKp
 
+SIGNATURE:
+Evaluate alternatives
+1. Have 4 thresholds: LTD vs LTP and spine vs dendrite: make 4 different graphs, add in threshold line
+      fix code to calculate time above threshold
+      evaluate time over threshold for individual trials, not just mean value
+      LTP occurs if > thresh
+      LTD occurs if > thresh
+      no plas if neither > thresh
+      if both > thresh, look at difference?
+>>>>>>>Analysis of old (i.e. wrong) sims using NeuroRD3.2.2:
+		LTP Thresh=600 dend, 1000 spine, LTD thresh=100 dend, 150 spine
+		control: LTP for theta, LTD for 20hz
+		noCKp: LTD enhanced for LTD, theta produces LTD, not LTP
+		block mGlu: no LTP spine.  If LTD thresh spine inc to 200, no LTD either
+		block M4: enhanced LTP, because spine sig higher, also dend sig; no effect 20hz
+		block m1: LTP is predicted: nonspine is still way over threshold, possibly due to mGluR in dend?
+	----------->what is Glu and Glu bound mGluR in dend?  Is too much Glu getting to dend?
+		ACh variations: minimal effect, but this is consistent with no blockM1 effect
+		Glu = (theta) 7000 sp, 400 dend (20hz) 3000 sp 200 dend.  This is still too high and is producing significant bound mGluR in dendrite.  Thus, blocking M1 doesn't eliminate GqaGTP in dendrite, nor Gq bound Plc
+	----------> reduce Glu diffusion still more, e.g. from 2 to 1? or 0.5?  Will need to reduce Glu injected by same factor
+	affinity of GluR is 500 (and 250): no need for 7000 nM Glu
+--------> may not need two thresholds for LTD, since molecule acts pre-synaptically.  Just ignore the dendrite part
+--------> combine spine signature as the difference between LTP_sig>LTP_thresh vs LTD_sig>LTD_thresh?
+	
+2. Normalization or weight?  Normalize to maximum over all paradigms?  Weight epac differently than Pka?  Collectively weight sum(Pka), sum(CKpCam)?  would need alternative method of specifying molecules, e.g. as list of lists
+3. Divide instead of subtract 2ag (as alternative to 4 (or 3) thresholds)?
 
-SIGNATURE:  treat PKA targets differently than Pkc and CKpCam?
-	    Issues: Normalization or weight?  Normalize to maximum over all paradigms?  Weight epac differently than Pkc?
-	    Divide instead of subtract 2ag?  Have 4 thresholds: LTD vs LTP and spine vs dendrite?
-	    To implement the latter, make 4 different graphs, add in threshold line?
+2017 May 4
+>>>>>>>Bath Da: peak cAMP = 37 uM (vs 50 uM before)
+------------> need much more PDE2.
+	      If same increment yields 13 uM decrease, then
+	      	 7-8x (~2x current) should produce 24 uM (too high)
+		 12x (~3x current) should produce 10 uM (OK)
+	OR, better DaD1RGs inactivation:
+	    10x faster DaD1RGs inact
+	    add in pDaD1RGs <-> Da + pD1RGs  1 uM dissociation so that dissocation occurs rapidly in low Da, but not in 10 uM Da
+	    add in fast pD1RGs dephos, e.g. 10x faster than current DaD1RGs, to D1RGs, to maintain low basal
+	    slow down pDaD1RGs dephos, e.g. 10x, to enhance D1R inact in high Da conditions
+Other molecules:
+	     Tol=.005 seems fine for Ca bath
+	     GiaGTP decreases with Da stim - likely due to increase in AC5GsaGiaATP
+	     At offset of Ca pulse, CamCa2C and CamCa4 and CamCa2N drop drastically.  Thus, PP2B bound forms drop drastically, thus PP2B forms bound to Dp34 forms drop drastically, allowing a sharp increase in Dp34 NOT bound to PP2B forms
+	     CKpCamCa4 is a bit higher with CaBath and tol 0.002 (vs tol 0.005).  Possibly a bit too high to attribute to noise.
 
+>>>>>>>Stim theta vs 20hz (controls)
+	    slight differences in Gq pathways between tol005 and tol002 for 20hz, likely noise, since theta does not exhibit this effect.
+	    However, larger difference in Epac1cAMP between theta tol002 and tol005, smaller difference in Dp34' definite difference in PKAcPDE10cAMP and cAMP
+	    cAMP remains below 1 uM in theta burs stim - so not too high.
+
+>>>>>>Uchi, Ca5s:
+Tolerance has no effect on the Da, cAMP and downstream molecules (expected)
+Tolerance may have an effect on DagCapDgl for 0 dhpg.  25% difference in DagCapDgl between tol0.005 and tol 0.002.  THis is likely to be noise as no effect is seen on upstream or related molecules (e.g. MgluR, Plc, Pkc or Dag).  May have an effect on PkcCaDag and DaG and possibly GqaGTP for 25 dhpg
+
+-------->Conclusion: use tol 0.002 as default
+
+########### New pDaD1RGs pathways
+	    PKA phos rates:  kf = 0.008e-03, kb=0.8e-03, kcat=0.2e-03 (10x higher)
+	    pDaD1RGs <-> Da + pD1RGs, NEW Rxn - Kd=1 uM: kf=0.1, kb=0.1e-3 (with Da=10 nM, kb=1e-3, with Da=1000, Da=0.1)
+	    pD1RGs -> GsD1R, NEW Rxn - Kf=0.02e-03
+	    	   (10x faster than prior rxn with Da bound, 20x faster than kb with 10 nM Da. 5x slower than kb with 1000 nM Da)
+	    pDaD1RGs -> Da+D1R+Gsabg, kf=0.0002e-03 (10x slower than previous)
+	    Glu diffusion lowered from from 2 to 1
+	    Glu stimulation reduced by 4x, from 4.5 to 1.125
+Test new D1R phos with (1) Da bath, (2) nostim, (3) theta
+Test new Glu with (1) theta vs m1 block - ensure low Gq dend

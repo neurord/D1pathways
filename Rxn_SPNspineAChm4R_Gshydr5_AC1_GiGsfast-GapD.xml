@@ -32,6 +32,7 @@
     <Specie name="GsD1R"         id="GsD1R"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="PKAcDaD1RGs"   id="PKAcDaD1RGs"   kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="pDaD1RGs"      id="pDaD1RGs"      kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="pGsD1R"         id="pGsD1R"         kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GsaGTP"        id="GsaGTP"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="GsaGDP"        id="GsaGDP"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="Gbg"           id="Gbg"           kdiff="0"     kdiffunit="mu2/s"/>
@@ -61,7 +62,7 @@
 
     <!-- Gq coupled mGluR or mAChR receptor; ligand currently called Glu,
      GluOut is used to eliminate injected Glu -->
-    <Specie name="Glu"            id="Glu"           kdiff="2"   kdiffunit="mu2/s"/>
+    <Specie name="Glu"            id="Glu"           kdiff="1"   kdiffunit="mu2/s"/>
     <Specie name="GluGbuf"        id="GluGbuf"       kdiff="0"    kdiffunit="mu2/s"/>
     <Specie name="GluOut"         id="GluOut"        kdiff="1"   kdiffunit="mu2/s"/>
     <Specie name="Gbuf"           id="Gbuf"          kdiff="1"     kdiffunit="mu2/s"/>
@@ -435,8 +436,8 @@
         <Reactant specieID="DaD1RGs"                  />
         <Product  specieID="PKAcDaD1RGs"              />
 
-        <forwardRate> 0.0008e-03    </forwardRate>
-        <reverseRate> 0.08e-03    </reverseRate>
+        <forwardRate> 0.008e-03    </forwardRate>
+        <reverseRate> 0.8e-03    </reverseRate>
     </Reaction>
     <!--5. PKAcDaD1RGs -> PKAc + phosphoDaD1RGs -->
     <Reaction name = "DaD1RGs phosp2" id="phospDaD1RGs2">
@@ -444,18 +445,37 @@
         <Product  specieID="pDaD1RGs"                 />
         <Product  specieID="PKAc"                   />
 
-        <forwardRate> 0.02e-03    </forwardRate>
+        <forwardRate> 0.2e-03    </forwardRate>
         <reverseRate> 0             </reverseRate>
     </Reaction>
 
-    <!--6. pDaD1RGs -> DaD1RGs -->
+    <!--6a. pDaD1RGs -> pD1RGs - Da dissociation 1 uM-->
+    <Reaction name = "Da_dissoc" id="Da_dissoc">
+        <Reactant specieID="pDaD1RGs"              />
+        <Product  specieID="pGsD1R"               />
+        <Product  specieID="Da"               />
+
+        <forwardRate>  0.1    </forwardRate>
+        <reverseRate>  0.1e-3            </reverseRate>
+    </Reaction>
+
+    <!--6b. pD1RGs -> D1RGs - fast dephos of unbound receptor -->
+    <Reaction name = "Da_dissoc" id="Da_dissoc">
+        <Reactant specieID="pGsD1R"              />
+        <Product  specieID="GsD1R"               />
+
+        <forwardRate>  0.02e-3    </forwardRate>
+        <reverseRate>  0            </reverseRate>
+    </Reaction>
+
+    <!--6c. pDaD1RGs -> DaD1RGs -->
     <Reaction name = "dephosD1R" id="dphospD1R">
         <Reactant specieID="pDaD1RGs"              />
         <Product  specieID="Gsabg"               />
         <Product  specieID="D1R"               />
         <Product  specieID="Da"               />
 
-        <forwardRate>  0.002e-03    </forwardRate>
+        <forwardRate>  0.0002e-03    </forwardRate>
         <reverseRate>  0            </reverseRate>
     </Reaction>
 
