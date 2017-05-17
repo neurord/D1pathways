@@ -44,6 +44,7 @@
     <OutputSpecie name="PKAcDaD1RGs"/>
     <OutputSpecie name="pDaD1RGs"/>
     <OutputSpecie name="GsD1R"/>
+    <OutputSpecie name="pGsD1R"/>
     <OutputSpecie name="GsaGTP"/>
     <OutputSpecie name="GsaGDP"/>
     <OutputSpecie name="Gbg"/>

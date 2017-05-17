@@ -214,7 +214,8 @@
         <NanoMolarity specieID="Gsabg"               value="1680" />
         <NanoMolarity specieID="GsD1R"                value="200" />
         <NanoMolarity specieID="DaD1RGs"              value="0" />
-        <NanoMolarity specieID="pDaD1RGs"              value="0" />
+        <NanoMolarity specieID="pDaD1RGs"             value="0" />
+        <NanoMolarity specieID="pGsD1R"              value="0" />
         <NanoMolarity specieID="GsaGTP"              value="0" />
         <NanoMolarity specieID="GsaGDP"              value="0" />
         <NanoMolarity specieID="Gbg"                 value="360" />
@@ -242,7 +243,7 @@
         <NanoMolarity specieID="CaDgl"       value="350"   />
         <NanoMolarity specieID="DagCaDgl"     value="50"   />
         <NanoMolarity specieID="pDgl"         value="20"  />
-        <NanoMolarity specieID="pCaDgl"       value="0"   />
+        <NanoMolarity specieID="CapDgl"       value="0"   />
         <NanoMolarity specieID="PIkinase"    value="560"    />
         <NanoMolarity specieID="Ip3degPIk"   value="0"    />
         <NanoMolarity specieID="Ip3"         value="90"  />
@@ -312,8 +313,8 @@
         <PicoSD specieID="AC5Gsa"                  value="0"  />
         <PicoSD specieID="AC5GsaATP"               value="15"  />
         <PicoSD specieID="AC5Ca"                   value="0"  />
-        <PicoSD specieID="AC5CaGsa"                value="0"  />
-        <PicoSD specieID="AC5CaGsaATP"             value="0"  />
+        <PicoSD specieID="AC5GsaCa"                value="0"  />
+        <PicoSD specieID="AC5GsaCaATP"             value="0"  />
 	<PicoSD specieID="AC5Gia"                  value="315"/>
         <PicoSD specieID="AC5GsaGia"               value="0"  />
         <PicoSD specieID="AC5GsaGiaATP"            value="20" />
