@@ -10,7 +10,7 @@
 #DO NOT use hyphens in filenames except for preceding parameter name
 #if no parameters specified, then fileroot needs to be full filename (excluding the extension)
 #from outside python, type python sig.py "subdir/fileroot [par1 par2] [mol1 mol2]"
-
+#Does not work with only a single file
 
 from __future__ import print_function
 from __future__ import division
@@ -55,23 +55,12 @@ parval=[]
 numfiles=len(ftuples)
 signature_array=[]
 for fnum,ftuple in enumerate(ftuples):
-    fname=ftuple[0]
-    parval.append(ftuple[1])
-    data = h5.File(fname,"r")
-    maxvols=len(data['model']['grid'])
-    TotVol=data['model']['grid'][:]['volume'].sum()
+    data,maxvols,TotVol,trials,seeds,arraysize,p=h5utils.initialize(ftuple,numfiles,parval)
+    if len(p):
+        params=p[0]
+        parval=p[1]
+        parlist=[2]
     sig_data=[]
-    #
-    trials=[a for a in data.keys() if 'trial' in a]
-    numtrials=len(trials)
-    outputsets=data[trials[0]]['output'].keys()
-    if numfiles==1:
-        arraysize=numtrials
-        params=['trial']
-        parval=[str(x) for x in range(len(trials))]
-        parlist=[parval,[]]
-    else:
-        arraysize=numfiles
     #
     ##########################################################
     #   Extract region and structure voxels and volumes
@@ -108,17 +97,17 @@ for fnum,ftuple in enumerate(ftuples):
         all_molecules=ltp_molecules+ltd_molecules
         num_mols=len(all_molecules)
         if numfiles>1:
-            for mol in range(num_mols):
-                signature_array.append([])
-        #
-        out_location,dt,rows=h5utils.get_mol_info(data,all_molecules,maxvols)
-        #
-        #Which "rows" should be used for baseline value, specifed in args[4]
-        #
-        sstart,ssend=h5utils.sstart_end(all_molecules, args, 4, out_location,dt,rows)
+            signature_array=[[] for mol in range(num_mols)]
     ######################################
     #Calculate region averages, such as indivivdual spines and non-spines
     ######################################
+    #
+    # do this for each file since they may have different number of samples, or different locations
+    out_location,dt,rows=h5utils.get_mol_info(data,all_molecules,maxvols)
+    #
+    #Which "rows" should be used for baseline value, specifed in args[4]
+    sstart,ssend=h5utils.sstart_end(all_molecules, args, 4, out_location,dt,rows)
+    molecule_name_issue=0
     if maxvols>1:
         for imol,molecule in enumerate(all_molecules):
           if out_location[molecule]!=-1:
@@ -131,6 +120,11 @@ for fnum,ftuple in enumerate(ftuples):
             else:
                 #dimensions will be number of molecules x number of trials x sample times x 1+ num spines
                 sig_data.append(spinemeans)
+          else:
+              if fnum==0 and molecule_name_issue==0:
+                  print("Choose molecules from:", all_molecules)
+                  molecule_name_issue=1
+              sig_data.append(np.zeros(len(time)))
     ######################################
     #minimal processing needed if only a single voxel.
     ######################################
@@ -140,7 +134,7 @@ for fnum,ftuple in enumerate(ftuples):
           if out_location[mol]!=-1:
             outset = out_location[mol]['location'].keys()[0]
             imol=out_location[mol]['location'][outset]['mol_index']
-            tempConc=np.zeros((numtrials,out_location[mol]['samples']))
+            tempConc=np.zeros((len(trials),out_location[mol]['samples']))
             time=data[trials[0]]['output'][outset]['times'][:]/msec_per_sec
             #generate output files for these cases
             for trialnum,trial in enumerate(trials):
@@ -152,10 +146,11 @@ for fnum,ftuple in enumerate(ftuples):
                 #sig_data dimensions=number of molecules (x number of trials) x sample times
                 sig_data.append(tempConc)
           else:
+              if fnum==0 and molecule_name_issue==0:
+                  print("Choose molecules from:", all_molecules)
+                  molecule_name_issue=1
+              sig_data.append(np.zeros(len(time)))
               print("molecule", molecule, "not found in output data!!!!!!!!!!!")
-              if fnum==0:
-                  print("choose from:", molecules)
-              sig_data.append([-1])
     ######################################
     #Whether 1 voxel or multi-voxel, create array of means for all molecules, all files, all trials
     ##########################################

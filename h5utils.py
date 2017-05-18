@@ -4,6 +4,7 @@ import numpy as np
 from string import *
 import glob
 import os
+import h5py as h5
 import plot_h5 as pu5
 from collections import OrderedDict
 from orderedmultidict import omdict
@@ -28,6 +29,29 @@ def join_params(parval,params):
     else:
         label=parval
     return label
+
+def initialize(ftuple,numfiles,parval):
+    fname=ftuple[0]
+    parval.append(ftuple[1])
+    data = h5.File(fname,"r")
+    maxvols=len(data['model']['grid'])
+    TotVol=data['model']['grid'][:]['volume'].sum()
+    trials=[a for a in data.keys() if 'trial' in a]
+    try:
+        seeds=[data[trial].attrs['simulation_seed'] for trial in trials]
+    except KeyError:
+        seeds=[data[trial]['simulation_seed'][:] for trial in trials]
+    outputsets=data[trials[0]]['output'].keys()
+    if numfiles==1:
+        arraysize=len(trials)
+        params=['trial']
+        parval=[str(x) for x in range(len(trials))]
+        parlist=[parval,[]]
+        p=[params,parval,parlist]
+    else:
+        arraysize=numfiles
+        p=[]
+    return data,maxvols,TotVol,trials,seeds,arraysize,p
 
 def sstart_end(molecule_list, args, arg_num, out_location,dt,rows):
     num_mols=len(molecule_list)
@@ -94,7 +118,6 @@ def get_mol_index(simData,outputset,molecule):
 
 def get_mol_pop(simData, out_location,gridpoints,trials):
     samples=out_location['samples']
-    samples=max(out_location['samples'],len(simData['trial0']['output']['all']['times'][:]))
     conc=np.zeros((len(trials),samples,gridpoints))
     for outset in out_location['location'].keys():
         elements=out_location['location'][outset]['elements']

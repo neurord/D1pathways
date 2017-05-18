@@ -29,7 +29,7 @@ def plot_setup(plot_molecules,param_list,param_name):
                col_inc[i]=0.0
      return fig,col_inc,scale
 
-def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist,textsize):
+def plottrace(plotmol,timearray,plotarray,parval,fig,colinc,scale,parlist,textsize):
      print("plottrace: plotmol,parval,parlist:", plotmol,parval, parlist)
      axis=fig.axes  #increments col index 1st
      for pnum in range(len(parval)):
@@ -55,7 +55,7 @@ def plottrace(plotmol,time,plotarray,parval,fig,colinc,scale,parlist,textsize):
           for imol in range(len(plotmol)):
                #axis[imol].autoscale(enable=True,tight=False)
                #change label back to parval[pnum] after figures created
-               axis[imol].plot(time[imol][:],plotarray[imol][pnum][:],label=parval[pnum],color=mycolor)
+               axis[imol].plot(timearray[imol][pnum][:],plotarray[imol][pnum][:],label=str(pnum)+parval[pnum],color=mycolor)
                axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
                axis[imol].tick_params(labelsize=textsize)
           axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
