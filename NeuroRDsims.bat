@@ -38,11 +38,15 @@
 #With calcium from genesis model, will need to match glu stim of spines, perhaps get genesis output of glu - i.e., select among 2 or 4 spines for each inject?
 #Not sure how to adapt dopamine and ACh, which is non-synaptic
 #Other sims expers: calcium from Da depleted case, or change molecules and calcium according to alcohol effects
+java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar Model_SPNspine_noATP-nostim.xml &
 java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar Model_SPNspineAChm4R_Gshydr5_GapD-nostim.xml 
 
 java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-bathDa.xml 323/Model_SPNspineAChm4R_Gshydr5_GapD-bathDa_pD1RGs &
 java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-noReb_DaDec1.xml 323/Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-noReb_DaDec1_pD1RGs &
 java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-blockM1.xml 323/Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-blockM1 &
+
+java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar --ic-time -1 --ic Model_SPNspine_noATP-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-noReb_DaDec1_noATP.xml 323/ &
+java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar --ic-time -1 --ic Model_SPNspine_noATP-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-bathDa_noATP.xml 323/ &
 
 #java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stim20hz-alcIC.xml &
 #java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspine_GapD_alcohol-stim20hz-alcNMDA.xml

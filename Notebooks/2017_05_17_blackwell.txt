@@ -1,0 +1,32 @@
+2017 May 17
+
+########### New pDaD1RGs pathways
+	    PKA phos rates:  kf = 0.008e-03, kb=0.8e-03, kcat=0.2e-03 (10x higher)
+	    pDaD1RGs <-> Da + pD1RGs, NEW Rxn - Kd=1 uM: kf=0.1, kb=0.1e-3 (with Da=10 nM, kb=1e-3, with Da=1000, Da=0.1)
+	    pD1RGs -> GsD1R, NEW Rxn - Kf=0.02e-03
+	    	   (10x faster than prior rxn with Da bound, 20x faster than kb with 10 nM Da. 5x slower than kb with 1000 nM Da)
+	    pDaD1RGs -> Da+D1R+Gsabg, kf=0.0002e-03 (10x slower than previous)
+	    Glu diffusion lowered from from 2 to 1
+	    Glu stimulation reduced by 4x, from 4.5 to 1.125
+Test new D1R phos with (1) Da bath, (2) nostim, (3) theta
+Test new Glu with (1) theta vs m1 block - ensure low Gq dend
+
+
+     	 pDaD1RGs pGsD1R     cAMP     GluSp 	GluDend
+DaB 5/1	    250nM    x 	     37 uM    N/A	N/A
+theta 5/1   15 nM    x 	     0.7 uM   7 uM	0.8 uM
+Da Bath	    370	     40nM    5uM			Great!  though quite transient. Perhaps reduce PDE2?
+no Stim	    0	     0	     50n
+Theta	    20 nM    40	     0.5 uM   2.2u	0.2 uM  Better, though most of effect due to lower Glu overall
+
+Slightly lower GqaGTP with the lower Glu Spine
+blockM1 has same GqaGTP through DAG as no block - still too much Glu mediated GqaGTP?  Yes and No:
+NO, still too much ACh bound to m1RGq!  Telenzm1RGq=200, telenzm1R = 1, free m1R=8, m1RGq=200, free telenz=1, AChm1RGq=16
+YES, GluMGluRGq was 50 (diff=2), and now is 25
+
+A. Repeat same set of sims with lower PDE2 - back to original values?  OR, slower D1R inactivation?
+   Slow down D1R inact - happending within 60s - halve reactions PKAc phos DaD1RGs
+B. Lower Glu diffusion still more to enhance spine to dend ratio, e.g. 0.1
+C. inject more telenz, e.g. 2x or 2.5x - check on m4 block! FINE.
+
+Earlier evaluation of having implicit ATP gave different results - possibly due to tolerance problem.  Repeat this assessment.

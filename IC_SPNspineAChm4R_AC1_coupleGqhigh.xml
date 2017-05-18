@@ -79,7 +79,7 @@
         <NanoMolarity specieID="pPDE4PP2A"          value="40" />
 	<NanoMolarity specieID="pPDE4cAMP"      value="0" />
 
-        <NanoMolarity specieID="PDE2"               value="2700" />
+        <NanoMolarity specieID="PDE2"               value="1350" />
         <NanoMolarity specieID="PDE2cAMP"            value="0" />
         <NanoMolarity specieID="PDE2cAMP2"           value="0" />
 

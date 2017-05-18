@@ -181,7 +181,7 @@
 <InjectionStim specieID="telenz" injectionSite="dend:submembrane">
         <onset>               2000          </onset>
         <duration>            60      </duration>
-        <rate>                2.5         </rate>
+        <rate>                6.0         </rate>
 </InjectionStim>
 
 </StimulationSet>
