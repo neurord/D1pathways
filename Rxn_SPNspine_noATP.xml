@@ -408,7 +408,7 @@
         <forwardRate> 0.01e-03 </forwardRate>
         <reverseRate> 0.4e-03  </reverseRate>
     </Reaction>
-    <!-- 2b. GsD1R + Da       <-> DaD1RGs       Kd=1000   source: Falkenburger J Gen Phys off-rate, Dreyer J Neurosci-->
+    <!-- 2b. GsD1R + Da       < - > DaD1RGs       Kd=1000   source: Falkenburger J Gen Phys off-rate, Dreyer J Neurosci-->
     <Reaction name = "GsD1R+Da--DaD1RGs" id="GD1R+Da--DaD1RGs">
         <Reactant specieID="GsD1R"                     />
         <Reactant specieID="Da"                      />
@@ -436,8 +436,8 @@
         <Reactant specieID="DaD1RGs"                  />
         <Product  specieID="PKAcDaD1RGs"              />
 
-        <forwardRate> 0.004e-03    </forwardRate>
-        <reverseRate> 0.4e-03    </reverseRate>
+        <forwardRate> 0.006e-03    </forwardRate>
+        <reverseRate> 0.6e-03    </reverseRate>
     </Reaction>
     <!--5. PKAcDaD1RGs -> PKAc + phosphoDaD1RGs -->
     <Reaction name = "DaD1RGs phosp2" id="phospDaD1RGs2">
@@ -445,7 +445,7 @@
         <Product  specieID="pDaD1RGs"                 />
         <Product  specieID="PKAc"                   />
 
-        <forwardRate> 0.1e-03    </forwardRate>
+        <forwardRate> 0.15e-03    </forwardRate>
         <reverseRate> 0             </reverseRate>
     </Reaction>
 
@@ -761,7 +761,7 @@
         <Product  specieID="AC5GsaATP"             />
 
         <!--if ATP: forwardRate> 0.1276e-6    </forwardRate-->
-        <forwardRate> 0.255    </forwardRate>
+        <forwardRate> 0.2552    </forwardRate>
         <reverseRate> 0.2612e-03    </reverseRate>
     </Reaction>
     <!--3. AC5Gsa(GTP)ATP       <-> AC5Gsa(GTP) + cAMP   -->
@@ -818,7 +818,7 @@
         <Product  specieID="AC5GsaGiaATP"             />
 
         <!-- if ATP:forwardRate> 0.01276e-6    </forwardRate-->
-        <forwardRate> 0.0255    </forwardRate>
+        <forwardRate> 0.02552    </forwardRate>
         <reverseRate> 0.02612e-03    </reverseRate>
     </Reaction>
     

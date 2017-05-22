@@ -25,8 +25,47 @@ NO, still too much ACh bound to m1RGq!  Telenzm1RGq=200, telenzm1R = 1, free m1R
 YES, GluMGluRGq was 50 (diff=2), and now is 25
 
 A. Repeat same set of sims with lower PDE2 - back to original values?  OR, slower D1R inactivation?
-   Slow down D1R inact - happending within 60s - halve reactions PKAc phos DaD1RGs
+   Slow down D1R inact - happening within 60s - halve reactions PKAc phos DaD1RGs
 B. Lower Glu diffusion still more to enhance spine to dend ratio, e.g. 0.1
 C. inject more telenz, e.g. 2x or 2.5x - check on m4 block! FINE.
 
 Earlier evaluation of having implicit ATP gave different results - possibly due to tolerance problem.  Repeat this assessment.
+
+################ Glu diffusion=0.1; PKAc phos DaD1RGs=.004,0.4,0.1; PDE2=1350; telenz inject=6.0
+     	 	 pDaD1RGs pGsD1R   GsD1R  DaD1RGs    cAMP     GluSp 	GluDend	  D32p34   d32p75  sim time
+noStim		0	1.14	  421	  4.0				9.6	  413n	   10.73u
+DaBath	 (ss/p) 0/353	  1/313	  421/251  4/380     11.6u    			  3.86u	   7.33u    21.5
+Theta		12	  33	  	   	     646	3u		200n	  3.1u	   7.4u
+nostim/noATP	0	0.6	  420	  4.7				10.7	  459n	   10.29u   
+DaBath/noATP   0/352	1.4/308	  419/252  4/374     10.9u			  3.87u	   7.37u   19.5	
+Theta/noATP    12	28	  	   	     666	3u	200n	  3.15u	   7.4u
+
+			baseline (400-450 s)
+        molecule  noATP		with ATP
+       AC5GsaATP    20.62   	22.74
+    AC5GsaGiaATP    20.81   	20.79	
+            cAMP    36.19 	39.12 
+            PKAc     4.10  	 5.03 	 
+        PDE4cAMP     2.51  	 2.91	   
+       PDE10cAMP   119.51      125.21	 
+        PKAcAMP2   110.90      144.68
+        PKAcAMP4     0.96        1.46
+nostim: only possibly significant difference is in PKAcAMP2, and peaks from 450-500s are 193 (no ATP) and 124 (with ATP) arguing against sig
+DaBath: difference in cAMP appears to be stochastic variation
+baseline Dp34 is lower/better with less PDE2 and weaker D1R Phos - that must be stochastic, since both changes should increse cAMP and Dp34
+	      ctrl       blockM1
+GqaGTP	      25 d	 400sp/40 dend
+DAG	      2.4u d  	 3.7u sp/1.4u dend
+telenz	      0  	 114
+telenzm1RGq   0	 	 400
+AChm1RGq      		 0
+Higher Glu spine - 3 uM, with similar Glu dend = 200 nM (not surprising since spine is so small)
+Block M1 is now fine.
+
+Consider one more set of PKA phos DaD1RGS, and evaluate tolerance
+
+############## In between PKA phos DaD1RGS: 0.006 0.6, 0.15: DaBath, Theta, DaBath/noATP, Theta/noATP, DaBath/noATP/tol=0.005, Theta/noATP/tol=0.005 (use old nostim files)
+
+NEXT: Repeat all sims using (a) "ideal" tolerance/ATP and (b) "ideal" PKA phos DaD1RGs - may need to keep lower tolerance for other sims, e.g. dhpg
+Update alcohol sims based on Lovinger lecture of 5/22
+       Lower Da, higher calcium (NR2B and excitability), higher Glu (subsequent pulses in train) after chronic withdrawal
