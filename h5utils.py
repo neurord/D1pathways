@@ -156,7 +156,7 @@ def argparse(args):
     else:
         params=[]
     whole_pattern=pattern+'.h5'
-    print("pattern:", pattern, whole_pattern)
+    print("pattern:", whole_pattern)
 
     lastslash=str.rfind(pattern,'/')
     if lastslash > -1:
@@ -178,7 +178,7 @@ def argparse(args):
         ftuples = sorted(ftuples, key=lambda x:x[1])
     else:
         star=str.find(pattern,'*')
-        if star:
+        if star>-1:
             dash=str.rfind(pattern,'-',0,star)
             params=[pattern[dash+1:star]]
             ftuples,parlist=pu5.file_tuple(fnames,params)
