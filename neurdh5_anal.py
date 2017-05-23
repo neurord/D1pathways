@@ -38,6 +38,7 @@ import h5py as h5
 submembname='sub'
 dend="dend"
 spinehead="head"
+window_size=1  #number of seconds on either side of peak value to average for maximum
 #Spatial average (=1 to process) only includes the structure dend, and subdivides into bins:
 spatialaverage=0
 bins=10
@@ -357,11 +358,12 @@ for pnum in range(arraysize):
     print("        molecule  baseline  peakval   ptime    slope      min     ratio")
     for imol,mol in enumerate(plot_molecules):
       if out_location[mol]!=-1:
+        window=int(window_size/dt[imol])
         baseline[pnum,imol]=whole_plot_array[imol][pnum][sstart[imol]:ssend[imol]].mean()
         peakpt=whole_plot_array[imol][pnum][ssend[imol]:].argmax()+ssend[imol]
         auc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:]-baseline[pnum,imol])*dt[imol]
         peaktime[pnum,imol]=peakpt*dt[imol]
-        peakval[pnum,imol]=whole_plot_array[imol][pnum][peakpt-20:peakpt+20].mean()
+        peakval[pnum,imol]=whole_plot_array[imol][pnum][peakpt-window:peakpt+window].mean()
         lowpt=whole_plot_array[imol][pnum][ssend[imol]:].argmin()+ssend[imol]
         lowval[pnum,imol]=whole_plot_array[imol][pnum][lowpt-10:lowpt+10].mean()
         begin_slopeval=0.2*(peakval[pnum,imol]-baseline[pnum,imol])+baseline[pnum,imol]
