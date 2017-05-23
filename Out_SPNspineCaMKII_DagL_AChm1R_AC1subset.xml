@@ -35,6 +35,7 @@
     <OutputSpecie name="PKAcDaD1RGs"/>
     <OutputSpecie name="pDaD1RGs"/>
     <OutputSpecie name="GsD1R"/>
+    <OutputSpecie name="pGsD1R"/>
     <OutputSpecie name="GsaGTP"/>
 
     <OutputSpecie name="Glu"/>
@@ -61,11 +62,9 @@
     <OutputSpecie name="m1RGq"/>
     <OutputSpecie name="AChm1RGq"/>
 
-    <OutputSpecie name="AC5"/>
     <OutputSpecie name="AC5Gia"/>
     <OutputSpecie name="AC5GsaATP"/>
     <OutputSpecie name="AC5GsaGiaATP"/>
-    <OutputSpecie name="AC1"         />
     <OutputSpecie name="AC1GsaCamCa4ATP"     />
     <OutputSpecie name="AC1CamCa4ATP"   />
  
@@ -74,20 +73,25 @@
     <OutputSpecie name="PDE1CamCa4"/>
     <OutputSpecie name="PDE1CamCa4cAMP"/>
 
-    <OutputSpecie name="PDE10"/>
     <OutputSpecie name="PDE10cAMP"/>
+    <OutputSpecie name="PKAcPDE10"/>
+    <OutputSpecie name="PKAcPDE10cAMP"/>
     <OutputSpecie name="pPDE10"/>
+    <OutputSpecie name="pPDE10PP2A"/>
+    <OutputSpecie name="pPDE10PP2Ac"/>
     <OutputSpecie name="pPDE10cAMP"/>
-    <OutputSpecie name="PDE4"/>
+    
     <OutputSpecie name="PDE4cAMP"/>
+    <OutputSpecie name="PKAcPDE4"/>
+    <OutputSpecie name="PKAcPDE4cAMP"/>
     <OutputSpecie name="pPDE4"/>
+    <OutputSpecie name="pPDE4PP2A"/>
+    <OutputSpecie name="pPDE4PP2Ac"/>
     <OutputSpecie name="pPDE4cAMP"/>
 
-    <OutputSpecie name="PDE2"/>
     <OutputSpecie name="PDE2cAMP"/>
     <OutputSpecie name="PDE2cAMP2"/>
 
-    <OutputSpecie name="Plc"/>
     <OutputSpecie name="PlcGqa"/>
     <OutputSpecie name="Pip2"/>
     <OutputSpecie name="PlcCaPip2"/>
@@ -95,7 +99,6 @@
     <OutputSpecie name="Ip3"/>
     <OutputSpecie name="Dag"/>
 
-    <OutputSpecie name="Dgl"/>
     <OutputSpecie name="pDgl"/>
     <OutputSpecie name="CaDgl" />
     <OutputSpecie name="CapDgl" />
@@ -103,35 +106,36 @@
     <OutputSpecie name="DagCapDgl"/>
     <OutputSpecie name="2ag"/>
     
-    <OutputSpecie name="Pkc"/>
     <OutputSpecie name="PkcCa"/>
     <OutputSpecie name="PkcCaDag"/>
    
-    <OutputSpecie name="PP2B"/>
     <OutputSpecie name="PP2BCam"/>
     <OutputSpecie name="PP2BCamCa2C"/>
     <OutputSpecie name="PP2BCamCa2N"/>
     <OutputSpecie name="PP2BCamCa4"/>
     <OutputSpecie name="PP1"/>
 
-    <OutputSpecie name="PP2ABPR72"/>
-    <OutputSpecie name="PP2AB56d"/>
     <OutputSpecie name="PKAcPP2AB56d"/>
     <OutputSpecie name="pPP2A"/>
     <OutputSpecie name="PP2Acal"/>
 
-    <OutputSpecie name="CK"/>
     <OutputSpecie name="CKCamCa4"/>
     <OutputSpecie name="CKpCamCa4"/>
     <OutputSpecie name="CKp"/>
+    <OutputSpecie name="Dgl_CKCamCa4"/>
+    <OutputSpecie name="Dgl_CKpCamCa4"/>
+    <OutputSpecie name="CaDgl_CKCamCa4"/>
+    <OutputSpecie name="CaDgl_CKpCamCa4"/>
+    <OutputSpecie name="Dgl_CKp"/>
+    <OutputSpecie name="CKpPP1"/>
+    <OutputSpecie name="CKpCamCa4PP1"/>
 
-    <OutputSpecie name="PKA"/>
     <OutputSpecie name="PKAcAMP2"/>
     <OutputSpecie name="PKAcAMP4"/>
     <OutputSpecie name="PKAc"/>
     <OutputSpecie name="PKAr"/>
-
-    <OutputSpecie name="D32"/>
+    <OutputSpecie name="Epac1cAMP"/>
+    
     <OutputSpecie name="D32PKAc"/>
     <OutputSpecie name="D32p34"/>
     <OutputSpecie name="D32p34PP1"/>
@@ -143,7 +147,6 @@
     <OutputSpecie name="D32p34PP1PP2ABPR72"/>
     <OutputSpecie name="D32p34PP1PP2AB56d"/>
 
-    <OutputSpecie name="Cdk5D32"/>
     <OutputSpecie name="D32p75"/>
     <OutputSpecie name="D32p75PKAc"/>
     <OutputSpecie name="D32p75PP2ABPR72"/>

@@ -94,7 +94,7 @@
     <Specie name="AC1CamCa4ATP" id="AC1CamCa4ATP" kdiff="0" kdiffunit="mu2/s"/>
 
     <!-- cAMP, and degradation by PDEs, from Gs model -->
-    <Specie name="ATP"            id="ATP"           kdiff="74.8"  kdiffunit="mu2/s"/>
+    <!--Specie name="ATP"            id="ATP"           kdiff="74.8"  kdiffunit="mu2/s"/-->
     <Specie name="cAMP"           id="cAMP"          kdiff="86.4"  kdiffunit="mu2/s"/>
     <Specie name="AMP"            id="AMP"           kdiff="0"     kdiffunit="mu2/s"/>
 
@@ -757,11 +757,11 @@
     <!--2. AC5Gsa(GTP) + ATP    <-> AC5Gsa(GTP)ATP     -->
     <Reaction name = "AC5Gsa+ATP--AC5GsaATP reac" id="AC5Gsa+ATP--AC5GsaATP_id">
         <Reactant specieID="AC5Gsa"                />
-        <Reactant specieID="ATP"                    />
+        <!--Reactant specieID="ATP"                    /-->
         <Product  specieID="AC5GsaATP"             />
 
-        <forwardRate> 0.1276e-6    </forwardRate>
-        <!-- if no ATP:forwardRate> 0.2552    </forwardRate-->
+        <!--if ATP: forwardRate> 0.1276e-6    </forwardRate-->
+        <forwardRate> 0.2552    </forwardRate>
         <reverseRate> 0.2612e-03    </reverseRate>
     </Reaction>
     <!--3. AC5Gsa(GTP)ATP       <-> AC5Gsa(GTP) + cAMP   -->
@@ -814,11 +814,11 @@
     <!-- AC5GsaGia + ATP    <-> AC5GsaGiaATP       source: Dessauer CW, Gilman AG JBC 1997-->
     <Reaction name = "AC5GsaGia+ATP--AC5GsaGiaATP" id="AC5GsaGia+ATP--AC5GsaGiaATP">
         <Reactant specieID="AC5GsaGia"                />
-        <Reactant specieID="ATP"                    />
+        <!--Reactant specieID="ATP"                    /-->
         <Product  specieID="AC5GsaGiaATP"             />
 
-        <forwardRate> 0.01276e-6    </forwardRate>
-        <!-- if no ATP:forwardRate> 0.02552    </forwardRate-->
+        <!-- if ATP:forwardRate> 0.01276e-6    </forwardRate-->
+        <forwardRate> 0.02552    </forwardRate>
         <reverseRate> 0.02612e-03    </reverseRate>
     </Reaction>
     
@@ -906,11 +906,11 @@
 <!-- 1c) AC1GsaGTPCamCa4 + ATP <-> AC1GsaGTPCamCa4ATP    -->
     <Reaction name = "AC1GsaGTPCamCa4_ATP_Reac" id="AC1GsaGTPCamCa4_ATP_Reac">
 	<Reactant specieID="AC1GsaCamCa4"/>
-	<Reactant specieID="ATP"/>
+	<!--Reactant specieID="ATP"/-->
 	<Product specieID="AC1GsaCamCa4ATP"/>
 
-	<forwardRate>0.01e-3</forwardRate>
-	<!-- if no ATP: forwardRate>20e-3</forwardRate-->
+	<!-- if ATP: forwardRate>0.01e-3</forwardRate-->
+	<forwardRate>20e-3</forwardRate>
 	<reverseRate>2273e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -940,11 +940,11 @@
 <!-- 5b) AC1Cam + ATP <-> AC1CamATP    -->
     <Reaction name = "AC1CamCa4ATP_bind" id="AC1CamCa4ATP_bind">
 	<Reactant specieID="AC1CamCa4"/>
-	<Reactant specieID="ATP"/>
+	<!--Reactant specieID="ATP"/-->
 	<Product specieID="AC1CamCa4ATP"/>
 
-	<forwardRate>0.01e-3</forwardRate>
-	<!-- if no ATP:forwardRate>20</forwardRate-->
+	<!-- if ATP:forwardRate>0.01e-3</forwardRate-->
+	<forwardRate>20</forwardRate>
 	<reverseRate>2273e-3</reverseRate>
 	<Q10>0.2</Q10>
     </Reaction>
@@ -1033,7 +1033,7 @@
     <!--3. AMP             -> ATP              (in xpp: katp=10) -->
     <Reaction name = "AMP-ATP" id="AMP-AMP"> 
         <Reactant specieID="AMP"                    />
-        <Product specieID="ATP"                    />
+        <!--Product specieID="ATP"                    /-->
 	<!-- eliminate product if no ATP -->
         <forwardRate> 0.1e-03      </forwardRate>
         <reverseRate> 0.0           </reverseRate>

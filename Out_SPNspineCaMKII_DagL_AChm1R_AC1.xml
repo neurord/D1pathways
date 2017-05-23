@@ -88,7 +88,7 @@
     <OutputSpecie       name="AC1CamCa4"      />
     <OutputSpecie       name="AC1CamCa4ATP"   />
  
-    <OutputSpecie name="ATP"/>
+    <!--OutputSpecie name="ATP"/-->
     <OutputSpecie name="cAMP"/>
     <OutputSpecie name="AMP"/>
 

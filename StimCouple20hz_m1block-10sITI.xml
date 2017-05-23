@@ -4,6 +4,12 @@
    <!-- 20 Glu and Ca pulses / sec for 1 sec * 20 trains = 400 pulses -->
 <!--first burst of Da - full strength -->
 <!-- pulse 1 to produce 0.5 uM alone -->
+<InjectionStim specieID="telenz" injectionSite="dend:submembrane">
+        <onset>               2000          </onset>
+        <duration>            60      </duration>
+        <rate>                6.0         </rate>
+</InjectionStim>
+
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            15              </duration>
@@ -151,7 +157,7 @@
 <InjectionStim specieID="GluGbuf" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
         <duration>            5              </duration>
-        <rate>                4.5           </rate>
+        <rate>                1.125           </rate>
         <period>              50             </period>
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
@@ -176,12 +182,6 @@
         <end>                 20999          </end>
         <numTrains>           20             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>  
-</InjectionStim>
-
-<InjectionStim specieID="telenz" injectionSite="dend:submembrane">
-        <onset>               2000          </onset>
-        <duration>            60      </duration>
-        <rate>                6.0         </rate>
 </InjectionStim>
 
 </StimulationSet>

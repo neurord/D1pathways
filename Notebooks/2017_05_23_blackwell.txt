@@ -1,0 +1,28 @@
+2017 May 23
+
+############## In between PKA phos DaD1RGS: 0.006 0.6, 0.15: DaBath, Theta, DaBath/noATP, Theta/noATP, DaBath/noATP/tol=0.005, Theta/noATP/tol=0.005 (use old nostim files)
+>>>>>>>>>>>
+window=4s        pDaD1RGs pGsD1R   GsD1R  DaD1RGs    cAMP     Epac1cAMP	  D32p34   d32p75  sim time
+DaBath	 (ss/p) 0/309	  1/xx	  419/241  5/264     7.7u       8/745	  3.8u	   xx      xx 21.5
+Theta		0/4	  0/24	  422/339  4/117     30/617    12/134	  370/xx   xx	   xx
+DaBath/noATP   0/362	0.5/313	  419/252  5/242     7.5u	1/749	  3.8u	   7.37u   17.7	
+Theta/noATP    0/7	1/42	  418/341  5/116     38/618	15/178	  395/3.1  7.2u	   18.3
+DaB/noATP/005   0/352	1.8/315	  418/251  4/374     7.3u	18/735	  3.8u	   7.37u   13.1	
+Theta/noATP/005  0/7	1/39	  419/417  5/119     43/510	15/160	  420/3.0u  7.3u   14.1
+
+------->tolerance=0.005 is considerably faster.
+-------->Mostly results appear to be the same, except that cAMP (and AC5GsaATP and D32p34) are higher with tol=0.002 - this consistency suggests may be "real" - saving 4 hours * 10 not worth it
+>>>>>>>neurdh5_anal seems to be incorrectly reporting amplitude - is this problem with plot or bug in code?
+------->Report peak point, amplitude, and the surrounding values that are avereaged
+
+NEXT: Repeat all sims using (a) "ideal" tolerance/ATP and (b) "ideal" PKA phos DaD1RGs
+
+Change size of window for temporal average - from +/- 20 to +/0 10
+###### Keep 0.002 tolerance, keep PKA phos rate, use no-ATP for all sims
+--------> Copy Rxn*noATP, IC*noATP, Out*noATP to file names currently used in Model files to save time
+	  update dhpg, CyA Rxn files and Out*subset Rxn file accordingly
+	  update all Stim files to use lower Glu (1.125 for 1 sp and 2.25 for 2 sp)
+	  Update all Model files to use tolerance=0.002 (except for long sims to save time)
+
+Update alcohol sims based on Lovinger lecture of 5/22
+       Lower Da, higher calcium (NR2B and excitability), higher Glu (subsequent pulses in train) after chronic withdrawal
