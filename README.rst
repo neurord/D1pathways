@@ -17,7 +17,9 @@ java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar Modelfile.xml
 
 Variations on running the models, e.g. by specifying initial conditions from a different (e.g. equilibrium) simulation, or running multiple trials, are illustrated in NeuroRD.bat
 
+**Model Development and Simulation Steps**
 *Step 1. Merge reactions from modified version of Rodrigo's model and BoHung's model*
+
 Notes in the RXN file indicate whether the reaction came from the Gs model (Oliveira 2012) or Gq model (Kim 2013)
 DONE. 1A. Merge reactions
 DONE. 1B. Use the smaller, 1 spine morphology
@@ -28,6 +30,7 @@ DONE. Check thermodynamic balance of some sets of reactions.
 DONE. Create spreadsheet with rates and references to rates
 
 *Step 2. Assays and adjustment to achieve correct basal cAMP and calcium*
+
 DONE. 2A. assays for PLC, Da binding to DR1 (very small subset of reactions) - PLCassay/, DRGassay/
 DONE. 2B. IC and RXN for Gs production and binding (very small subset of reactions) - cAMPassay/
 DONE. 2C. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC - whole model but 3-5 comps (dend with sm)
@@ -35,6 +38,7 @@ DONE. 2D. assays of DARPP32 phos in response to bath applied Da and Ca, as in Li
 DONE. 2E. Include Gi reactions here to help decrease basal cAMP - simulate ss in whole, multi-comp model (witih spine)
 
 *Step 3. Interaction between Gs and Gq/calcium pathways*
+
 DONE. 3A. CaMKII inhibition of Dagl
 POSTPONE 3B. Replace the D2R parameters with m4R parameters in the D1R model. Higher affinity of m4R and higher ACh will decrease basal cAMP, may need to add AC1 or otherwise tweak params to fix basal cAMP and Dp34PP1.
 POSTPONE 3C. PKA enhances of Gq or Gi GAP activity?  Via RGS?  Speed GaGTP production according to Chuhma et al.?
@@ -42,6 +46,7 @@ DONE 3D. Add in Epac (from Chay et al.) or AKAR (from Nair ... Kotaleski) to qua
 IN PROGRESS 3E. Re-run all assays to verify, including Uchigashima bath application simulations - still valid?
 
 *Step 4.  Simulation experiments: 20 Hz vs theta*
+
 DONE 4A. Stim files: Glu: how to account for release refractoriness and receptor desensitization (Ca and mGluR)?
     constrain by Lovinger imaging or Asia calcium dynamics model
 DONE. 4B. Stim files: Da and ACh: what pattern of release occurs (Da from Lovinger)

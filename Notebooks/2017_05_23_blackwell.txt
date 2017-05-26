@@ -3,8 +3,8 @@
 ############## In between PKA phos DaD1RGS: 0.006 0.6, 0.15: DaBath, Theta, DaBath/noATP, Theta/noATP, DaBath/noATP/tol=0.005, Theta/noATP/tol=0.005 (use old nostim files)
 >>>>>>>>>>>
 window=4s        pDaD1RGs pGsD1R   GsD1R  DaD1RGs    cAMP     Epac1cAMP	  D32p34   d32p75  sim time
-DaBath	 (ss/p) 0/309	  1/xx	  419/241  5/264     7.7u       8/745	  3.8u	   xx      xx 21.5
-Theta		0/4	  0/24	  422/339  4/117     30/617    12/134	  370/xx   xx	   xx
+DaBath	 (ss/p) 0/309	  1/xx	  419/241  5/264     7.7u       8/745	  3.8u	   xx      18.5
+Theta		0/4	  0/24	  422/339  4/117     30/617    12/134	  370/xx   xx	   19.7
 DaBath/noATP   0/362	0.5/313	  419/252  5/242     7.5u	1/749	  3.8u	   7.37u   17.7	
 Theta/noATP    0/7	1/42	  418/341  5/116     38/618	15/178	  395/3.1  7.2u	   18.3
 DaB/noATP/005   0/352	1.8/315	  418/251  4/374     7.3u	18/735	  3.8u	   7.37u   13.1	
@@ -12,6 +12,7 @@ Theta/noATP/005  0/7	1/39	  419/417  5/119     43/510	15/160	  420/3.0u  7.3u   
 
 ------->tolerance=0.005 is considerably faster.
 -------->Mostly results appear to be the same, except that cAMP (and AC5GsaATP and D32p34) are higher with tol=0.002 - this consistency suggests may be "real" - saving 4 hours * 10 not worth it
+
 >>>>>>>neurdh5_anal seems to be incorrectly reporting amplitude - is this problem with plot or bug in code?
 ------->Report peak point, amplitude, and the surrounding values that are avereaged
 
@@ -24,5 +25,36 @@ Change size of window for temporal average - from +/- 20 to +/0 10
 	  update all Stim files to use lower Glu (1.125 for 1 sp and 2.25 for 2 sp)
 	  Update all Model files to use tolerance=0.002 (except for long sims to save time)
 
-Update alcohol sims based on Lovinger lecture of 5/22
+05/26/2017
+>>>>>>>>>>>>>> bath: SUPER				simtime
+   	cAMP   Dp34    Dp34PP2B Total   Dp75
+Basal   49     585     155      740     10.5
+Ca      76     235n    315n     551     7.5		23.3h
+Da      7.4u   3.9u    0.8     	4.7u    7.6		20.0h
+DaCa    4.2u   2.5u    1.5     	4.0u    6.0		26.25h
+
+>>>>>>>>>>>>>> block: SUPER
+   	cAMP   Dp34    Dp34PP2B Total   Dp75			simtime
+CyA      51    750     250      1000    NC	1.7x Dp34 inc	15.7h
+OA       47    742     180      922     36.7u	1.6x Dp34 inc	17h
+Pap	208    2.3     554	2.8	8.9	     	  	17h 
+Roli	50     598     160	760	NC			16.5
+
+>>>>>>>>>> No ACh
+transient increase in cAMP: 58, 82, 83, due to transient increase in AC5GsaATP.  Once AC5GsaGiaATP dec from ~25 to 0, AC5GsaATP decreases back to equilibrium
+GiaGTP decreases to 0, Gq dec from 11 to 2-3
+
+>>>>>>>>>> DaDur
+	 cAMP	PKAc	Dp34	pAKAR	Epac	pAKARtime (sec)
+0.1	 239  	15	2u	561	81	118
+0.3	 497	17	2.2	664	96	109
+1.0	 884	21	2.6	800	142	97
+10	 592	24	3.1	1126	74	111
+
+Still have problem with 10s being much greater than 1s.  Peaktime is earlier for longer stim due to higher overall cAMP. Decay is faster for 0.1 (peaks later but drops to 200 by 214s, others > 200 at 114s
+
+>>>>>>>>>> Uchi
+
+----------->Update multi-spine sims
+----------->Update alcohol sims based on Lovinger lecture of 5/22
        Lower Da, higher calcium (NR2B and excitability), higher Glu (subsequent pulses in train) after chronic withdrawal
