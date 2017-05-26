@@ -96,7 +96,6 @@ for fnum,ftuple in enumerate(ftuples):
         parlist=p[2]
     plot_array=[]
     time_array=[]
-    temptime=[]
     #
     ##########################################################
     #   Extract region and structure voxels and volumes
@@ -160,7 +159,7 @@ for fnum,ftuple in enumerate(ftuples):
         for imol,molecule in enumerate(plot_molecules):
           if out_location[molecule]!=-1:
             molecule_pop,time=h5utils.get_mol_pop(data,out_location[molecule],maxvols,trials)
-            temptime.append(time)
+            time_array.append(time)
             #calculate region means
             headstruct,RegionMeans,RegMeanStd=h5utils.region_means_dict(molecule_pop,region_dict,time,molecule,trials)
             #calculate region-structure means
@@ -187,21 +186,17 @@ for fnum,ftuple in enumerate(ftuples):
                 #TEST THIS PART FOR MULTIPLE SPINES/TRIALS
                 if numfiles>1:
                     plot_array.append(np.mean(spinemeans,axis=0)[:,spine_index])
-                    time_array.append(time)
                 else:
                     plot_array.append(spinemeans[:,:,spine_index])
-                    time_array.append(temptime)
             else:
                 if numfiles>1:
                     plot_array.append(np.mean(OverallMean,axis=0))
-                    time_array.append(time)
                     #plot_array dimensions=number of molecules x sample times
                 else:
                     #dimensions of plot_array=num molecules x num trials x sample times
                     plot_array.append(OverallMean)
-                    time_array.append(temptime)
             if imol==0:
-                print("samples", len(time), "maxtime", time[-1], "conc", np.shape(molecule_pop), np.shape(plot_array))
+                print("samples", len(time), "maxtime", time[-1], "conc", np.shape(molecule_pop), np.shape(plot_array), 'time',np.shape(time_array))
             #
             ############# write averages to separate files #######################3
             if outputavg:
@@ -308,7 +303,7 @@ for fnum,ftuple in enumerate(ftuples):
     else:
         #dimensions of plot_array=num molecules x num trials x sample times
         whole_plot_array=plot_array
-        whole_time_array=time_array
+        whole_time_array=[[time_array[imol] for trial in trials] for imol in range(len(plot_molecules))]
     if 'event_statistics' in data['trial0']['output'].keys() and show_inject:
         print ("seeds", seeds," injection stats:")
         for inject_sp,inject_num in zip(data['model']['event_statistics'][:],data['trial0']['output']['event_statistics'][0]):

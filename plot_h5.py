@@ -55,7 +55,7 @@ def plottrace(plotmol,timearray,plotarray,parval,fig,colinc,scale,parlist,textsi
           for imol in range(len(plotmol)):
                #axis[imol].autoscale(enable=True,tight=False)
                #change label back to parval[pnum] after figures created
-               axis[imol].plot(timearray[imol][pnum][:],plotarray[imol][pnum][:],label=str(pnum)+parval[pnum],color=mycolor)
+               axis[imol].plot(timearray[imol][pnum][:],plotarray[imol][pnum][:],label=parval[pnum],color=mycolor)
                axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
                axis[imol].tick_params(labelsize=textsize)
           axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
