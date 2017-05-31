@@ -54,7 +54,73 @@ GiaGTP decreases to 0, Gq dec from 11 to 2-3
 Still have problem with 10s being much greater than 1s.  Peaktime is earlier for longer stim due to higher overall cAMP. Decay is faster for 0.1 (peaks later but drops to 200 by 214s, others > 200 at 114s
 
 >>>>>>>>>> Uchi
+100 ms still goes negative if use 30- 40 sec or 20-40 sec for baseline.  Try 10-40 sec.  Perhaps it would be better to average over ALL sims.  Even using 10-40s gives crazy results, though 1s and 5s look great.
+May need to repeat these sims using longer time - e.g. 150s
+    	    	   dhpg= 0    	    dhpg= 1 	       dhpg= 5			dhpg= 25 
+auc: dur= 100m auc 99.4366739631 ratio 15.0459057514   ratio 29.1799285082	ratio 39.0516192594	
+auc: dur= 1s auc 697.458196497 ratio 3.43402910293     ratio 7.72234764023	ratio 8.40035290563
+auc: dur= 5s auc 2444.65749499 ratio 2.1432604535      ratio 3.2322485174	ratio 3.88016924547
+
+New results, baseline from 20-40 sec, average over all sims:   MUCH BETTER
+ new auc    dhpg= 0    	    dhpg= 1      dhpg= 5   dhpg= 25 
+dur= 100m    343.0	   4.179  	 8.30	   11.279    
+dur= 1s	     888.0	   3.160	 5.900	   6.549
+dur= 5s	     2599.0	   2.02		 3.149	   3.79
+
+BEAUTIFUL. - similar to 03/17 results.  A little distressing that 100ms results are strongly dependent on baseline time
+
+baseline from 24-40s:  Notice that old ratio is wildly high, but new ratio  varies very little
+old/new	      dhpg= 0			dhpg= 1		dhpg= 5		dhpg= 25
+dur= 100m  auc 43.0 new auc 392.0    ratio 39.0/3.78	ratio 71.0/7.4	ratio 97.0/10.0
+dur= 1s auc 768.0  new auc 937.0     ratio 3.0/3.04	ratio 7.0/5.64	ratio 8.0/6.26
+dur= 5s auc 2639.0 new auc 2648.0    ratio 2.0/2.0	ratio 3.0/3.11	ratio 4.0/3.74
+
+20hz vs theta
+1. 20hz is now much lower than theta for DaDec3, perhaps similar for DaDec2
+2. M1 block lowers PkcCaDag and 2ag in dendrite for both theta and 20hz
+3. M4 block enhances cAMP, Dp34, Epac1 for bot h20hz and theta (though very little)
+
+Signature: area above threshold: 800 1000 75 150     	    using 800 1000 75 100		using 800 1200 75 100  
+	   	      LTPdend sp	LTD dend spine 	    LTPdend sp	LTD dend spine       LTPdend sp	   LTD dend spine
+('20hz', 'CKp')       [ 0.  0.] 	[ 6.452  0.706]	    [ 0.  0.] 	**[ 6.45  3.69]	     [ 0.  0.] 	   [ 6.45  3.69]
+('20hz', 'Reb_lowDaDec2') [ 0.  0.378] 	[ 0.854  0.062]	    [ 0.  0.38] *[ 0.85  0.81]	     [ 0.  0.] 	   [ 0.85  0.81]
+('20hz', 'Reb_lowDaDec3') [ 0.  0.] 	[ 2.059  0.163]	    [ 0.  0.] 	*[ 2.06  1.4 ]	     [ 0.  0.] 	   [ 2.06  1.4 ]
+('theta', 'CKp') 	  [ 0.  0.121] 	[ 9.959  2.78]	    [ 0.  0.12] **[ 9.96  7.42]	     [ 0.  0.] 	   [ 9.96  7.42]
+('theta', 'Reb_DaDec1') [ 15.682 19.942] [ 1.261  0.140 ] **[ 15.68  19.94] [ 1.26  0.91]    [ 15.68 7.14] [ 1.26  0.91]
+
+Block: Signature: area above threshold: using 800 1000 75 100  	 using 800 1200 75 100   
+       		  LTPdend sp	    LTD dend spine      LTPdend sp	    LTD dend spine 
+('20hz', 'M1') 	  [ 0.  0.] 	    [ 0.    0.02]	[ 0.  0.] 	    [ 0.    0.02]  B!!
+('20hz', 'M4') 	  [ 0.    0.01]     [ 0.28  0.49]	[ 0.  0.] 	    [ 0.28  0.49]
+('20hz', 'MGlu')  [ 0.  0.] 	    [ 1.01  0.88]	[ 0.  0.]	    [ 1.01  0.88]	
+('theta', 'M1')   [  6.84  17.78]   [ 0.    0.03]	[ 6.84  6.01] 	    [ 0.    0.03]
+('theta', 'M4')   [ 10.95  15.15]   [ 0.86  0.73]	[ 10.95   4.27]     [ 0.86  0.73]
+('theta', 'MGlu')   [ 12.26   1.99] [ 1.07  0.76]	[ 12.26   0.08]B!!  [ 1.07  0.76]
+Interesting that block M4 does not enhance signature above threshold.  Possibly noise or possibly effect on other molecules.
+Reason: increases cAMP, cAMP activated molecules, and signature early during the burst  - while still below threshold.
+
+M1 block does block LTD, and lowers LTP signature, but not enough > 50% reduction in dendrite.  Could definitely raise the dendrite threshold.  BUT, dendritic signature for theta has similar amplitude for all three blocks.  Biggest difference is that M1 block reachs that peak much more slowly.  Having a duration threshold would help here.  BUT, still not that different.  Double  check that telenzepine is really blocking all M1.  Also, evaluate quantity of Glu bound to dendrite.  
+mGluR block does block LTP (due to spine, of course), lowers LTD signature, but not enough (50% reduction)
+
+LTD spine signature is extremely noisy.  LTP dendrite signature is quite transient, perhaps need a fairly long LTD signal.  Likely should add LTD duration threshold?  Maybe short LTP duration threshold.  Should it be continuous or total time?  Perhaps ignore brief bouts below threshold?  Maybe two thresholds - time above higher while not dropping below lower?
+
+Repeat M1 blocked simulation with 0 diffusion of Glu? Using diffusion=0.1, GluMGluRGq is quite low in dendrite (0.02 of AChm1RG level), but maybe that is enough when ACh is blocked.
+
+ACh variants:
+area above threshold using 800 1200 75 100
+     	   	     LTP dend sp    LTD dend sp
+('20hz', 'flat')     [ 0.  0.] 	    [ 0.57  0.75]
+('20hz', 'noB')      [ 0.  0.] 	    [ 0.02  0.24] *Blocked?
+('20hz', 'noDip')    [ 0.  0.] 	    [ 2.28  1.71]
+('theta', 'flat')    [ 7.71  4.4 ]  [ 0.84  0.67]
+('theta', 'noB')     [ 13.93  4.8 ] [ 0.12  0.2 ]
+('theta', 'noDip')   [ 12.5   4.83] [ 2.3  1.4]
+no Burst of ACh may block LTD for 20hz; otherwise the different ACh variations don't do much
+
+---------->if GluDif=0 blocks, then (1) try GluDif=0.01, then (2) will repeat 20hz&theta sims with lower Glu diffusion (3 days). May need slow Glu Diffusion for good steady state? Keep dhpg diffusion with Uchi sims. 
 
 ----------->Update multi-spine sims
 ----------->Update alcohol sims based on Lovinger lecture of 5/22
        Lower Da, higher calcium (NR2B and excitability), higher Glu (subsequent pulses in train) after chronic withdrawal
+       How much lower is Da?  Not a lot, 25%?  Not published yet.  Create two more sets of sims NMDa + lowr Da, to use alone or with Alcohol IC
+       .
