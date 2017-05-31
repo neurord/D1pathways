@@ -235,7 +235,7 @@ if len(ltd_molecules):
     pu5.plot_signature(auc_label,sig_ltp,time,figtitle,sign_title,textsize,thresh,sig_ltd)
 else:
     pu5.plot_signature(auc_label,sig_ltp,time,figtitle,sign_title,textsize,thresh)
-print("area above threshold for LTP and LTD")
+print("area above threshold for LTP and LTD using", thresh)
 for par in range(len(parval)):
-    print(parval[par], ltp_above_thresh[par], ltd_above_thresh[par])
+    print(parval[par], np.round(ltp_above_thresh[par],2), np.round(ltd_above_thresh[par],2))
 

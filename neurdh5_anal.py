@@ -399,15 +399,21 @@ if showplot:
 #
 #This code is very specific for the Uchi sims where there are two parameters: dhpg and duration
 #it will work with other parameters, as long as there are two of them. Just change the auc_mol
-if auc_mol and auc_mol in plot_molecules and 'dhpg' in parlist[1]:
+if auc_mol and auc_mol in plot_molecules and 'dhpg' in params:
+    newauc=np.zeros((arraysize,num_mols))
+    molnum=plot_molecules.index(auc_mol)
+    newbaseline=baseline[:,molnum].mean()
+    for pnum in range(arraysize):
+        for imol,mol in enumerate(plot_molecules):
+            if out_location[mol]!=-1:
+                newauc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:]-newbaseline)*dt[imol]
     dhpg0index=np.zeros(len(parlist[0]))
     for i,dhpg in enumerate(np.sort(parlist[1])):
         for j,dur in enumerate(np.sort(parlist[0])):
             pnum=parval.index((dur,dhpg))
             if i==0:
                 dhpg0index[j]=pnum
-            molnum=plot_molecules.index(auc_mol)
-            print('auc: dur=', dur, 'dhpg=', dhpg, 'auc',auc[pnum][molnum], 'ratio', auc[pnum][molnum]/auc[dhpg0index[j]][molnum])
+            print('dur=', dur, 'dhpg=', dhpg, 'auc',np.round(auc[pnum][molnum]), 'ratio', np.round(auc[pnum][molnum]/auc[dhpg0index[j]][molnum]), 'new auc',np.round(newauc[pnum][molnum]), 'ratio', np.round(newauc[pnum][molnum]/newauc[dhpg0index[j]][molnum],2))
 
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values

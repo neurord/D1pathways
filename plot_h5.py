@@ -36,14 +36,18 @@ def plottrace(plotmol,timearray,plotarray,parval,fig,colinc,scale,parlist,textsi
           #First, determine the color scaling
           if len(parlist)==0:
                mycolor=[0,0,0]
+               plotlabel=''
           else:
-               if np.shape(parlist[1])[0]==0:
-                    color_index=int(parlist[0].index(parval[pnum])*colinc[0]*partial_scale)
+               if np.shape(parlist[1])[0]==0 or np.shape(parlist[0])[0]==0:
+                    if np.shape(parlist[1])[0]==0:
+                         par_index=0
+                    else:
+                         par_index=1
+                    color_index=int(parlist[par_index].index(parval[pnum])*colinc[par_index]*partial_scale)
                     mycolor=colors.colors[color_index]
-               elif np.shape(parlist[0])[0]==0:
-                    color_index=int(parlist[1].index(parval[pnum])*colinc[1]*partial_scale)
-                    mycolor=colors.colors[color_index]
+                    plotlabel=parval[pnum]
                else:
+                    plotlabel=parval[pnum][0]+'-'+parval[pnum][1]
                     if len(parlist[1])<len(parlist[0]):
                          map_index=parlist[1].index(parval[pnum][1])
                          color_index=int(parlist[0].index(parval[pnum][0])*colinc[0]*partial_scale)
@@ -55,7 +59,7 @@ def plottrace(plotmol,timearray,plotarray,parval,fig,colinc,scale,parlist,textsi
           for imol in range(len(plotmol)):
                #axis[imol].autoscale(enable=True,tight=False)
                #change label back to parval[pnum] after figures created
-               axis[imol].plot(timearray[imol][pnum][:],plotarray[imol][pnum][:],label=parval[pnum],color=mycolor)
+               axis[imol].plot(timearray[imol][pnum][:],plotarray[imol][pnum][:],label=plotlabel,color=mycolor)
                axis[imol].set_ylabel(plotmol[imol]+' (nM)',fontsize=textsize)
                axis[imol].tick_params(labelsize=textsize)
           axis[imol].set_xlabel('Time (sec)',fontsize=textsize)
@@ -118,14 +122,14 @@ def plot_signature(condition,traces,time,figtitle,sign_title,textsize,thresholds
                     color_index=int( i%num_par *(255/num_par) )
                     numpoints=np.shape(traces[i])[0]
                     newtime = np.linspace(0,time[1]*(numpoints-1), numpoints)
+                    labl=cond[0][0:cond[0].rfind(' ')]
                     if j==0:
-                         labl=cond[row][0][0:cond[row][0].rfind(' ')]
                          axis[j].plot(newtime,traces[i,:,row],label=labl,color=colors2D[map_index].__call__(color_index))
                     else:
                          axis[j].plot(newtime,traces[i,:,row],color=colors2D[map_index].__call__(color_index))
-                    axis[0].legend(fontsize=legtextsize, loc='lower right')
                     if plot_ltd:
                          axis[j+1].plot(newtime,moretraces[i,:,row],color=colors2D[map_index].__call__(color_index))
+               axis[0].legend(fontsize=legtextsize, loc='lower right')
                axis[j].set_ylabel(domain[row],fontsize=textsize)
                axis[j].tick_params(labelsize=textsize)
                #fix this threshold plot to work with multiple spines: thresh[1]->row=1:spines, thresh[3]-> row=1:spines
