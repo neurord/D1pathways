@@ -79,12 +79,12 @@
         <NanoMolarity specieID="pPDE4PP2A"          value="40" />
 	<NanoMolarity specieID="pPDE4cAMP"      value="0" />
 
-        <NanoMolarity specieID="PDE2"               value="672" />
+        <NanoMolarity specieID="PDE2"               value="1350" />
         <NanoMolarity specieID="PDE2cAMP"            value="0" />
         <NanoMolarity specieID="PDE2cAMP2"           value="0" />
 
 <!-- cytosolic molecules -->
-        <NanoMolarity specieID="ATP"                  value="1998940" />
+        <!--NanoMolarity specieID="ATP"                  value="1998940" /-->
         <NanoMolarity specieID="cAMP"                 value="50" />
         <NanoMolarity specieID="AMP"                  value="0" />
 	<NanoMolarity specieID="Epac1cAMP"            value="25.0"/>
@@ -214,7 +214,8 @@
         <NanoMolarity specieID="Gsabg"               value="1680" />
         <NanoMolarity specieID="GsD1R"                value="200" />
         <NanoMolarity specieID="DaD1RGs"              value="0" />
-        <NanoMolarity specieID="pDaD1RGs"              value="0" />
+        <NanoMolarity specieID="pDaD1RGs"             value="0" />
+        <NanoMolarity specieID="pGsD1R"              value="0" />
         <NanoMolarity specieID="GsaGTP"              value="0" />
         <NanoMolarity specieID="GsaGDP"              value="0" />
         <NanoMolarity specieID="Gbg"                 value="3360" />
@@ -243,7 +244,7 @@
         <NanoMolarity specieID="CaDgl"       value="350"   />
         <NanoMolarity specieID="DagCaDgl"     value="50"   />
         <NanoMolarity specieID="pDgl"         value="20"  />
-        <NanoMolarity specieID="pCaDgl"       value="0"   />
+        <NanoMolarity specieID="CapDgl"       value="0"   />
         <NanoMolarity specieID="PIkinase"    value="560"    />
         <NanoMolarity specieID="Ip3degPIk"   value="0"    />
         <NanoMolarity specieID="Ip3"         value="90"  />
@@ -315,8 +316,8 @@
         <PicoSD specieID="AC5Gsa"                  value="0"  />
         <PicoSD specieID="AC5GsaATP"               value="5"  />
         <PicoSD specieID="AC5Ca"                   value="0"  />
-        <PicoSD specieID="AC5CaGsa"                value="0"  />
-        <PicoSD specieID="AC5CaGsaATP"             value="0"  />
+        <PicoSD specieID="AC5GsaCa"                value="0"  />
+        <PicoSD specieID="AC5GsaCaATP"             value="0"  />
 	<PicoSD specieID="AC5Gia"                  value="240"/>
         <PicoSD specieID="AC5GsaGia"               value="0"  />
         <PicoSD specieID="AC5GsaGiaATP"            value="10" />
