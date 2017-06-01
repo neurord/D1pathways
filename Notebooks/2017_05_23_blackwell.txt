@@ -119,8 +119,40 @@ no Burst of ACh may block LTD for 20hz; otherwise the different ACh variations d
 
 ---------->if GluDif=0 blocks, then (1) try GluDif=0.01, then (2) will repeat 20hz&theta sims with lower Glu diffusion (3 days). May need slow Glu Diffusion for good steady state? Keep dhpg diffusion with Uchi sims. 
 
------------>Update multi-spine sims
------------>Update alcohol sims based on Lovinger lecture of 5/22
+>>>>>>>>>>>>>>>>>>>> Evaluation of Glu diffusion to dendritic GqaGTP:
+		     dendrite						spine
+MgluR: not saturating.  Decreases from 110 to 70 during theta		MgluR dec to 0 during stim
+GLuMgluR: increasing from 0.5 to 3     	      	 			inc to 40
+MgluRGq: inc from 8 to 20  during stim,					inc to 200   
+GluMgluRGq: inc from 2 to 25 during stim BUT, not with Gludif=0		inc to 400
+m1R: ~15 throughout    	     	    	      	       			NA
+m1RGq: dec from 380 to 250 during stim (not saturating)			NA
+AChm1R: ~0.5 throughout							NA
+AChm1RGq: inc from 35 to 150 during stim				NA
+Gqabg: decreasing from 4080 to 4020 during stim				dec from 5200 to 4400, GqGTP inc to 300
+GqaGTP increasing from 10 to 40 during stim.  increasing  from 10 to 30 with MGlu block - still quite large due to M1R
+       Basal Dec to 0 with M1 block, but still increases to 25 due to MGlu part, unless Glu diffusion=0 - this is problem
+-----------> shows contribution of dendritic mGluRs to GqaGTP production
+----------> MgluR is saturating, but Gqabg in spine head is not.  MgluR is in spine head, so diffusion cannot be 0.
+Use NeuroRDviz to evaluate Glutamate gradient with diffusion=0.1.  Still see GluMgluRGq in dend sm.  Cannot have diffusion=0 because MgluR is in head, not PSD.  Glu is diffusing with high concentration to neck.  Try diffusion = 0.01.
+Dag:	 dend dec from 2.5u to 1.6u with M1 block - not sufficient, due to glu diffusion?  Or due to PlcCa?
+	 spine dec from 4.5u to 2u with MGlu block - non zero due to PlcCaPip2 activity 
+PkcCaDag: spine: correspondingly decreased with Mglu Block, but not M1. dend: 30% Dec with m1 block
+DagCaDgl: spine: correspondingly decreased with Mglu Block, but not M1. dend: 30% Dec with m1 block
+PlcCaGqaPip2 - not zero with MGlu block.
+How is MGlu being blocked?  By 0 stimulation - basal Glu is still present.  Glu is in equilibrium with GluOut.  GluOut irreversibly binds to Gbuf, but there is none when no Glu stim.  Should make GluOut - Glu rate = 0.
+
+>>>>>>>>>>> Results of GluDif=0.01 and Kb=0 for Glu -> GluOut (for mGluR block only)
+PlcCaGqaPip2 - slightly lower for M1 block (peak=0.51, vs 0.85 before), ~10-15% lower Dag for M1 block
+DagCaDgl is also lower for M1 block using slower GluDif: - lower basal, and peak of 162 vs 174.
+Dag and PkcCaDag are lower in spine for MGluR block (as expected).
+The lower diffusion has trivial (no) effect on Glu bound MgluR (in M4 block case), suggesting that either (a) glu diffusion constant not important when there is basal glutamate (and M1 block differences are stochastic), or (b) Glu diffusion / contribution is only important when m1 is blocked - yes, lower GluMGluRGq with the lower Glu Diffusion
+
+Bigger issue: PlcCa is still too active. When mGluR is blocked in spine, there is no PlcCaGqa, but there is still plenty of calcium to produce Dag.
+
+---------------> Use this lower Glu diffusion and more complete block of mGluR activation.  Re-run all simulations
+
+----------->Update multi-spine sims: Glu diffusion
+----------->Update alcohol sims based on Lovinger lecture of 5/22 (and new Glu diffusion)
        Lower Da, higher calcium (NR2B and excitability), higher Glu (subsequent pulses in train) after chronic withdrawal
-       How much lower is Da?  Not a lot, 25%?  Not published yet.  Create two more sets of sims NMDa + lowr Da, to use alone or with Alcohol IC
-       .
+       How much lower is Da?  Not a lot, 25%?  Not published yet.  Create two more sets of sims NMDa + lowr Da, to use alone or with Alcohol IC. DONE.

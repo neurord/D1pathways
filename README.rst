@@ -15,13 +15,13 @@ Information: goal/plan of the days work, e.g. data trying to simulation
 **Modelxxx.xml contain the entire model specification**, which combines Reaction file (Rxn*.xml), Morphology file (Morph*.xml), initial conditions file (IC*.xml), output file (Out*.xml) and stimulation (Stim*.xml).  Most simulation experiments involve changing the stimulation. To run simulations, use NeuroRDv3.2.3:
 java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar Modelfile.xml
 
-Variations on running the models, e.g. by specifying initial conditions from a different (e.g. equilibrium) simulation, or running multiple trials, are illustrated in NeuroRD.bat
+Variations on running the models, e.g. by specifying initial conditions from a different (e.g. equilibrium) simulation, or running multiple trials, are illustrated in NeuroRD.bat, or explained in neurord/stochdiff/README.rst
 
 **Model Development and Simulation Steps**
+
 *Step 1. Merge reactions from modified version of Rodrigo's model and BoHung's model*
 
-Notes in the RXN file indicate whether the reaction came from the Gs model (Oliveira 2012) or Gq model (Kim 2013)
-A. DONE. Merge reactions
+A. DONE. Merge reactions. Notes in the RXN file indicate whether the reaction came from the Gs model (Oliveira 2012) or Gq model (Kim 2013)
 B. DONE. Use the smaller, 1 spine morphology
 C. DONE. Create initial IC file - BALANCE ALL SPECIES, concentration and total PKA, etc in dend sm and spine head
 Compare rate constants with xpp model and Oliveira model: which rates match references theirin, which ones do not match references, which rates don't have references.
