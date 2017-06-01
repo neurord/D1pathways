@@ -14,7 +14,6 @@
 #To avoid information scrolling on screen (and not getting a huge .log file):
 #> /dev/null 
 
-
 #To run things in parallel (instead of batch file):
 #parallel --gnu java -Dstochdiff.writers=text -Dstochdiff.log=false -jar /home/neuroware/stochdif/stochdiff-3.0.0-1.jar ::: Model_cAMPassaySoma*.xml
 
@@ -31,13 +30,9 @@
 #java -jar -Dneurord.writers=h5  /home/neuroware/stochdif/neurord-3.1.2.jar -Dneurord.SDRun.runtime=1 -v Model_SPNspineCaMKII_DagL_AChm4R_Gshydr5_AC1-nostim.xml#This will be useful to avoid awkward updating of initial conditions, or to have very little initial simulation time for equilibrium
 #Unknown how this command will work with multi-trial h5 files
 
+#ls UchiNew/Model_SPNspineAChm4R_Gshydr5_AC1_GiGsfast_Uchi-Ca*.xml |xargs sed -i s/"<runtime>          100000"/"<runtime>          150000"/g
 
 #stimulate 1 spine, evaluate dendritic signature vs spine, and spatial specificity
-#Then, stimulate 2 spines, either adjacent or separated - how does dendritie signature change?
-#For two spines: duplicate the spine injections, with second spine being either 1 or 7
-#With calcium from genesis model, will need to match glu stim of spines, perhaps get genesis output of glu - i.e., select among 2 or 4 spines for each inject?
-#Not sure how to adapt dopamine and ACh, which is non-synaptic
-#Other sims expers: calcium from Da depleted case, or change molecules and calcium according to alcohol effects
 
 #bath
 #java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar --ic-time -1 --ic Model_SPNspineAChm4R_Gshydr5_GapD-nostim.h5 -v -s injections -Dneurord.trials=3 Model_SPNspineAChm4R_Gshydr5_GapD-bathDa.xml ss_bath/ &
