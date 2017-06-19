@@ -51,6 +51,7 @@ outputavg=0
 showplot=1    #2 indicates plot the head conc, 0 means no plots
 stimspine='sa1[0]' #"name" of (stimulated) spine
 auc_mol='2ag'
+endtime=110 #time to stop calculating AUC
 textsize=10 #for plots.  Make bigger for presentations
 
 #Example of how to total some molecule forms; turn off with tot_species={}
@@ -348,6 +349,7 @@ for fnum,ftuple in enumerate(ftuples):
 #####################################################################
 #after main processing, extract a few characteristics of molecule trajectory
 #####################################################################
+endpt=int(endtime/dt[0])
 for pnum in range(arraysize):
     print(params, parval[pnum])
     print("        molecule  baseline  peakval   ptime    slope      min     ratio")
@@ -356,7 +358,7 @@ for pnum in range(arraysize):
         window=int(window_size/dt[imol])
         baseline[pnum,imol]=whole_plot_array[imol][pnum][sstart[imol]:ssend[imol]].mean()
         peakpt=whole_plot_array[imol][pnum][ssend[imol]:].argmax()+ssend[imol]
-        auc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:]-baseline[pnum,imol])*dt[imol]
+        auc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:endpt]-baseline[pnum,imol])*dt[imol]
         peaktime[pnum,imol]=peakpt*dt[imol]
         peakval[pnum,imol]=whole_plot_array[imol][pnum][peakpt-window:peakpt+window].mean()
         lowpt=whole_plot_array[imol][pnum][ssend[imol]:].argmin()+ssend[imol]
@@ -406,14 +408,14 @@ if auc_mol and auc_mol in plot_molecules and 'dhpg' in params:
     for pnum in range(arraysize):
         for imol,mol in enumerate(plot_molecules):
             if out_location[mol]!=-1:
-                newauc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:]-newbaseline)*dt[imol]
+                newauc[pnum,imol]=np.sum(whole_plot_array[imol][pnum][ssend[imol]:endpt]-newbaseline)*dt[imol]
     dhpg0index=np.zeros(len(parlist[0]))
     for i,dhpg in enumerate(np.sort(parlist[1])):
         for j,dur in enumerate(np.sort(parlist[0])):
             pnum=parval.index((dur,dhpg))
             if i==0:
                 dhpg0index[j]=pnum
-            print('dur=', dur, 'dhpg=', dhpg, 'auc',np.round(auc[pnum][molnum]), 'ratio', np.round(auc[pnum][molnum]/auc[dhpg0index[j]][molnum]), 'new auc',np.round(newauc[pnum][molnum]), 'ratio', np.round(newauc[pnum][molnum]/newauc[dhpg0index[j]][molnum],2))
+            print('dur=', dur, 'dhpg=', dhpg, 'auc',np.round(auc[pnum][molnum],2), 'ratio', np.round(auc[pnum][molnum]/auc[dhpg0index[j]][molnum]), 'new auc',np.round(newauc[pnum][molnum]), 'ratio', np.round(newauc[pnum][molnum]/newauc[dhpg0index[j]][molnum],2))
 
 #then plot the steady state versus parameter value for each molecule
 #Needs to be fixed so that it works with non numeric parameter values

@@ -49,13 +49,16 @@ Kd for Gq binding - 200 nM with calcium bound, 1000 nM otherwise, with Gap activ
 --->What if PlcGq bound calcium witih slightly higher affinity?  That would produce higher basal, but possibly higher stimulated?  THen, would absence of Gq be more significant?
 ---> What if Gap were lower - that too would make more PlcGq bind calcium - no, that is from pub
 ---> What if kcat for Dag production by PlcCa were even lower?  That would lower basal and make Gqa more important.  Currently the value is to high (though so is kcat for PlcCaGq).
+
 ######## Increase PlcGq binding to Ca and PlcCa binding to Gq (by same amount - 25% increase in kf), decrease Kcat of PlcCa to 0.3, kb=1.2,kf=.03
 This should make Gq more important, and thus blocking Gq will have more effect
 
->>>>>>>>>>>
+>>>>>>>>>>> Initial Test of M1block, M4block, MGlu
 1. Basal PlcCaGqa and PlcCaGqaPip2 seems a tiny bit bigger. Basal Dag & 2ag appear similar. 
 2. M4 block has ~20% lower Dag, but same 2ag, at 60s; Both MGlu block and M1 block have 20% lower DAG and also lower 2ag at 60s.
 3. PlcCa is higher, but PlcCaPip2 is lower. PlcCaGqaPip2 is higher and PlcGq is lower
 
 m1 block appears to be more effective at reducing Dag, Pkc and 2ag than previously.  Even MGluR block appears to reduce 2ag a bit (did not before).
 Stimulated Free GqaGTP is lower, but stimulated PlcCaGqaPip2 is slightly higher.  This set of parameters may have negative consequences for the Uchi sims - if 5s calcium can no longer saturate 2ag production.  But, with higher affinity for Gq, possibly the 1uM Dhpg will saturate the 5s case.
+
+REPEAT ALL SIMULATIONS

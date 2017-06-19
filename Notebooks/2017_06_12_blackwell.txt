@@ -1,0 +1,116 @@
+2017 June 12
+
+######## Increase PlcGq binding to Ca and PlcCa binding to Gq (by same amount - 25% increase in kf), decrease Kcat of PlcCa to 0.3, kb=1.2,kf=.03
+This should make Gq more important, and thus blocking Gq will have more effect
+
+window=2s        pDaD1RGs pGsD1R   GsD1R     DaD1RGs    cAMP     Epac1cAMP
+CaBath		 0	  4/4	   417/421   5/6	47/75	 17/33	  
+DaBath		 0/363	  2/313	   419/2     4/205	52/6.8u	 21/725	   
+
+>>>>>>>>>>>>>> bath: Still SUPER				
+   	cAMP   Dp34    Dp34PP2B Total   Dp75
+Basal   49     660     170      830    	10.4
+Ca      76     246n    320n     566     7.4		
+Da      6.8u   3.8u    0.8     	4.6u    7.7		
+DaCa    4.2u   2.3u    1.6     	3.8u    6.0		
+
+>>>>>>>>>>>>>> block: Good - though CyA block still has too small an effect
+   	cAMP   Dp34    Dp34PP2B Total   Dp75			
+CyA      51    803     274      1077    10.9	1.6x Dp34 inc (somewhat transient)	
+OA       52    875     460      1335    36.2u	2x Dp34 inc (but transient - due to increased Dp75)
+#Pap	208    2.3     554	2.8	8.9	     	  	
+#Roli	50     598     160	760	NC			
+
+>>>>>>>>>>>>>> Uchi: Problem with 100ms calcium because 2ag has not yet reached basal?  2ag continues to decline below basal after 100 sec.
+	       Solution: cut off AUC at 110s.  Re-run (and update table) simulations with longer ACh basal.
+ new auc    dhpg= 0    	    dhpg= 1      dhpg= 5   dhpg= 25 
+dur= 100m    166.0	   15.0  	 28.0	   39.0   
+dur= 1s	     652.0	   6.0	 	 8.0	   12.0
+dur= 5s	     2494.0	   4.0		 6.0	   6.0
+
+>>>>>>>>>>>>>> 20hz vs theta 
+
+Signature: area above threshold: 800 1200 75 100  
+	   	           LTPdend sp	   LTD dend spine
+('20hz', 'CKp')       	     [ 0.  0.] 	   [ 5.33  3.3 ] *Stronger LTD
+('20hz', 'Reb_lowDaDec2')    [ 0.  0.] 	   [ 0.92  0.95] *LTD
+('20hz', 'Reb_lowDaDec3')    [ 0.  0.] 	   [ 1.47  1.15] *LTD
+('theta', 'CKp') 	     [ 0.  0.] 	   [ 8.53  5.98] *no LTP, likely strong LTD
+('theta', 'Reb_DaDec1')      [ 5.5  4.56]  [ 0.82  0.6 ] *LTP
+
+Block: Signature: area above threshold: 800 1200 75 100   
+       		  LTPdend sp	    LTD dend spine 
+('20hz', 'M1') 	  [ 0.  0.] 	    [ 0.  0.] *LTD blocked
+('20hz', 'M4') 	  [ 0.  0.] 	    [ 1.35  1.06] *SAME
+('20hz', 'MGlu')  [ 0.  0.] 	    [ 1.01  0.82]     ***** no reduction in spine signature.  Is this form MGlu dependent? Yes, is blocked by AIDA.
+('theta', 'M1')   [ 2.59  6.04]    [ 0.  0.]	      ***** reduction in dend signature is too small ~half of previous.  New signature might work
+('theta', 'M4')   [ 5.26  3.87]    [ 0.49  0.42]  *SAME
+('theta', 'MGlu') [ 6.14  0.  ]    [ 0.22  0.24] *LTP blocked due to spine signature
+
+-----------> GqaGTP is definitely lower with M1 block - both 20hz and theta. PlcCaGqaPip3 is much lower for M1 block.  Issue still related to PlcCaPip2 activity
+	     BUT, Didn't Wang, Lovinger, Surmeier show that m1 block permitted LTD?  But that was for 100hz, not 20hz.
+
+ACh variants:
+area above threshold using 800 1200 75 100
+     	   	     LTP dend sp    LTD dend sp
+('20hz', 'flat')     [ 0.  0.] 	    [ 0.15  0.31]
+('20hz', 'noB')      [ 0.  0.] 	    [ 0.    0.06] ** LTD is blocked when burst prevented. - consistent with results of M1 block
+('20hz', 'noDip')    [ 0.  0.] 	    [ 2.58  1.69] ** Better than control - dip does not help (except perhaps for VDCC calcium)
+('theta', 'flat')    [ 4.91  3.65]  [ 0.23  0.26]
+('theta', 'noB')     [ 4.05  2.87]  [ 0.02  0.07]
+('theta', 'noDip')   [ 4.14  3.29]  [ 0.93  0.57]
+
+-------->Conclusion: Initial burst of ACh is needed initially - both for pre-synaptic effects (Gq), and possibly Da release to inhibit subsequent ACh?
+		     No effect of Dip seen HOWEVER, we did not model effect of ACh dip on VDCC calcium
+		     No effect on Theta LTP - consistent with lack of effect of M1 block
+
+>>>>>>>>>>>>>> Alcohol	       	  	        20Hz	      20Hz			theta		theta
+	       					LTP dend sp    LTD dend sp		LTP dend sp    LTD dend sp
+Ctrl: single train				[ 0.  0.] [ 0.  0.]			[ 0.  0.]      [ 0.    0.01]	
+IC:   	     2x MGluR, 80% AC5, 125% Gbg	[ 0.  0.] [ 0.  0.] 			[ 0.  0.]      [ 0.03  0.03]
+NMDA:	     2x calcium	   	     		[ 0.  0.] [ 0.  0.]			[ 0.  0.]      [ 0.03  0.04]
+NMDA_DA:     2x calcium, 75% dopamine		[ 0.  0.] [ 0.  0.]			[ 0.  0.]      [ 0.1   0.09]
+NMDA_IC:     2x calcium	     			[ 0.  0.] [ 0.    0.02]			[ 0.  0.]      [ 0.19  0.1 ]
+NMDA_DA_IC:  2x calcium, 75% dopamine		[ 0.  0.] [ 0.    0.01]			[ 0.  0.]      [ 0.18  0.12]
+
+Neither control crosses threshold with 1 train
+With theta burst, the combination of NMDA with IC or with IC and Da crosses LTD theshold >= 0.1.  NMDA or NMDA+DA crosses threshold less.
+This shows facilitation of LTD by theta burst.
+
+To quantify effect on AUC, use theshold= ['0', '0', '0', '0']
+	       	LTP dend sp    LTD dend sp			LTP dend sp    LTD dend sp
+('20hz', 'Ctrl') [ 12.86  15.03] [ 0.59  2.12] 	      ('theta',) [ 16.55  26.71] [ 1.47  3.5 ]
+('20hz', 'IC') [ 31.4   37.07] [ 4.89  5.29]	      ('theta') [ 47.25  49.05] [ 6.27  6.11] Large increase in AUC for all
+('20hz', 'NMDA') [ 13.76  18.05] [ 1.71  3.45] 	      ('theta') [ 20.34  26.8 ] [ 2.16  3.26] increase in dend signature for theta
+('20hz', 'NMDA_Da') [  6.57  16.92] [ 1.22  2.55]     ('theta') [ 18.07  26.68] [ 2.73  4.3 ] Da counteracts NMDA for Theta, enhances 20hz LTD
+('20hz', 'NMDA_IC') [ 39.53  43.96] [ 3.8   4.66]     ('theta') [ 40.05  41.05] [ 5.46  6.13] Huge increase 20Hz LTP (> IC alone), < IC alone for theta
+('20hz', 'NMDA_Da_IC') [ 27.7   31.82] [ 5.66  7.3 ]  ('theta') [ 42.47  44.24] [ 2.32  3.73] 20hz: addition of Da change decreases LTP thresh for 20hz, enhances LTD signature for 20hz
+
+1. Change in IC tremendously enhances all signatures, regardless of NMDA change
+2. All changes enhance LTD signature for both 20hz and theta.  All changes except NMDA_DA enhance LTP signatures for 20hz and theta
+3. Da counteracts NMDA for Theta, enhances 20hz LTD
+
+Looking at molecules:
+1. none of the changes enhances Gs signaling (e.g. cAMP, Epac1cAMP, Dp34PP1) - Thus, this change is expected to enhance LTD
+2. Both lower Da and change in IC reduces Gs signaling
+3. IC enhancs Gq signaling (2x mGluR); NMDA enhances CKpCamCa4, both of which benefit LTP
+4. Both NMDA and NMDA+IC enhance Dag, 2ag and LTD (despite effect on CKpCamCa4).  IC alone has trivial effect on Dag/2ag for 20hz
+
+Adjust signatures so that Ctrl does not yield LTP or LTD for either 20hz or theta, but that some other alcohol sims do give LTP or LTD:
+	       	  	            	      20Hz	      20Hz			theta		theta
+['170', '230', '60', '80']   			LTP dend sp    LTD dend sp		LTP dend sp    LTD dend sp
+Ctrl: single train				 [ 0.    0.05] [ 0.    0.01]		[ 0.    0.39] [ 0.    0.04]
+IC:   	     2x MGluR, 80% AC5, 125% Gbg	 [ 0.    0.08] [ 0.    0.01]		[ 4.73  1.06] [ 0.13  0.13]
+NMDA:	     2x calcium	   	     		[ 0.    0.04] [ 0.    0.02]		[ 0.78  1.42] [ 0.11  0.11]
+NMDA_DA:     2x calcium, 75% dopamine		[ 0.  0.] [ 0.    0.01]			[ 0.    0.33] [ 0.25  0.24]
+NMDA_IC:     2x calcium	     			[ 0.47  0.21] [ 0.04  0.06]		[ 0.8   0.91] [ 0.33  0.26]
+NMDA_DA_IC:  2x calcium, 75% dopamine		[ 0.  0.] [ 0.    0.06]			[ 1.27  0.37] [ 0.4   0.28]
+
+This suggests that LTP is facilitated by IC and NMDA, and that LTD is inhibited; though maybe not if ration of LTP to LTD signature is important
+
+Better approach: simulate more trains, but fewer than 10 (few enough that nothing crosses regular threshold? or at least doesn't cross LTP threshold), e.g. 4 theta trains 4x40 = 160, 8x 20hz trains? Use same thresholds
+Interestingly, at 80 sec, nothing has exceeded LTP thresholds, but all paradigms exceed LTD threshold
+
+Another issue: with new IC, cannot use re-start.  Not all molecules have reached equilibrium - wait additional 30 sec
+
+
