@@ -132,12 +132,10 @@ def plot_signature(condition,traces,time,figtitle,sign_title,textsize,thresholds
                axis[0].legend(fontsize=legtextsize, loc='lower right')
                axis[j].set_ylabel(domain[row],fontsize=textsize)
                axis[j].tick_params(labelsize=textsize)
-               #fix this threshold plot to work with multiple spines: thresh[1]->row=1:spines, thresh[3]-> row=1:spines
-               #print("j", j, "row", row, thresholds[row])
-               axis[j].plot([0,newtime[-1]],[thresholds[row],thresholds[row]],color='k',linestyle= 'dashed')
+               r=(1,0)[row==0]
+               axis[j].plot([0,newtime[-1]],[thresholds[r],thresholds[r]],color='k',linestyle= 'dashed')
                if plot_ltd:
-                    #print("j+1", j+1, "row", row, "row+nc", row+numcols, thresholds[row+numcols])
-                    axis[j+1].plot([0,newtime[-1]],[thresholds[row+numcols],thresholds[row+numcols]],color='k',linestyle= 'dashed')
+                    axis[j+1].plot([0,newtime[-1]],[thresholds[r+numcols],thresholds[r+numcols]],color='k',linestyle= 'dashed')
           if plot_ltd:
                axis[len(axis)-1].set_xlabel('Time (sec) LTD',fontsize=textsize)
                axis[len(axis)-2].set_xlabel('Time (sec) LTP',fontsize=textsize)
