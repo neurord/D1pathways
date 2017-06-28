@@ -10,3 +10,4 @@
 *.h5
 *.png
 discretized-tree.swc
+Model*.txt
