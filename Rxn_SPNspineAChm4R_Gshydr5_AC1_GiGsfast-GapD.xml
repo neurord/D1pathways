@@ -1514,7 +1514,7 @@ MUCH slower binding compared to CaDgl  -->
     </Reaction>
 
     <!--1) Epac1-camps + cAMP <-> Epac1-camps_cAMP -->
-    <Reaction name = "PKA_bind" id="PKA_bind">
+    <Reaction name = "Epac_bind" id="Epac_bind">
 	<Reactant specieID="Epac1"/>
         <Reactant specieID="cAMP"/>
 	<Product specieID="Epac1cAMP"/>
