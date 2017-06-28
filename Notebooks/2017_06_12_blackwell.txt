@@ -112,5 +112,32 @@ Better approach: simulate more trains, but fewer than 10 (few enough that nothin
 Interestingly, at 80 sec, nothing has exceeded LTP thresholds, but all paradigms exceed LTD threshold
 
 Another issue: with new IC, cannot use re-start.  Not all molecules have reached equilibrium - wait additional 30 sec
+May need to analyze signature separately with newIC if new baseline not being accounted for properly
+
+Long spine sims: 30sec per day? -> 10 days for sims
+1. SS baseline reached at 40-50 s
+2. PKAc bound to other molecules is much bigger than PKAc free, esp Epac1cAMP - more than double with 2 spines.  Definitely need to include these in signature to show cAMP signaling.  Signature of cAMP signaling - ~50% bigger in dend with 2 spines.  Not spine specific
+3. 2ag is same whether 1 or 2 spines, no specificity
+3. PkcCaDag is slightly different, CKpCamCa4 a little more different. - combination is very spine specific, but only slightly bigger with 2 stim
+
+Theta: sp0: higher for 2 than 1 sp, higher for adj than sep.  60, 63 for adj, 56 and 55 for non-adj
+non-stim spines: range from 15 to 30 for 1 spine stimulation - no spatial effect
+	 	 range from 29-42 for 2 spines stimulation
+auc, 250s   	dend	sp0     sp1   sp2    sp3    sp4    sp5    sp6    sp7    sp8   sp9	   
+1sp theta     [ 29.86  47.64  30.46  16.31  27.96  22.97  26.92  25.47  23.61  15.85  31.42]
+	      [  7.73   8.6    7.91   8.02   8.53   7.9    8.62   8.75   7.87   9.04   8.67]
+2adj, theta   [ 44.02  62.61  60.46   37.9  39.85  37.33  33.52  35.06  45.68  44.42  41.38]
+	      [  8.67   9.13   9.54   9.49   9.19   8.31   9.23   9.06   8.91   8.78   8.69]
+2sep, theta   [ 37.51  56.38  33.02  37.53  33.15  29.73  36.13  54.58  37.99  41.56  36.62]
+	      [  8.07   9.02   8.06   8.5    8.17   8.28   7.68   8.72   7.87   8.29   8.19]
+
+Values are lower for multi-spine sims, so need to use different thresholds.  Why lower?  Dend inject is increased proportionally, but spines are contributing to signature - fewer spines means lower values even in spines.
+Perhaps need to stimulate 3 spines to see if dendritic signature will increase or reach saturation
+
+With thresholds: 250 400 40 100, 1 spine theta does not produce LTP because dendritic signature does not cross threshold.
+This suggests a certainty density of spine stimulation needed for LTP - consistent with Dan's model
 
 
+2017 June 23 - Should set up PKA blocked sims for short dendrite: Increase in cAMP will enhance Epac1cAMP, so outcome will differ from just ignoring PKAc
+Prediction: should eliminate LTP and enhance LTD
+Start simulations late, because Dp34 will be out of equilibrium?
