@@ -107,8 +107,11 @@ Is this similar to previous results?  Did change in name of Epac1 reaction make 
 sigCKCam: CKCamCa4 Dgl_CKCamCa4 CaDgl_CKCamCa4 PKAc PKAcDaD1RGs PKAcPDE10 PKAcPDE10cAMP PKAcPDE4 PKAcPDE4cAMP D32PKAc CKpCamCa4 Dgl_CKpCamCa4 CaDgl_CKpCamCa4 Dgl_CKp CKp PkcCaDag Epac1cAMP
 sigCKpCam: PKAc PKAcDaD1RGs PKAcPDE10 PKAcPDE10cAMP PKAcPDE4 PKAcPDE4cAMP D32PKAc CKpCamCa4 Dgl_CKpCamCa4 CaDgl_CKpCamCa4 Dgl_CKp CKp PkcCaDag Epac1cAMP
 CKpCam: CKpCamCa4 Dgl_CKpCamCa4 CaDgl_CKpCamCa4 Dgl_CKp CKp
+CkpDgl:CKpCamCa4 Dgl_CKpCamCa4 CaDgl_CKpCamCa4 Dgl_CKp CKp pDgl CapDgl DagCapDgl
 CKCam: CKCamCa4 Dgl_CKCamCa4 CaDgl_CKCamCa4 CKpCamCa4 Dgl_CKpCamCa4 CaDgl_CKpCamCa4 Dgl_CKp CKp
 PKAc: PKAc PKAcDaD1RGs PKAcPDE10 PKAcPDE10cAMP PKAcPDE4 PKAcPDE4cAMP D32PKAc
+AphosNoPP: pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP D32p34 D32p34PP1
+Aphos: pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2BCamCa2C
 
 20Hz:
 name                     base   peak    inc     min     dec
@@ -364,9 +367,281 @@ ss_bath: .5 GB
 DaDelay: 20hz DaDelay looks similar to lowDaDec2.  DaDec2 looks sufficiently low in these case to differ from Theta, but if just PKA is evaluated, then DaDec3 is needed!!!  So, all the block cases uses DaDec3
 
 1. Rerun 20hz DaDelay using DaDec3, but save the DaDelay using DaDec2
-
 2. Create 3 spine sims for long dend.  Run these two (Jul 25)
 
-Alcohol:
-Control: Theta does not exceed threshold
+Alcohol: Signature using PKA phos targets - takes into account PP2A, PP2B activity against Dp34 and PDEs
+BUT, different thresholds needed
+pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP pPP2A D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2BCamCa2C CKpCamCa4 CKp Dgl_CKp Dgl_CKpCamCa4 CaDgl_CKpCamCa4 Epac1cAMP PkcCaDag,2ag
+name                     base   peak    inc     min     dec
+20hzCtrlltp                939.3  3146.7  3.350  875.9  0.933
+20hzCtrlltd                59.8  162.8  2.724  36.8  0.616
+20hzICltp                  352.7  3362.8  9.534  272.9  0.774
+20hzICltd                  42.0  172.4  4.104  32.8  0.781
+20hzNMDAltp                944.0  3499.2  3.707  820.2  0.869
+20hzNMDAltd                64.3  179.0  2.783  19.3  0.301
+20hzNMDA_Daltp             986.0  3005.2  3.048  890.7  0.903
+20hzNMDA_Daltd             46.4  188.9  4.069  20.3  0.437
+20hzNMDA_Da_ICltp          349.1  3001.3  8.597  311.2  0.891
+20hzNMDA_Da_ICltd          41.1  184.9  4.495  24.6  0.598
+20hzNMDA_ICltp             332.4  3213.0  9.667  277.1  0.834
+20hzNMDA_ICltd             34.9  201.3  5.759  30.4  0.869
+thetaCtrlltp               1005.9  3588.1  3.567  787.9  0.783
+thetaCtrlltd               56.7  177.9  3.139  17.4  0.307
+thetaICltp                 325.1  3332.9  10.253  274.4  0.844
+thetaICltd                 37.5  179.5  4.782  35.3  0.940
+thetaNMDAltp               979.3  3710.5  3.789  694.5  0.709
+thetaNMDAltd               65.6  208.5  3.180  8.9  0.136
+thetaNMDA_Daltp            990.4  3251.4  3.283  744.6  0.752
+thetaNMDA_Daltd            56.9  193.8  3.406  11.7  0.205
+thetaNMDA_Da_ICltp         329.2  3222.9  9.790  264.5  0.803
+thetaNMDA_Da_ICltd         33.0  219.5  6.648  15.0  0.455
+thetaNMDA_ICltp            361.8  3743.6  10.347  297.7  0.823
+thetaNMDA_ICltd            38.6  196.2  5.083  32.8  0.851
+area above threshold for LTP and LTD using ['800', '1200', '75', '100']
+20hzCtrl             [ 121.56    60.831] [ 0.568  0.48 ]
+20hzIC               [ 229.289  163.348] [ 1.376  0.737]
+20hzNMDA             [ 136.616   91.505] [ 1.041  0.788]
+20hzNMDA_Da          [ 90.62   61.182] [ 2.414  1.346]
+20hzNMDA_Da_IC       [ 146.31   124.933] [ 2.346  1.467]
+20hzNMDA_IC          [ 176.79   144.359] [ 3.563  2.33 ]
+thetaCtrl            [ 140.463   76.527] [ 0.58   0.427]
+thetaIC              [ 183.922  142.212] [ 1.496  0.956]
+thetaNMDA            [ 139.395   88.149] [ 0.808  0.661]
+thetaNMDA_Da         [ 95.631  61.779] [ 1.217  0.838]
+thetaNMDA_Da_IC      [ 157.528  121.292] [ 2.629  1.705]
+thetaNMDA_IC         [ 185.487  152.445] [ 1.729  1.03 ]
+
+PKAcDaD1RGs PKAcPDE10 PKAcPDE10cAMP PKAcPDE4 PKAcPDE4cAMP PKAcPP2AB56d D32PKAc CKpCamCa4 CKp Dgl_CKp Dgl_CKpCamCa4 CaDgl_CKpCamCa4 Epac1cAMP PkcCaDag,2ag
+fname                     base   peak    inc     min     dec
+20hzCtrlltp                164.5  618.6  3.760  154.5  0.939
+20hzCtrlltd                59.8  162.8  2.724  36.8  0.616
+20hzICltp                  41.1  647.4  15.764  40.9  0.996
+20hzICltd                  42.0  172.4  4.104  32.8  0.781
+20hzNMDAltp                166.5  772.5  4.640  161.8  0.972
+20hzNMDAltd                64.3  179.0  2.783  19.3  0.301
+20hzNMDA_Daltp             173.4  731.8  4.221  162.1  0.935
+20hzNMDA_Daltd             46.4  188.9  4.069  20.3  0.437
+20hzNMDA_Da_ICltp          52.3  717.6  13.731  48.5  0.928
+20hzNMDA_Da_ICltd          41.1  184.9  4.495  27.2  0.662
+20hzNMDA_ICltp             42.5  729.9  17.155  44.5  1.046
+20hzNMDA_ICltd             34.9  201.3  5.759  24.1  0.690
+thetaCtrlltp               172.8  776.6  4.494  149.5  0.865
+thetaCtrlltd               56.7  177.9  3.139  17.4  0.307
+thetaICltp                 40.3  688.7  17.085  40.4  1.001
+thetaICltd                 37.5  179.5  4.782  35.3  0.940
+thetaNMDAltp               165.8  961.0  5.796  164.5  0.992
+thetaNMDAltd               65.6  208.5  3.180  8.9  0.136
+thetaNMDA_Daltp            167.9  833.3  4.964  161.1  0.960
+thetaNMDA_Daltd            56.9  193.8  3.406  11.7  0.205
+thetaNMDA_Da_ICltp         42.4  861.8  20.329  44.5  1.050
+thetaNMDA_Da_ICltd         33.0  219.5  6.648  14.0  0.424
+thetaNMDA_ICltp            49.5  867.8  17.533  43.7  0.884
+thetaNMDA_ICltd            38.6  196.2  5.083  32.8  0.851
+area above threshold for LTP and LTD using ['800', '1200', '75', '100']
+20hzCtrl             [ 0.  0.] [ 0.568  0.48 ]
+20hzIC               [ 0.  0.] [ 1.376  0.737]
+20hzNMDA             [ 0.  0.] [ 1.041  0.788]
+20hzNMDA_Da          [ 0.  0.] [ 2.414  1.346]
+20hzNMDA_Da_IC       [ 0.  0.] [ 2.346  1.467]
+20hzNMDA_IC          [ 0.  0.] [ 3.563  2.33 ]
+thetaCtrl            [ 0.  0.] [ 0.58   0.427]
+thetaIC              [ 0.  0.] [ 1.496  0.956]
+thetaNMDA            [ 0.     0.024] [ 0.808  0.661]
+thetaNMDA_Da         [ 0.     0.093] [ 1.217  0.838]
+thetaNMDA_Da_IC      [ 0.002  0.263] [ 2.629  1.705]
+thetaNMDA_IC         [ 0.002  0.597] [ 1.729  1.03 ]
+
+With slightly lower threshold, e.g. 750 instead of 800, all the NMDA enhanced cases would cross dendritic threshold.  Try higher LTD threshold to reflect lower CB1 receptors.
+fname                     base   peak    inc     min     dec
+20hzCtrlltp                164.5  618.6  3.760  154.5  0.939
+20hzCtrlltd                59.8  162.8  2.724  36.8  0.616
+20hzICltp                  41.1  647.4  15.764  40.9  0.996
+20hzICltd                  42.0  172.4  4.104  32.8  0.781
+20hzNMDAltp                166.5  772.5  4.640  161.8  0.972
+20hzNMDAltd                64.3  179.0  2.783  19.3  0.301
+20hzNMDA_Daltp             173.4  731.8  4.221  162.1  0.935
+20hzNMDA_Daltd             46.4  188.9  4.069  20.3  0.437
+20hzNMDA_Da_ICltp          52.3  717.6  13.731  48.5  0.928
+20hzNMDA_Da_ICltd          41.1  184.9  4.495  31.6  0.768
+20hzNMDA_ICltp             42.5  729.9  17.155  44.5  1.046
+20hzNMDA_ICltd             34.9  201.3  5.759  27.7  0.792
+thetaCtrlltp               172.8  776.6  4.494  149.5  0.865
+thetaCtrlltd               56.7  177.9  3.139  17.4  0.307
+thetaICltp                 40.3  688.7  17.085  40.4  1.001
+thetaICltd                 37.5  179.5  4.782  31.1  0.828
+thetaNMDAltp               165.8  961.0  5.796  164.5  0.992
+thetaNMDAltd               65.6  208.5  3.180  8.9  0.136
+thetaNMDA_Daltp            167.9  833.3  4.964  161.1  0.960
+thetaNMDA_Daltd            56.9  193.8  3.406  11.7  0.205
+thetaNMDA_Da_ICltp         42.4  861.8  20.329  44.5  1.050
+thetaNMDA_Da_ICltd         33.0  219.5  6.648  14.9  0.451
+thetaNMDA_ICltp            49.5  867.8  17.533  43.7  0.884
+thetaNMDA_ICltd            38.6  196.2  5.083  32.8  0.851
+area above threshold for LTP and LTD using ['760', '1180', '150', '200']
+20hzCtrl             [ 0.  0.] 	 	 [ 0.     0.004]
+20hzIC               [ 0.  0.] 		 [ 0.  0.]
+20hzNMDA             [ 0.  0.] 		 [ 0.    0.01]
+20hzNMDA_Da          [ 0.  0.] 		 [ 0.     0.012]
+20hzNMDA_Da_IC       [ 0.  0.] 		 [ 0.001  0.015]
+20hzNMDA_IC          [ 0.     0.002] 	 [ 0.073  0.058]
+thetaCtrl            [ 0.  0.] 		 [ 0.     0.003]
+thetaIC              [ 0.  0.] 		 [ 0.     0.009]
+thetaNMDA            [ 0.037  0.05 ] 	 [ 0.     0.013]
+thetaNMDA_Da         [ 0.     0.134] 	 [ 0.     0.008]
+thetaNMDA_Da_IC      [ 0.21   0.335] 	 [ 0.271  0.096]
+thetaNMDA_IC         [ 0.35   0.711] 	 [ 0.029  0.014]
+
+Shows LTP with NMDA+IC (but not ctrl)
+No LTD except for NMDA_IC cases (could raise thresh even more)
+
+There appears to be better separation between 20hz and theta if look at PKAc forms instead of phospho targets. Should PP2B or PP1 be included in LTD signature?  Should phosphatases be subtracted from LTP signature? Should there be duration threshold? E.g. 1 sec (to eliminate stochastic crossings?).  More of an issue for spines than dendrites  How to select the best signature?
+
+noDa:
+20hzaPKAc                  105.1  114.7  1.091  91.6  0.872
+20hzaAphos                 725.3  723.3  0.997  451.8  0.623
+thetaaPKAc                 108.7  131.8  1.213  82.0  0.755
+thetaaAphos                741.9  743.1  1.002  392.7  0.529
+area above threshold for LTP and LTD using ['800', '1200', '75', '100']
+20hza                [ 0.  0.] [ 0.     0.461]
+thetaa               [ 0.  0.] [ 0.     0.986]
+
+20hzaPKAc                  105.1  114.7  1.091  91.6  0.872
+20hzaAphos                 725.3  723.3  0.997  451.8  0.623
+thetaaPKAc                 108.7  131.8  1.213  82.0  0.755
+thetaaAphos                741.9  743.1  1.002  392.7  0.529
+area above threshold for LTP and LTD using ['760', '1180', '75', '100']
+20hza                [ 0.  0.] [ 0.     0.461]
+thetaa               [ 0.  0.] [ 0.     0.986]
+
+Redo signatures, using phospho forms of PKA, ignoring CKCam - too transient.  Still should compare results when including phosphatase bound forms of PKA targets
+
+When using PKA phos targets. PKA part is much bigger than CKp part - blocking CKpCam does not work.  Will need to weight different components differently.
+CKp max=250dend, 400 spine.  Threshold = 200 dend, 200 spine
+Blocking Da lowers CKpCam due to greater PP1
+Pka phos max=2500 dend, 3000 spine.  Threshold=2000 spine, 2000 dend (same thresh due to diffusion?)
+Epac1cAMP max=250 dend, 300 spine.  PKA block increases peak in dend
+PkcCaDag max=250 dend, 800 spine.  m1 block decreases Pkc dend >half, mGlu block lowers Pkc spine dramatically.
+No Da more effective than PKA block due to cAMP activation of Epac1
+May need to add in pDgl, pCaDgl and DagpCaDgl for CamKII targets
+
+Normalize by maximum activated?  Similar to what Asia did? 
+
+What features to extract?
+Read in spine and on-spine mean for Aphos, CKpCam, Epac1, Pkc and 2ag, the spine mean columns - 10 columns each, for each block and no case (same ACh and alcohol variants for later)
+Try different weights/normalizations - NOPE - do this with discriminant analysis
+Try threshold on amp, or amp and duration  - different thresholds are needed when duration is used
+Try auc with different amps or amp and duration
+Try very coarse time average - e.g. 5 points per trace; how does this compare to other 5 features, e.g. peak, auc, auc or time above threshold, longest continuous time above threshold
+
+2. Note that 2ag fluctuates a lot, even for dendrite, so no contiguous time
+3. Contiguous time works for MGlu block, whereas total time above does not.
+4. add in time samples
+
+######## auc using : ['1.4', '1.7', '0.3', '0.2', '10'] duration threshold 10
+########## measure type auc ###############
+-stim20hz-AChflat               [  0.     0.    29.9   20.91]  -29.90 -20.91	D
+-stim20hz-AChnoB                [  0.     0.     1.48  10.14]  -1.48 -10.14	D
+-stim20hz-AChnoDip              [  0.57   0.    74.8   43.22]  -74.24 -43.22	D
+-stim20hz-blockM1               [ 0.    0.    0.    2.21]      0.00 -2.21	NC
+-stim20hz-blockM4               [  0.     0.    67.6   36.28]  -67.60 -36.28	D
+-stim20hz-blockMGlu             [  0.     0.    57.42  30.94]  -57.42 -30.94	D*
+-stim20hz-blockPKA              [  0.     0.    72.89  40.18]  -72.89 -40.18	D
+-stim20hz-noCKp                 [  0.     0.    101.89   57.11] -101.89 -57.11	D
+-stim20hz-noDa                  [  0.    0.   54.   35.2]      -54.00 -35.20	D
+-stim20hz-noReb_DaDelay         [  0.     0.    54.88  31.11]  -54.88 -31.11	D
+-stim20hz-noReb_DaDelayDec2     [ 272.48    9.49   55.93   31.36] 216.55 -21.87	NC
+-stim20hz-noReb_lowDaDec2       [ 269.33   33.78   51.58   31.71] 217.74 2.06	P*
+-stim20hz-noReb_lowDaDec3       [  0.     0.    62.59  34.4 ]  -62.59 -34.40	D
+-stimtheta-AChflat              [ 276.88  129.26   15.68   12.23] 261.20 117.03	P
+-stimtheta-AChnoB               [ 277.74  145.58    7.94    6.93] 269.80 138.65	P
+-stimtheta-AChnoDip             [ 287.28   93.66   28.82   17.39] 258.46 76.27	P
+-stimtheta-blockM1              [ 322.11  174.12    0.      1.72] 322.11 172.40	P*
+-stimtheta-blockM4              [ 352.05  185.45   20.9    13.37] 331.15 172.08	P
+-stimtheta-blockMGlu            [ 372.17   56.93   14.92   10.93] 357.25 46.00	P*
+-stimtheta-blockPKA             [ 189.56   35.02   32.33   20.07] 157.23 14.95	P*
+-stimtheta-noCKp                [ 157.39    1.93  103.65   63.28] 53.75 -61.35	NC
+-stimtheta-noDa                 [  0.     0.    31.7   20.04]  -31.70 -20.04	D
+-stimtheta-noReb_DaDec1         [ 281.2   165.76   31.12   18.96] 250.08 146.80	P
+-stimtheta-noReb_DaDelay        [ 265.6    90.01   29.36   16.49] 236.24 73.53	P
+########## measure type time_above ###############
+-stim20hz-AChflat               [   0.    0.  824.  760.]      -824.00 -760.00
+-stim20hz-AChnoB                [   0.    0.   47.  405.]      -47.00 -405.00
+-stim20hz-AChnoDip              [    4.     0.  1626.  1324.]  -1622.00 -1324.00
+-stim20hz-blockM1               [  0.   0.   0.  92.]          0.00 -92.00
+-stim20hz-blockM4               [    0.     0.  1628.  1170.]  -1628.00 -1170.00
+-stim20hz-blockMGlu             [    0.     0.  1408.  1000.]  -1408.00 -1000.00
+-stim20hz-blockPKA              [    0.     0.  1659.  1249.]  -1659.00 -1249.00
+-stim20hz-noCKp                 [    0.     0.  1926.  1567.]  -1926.00 -1567.00
+-stim20hz-noDa                  [    0.     0.  1327.  1187.]  -1327.00 -1187.00
+-stim20hz-noReb_DaDelay         [    0.     0.  1371.  1020.]  -1371.00 -1020.00
+-stim20hz-noReb_DaDelayDec2     [ 1647.    54.  1383.  1005.]  264.00 -951.00
+-stim20hz-noReb_lowDaDec2       [ 1600.   190.  1263.  1035.]  337.00 -845.00
+-stim20hz-noReb_lowDaDec3       [    0.     0.  1468.  1076.]  -1468.00 -1076.00
+-stimtheta-AChflat              [ 1422.   674.   396.   429.]  1026.00 245.00
+-stimtheta-AChnoB               [ 1462.   756.   224.   250.]  1238.00 506.00
+-stimtheta-AChnoDip             [ 1473.   498.   643.   570.]  830.00 -72.00
+-stimtheta-blockM1              [ 1636.   850.     0.    74.]  1636.00 776.00
+-stimtheta-blockM4              [ 1704.   949.   505.   433.]  1199.00 516.00
+-stimtheta-blockMGlu            [ 1795.   308.   369.   373.]  1426.00 -65.00
+-stimtheta-blockPKA             [ 1054.   188.   747.   626.]  307.00 -438.00
+-stimtheta-noCKp                [  969.    11.  1532.  1462.]  -563.00 -1451.00
+-stimtheta-noDa                 [   0.    0.  687.  612.]      -687.00 -612.00
+-stimtheta-noReb_DaDec1         [ 1410.   833.   719.   618.]  691.00 215.00
+-stimtheta-noReb_DaDelay        [ 1396.   491.   708.   535.]  688.00 -44.00
+########## measure type contig_time_above ###############
+-stim20hz-AChflat               [ 0.  0.  0.  0.]              0.00 0.00
+-stim20hz-AChnoB                [ 0.  0.  0.  0.]              0.00 0.00
+-stim20hz-AChnoDip              [    0.     0.  1147.     0.]  -1147.00 0.00
+-stim20hz-blockM1               [ 0.  0.  0.  0.]              0.00 0.00
+-stim20hz-blockM4               [   0.    0.  727.    0.]      -727.00 0.00
+-stim20hz-blockMGlu             [   0.    0.  858.    0.]      -858.00 0.00
+-stim20hz-blockPKA              [    0.     0.  1089.     0.]  -1089.00 0.00
+-stim20hz-noCKp                 [    0.     0.  1800.     0.]  -1800.00 0.00
+-stim20hz-noDa                  [   0.    0.  488.    0.]      -488.00 0.00
+-stim20hz-noReb_DaDelay         [   0.    0.  483.    0.]      -483.00 0.00
+-stim20hz-noReb_DaDelayDec2     [ 1456.     0.   547.     0.]  909.00 0.00
+-stim20hz-noReb_lowDaDec2       [ 1371.     0.   473.     0.]  898.00 0.00
+-stim20hz-noReb_lowDaDec3       [   0.    0.  887.    0.]      -887.00 0.00
+-stimtheta-AChflat              [ 1313.    66.     0.     0.]  1313.00 66.00
+-stimtheta-AChnoB               [ 1338.    62.     0.     0.]  1338.00 62.00
+-stimtheta-AChnoDip             [ 1365.    55.   328.     0.]  1037.00 55.00
+-stimtheta-blockM1              [ 1433.   416.     0.     0.]  1433.00 416.00
+-stimtheta-blockM4              [ 1596.    20.    29.     0.]  1567.00 20.00
+-stimtheta-blockMGlu            [ 1645.     0.     0.     0.]  1645.00 0.00
+-stimtheta-blockPKA             [ 954.    0.  340.    0.]      614.00 0.00
+-stimtheta-noCKp                [  691.     0.  1334.    83.]  -643.00 -83.00
+-stimtheta-noDa                 [   0.    0.  357.    0.]      -357.00 0.00
+-stimtheta-noReb_DaDec1         [ 1301.   460.   235.     0.]  1066.00 460.00
+-stimtheta-noReb_DaDelay        [ 1281.     0.    72.     0.]  1209.00 0.00
+########## measure type auc_contig ###############
+-stim20hz-AChflat               [ 0.  0.  0.  0.]              0.00 0.00	NC
+-stim20hz-AChnoB                [ 0.  0.  0.  0.]              0.00 0.00	NC
+-stim20hz-AChnoDip              [  0.     0.    56.27   0.  ]  -56.27 0.00	D?
+-stim20hz-blockM1               [ 0.  0.  0.  0.]              0.00 0.00	NC
+-stim20hz-blockM4               [  0.     0.    32.77   0.  ]  -32.77 0.00	D?
+-stim20hz-blockMGlu             [  0.     0.    37.96   0.  ]  -37.96 0.00	D* - should be NC
+-stim20hz-blockPKA              [  0.    0.   51.3   0. ]      -51.30 0.00	D
+-stim20hz-noCKp                 [  0.     0.    96.91   0.  ]  -96.91 0.00	D
+-stim20hz-noDa                  [  0.     0.    21.97   0.  ]  -21.97 0.00	D
+-stim20hz-noReb_DaDelay         [  0.     0.    21.67   0.  ]  -21.67 0.00	D
+-stim20hz-noReb_DaDelayDec2     [ 244.73    0.     24.29    0.  ] 220.44 0.00	P
+-stim20hz-noReb_lowDaDec2       [ 236.07    0.     21.3     0.  ] 214.77 0.00	NC
+-stim20hz-noReb_lowDaDec3       [  0.     0.    41.15   0.  ]  -41.15 0.00	D?
+-stimtheta-AChflat              [ 260.47   13.75    0.      0.  ] 260.47 13.75	P
+-stimtheta-AChnoB               [ 259.75   12.15    0.      0.  ] 259.75 12.15	P
+-stimtheta-AChnoDip             [ 271.22   11.27   15.63    0.  ] 255.59 11.27	P
+-stimtheta-blockM1              [ 291.4    89.87    0.      0.  ] 291.40 89.87	P* - should be NC
+-stimtheta-blockM4              [ 336.33    3.98    1.13    0.  ] 335.20 3.98	P
+-stimtheta-blockMGlu            [ 350.41    0.      0.      0.  ] 350.41 0.00	NC
+-stimtheta-blockPKA             [ 174.58    0.     15.38    0.  ] 159.20 0.00	NC
+-stimtheta-noCKp                [ 115.46    0.     95.56    3.48] 19.91 -3.48	NC - should be potentiation
+-stimtheta-noDa                 [  0.     0.    18.42   0.  ]  -18.42 0.00	D
+-stimtheta-noReb_DaDec1         [ 264.82   96.35   11.51    0.  ] 253.30 96.35	P
+-stimtheta-noReb_DaDelay        [ 248.23    0.      3.23    0.  ] 245.00 0.00	NC
+
+Except for inability to block LTP with M1 block and block LTD with mGluR block, all results for auc_contig are consistent with experiments.  One additional inconsistency if using auc and these thresholds
+
+-------> put each paradigm on separate figure to better visualize what threshold should be
+
+------> edit sig2.py to extract multi-spine data: write 1 line per spine
 
