@@ -1,0 +1,29 @@
+Signatures
+1. Aphos vs AphosNoPP differ in that the former includes Dp34 bound to PP2BCamCa4 and PP2BCamCa2
+PKAcplas includes: PKAcDaD1RGs PKAcPDE10 PKAcPDE10cAMP PKAcPDE4 PKAcPDE4cAMP PKAcPP2AB56d D32PKAc
+Aphos includes: pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP pPP2A D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2BCamCa2C
+AphosNoPP includes: pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP pPP2A D32p34 D32p34PP1
+2. CKpCam and CKpDlg differ in that the latter includes pDgl, pCaDgl - i.e., additional targets
+Using CKpCam signature means including all non-phosphatase bound forms of active & phosphorylated CamKII, i.e.:
+CKpCam includes: CKpCamCa4 CKp Dgl_CKp Dgl_CKpCamCa4 CaDgl_CKpCamCa4
+
+sig_60s.py processes the output text files of sig.py in order to extract "features", e.g. mean value at various time points
+the second number indicate whether a 30s or 60 s window for average
+the 1st number (or two), e.g. 60, 90 or 60and120, indicates the time point for the average
+All these files, as of Aug 10, use AphosNoPP and CKpCam as the PKA and CKp measures
+Model_SPNspineAChm4R_Gshydr5_GapD_120_30.txt       Model_SPNspine_GapD_alcohol_120_30.txt
+Model_SPNspineAChm4R_Gshydr5_GapD_120_60.txt       Model_SPNspine_GapD_alcohol_120_60.txt
+Model_SPNspineAChm4R_Gshydr5_GapD_60_30.txt        Model_SPNspine_GapD_alcohol_60_30.txt
+Model_SPNspineAChm4R_Gshydr5_GapD_60_60.txt        Model_SPNspine_GapD_alcohol_60_60.txt
+Model_SPNspineAChm4R_Gshydr5_GapD_60and120_30.txt  Model_SPNspine_GapD_alcohol_60and120_30.txt
+Model_SPNspineAChm4R_Gshydr5_GapD_60and120_60.txt  Model_SPNspine_GapD_alcohol_60and120_60.txt
+Model_SPNspineAChm4R_Gshydr5_GapD_90_30.txt        Model_SPNspine_GapD_alcohol_90_30.txt
+Model_SPNspineAChm4R_Gshydr5_GapD_90_60.txt        Model_SPNspine_GapD_alcohol_90_60.txt
+
+Evaluation of signatures:
+1. read above files into SAS.  Create "outcomes" file - which indicates whether the protocol produced LTP, LTD, No Change, or Unknown
+2. Use known results protocols in discriminant analysis - which time points give best results on cross -validation
+3. Evaluate unknown outcomes to generate predictions
+
+Still need to edit sig2_60s.py to create appropriate file format for multi-spine simulations
+Need to run sig.py on the multi-spine sims to generate signature files
