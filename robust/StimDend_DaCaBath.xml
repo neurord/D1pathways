@@ -1,0 +1,71 @@
+<StimulationSet>
+
+    <!-- the injectionSite must match a regionLabel defined in the morphology -->
+  <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>               50000         </onset>
+        <duration>            100           </duration>
+        <rate>                 34           </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Da" injectionSite="dend:submembrane">
+        <onset>               50000         </onset>
+        <duration>            100           </duration>
+        <rate>                 34           </rate>
+  </InjectionStim>
+
+      <InjectionStim specieID="Da" injectionSite="sa1[0].pointA">
+        <onset>           50100        </onset>
+        <duration>       199900.0       </duration>
+        <rate>               3.4    </rate>
+      </InjectionStim>
+      <InjectionStim specieID="Da" injectionSite="dend:submembrane">
+        <onset>           50100        </onset>
+        <duration>       199900.0       </duration>
+        <rate>               3.4    </rate>
+      </InjectionStim>
+
+<!-- basal ACh stim value reduced for 10s - similar to Da duration -->
+<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
+        <onset>               0          </onset>
+        <duration>            300000      </duration>
+        <rate>                0.2         </rate>
+</InjectionStim>
+
+<InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
+        <onset>               50000         </onset>
+        <duration>            100           </duration>
+        <rate>                40           </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
+        <onset>               50000         </onset>
+        <duration>            100           </duration>
+        <rate>                40           </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
+        <onset>               50100         </onset>
+        <duration>            900           </duration>
+        <rate>                7.0            </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
+        <onset>               50100         </onset>
+        <duration>            900           </duration>
+        <rate>                7.0            </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
+        <onset>               51000         </onset>
+        <duration>            200000        </duration>
+        <rate>                4.0            </rate>
+  </InjectionStim>
+
+  <InjectionStim specieID="Ca" injectionSite="dend:submembrane">
+        <onset>               51000         </onset>
+        <duration>            200000        </duration>
+        <rate>                4.0            </rate>
+  </InjectionStim>
+
+</StimulationSet>
+

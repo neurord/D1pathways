@@ -1,0 +1,28 @@
+2017_08_15
+
+Reminder about signatures
+1. Aphos vs AphosNoPP differ in that the former includes Dp34 bound to PP2BCamCa4 and PP2BCamCa2
+PKAcplas includes: PKAcDaD1RGs PKAcPDE10 PKAcPDE10cAMP PKAcPDE4 PKAcPDE4cAMP PKAcPP2AB56d D32PKAc
+Aphos includes: pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP pPP2A D32p34 D32p34PP1 D32p34PP1PP2BCamCa4 D32p34PP1PP2BCamCa2C
+AphosNoPP includes: pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP pPP2A D32p34 D32p34PP1
+2. CKpCam and CKpDlg differ in that the latter includes pDgl, pCaDgl - i.e., additional targets
+Using CKpCam signature means including all non-phosphatase bound forms of active & phosphorylated CamKII, i.e.:
+CKpCam includes: CKpCamCa4 CKp Dgl_CKp Dgl_CKpCamCa4 CaDgl_CKpCamCa4
+
+M1 block unable to predict LTD using discriminant analysis, why?
+Note that blockmGlu severly reduces Dag in the spine, just as blockM reduces Dag in dendrite.  However, signal not transmitted to 2ag. There is indeed less DagCaDgl with blockMGlu, but 2ag diffuses more quickly then it is degraded, and spine signal is noisy, thus the reduction in 2ag with blockM1 is quite small
+
+Add to robustness: simulations using faster 2ag degradation.  Do the  control and blockMglu - the ones in the robustness directory which tries to eliminate the ACh gradient - that means using stim files with half the glutamate also.  That is fine as there is no effect of lowered glu on control simulations (from analyzing m1spine)
+
+Analysis of robustness simulations
+1. Da80: same difference between theta and 20hz
+2. slowCKp: same difference between theta and 20hz, gradient? No difference - noisier spine signal
+3. AChigh & AClow: slight change in basal cAMP and Dp34.  AClow had HIGHER cAMP and Dp34, because PDEs reduced too much (though proportionately)
+AClow had much higher cAMP concentration in response to Da - likely because PDEs reduced too much? AChigh produced lower CKpCam, likely due to reduced inhibition of PP1?  This reduced difference between 20hz and theta. HOWEVER, overall Dp3PP1 levels were lower for this, which emphasized difference between theta and 20hz.  Possibly need to re-do these simulations with alternative PDEs to maintain cAMP basal.
+4. m1spine: block mGlu still lowers Dag and Pkc in spine. block m1 lowers 2ag, Dag and Pkc in dendrite.  block Mglu reduces Pkc in dend for theta.  No effect of block Mglu on 2ag in dendrite for either theta or 20hz
+5. Gsfast & Gislow: bath response similar - better conservation of basal cAMP levels.  Gs fast has slightly smaller difference in cAMP (and downstream) between 20hz and theta.
+
+How to summarize findings?  Use vectors from discriminant analysis to calculate "signatures" and plot those signatures for 20hz and theta vs param variation?
+
+Use sig.py to generate text files - more generous wildcards?
+Use sig2.py to generate output for discrim.  Run through Sas and determine what those other outputs are.

@@ -25,5 +25,21 @@ Evaluation of signatures:
 2. Use known results protocols in discriminant analysis - which time points give best results on cross -validation
 3. Evaluate unknown outcomes to generate predictions
 
-Still need to edit sig2_60s.py to create appropriate file format for multi-spine simulations
-Need to run sig.py on the multi-spine sims to generate signature files
+Still need to edit sig2_60s.py to create appropriate file format for multi-spine simulations - DONE, but need to verify debugged by comparing output values with input values
+Need to run sig.py on the multi-spine sims to generate signature files - DONE
+
+Above measures do not use thresholds, either amplitude or duration thresholds.  The discrim will select weight for combining different features, but this is linear.  Unknown how to determine optimal threshold to enhance discrimination (or whether it would improve things).
+
+####################
+param variations-evaluate Epac1cAMP CKpCamCa4 D32p34PP1 2ag PkcCaDag
+1. CKp diffusion - same 
+2. Da80 - lower D32p34PP1, but similar relationshp between 20hz and theta
+3. m1spine: 20hz block m1 didn't run - simulate over weekend
+   block Mglu severly reduces Pkc in spine for theta, block M1 severly reduces Pkc in dendrite for theta.
+   block m1 severly reduces pkc in spine for 20hz - but this probably doesn't matter since Pkc not needed for 20hz ltd.
+   block m1 likely reduces 2ag in dendrite and spine, since it does for theta.
+   prediction: block m1 and block Mglu will disrupt theta LTP due to Pkc in spine and dendrite
+   	       block m1 will likely disrupt 20hz LTD due to 2ag.  block mglu produces only small reduction of 2ag in dendrite.
+	       Need to see how discriminant analysis works.
+
+When creating files for discrim - can process the 40-50 s baseline files separately from 10-20s, and then concatenate them.
