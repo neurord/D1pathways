@@ -8,6 +8,7 @@ AphosNoPP includes: pDaD1RGs pGsD1R pPDE10 pPDE10cAMP pPDE4 pPDE4cAMP pPP2A D32p
 2. CKpCam and CKpDlg differ in that the latter includes pDgl, pCaDgl - i.e., additional targets
 Using CKpCam signature means including all non-phosphatase bound forms of active & phosphorylated CamKII, i.e.:
 CKpCam includes: CKpCamCa4 CKp Dgl_CKp Dgl_CKpCamCa4 CaDgl_CKpCamCa4
+3. CKCam includes: Dgl_CKCamCa4 CaDgl_CKCamCa4 CKCamCa4
 
 M1 block unable to predict LTD using discriminant analysis, why?
 Note that blockmGlu severly reduces Dag in the spine, just as blockM reduces Dag in dendrite.  However, signal not transmitted to 2ag. There is indeed less DagCaDgl with blockMGlu, but 2ag diffuses more quickly then it is degraded, and spine signal is noisy, thus the reduction in 2ag with blockM1 is quite small
@@ -26,3 +27,7 @@ How to summarize findings?  Use vectors from discriminant analysis to calculate 
 
 Use sig.py to generate text files - more generous wildcards?
 Use sig2.py to generate output for discrim.  Run through Sas and determine what those other outputs are.
+
+
+
+   

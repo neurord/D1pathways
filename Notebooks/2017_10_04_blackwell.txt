@@ -1,0 +1,24 @@
+October 4, 2017
+Analysis steps
+1. Use sig.py to calculate "molecule sum" traces, e.g., sum all PKAc bound molecules to create PKA trace.
+   Can use wildcards in specifying filename of h5 files to generate these *plas.txt files for numerous cases at a time
+   Output is one column per trial per region and a column for the mean (and stdev) over trials
+   Regions are currently specified in the code itself (and not as input argument).
+   
+2. Use sig2_60s.py to extract time samples for use in discriminant analysis.  I.e., extract the mean over X sec at baseline, Y and Z time points for a set of molecules.  The set of molecules is specified as the name of the molecule sum traces output by sig.py.  X is the window over which the average is calculated - can specify more than one value.  Y and Z are center time points of the average - can specify multiple time points.  A single output file is created, with one line per simulation.  Extracted values are for both the spine and the dendrite.
+
+3. Discriminant analysis in Sas used the set of simulations whose experimental outcomes are known. On cross-validation it was able to get all but 20Hz - block mGluR correct.  Then used same discriminant vectors to classify/predict the simulations (LTP, LTD or No Change) for which experimental outcomes not known.  Applied this also to the alcohol withdrawn case.
+   the time samples with 60s window for average worked best, measured at 60s after stimulation start.
+   The regions that worked best were spine for PKC, dendrite for 2ag and Epac.  I used PKA phosphorylated proteins in the spine and pCamKII in the dendrite.
+
+4. To generate molecule signature traces for figures, I was guided by discriminant analysis - thus Epac1+pCamKII-2AG in the dendrite, and PKA phos +PKC in the spine.
+
+5. sig.py can now calculate a distance dependent average of the dendrite (make spatialaverage=1 in the code).  This is useful for creating image plots of dendritic spatial specificity for the long dendrite / multi-spine case.
+
+6. Performed additional robustness simulations, with
+a. different diffusion constants and degradation rates of 2ag
+b. higher and lower (AC, PDE) concentrations
+c. lower dopamine during stimulation
+d. slower CamKII diffusion
+
+Analysis of robustness simulations:
