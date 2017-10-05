@@ -1,0 +1,11 @@
+2017 October 5
+
+Create STDP protocols using single pulse calcium injection used for trains - both fino and P&K. DONE
+Test the protocols (simulate using Rxn_stimtest.xml) to test calcium amplitude, and then adjust either upward or downward to achieve the calcium levels shown in Asia's models.
+
+>>>>>RESULT:
+Fino Calcium = 1 uM - perfect for backward.  Increase 5x for Forward (spine only)
+Dopamine: 500 nM - decrement subsequent pulses.
+Glutamate - non in dend, < 200 nM spine - increase 4x.
+
+NEXT: simulate full model
