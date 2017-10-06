@@ -1,12 +1,24 @@
 <ReactionScheme>
 <!-- Gs coupled Dopamine D1 Receptor; Ligand is Da,
      Dabuf is used to eliminate injected Da -->
-    <Specie name="Da"            id="Da"            kdiff="10"     kdiffunit="mu2/s"/>
+    <Specie name="Da"            id="Da"            kdiff="1"     kdiffunit="mu2/s"/>
     <Specie name="Dbuf"          id="Dbuf"          kdiff="1"      kdiffunit="mu2/s"/>
     <Specie name="DaDbuf"        id="DaDbuf"        kdiff="0"     kdiffunit="mu2/s"/>
     <Specie name="DaOut"         id="DaOut"         kdiff="1"      kdiffunit = "mu2/s"/>
 
-    <Specie name="Ca"                id="Ca"                kdiff="1"      kdiffunit = "mu2/s"/>
+    <Specie name="Ca"             id="Ca"            kdiff="100"      kdiffunit = "mu2/s"/>
+    <Specie name="CaOut"          id="CaOut"         kdiff="1" kdiffunit="mu2/s"/>
+    <Specie name="CaOutLeak"      id="CaOutLeak"     kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Leak"           id="Leak"          kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Calbin"         id="Calbin"        kdiff="9.3"   kdiffunit="mu2/s"/>
+    <Specie name="CalbinC"        id="CalbinC"       kdiff="9.3"   kdiffunit="mu2/s"/>
+    <Specie name="pmca"           id="pmca"          kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="ncx"            id="ncx"           kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="pmcaCa"         id="pmcaCa"        kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="ncxCa"          id="ncxCa"         kdiff="0"     kdiffunit="mu2/s"/>
+    <Specie name="Cam"            id="Cam"           kdiff="11"    kdiffunit="mu2/s"/>
+    <Specie name="CamCa2C"        id="CamCa2C"       kdiff="11"    kdiffunit="mu2/s"/>
+
     <Specie name="ACh"               id="ACh"                kdiff="10"      kdiffunit = "mu2/s"/>
 
     <Specie name="Glu"            id="Glu"           kdiff="2"   kdiffunit="mu2/s"/>
@@ -71,5 +83,84 @@
  
         <forwardRate> 6e-03 </forwardRate>
     </Reaction>
+<!-- i: Ca pump high affinity -    Ca + pmca <-> pmcaCa  SAME-->
+    <Reaction name = "Ca_pump1a" id="Ca_pump1a">
+	<Reactant specieID="Ca"/>
+	<Reactant specieID="pmca"/>
+	<Product specieID="pmcaCa"/>
+
+	<forwardRate>0.05e-3</forwardRate>
+	<reverseRate>9e-3</reverseRate>
+    </Reaction>
+
+<!-- ii: Ca pump high affinity -    pmcaCa <-> pmca + CaOut   SAME-->
+    <Reaction name = "Ca_pump1b" id="Ca_pump1b">
+	<Reactant specieID="pmcaCa"/>
+	<Product specieID="pmca"/>
+	<Product specieID="CaOut"/>
+
+	<forwardRate>3.0e-3</forwardRate>
+	<reverseRate>0</reverseRate>
+    </Reaction>
+
+<!-- iii: Ca pump low affinity -    Ca + ncx <-> ncxCa  SAME-->
+    <Reaction name = "Ca_pump2a" id="Ca_pump2a">
+	<Reactant specieID="Ca"/>
+	<Reactant specieID="ncx"/>
+	<Product specieID="ncxCa"/>
+
+	<forwardRate>0.011e-3</forwardRate>
+	<reverseRate>11.2e-3</reverseRate>
+    </Reaction>
+
+<!-- iv: Ca pump low affinity -    ncxCa <-> ncx + CaOut   SAME-->
+    <Reaction name = "Ca_pump2b" id="Ca_pump2b">
+	<Reactant specieID="ncxCa"/>
+	<Product specieID="ncx"/>
+	<Product specieID="CaOut"/>
+
+	<forwardRate>5.6e-3</forwardRate>
+	<reverseRate>0</reverseRate>
+    </Reaction>
+<!-- v: Ca leak -    CaOut + Leak <-> CaOutLeak  GQ RXN FILE, Leak is sm only-->
+    <Reaction name = "Ca_leak" id="Ca_leak">
+	<Reactant specieID="CaOut"/>
+	<Reactant specieID="Leak"/>
+	<Product specieID="CaOutLeak"/>
+
+        <forwardRate>0.01e-6</forwardRate>
+	<reverseRate>1.1e-3</reverseRate>
+    </Reaction>
+
+<!-- vi: Ca leak -    CaOutLeak <-> Ca (inside) + Leak  -->
+    <Reaction name = "Ca_leak" id="Ca_leak">
+	<Reactant specieID="CaOutLeak"/>
+	<Product specieID="Ca"/>
+	<Product specieID="Leak"/>
+
+        <forwardRate>1.1e-3</forwardRate>
+	<reverseRate>0</reverseRate>
+    </Reaction>
+
+<!-- vii: Ca Buffer    Ca + Calbindin <-> calbinC  SAME-->
+    <Reaction name = "Ca_buffer" id="Ca_Buffer">
+        <Reactant specieID="Ca"/>
+        <Reactant specieID="Calbin"/>
+        <Product specieID="CalbinC"/>
+
+        <forwardRate>0.028e-3</forwardRate>
+        <reverseRate>19.6</reverseRate>
+    </Reaction>
+
+<!--1A) Cam  + 2Ca <-> CamCa2C GQ RXN FILE, C or N can bind first-->
+    <Reaction name = "CamC_bind" id="CamC_bind">
+	<Reactant specieID="Cam"/>
+	<Reactant specieID="Ca" n="2"/>
+	<Product specieID="CamCa2C"/>
+
+	<forwardRate>0.006e-3</forwardRate>
+	<reverseRate>9.1e-3</reverseRate>
+    </Reaction>
+
 </ReactionScheme>
 

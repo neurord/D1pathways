@@ -1,17 +1,56 @@
 <InitialConditions>
 
     <ConcentrationSet>
-<!-- cytosolic molecules -->
+      <!-- cytosolic molecules -->
         <NanoMolarity specieID="Da"                      value="10" />
         <NanoMolarity specieID="Dbuf"                    value="0" />
         <NanoMolarity specieID="DaDbuf"                value="0" />
         <NanoMolarity specieID="DaOut"                   value="200000" />
-        <NanoMolarity specieID="Ca"                     value="0" />
+	
+	<NanoMolarity specieID="Ca"           value="75"/>
+        <NanoMolarity specieID="CaOut"        value="1996038"/>
+        <NanoMolarity specieID="CaOutLeak"    value="0"/>
+	<!-- total calbindin = 160 uM -->
+        <NanoMolarity specieID="Calbin"       value="159982"/>
+        <NanoMolarity specieID="CalbinC"      value="18"/>
+      	<NanoMolarity specieID="Cam"          value="3475"/>
+      	<NanoMolarity specieID="CamCa2C"      value="145"/>
+
         <NanoMolarity specieID="Glu"                    value="10" />
         <NanoMolarity specieID="GluOut"                  value="200000" />
         <NanoMolarity specieID="Gbuf"                    value="0" />
         <NanoMolarity specieID="GluGbuf"               value="0" />
-	<NanoMolarity specieID="ACh"             value="95" />
+	<NanoMolarity specieID="ACh"             value="105" />
+<!-- membrane molecules -->
+        <NanoMolarity specieID="Leak"         value="0"/>
+        <NanoMolarity specieID="pmca"         value="0"/>
+        <NanoMolarity specieID="pmcaCa"       value="0"/>
+        <NanoMolarity specieID="ncx"          value="0"/>
+        <NanoMolarity specieID="ncxCa"        value="0"/>
     </ConcentrationSet> 
  	
+    <ConcentrationSet region="neck" >
+        <NanoMolarity specieID="Leak" value="0"/>
+        <NanoMolarity specieID="pmca" value="660"/>
+        <NanoMolarity specieID="pmcaCa" value="220"/>
+        <NanoMolarity specieID="ncx" value="14980"/>
+        <NanoMolarity specieID="ncxCa" value="120"/>
+    </ConcentrationSet>
+
+    <ConcentrationSet region="head" >
+        <NanoMolarity specieID="Leak" value="0"/>
+        <NanoMolarity specieID="pmca" value="760"/>
+        <NanoMolarity specieID="pmcaCa" value="120"/>
+        <NanoMolarity specieID="ncx" value="0"/>
+        <NanoMolarity specieID="ncxCa" value="0"/>
+    </ConcentrationSet>
+
+    <SurfaceDensitySet region="dend" >
+  	<PicoSD specieID="Leak" value="100"/>
+  	<PicoSD specieID="CaOutLeak" value="800"/>
+        <PicoSD specieID="pmca" value="71"/>
+ 	<PicoSD specieID="pmcaCa" value="29"/>
+  	<PicoSD specieID="ncx" value="2840"/>
+  	<PicoSD specieID="ncxCa" value="160"/>
+    </SurfaceDensitySet>
 </InitialConditions>
