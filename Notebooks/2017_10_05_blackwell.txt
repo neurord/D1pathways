@@ -8,4 +8,16 @@ Fino Calcium = 1 uM - perfect for backward.  Increase 5x for Forward (spine only
 Dopamine: 500 nM - decrement subsequent pulses.
 Glutamate - non in dend, < 200 nM spine - increase 4x.
 
+>>>>>>> New results:
+	rate		dendPK	spinePK	   dendFino	spineFino
+ACh	3		165n	1u	   165n		1u	
+Da	18/9		300n	5u	   300n		5u
+Glu	5		40n	500n	   40n		500n
+Cal	3 (15 spine For)1u/2u	8u/22u	   1u/2u	8u/22u
+NOTE that molecules and calcium especially may be lower with other binding proteins, since single pulse is same as used for TBS and 20 Hz.
+
 NEXT: simulate full model
+
+To re-do discrminant analysis:
+1. Add in STDP protocols to known
+2. Include the 40% theta control protocol in known

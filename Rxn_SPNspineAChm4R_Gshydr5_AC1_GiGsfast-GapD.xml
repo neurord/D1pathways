@@ -525,7 +525,7 @@
         <Product  specieID="GluMgluR"         />
 
         <forwardRate> 0.001e-03 </forwardRate>
-        <!--reverseRate> 6.6e-03      </reverseRate-->
+        <!--reverseRate> 13.2e-03      </reverseRate-->
 	<!-- uncomment below and comment above for Glu (opposite for Dhpg) -->
         <reverseRate> 0.5e-03      </reverseRate>
     </Reaction>
@@ -557,7 +557,7 @@
         <Product specieID="GluMgluRGq" />
 
         <forwardRate> 0.004e-03 </forwardRate>
-        <!--reverseRate> 13.2e-03      </reverseRate-->
+        <!--reverseRate> 26.4e-03      </reverseRate-->
 	<!-- uncomment below and comment above for Glu (opposite for Dhpg) -->
         <reverseRate> 1e-03 </reverseRate>
    </Reaction>

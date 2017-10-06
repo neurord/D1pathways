@@ -22,3 +22,7 @@ c. lower dopamine during stimulation
 d. slower CamKII diffusion
 
 Analysis of robustness simulations:
+
+********************** Mistake discovered in reaction files: activity of AC1GsaGTP bound CamCa4 is 1000x lower than it should be!  I.e.  AC1GsaGTPCamCa4 (+ ATP)  ⇌AC1GsaGTPCamATP is 1000x lower forward rate.
+
+Need to re-run a few simulations and assess whether change is significant.  If so, re-run all simulations (first  check robustness to see if better parameters are evident)
