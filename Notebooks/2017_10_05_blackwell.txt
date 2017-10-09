@@ -16,7 +16,15 @@ Glu	5		40n	500n	   40n		500n
 Cal	3 (15 spine For)1u/2u	8u/22u	   1u/2u	8u/22u
 NOTE that molecules and calcium especially may be lower with other binding proteins, since single pulse is same as used for TBS and 20 Hz.
 
-NEXT: simulate full model
+>>>>>>>>Results simulate full model:
+Calcium spine is too low
+1. 500 nM Fino forward, 250 nM Fino Backward: increase by 4x both forward and back, spine only.
+2. 1st pulse in dendrite is 200 nM forward, 111 nM backward.  OK
+3. PK forward is 300-400 nM, PK back is 150-200 nM: also increase by 4x forward and back, spine only.
+4. Da: > 2 uM spine, ~300 nM dend: OK
+5. Glu: ~500 nM PK spine, ~800 nM PK spine.
+
+########### New simulations with larger calcium
 
 To re-do discrminant analysis:
 1. Add in STDP protocols to known

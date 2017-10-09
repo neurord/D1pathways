@@ -1,0 +1,127 @@
+all sims (No, 3 bath and 4 block, main theta vs 20hz):
+**1. faster GsaGTP production with faster GsaGTP hydrolysis (50%?)
+**2. Slower GiaGTP production + slower Gia hydrolysis (50%?)
+4. 50% lower PP2BCamCa2 activity with faster GiaGTP
+**5. increase both AC and PDE or decrease both AC and PDE (30%)
+6. 1st order dephos of pPDE
+
+theta vs 20hz - main/controls
+****1. 20% lower Da for all
+
+2. change (higher or none) decrement for subsequent theta or 20hz - only for theta - enhance decrement, since both DaDec2 and DaDec3 work for 20hz?
+
+****3. CKpCamCa4 10x lower diffusion (as if anchored to NMDA)
+
+****4. add small amount of m1 to spine head (20% of mGluR) and reduce mGluR (half).  For this one repeat the MGluR and M1 block cases also. 
+       Current glutamate concentration saturates the mGluR receptors in the spine.  Therefore, could drastically reduce glu stim - would likely have less dendrite receptors bound 
+       --> HALVE Glutamate Stimulation for these simulations - will not affect block case.  May increase m1block effect.
+       2. Current ACh binds ~1/3 of receptors in dendrite, large ACh gradient (2000: 400)
+       --> increase quantity in dend compared to head - same total.  May increase Gq and Gq bound Plc in dendrite, which is still low.
+
+5. Signature - PKAc bound or PKAc phospho targets - in discriminant analysis
+NOPE: not interesting
+6. Repeat noDip with lower calcium - as if G protein block of VDCC
+
+>>>>>>>>>>>>>Results
+Bath/Block simulation variations. sum Dp34PP1+Dp34, Dp75+Dp75PKAc
+Gsfast:		Dp34 basal  peak/min	Dp75 basal  peak/min
+bathCa		663.1	    246.7	10523.9	    7559.5 
+bathDa		671.6	    3855.0	10445.6	    7844.9
+bathDaCa	659.2	    2954.0	10541.0	    6054.1
+blockCyA	662.0	    783.1	10415.7	    10707.3 peak
+blockOA		650.2	    917.9	10383.8	    37235. peak
+blockPap	621.3	    2312.7	10368.2     9115.4
+blockRoli	660.1	    713.3 	10788.	    10286.5
+
+Gislow:		Dp34 basal  peak/min	Dp75 basal  peak/min
+bathCa		605.3	    238.8	10438.0	    7596.0
+bathDa		649.7	    3852.5	10501.3	    7789.8
+bathDaCa	635.5	    2922.1	10372.9	    6139.0
+blockCyA		    
+blockOA		654.0       847.2	10470.5	    36229.6 peak	
+blockPap	639.1	    2139.0	10470.0	    8973.1 
+blockRoli	647.7	    680.4 	10415.0	    10322.4
+
+AChigh:		Dp34 basal  peak/min	Dp75 basal  peak/min	basal shifted because PDE increased too much?
+bathCa		405.1	    174.1	10583.1	    7521.3
+bathDa		311.3	    3713.6	10620.7	    8205.9 
+bathDaCa	307.2	    2545.6	10593.3	    6130.6
+blockCyA		    549.1		    10859.8 peak	
+blockOA			    482.8		    37141.8 peak
+blockPap		    1814.6		    9177.2
+blockRoli		    517.1		    10157.8
+
+AClow:		Dp34 basal  peak/min	Dp75 basal  peak/min	basal from 45-50s
+bathCa		576.3	  289.9  	10493.0	    7117.9
+bathDa		455.1	  3943.3	10667.7	    7420.7
+bathDaCa	519.3	  3256.2	10564.9	    6049.3
+blockCyA		  1099.1		    9883.2
+blockOA			  776.5			    36592.0
+blockPap
+blockRoli		  776.1			    10129.1
+
+--------> CyA results are better with AClow!!! Is that due to lower basal Dp34?  DaCa results are worse.
+How to present these results?
+
+___TBS vs 20Hz___
+**Da80 (Da stim is 80% of control): ctrl only - look at overall concentration of cAMP dependent molecules
+Epac1cAMP, Dp34, pPDE4, pPDE10cAMp all look similar to control
+
+**slowCKp (diffusion is 0.36 - 10x slower): ctrl only - look at gradient between spine and dendrite
+CKpCamCa4 looks almost identical to control - likely need a receptor for anchoring to see an effect
+
+**For these 2ag variants, look at gradient between spine and dendrite, and effect of M1 and MGlu block:
+*2agdeg1: ctrl, blockM1, blockMGlu
+*2agdeg1dif1: ctrl, blockM1, blockMGlu
+ctrl: 10% reduction in Pkc for 20Hz compared to 2agdeg1
+both have greatly reduced 2ag concentration, with no change in TBS - 20Hz difference, and no change in spine-dendrite gradient
+
+2agdeg4: ctrl, blockM1, blockMGlu - theta didn't run
+Much lower 2ag for 20hz.
+
+**m1spine: ctrl, blockM1, blockMGlu
+block m1 continues to reduce Pkc in the dendrite
+block MGlu reduces Pkc in the spine for tbs, but smaller reduction for 20hz.
+2ag: block m1 reduces 2ag in the spine and dend for both tbs and 20hz (more so than in control)
+However, reduction is still only 10% in spine
+
+**2AG  	   	 ctrl	 	       m1sp 
+theta_DaDec1  [ 19.417  19.377]	       [ 20.383  20.322]  sl. higher
+blockm1	      [ 10.608  10.487]	       [ 9.712  9.723]	  sl. lower
+blockmGlu     [ 17.767  17.95 ]        [ 19.784  19.858]  much higher
+
+20hz	    [ 30.739  30.96 ]		[ 29.796  29.926] sl. lower	
+blockm1     [ 14.93   15.247] 		[ 13.229  13.107] sl. lower
+blockMGlu   [ 27.755  27.78 ]		[ 27.344  26.926] NC
+--->decreases effect of MGlu block on 2ag for TBS and 20Hz (though original effect was small)
+	      enhances effect of M1 block on 2ag for TBS (though probably not relevant
+
+############ How to present these results in the paper??????
+For TBS vs 20Hz, create a file of time samples (60s mean) to use in discriminant?  Labeled unknown?
+Not for 2ag degradation because 2ag has overall reduction
+
+Cases for table:
+m1sp - 3 conditions (ctrl, m1, mglu) x 2 stim)
+
+VALUES OF AUC:
+Da80			2ag		pkc			Aphos	CKpCam		Epac1
+20hzReb_lowDaDec2    [ 31.139  30.87 ] [ 12.961  39.777]
+20hzReb_lowDaDec3    [ 30.795  30.625] [ 11.607  40.345]
+thetaReb_DaDec1      [ 20.183  20.273] [ 21.196  57.34 ]
+CKp			2ag		pkc
+20hzReb_lowDaDec3    [ 29.763  30.04 ] [ 12.095  29.689]
+thetaReb_DaDec1      [ 20.579  20.471] [ 20.445  60.5  ]
+AClow			2ag		pkc
+20hzReb_lowDaDec3    [ 29.265  29.158] [ 12.519  29.367]
+thetaReb_DaDec1      [ 18.063  18.025] [ 22.58   43.306]
+AChigh			2ag		pkc
+20hzReb_lowDaDec3    [ 30.55   30.618] [ 11.353  26.19 ]
+thetaReb_DaDec1      [ 22.054  22.218] [ 17.718  37.013]
+Gsfast			2ag		pkc
+20hzReb_lowDaDec3    [ 30.912  31.104] [ 11.137  39.188]
+thetaReb_DaDec1      [ 19.711  19.859] [ 20.848  68.332]
+Gislow			2ag		pkc
+20hzReb_lowDaDec3    [ 28.771  28.893] [ 11.524  33.999]
+thetaReb_DaDec1      [ 19.876  19.904] [ 21.19   58.504]
+
+Get prediction and put in table?
