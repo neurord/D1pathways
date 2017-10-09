@@ -23,7 +23,7 @@
 </InjectionStim>
 <InjectionStim specieID="ACh" injectionSite="dend:submembrane">
         <onset>               80000          </onset>
-        <duration>            200000      </duration>
+        <duration>            220000      </duration>
         <rate>                0.2         </rate>
 </InjectionStim>
 
@@ -64,7 +64,7 @@
 <!-- forward pairing implemented with higher calcium injection -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
-        <duration>            3              </duration>
+        <duration>            12              </duration>
         <rate>                156            </rate>
         <period>              1000             </period>
         <end>                 79999          </end>
