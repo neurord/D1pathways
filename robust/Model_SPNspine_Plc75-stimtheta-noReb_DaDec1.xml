@@ -3,21 +3,11 @@
     <!-- this file defines a single run of the calculation, using morphology and 
 	 reaction data brought in from other files --> 
 
-          <xi:include href="Rxn_SPNspineAChm4R_Gshydr5_AC1_Gislow-GapD-CyA.xml" />
+           <xi:include href="../Rxn_SPNspineAChm4R_Gshydr5_AC1_GiGsfast-GapD.xml" />
           <xi:include href="../Morph_1sp2umDend.xml" />
-	  <xi:include href="../IC_SPNspineAChm4R_AC1_coupleGqhigh.xml" />       
+	  <xi:include href="IC_SPNspine_Plc75.xml" />       
           <xi:include href="../Out_SPNspineCaMKII_DagL_AChm1R_AC1.xml" />
-<StimulationSet>
-
-<!-- basal ACh stim value for entire sim = desired conc * decay rate -->
-<InjectionStim specieID="ACh" injectionSite="dend:submembrane">
-        <onset>               0          </onset>
-        <duration>            1000000      </duration>
-        <rate>                0.2         </rate>
-</InjectionStim>
-
-</StimulationSet>
-
+	  <xi:include href="../StimCoupleTheta10hzAChNoRebound_DaDec1-15sITI_onset50.xml" />
 
     <!--2D means the morphology is interpreted like a flatworm, 3D for
 	roundworms. The 2D case is good for testing as it is eas/Stry to visualize the
