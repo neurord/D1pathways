@@ -64,8 +64,8 @@
 <!-- forward pairing implemented with higher calcium injection -->
 <InjectionStim specieID="Ca" injectionSite="sa1[0].pointA">
         <onset>               20000          </onset>
-        <duration>            60              </duration>
-        <rate>                156            </rate>
+        <duration>            90              </duration>
+        <rate>                312            </rate>
         <period>              1000             </period>
         <end>                 79999          </end>
 </InjectionStim>
