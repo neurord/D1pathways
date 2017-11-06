@@ -4,93 +4,93 @@
    <!-- 20 Glu and Ca pulses / sec for 1 sec * 20 trains = 400 pulses -->
 <!-- pulse 1 to produce 0.5 uM alone -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20600          </onset>
+        <onset>               21300          </onset>
         <duration>            15              </duration>
         <rate>                18            </rate>
         <period>              50             </period>
-        <end>                 20620          </end>
+        <end>                 21320          </end>
 </InjectionStim>
 
 <!-- pulse 2 = half of pulse 1 -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20650          </onset>
+        <onset>               21350          </onset>
         <duration>            15              </duration>
         <rate>                9.0           </rate>
         <period>              50             </period>
-        <end>                 20670          </end>
+        <end>                 21370          </end>
 </InjectionStim>
 
 <!-- pulse 3 = half of pulse 2  -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20700          </onset>
+        <onset>               21400          </onset>
         <duration>            15              </duration>
         <rate>                6.3           </rate>
         <period>              50             </period>
-        <end>                 20720          </end>
+        <end>                 21420          </end>
 </InjectionStim>
 
 <!-- pulses 4-20 = half of pulse 3, faster injection to decrease stochasticity-->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20750          </onset>
+        <onset>               21450          </onset>
         <duration>            15              </duration>
         <rate>                3           </rate>
         <period>              50             </period>
-        <end>                 21599          </end>
+        <end>                 22299          </end>
 </InjectionStim>
 
 <!--later bursts of Da - partial strength (2/3d) -->
 <!-- pulse 1 to produce 0.5 uM alone -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               30000          </onset>
+        <onset>               31300          </onset>
         <duration>            15              </duration>
         <rate>                12            </rate>
         <period>              50             </period>
-        <end>                 30020          </end>
+        <end>                 31320          </end>
 </InjectionStim>
 
 <!-- pulse 2 = half of pulse 1 -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               30050          </onset>
+        <onset>               31350          </onset>
         <duration>            15              </duration>
         <rate>                6.0           </rate>
         <period>              50             </period>
-        <end>                 30070          </end>
+        <end>                 31370          </end>
 </InjectionStim>
 
 <!-- pulse 3 = half of pulse 2  -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               30100          </onset>
+        <onset>               31400          </onset>
         <duration>            15              </duration>
         <rate>                4.2           </rate>
         <period>              50             </period>
-        <end>                 30120          </end>
+        <end>                 31420          </end>
 </InjectionStim>
 
 <!-- pulses 4-20 = 2/3 of ctrl Da, faster injection to decrease stochasticity-->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               30150          </onset>
+        <onset>               31450          </onset>
         <duration>            15              </duration>
         <rate>                2           </rate>
         <period>              50             </period>
-        <end>                 30999          </end>
+        <end>                 32299          </end>
 </InjectionStim>
 
 <!-- third and subsequent trains even smaller -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               40000          </onset>
+        <onset>               41300          </onset>
         <duration>            15              </duration>
         <rate>                2.0            </rate>
         <period>              50             </period>
-        <end>                 40999          </end>
+        <end>                 42299          </end>
 </InjectionStim>
 
 <!-- fourth and subsequent trains smaller still -->
 <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               50000          </onset>
+        <onset>               51300          </onset>
         <duration>            15              </duration>
         <rate>                1.0            </rate>
         <period>              50             </period>
-        <end>                 50999          </end>
+        <end>                 52299          </end>
         <numTrains>           17             </numTrains>
         <interTrainInterval>  9001          </interTrainInterval>   
 </InjectionStim>

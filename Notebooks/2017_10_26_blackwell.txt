@@ -1,0 +1,11 @@
+2017 October 26-Nov6
+
+Analysis of stimulation for DaDelay cases reveals that the peak of the dopamine does not occur during the ACh dip.  Need to add in another 500ms of delay for the dendrite.
+In addition, due to the noise, the dip is much less apparent in the spine, and the delay for Da needs to be a bit higher, e.g. 600-700 ms more.
+
+ALSO, discovered that the DaDelay values were only implemented for the 1st burst of Da for 20Hz.
+
+Repeat Delay simulations using 1.3 s delay, instead of 0.6 ms
+
+>>>>>RESULT:
+DaDelay 600 ms results look almost identicala to simulations with no Delay

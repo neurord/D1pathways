@@ -8,7 +8,7 @@ Fino Calcium = 1 uM - perfect for backward.  Increase 5x for Forward (spine only
 Dopamine: 500 nM - decrement subsequent pulses.
 Glutamate - non in dend, < 200 nM spine - increase 4x.
 
->>>>>>> New results:
+>>>>>>> New results:Ca stim spine: dur = 60, rate=156 (for), dur=12, rate=156 (back)
 	rate		dendPK	spinePK	   dendFino	spineFino
 ACh	3		165n	1u	   165n		1u	
 Da	18/9		300n	5u	   300n		5u
@@ -16,7 +16,7 @@ Glu	5		40n	500n	   40n		500n
 Cal	3 (15 spine For)1u/2u	8u/22u	   1u/2u	8u/22u
 NOTE that molecules and calcium especially may be lower with other binding proteins, since single pulse is same as used for TBS and 20 Hz.
 
->>>>>>>>Results simulate full model:
+>>>>>>>>Results simulate full model (dur=15 forward, dur=3 backward, rate=156):
 Calcium spine is too low
 1. 500 nM Fino forward, 250 nM Fino Backward: increase by 4x both forward and back, spine only.
 2. 1st pulse in dendrite is 200 nM forward, 111 nM backward.  OK
@@ -24,8 +24,33 @@ Calcium spine is too low
 4. Da: > 2 uM spine, ~300 nM dend: OK
 5. Glu: ~500 nM PK spine, ~800 nM PK spine.
 
-########### New simulations with larger calcium
+########### New simulations with larger calcium.  dur = 60, rate=312 (for), dur=12, rate=312 (back) 
+	    Ca Dend/Spine  Da   Glu      ACh	  CKpCamCa4	Pkc	2ag	Epac1	Dp34
+Fino Back   350n/600n   2u/300n	800/60  300/90    200		2000	250	280	3u
+Fino For    2.5u/3u	2u/300n	800/60	300/90	  2		400	150	300	3u
+PK Back	    150n/200n   3u/300n	600/40  300/100   50 		100	100	100	2u
+PK For	    800n/1.5u	3u/300n 600/40  300/100	  2		50	60	100	2u
 
-To re-do discrminant analysis:
-1. Add in STDP protocols to known
-2. Include the 40% theta control protocol in known
+1. No difference in Epac1 or Dp34 between forward and backward - this is expected from same dopamine signals and same ACh signals
+2. Pkc and CKpCam are higher for forward than backward - expected from difference in calcium signals.  
+Calcium still too low in spine compared to Asia simulations - increase calcium for both forward and backward and repeat simulations
+3. Essentially no 2ag produced with PK backward - likely due to extremely low calcium
+   	    		    			     
+########### New simulations with even larger calcium. rate,dur = 312,60 (for), 312,12 (back) 
+	    Ca Dend/Spine  Da   Glu      ACh	  CKpCamCa4	Pkc	2ag	Epac1	Dp34
+Fino Back   700n/1u	   2u/300n	800/60    17n		127n	194	244	3u
+Fino For    15u/15u	   2u/300n	800/60	  500n		1.7u	255	264	3u
+PK Back	    3u/4u	   3u/300n	600/40  
+PK For	    500n	   3u/300n 	600/40  
+
+PK: calcium not high enough - only 3-4 u for Forward and 500n back - repeat simulations with
+dur=90 forward, dur=18 backward
+
+Possibly missing the very high (but transient?) spine peak.  Otherwise, insufficient gradient from spine to dend
+
+NEXT:
+A: repeat sig.py for 5 molecule sums 
+B: run sig2-60s to generate file for SAS
+C: re-do discrminant analysis with STDP outcome known
+
+

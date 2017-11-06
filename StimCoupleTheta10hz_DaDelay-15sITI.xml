@@ -11,40 +11,40 @@
     longer duration of inject provides for the >100msegion rise time-->
   <!-- the 15 s repetition of train provides the first burst for each of 10 trains -->
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20600          </onset>
+        <onset>               21300          </onset>
         <duration>            60              </duration>
         <rate>                6.0           </rate>
         <period>              105             </period>
-        <end>                 20700          </end>
+        <end>                 21400          </end>
   </InjectionStim>
 
   <!-- These next Da are single pulse, represent 4 pulse burst; burst 2-10 amp = 1/2 amp of 1st burst -->
   <!-- the 15 s repetition of train provides bursts 2-10 for each of 10 trains -->
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               20695          </onset>
+        <onset>               21395          </onset>
         <duration>            60              </duration>
         <rate>                2.5           </rate>
         <period>              95             </period>
-        <end>                 21549          </end>
+        <end>                 22249          </end>
   </InjectionStim>
 
   <!-- bursts 2-10 are lower amplitude than 1st burst -->
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               35600          </onset>
+        <onset>               36300          </onset>
         <duration>            60              </duration>
         <rate>                4.0           </rate>
         <period>              105             </period>
-        <end>                 35700          </end>
+        <end>                 36400          </end>
         <numTrains>           9             </numTrains>
         <interTrainInterval>  14900             </interTrainInterval>    
   </InjectionStim>
 
   <InjectionStim specieID="DaDbuf" injectionSite="sa1[0].pointA">
-        <onset>               35695          </onset>
+        <onset>               36395          </onset>
         <duration>            60              </duration>
         <rate>                1.5           </rate>
         <period>              95             </period>
-        <end>                 36549          </end>
+        <end>                 37249          </end>
         <numTrains>           9             </numTrains>
         <interTrainInterval>  14051             </interTrainInterval>    
   </InjectionStim>
