@@ -1,59 +1,29 @@
-**This is terse but detailed list of steps to develop the model.**  See ResearchPlanMSNsignalingPathway.txt for bigger picture, including
-     What are the big research questions
-     What are some little research questions
-     Some experiments that can help test/develop the model
-     See NeuroRD.bat for information on how to run models
-This file is also used to keep track of which steps have been done, and what needs to be done next.
+**Model files for simulating the signaling pathways underlying striatal LTP and LTD**
 
-**Details of what was done with a summary of results (with xml filenames) are reported in Notebook subdirectory:**
-Notebook files should have following name format: year_MM_DD_lastname
-Information: goal/plan of the days work, e.g. data trying to simulation
-	     names of xml files and directorys created (e.g. if subset of rxn file used, or different stim file)
-	     table of results: parameters tried and summary of results
-	     conclusion / next steps (e.g. parameters X matched, copied into main Rxn file; or try parameters Z next time)
+*Signaling pathways include:*
+1. dopamine D1R coupled pathways (activatin of Gs subtype of GTP binding protein, leading to cAMP, PKA and Epac)
+2. calcium activated pathways (leading to PP2B,
+3. metabotropic glutamate mGluR1/5 coupled pathways (activation of Gq subtype of GTP binding protein, leading to PLC and DAG)
+4. muscarinic acetylcholine receptors: M1R (Gq coupled) and M4R (Gi coupled - inhibition of cAMP)
+5. Molecules mediating interaction of these pathways, such as DARPP-32
+
+This model represents a synthesis/merger of the models presented in Oliveria et al. PLoS Comp Biol 2012 and the model presented in Kim et al. PLoS Comp Biol 2013.
+
+The Model reaction kinetics and molecule quantities are summarized in MSPN-mergeRateConstTable.xls, along with a list of all the models.  There are two main sets of model files:
+A. those used to constrain to model.  These include simulations of the change in DARPP-32 phosphorylation in response to bath applied drugs, and simulations of depolarization induced suppression of inhibition.
+B. Synaptic plasticity protocols.  These include both stimulation protocols with known outcomes, and stimulation protocols not yet measured experimentally.
 
 **Modelxxx.xml contain the entire model specification**, which combines Reaction file (Rxn*.xml), Morphology file (Morph*.xml), initial conditions file (IC*.xml), output file (Out*.xml) and stimulation (Stim*.xml).  Most simulation experiments involve changing the stimulation. To run simulations, use NeuroRDv3.2.3:
+
 java -jar  /home/neuroware/stochdif/neurord-3.2.3-all-deps.jar Modelfile.xml
 
-Variations on running the models, e.g. by specifying initial conditions from a different (e.g. equilibrium) simulation, or running multiple trials, are illustrated in NeuroRD.bat, or explained in neurord/stochdiff/README.rst
+The two main (control) Model files are:
+-Model_SPNspineAChm4R_Gshydr5_GapD-stim20hz-noReb_lowDaDec3.xml
+-Model_SPNspineAChm4R_Gshydr5_GapD-stimtheta-noReb_DaDec1.xml
 
-**Model Development and Simulation Steps**
+Variations on running the models, e.g. by specifying initial conditions from a different (e.g. equilibrium) simulation, or running multiple trials, are illustrated in NeuroRD.bat, and explained in https://github.com/neurord/stochdiff/README.rst
 
-*Step 1. Merge reactions from modified version of Rodrigo's model and BoHung's model*
-
-A. DONE. Merge reactions. Notes in the RXN file indicate whether the reaction came from the Gs model (Oliveira 2012) or Gq model (Kim 2013)
-B. DONE. Use the smaller, 1 spine morphology
-C. DONE. Create initial IC file - BALANCE ALL SPECIES, concentration and total PKA, etc in dend sm and spine head
-Compare rate constants with xpp model and Oliveira model: which rates match references theirin, which ones do not match references, which rates don't have references.
-D. DONE. Search for updated references for rates with none or non-matching refs.  
-E. DONE. Check thermodynamic balance of some sets of reactions.
-F. DONE. Create spreadsheet with rates and references to rates
-
-*Step 2. Assays and adjustment to achieve correct basal cAMP and calcium*
-
-A. DONE. assays for PLC, Da binding to DR1 (very small subset of reactions) - PLCassay/, DRGassay/
-B. DONE. IC and RXN for Gs production and binding (very small subset of reactions) - cAMPassay/
-C. DONE. IC and RXN for calmodulin, calbindin, pumps, affinity of Ca for Dagl and PLC - whole model but 3-5 comps (dend with sm)
-D. DONE. assays of DARPP32 phos in response to bath applied Da and Ca, as in Lindskog. -  whole model but 3-5 comps (dend with sm)
-E. DONE. Include Gi reactions here to help decrease basal cAMP - simulate ss in whole, multi-comp model (witih spine)
-
-*Step 3. Interaction between Gs and Gq/calcium pathways*
-
-A. DONE. CaMKII inhibition of Dagl
-B. POSTPONE. Replace the D2R parameters with m4R parameters in the D1R model. Higher affinity of m4R and higher ACh will decrease basal cAMP, may need to add AC1 or otherwise tweak params to fix basal cAMP and Dp34PP1.
-C. POSTPONE. PKA enhances of Gq or Gi GAP activity?  Via RGS?  Speed GaGTP production according to Chuhma et al.?
-D. DONE. Add in Epac (from Chay et al.) or AKAR (from Nair ... Kotaleski) to quantify assays
-E. DONE. Re-run all assays to verify, including Uchigashima bath application simulations - still valid?
-
-*Step 4.  Simulation experiments: 20 Hz vs theta*
-
-A. DONE. Stim files: Glu: how to account for release refractoriness and receptor desensitization (Ca and mGluR)? calcium constrained by Asia calcium dynamics model.  Still need to contrain calcium by Armando imaging.
-B. DONE. Stim files: Da and ACh: what pattern of release occurs (Da constrained by voltammetry)
-C. DONE. Which temporal patterns select for LTP vs LTD? - repetition of 20hz vs theta
-D. Sensitivity to order of Ca and Da?  Create alternative stimulation files
-E. DONE. Effect of blocking various molecules, such as PDEs or CamKII
-F. IN PROGRESS. Create signature that can correctly predict LTP vs LTD for block cases also.  Then create novel stim patterns.
-G. DONE.  Spatial specificity
-H. IN PROGRESS. Effect of alcohol.  IC: lower G proteins; Stim: higher calcium (NR2B), possible more Glu (less desensitization), less Da; smaller effect of 2ag on signature (less CB1).
-
-*Step 5. Parameter sensitivity analysis*
+Model output was processed using the python programs in https://github.com/neurord/NeuroRDanal
+-nrdh5_anal.py produce graphs of molecules for one or more files, and optionally will generate outpu files of molecule concentration versus time for various morhpology subregions.
+-sig.py calculates one or two "signatures" from sets of molecules by adding together the specified molecules.  E.g. to calculcate the total PKA phosphorylated DARPP-32, you would add D32p34PP1 and D32p34.
+-sig2.py calculates the mean value of a set of molecule signatures at specified time points to use in statistical analysis.
