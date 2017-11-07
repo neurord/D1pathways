@@ -342,10 +342,10 @@
         <PicoSD specieID="MgluR"              value="30"  />
         <PicoSD specieID="MgluRGq"            value="10"  />
         <PicoSD specieID="Gqabg"              value="1950"  />
-        <PicoSD specieID="Plc"                value="177"  />
-        <PicoSD specieID="PlcCa"              value="8"    />
-        <PicoSD specieID="Pip2"               value="9525" />
-        <PicoSD specieID="PlcCaPip2"          value="15"   />
+        <PicoSD specieID="Plc"                value="20"  />
+        <PicoSD specieID="PlcCa"              value="0"    />
+        <PicoSD specieID="Pip2"               value="954" />
+        <PicoSD specieID="PlcCaPip2"          value="0"   />
 
         <PicoSD specieID="Dag"                value="40"  />
         <PicoSD specieID="DagK"               value="140"  />
