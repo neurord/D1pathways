@@ -97,31 +97,85 @@ blockMGlu   [ 27.755  27.78 ]		[ 27.344  26.926] NC
 	      enhances effect of M1 block on 2ag for TBS (though probably not relevant
 
 ############ How to present these results in the paper??????
-For TBS vs 20Hz, create a file of time samples (60s mean) to use in discriminant?  Labeled unknown?
+NEXT: For TBS vs 20Hz, create a file of time samples (60s mean) to use in discriminant?  Labeled unknown?
+A: repeat sig.py for 5 molecule sums and all but 2ag robustness sims (and also STDP)
+B: run sig2-60s to generate file for SAS
+
 Not for 2ag degradation because 2ag has overall reduction
 
-Cases for table:
-m1sp - 3 conditions (ctrl, m1, mglu) x 2 stim)
+VALUES OF AUC (threshold=0):
+Da80			2ag		pkc		  Epac1		Aphos			CKpCam
+20hzReb_lowDaDec2    [ 31.139  30.87 ] [ 12.961  39.777] [ 27.064  27.293] [ 646.825  625.751] [ 15.031  15.496]
+20hzReb_lowDaDec3    [ 30.795  30.625] [ 11.607  40.345] [ 18.461  18.186] [ 510.228  487.499] [ 13.992  15.098]
+thetaReb_DaDec1      [ 20.183  20.273] [ 21.196  57.34 ] [ 22.799  22.903] [ 579.043  569.749] l[ 47.896  50.437]
+CKp			2ag		pkc		   Epac1		Aphos			CKpCam
+20hzReb_lowDaDec3    [ 29.763  30.04 ] [ 12.095  29.689] [ 20.484  20.753] [ 536.214  519.977] [ 13.638  13.736]
+thetaReb_DaDec1      [ 20.579  20.471] [ 20.445  60.5  ] [ 27.681  27.421] [ 654.181  646.364] [ 48.64   49.239]
+AClow	(45-50s)	2ag		pkc		    Epac1		Aphos			CKpCam
+20hzReb_lowDaDec3    [ 29.265  29.158] [ 12.519  29.367]  [ 31.99   31.803] [ 650.348  644.653] [ 13.71   13.676] 
+thetaReb_DaDec1      [ 18.063  18.025] [ 22.58   43.306]  [ 41.975  42.032] [ 698.454  717.235] [ 55.032  55.579]
+AChigh	(45-50s)	2ag		pkc	 	    Epac1		Aphos			CKpCam
+20hzReb_lowDaDec3    [ 30.55   30.618] [ 11.353  26.19 ]  [ 18.129  18.1  ] [ 428.868  427.357] [ 10.369  10.664]
+thetaReb_DaDec1      [ 22.054  22.218] [ 17.718  37.013]  [ 20.173  20.147] [ 484.296  477.321] [ 33.623  34.47 ] 
+Gsfast			2ag		pkc	 	    Epac1		Aphos			CKpCam
+20hzReb_lowDaDec3    [ 30.912  31.104] [ 11.137  39.188] [ 24.12  24.15]  [ 601.51   562.756] [ 11.917  14.629] 
+thetaReb_DaDec1      [ 19.711  19.859] [ 20.848  68.332] [ 26.964 27.159] [ 617.166  596.21 ]  [ 46.928  49.282]
+Gislow			2ag		pkc	 	    Epac1		Aphos			CKpCam
+20hzReb_lowDaDec3    [ 28.771  28.893] [ 11.524  33.999] [ 21.099  21.039] [ 554.651  527.405] [ 14.712  16.492]
+thetaReb_DaDec1      [ 19.876  19.904] [ 21.19   58.504] [ 27.213  27.404] [ 627.338  612.528] [ 48.934  49.947]
+m1spine	(45-50s)	2ag		pkc	 	    Epac1		Aphos			CKpCam
+20hzReb_lowDaDec3    [ 29.796  29.926] [ 11.312  16.093] [ 22.456  22.023] [ 520.428  503.276] [ 11.916  12.391]
+20hzM1               [ 13.229  13.107] [  4.367  16.123] [ 24.73   25.166] [ 541.204  534.522] [ 11.179  11.337]  
+20hzMGlu             [ 27.344  26.926] [ 12.109   9.893] [ 23.473  23.434] [ 514.023  499.172] [ 13.954  14.735]
+thetaReb_DaDec1      [ 20.383  20.322] [ 22.195  32.642][ 27.842  27.856] [ 578.96   574.718]  [ 46.632  48.455]
+thetaM1              [ 9.712  9.723]   [  8.015  29.102][ 28.763  29.212] [ 581.955  583.2  ]  [ 43.197  44.096]
+thetaMGlu            [ 19.784  19.858] [ 18.943   8.784] [ 30.012  30.317] [ 608.942  616.994] [ 41.104  41.223]  
+Gsfast (and AChigh) decrease difference between 20Hz and theta for Epac and Aphos
+Gislow (and AClow) INCrease difference between 20Hz and theta for Epac and Aphos
+Amazingly, slowing down CKp enhances difference between 20Hz and theta for Epac and Aphos
+Note lower Pkc in spine for m1 control 20hz and theat - possibly due to lower Glu stimulation
 
-VALUES OF AUC:
-Da80			2ag		pkc			Aphos	CKpCam		Epac1
-20hzReb_lowDaDec2    [ 31.139  30.87 ] [ 12.961  39.777]
-20hzReb_lowDaDec3    [ 30.795  30.625] [ 11.607  40.345]
-thetaReb_DaDec1      [ 20.183  20.273] [ 21.196  57.34 ]
-CKp			2ag		pkc
-20hzReb_lowDaDec3    [ 29.763  30.04 ] [ 12.095  29.689]
-thetaReb_DaDec1      [ 20.579  20.471] [ 20.445  60.5  ]
-AClow			2ag		pkc
-20hzReb_lowDaDec3    [ 29.265  29.158] [ 12.519  29.367]
-thetaReb_DaDec1      [ 18.063  18.025] [ 22.58   43.306]
-AChigh			2ag		pkc
-20hzReb_lowDaDec3    [ 30.55   30.618] [ 11.353  26.19 ]
-thetaReb_DaDec1      [ 22.054  22.218] [ 17.718  37.013]
-Gsfast			2ag		pkc
-20hzReb_lowDaDec3    [ 30.912  31.104] [ 11.137  39.188]
-thetaReb_DaDec1      [ 19.711  19.859] [ 20.848  68.332]
-Gislow			2ag		pkc
-20hzReb_lowDaDec3    [ 28.771  28.893] [ 11.524  33.999]
-thetaReb_DaDec1      [ 19.876  19.904] [ 21.19   58.504]
+Now run sig2-60s.py to generate file for discriminant analysis
 
-Get prediction and put in table?
+Plc variants
+A. Plc75: 75% of Plc in both dend and head
+B. Plc50: 75% of plc in head, 50% in dend
+
+Control:
+In head, Gqa is higher and Plc decreases more for Plc75.  Dag is LOWER for Plc50 (this must be stochastic, as makes no sense).
+Plc stars lower and drops closer to zero in dend; 2ag and Dag are lower in dend for Plc50 - likely due to lower Plc in dend.
+
+Effect of Block: m1 reduces Dag and Pkc in the dendrite, Mglu reduces Dag, Pkc in the spine. m1 also reduces 2ag and Mglu reduces Pkc slightly in the dendrite for Plc50, but not Plc75.  BUT, mGlu does not reduce 2ag.  Yet another unscuccessful attempt at parameters to reveal effect of MGlu block on 20hz.
+
+Use all these in discriminant analysis
+
+#########2017 Nov 7
+try simulations with m1R restricted to spine.
+theta: mGluR block still significantly lowers Pkc, m1 block has much less an effect.
+For 20Hz: MGluR block produces large reduction in Dag, but not 2ag, despite lack of Gq in dendrite.
+
+Possible Causes: 1. m1RGq is briefer than mGluRGq - thus it is  contributing less GqaGTP.  Solution: lower mGluRGq in spine.
+2. Plc in dendrite? Yes. If so, eliminate or reduce to strengthen Gq dependence
+
+>>>>>>>>>>>results:
+block mGluR still blocks LTP for TBS, but now m1R block not effective - it is contributing too little GqGTP because too transient.
+
+20Hz: both blocks lower Dag, but trivial effect on 2ag, in part because 2ag is too low.  Possibly because Dgl was not moved from dend to head.
+
+########### 2017 Nov 8
+halve Dgl in dend, double Dlg in spine, halve DagK in spine and dend
+re-run simulations
+>>>>>>>>>>>> results: 
+theta: block mGlu large effect on Dag and Pkc in spine, smaller but significant effect on Dag in dendrite.
+        small effect on 2ag in dendrite
+	block M1 has small effect on Dag and Pkc, no effect on 2ag.
+20Hz: block mGlu large effect on Dag and Pkc in spine, smaller but significant effect on Dag in dendrite.
+      block mGlu and block M1 have small effect on 2ag in dendrite
+
+In all these cases, 2ag is extremely small.  Even Pkc is quite small.  Possibly could compensate by slowing down Dag and 2ag degradation.  Use the lower Ca and slower diffusion conditions (below)!
+
+########### 2017 Nov 16
+Slow down CKpCam and 2ag diffusion even more.
+CKpCam - 10x slower based on anchoring to NR2B or CaL
+2ag 200x slower based on diffusion in membrane (but no enhanced degrad)
+Reduce by 50% Ca into dendrite - enhance spatial specificity, and possibly decrease contribution of dendritic m1/Plc to DAG?  And/Or make the Gq from m1 more important?
