@@ -239,12 +239,12 @@
         <NanoMolarity specieID="Pip2"               value="19090"  />
         <NanoMolarity specieID="PlcCaPip2"          value="20"   />
 
-        <NanoMolarity specieID="Dag"        value="40"  />
-        <NanoMolarity specieID="DagK"        value="280"  />
-        <NanoMolarity specieID="Dgl"         value="1260"  />
-        <NanoMolarity specieID="CaDgl"       value="350"   />
-        <NanoMolarity specieID="DagCaDgl"     value="50"   />
-        <NanoMolarity specieID="pDgl"         value="20"  />
+        <NanoMolarity specieID="Dag"        value="20"  />
+        <NanoMolarity specieID="DagK"        value="140"  />
+        <NanoMolarity specieID="Dgl"         value="2520"  />
+        <NanoMolarity specieID="CaDgl"       value="700"   />
+        <NanoMolarity specieID="DagCaDgl"     value="100"   />
+        <NanoMolarity specieID="pDgl"         value="40"  />
         <NanoMolarity specieID="CapDgl"       value="0"   />
         <NanoMolarity specieID="PIkinase"    value="560"    />
         <NanoMolarity specieID="Ip3degPIk"   value="0"    />
@@ -347,12 +347,12 @@
         <PicoSD specieID="Pip2"               value="954" />
         <PicoSD specieID="PlcCaPip2"          value="0"   />
 
-        <PicoSD specieID="Dag"                value="40"  />
-        <PicoSD specieID="DagK"               value="140"  />
+        <PicoSD specieID="Dag"                value="20"  />
+        <PicoSD specieID="DagK"               value="70"  />
         <PicoSD specieID="DagKdag"            value="0"  />
-        <PicoSD specieID="Dgl"                value="308"  />
-        <PicoSD specieID="CaDgl"              value="72"  />
-        <PicoSD specieID="DagCaDgl"           value="40"  />
+        <PicoSD specieID="Dgl"                value="154"  />
+        <PicoSD specieID="CaDgl"              value="36"  />
+        <PicoSD specieID="DagCaDgl"           value="20"  />
         <PicoSD specieID="pDgl"                value="0"  />
         <PicoSD specieID="CapDgl"              value="0"  />
 
