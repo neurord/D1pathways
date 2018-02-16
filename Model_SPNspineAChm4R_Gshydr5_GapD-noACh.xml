@@ -50,7 +50,7 @@ results (also, 3D may not work yet...)  -->
     </discretization>
 
     <!-- timestep used in fixed step calculations, in milliseconds -->
-    <fixedStepDt>         0.005       </fixedStepDt>
+    <fixedStepDt>         1       </fixedStepDt>
 
     <!-- interval at which stuff should be saved to the output file(s) -->
     <outputInterval>      500.0   </outputInterval>
