@@ -1,0 +1,170 @@
+2017 Nov 20
+A. Additional simulations
+1. no ACh simulation:  Transient increase in cAMP, Dp34, Epac1cAMP.  Then, increase in pPDE10 - negative feedback loop restores cAMP levels.  ALso, transient increase in pPP2A.
+
+Possibly include this in model constraints?
+
+2. low basal ACh condition - try to simulate LTD in TAN specific D2R KO mouse
+Very slight boost to cAMP signaling.  Likely not sufficient to eliminante LTD.  Perhaps an even lower basal ACh would work?
+
+B. Robustness sims
+1. Model_slow_diffusion
+   Theta burst: both block M1 and block MGlu produce drastic reduction in dendritic Pkc and CamKII.  block M1 does not reduce spine head Pkc.  Interesting, the "control" sims have very low 2ag.
+   20Hz: block MGlu reduces spine Pkc (but not 2ag) block M1 reduces dend 2ag and Pkc.
+   in both cases, gradients of CamKII and 2ag are small (but perhaps greater than before).
+      	   10hz   theta
+   Ca dend 0.6	  5u
+      spine 0.9	  10u
+
+2. Model_m1spine3 (m1 and mGluR both mainly in spine, slow diffusion)
+   Theta burst: both block M1 and block MGlu produce drastic reduction in spine Pkc and CamKII.  Block M1 does not reduce spine head Pkc.  Interesting, the "control" sims have very low 2ag.
+   20Hz: Both block M1 and block MGlu exhibit reduced 2ag, especially at 2-3 min after induction
+   In both cases, calcium gradient is 2:1, despite reduction in dendritic calcium injection!
+      	   10hz   theta
+   Ca dend 0.6	  5u
+      spine 0.9	  10u
+
+Side effect of confining Gq receptors mostly to spine: peak 2ag and Pkc are quite low in dendrite, 2ag is somewhat low in spine.
+peak: tbs dend  20hz dend  tbs spine  20hz spine  
+Pkc  	 34	6  	   405        85  
+2ag  	 48	44	   145	      122
+
+What next?
+A) re-run with even smaller dendritic calcium injection
+B) re-run with same dendritic injection and fixed buffer
+C) re-run everything to see if predictions improve (i.e., new control)
+
+
+Choose (B) - discovered mistake in calbindin backward rate constant - too fast by e-3 - too low affinity (was 700 uM instead of 700 nM)!
+Repeat, also with non-diffusible fixed buffer.  Expect that calcium concentration may be much lower.  Perhaps fixed buffer with Kd of 50 uM may partly replace role of calbindin.  See whether the slightly higher affinity binding of fixed buffer compared to Calbindin will reduce diffusion of calcium into dendrite.
+Slightly decrease Dag degradation or 2ag degradation a bit more
+2ag: from 0.05 to 0.04 degrad
+dagK: from 0.035e-6 to 0.03e-6
+
+-->Model_m1spine4
+
+Depending on results, may need to adjust calcium injection, and then re-run everything.  Re-analyze all (put set of python calls into batch file to process data for SAS and trace figures).  Re-do SAS analysis, predictions. Possibly submit as is and update figures in revisions?
+
+##############################################################
+2017 Nov 21
+>>>>>>>>>>>>>> Results of Model_m1spine4
+>>>Calcium dynamics:
+	spine	dend
+TBS	1.2u	0.5u
+20Hz	0.4u	0.2u
+
+Conclusion: Increase spine calcium influx
+
+>>>2ag: 20-30nM basal conc - similar to BoHung model
+
+	dend	spine
+Calbin: 144600
+CalbinC	 15400
+fixedB  998520
+fixedBCa  1480
+pmcaCa	     60	    166
+pmca	    187	    534
+ncx	    6098   2103
+ncxCa	    290	    108
+Ca	    73
+Cam	  3600
+CamCa2C	   140
+CamCa2N	    20
+CamCa4	     1
+PP2B	     0.5
+PP2BCam	     3400
+PP2BCamCa2N  197
+PP2BCamCa2C 1242   980 
+PP2BCamCa4    7
+D32p34PP1PP2BCamCa4	2
+D32p34PP1PP2BCamCa2C	100
+CKCamCa4		33
+PP2Acal	     17	    20
+
+AC1	     101 (dec from 105)	40
+AC1CamCa4    1 (inc from 0)	1mol
+AC1CamCa4ATP 4 (inc from 0)	1-4 mol
+AC1GsaCamCa4 0 	    	 	0
+AC1GsaCamCa4ATP 0		0-1 mol
+AC1Gsa 1
+
+PDE1	     1863
+PDE1CamCa4   137
+PDE1CamCa4cAMP 0
+
+2ag	    20
+Epac1cAMP   20
+Dp34	    430
+cAMP 	     60
+pPDE10	     20
+pPDE10cAMP   5
+pPDE4	     10
+pPP2A	     35
+
+m1R	     5		35
+AChm1R	     0		0
+m1RGq	     95		340
+AChm1RGq     7		20
+MgluR	     100	400
+GluMgluR     0		0
+MgluRGq	     8		20
+GluMgluRGq   2		2
+Gqabg	     4300	4800
+GqaGTP	     15		10
+GqaGDP	     0		0
+GluMgluRdesens 0	0
+
+Plc	       82.5	737
+PlcCa		2	23
+PlcCaGqa	0	0
+PlcGqa		0.5	0
+Pip2		2800	12250
+PlcCaPip2	1	10
+PlcCaGqaPip2	0	0
+DagK		150	93
+DagKdag		2	0
+Dgl		437	1703		
+pDgl		7	14
+CaDgl		80	323
+CapDgl		0	0
+DagCaDgl	4	10
+DagCapDgl	0	0
+
+
+PLAN:
+11/21/2017:
+1. Update IC file according to above
+2. Rerun nostim case for new IC
+3. Redo m1spine4 sims with 3x calcium into spine
+4. Create and run CaBath stim as well as Uchi sims (0 DHPG only)
+
+SIMS STARTED
+11/27/2017
+1. Assess nostim case - how are IC?
+2. Create new Model files for all sims
+3. Create 3 .bat files with ~equal numbers of simulations.  Run on Asia's and Zbyszek's computers.
+4. Update calcium for Uchi and Ca bath as needed
+
+>>>>>>>>>>>>Results.
+1. calcium too low for Dhpg sims, especially for 100 ms Ca - increase calcium influx. - Triple calcium during 1st 100 ms: from 18 to 54 for spine, from 80 to 240 for dend)
+2. bath: almost 1 uM calcium.  Dp34PP1 decreases more than 50%.  Double initial 100 ms of calcium (from 40 to 80), and increase from 7 to 8.0 the next 900 ms to achieve slightly higher calcium.
+
+>>>>>>>>>>>>>>> Results
+1. Ca = 0.47 uM briefly for 100ms Ca
+      	> 0.4 uM for 2 s for 1s Ca
+	1.2 uM peak, > 1 uM from 47 - 50 s
+GOOD ENOUGH  BUT, no fixed B in simulation - redo all.  Increase 900 ms of calcium from 3/15 to 4/20.  Increase 2nd sec of calcium from 2.5/12.5 to 3/15.
+
+2. Bath: Ca=900 nM (similar).  PP2Acal increases from ~0 to 200 nM, but PP2ABPR72 is still 900 nM, so activity hasn't increased tremendously.  Try much higher calcium.  Double 1st 100 ms and next 900 ms, and next X sec.
+
+############# Re run bathCa, add in bath Da, DaCa and block OA
+	      Re-run Uchi sims, with additional dhpg conc
+
+NEXT:
+5:	Da0.1, 0.3, 1, 10 (expect no change), noACh 
+5:	block CyA, Pap, Roli, CyA-bathCa, OA-bathCa (possible change in CyA/OA)
+10:	(20hz,tbs) X (blockM4, blockPKA2, noDa, noCKp, stdpfino)
+8-14:	(20hz,tbs) X (alcCtrl, alcIC, alcNMDA, alcNMDA_Da_IC, alcNMDA_Da?, alcNMDA_IC?, alc_Da_IC?)
+6:	(20hz,tbs) X (AChflat, AChnoB, AChnoDip)
+5-7 days
+multi-spine sims: (20hz,tbs) X (1sp, 2sp_adj, 2sp_sep) - run on Asia's computer at same time?
